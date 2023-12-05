@@ -1,6 +1,6 @@
 // import React from "react";
 import "./style.css";
-import logo from "../../../public/images/logo.png";
+import logo from "../../assets/images/logo.png";
 
 export function Logotipo() {
   return (
