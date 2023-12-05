@@ -1,68 +1,164 @@
 :root {
-  font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
-  line-height: 1.5;
-  font-weight: 400;
+  --body-caption-bold-font-family: "Roboto";
+  --body-caption-bold-font-size: 1.2rem;
+  --body-caption-bold-font-style: normal;
+  --body-caption-bold-font-weight: 700;
+  --body-caption-bold-letter-spacing: 0px;
+  --body-caption-bold-line-height: 164.9999976158142%;
+  --body-caption-regular-font-family: "Roboto";
+  --body-caption-regular-font-size: 1.2rem;
+  --body-caption-regular-font-style: normal;
+  --body-caption-regular-font-weight: 400;
+  --body-caption-regular-letter-spacing: 0px;
+  --body-caption-regular-line-height: 150%;
+  --body-heading-h1-font-family: "Poppins";
+  --body-heading-h1-font-size: 4.8rem;
+  --body-heading-h1-font-style: normal;
+  --body-heading-h1-font-weight: 700;
+  --body-heading-h1-letter-spacing: 0px;
+  --body-heading-h1-line-height: 120.00000476837158%;
+  --body-heading-h2-font-family: "Poppins";
+  --body-heading-h2-font-size: 4rem;
+  --body-heading-h2-font-style: normal;
+  --body-heading-h2-font-weight: 700;
+  --body-heading-h2-letter-spacing: 0px;
+  --body-heading-h2-line-height: 120.00000476837158%;
+  --body-heading-h3-font-family: "Poppins";
+  --body-heading-h3-font-size: 3.2rem;
+  --body-heading-h3-font-style: normal;
+  --body-heading-h3-font-weight: 700;
+  --body-heading-h3-letter-spacing: 0px;
+  --body-heading-h3-line-height: 120.00000476837158%;
+  --body-heading-h4-font-family: "Poppins";
+  --body-heading-h4-font-size: 2.8rem;
+  --body-heading-h4-font-style: normal;
+  --body-heading-h4-font-weight: 700;
+  --body-heading-h4-letter-spacing: 0px;
+  --body-heading-h4-line-height: 120.00000476837158%;
+  --body-heading-h5-font-family: "Poppins";
+  --body-heading-h5-font-size: 2.4rem;
+  --body-heading-h5-font-style: normal;
+  --body-heading-h5-font-weight: 700;
+  --body-heading-h5-letter-spacing: 0px;
+  --body-heading-h5-line-height: 120.00000476837158%;
+  --body-heading-h6-font-family: "Poppins";
+  --body-heading-h6-font-size: 2rem;
+  --body-heading-h6-font-style: normal;
+  --body-heading-h6-font-weight: 700;
+  --body-heading-h6-letter-spacing: 0px;
+  --body-heading-h6-line-height: 120.00000476837158%;
+  --body-paragraph-bold-font-family: "Roboto";
+  --body-paragraph-bold-font-size: 1.6rem;
+  --body-paragraph-bold-font-style: normal;
+  --body-paragraph-bold-font-weight: 700;
+  --body-paragraph-bold-letter-spacing: 0px;
+  --body-paragraph-bold-line-height: 150%;
+  --body-paragraph-regular-font-family: "Roboto";
+  --body-paragraph-regular-font-size: 1.6rem;
+  --body-paragraph-regular-font-style: normal;
+  --body-paragraph-regular-font-weight: 400;
+  --body-paragraph-regular-letter-spacing: 0px;
+  --body-paragraph-regular-line-height: 160.0000023841858%;
+  --body-small-bold-font-family: "Roboto";
+  --body-small-bold-font-size: 1.4rem;
+  --body-small-bold-font-style: normal;
+  --body-small-bold-font-weight: 700;
+  --body-small-bold-letter-spacing: 0px;
+  --body-small-bold-line-height: 164.9999976158142%;
+  --body-small-regular-font-family: "Roboto";
+  --body-small-regular-font-size: 1.4rem;
+  --body-small-regular-font-style: normal;
+  --body-small-regular-font-weight: 400;
+  --body-small-regular-letter-spacing: 0px;
+  --body-small-regular-line-height: 164.9999976158142%;
+  --body-subtitle-font-family: "Roboto";
+  --body-subtitle-font-size: 1.8rem;
+  --body-subtitle-font-style: normal;
+  --body-subtitle-font-weight: 700;
+  --body-subtitle-letter-spacing: 0px;
+  --body-subtitle-line-height: normal;
+  --components-button-font-family: "Roboto";
+  --components-button-font-size: 1.4rem;
+  --components-button-font-style: normal;
+  --components-button-font-weight: 700;
+  --components-button-letter-spacing: 0px;
+  --components-button-line-height: 150%;
+  --geralblack-100: rgba(31, 31, 31, 1);
+  --geralgray-10: rgba(241, 240, 242, 1);
+  --geralgray-100: rgba(82, 82, 82, 1);
+  --geralgray-90: rgba(153, 153, 153, 1);
+  --geralwhite: rgba(251, 250, 252, 1);
+  --identidade-visualprimary100: rgba(24, 116, 205, 1);
+  --identidade-visualprimaryhover: rgba(28, 130, 229, 1);
+  --link-institucional-font-family: "Roboto";
+  --link-institucional-font-size: 1.2rem;
+  --link-institucional-font-style: normal;
+  --link-institucional-font-weight: 400;
+  --link-institucional-letter-spacing: 0px;
+  --link-institucional-line-height: normal;
+  --link-menu-font-family: "Roboto";
+  --link-menu-font-size: 1.4rem;
+  --link-menu-font-style: normal;
+  --link-menu-font-weight: 700;
+  --link-menu-letter-spacing: 0rem;
+  --link-menu-line-height: normal;
+  --uipositive: rgba(19, 206, 102, 1);
+}
 
-  color-scheme: light dark;
-  color: rgba(255, 255, 255, 0.87);
-  background-color: #242424;
-
-  font-synthesis: none;
-  text-rendering: optimizeLegibility;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  text-decoration: none;
 }
 
 a {
   font-weight: 500;
-  color: #646cff;
+  color: #1874cd;
   text-decoration: inherit;
 }
+
 a:hover {
-  color: #535bf2;
+  color: #0c59a5;
+}
+
+html {
+  font-size: 62.5%; /* 10px */
+  scroll-behavior: smooth;
+  color: var(--white);
 }
 
 body {
-  margin: 0;
-  display: flex;
-  place-items: center;
-  min-width: 320px;
-  min-height: 100vh;
+  margin: 0 auto;
+  max-width: 1080px;
+  padding: 5rem 2rem;
+}
+
+body, input, textarea, button{
+  font-family: 'Poppins', sans-serif;
+  font-weight: 400;
 }
 
 h1 {
-  font-size: 3.2em;
+  font-size: 3.2rem;
   line-height: 1.1;
 }
 
 button {
-  border-radius: 8px;
-  border: 1px solid transparent;
-  padding: 0.6em 1.2em;
-  font-size: 1em;
+  border-radius: 0.8rem;
+  border: 0.1rem solid transparent;
+  font-size: 1rem;
   font-weight: 500;
   font-family: inherit;
-  background-color: #1a1a1a;
   cursor: pointer;
   transition: border-color 0.25s;
 }
-button:hover {
-  border-color: #646cff;
-}
-button:focus,
-button:focus-visible {
-  outline: 4px auto -webkit-focus-ring-color;
+
+img {
+  image-rendering: optimizeQuality;
 }
 
-@media (prefers-color-scheme: light) {
-  :root {
-    color: #213547;
-    background-color: #ffffff;
-  }
-  a:hover {
-    color: #747bff;
-  }
-  button {
-    background-color: #f9f9f9;
-  }
+button:focus,
+button:focus-visible {
+  outline: 0.4rem auto -webkit-focus-ring-color;
 }
