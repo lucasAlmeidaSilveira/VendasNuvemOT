@@ -4,9 +4,7 @@ import { Container } from "./styles.ts"
 
 // eslint-disable-next-line react/prop-types
 export function Header({ fetchData }){
-	const handleReload = () => {
-		fetchData() // Chama a função para buscar os dados da API
-	}
+
 	return (
 		<Container >
 			<div className="div">

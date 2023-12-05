@@ -6,10 +6,6 @@ import { useState } from "react"
 function App() {
 	const [orders, setOrders] = useState([])
 
-	const handleReload = () => {
-		fetchData()
-	}
-
 	const fetchData = async () => {
 		try {
 			const response = await fetch("https://node-vendasnuvemot.onrender.com/orders")
