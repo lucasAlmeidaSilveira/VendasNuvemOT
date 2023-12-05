@@ -1,6 +1,7 @@
 import React from "react";
 import { Container, ContainerPago, ContainerGeral } from "./styles";
 import { isOrderFromToday } from "../../tools/isOrderFromToday";
+import { Loading } from "../Loading";
 
 export function Dashboard({ orders, isLoading }) {
   // Filtrar os pedidos da data de hoje
@@ -40,7 +41,7 @@ export function Dashboard({ orders, isLoading }) {
           <div className="text-wrapper-2">{paidOrders.length} Vendas</div>
           <div className="text-wrapper-3">
             {isLoading ? (
-              'Carregando...'
+              <Loading color={'#FCFAFB'} />
               ) : (
                 totalPaidAmountFormatted
               )
@@ -54,7 +55,7 @@ export function Dashboard({ orders, isLoading }) {
           <div className="text-wrapper-2">{ordersToday.length} Vendas</div>
           <div className="text-wrapper-3">
           {isLoading ? (
-              'Carregando...'
+              <Loading color={'#1F1F1F'} />
               ) : (
                 totalOrdersFormatted
               )
