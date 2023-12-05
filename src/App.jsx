@@ -9,6 +9,7 @@ function App() {
 
 	const fetchData = async () => {
 		try {
+			setIsLoading(true)
 			const response = await fetch("https://node-vendasnuvemot.onrender.com/orders")
 			if (!response.ok) {
 				throw new Error("Erro ao buscar pedidos")
