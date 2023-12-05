@@ -18,10 +18,10 @@ export function Dashboard({ orders }) {
     currency: "BRL",
   });
 
-  // Filtrar os pedidos com status "paid"
+  // Filtrar os pedidos com status "Pago"
   const paidOrders = ordersToday.filter((order) => order.status === "paid");
 
-  // Somar os valores totais dos pedidos com status "paid"
+  // Somar os valores totais dos pedidos com status "Pago"
   const totalPaidAmount = paidOrders.reduce((total, order) => {
     return total + parseFloat(order.total); // Use parseFloat para garantir que os valores sejam somados corretamente
   }, 0);
