@@ -5,6 +5,7 @@ import { useState } from "react"
 
 function App() {
 	const [orders, setOrders] = useState([])
+	const [isLoading, setIsLoading] = useState(true)
 
 	const fetchData = async () => {
 		try {
@@ -14,16 +15,17 @@ function App() {
 			}
 			const productList = await response.json()
 			setOrders(productList) // Atualize o estado com os dados recebidos
-
+			setIsLoading(false)
 		} catch (error) {
 			console.error(error)
+			setIsLoading(false)
 		}
 	}
 
 	return (
 		<>
 			<Header fetchData={fetchData}/>
-			<Dashboard orders={orders}/>
+			<Dashboard orders={orders} isLoading={isLoading}/>
 		</>
 	)
 }

@@ -2,7 +2,7 @@ import React from "react";
 import { Container, ContainerPago, ContainerGeral } from "./styles";
 import { isOrderFromToday } from "../../tools/isOrderFromToday";
 
-export function Dashboard({ orders }) {
+export function Dashboard({ orders, isLoading }) {
   // Filtrar os pedidos da data de hoje
   const ordersToday = orders.filter((order) => isOrderFromToday(order.createdAt));
 
@@ -38,14 +38,28 @@ export function Dashboard({ orders }) {
         <div className="text-wrapper">Pago</div>
         <div className="div">
           <div className="text-wrapper-2">{paidOrders.length} Vendas</div>
-          <div className="text-wrapper-3">{totalPaidAmountFormatted}</div>
+          <div className="text-wrapper-3">
+            {isLoading ? (
+              'Carregando...'
+              ) : (
+                totalPaidAmountFormatted
+              )
+            }
+          </div>
         </div>
       </ContainerPago>
       <ContainerGeral>
         <div className="text-wrapper">Geral</div>
         <div className="div">
           <div className="text-wrapper-2">{ordersToday.length} Vendas</div>
-          <div className="text-wrapper-3">{totalOrdersFormatted}</div>
+          <div className="text-wrapper-3">
+          {isLoading ? (
+              'Carregando...'
+              ) : (
+                totalOrdersFormatted
+              )
+            }
+            </div>
         </div>
       </ContainerGeral>
     </Container>
