@@ -1,11 +1,20 @@
-import React from "react";
-import { Container, ContainerPago, ContainerGeral } from "./styles";
-import { isOrderFromToday } from "../../tools/isOrderFromToday";
+import React, { useState } from "react";
+import { Container, ContainerOrders, ContainerPago, ContainerGeral } from "./styles";
+import 'react-date-picker/dist/DatePicker.css'
+import 'react-calendar/dist/Calendar.css'
+import { isOrderOnDate } from "../../tools/isOrderFromToday";
 import { Loading } from "../Loading";
+import { FilterDate } from "../FilterDate";
+
+type ValuePiece = Date | null;
+
+type Value = ValuePiece | [ValuePiece, ValuePiece];
 
 export function Dashboard({ orders, isLoading }) {
+  const [date, setDate] = useState<Value>(new Date())
+  
   // Filtrar os pedidos da data de hoje
-  const ordersToday = orders.filter((order) => isOrderFromToday(order.createdAt));
+  const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date));
 
   // Total de todos os pedidos
   const totalOrders = ordersToday.reduce((total, order) => {
@@ -35,34 +44,37 @@ export function Dashboard({ orders, isLoading }) {
 
   return (
     <Container>
-      <ContainerPago>
-        <div className="text-wrapper">Pago</div>
-        <div className="div">
-          <div className="text-wrapper-2">{paidOrders.length} Vendas</div>
-          <div className="text-wrapper-3">
-            {isLoading ? (
-              <Loading color={'#FCFAFB'} />
-              ) : (
-                totalPaidAmountFormatted
-              )
-            }
-          </div>
-        </div>
-      </ContainerPago>
-      <ContainerGeral>
-        <div className="text-wrapper">Geral</div>
-        <div className="div">
-          <div className="text-wrapper-2">{ordersToday.length} Vendas</div>
-          <div className="text-wrapper-3">
-          {isLoading ? (
-              <Loading color={'#1F1F1F'} />
-              ) : (
-                totalOrdersFormatted
-              )
-            }
+      <FilterDate onChange={setDate} value={date}/>
+      <ContainerOrders>
+        <ContainerPago>
+          <div className="text-wrapper">Pago</div>
+          <div className="div">
+            <div className="text-wrapper-2">{paidOrders.length} Vendas</div>
+            <div className="text-wrapper-3">
+              {isLoading ? (
+                <Loading color={'#FCFAFB'} />
+                ) : (
+                  totalPaidAmountFormatted
+                )
+              }
             </div>
-        </div>
-      </ContainerGeral>
+          </div>
+        </ContainerPago>
+        <ContainerGeral>
+          <div className="text-wrapper">Geral</div>
+          <div className="div">
+            <div className="text-wrapper-2">{ordersToday.length} Vendas</div>
+            <div className="text-wrapper-3">
+            {isLoading ? (
+                <Loading color={'#1F1F1F'} />
+                ) : (
+                  totalOrdersFormatted
+                )
+              }
+              </div>
+          </div>
+        </ContainerGeral>
+      </ContainerOrders>
     </Container>
   );
 }
