@@ -1,6 +1,5 @@
 .logotipo {
   object-fit: contain;
-  height: 48px;
-  width: 80px;
+  max-width: 72px;
   margin-right: 1rem;
 }
