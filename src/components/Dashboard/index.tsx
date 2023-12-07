@@ -8,13 +8,13 @@ import { FilterDate } from "../FilterDate";
 
 type ValuePiece = Date | null;
 
-type Value = ValuePiece | [ValuePiece, ValuePiece];
+type Value = [ValuePiece, ValuePiece];
 
 export function Dashboard({ orders, isLoading }) {
-  const [date, setDate] = useState<Value>(new Date())
+  const [date, setDate] = useState<Value>([new Date(), new Date()])
   
   // Filtrar os pedidos da data de hoje
-  const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date));
+  const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date) && order.statusOrder !== "cancelled")
 
   // Total de todos os pedidos
   const totalOrders = ordersToday.reduce((total, order) => {
