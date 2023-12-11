@@ -1,9 +1,10 @@
+import { useOrders } from "../../context/OrdersContext.jsx"
 import { Logotipo } from "../Logo/index.jsx"
 import { ButtonReload } from "../Reload/index.jsx"
 import { Container } from "./styles.ts"
 
 // eslint-disable-next-line react/prop-types
-export function Header({ fetchData }){
+export function Header(){
 
 	return (
 		<Container >
@@ -14,7 +15,7 @@ export function Header({ fetchData }){
 					<div className="text-wrapper-2">Outlet dos Quadros</div>
 				</div>
 			</div>
-			<ButtonReload fetchData={fetchData} />
+			<ButtonReload />
 		</Container>
 	)
 }

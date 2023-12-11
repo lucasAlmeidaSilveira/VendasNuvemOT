@@ -1,28 +1,27 @@
-export function isOrderOnDate(orderCreatedAt, date) {
-	const [ startDate, endDate ] = date
-	const orderDate = new Date(orderCreatedAt)
-
-	// Convertendo as datas do intervalo para objetos Date, se não forem null
-	const start = startDate ? new Date(startDate) : null
-	const end = endDate ? new Date(endDate) : null
+export function isOrderOnDate(orderCreatedAt, dateRange) {
+	const [startDate, endDate] = dateRange
 
 	// Convertendo a data do pedido para o fuso horário local
-	const orderDateLocal = new Date(orderDate.getTime() - orderDate.getTimezoneOffset() * 60000)
+	const orderDate = new Date(orderCreatedAt)
+	orderDate.setMinutes(orderDate.getMinutes() - orderDate.getTimezoneOffset())
 
-	if (start && end) {
-		// Verifica se a data do pedido está dentro do intervalo
-		return orderDate >= start && orderDate <= end
-	} else if (start) {
-		// Verifica se a data do pedido é após a data de início do intervalo
-		return orderDate >= start
-	} else if (end) {
-		// Verifica se a data do pedido é antes da data de término do intervalo
-		return orderDate <= end
-	}
+	// Se startDate estiver definido, ajuste para o início do dia
+	const start = startDate ? new Date(startDate.setHours(
+		0, 0, 0, 0
+	)) : null
 
-	// Se nenhuma data de início ou término for fornecida, retorna false
-	return false
+	// Se endDate estiver definido, ajuste para o final do dia
+	const end = endDate ? new Date(endDate.setHours(
+		23, 59, 59, 999
+	)) : null
+
+	// Verifica se a data do pedido está dentro do intervalo
+	const isAfterStart = !start || orderDate >= start
+	const isBeforeEnd = !end || orderDate <= end
+
+	return isAfterStart && isBeforeEnd
 }
+
 
 
 // export function isOrderOnDate(orderCreatedAt, date) {

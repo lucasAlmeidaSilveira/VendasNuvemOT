@@ -5,13 +5,14 @@ import 'react-calendar/dist/Calendar.css'
 import { isOrderOnDate } from "../../tools/isOrderFromToday";
 import { Loading } from "../Loading";
 import { FilterDate } from "../FilterDate";
+import { useOrders } from "../../context/OrdersContext";
 
 type ValuePiece = Date | null;
 
 type Value = [ValuePiece, ValuePiece];
 
-export function Dashboard({ orders, isLoading }) {
-  const [date, setDate] = useState<Value>([new Date(), new Date()])
+export function Dashboard() {
+  const { orders, isLoading, date, setDate } = useOrders();
   
   // Filtrar os pedidos da data de hoje
   const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date) && order.statusOrder !== "cancelled")
