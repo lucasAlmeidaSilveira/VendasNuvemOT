@@ -51,6 +51,11 @@ export const OrdersProvider = ({ children }) => {
 	// Chamada da API quando 'date' muda
 	useEffect(() => {
 		fetchData()
+
+		const intervalId = setInterval(fetchData, 300000) // 300000 ms = 5 minutos
+
+		// Função de limpeza para limpar o intervalo
+		return () => clearInterval(intervalId)
 	}, [date])
 
 	const value = {
