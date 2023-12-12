@@ -48,13 +48,9 @@ export const OrdersProvider = ({ children }) => {
 		}
 	}
 
-	// Implementação de debouncing
+	// Chamada da API quando 'date' muda
 	useEffect(() => {
-		const debounceTimer = setTimeout(() => {
-			fetchData()
-		}, 500) // 500ms de atraso
-
-		return () => clearTimeout(debounceTimer) // Limpa o timer se o componente é desmontado ou se 'date' muda novamente
+		fetchData()
 	}, [date])
 
 	const value = {
