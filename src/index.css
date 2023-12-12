@@ -102,7 +102,14 @@
   --link-menu-font-weight: 700;
   --link-menu-letter-spacing: 0rem;
   --link-menu-line-height: normal;
-  --uipositive: rgba(19, 206, 102, 1);
+  --uiblue-100: rgba(0, 107, 200, 1);
+  --uiblue-50: rgba(60, 134, 199, 1);
+  --uinegative-100: rgba(255, 73, 73, 1);
+  --uinegative-50: rgba(255, 152, 152, 1);
+  --uipositive-100: rgba(19, 206, 102, 1);
+  --uipositive-50: rgba(122, 227, 169, 1);
+  --uiwarning-100: rgba(255, 200, 44, 1);
+  --uiwarning-50: rgba(255, 224, 137, 1);
 }
 
 * {
@@ -131,7 +138,7 @@ html {
 body {
   margin: 0 auto;
   max-width: 1080px;
-  padding: 5rem 2rem;
+  padding: 3rem 2rem;
 }
 
 body, input, textarea, button{

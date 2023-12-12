@@ -1,20 +1,18 @@
+import { Container } from "./styles"
+
 // eslint-disable-next-line react/prop-types
-export function ListProduct({urlImage, name, sales}){
+export function ListProduct({position, name, urlImage, sales}){
+
 	return (
-		<div className="list-product">
+		<Container>
 			<div className="frame">
-				<img className="vector" src={urlImage} alt={name} />
-				<div className="div">
-					<p className="name-product">{name}</p>
-					<div className="frame-2">
-						<div>
-							<div className="text-variations">Variações</div>
-							<img src="arrow" alt={arrow} />
-						</div>
-					</div>
+				<img className="image-product" src={urlImage} alt={name} />
+				<div className="info-product">
+					<p className="text-position">#{position}</p>
+					<a className="name-product">{name}</a>
 				</div>
 			</div>
-			<div className="sales">{sales}</div>
-		</div>
+			<p className="sales">{sales}</p>
+		</Container>
 	)
 }

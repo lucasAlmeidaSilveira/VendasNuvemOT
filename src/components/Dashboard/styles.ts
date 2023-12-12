@@ -5,6 +5,17 @@ export const Container = styled.div`
   flex-direction: column;
   gap: 2rem;
 
+  h1 {
+    color: var(--geralblack-100);
+    font-family: var(--body-heading-h5-font-family);
+    font-size: var(--body-heading-h5-font-size);
+    font-style: var(--body-heading-h5-font-style);
+    font-weight: var(--body-heading-h5-font-weight);
+    letter-spacing: var(--body-heading-h5-letter-spacing);
+    line-height: var(--body-heading-h5-line-height);
+    margin-top: -1px;
+    white-space: nowrap;
+  }
 `
 
 export const ContainerOrders = styled.div`

@@ -6,6 +6,7 @@ import { isOrderOnDate } from "../../tools/isOrderFromToday";
 import { Loading } from "../Loading";
 import { FilterDate } from "../FilterDate";
 import { useOrders } from "../../context/OrdersContext";
+import { BestSellers } from "../BestSellers";
 
 type ValuePiece = Date | null;
 
@@ -76,6 +77,8 @@ export function Dashboard() {
           </div>
         </ContainerGeral>
       </ContainerOrders>
+
+      <BestSellers />
     </Container>
   );
 }

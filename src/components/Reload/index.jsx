@@ -1,4 +1,3 @@
-import { useEffect } from "react"
 import "./style.css"
 import { IoReloadCircleSharp } from "react-icons/io5"
 import { useOrders } from "../../context/OrdersContext"
@@ -6,10 +5,6 @@ import { useOrders } from "../../context/OrdersContext"
 // eslint-disable-next-line react/prop-types
 export function ButtonReload() {
 	const { fetchData } = useOrders()
-
-	useEffect(() => {
-		fetchData() // Chama a função para buscar os dados da API
-	}, [])
 
 	const handleReload = () => {
 		fetchData() // Chama a função para buscar os dados da API

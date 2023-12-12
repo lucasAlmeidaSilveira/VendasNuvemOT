@@ -9,6 +9,10 @@ export const Container = styled.div`
   gap: 8px;
   padding: 2rem 2rem;
   margin-bottom: 80px;
+  box-shadow: 0px 2px 2px #00000040;
+  position: sticky;
+  top: 2rem;
+  z-index: 999;
 
   img {
     flex: 1;
