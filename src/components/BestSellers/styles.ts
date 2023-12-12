@@ -26,7 +26,7 @@ export const ContainerBestSeller = styled.div`
   align-items: flex-start;
   display: flex;
   flex-direction: column;
-  min-width: 40rem;
+  min-width: 30rem;
   flex: 1;
   box-shadow: 0px 4px 4px #00000040;
   border-radius: 1.6rem;
