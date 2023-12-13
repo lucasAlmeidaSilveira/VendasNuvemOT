@@ -20,6 +20,8 @@ export function BestSellers() {
 			let quadros = {}
 			let espelhos = {}
 
+			console.log(orders)
+
 			orders.forEach((order) => {
 				order.products.forEach((product) => {
 					const productData = {
@@ -57,8 +59,8 @@ export function BestSellers() {
 
 			setQuadrosProducts(top10Quadros)
 			setEspelhosProducts(top10Espelhos)
-			setQuadrosSales(top10Quadros.reduce((acc, item) => acc + item.sales, 0))
-			setEspelhosSales(top10Espelhos.reduce((acc, item) => acc + item.sales, 0))
+			setQuadrosSales(sortedQuadros.reduce((acc, item) => acc + item.sales, 0))
+			setEspelhosSales(sortedEspelhos.reduce((acc, item) => acc + item.sales, 0))
 		}
 
 		if (orders.length > 0) {
