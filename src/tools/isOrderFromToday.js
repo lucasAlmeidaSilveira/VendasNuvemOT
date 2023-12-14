@@ -3,15 +3,14 @@ export function isOrderOnDate(orderCreatedAt, dateRange) {
 
 	// Convertendo a data do pedido para o fuso horário local
 	const orderDate = new Date(orderCreatedAt)
-	orderDate.setMinutes(orderDate.getMinutes() - orderDate.getTimezoneOffset())
 
 	// Se startDate estiver definido, ajuste para o início do dia
-	const start = startDate ? new Date(startDate.setHours(
+	const start = startDate ? new Date(new Date(startDate).setHours(
 		0, 0, 0, 0
 	)) : null
 
 	// Se endDate estiver definido, ajuste para o final do dia
-	const end = endDate ? new Date(endDate.setHours(
+	const end = endDate ? new Date(new Date(endDate).setHours(
 		23, 59, 59, 999
 	)) : null
 
@@ -21,6 +20,7 @@ export function isOrderOnDate(orderCreatedAt, dateRange) {
 
 	return isAfterStart && isBeforeEnd
 }
+
 
 
 

@@ -20,8 +20,6 @@ export function BestSellers() {
 			let quadros = {}
 			let espelhos = {}
 
-			console.log(orders)
-
 			orders.forEach((order) => {
 				order.products.forEach((product) => {
 					const productData = {
