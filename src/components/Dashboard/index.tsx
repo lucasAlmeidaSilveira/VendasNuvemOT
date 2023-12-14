@@ -3,10 +3,11 @@ import { Container, ContainerOrders, ContainerPago, ContainerGeral } from "./sty
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
 import { isOrderOnDate } from "../../tools/isOrderFromToday";
-import { Loading } from "../Loading";
+import { Loading, LoadingIcon } from "../Loading";
 import { FilterDate } from "../FilterDate";
 import { useOrders } from "../../context/OrdersContext";
 import { BestSellers } from "../BestSellers";
+import { Oval } from "react-loader-spinner";
 
 type ValuePiece = Date | null;
 
@@ -51,7 +52,13 @@ export function Dashboard() {
         <ContainerPago>
           <div className="text-wrapper">Pago</div>
           <div className="div">
-            <div className="text-wrapper-2">{paidOrders.length} Vendas</div>
+            <div className="text-wrapper-2">
+            {isLoading ? (
+              <LoadingIcon color={'#FCFAFB'} size={16}  />
+              ) : (
+                `${paidOrders.length} Vendas`
+              )}
+            </div>
             <div className="text-wrapper-3">
               {isLoading ? (
                 <Loading color={'#FCFAFB'} />
@@ -65,7 +72,13 @@ export function Dashboard() {
         <ContainerGeral>
           <div className="text-wrapper">Geral</div>
           <div className="div">
-            <div className="text-wrapper-2">{ordersToday.length} Vendas</div>
+            <div className="text-wrapper-2">
+            {isLoading ? (
+                <LoadingIcon color={'#1F1F1F'} size={16}  />
+              ) : (
+                `${ordersToday.length} Vendas`
+              )}
+            </div>
             <div className="text-wrapper-3">
             {isLoading ? (
                 <Loading color={'#1F1F1F'} />
