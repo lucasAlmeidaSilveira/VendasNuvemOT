@@ -7,64 +7,59 @@ import { Oval } from "react-loader-spinner"
 import { InputSelect } from "../InputSelect"
 
 export function BestSellers() {
-	const { orders, isLoading } = useOrders()
-	const [quadrosSales, setQuadrosSales] = useState(0)
-	const [espelhosSales, setEspelhosSales] = useState(0)
-	const [quadrosProducts, setQuadrosProducts] = useState([])
-	const [espelhosProducts, setEspelhosProducts] = useState([])
+	const { orders, isLoading, date, store } = useOrders()
+	const [ quadrosSales, setQuadrosSales ] = useState(0)
+	const [ espelhosSales, setEspelhosSales ] = useState(0)
+	const [ quadrosProducts, setQuadrosProducts ] = useState([])
+	const [ espelhosProducts, setEspelhosProducts ] = useState([])
 	const [ numberProducts, setNumberProducts ] = useState(5)
 
 
 	useEffect(() => {
-		const processSales = () => {
-			let quadros = {}
-			let espelhos = {}
+		let quadros = {}
+		let espelhos = {}
 
-			orders.forEach((order) => {
-				order.products.forEach((product) => {
-					const productData = {
-						id: product.id,
-						name: product.name.replace(/\(.*?\)/g, "").trim(),
-						image: product.image.src,
-						sales: 1
-					}
+		orders.forEach((order) => {
+			order.products.forEach((product) => {
+				const productData = {
+					id: product.id,
+					name: product.name.replace(/\(.*?\)/g, "").trim(),
+					image: product.image.src,
+					sales: 1
+				}
 
-					if (product.name.includes("Quadro")) {
-						if (quadros[product.product_id]) {
-							quadros[product.product_id].sales += 1
-						} else {
-							quadros[product.product_id] = productData
-						}
-					} else if (product.name.includes("Espelho")) {
-						if (espelhos[product.product_id]) {
-							espelhos[product.product_id].sales += 1
-						} else {
-							espelhos[product.product_id] = productData
-						}
+				if (product.name.includes("Quadro")) {
+					if (quadros[product.product_id]) {
+						quadros[product.product_id].sales += 1
+					} else {
+						quadros[product.product_id] = productData
 					}
-				})
+				} else if (product.name.includes("Espelho")) {
+					if (espelhos[product.product_id]) {
+						espelhos[product.product_id].sales += 1
+					} else {
+						espelhos[product.product_id] = productData
+					}
+				}
 			})
+		})
 
-			// Ordenar os produtos de quadros por vendas (do maior para o menor)
-			const sortedQuadros = Object.values(quadros).sort((a, b) => b.sales - a.sales)
+		// Ordenar os produtos de quadros por vendas (do maior para o menor)
+		const sortedQuadros = Object.values(quadros).sort((a, b) => b.sales - a.sales)
 
-			// Ordenar os produtos de espelhos por vendas (do maior para o menor)
-			const sortedEspelhos = Object.values(espelhos).sort((a, b) => b.sales - a.sales)
+		// Ordenar os produtos de espelhos por vendas (do maior para o menor)
+		const sortedEspelhos = Object.values(espelhos).sort((a, b) => b.sales - a.sales)
 
-			// Pegar apenas os 10 primeiros produtos de cada categoria
-			const top10Quadros = sortedQuadros.slice(0, numberProducts)
-			const top10Espelhos = sortedEspelhos.slice(0, numberProducts)
+		// Pegar apenas os 10 primeiros produtos de cada categoria
+		const top10Quadros = sortedQuadros.slice(0, numberProducts)
+		const top10Espelhos = sortedEspelhos.slice(0, numberProducts)
 
-			setQuadrosProducts(top10Quadros)
-			setEspelhosProducts(top10Espelhos)
-			setQuadrosSales(sortedQuadros.reduce((acc, item) => acc + item.sales, 0))
-			setEspelhosSales(sortedEspelhos.reduce((acc, item) => acc + item.sales, 0))
-		}
+		setQuadrosProducts(top10Quadros)
+		setEspelhosProducts(top10Espelhos)
+		setQuadrosSales(sortedQuadros.reduce((acc, item) => acc + item.sales, 0))
+		setEspelhosSales(sortedEspelhos.reduce((acc, item) => acc + item.sales, 0))
 
-		if (orders.length > 0) {
-			processSales()
-		}
-	}, [orders, numberProducts])
+	}, [ orders, numberProducts, date, store ])
 
 	return (
 		<Container>

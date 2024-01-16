@@ -1,11 +1,13 @@
 // import React from "react";
 import "./style.css"
-import logo from "../../assets/images/logo.png"
+import logoOutlet from "../../assets/images/logo.png"
+import logoArtePropria from "../../assets/images/logoAP.svg"
 
-export function Logotipo() {
+// eslint-disable-next-line react/prop-types
+export function Logotipo({store}) {
 	return (
 		<>
-			<img className="logotipo" alt="Logotipo" src={logo} />
+			<img className="logotipo" alt="Logotipo" src={store === "outlet" ? logoOutlet : logoArtePropria} />
 		</>
 	)
 }

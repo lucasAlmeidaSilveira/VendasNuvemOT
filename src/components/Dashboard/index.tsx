@@ -15,7 +15,7 @@ type Value = [ValuePiece, ValuePiece];
 
 export function Dashboard() {
   const { orders, isLoading, date, setDate } = useOrders();
-  
+    
   // Filtrar os pedidos da data de hoje
   const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date) && order.statusOrder !== "cancelled")
 

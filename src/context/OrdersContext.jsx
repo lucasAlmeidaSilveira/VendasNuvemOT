@@ -8,6 +8,7 @@ export const useOrders = () => useContext(OrdersContext)
 export const OrdersProvider = ({ children }) => {
 	const [orders, setOrders] = useState([])
 	const [isLoading, setIsLoading] = useState(true)
+	const [store, setStore] = useState("outlet")
 
 	// Define a data atual para o início do dia
 	const currentDateStart = new Date()
@@ -28,18 +29,25 @@ export const OrdersProvider = ({ children }) => {
 	const formatDateToISO = (date) => {
 		return date.toISOString()
 	}
-
+	
+	const resetData = () => {
+		setDate([currentDateStart, currentDateEnd])
+		setOrders([])
+	}
+	
 	// Função para buscar dados da API
 	const fetchData = async () => {
+		setOrders([])
 		try {
 			setIsLoading(true)
 			const startDateISO = formatDateToISO(date[0])
 			const endDateISO = formatDateToISO(date[1])
-			const response = await fetch(`https://node-vendasnuvemot.onrender.com/orders/${startDateISO}/${endDateISO}`)
+			const response = await fetch(`https://node-vendasnuvemot.onrender.com/orders/${store}/${startDateISO}/${endDateISO}`)
 			if (!response.ok) {
 				throw new Error("Erro ao buscar pedidos")
 			}
 			const data = await response.json()
+			
 			setOrders(data)
 		} catch (err) {
 			setError(err.message)
@@ -56,13 +64,16 @@ export const OrdersProvider = ({ children }) => {
 
 		// Função de limpeza para limpar o intervalo
 		return () => clearInterval(intervalId)
-	}, [date])
+	}, [date, store])
 
 	const value = {
-		orders,
+		orders, 
 		setOrders,
 		date,
 		setDate,
+		resetData,
+		store, 
+		setStore,
 		isLoading,
 		setIsLoading,
 		fetchData,

@@ -4,7 +4,7 @@ import { useOrders } from "../../context/OrdersContext"
 
 // eslint-disable-next-line react/prop-types
 export function ButtonReload() {
-	const { fetchData } = useOrders()
+	const { fetchData, setOrders } = useOrders()
 
 	const handleReload = () => {
 		fetchData() // Chama a função para buscar os dados da API

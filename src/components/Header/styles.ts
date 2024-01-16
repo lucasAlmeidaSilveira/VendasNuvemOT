@@ -47,7 +47,7 @@ export const Container = styled.div`
     width: fit-content;
   }
 
-  .text-wrapper-2 {
+  .text-wrapper-2, .store-select {
     color: #ffffff;
     font-family: var(--body-heading-h6-font-family);
     font-size: 1.6rem;
@@ -56,6 +56,16 @@ export const Container = styled.div`
     letter-spacing: var(--body-heading-h6-letter-spacing);
     line-height: var(--body-heading-h6-line-height);
     width: fit-content;
+  }
+
+  select {
+    border: none;
+    padding: 0;
+    background-color: transparent;
+
+    option{
+      color: var(--geralblack-100);
+    }
   }
 
   .vector-wrapper {
