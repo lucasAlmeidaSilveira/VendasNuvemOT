@@ -24,7 +24,7 @@ export function Header() {
 						value={store}
 						onChange={handleStoreChange}
 					>
-						<option value="outlet">Outlet</option>
+						<option value="outlet">Outlet dos Quadros</option>
 						<option value="artepropria">Arte Própria</option>
 					</select>
 				</div>
