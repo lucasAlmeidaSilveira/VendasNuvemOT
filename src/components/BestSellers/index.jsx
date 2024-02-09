@@ -14,7 +14,6 @@ export function BestSellers() {
 	const [ espelhosProducts, setEspelhosProducts ] = useState([])
 	const [ numberProducts, setNumberProducts ] = useState(5)
 
-
 	useEffect(() => {
 		let quadros = {}
 		let espelhos = {}

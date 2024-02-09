@@ -8,7 +8,7 @@ export const Container = styled.div`
   display: flex;
   gap: 8px;
   padding: 2rem 2rem;
-  margin-bottom: 80px;
+  margin-bottom: 24px;
   box-shadow: 0px 2px 2px #00000040;
   position: sticky;
   top: 2rem;
