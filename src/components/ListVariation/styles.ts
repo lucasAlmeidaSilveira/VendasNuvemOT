@@ -46,10 +46,6 @@ export const Container = styled.div`
           font-size: 1.2rem;
         }
 
-        .text-variant {
-          font-size: 1rem;
-        }
-
     }
   }
 

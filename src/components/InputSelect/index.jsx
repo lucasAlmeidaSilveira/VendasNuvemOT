@@ -15,6 +15,7 @@ export function InputSelect({ setNumberProducts }) {
 				<option value={15}>15 mais vendidos</option>
 				<option value={20}>20 mais vendidos</option>
 				<option value={50}>50 mais vendidos</option>
+				<option value={100}>100 mais vendidos</option>
 			</select>
 		</Container>
 	)
