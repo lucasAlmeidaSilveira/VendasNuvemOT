@@ -18,9 +18,12 @@ export function BestSellers() {
 
     orders.forEach(order => {
       order.products.forEach(product => {
+        const skuNumberMatch = product.sku.match(/^(.*?)-/);
+        const skuNumber = skuNumberMatch ? skuNumberMatch[1] : 'Desconhecido';
         const productData = {
           id: product.id,
           name: product.name.replace(/\(.*?\)/g, '').trim(),
+          skuNumber,
           image: product.image.src,
           sales: 1,
         };
@@ -90,6 +93,7 @@ export function BestSellers() {
                 <ListProduct
                   key={index}
                   position={index + 1}
+                  skuNumber={quadro.skuNumber}
                   name={quadro.name}
                   variations={quadro.variations}
                   sales={quadro.totalSales}
@@ -107,6 +111,7 @@ export function BestSellers() {
                 <ListProduct
                   key={espelho.id}
                   position={index + 1}
+                  skuNumber={espelho.skuNumber}
                   name={espelho.name}
                   sales={espelho.sales}
                   urlImage={espelho.image}

@@ -19,10 +19,6 @@ export function Dashboard() {
   // Filtrar os pedidos da data de hoje
   const ordersToday = orders.filter((order) => isOrderOnDate(order.createdAt, date) && (order.statusOrder !== "cancelled" && order.status !== "voided"))
   
-  ordersToday.forEach(order => {
-    console.log("pedido", order)
-  });
-  console.log(ordersToday.length)
   // Total de todos os pedidos
   const totalOrders = ordersToday.reduce((total, order) => {
     const orderTotalNumber = parseFloat(order.total);
