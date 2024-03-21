@@ -37,7 +37,6 @@ export function Coupons(){
 
   const sortedCoupons = Object.values(coupons).sort((a, b) => b.used - a.used)
 
-  console.log("cupons", coupons)
   return (
     <ContainerCoupon component={Paper}>
       <Table aria-label="simple table">

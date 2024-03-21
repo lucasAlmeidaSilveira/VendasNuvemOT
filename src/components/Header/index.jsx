@@ -18,7 +18,7 @@ export function Header() {
 			<div className="div">
 				<Logotipo store={store} />
 				<div className="div-2">
-					<div className="text-wrapper">Vendas</div>
+					<div className="text-wrapper">Selecione uma loja</div>
 					<select
 						className="store-select"
 						value={store}

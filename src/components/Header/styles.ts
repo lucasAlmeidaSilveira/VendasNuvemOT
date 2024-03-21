@@ -31,13 +31,12 @@ export const Container = styled.div`
   .div-2 {
     align-items: flex-start;
     flex-direction: column;
-    gap: 2px;
   }
 
   .text-wrapper {
     color: #ffffff;
     font-family: var(--body-paragraph-regular-font-family);
-    font-size: 1.4rem;
+    font-size: 1.3rem;
     font-style: var(--body-paragraph-regular-font-style);
     font-weight: var(--body-paragraph-regular-font-weight);
     letter-spacing: var(--body-paragraph-regular-letter-spacing);

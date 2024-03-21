@@ -5,12 +5,17 @@ import { ContainerBestSellers, ContainerBestSeller, Container } from './styles';
 import { Loading } from '../Loading';
 import { Oval } from 'react-loader-spinner';
 import { InputSelect } from '../InputSelect';
+import { ListProductTable } from '../ListProductTable';
+import { exportTableToExcel } from '../../tools/tools';
 
 export function BestSellers() {
   const { orders, isLoading } = useOrders();
-  const [quadrosWithVariations, setQuadrosWithVariations] = useState([]);
-  const [espelhosProducts, setEspelhosProducts] = useState([]);
-  const [numberProducts, setNumberProducts] = useState(5);
+  const [ quadrosWithVariations, setQuadrosWithVariations] = useState([]);
+  const [ totalQuadros, setTotalQuadros ] = useState([]);
+  const [ totalEspelhos, setTotalEspelhos ] = useState([]);
+  const [ espelhosProducts, setEspelhosProducts ] = useState([]);
+  const [ numberProducts, setNumberProducts ] = useState(5);
+  console.log(orders[0])
 
   useEffect(() => {
     let quadros = {};
@@ -23,9 +28,11 @@ export function BestSellers() {
         const productData = {
           id: product.id,
           name: product.name.replace(/\(.*?\)/g, '').trim(),
+          sku: product.sku,
           skuNumber,
           image: product.image.src,
           sales: 1,
+          total: product.price
         };
 
         if (product.name.includes('Quadro')) {
@@ -72,13 +79,21 @@ export function BestSellers() {
 
     setQuadrosWithVariations(sortedQuadros);
     setEspelhosProducts(sortedEspelhos);
+    setTotalQuadros(quadros)
+    setTotalEspelhos(espelhos)
   }, [orders, numberProducts]);
+
+  const handleExportClick = () => {
+    exportTableToExcel('tableId', 'Vendas Outlet.xlsx');
+  };
 
   return (
     <Container>
       <div className='header-container'>
         <h1>Mais Vendidos</h1>
         <InputSelect setNumberProducts={setNumberProducts} />
+        {/* <button onClick={handleExportClick}>Exportar para Excel</button> */}
+
       </div>
       {isLoading ? (
         <Oval color='#1F1F1F' height={50} width={50} />
@@ -87,6 +102,7 @@ export function BestSellers() {
           <ContainerBestSeller>
             <header className='header'>
               <h2>Quadros</h2>
+              <span className="sales-cetegorie">{Object.keys(totalQuadros).length}</span>
             </header>
             <div className='table'>
               {quadrosWithVariations.map((quadro, index) => (
@@ -105,6 +121,7 @@ export function BestSellers() {
           <ContainerBestSeller>
             <header className='header'>
               <h2>Espelhos</h2>
+              <span className="sales-cetegorie">{Object.keys(totalEspelhos).length}</span>
             </header>
             <div className='table'>
               {espelhosProducts.map((espelho, index) => (
@@ -121,6 +138,8 @@ export function BestSellers() {
           </ContainerBestSeller>
         </ContainerBestSellers>
       )}
+
+    <ListProductTable products={quadrosWithVariations} />
     </Container>
   );
 }
