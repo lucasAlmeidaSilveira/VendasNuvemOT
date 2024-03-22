@@ -11,19 +11,20 @@ export function BestSellers() {
   const { orders, isLoading } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [] });
   const [numberProducts, setNumberProducts] = useState(5);
-  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
+  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 }});
 
-  console.log("orders", orders)
   useEffect(() => {
+    const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
+
     const processProducts = (category) => {
-      let totalCategoryCount = 0; // Contagem de vendas para a categoria
-      let totalCategoryValue = 0; // Valor total em reais para a categoria
+      let totalCategoryValue = 0;
+      let totalCategorySales = 0;
       const processedProducts = orders.reduce((acc, order) => {
         order.products.forEach((product) => {
           if (product.name.includes(category)) {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
             const productId = product.product_id;
-            const price = parseFloat(product.price); // Converte o preço do produto de string para número
+            const price = parseFloat(product.price);
             const existingProduct = acc.find(p => p.id === productId);
             if (existingProduct) {
               existingProduct.sales += 1;
@@ -37,19 +38,16 @@ export function BestSellers() {
                 total: price
               });
             }
-            totalCategoryCount += 1;
-            totalCategoryValue += price; // Soma o valor do produto ao total da categoria
+            totalCategorySales += 1;
+            totalCategoryValue += price;
+            totals.vendas += 1;
+            totals.valor += price;
           }
         });
         return acc;
       }, []).sort((a, b) => b.sales - a.sales);
 
-      // Retornamos os produtos filtrados pela quantidade definida em numberProducts para exibição
-      return { 
-        products: processedProducts.slice(0, numberProducts), 
-        count: totalCategoryCount, 
-        value: totalCategoryValue 
-      };
+      return { products: processedProducts, totalSales: totalCategorySales, totalValue: totalCategoryValue };
     };
 
     const quadros = processProducts("Quadro");
@@ -61,10 +59,22 @@ export function BestSellers() {
     });
 
     setTotalSales({
-      quadros: { count: quadros.count, value: quadros.value },
-      espelhos: { count: espelhos.count, value: espelhos.value },
+      quadros: quadros.totalValue,
+      espelhos: espelhos.totalValue,
     });
-    
+
+    // Calcula os percentuais
+    setPercentual({
+      vendas: {
+        quadros: (quadros.totalSales / totals.vendas) * 100,
+        espelhos: (espelhos.totalSales / totals.vendas) * 100,
+      },
+      valor: {
+        quadros: (quadros.totalValue / totals.valor) * 100,
+        espelhos: (espelhos.totalValue / totals.valor) * 100,
+      },
+    });
+
   }, [orders, numberProducts]);
 
   return (
@@ -90,9 +100,10 @@ export function BestSellers() {
                 />
               ) : (
                 <h2 className="sales-cetegorie">
-                  {totalSales[category].count} vendas
-                  <span className='total-sales'>{formatCurrency(totalSales[category].value)}</span>
+                  {products[category].reduce((acc, curr) => acc + curr.sales, 0)} vendas
+                  <span className='total-sales'>{formatCurrency(totalSales[category])} | {percentual.valor[category].toFixed(2)}%</span>
                 </h2>
+                
               )}
             </header>
             <div className="table">
