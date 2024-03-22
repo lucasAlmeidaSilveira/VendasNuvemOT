@@ -9,137 +9,131 @@ import { ListProductTable } from '../ListProductTable';
 import { exportTableToExcel } from '../../tools/tools';
 
 export function BestSellers() {
-  const { orders, isLoading } = useOrders();
-  const [ quadrosWithVariations, setQuadrosWithVariations] = useState([]);
-  const [ totalQuadros, setTotalQuadros ] = useState([]);
-  const [ totalEspelhos, setTotalEspelhos ] = useState([]);
-  const [ espelhosProducts, setEspelhosProducts ] = useState([]);
-  const [ numberProducts, setNumberProducts ] = useState(5);
-  console.log(orders[0])
+	const { orders, isLoading, date, store } = useOrders()
+	const [ quadrosSales, setQuadrosSales ] = useState(0)
+	const [ espelhosSales, setEspelhosSales ] = useState(0)
+	const [ quadrosProducts, setQuadrosProducts ] = useState([])
+	const [ espelhosProducts, setEspelhosProducts ] = useState([])
+	const [ numberProducts, setNumberProducts ] = useState(5)
 
-  useEffect(() => {
-    let quadros = {};
-    let espelhos = {};
+	useEffect(() => {
+		let quadros = {}
+		let espelhos = {}
 
-    orders.forEach(order => {
-      order.products.forEach(product => {
-        const skuNumberMatch = product.sku.match(/^(.*?)-/);
-        const skuNumber = skuNumberMatch ? skuNumberMatch[1] : 'Desconhecido';
-        const productData = {
-          id: product.id,
-          name: product.name.replace(/\(.*?\)/g, '').trim(),
-          sku: product.sku,
-          skuNumber,
-          image: product.image.src,
-          sales: 1,
-          total: product.price
-        };
+		orders.forEach((order) => {
+			order.products.forEach((product) => {
+				const productData = {
+					id: product.id,
+          skuNumber: product.sku.split("-")[0],
+					name: product.name.replace(/\(.*?\)/g, "").trim(),
+					image: product.image.src,
+					sales: 1
+				}
 
-        if (product.name.includes('Quadro')) {
-          const quadroId = product.product_id;
-          quadros[quadroId] = quadros[quadroId] || {
-            ...productData,
-            totalSales: 0,
-            variations: {},
-          };
-          quadros[quadroId].totalSales += 1;
+				if (product.name.includes("Quadro")) {
+					if (quadros[product.product_id]) {
+						quadros[product.product_id].sales += 1
+					} else {
+						quadros[product.product_id] = productData
+					}
+				} else if (product.name.includes("Espelho")) {
+					if (espelhos[product.product_id]) {
+						espelhos[product.product_id].sales += 1
+					} else {
+						espelhos[product.product_id] = productData
+					}
+				}
+			})
+		})
 
-          product.variant_values.forEach(variation => {
-            let variantValues = Array.isArray(product.variant_values)
-              ? product.variant_values
-              : [product.variant_values];
-            const variationKey = variantValues.join(', ');
-            quadros[quadroId].variations[variationKey] =
-              (quadros[quadroId].variations[variationKey] || 0) + 1;
-          });
-        } else if (product.name.includes('Espelho')) {
-          espelhos[product.product_id] = espelhos[product.product_id]
-            ? {
-                ...espelhos[product.product_id],
-                sales: espelhos[product.product_id].sales + 1,
-              }
-            : productData;
-        }
-      });
-    });
+		// Ordenar os produtos de quadros por vendas (do maior para o menor)
+		const sortedQuadros = Object.values(quadros).sort((a, b) => b.sales - a.sales)
 
-    const sortedQuadros = Object.values(quadros)
-      .sort((a, b) => b.totalSales - a.totalSales)
-      .slice(0, numberProducts)
-      .map(quadro => ({
-        ...quadro,
-        variations: Object.entries(quadro.variations)
-          .sort((a, b) => b[1] - a[1])
-          .slice(0, 2), // Pegar apenas as duas variações mais vendidas
-      }));
+		// Ordenar os produtos de espelhos por vendas (do maior para o menor)
+		const sortedEspelhos = Object.values(espelhos).sort((a, b) => b.sales - a.sales)
 
-    const sortedEspelhos = Object.values(espelhos)
-      .sort((a, b) => b.sales - a.sales)
-      .slice(0, numberProducts);
+		// Pegar apenas o número de produtos definido em numberProducts
+		const listQuadros = sortedQuadros.slice(0, numberProducts)
+		const listEspelhos = sortedEspelhos.slice(0, numberProducts)
 
-    setQuadrosWithVariations(sortedQuadros);
-    setEspelhosProducts(sortedEspelhos);
-    setTotalQuadros(quadros)
-    setTotalEspelhos(espelhos)
-  }, [orders, numberProducts]);
+		setQuadrosProducts(listQuadros)
+		setEspelhosProducts(listEspelhos)
+		setQuadrosSales(sortedQuadros.reduce((acc, item) => acc + item.sales, 0))
+		setEspelhosSales(sortedEspelhos.reduce((acc, item) => acc + item.sales, 0))
 
-  const handleExportClick = () => {
-    exportTableToExcel('tableId', 'Vendas Outlet.xlsx');
-  };
+	}, [ orders, numberProducts, date, store ])
 
   return (
-    <Container>
-      <div className='header-container'>
-        <h1>Mais Vendidos</h1>
-        <InputSelect setNumberProducts={setNumberProducts} />
-        {/* <button onClick={handleExportClick}>Exportar para Excel</button> */}
+		<Container>
+			<div className="header-container">
+				<h1>Mais vendidos</h1>
+				<InputSelect setNumberProducts={setNumberProducts} />
+			</div>
+			<ContainerBestSellers>
+				<ContainerBestSeller>
+					<header className="header">
+						<h2 className="categorie">Quadros</h2>
+						{isLoading ? (
+							<Oval
+								height={16}
+								width={16}
+								color="#FCFAFB"
+								visible={true}
+								ariaLabel='oval-loading'
+								strokeWidth={4}
+								strokeWidthSecondary={4}
+							/>
+						): (
+							<h2 className="sales-cetegorie">
+								{quadrosSales}
+							</h2>
+						)}
+					</header>
+					<div className="table">
+						{isLoading ? (
+							<div className="loading">
+								<Loading color={"#1F1F1F"} />
+							</div>
+						):(
+							quadrosProducts.map((product, index) => (
+								<ListProduct key={product.id} position={index + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
+							))
+						)}
+					</div>
+				</ContainerBestSeller>
 
-      </div>
-      {isLoading ? (
-        <Oval color='#1F1F1F' height={50} width={50} />
-      ) : (
-        <ContainerBestSellers>
-          <ContainerBestSeller>
-            <header className='header'>
-              <h2>Quadros</h2>
-              <span className="sales-cetegorie">{Object.keys(totalQuadros).length}</span>
-            </header>
-            <div className='table'>
-              {quadrosWithVariations.map((quadro, index) => (
-                <ListProduct
-                  key={index}
-                  position={index + 1}
-                  skuNumber={quadro.skuNumber}
-                  name={quadro.name}
-                  variations={quadro.variations}
-                  sales={quadro.totalSales}
-                  urlImage={quadro.image}
-                />
-              ))}
-            </div>
-          </ContainerBestSeller>
-          <ContainerBestSeller>
-            <header className='header'>
-              <h2>Espelhos</h2>
-              <span className="sales-cetegorie">{Object.keys(totalEspelhos).length}</span>
-            </header>
-            <div className='table'>
-              {espelhosProducts.map((espelho, index) => (
-                <ListProduct
-                  key={espelho.id}
-                  position={index + 1}
-                  skuNumber={espelho.skuNumber}
-                  name={espelho.name}
-                  sales={espelho.sales}
-                  urlImage={espelho.image}
-                />
-              ))}
-            </div>
-          </ContainerBestSeller>
-        </ContainerBestSellers>
-      )}
-
-    <ListProductTable products={quadrosWithVariations} />
-    </Container>
-  );
+				<ContainerBestSeller>
+					<header className="header">
+						<h2 className="categorie">Espelhos</h2>
+						{isLoading ? (
+							<Oval
+								height={16}
+								width={16}
+								color="#FCFAFB"
+								visible={true}
+								ariaLabel='oval-loading'
+								strokeWidth={4}
+								strokeWidthSecondary={4}
+							/>
+						): (
+							<h2 className="sales-cetegorie">
+								{espelhosSales}
+							</h2>
+						)}
+					</header>
+					<div className="table">
+						{isLoading ? (
+							<div className="loading">
+								<Loading color={"#1F1F1F"} />
+							</div>
+						):(
+							espelhosProducts.map((product, index) => (
+								<ListProduct key={product.id} position={index + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
+							))
+						)}
+					</div>
+				</ContainerBestSeller>
+			</ContainerBestSellers>
+		</Container>
+	)
 }
