@@ -7,7 +7,6 @@ import { Loading, LoadingIcon } from "../Loading";
 import { FilterDate } from "../FilterDate";
 import { useOrders } from "../../context/OrdersContext";
 import { BestSellers } from "../BestSellers";
-import { Oval } from "react-loader-spinner";
 
 type ValuePiece = Date | null;
 

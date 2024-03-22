@@ -42,12 +42,12 @@ export const ContainerBestSeller = styled.div`
   }
 
   .header {
+    display: flex;
     align-items: center;
+    justify-content: space-between;
     background: var(--geralblack-100);
     border-radius: 1.6rem 1.6rem 0 0;
-    display: flex;
     flex: 0 0 auto;
-    justify-content: space-between;
     padding: 1.6rem 2.4rem;
     width: 100%;
     color: var(--geralwhite);
@@ -57,18 +57,25 @@ export const ContainerBestSeller = styled.div`
     }
 
     .sales-cetegorie{
+      display: flex;
+      flex-direction: column;
+      align-items: flex-end;
       font-size: 1.6rem;
+      
+      .total-sales {
+        font-size: 1.4rem;
+        font-weight: 300;
+      }
     }
   }
   
   .table {
     align-items: flex-start;
-    background: var(--geralgray-10);
     border-radius: 0 0 1.6rem 1.6rem;
     display: flex;
     flex: 0 0 auto;
     flex-direction: column;
     justify-content: center;
-    width: 100%;
+    width: 100%;    
   }
 `
