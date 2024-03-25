@@ -53,8 +53,8 @@ export function Footer() {
       aria-label='Menu Relatório'
     >
       <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
-      {/* <TabItem icon={<EqualizerIcon />} label='ESTATÍSTICAS' /> */}
       <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
+      {/* <TabItem icon={<EqualizerIcon />} label='ESTATÍSTICAS' /> */}
     </Tabs>
   );
 }
