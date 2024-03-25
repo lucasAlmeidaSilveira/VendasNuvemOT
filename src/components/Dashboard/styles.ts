@@ -31,6 +31,7 @@ export const ContainerPago = styled.div`
   display: inline-flex;
   flex-direction: column;
   gap: 1.6rem;
+  flex: 1;
 
   & .text-wrapper {
     color: var(--geralblack-100);
@@ -50,7 +51,7 @@ export const ContainerPago = styled.div`
     border-radius: 1.6rem;
     box-shadow: 0px 4px 4px #00000040;
     display: flex;
-    flex: 0 0 auto;
+    width: 100%;
     flex-direction: column;
     gap: 0.8rem;
     padding: 2.4rem 4rem;
@@ -83,6 +84,7 @@ export const ContainerGeral = styled.div`
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
+  flex: 1;
   gap: 1.6rem;
 
   & .text-wrapper {
@@ -103,7 +105,7 @@ export const ContainerGeral = styled.div`
     border-radius: 1.6rem;
     box-shadow: 0px 4px 4px #00000040;
     display: flex;
-    flex: 0 0 auto;
+    width: 100%;
     flex-direction: column;
     gap: 0.8rem;
     padding: 2rem 3.2rem;

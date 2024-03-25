@@ -11,7 +11,8 @@ export function BestSellers() {
   const { orders, isLoading } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [] });
   const [numberProducts, setNumberProducts] = useState(5);
-  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 }});
+  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });  
+  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 }});
 
   useEffect(() => {
     const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
@@ -100,7 +101,7 @@ export function BestSellers() {
                 />
               ) : (
                 <h2 className="sales-cetegorie">
-                  {products[category].reduce((acc, curr) => acc + curr.sales, 0)} vendas
+                  {products[category].reduce((acc, curr) => acc + curr.sales, 0)} unidades
                   <span className='total-sales'>{formatCurrency(totalSales[category])} | {percentual.valor[category].toFixed(2)}%</span>
                 </h2>
                 
@@ -112,7 +113,7 @@ export function BestSellers() {
                   <Loading color={"#1F1F1F"} />
                 </div>
               ) : (
-                products[category].map((product, productIndex) => (
+                products[category].slice(0, numberProducts).map((product, productIndex) => (
                   <ListProduct key={product.id} position={productIndex + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
                 ))
               )}

@@ -3,6 +3,7 @@ import Tab from '@mui/material/Tab';
 import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
+import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { useTab } from '../../context/TabContext';
 import { styled } from '@mui/material/styles';
 
@@ -52,6 +53,7 @@ export function Footer() {
       aria-label='Menu Relatório'
     >
       <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
+      {/* <TabItem icon={<EqualizerIcon />} label='ESTATÍSTICAS' /> */}
       <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
     </Tabs>
   );
