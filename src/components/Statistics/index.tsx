@@ -14,10 +14,10 @@ export function Statistics() {
   const { ordersToday, totalOrdersFormatted } = filterOrders(orders, date);
   
   // Convertendo o número de visitas para o formato local
-  const visits = data.newUsers ? parseInt(data.newUsers).toLocaleString('pt-BR') : '0';
+  const visits = data.totalVisits ? parseInt(data.totalVisits).toLocaleString('pt-BR') : '0';
 
-  const conversionRate = data.newUsers > 0
-    ? ((ordersToday.length / parseInt(data.newUsers)) * 100).toFixed(2)
+  const conversionRate = data.totalVisits > 0
+    ? ((ordersToday.length / parseInt(data.totalVisits)) * 100).toFixed(2)
     : '0.00';
 
   return (
