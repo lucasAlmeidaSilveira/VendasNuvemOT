@@ -4,6 +4,7 @@ import Tabs, { tabsClasses } from '@mui/material/Tabs';
 import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
+import GoogleIcon from '@mui/icons-material/Google';
 import { useTab } from '../../context/TabContext';
 import { styled } from '@mui/material/styles';
 
@@ -53,8 +54,8 @@ export function Footer() {
       aria-label='Menu Relatório'
     >
       <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
+      <TabItem icon={<GoogleIcon />} label='ANALYTICS' />
       <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
-      {/* <TabItem icon={<EqualizerIcon />} label='ESTATÍSTICAS' /> */}
     </Tabs>
   );
 }

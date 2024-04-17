@@ -1,13 +1,16 @@
 import "./style.css"
 import { IoReloadCircleSharp } from "react-icons/io5"
 import { useOrders } from "../../context/OrdersContext"
+import { useAnalytics } from "../../context/AnalyticsContext"
 
 // eslint-disable-next-line react/prop-types
 export function ButtonReload() {
 	const { fetchData, setOrders } = useOrders()
+	const { fetchData: fetchDataAnalytics } = useAnalytics()
 
 	const handleReload = () => {
 		fetchData() // Chama a função para buscar os dados da API
+		fetchDataAnalytics()
 	}	
 
 	return (

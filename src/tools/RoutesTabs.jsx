@@ -8,9 +8,9 @@ export function RoutesTabs({ activeTab }) {
     case 0:
       return <Dashboard />;
     case 1:
-      return <Coupons />;
-    case 2:
       return <Statistics />;
+    case 2:
+      return <Coupons />;
     // Você pode adicionar mais casos aqui para outras abas
     default:
       return <Dashboard />; // ou alguma página padrão

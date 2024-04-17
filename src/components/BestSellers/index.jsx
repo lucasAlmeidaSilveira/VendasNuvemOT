@@ -114,7 +114,7 @@ export function BestSellers() {
                 </div>
               ) : (
                 products[category].slice(0, numberProducts).map((product, productIndex) => (
-                  <ListProduct key={product.id} position={productIndex + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
+                  <ListProduct key={product.id} idProduct={product.id} position={productIndex + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
                 ))
               )}
             </div>

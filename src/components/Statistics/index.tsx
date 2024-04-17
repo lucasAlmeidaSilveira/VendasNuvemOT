@@ -1,23 +1,24 @@
-import React, { useEffect, useState } from 'react';
-import {
-  Container,
-  ContainerOrders,
-  ContainerGeral,
-} from './styles';
+import React from 'react';
+import { Container, ContainerOrders, ContainerGeral } from './styles';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { Loading, LoadingIcon } from '../Loading';
+import { Loading } from '../Loading';
 import { FilterDate } from '../FilterDate';
-import { useOrders } from '../../context/OrdersContext';
 import { filterOrders } from "../../tools/filterOrders";
-import { fetchVisits } from "../../api";
+import { useAnalytics } from "../../context/AnalyticsContext";
+import { useOrders } from "../../context/OrdersContext";
 
 export function Statistics() {
-  const { orders, isLoading, date, setDate } = useOrders();
-  const { ordersToday, totalOrdersFormatted } = filterOrders(orders, date)
-  const [ visits, setVisits ] = useState(7234);
+  const { data, isLoading: isLoadingAnalytics } = useAnalytics();
+  const { store, orders, isLoading: isLoadingOrders, date, setDate } = useOrders();
+  const { ordersToday, totalOrdersFormatted } = filterOrders(orders, date);
   
-  const conversionRate = visits > 0 ? ((ordersToday.length / visits) * 100).toFixed(2) : 0
+  // Convertendo o número de visitas para o formato local
+  const visits = data.newUsers ? parseInt(data.newUsers).toLocaleString('pt-BR') : '0';
+
+  const conversionRate = data.newUsers > 0
+    ? ((ordersToday.length / parseInt(data.newUsers)) * 100).toFixed(2)
+    : '0.00';
 
   return (
     <Container>
@@ -26,10 +27,10 @@ export function Statistics() {
         <ContainerGeral>
           <div className='div'>
             <div className='text-wrapper-2'>
-              {!isLoading && `${ordersToday.length} Vendas`}
+              {!isLoadingOrders && ordersToday.length} Vendas
             </div>
             <div className='text-wrapper-3'>
-              {isLoading ? <Loading color={'#1F1F1F'} /> : totalOrdersFormatted}
+              {isLoadingOrders ? <Loading color={'#1F1F1F'} /> : totalOrdersFormatted}
             </div>
           </div>
         </ContainerGeral>
@@ -39,7 +40,7 @@ export function Statistics() {
               Visitas
             </div>
             <div className='text-wrapper-3'>
-              {visits}
+              {isLoadingAnalytics ? <Loading color={'#1F1F1F'} /> : visits}
             </div>
           </div>
         </ContainerGeral>
@@ -49,7 +50,7 @@ export function Statistics() {
               Taxa de conversão
             </div>
             <div className='text-wrapper-3'>
-              {conversionRate}
+              {isLoadingOrders ? <Loading color={'#1F1F1F'} /> : `${conversionRate}%`}
             </div>
           </div>
         </ContainerGeral>
