@@ -1,5 +1,6 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useOrders } from './OrdersContext';
+import { formatDate } from '../tools/tools'
 
 export const AnalyticsContext = createContext();
 
@@ -15,7 +16,9 @@ export const AnalyticsProvider = ({ children }) => {
   const fetchData = async () => {
     try {
       setIsLoading(true);
-      const response = await fetch(`https://node-vendasnuvemot.onrender.com/analytics/${store}/${date[0]}/${date[1]}`);
+      const startDate = formatDate(date[0]); // Formata a data inicial 
+      const endDate = formatDate(date[1]); // Formata a data final
+      const response = await fetch(`https://node-vendasnuvemot.onrender.com/analytics/${store}/${startDate}/${endDate}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar dados');
       }

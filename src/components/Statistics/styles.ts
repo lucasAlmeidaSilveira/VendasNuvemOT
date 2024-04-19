@@ -68,3 +68,10 @@ export const ContainerGeral = styled.div`
     white-space: nowrap;
   }
 `
+
+export const ContainerCharts = styled.div`
+  display: flex;
+  width: 100%;
+  flex-wrap: wrap;
+  gap: 1.6rem;
+`
