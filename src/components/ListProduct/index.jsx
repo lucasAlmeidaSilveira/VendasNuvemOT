@@ -1,9 +1,27 @@
+import { useEffect, useState } from "react"
 import { Container } from "./styles"
+import { getProduct } from "../../api"
+import { useOrders } from "../../context/OrdersContext";
 
 // eslint-disable-next-line react/prop-types
 export function ListProduct({idProduct, position, name, skuNumber, variations, urlImage, sales}){
-	const baseUrl = "https://outletdosquadros.lojavirtualnuvem.com.br/admin/v2/products/"
-	const urlProduct = baseUrl + idProduct
+	const { store } = useOrders();
+  const [urlProduct, setUrlProduct] = useState(''); // Estado para armazenar a URL do produto
+
+  useEffect(() => {
+    // Função assíncrona para buscar a URL do produto
+    const fetchProductUrl = async () => {
+      try {
+        const { canonical_url } = await getProduct(store, idProduct);
+        setUrlProduct(canonical_url); // Atualiza o estado com a URL obtida
+      } catch (error) {
+        console.error("Failed to fetch product URL:", error);
+        setUrlProduct(""); // Em caso de erro, define a URL como string vazia
+      }
+    };
+
+    fetchProductUrl(); // Chama a função assíncrona
+  }, []);
 
 	return (
 		<Container>

@@ -22,6 +22,7 @@ export function BestSellers() {
       let totalCategorySales = 0;
       const processedProducts = orders.reduce((acc, order) => {
         order.products.forEach((product) => {
+          
           if (product.name.includes(category)) {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
             const productId = product.product_id;
