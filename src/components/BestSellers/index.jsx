@@ -6,13 +6,15 @@ import { Loading } from '../Loading';
 import { Oval } from 'react-loader-spinner';
 import { InputSelect } from '../InputSelect';
 import { formatCurrency } from '../../tools/tools';
+import { filterOrders } from '../../tools/filterOrders';
 
 export function BestSellers() {
-  const { orders, isLoading } = useOrders();
+  const { orders, isLoading, date } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [] });
   const [numberProducts, setNumberProducts] = useState(5);
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });  
   const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 }});
+  const { ordersToday } = filterOrders(orders, date)
 
   useEffect(() => {
     const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
@@ -20,7 +22,7 @@ export function BestSellers() {
     const processProducts = (category) => {
       let totalCategoryValue = 0;
       let totalCategorySales = 0;
-      const processedProducts = orders.reduce((acc, order) => {
+      const processedProducts = ordersToday.reduce((acc, order) => {
         order.products.forEach((product) => {
           
           if (product.name.includes(category)) {
@@ -77,7 +79,7 @@ export function BestSellers() {
       },
     });
 
-  }, [orders, numberProducts]);
+  }, [ordersToday, numberProducts]);
 
   return (
     <Container>

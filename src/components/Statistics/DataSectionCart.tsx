@@ -37,8 +37,9 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   }, [visits, totalAdSpend, ordersFiltered.length]); // Adicione totalAdSpend e ordersFiltered.length como dependências
 
   useEffect(() => {
+    console.log(orders.length, ordersFiltered.length);
     if (ordersFiltered.length > 0) {
-      const passRateValue = (ordersFiltered.length / orders.length) * 100;
+      const passRateValue = (ordersToday.length / ordersFiltered.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%'); // Ajuste para fixar apenas duas casas decimais
     }
   }, [orders, ordersFiltered.length]); // Correção para incluir orders e ordersFiltered.length como dependências
@@ -60,7 +61,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
           <BudgetItem title="Custo de carrinho" value={conversionRate} isLoading={isLoadingAnalytics} />
         </div> */}
         <div className="row">
-          <BudgetItem title="Pedidos" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Vendas" value={ordersToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Clicado em comprar" value={ordersFiltered.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação" value={passRate} isLoading={isLoadingOrders} />
         </div>

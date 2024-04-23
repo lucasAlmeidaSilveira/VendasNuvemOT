@@ -52,8 +52,8 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
         <h4>Analytics</h4>
         <div className="row">
           <BudgetItem title="Visitas" value={visits} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Pedidos" value={ordersToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de conversão" value={conversionRate} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Vendas" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Taxa de conversão" value={conversionRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">
           {/* <BudgetItem title="Custo p/ Sessão (CPS)" value={priceSession} isLoading={isLoadingOrders} /> */}
