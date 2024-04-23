@@ -1,5 +1,9 @@
 import styled from "styled-components";
 
+interface ContainerGeralProps {
+  bgcolor: string;
+}
+
 export const Container = styled.div`
   display: flex;
   flex-direction: column;
@@ -26,12 +30,27 @@ export const ContainerOrders = styled.div`
   flex-wrap: wrap;
 `
 
-export const ContainerGeral = styled.div`
+export const ContainerGeral = styled.div<ContainerGeralProps>`
   align-items: flex-start;
   display: inline-flex;
   flex-direction: column;
   flex: 1;
+  flex-wrap: wrap;
   gap: 1.6rem;
+  background-color: ${props => props.bgcolor || 'var(var(--geralgray-10)'};
+  padding: 2.4rem;
+  border-radius: 1.6rem;
+
+  h4 {
+    color: var(--geralwhite);
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+  }
+
+  & .row {
+    width: 100%;
+    flex-wrap: wrap;
+    gap: 1.6rem;
+  }
 
   & .div {
     align-items: flex-start;
@@ -40,9 +59,17 @@ export const ContainerGeral = styled.div`
     box-shadow: 0px 4px 4px #00000040;
     display: flex;
     width: 100%;
+    min-width: 30rem;
+    flex: 1;
     flex-direction: column;
     gap: 0.8rem;
     padding: 2rem 3.2rem;
+  }
+
+  & .title-box {
+    display: flex;
+    align-items: center;
+    gap: 0.4rem;
   }
 
   & .text-wrapper-2 {

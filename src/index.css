@@ -83,11 +83,11 @@
   --components-button-font-weight: 700;
   --components-button-letter-spacing: 0px;
   --components-button-line-height: 150%;
-  --geralblack-100: rgba(31, 31, 31, 1);
-  --geralgray-10: rgba(241, 240, 242, 1);
-  --geralgray-100: rgba(82, 82, 82, 1);
-  --geralgray-90: rgba(153, 153, 153, 1);
-  --geralwhite: rgba(251, 250, 252, 1);
+  --geralblack-100: #1f1f1f;
+  --geralgray-10: #f1f0f2;
+  --geralgray-100: #525252;
+  --geralgray-90: #999999;
+  --geralwhite: #faf9fb;
   --identidade-visualprimary100: rgba(24, 116, 205, 1);
   --identidade-visualprimaryhover: rgba(28, 130, 229, 1);
   --link-institucional-font-family: "Roboto";
@@ -151,6 +151,11 @@ h1 {
   line-height: 1.1;
 }
 
+h4 {
+  font-size: 2.4rem;
+  line-height: 120%;
+}
+
 button {
   border-radius: 0.8rem;
   border: 0.1rem solid transparent;
@@ -168,4 +173,8 @@ img {
 button:focus,
 button:focus-visible {
   outline: 0.4rem auto -webkit-focus-ring-color;
+}
+
+.row {
+  display: flex;
 }
