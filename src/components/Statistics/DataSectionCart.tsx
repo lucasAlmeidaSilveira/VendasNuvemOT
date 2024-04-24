@@ -54,7 +54,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>Dados de Compra</h4>
+        <h4>Dados de Venda</h4>
         {/* <div className="row">
           <BudgetItem title="Carrinhos criados" value={visits} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Taxa de carrinho" value={ordersFiltered.length} isLoading={isLoadingOrders} />

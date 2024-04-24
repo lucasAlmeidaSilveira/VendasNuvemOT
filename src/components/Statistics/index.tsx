@@ -83,8 +83,8 @@ export function Statistics() {
           loading={isLoadingAnalytics}
         />
         <ChartLine
-          title={'Compras por hora'}
-          orders={orders}
+          title={'Vendas por hora'}
+          orders={ordersToday}
           loading={isLoadingOrders}
         />
         {/* <Chart title={'Sessões por dispositivo'} usersByDevice={usersByDevice}  /> */}

@@ -62,24 +62,16 @@ export function ChartLine({ orders, title, loading }) {
     orders.forEach(order => {
       const date = new Date(order.createdAt);
       const hour = date.getHours();
-      const roundedHour = hour - (hour % 2); // Arredonda para o intervalo de 2 horas mais próximo
-      const key = `${roundedHour}:00`; // Chave para o mapa de contagem
+      const key = `${hour}:00`; // Agora usa apenas a hora para o intervalo de 1 hora
       salesByTime[key] = (salesByTime[key] || 0) + 1; // Incrementa a contagem para o intervalo
     });
 
-    // Ordenar as chaves e preparar dados para o gráfico
-    const sortedKeys = Object.keys(salesByTime).sort((a, b) => {
-      const hourA = parseInt(a.split(':')[0], 10);
-      const hourB = parseInt(b.split(':')[0], 10);
-      return hourA - hourB; // Compara as horas convertidas para ordenação numérica
-    });
+    // Gerar rótulos para todas as horas do dia (0 a 23)
+    const labels = Array.from({ length: 23 }, (_, index) => index);
 
-    // Convertendo rótulos para números
-    const labels = sortedKeys.map(key => parseInt(key.split(':')[0], 10));
-    const data = sortedKeys.map(key => salesByTime[key]);
+    // Preencher os dados ausentes com zero vendas
 
     setTimeLabels(labels);
-    setDataPoints(data);
   }, [orders]);
 
   return (
@@ -89,11 +81,13 @@ export function ChartLine({ orders, title, loading }) {
         <LoadingIcon color={'#1F1F1F'} size={32} />
       ) : (
         <LineChart
-          xAxis={[{ data: timeLabels }]}
+          xAxis={[{ data: timeLabels, label: 'horas'}]}
+          yAxis={[{ label: 'vendas' }]}
           series={[
             {
               data: dataPoints,
               area: true,
+              showMark: false,
             },
           ]}
           height={300}
