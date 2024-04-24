@@ -37,7 +37,6 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   }, [visits, totalAdSpend, ordersFiltered.length]); // Adicione totalAdSpend e ordersFiltered.length como dependências
 
   useEffect(() => {
-    console.log(orders.length, ordersFiltered.length);
     if (ordersFiltered.length > 0) {
       const passRateValue = (ordersToday.length / ordersFiltered.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%'); // Ajuste para fixar apenas duas casas decimais

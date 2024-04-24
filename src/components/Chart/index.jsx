@@ -70,8 +70,10 @@ export function ChartLine({ orders, title, loading }) {
     const labels = Array.from({ length: 23 }, (_, index) => index);
 
     // Preencher os dados ausentes com zero vendas
+    const data = labels.map(hour => salesByTime[`${hour}:00`] || 0);
 
     setTimeLabels(labels);
+    setDataPoints(data);
   }, [orders]);
 
   return (

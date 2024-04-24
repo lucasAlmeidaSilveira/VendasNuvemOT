@@ -79,7 +79,7 @@ export function BestSellers() {
       },
     });
 
-  }, [ordersToday, numberProducts]);
+  }, [orders, numberProducts]);
 
   return (
     <Container>
