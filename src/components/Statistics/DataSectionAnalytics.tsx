@@ -56,9 +56,9 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
           <BudgetItem title="Taxa de conversão" value={conversionRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">
-          {/* <BudgetItem title="Custo p/ Sessão (CPS)" value={priceSession} isLoading={isLoadingOrders} /> */}
-          {/* <BudgetItem title="Custo p/ Aquisição (CPA)" value={priceAcquisition} isLoading={isLoadingOrders} /> */}
           <BudgetItem title="Ticket Médio" value={averageTicket} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Sessão (CPS)" value={priceSession} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Aquisição (CPA)" value={priceAcquisition} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>
     </ContainerOrders>

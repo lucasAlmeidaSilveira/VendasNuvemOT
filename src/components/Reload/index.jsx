@@ -5,7 +5,7 @@ import { useAnalytics } from "../../context/AnalyticsContext"
 
 // eslint-disable-next-line react/prop-types
 export function ButtonReload() {
-	const { fetchData, setOrders } = useOrders()
+	const { fetchData } = useOrders()
 	const { fetchData: fetchDataAnalytics } = useAnalytics()
 
 	const handleReload = () => {

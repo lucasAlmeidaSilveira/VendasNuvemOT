@@ -46,6 +46,13 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
   }
 
+  .dev {
+    font-size: 14px;
+    font-weight: 400;
+    color: var(--uiwarning-100);
+    text-shadow: initial;
+  }
+
   & .row {
     width: 100%;
     flex-wrap: wrap;

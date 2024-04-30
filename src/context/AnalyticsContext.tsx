@@ -1,15 +1,33 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { ReactNode, createContext, useState, useContext, useEffect } from 'react';
 import { useOrders } from './OrdersContext';
 import { formatDate } from '../tools/tools'
 
-export const AnalyticsContext = createContext();
+interface DataProps {
+  totalVisits: string;
+  usersByDevice: object;
+  totalCost: string;
+}
+
+interface DataAnalyticsProps {
+  data: DataProps;
+  isLoading: boolean;
+  error: string | null;
+  resetData: () => void;
+  fetchData: () => void;
+}
+
+interface AnalyticsProviderprops {
+  children: ReactNode;
+}
+
+export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 
 export const useAnalytics = () => useContext(AnalyticsContext);
 
-export const AnalyticsProvider = ({ children }) => {
-  const [ data, setData ] = useState([]);
+export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
+  const [ data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '' });
   const [ isLoading, setIsLoading ] = useState(false);
-  const [ error, setError ] = useState(null);
+  const [ error, setError ] = useState<string | null>(null);
   const { store, date } = useOrders();
 
   // Função para buscar dados da API
@@ -30,7 +48,7 @@ export const AnalyticsProvider = ({ children }) => {
       setIsLoading(false);
     }
   };
-
+  
   // Chamada da API quando 'date' ou 'store' mudam
   useEffect(() => {
     fetchData();
@@ -41,7 +59,7 @@ export const AnalyticsProvider = ({ children }) => {
     isLoading,
     error,
     resetData: () => {
-      setData([]);
+      setData({ totalVisits: '', usersByDevice: {}, totalCost: '' });
       setError(null);
     },
     fetchData

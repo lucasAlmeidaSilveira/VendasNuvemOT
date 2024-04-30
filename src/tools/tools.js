@@ -42,3 +42,8 @@ export function calculateAverageTicket(orders) {
 
   return totalSum / orders.length;
 }
+
+// Função para formatar a data para ISO 8601
+export function formatDateToISO(date) {
+  return date.toISOString()
+}

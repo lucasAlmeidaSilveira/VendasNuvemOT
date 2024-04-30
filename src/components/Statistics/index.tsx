@@ -1,44 +1,65 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import {
-  Container,
-  ContainerOrders,
-  ContainerGeral,
-  ContainerCharts,
-} from './styles';
+import { Container, ContainerCharts } from './styles';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { FcGoogle } from 'react-icons/fc';
-import { FaMeta } from 'react-icons/fa6';
-import { GrMoney } from 'react-icons/gr';
-import { MdOutlineAttachMoney } from 'react-icons/md';
-import { DiGoogleAnalytics } from 'react-icons/di';
-import { Loading } from '../Loading';
 import { FilterDate } from '../FilterDate';
 import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { Chart, ChartLine } from '../Chart';
 import { formatCurrency, parseCurrency } from '../../tools/tools';
-import { BudgetItem } from './BudgetItem';
 import { DataSectionTPago } from './DataSectionTPago';
 import { DataSectionAnalytics } from './DataSectionAnalytics';
-import { DataSectionCart } from "./DataSectionCart";
+import { DataSectionCart } from './DataSectionCart';
+import { useDataADSMeta } from '../../hooks/useDataADSMeta';
 
 export function Statistics() {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { store, orders, isLoading: isLoadingOrders, date, setDate } = useOrders();
+  const {
+    store,
+    orders,
+    isLoading: isLoadingOrders,
+    date,
+    setDate,
+  } = useOrders();
+  const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store, date });
   const { ordersToday, totalOrdersFormatted } = filterOrders(orders, date);
   const [ usersByDevice, setUsersByDevice ] = useState({});
-  const [ visits, setVisits ] = useState('0');
   const [ verbaGoogle, setVerbaGoogle ] = useState(0);
   const [ verbaMeta, setVerbaMeta ] = useState(0);
   const [ totalAdSpend, setTotalAdSpend ] = useState(0);
 
   useEffect(() => {
-    setVisits(parseInt(data.totalVisits).toLocaleString('pt-BR'));
-    setUsersByDevice(data.usersByDevice);
+    if (data) {
+      setUsersByDevice(data.usersByDevice);
+    }
+  }, [data]);
+
+  useEffect(() => {
+    if(data) {
+      setVerbaGoogle(parseFloat(data.totalCost))
+    }
+  }, [data, isLoadingAnalytics])
+
+  useEffect(() => {
+    async function fetchDataADSMeta() {
+      try {
+        // Aguarde a resolução da promessa retornada por useDataADSMeta
+        if (dataADSMeta && dataADSMeta.length > 0) {
+          const firstEntry = dataADSMeta[0];
+          setVerbaMeta(parseFloat(firstEntry.spend)); // Exibirá o primeiro objeto do array dataADSMeta
+        }
+      } catch (error) {
+        console.error('Erro ao buscar dados do ADS Meta:', error);
+      }
+    }
+
+    fetchDataADSMeta();
+  }, [dataADSMeta, isLoadingADSMeta]);
+
+  useEffect(() => {
     setTotalAdSpend(verbaGoogle + verbaMeta);
-  }, [data, store]); // Correção para dependências corretas
+  }, [verbaGoogle, verbaMeta]);
 
   const totalOrdersNumber = useMemo(
     () => parseCurrency(totalOrdersFormatted),
@@ -58,16 +79,17 @@ export function Statistics() {
   return (
     <Container>
       <FilterDate onChange={setDate} value={date} />
-      {/* <DataSectionTPago
+      <DataSectionTPago
         bgcolor={bgColorTrafegoPago}
         verbaGoogle={verbaGoogle}
         verbaMeta={verbaMeta}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalOrdersFormatted}
         roas={roas}
+        isLoadingADSGoogle={isLoadingAnalytics}
         isLoadingOrders={isLoadingOrders}
-        isLoadingAnalytics={isLoadingAnalytics}
-      /> */}
+        isLoadingADSMeta={isLoadingADSMeta}
+      />
       <DataSectionAnalytics
         bgcolor={bgColorAnalytics}
         totalAdSpend={totalAdSpend}

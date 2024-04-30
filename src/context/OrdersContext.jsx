@@ -1,4 +1,5 @@
 import React, { createContext, useState, useContext, useEffect } from "react"
+import { formatDateToISO } from "../tools/tools"
 
 export const OrdersContext = createContext()
 
@@ -24,11 +25,6 @@ export const OrdersProvider = ({ children }) => {
 
 	const [date, setDate] = useState([currentDateStart, currentDateEnd])
 	const [error, setError] = useState(null)
-
-	// Função para formatar a data para ISO 8601
-	const formatDateToISO = (date) => {
-		return date.toISOString()
-	}
 	
 	const resetData = () => {
 		setDate([currentDateStart, currentDateEnd])
