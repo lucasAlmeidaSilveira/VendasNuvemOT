@@ -10,10 +10,10 @@ import { AnalyticsProvider } from "./context/AnalyticsContext.tsx";
 const root = ReactDOM.createRoot(document.getElementById("root"));
 root.render(
   <React.StrictMode>
-    <OrdersProvider> {/* Envolver App com OrdersProvider */}
+    <OrdersProvider>
       <AnalyticsProvider>
         <CouponProvider>
-          <TabProvider> {/* Envolver App com TabProvider */}
+          <TabProvider>
             <App />
           </TabProvider>
         </CouponProvider>

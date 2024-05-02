@@ -51,14 +51,14 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Analytics</h4>
         <div className="row">
-          <BudgetItem title="Visitas" value={visits} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Vendas" value={ordersToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de conversão" value={conversionRate} isLoading={isLoadingOrders} />
+          <BudgetItem title="Visitas" tooltip="Google Analytics" value={visits} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Taxa de conversão" tooltip="Visitas x Vendas" value={conversionRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">
-          <BudgetItem title="Ticket Médio" value={averageTicket} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Sessão (CPS)" value={priceSession} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Aquisição (CPA)" value={priceAcquisition} isLoading={isLoadingOrders} />
+          <BudgetItem title="Ticket Médio" tooltip="Nuvemshop" value={averageTicket} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Faturamento x Visitas" value={priceSession} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Aquisição (CPA)" tooltip="Faturamento x Vendas" value={priceAcquisition} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>
     </ContainerOrders>

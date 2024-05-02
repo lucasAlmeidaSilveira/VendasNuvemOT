@@ -7,6 +7,7 @@ interface DataProps {
   usersByDevice: object;
   totalCost: string;
   carts: string;
+  beginCheckout: string;
 }
 
 interface DataAnalyticsProps {
@@ -26,7 +27,7 @@ export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 export const useAnalytics = () => useContext(AnalyticsContext);
 
 export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
-  const [ data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '' });
+  const [ data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: '' });
   const [ isLoading, setIsLoading ] = useState(false);
   const [ error, setError ] = useState<string | null>(null);
   const { store, date } = useOrders();
@@ -60,7 +61,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
     isLoading,
     error,
     resetData: () => {
-      setData({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '' });
+      setData({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: ''});
       setError(null);
     },
     fetchData

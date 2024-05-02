@@ -22,14 +22,16 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const { ordersFiltered } = useFilterAllOrders(orders, date);
   const [visits, setVisits] = useState(DEFAULT_VALUE);
   const [carts, setCarts] = useState(DEFAULT_VALUE);
+  const [ beginCheckout, setBeginCheckout] = useState(DEFAULT_VALUE);
   const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
   const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
 
   useEffect(() => {
     if (data) {
-      const { totalVisits, carts } = data;
+      const { totalVisits, carts, beginCheckout } = data;
       setVisits(parseInt(totalVisits).toLocaleString('pt-BR'));
       setCarts(parseInt(carts).toLocaleString('pt-BR'));
+      setBeginCheckout(parseInt(beginCheckout).toLocaleString('pt-BR'));
     }
   }, [data]); 
 
@@ -43,7 +45,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       const passRateValue = (ordersToday.length / ordersFiltered.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [orders, ordersFiltered.length]); 
+  }, [orders, ordersFiltered]); 
 
   const cartRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));
@@ -58,14 +60,14 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Venda</h4>
         <div className="row">
-          <BudgetItem title="Carrinhos criados" value={carts} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Taxa de carrinho" value={cartRate} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Custo de carrinho" value={costCarts} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingAnalytics} />
         </div>
         <div className="row">
-          <BudgetItem title="Vendas" value={ordersToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Clicado em comprar" value={ordersFiltered.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de aprovação" value={passRate} isLoading={isLoadingOrders} />
+          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersFiltered.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Taxa de aprovação" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>
     </ContainerOrders>

@@ -45,6 +45,7 @@ export function DataSectionTPago({
           <BudgetItem
             icon={FcGoogle}
             title='Verba Google'
+            tooltip="Google ADS"
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
           />
@@ -52,6 +53,7 @@ export function DataSectionTPago({
             icon={FaMeta}
             iconColor='#008bff'
             title='Verba Meta'
+            tooltip="Meta ADS"
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
           />
@@ -59,6 +61,7 @@ export function DataSectionTPago({
             icon={GrMoney}
             iconColor='var(--geralblack-100)'
             title='Verba Total'
+            tooltip="Google ADS x Meta ADS"
             value={totalAdSpend}
             isLoading={isLoadingADSGoogle}
           />
@@ -68,6 +71,7 @@ export function DataSectionTPago({
             icon={MdOutlineAttachMoney}
             iconColor='var(--uipositive-100)'
             title='Faturamento'
+            tooltip="Nuvemshop" 
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
@@ -75,6 +79,7 @@ export function DataSectionTPago({
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
+            tooltip="Faturamento x Verba Total"
             value={roas}
             isLoading={isLoadingOrders}
           />
