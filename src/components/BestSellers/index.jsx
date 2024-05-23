@@ -12,9 +12,9 @@ export function BestSellers() {
   const { orders, isLoading, date } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [] });
   const [numberProducts, setNumberProducts] = useState(5);
-  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });  
-  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 }});
-  const { ordersToday } = filterOrders(orders, date)
+  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
+  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 } });
+  const { ordersToday } = filterOrders(orders, date);
 
   useEffect(() => {
     const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
@@ -24,14 +24,21 @@ export function BestSellers() {
       let totalCategorySales = 0;
       const processedProducts = ordersToday.reduce((acc, order) => {
         order.products.forEach((product) => {
-          
           if (product.name.includes(category)) {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
             const productId = product.product_id;
             const price = parseFloat(product.price);
             const existingProduct = acc.find(p => p.id === productId);
+
+            // Contar a frequência das variações
+            const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
+            let variantCount = {};
             if (existingProduct) {
               existingProduct.sales += 1;
+              if (variations) {
+                variantCount = existingProduct.variantCount;
+                variantCount[variations] = (variantCount[variations] || 0) + 1;
+              }
             } else {
               acc.push({
                 id: productId,
@@ -39,9 +46,11 @@ export function BestSellers() {
                 name: cleanedName,
                 image: product.image.src,
                 sales: 1,
-                total: price
+                total: price,
+                variantCount: variations ? { [variations]: 1 } : {}
               });
             }
+
             totalCategorySales += 1;
             totalCategoryValue += price;
             totals.vendas += 1;
@@ -50,6 +59,17 @@ export function BestSellers() {
         });
         return acc;
       }, []).sort((a, b) => b.sales - a.sales);
+
+      // Selecionar a variação mais vendida
+      processedProducts.forEach(product => {
+        const variantEntries = Object.entries(product.variantCount);
+        if (variantEntries.length > 0) {
+          const mostSoldVariant = variantEntries.reduce((max, entry) => entry[1] > max[1] ? entry : max, variantEntries[0]);
+          product.variations = mostSoldVariant[0];
+        } else {
+          product.variations = "";
+        }
+      });
 
       return { products: processedProducts, totalSales: totalCategorySales, totalValue: totalCategoryValue };
     };
@@ -63,8 +83,8 @@ export function BestSellers() {
     });
 
     setTotalSales({
-      quadros: quadros.totalValue,
-      espelhos: espelhos.totalValue,
+      quadros: { count: quadros.totalSales, value: quadros.totalValue },
+      espelhos: { count: espelhos.totalSales, value: espelhos.totalValue },
     });
 
     // Calcula os percentuais
@@ -105,9 +125,8 @@ export function BestSellers() {
               ) : (
                 <h2 className="sales-cetegorie">
                   {products[category].reduce((acc, curr) => acc + curr.sales, 0)} unidades
-                  <span className='total-sales'>{formatCurrency(totalSales[category])} | {percentual.valor[category].toFixed(2)}%</span>
+                  <span className='total-sales'>{formatCurrency(totalSales[category].value)} | {percentual.valor[category].toFixed(2)}%</span>
                 </h2>
-                
               )}
             </header>
             <div className="table">
@@ -117,7 +136,16 @@ export function BestSellers() {
                 </div>
               ) : (
                 products[category].slice(0, numberProducts).map((product, productIndex) => (
-                  <ListProduct key={product.id} idProduct={product.id} position={productIndex + 1} skuNumber={product.skuNumber} name={product.name} sales={product.sales} urlImage={product.image} />
+                  <ListProduct
+                    key={product.id}
+                    idProduct={product.id}
+                    position={productIndex + 1}
+                    skuNumber={product.skuNumber}
+                    name={product.name}
+                    sales={product.sales}
+                    urlImage={product.image}
+                    variations={product.variations}
+                  />
                 ))
               )}
             </div>

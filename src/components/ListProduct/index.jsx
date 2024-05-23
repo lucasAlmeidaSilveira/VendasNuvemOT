@@ -30,11 +30,7 @@ export function ListProduct({idProduct, position, name, skuNumber, variations, u
 				<a href={urlProduct} target="_blank" className="info-product">
 					<p className="text-position">#{position}</p>
 					<p className="name-product">{skuNumber} | {name}</p>
-					{variations && (
-						variations.map((variation, index) => (
-							<p key={index} className="text-variant">{variation[0]}</p>
-						))
-					)}
+					{variations && (<p className="text-variant">{variations}</p>)}
 				</a>
 			</div>
 			<p className="sales">{sales}</p>
