@@ -23,7 +23,7 @@ export function Statistics() {
     setDate,
   } = useOrders();
   const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store, date });
-  const { ordersToday, totalOrdersFormatted } = filterOrders(orders, date);
+  const { ordersToday, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(orders, date);
   const [ usersByDevice, setUsersByDevice ] = useState({});
   const [ verbaGoogle, setVerbaGoogle ] = useState(0);
   const [ verbaMeta, setVerbaMeta ] = useState(0);
@@ -62,8 +62,8 @@ export function Statistics() {
   }, [verbaGoogle, verbaMeta]);
 
   const totalOrdersNumber = useMemo(
-    () => parseCurrency(totalOrdersFormatted),
-    [totalOrdersFormatted],
+    () => parseCurrency(totalPaidAmountFormatted),
+    [totalPaidAmountFormatted],
   );
 
   const roas = useMemo(() => {
@@ -84,7 +84,7 @@ export function Statistics() {
         verbaGoogle={verbaGoogle}
         verbaMeta={verbaMeta}
         totalAdSpend={totalAdSpend}
-        totalOrdersFormatted={totalOrdersFormatted}
+        totalOrdersFormatted={totalPaidAmountFormatted}
         roas={roas}
         isLoadingADSGoogle={isLoadingAnalytics}
         isLoadingOrders={isLoadingOrders}
