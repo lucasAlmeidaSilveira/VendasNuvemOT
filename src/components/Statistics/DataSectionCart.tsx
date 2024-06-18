@@ -37,7 +37,6 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
 
   useEffect(() => {
     const numericCarts = parseInt(carts.replace(/\D/g, ''));
-    console.log(numericCarts, totalAdSpend)
     if((totalAdSpend && numericCarts) !== 0){
       setCostCart(formatCurrency(totalAdSpend / numericCarts));
     }

@@ -26,8 +26,8 @@ export function formatDate(date) {
 }
 
 export function parseCurrency(value) {
-  const numberValue = Number(value.replace(/[R$\.,]/g, '').replace(',', '.'));
-  return numberValue / 100;
+  const number = Number(value.replace(/[^0-9,-]+/g, "").replace(",", "."));
+  return isNaN(number) ? 0 : number;
 }
 
 export function calculateAverageTicket(orders) {

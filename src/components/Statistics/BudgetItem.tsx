@@ -2,6 +2,7 @@ import React from 'react';
 import { Loading } from '../Loading';
 import { formatCurrency } from '../../tools/tools';
 import { TooltipInfo } from "../TooltipInfo";
+import { IoMdInformationCircleOutline } from "react-icons/io";
 
 interface BudgetItemProps {
   icon?: React.ElementType;
@@ -18,8 +19,9 @@ export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLo
     <div className='div'>
     <div className='title-box'>
       {Icon && <Icon color={iconColor} fontSize={20} />}
-      <TooltipInfo title={tooltip}>
-        <p className='text-wrapper-2'>{title}</p>
+        <p className='text-wrapper-2'>{title}</p> 
+      <TooltipInfo title={tooltip}> 
+        <span><IoMdInformationCircleOutline size={16} color={'#1F1F1F'}/></span>
       </TooltipInfo>
     </div>
     <div className='text-wrapper-3'>
