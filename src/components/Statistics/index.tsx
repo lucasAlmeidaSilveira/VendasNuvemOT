@@ -24,7 +24,7 @@ export function Statistics() {
     setDate,
   } = useOrders();
   const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store, date });
-  const { ordersToday, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(orders, date);
+  const { paidOrders, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(orders, date);
   const [ usersByDevice, setUsersByDevice ] = useState({});
   const [ verbaGoogle, setVerbaGoogle ] = useState(0);
   const [ verbaMeta, setVerbaMeta ] = useState(0);
@@ -115,7 +115,7 @@ export function Statistics() {
         />
         <ChartLine
           title={'Vendas por hora'}
-          orders={ordersToday}
+          orders={paidOrders}
           loading={isLoadingOrders}
         />
         {/* <Chart title={'Sessões por dispositivo'} usersByDevice={usersByDevice}  /> */}

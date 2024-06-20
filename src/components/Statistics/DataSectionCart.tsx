@@ -18,7 +18,7 @@ const DEFAULT_PERCENTAGE = '0%';
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
   const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { ordersToday } = filterOrders(orders, date);
+  const { paidOrders } = filterOrders(orders, date);
   const { ordersFiltered } = useFilterAllOrders(orders, date);
   const [visits, setVisits] = useState(DEFAULT_VALUE);
   const [carts, setCarts] = useState(DEFAULT_VALUE);
@@ -44,7 +44,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
 
   useEffect(() => {
     if (ordersFiltered.length > 0) {
-      const passRateValue = (ordersToday.length / ordersFiltered.length) * 100;
+      const passRateValue = (paidOrders.length / ordersFiltered.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
   }, [orders, ordersFiltered]); 
@@ -67,7 +67,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
           <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingAnalytics} />
         </div>
         <div className="row">
-          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={paidOrders.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersFiltered.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>

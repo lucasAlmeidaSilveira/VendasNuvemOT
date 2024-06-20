@@ -25,7 +25,7 @@ export function DataSectionCosts({
 
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
   const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { ordersToday } = filterOrders(orders, date);
+  const { paidOrders } = filterOrders(orders, date);
   const [productCost, setProductCost] = useState('R$ 0,00');
   const [grossProfit, setGrossProfit] = useState('R$ 0,00');
   const [grossMargin, setGrossMargin] = useState('0%');
@@ -34,8 +34,8 @@ export function DataSectionCosts({
   const [totalProfit, setTotalProfit] = useState('R$ 0,00');
 
   useEffect(() => {
-    if (ordersToday.length > 0) {
-      const totalProductCost = ordersToday.reduce((totalOrderCost, order) => {
+    if (paidOrders.length > 0) {
+      const totalProductCost = paidOrders.reduce((totalOrderCost, order) => {
         const orderProductCost = order.products.reduce(
           (productTotal, product) => {
             const cost = product.cost ? parseFloat(product.cost) : 0; // Verifica se o custo não é null
@@ -76,7 +76,7 @@ export function DataSectionCosts({
       const totalProfitValue = totalOrderValue - totalProductCost - adSpend;
       setTotalProfit(formatCurrency(totalProfitValue));
     }
-  }, [ordersToday, data]);
+  }, [paidOrders, data]);
 
   return (
     <ContainerOrders>
