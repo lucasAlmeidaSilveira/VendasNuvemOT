@@ -17,8 +17,9 @@ export const Container = styled.div`
 `
 export const ContainerBestSellers = styled.div`
   align-items: flex-start;
+  justify-content: center;
   display: flex;
-  gap: 6rem;
+  gap: 4rem;
   flex-wrap: wrap; 
 `
 
@@ -31,6 +32,12 @@ export const ContainerBestSeller = styled.div`
   flex: 1;
   box-shadow: 0px 4px 4px #00000040;
   border-radius: 1.6rem;
+
+  &.variations {
+    width: 30rem;
+    flex: initial;
+    min-width: initial;
+  }
 
   .loading {
     align-self: center;

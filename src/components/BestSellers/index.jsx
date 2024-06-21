@@ -10,7 +10,7 @@ import { filterOrders } from '../../tools/filterOrders';
 
 export function BestSellers() {
   const { orders, isLoading, date } = useOrders();
-  const [products, setProducts] = useState({ quadros: [], espelhos: [] });
+  const [products, setProducts] = useState({ quadros: [], espelhos: [], variations: [] });
   const [numberProducts, setNumberProducts] = useState(5);
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
   const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 } });
@@ -74,12 +74,41 @@ export function BestSellers() {
       return { products: processedProducts, totalSales: totalCategorySales, totalValue: totalCategoryValue };
     };
 
+    const processVariations = () => {
+      const variationCounts = {};
+
+      ordersToday.forEach(order => {
+        order.products.forEach(product => {
+          if (product.name.includes("Quadro")) {
+            const variation = product.variant_values.join(", ");
+            if (variationCounts[variation]) {
+              variationCounts[variation] += 1;
+            } else {
+              variationCounts[variation] = 1;
+            }
+          }
+        });
+      });
+
+      const sortedVariations = Object.entries(variationCounts)
+        .sort((a, b) => b[1] - a[1])
+        .map(([variation, count]) => ({
+          name: variation,
+          sales: count,
+          id: variation
+        }));
+
+      return sortedVariations;
+    };
+
     const quadros = processProducts("Quadro");
     const espelhos = processProducts("Espelho");
+    const variations = processVariations();
 
     setProducts({
       quadros: quadros.products,
       espelhos: espelhos.products,
+      variations: variations,
     });
 
     setTotalSales({
@@ -151,6 +180,28 @@ export function BestSellers() {
             </div>
           </ContainerBestSeller>
         ))}
+        <ContainerBestSeller className="variations">
+          <header className="header">
+            <h2 className="categorie">Variações</h2>
+          </header>
+          <div className="table">
+            {isLoading ? (
+              <div className="loading">
+                <Loading color={"#1F1F1F"} />
+              </div>
+            ) : (
+              products.variations.slice(0, numberProducts).map((variant, variantIndex) => (
+                <ListProduct
+                  key={variant.id}
+                  idProduct={variant.id}
+                  position={variantIndex + 1}
+                  name={variant.name}
+                  sales={variant.sales}
+                />
+              ))
+            )}
+          </div>
+        </ContainerBestSeller>
       </ContainerBestSellers>
     </Container>
   );
