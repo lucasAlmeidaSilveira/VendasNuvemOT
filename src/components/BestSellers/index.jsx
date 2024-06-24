@@ -80,7 +80,7 @@ export function BestSellers() {
 
       ordersToday.forEach(order => {
         order.products.forEach(product => {
-          if (product.name.includes("Quadro")) {
+          if (product.name.includes("Quadro Decorativo")) {
             const variation = product.variant_values.join(", ");
             if (variationCounts[variation]) {
               variationCounts[variation] += 1;

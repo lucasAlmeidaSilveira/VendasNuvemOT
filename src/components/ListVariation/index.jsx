@@ -1,6 +1,6 @@
 import { ContainerVariation } from "./styles";
 
-export function ListVariation({ idProduct, position, name, sales }) {
+export function ListVariation({ position, name, sales }) {
 
   return (
     <ContainerVariation>
