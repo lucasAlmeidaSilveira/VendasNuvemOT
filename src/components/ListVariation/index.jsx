@@ -1,17 +1,16 @@
-import { Container } from "./styles"
+import { ContainerVariation } from "./styles";
 
-// eslint-disable-next-line react/prop-types
-export function ListVariation({position, name, sales}){
+export function ListVariation({ idProduct, position, name, sales }) {
 
-	return (
-		<Container>
-			<div className="frame">
-				<div className="info-product">
-					<p className="text-position">#{position}</p>
-					<a className="name-product">{name}</a>
-				</div>
-			</div>
-			<p className="sales">{sales}</p>
-		</Container>
-	)
+  return (
+    <ContainerVariation>
+      <div className="variation">
+            <p className="text-position">#{position}</p>
+          <div className="info-product">
+            <p className="name-product">{name}</p>
+          </div>
+      </div>
+      <p className="sales">{sales}</p>
+    </ContainerVariation>
+  );
 }

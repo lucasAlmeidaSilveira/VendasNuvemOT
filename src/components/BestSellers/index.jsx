@@ -7,6 +7,7 @@ import { Oval } from 'react-loader-spinner';
 import { InputSelect } from '../InputSelect';
 import { formatCurrency } from '../../tools/tools';
 import { filterOrders } from '../../tools/filterOrders';
+import { ListVariation } from '../ListVariation';
 
 export function BestSellers() {
   const { orders, isLoading, date } = useOrders();
@@ -191,9 +192,8 @@ export function BestSellers() {
               </div>
             ) : (
               products.variations.slice(0, numberProducts).map((variant, variantIndex) => (
-                <ListProduct
+                <ListVariation
                   key={variant.id}
-                  idProduct={variant.id}
                   position={variantIndex + 1}
                   name={variant.name}
                   sales={variant.sales}
