@@ -66,7 +66,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     box-shadow: 0px 4px 4px #00000040;
     display: flex;
     width: 100%;
-    min-width: 30rem;
+    min-width: 28rem;
     flex: 1;
     flex-direction: column;
     gap: 0.8rem;

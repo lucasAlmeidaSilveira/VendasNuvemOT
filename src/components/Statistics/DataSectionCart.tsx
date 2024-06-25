@@ -17,7 +17,7 @@ const DEFAULT_PERCENTAGE = '0%';
 
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoading: isLoadingOrders, date } = useOrders();
+  const { orders, isLoading: isLoadingOrders, date, customers, isLoadingCustomers } = useOrders();
   const { paidOrders } = filterOrders(orders, date);
   const { ordersFiltered } = useFilterAllOrders(orders, date);
   const [visits, setVisits] = useState(DEFAULT_VALUE);
@@ -47,7 +47,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       const passRateValue = (paidOrders.length / ordersFiltered.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [orders, ordersFiltered]); 
+  }, [orders, ordersFiltered, paidOrders.length]); 
 
   const cartRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));
@@ -56,6 +56,21 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       ? ((numericCarts / numericVisits) * 100).toFixed(2) + '%'
       : '0.00';
   }, [carts, visits]);
+
+  const popupConversionRate = useMemo(() => {
+    const numericVisits = parseInt(visits.replace(/\D/g, ''));
+    const numericSignups = customers.length;
+    return numericVisits > 0
+      ? ((numericSignups / numericVisits) * 100).toFixed(2) + '%'
+      : '0.00';
+  }, [customers.length, visits]);
+
+  const signupToPurchaseRate = useMemo(() => {
+    const numericSignups = customers.length;
+    return numericSignups > 0
+      ? ((paidOrders.length / numericSignups) * 100).toFixed(2) + '%'
+      : '0.00';
+  }, [customers.length, paidOrders.length]);
 
   return (
     <ContainerOrders>
@@ -70,6 +85,11 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
           <BudgetItem title="Vendas" tooltip="Nuvemshop" value={paidOrders.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersFiltered.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
+        </div>
+        <div className="row">
+          <BudgetItem title="Inscrição Popup" tooltip="Nuvemshop" value={customers.length} isLoading={isLoadingCustomers} />
+          <BudgetItem title="Taxa de Inscrição Popup" tooltip="Popup x Visitas" value={popupConversionRate} isLoading={isLoadingCustomers} />
+          <BudgetItem title="Taxa de Inscrição com Compra" tooltip="Popup x Compras" value={signupToPurchaseRate} isLoading={isLoadingCustomers} />
         </div>
       </ContainerGeral>
     </ContainerOrders>

@@ -8,7 +8,7 @@ export function Loading({ color }) {
       Carregando...
 			<Oval
 				height={32}
-				width={32}
+				width={24}
 				color={color}
 				wrapperStyle={{}}
 				wrapperClass=""
