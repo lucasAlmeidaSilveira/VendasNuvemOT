@@ -1,22 +1,36 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
-import { LineChart } from '@mui/x-charts/LineChart';
 import { ContainerChartLine, ContainerChartPie } from './styles';
-import { Loading, LoadingIcon } from '../Loading';
+import { LoadingIcon } from '../Loading';
+import { BarChart } from '@mui/x-charts/BarChart';
+
+const processDataForPieChart = (usersByDevice) =>
+  Object.entries(usersByDevice).map(([label, value], index) => ({
+    id: index,
+    value,
+    label: label.charAt(0).toUpperCase() + label.slice(1),
+  }));
+
+const processOrdersForBarChart = (orders) => {
+  const salesByTime = {};
+  orders.forEach(order => {
+    const date = new Date(order.createdAt);
+    const hour = date.getHours();
+    const key = `${hour}:00`;
+    salesByTime[key] = (salesByTime[key] || 0) + 1;
+  });
+  const labels = Array.from({ length: 23 }, (_, index) => index); // Ajustado para todas as 24 horas
+  const data = labels.map(hour => salesByTime[`${hour}:00`] || 0);
+
+  return { labels, data };
+};
 
 export function Chart({ usersByDevice, title, loading }) {
-  const [ data, setData ] = useState([])
-  
+  const [data, setData] = useState([]);
+
   useEffect(() => {
-    setData(() => (
-      // Converter os dados para o formato esperado pelo PieChart
-      Object.entries(usersByDevice).map(([label, value], index) => ({
-          id: index,
-          value,
-          label: label.charAt(0).toUpperCase() + label.slice(1),
-        }))
-      ))
-  }, [usersByDevice])
+    setData(processDataForPieChart(usersByDevice));
+  }, [usersByDevice]);
 
   const total = data.reduce((acc, item) => acc + item.value, 0);
 
@@ -24,7 +38,7 @@ export function Chart({ usersByDevice, title, loading }) {
     <ContainerChartPie>
       <h2>{title}</h2>
       {loading ? (
-        <LoadingIcon color={'#1F1F1F'} size={32} />
+        <LoadingIcon color="#1F1F1F" size={32} />
       ) : (
         <PieChart
           series={[
@@ -57,21 +71,7 @@ export function ChartLine({ orders, title, loading }) {
   const [timeLabels, setTimeLabels] = useState([]);
 
   useEffect(() => {
-    const salesByTime = {};
-    // Processar dados para cada pedido
-    orders.forEach(order => {
-      const date = new Date(order.createdAt);
-      const hour = date.getHours();
-      const key = `${hour}:00`; // Agora usa apenas a hora para o intervalo de 1 hora
-      salesByTime[key] = (salesByTime[key] || 0) + 1; // Incrementa a contagem para o intervalo
-    });
-
-    // Gerar rótulos para todas as horas do dia (0 a 23)
-    const labels = Array.from({ length: 23 }, (_, index) => index);
-
-    // Preencher os dados ausentes com zero vendas
-    const data = labels.map(hour => salesByTime[`${hour}:00`] || 0);
-
+    const { labels, data } = processOrdersForBarChart(orders);
     setTimeLabels(labels);
     setDataPoints(data);
   }, [orders]);
@@ -80,11 +80,11 @@ export function ChartLine({ orders, title, loading }) {
     <ContainerChartLine>
       <h2>{title}</h2>
       {loading ? (
-        <LoadingIcon color={'#1F1F1F'} size={32} />
+        <LoadingIcon color="#1F1F1F" size={32} />
       ) : (
-        <LineChart
-          xAxis={[{ data: timeLabels, label: 'horas'}]}
-          yAxis={[{ label: 'vendas' }]}
+        <BarChart
+          xAxis={[{ data: timeLabels, label: 'Horas', scaleType: 'band' }]}
+          yAxis={[{ label: 'Vendas' }]}
           series={[
             {
               data: dataPoints,
