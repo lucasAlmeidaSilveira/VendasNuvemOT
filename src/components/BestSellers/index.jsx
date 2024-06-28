@@ -8,6 +8,7 @@ import { InputSelect } from '../InputSelect';
 import { formatCurrency } from '../../tools/tools';
 import { filterOrders } from '../../tools/filterOrders';
 import { ListVariation } from '../ListVariation';
+import { CategorySelect } from '../CategorySelect';
 
 export function BestSellers() {
   const { orders, isLoading, date } = useOrders();
@@ -15,6 +16,7 @@ export function BestSellers() {
   const [numberProducts, setNumberProducts] = useState(5);
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
   const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 } });
+  const [selectedCategory, setSelectedCategory] = useState('Quadro Decorativo'); // Estado para a categoria selecionada
   const { ordersToday } = filterOrders(orders, date);
 
   useEffect(() => {
@@ -68,20 +70,20 @@ export function BestSellers() {
           const mostSoldVariant = variantEntries.reduce((max, entry) => entry[1] > max[1] ? entry : max, variantEntries[0]);
           product.variations = mostSoldVariant[0];
         } else {
-          product.variations = "";
+          product.variations = category === 'Espelho' ? 'Slim' : '';
         }
       });
 
       return { products: processedProducts, totalSales: totalCategorySales, totalValue: totalCategoryValue };
     };
 
-    const processVariations = () => {
+    const processVariations = (category) => {
       const variationCounts = {};
 
       ordersToday.forEach(order => {
         order.products.forEach(product => {
-          if (product.name.includes("Quadro Decorativo")) {
-            const variation = product.variant_values.join(", ");
+          if (product.name.includes(category)) {
+            const variation = product.variant_values.length > 0 ? product.variant_values.join(", ") : 'Slim';
             if (variationCounts[variation]) {
               variationCounts[variation] += 1;
             } else {
@@ -104,7 +106,7 @@ export function BestSellers() {
 
     const quadros = processProducts("Quadro");
     const espelhos = processProducts("Espelho");
-    const variations = processVariations();
+    const variations = processVariations(selectedCategory); // Usar a categoria selecionada
 
     setProducts({
       quadros: quadros.products,
@@ -129,7 +131,11 @@ export function BestSellers() {
       },
     });
 
-  }, [orders, numberProducts]);
+  }, [orders, numberProducts, selectedCategory]); // Adicionar selectedCategory como dependência
+
+  const handleCategoryChange = (event) => {
+    setSelectedCategory(event.target.value);
+  };
 
   return (
     <Container>
@@ -184,6 +190,10 @@ export function BestSellers() {
         <ContainerBestSeller className="variations">
           <header className="header">
             <h2 className="categorie">Variações</h2>
+            <CategorySelect
+              selectedCategory={selectedCategory}
+              handleCategoryChange={handleCategoryChange}
+            />
           </header>
           <div className="table">
             {isLoading ? (
