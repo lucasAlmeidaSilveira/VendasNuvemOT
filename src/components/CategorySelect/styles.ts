@@ -7,7 +7,7 @@ export const Container = styled.div`
 
   select {
     border-radius: 1.2rem;
-    max-width: 100px;
+    width: max-content;
     padding: .4rem 1rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;

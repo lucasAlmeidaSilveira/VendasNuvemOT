@@ -17,6 +17,7 @@ import {
   CartesianGrid,
 } from 'recharts';
 import { CategorySelect } from '../CategorySelect';
+import { useOrders } from '../../context/OrdersContext';
 
 const regions = {
   Norte: [
@@ -57,6 +58,8 @@ const getRegiao = estado => {
   }
   return null;
 };
+
+const baseColor = '#02b2af';
 
 const processDataForPieChart = usersByDevice =>
   Object.entries(usersByDevice).map(([label, value], index) => ({
@@ -106,55 +109,99 @@ export function Chart({ usersByDevice, title, loading }) {
   );
 }
 
-const processOrdersForBarChart = orders => {
+function processOrdersForChart(orders, type) {
   const salesByTime = {};
+
   orders.forEach(order => {
     const date = new Date(order.createdAt);
-    const hour = date.getHours();
-    const adjustedHour = Math.floor(hour / 2) * 2; // Ajusta para intervalos de 2 horas
-    const key = `${adjustedHour}:00`;
+
+    let key;
+    switch (type) {
+      case 'hour':
+        key = `${Math.floor(date.getHours() / 2) * 2}:00`; // Agrupando por intervalo de 2 horas
+        break;
+      case 'weekday':
+        key = date.toLocaleDateString('pt-BR', { weekday: 'long' });
+        break;
+      case 'monthday':
+        key = `${date.getDate()}`;
+        break;
+      default:
+        key = `${Math.floor(date.getHours() / 2) * 2}:00`;
+    }
     salesByTime[key] = (salesByTime[key] || 0) + 1;
   });
 
-  // Gerar os rótulos para os intervalos de 2 horas
-  const labels = [];
-  for (let i = 0; i < 24; i += 2) {
-    labels.push(`${i}:00`);
+  let labels;
+  switch (type) {
+    case 'hour':
+      labels = Array.from({ length: 12 }, (_, index) => `${index * 2}:00`);
+      break;
+    case 'weekday':
+      labels = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
+      break;
+    case 'monthday':
+      labels = Array.from({ length: 31 }, (_, index) => `${index + 1}`);
+      break;
+    default:
+      labels = Array.from({ length: 12 }, (_, index) => `${index * 2}:00`);
   }
 
-  const data = labels.map(label => salesByTime[label] || 0);
+  const data = labels.map(label => ({
+    name: label,
+    vendas: salesByTime[label] || 0,
+  }));
 
-  return { labels, data };
-};
+  return data;
+}
 
 export function ChartLine({ orders, title, loading }) {
+  const { date } = useOrders();
   const [dataPoints, setDataPoints] = useState([]);
-  const [timeLabels, setTimeLabels] = useState([]);
+  const [timeType, setTimeType] = useState('hour');
 
   useEffect(() => {
-    const { labels, data } = processOrdersForBarChart(orders);
-    setTimeLabels(labels);
-    setDataPoints(data);
-  }, [orders]);
+    const [startDate, endDate] = date;
+    const filteredOrders = orders.filter(order => {
+      const orderDate = new Date(order.createdAt);
+      return orderDate >= startDate && orderDate <= endDate;
+    });
 
-  const chartData = timeLabels.map((label, index) => ({
-    time: label,
-    vendas: dataPoints[index],
-  }));
+    const data = processOrdersForChart(filteredOrders, timeType);
+    setDataPoints(data);
+  }, [orders, timeType, date]);
+
+  const dateDiff = Math.ceil((date[1] - date[0]) / (1000 * 60 * 60 * 24));
+
+  const options = [
+    { value: 'hour', label: 'por hora' },
+    ...(dateDiff >= 7 ? [{ value: 'weekday', label: 'por dia da semana' }] : []),
+    ...(dateDiff >= 28 ? [{ value: 'monthday', label: 'por dia do mês' }] : []),
+  ];
+
+  const handleCategoryChange = event => {
+    setTimeType(event.target.value);
+  };
 
   return (
     <ContainerChartLine>
-      <h2>{title}</h2>
+      <div className='header'>
+        <h2>{title} <CategorySelect
+          options={options}
+          selectedCategory={timeType}
+          handleCategoryChange={handleCategoryChange}
+        /></h2>
+      </div>
       {loading ? (
         <LoadingIcon color='#1F1F1F' size={32} />
       ) : (
-        <ResponsiveContainer width="100%" height={400}>
-          <BarChart data={chartData}>
+        <ResponsiveContainer width="100%" height={300}>
+          <BarChart data={dataPoints} layout="horizontal">
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis dataKey="time" />
-            <YAxis />
-            <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="vendas" fill="#02b2af" />
+            <XAxis type="category" dataKey="name" />
+            <YAxis type="number" />
+            <Tooltip content={CustomTooltip}/>
+            <Bar dataKey="vendas" fill={baseColor} />
           </BarChart>
         </ResponsiveContainer>
       )}
@@ -163,7 +210,6 @@ export function ChartLine({ orders, title, loading }) {
 }
 
 const CustomTooltip = ({ active, payload, label }) => {
-  const baseColor = '#02b2af';
   if (active && payload && payload.length) {
     return (
       <div style={{

@@ -121,7 +121,7 @@ export function Statistics() {
       </ContainerCharts>
         <ContainerCharts>
         <ChartLine
-          title={'Vendas por hora'}
+          title={'Vendas'}
           orders={paidOrders}
           loading={isLoadingOrders}
         />
