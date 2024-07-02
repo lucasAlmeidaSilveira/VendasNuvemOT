@@ -137,6 +137,11 @@ export function BestSellers() {
     setSelectedCategory(event.target.value);
   };
 
+  const categoryOptions = [
+    { value: 'Quadro Decorativo', label: 'Quadro' },
+    { value: 'Espelho', label: 'Espelho' },
+  ];
+
   return (
     <Container>
       <div className="header-container">
@@ -191,6 +196,7 @@ export function BestSellers() {
           <header className="header">
             <h2 className="categorie">Variações</h2>
             <CategorySelect
+              options={categoryOptions}
               selectedCategory={selectedCategory}
               handleCategoryChange={handleCategoryChange}
             />

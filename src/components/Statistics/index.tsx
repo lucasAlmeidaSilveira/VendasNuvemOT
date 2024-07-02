@@ -6,7 +6,7 @@ import { FilterDate } from '../FilterDate';
 import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
-import { Chart, ChartLine } from '../Chart';
+import { Chart, ChartLine, ChartStates } from '../Chart';
 import { formatCurrency, parseCurrency } from '../../tools/tools';
 import { DataSectionTPago } from './DataSectionTPago';
 import { DataSectionAnalytics } from './DataSectionAnalytics';
@@ -112,12 +112,20 @@ export function Statistics() {
           title={'Sessões por dispositivo'}
           usersByDevice={usersByDevice}
           loading={isLoadingAnalytics}
+          />
+        <ChartStates 
+          title={'Vendas por estado'}
+          orders={paidOrders}
+          loading={isLoadingOrders}
         />
+      </ContainerCharts>
+        <ContainerCharts>
         <ChartLine
           title={'Vendas por hora'}
           orders={paidOrders}
           loading={isLoadingOrders}
         />
+
         {/* <Chart title={'Sessões por dispositivo'} usersByDevice={usersByDevice}  /> */}
       </ContainerCharts>
     </Container>
