@@ -217,16 +217,18 @@ export function ChartStates({ orders, title, loading }) {
 
   return (
     <ContainerChartStates>
-      <h2>{title}</h2>
-      {/* <CategorySelect
-        options={options}
-        selectedCategory={numberOptions}
-        handleCategoryChange={handleCategoryChange}
-      /> */}
+      <div className='header'>
+        <h2>{title}</h2>
+        <CategorySelect
+          options={options}
+          selectedCategory={numberOptions}
+          handleCategoryChange={handleCategoryChange}
+        />
+      </div>
       {loading ? (
         <LoadingIcon color='#1F1F1F' size={32} />
       ) : (
-        <ResponsiveContainer width="100%" height={400}>
+        <ResponsiveContainer width="100%" height={320}>
           <BarChart data={estados} layout="vertical">
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="number" />
