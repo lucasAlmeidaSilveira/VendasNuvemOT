@@ -76,7 +76,7 @@ export const QuickActionButton = styled.span<QuickActionButtonProps>`
   ${({ active }) =>
     active &&
     css`
-      background-color: #1976d2;
+      background-color: #1f1f1f;
       color: #fcfafb;
     `}
 `;

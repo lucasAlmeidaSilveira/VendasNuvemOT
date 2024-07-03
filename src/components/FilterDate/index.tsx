@@ -11,7 +11,7 @@ interface FilterDateProps {
 
 export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
   const [startDate, endDate] = value;
-  const [activeButton, setActiveButton] = useState<string | null>(null);
+  const [activeButton, setActiveButton] = useState<string | null>('today');
 
   const handleDateChange = (date: any) => {
     setActiveButton(null); // Desativar botão ativo quando a data é selecionada manualmente
