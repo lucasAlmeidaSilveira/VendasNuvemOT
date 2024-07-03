@@ -1,51 +1,15 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
-import {
-  ContainerChartLine,
-  ContainerChartPie,
-  ContainerChartStates,
-} from './styles';
+import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid } from 'recharts';
 import { LoadingIcon } from '../Loading';
-import {
-  BarChart,
-  Bar,
-  XAxis,
-  YAxis,
-  Tooltip,
-  ResponsiveContainer,
-  Cell,
-  CartesianGrid,
-} from 'recharts';
 import { CategorySelect } from '../CategorySelect';
 import { useOrders } from '../../context/OrdersContext';
+import { ContainerChartLine, ContainerChartPie, ContainerChartStates } from './styles';
 
 const regions = {
-  Norte: [
-    'Acre',
-    'Amapá',
-    'Amazonas',
-    'Pará',
-    'Rondônia',
-    'Roraima',
-    'Tocantins',
-  ],
-  Nordeste: [
-    'Alagoas',
-    'Bahia',
-    'Ceará',
-    'Maranhão',
-    'Paraíba',
-    'Pernambuco',
-    'Piauí',
-    'Rio Grande do Norte',
-    'Sergipe',
-  ],
-  'Centro-Oeste': [
-    'Distrito Federal',
-    'Goiás',
-    'Mato Grosso',
-    'Mato Grosso do Sul',
-  ],
+  Norte: ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins'],
+  Nordeste: ['Alagoas', 'Bahia', 'Ceará', 'Maranhão', 'Paraíba', 'Pernambuco', 'Piauí', 'Rio Grande do Norte', 'Sergipe'],
+  'Centro-Oeste': ['Distrito Federal', 'Goiás', 'Mato Grosso', 'Mato Grosso do Sul'],
   Sudeste: ['Espírito Santo', 'Minas Gerais', 'Rio de Janeiro', 'São Paulo'],
   Sul: ['Paraná', 'Rio Grande do Sul', 'Santa Catarina'],
 };
@@ -138,7 +102,7 @@ function processOrdersForChart(orders, type) {
       labels = Array.from({ length: 12 }, (_, index) => `${index * 2}:00`);
       break;
     case 'weekday':
-      labels = ['segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado', 'domingo'];
+      labels = ['domingo', 'segunda-feira', 'terça-feira', 'quarta-feira', 'quinta-feira', 'sexta-feira', 'sábado'];
       break;
     case 'monthday':
       labels = Array.from({ length: 31 }, (_, index) => `${index + 1}`);
@@ -156,7 +120,7 @@ function processOrdersForChart(orders, type) {
 }
 
 export function ChartLine({ orders, title, loading }) {
-  const { date } = useOrders();
+  const { date, setDate } = useOrders();
   const [dataPoints, setDataPoints] = useState([]);
   const [timeType, setTimeType] = useState('hour');
 
@@ -174,23 +138,36 @@ export function ChartLine({ orders, title, loading }) {
   const dateDiff = Math.ceil((date[1] - date[0]) / (1000 * 60 * 60 * 24));
 
   const options = [
-    { value: 'hour', label: 'por hora' },
-    ...(dateDiff >= 7 ? [{ value: 'weekday', label: 'por dia da semana' }] : []),
-    ...(dateDiff >= 28 ? [{ value: 'monthday', label: 'por dia do mês' }] : []),
+    { value: 'hour', label: 'hora' },
+    { value: 'weekday', label: 'últimos 7 dias' },
+    { value: 'monthday', label: 'últimos 31 dias' },
   ];
 
   const handleCategoryChange = event => {
-    setTimeType(event.target.value);
+    const selectedType = event.target.value;
+    setTimeType(selectedType);
+
+    if (selectedType === 'weekday' && dateDiff < 7) {
+      const newStartDate = new Date(date[1]);
+      newStartDate.setDate(newStartDate.getDate() - 7);
+      setDate([newStartDate, date[1]]);
+    } else if (selectedType === 'monthday' && dateDiff < 31) {
+      const newStartDate = new Date(date[1]);
+      newStartDate.setDate(newStartDate.getDate() - 31);
+      setDate([newStartDate, date[1]]);
+    }
   };
 
   return (
     <ContainerChartLine>
       <div className='header'>
-        <h2>{title} <CategorySelect
-          options={options}
-          selectedCategory={timeType}
-          handleCategoryChange={handleCategoryChange}
-        /></h2>
+        <h2>{title}
+          <CategorySelect
+            options={options}
+            selectedCategory={timeType}
+            handleCategoryChange={handleCategoryChange}
+          />
+        </h2>
       </div>
       {loading ? (
         <LoadingIcon color='#1F1F1F' size={32} />
@@ -200,7 +177,7 @@ export function ChartLine({ orders, title, loading }) {
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="category" dataKey="name" />
             <YAxis type="number" />
-            <Tooltip content={CustomTooltip}/>
+            <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="vendas" fill={baseColor} />
           </BarChart>
         </ResponsiveContainer>
@@ -219,7 +196,7 @@ const CustomTooltip = ({ active, payload, label }) => {
         borderRadius: '5px',
         boxShadow: '0 0 10px rgba(0,0,0,0.1)',
       }}>
-        <p style={{fontSize: 12}}><span style={{ color: baseColor }}>● </span> {payload[0].value} venda{payload[0].value > 1 && 's'}</p>
+        <p style={{ fontSize: 12 }}><span style={{ color: baseColor }}>● </span> {payload[0].value} venda{payload[0].value > 1 && 's'}</p>
       </div>
     );
   }

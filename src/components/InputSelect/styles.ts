@@ -14,6 +14,6 @@ export const Container = styled.div`
     
     background-color: #f1f0f2;
     border: none;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
   }
 `

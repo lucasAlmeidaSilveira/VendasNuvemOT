@@ -19,7 +19,6 @@ export function Dashboard() {
 
   return (
     <Container>
-      <FilterDate onChange={setDate} value={date}/>
       <ContainerOrders>
         <ContainerPago>
           <div className="text-wrapper">Pago</div>

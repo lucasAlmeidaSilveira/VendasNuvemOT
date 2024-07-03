@@ -52,7 +52,7 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
         <h4>Analytics</h4>
         <div className="row">
           <BudgetItem title="Visitas" tooltip="Google Analytics" value={visits} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Vendas" tooltip="Nuvemshop (Geral)" value={ordersToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de conversão" tooltip="Visitas x Vendas" value={conversionRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">

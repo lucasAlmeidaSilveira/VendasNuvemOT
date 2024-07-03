@@ -80,7 +80,6 @@ export function Statistics() {
 
   return (
     <Container>
-      <FilterDate onChange={setDate} value={date} />
       <DataSectionTPago
         bgcolor={bgColorTrafegoPago}
         verbaGoogle={verbaGoogle}
@@ -121,12 +120,11 @@ export function Statistics() {
       </ContainerCharts>
         <ContainerCharts>
         <ChartLine
-          title={'Vendas'}
+          title={'Vendas por '}
           orders={paidOrders}
           loading={isLoadingOrders}
         />
 
-        {/* <Chart title={'Sessões por dispositivo'} usersByDevice={usersByDevice}  /> */}
       </ContainerCharts>
     </Container>
   );

@@ -15,7 +15,7 @@ export const Container = styled.div`
     background-color: rgba(255, 255, 255, .2);
     color: #FCFAFB;
     border: none;
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
     
     option {
       color: #1f1f1f;
