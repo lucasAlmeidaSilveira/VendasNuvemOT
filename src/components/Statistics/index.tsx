@@ -2,7 +2,6 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { Container, ContainerCharts } from './styles';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
-import { FilterDate } from '../FilterDate';
 import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
@@ -11,41 +10,33 @@ import { formatCurrency, parseCurrency } from '../../tools/tools';
 import { DataSectionTPago } from './DataSectionTPago';
 import { DataSectionAnalytics } from './DataSectionAnalytics';
 import { DataSectionCart } from './DataSectionCart';
-import { useDataADSMeta } from '../../hooks/useDataADSMeta';
-import { DataSectionCosts } from "./DataSectionCosts";
+import { DataSectionCosts } from './DataSectionCosts';
 
 export function Statistics() {
-  const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const {
-    store,
-    orders,
-    isLoading: isLoadingOrders,
-    date,
-    setDate,
-  } = useOrders();
-  const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store });
-  const { paidOrders, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(orders, date);
-  const [ usersByDevice, setUsersByDevice ] = useState({});
-  const [ verbaGoogle, setVerbaGoogle ] = useState(0);
-  const [ verbaMeta, setVerbaMeta ] = useState(0);
-  const [ totalAdSpend, setTotalAdSpend ] = useState(0);
+  const { data, isLoading: isLoadingAnalytics, dataADSMeta, isLoadingADSMeta } = useAnalytics();
+  const { orders, isLoading: isLoadingOrders, date } = useOrders();
+  const { paidOrders, totalOrdersFormatted, totalPaidAmountFormatted } =
+    filterOrders(orders, date);
+  const [usersByDevice, setUsersByDevice] = useState({});
+  const [verbaGoogle, setVerbaGoogle] = useState(0);
+  const [verbaMeta, setVerbaMeta] = useState(0);
+  const [totalAdSpend, setTotalAdSpend] = useState(0);
 
   useEffect(() => {
     if (data) {
       setUsersByDevice(data.usersByDevice);
     }
-  }, [date, data]);
+  }, [date, data, dataADSMeta]);
 
   useEffect(() => {
-    if(data) {
-      setVerbaGoogle(parseFloat(data.totalCost))
+    if (data) {
+      setVerbaGoogle(parseFloat(data.totalCost));
     }
-  }, [date, data, isLoadingAnalytics])
+  }, [date, data, isLoadingAnalytics]);
 
   useEffect(() => {
     async function fetchDataADSMeta() {
       try {
-        // Aguarde a resolução da promessa retornada por useDataADSMeta
         if (dataADSMeta && dataADSMeta.length > 0) {
           const firstEntry = dataADSMeta[0];
           setVerbaMeta(parseFloat(firstEntry.spend)); // Exibirá o primeiro objeto do array dataADSMeta
@@ -111,20 +102,19 @@ export function Statistics() {
           title={'Sessões por dispositivo'}
           usersByDevice={usersByDevice}
           loading={isLoadingAnalytics}
-          />
-        <ChartStates 
+        />
+        <ChartStates
           title={'Vendas por estado'}
           orders={paidOrders}
           loading={isLoadingOrders}
         />
       </ContainerCharts>
-        <ContainerCharts>
+      <ContainerCharts>
         <ChartLine
           title={'Vendas por '}
           orders={paidOrders}
           loading={isLoadingOrders}
         />
-
       </ContainerCharts>
     </Container>
   );
