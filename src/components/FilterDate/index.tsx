@@ -3,19 +3,16 @@ import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { Container, ButtonsContainer, QuickActionButton, ButtonActionContainer } from './styles';
+import { useOrders } from "../../context/OrdersContext";
 
-interface FilterDateProps {
-  onChange: (date: [Date, Date]) => void;
-  value: [Date, Date];
-}
 
-export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
-  const [startDate, endDate] = value;
+export function FilterDate() {
+  const { date, setDate } = useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
 
   const handleDateChange = (date: any) => {
     setActiveButton(null); // Desativar botão ativo quando a data é selecionada manualmente
-    onChange(date);
+    setDate(date);
   };
 
   const handleQuickAction = (days: number, buttonId: string) => {
@@ -26,7 +23,7 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
     newStartDate.setDate(newEndDate.getDate() - days);
     newStartDate.setHours(0, 0, 0, 0);
     setActiveButton(buttonId);
-    onChange([newStartDate, newEndDate]);
+    setDate([newStartDate, newEndDate]);
   };
 
   const handleTodayAction = () => {
@@ -35,7 +32,7 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
     const endOfToday = new Date(today);
     endOfToday.setHours(23, 59, 59, 999);
     setActiveButton('today'); // Definir botão ativo
-    onChange([today, endOfToday]);
+    setDate([today, endOfToday]);
   };
 
   const handleYesterdayAction = () => {
@@ -45,7 +42,7 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
     const endOfYesterday = new Date(yesterday);
     endOfYesterday.setHours(23, 59, 59, 999);
     setActiveButton('yesterday'); // Definir botão ativo
-    onChange([yesterday, endOfYesterday]);
+    setDate([yesterday, endOfYesterday]);
   };
 
   const maxSelectableDate = new Date();
@@ -61,7 +58,7 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
           selectRange={true}
           format='dd/MM/yyyy'
           onChange={handleDateChange}
-          value={value}
+          value={date}
           clearIcon={null}
           maxDate={maxSelectableDate}
           minDate={minSelectableDate}

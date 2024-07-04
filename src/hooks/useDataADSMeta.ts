@@ -1,5 +1,6 @@
 import { useState, useEffect } from 'react';
 import { formatDate } from "../tools/tools";
+import { useOrders } from "../context/OrdersContext";
 
 interface ADSMetaEntry {
   account_id: string;
@@ -12,11 +13,11 @@ interface ADSMetaEntry {
 
 interface useDataADSMetaProps {
   store: string;
-  date: [Date, Date];
 }
 
-export function useDataADSMeta({ store, date }: useDataADSMetaProps) {
+export function useDataADSMeta({ store }: useDataADSMetaProps) {
   const [ dataADSMeta, setDataADSMeta ] = useState<Array<ADSMetaEntry>>([]);
+  const { date, setDate } = useOrders();
   const [ isLoadingADSMeta, setIsLoadingADSMeta ] = useState(false); // Estado de loading adicionado
 
   const startDate = formatDate(date[0]);
@@ -39,7 +40,7 @@ export function useDataADSMeta({ store, date }: useDataADSMetaProps) {
 
   useEffect(() => {
     fetchData();
-  }, [store, startDate, endDate]);
+  }, [store, date]);
 
   return { dataADSMeta, isLoadingADSMeta }; // Retornando também o estado de loading
 }

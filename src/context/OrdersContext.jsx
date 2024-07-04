@@ -26,7 +26,6 @@ export const OrdersProvider = ({ children }) => {
 	const [ errorCustomers, setErrorCustomers ] = useState(null);
 
 	const resetData = () => {
-		setDate([currentDateStart, currentDateEnd]);
 		setOrders([]);
 		setCustomers([]);
 	};

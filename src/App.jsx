@@ -14,7 +14,7 @@ function App() {
 		<>
 		<Header />
 		<Footer />
-		<FilterDate onChange={setDate} value={date}/>
+		<FilterDate />
 		<RoutesTabs activeTab={activeTab} />
 		</>
 	)

@@ -13,37 +13,44 @@ interface DataSectionAnalyticsProps {
 
 export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnalyticsProps) {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoading: isLoadingOrders, date, setDate } = useOrders();
+  const { orders, isLoading: isLoadingOrders, date } = useOrders();
   const { ordersToday } = filterOrders(orders, date);
-  const [visits, setVisits] = useState('0');
-  const [priceSession, setPriceSession] = useState('R$ 0,00');
-  const [priceAcquisition, setPriceAcquisition] = useState('R$ 0,00');
-  const [averageTicket, setAverageTicket] = useState('R$ 0,00');
+  const [visits, setVisits] = useState('-');
+  const [priceSession, setPriceSession] = useState('R$ -');
+  const [priceAcquisition, setPriceAcquisition] = useState('R$ -');
+  const [averageTicket, setAverageTicket] = useState('R$ -');
 
   useEffect(() => {
-    if (data && data.totalVisits) {
       setVisits(parseInt(data.totalVisits).toLocaleString('pt-BR'));
-    }
-  }, [data]); // Ajuste para apenas data como dependência
+  }, [data]);
 
   useEffect(() => {
-    const visitsNumber = parseInt(data.totalVisits);
+    setPriceSession('R$ -')
+    const visitsNumber = parseInt(visits.replace(/\D/g, ''));
     if (!isNaN(visitsNumber) && visitsNumber !== 0) {
       setPriceSession(formatCurrency(totalAdSpend / visitsNumber));
-      setPriceAcquisition(formatCurrency(totalAdSpend / ordersToday.length));
     }
-  }, [visits, totalAdSpend, ordersToday.length]); // Adicione totalAdSpend e ordersToday.length como dependências
+  }, [visits, totalAdSpend]);
+
+  useEffect(() => {
+    const ordersLength = ordersToday.length;
+    if (ordersLength !== 0) {
+      setPriceAcquisition(formatCurrency(totalAdSpend / ordersLength));
+    } else {
+      setPriceAcquisition('R$ 0,00');
+    }
+  }, [ordersToday.length, totalAdSpend]);
 
   useEffect(() => {
     const ticket = calculateAverageTicket(ordersToday);
     setAverageTicket(formatCurrency(ticket));
-  }, [ordersToday]); // Correção para incluir ordersToday como dependência
+  }, [ordersToday]);
 
   const conversionRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));
     return numericVisits > 0
       ? ((ordersToday.length / numericVisits) * 100).toFixed(2) + '%'
-      : '0.00';
+      : '0.00%';
   }, [ordersToday.length, visits]);
 
   return (

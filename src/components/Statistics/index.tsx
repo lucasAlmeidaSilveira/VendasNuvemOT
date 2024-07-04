@@ -23,7 +23,7 @@ export function Statistics() {
     date,
     setDate,
   } = useOrders();
-  const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store, date });
+  const { dataADSMeta, isLoadingADSMeta } = useDataADSMeta({ store });
   const { paidOrders, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(orders, date);
   const [ usersByDevice, setUsersByDevice ] = useState({});
   const [ verbaGoogle, setVerbaGoogle ] = useState(0);
@@ -34,13 +34,13 @@ export function Statistics() {
     if (data) {
       setUsersByDevice(data.usersByDevice);
     }
-  }, [data]);
+  }, [date, data]);
 
   useEffect(() => {
     if(data) {
       setVerbaGoogle(parseFloat(data.totalCost))
     }
-  }, [data, isLoadingAnalytics])
+  }, [date, data, isLoadingAnalytics])
 
   useEffect(() => {
     async function fetchDataADSMeta() {
@@ -56,11 +56,11 @@ export function Statistics() {
     }
 
     fetchDataADSMeta();
-  }, [dataADSMeta, isLoadingADSMeta]);
+  }, [date, dataADSMeta, isLoadingADSMeta]);
 
   useEffect(() => {
     setTotalAdSpend(verbaGoogle + verbaMeta);
-  }, [verbaGoogle, verbaMeta]);
+  }, [date, verbaGoogle, verbaMeta]);
 
   const totalOrdersNumber = useMemo(
     () => parseCurrency(totalPaidAmountFormatted),
