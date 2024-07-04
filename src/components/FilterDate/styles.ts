@@ -44,7 +44,7 @@ export const ButtonsContainer = styled.div`
   display: flex;
   width: fit-content;
   align-items: center;
-  gap: 8px;
+  gap: 16px;
   flex-wrap: wrap;
   `;
 
@@ -59,8 +59,8 @@ interface QuickActionButtonProps {
 }
 
 export const QuickActionButton = styled.span<QuickActionButtonProps>`
-  border-radius: 1.2rem;
-  padding: 0.8rem 1.6rem;
+  border-radius: .8rem;
+  padding: .2rem 1rem;
   height: fit-content;
   font-size: 1.2rem;
   cursor: pointer;
@@ -68,9 +68,10 @@ export const QuickActionButton = styled.span<QuickActionButtonProps>`
   opacity: .9;
   box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
   transition: all 0.1s ease-in;
-
+  
   &:hover {
     opacity: 1;
+    box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
   }
 
   ${({ active }) =>

@@ -38,6 +38,16 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
     onChange([today, endOfToday]);
   };
 
+  const handleYesterdayAction = () => {
+    const yesterday = new Date();
+    yesterday.setDate(yesterday.getDate() - 1);
+    yesterday.setHours(0, 0, 0, 0);
+    const endOfYesterday = new Date(yesterday);
+    endOfYesterday.setHours(23, 59, 59, 999);
+    setActiveButton('yesterday'); // Definir botão ativo
+    onChange([yesterday, endOfYesterday]);
+  };
+
   const maxSelectableDate = new Date();
   const minSelectableDate = new Date('2023-11-23');
 
@@ -62,6 +72,12 @@ export const FilterDate: React.FC<FilterDateProps> = ({ onChange, value }) => {
             active={activeButton === 'today' ? 'true' : undefined}
           >
             Hoje
+          </QuickActionButton>
+          <QuickActionButton
+            onClick={handleYesterdayAction}
+            active={activeButton === 'yesterday' ? 'true' : undefined}
+          >
+            Ontem
           </QuickActionButton>
           <QuickActionButton
             onClick={() => handleQuickAction(6, 'last7days')}
