@@ -62,9 +62,6 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
     setCreditCardApprovalRate(((paidCreditCardCount / creditCardCount) * 100).toFixed(1) + '%');
     setPixApprovalRate(((paidPixCount / pixCount) * 100).toFixed(1) + '%');
     setBoletoApprovalRate(((paidBoletoCount / boletoCount) * 100).toFixed(1) + '%');
-
-    const otherTransactions = ordersAllToday.filter(order => !['credit_card', 'pix', 'boleto'].includes(order.data.payment_details.method));
-    console.log('Other Transactions:', otherTransactions);
   }, [paidOrders, ordersAllToday]);
 
   return (
