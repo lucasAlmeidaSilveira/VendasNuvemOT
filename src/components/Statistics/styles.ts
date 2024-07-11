@@ -30,6 +30,13 @@ export const ContainerOrders = styled.div`
   flex-wrap: wrap;
 `
 
+const bgColorCard = '#c8e6c9'
+const bgColorPix = '#bbdefb'
+const bgColorBoleto = '#ffe0b2'
+const borderColorCard = '#66bb6a'
+const borderColorPix = '#42a5f5'
+const borderColorBoleto = '#ffb74d'
+
 export const ContainerGeral = styled.div<ContainerGeralProps>`
   align-items: flex-start;
   display: inline-flex;
@@ -77,6 +84,28 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     display: flex;
     align-items: center;
     gap: 0.4rem;
+
+    span.colorCard {
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background-color: ${bgColorCard};
+      border: 4px solid ${borderColorCard};
+    }
+    span.colorPix {
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background-color: ${bgColorPix};
+      border: 4px solid ${borderColorPix};
+    }
+    span.colorBoleto {
+      width: 8px;
+      height: 8px;
+      border-radius: 8px;
+      background-color: ${bgColorBoleto};
+      border: 4px solid ${borderColorBoleto};
+    }
   }
 
   & .text-wrapper-2 {

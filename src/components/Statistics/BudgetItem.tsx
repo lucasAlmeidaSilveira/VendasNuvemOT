@@ -7,15 +7,16 @@ import { Small } from "./styles";
 
 interface BudgetItemProps {
   icon?: React.ElementType;
-  small?: string | number;
   iconColor?: string;
+  bullet?: string;
+  small?: string | number;
   title: string;
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
 }
 
-export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLoading, small }: BudgetItemProps) {
+export function BudgetItem ({ icon: Icon, iconColor, bullet, title, tooltip, value, isLoading, small }: BudgetItemProps) {
   
   return (
     <div className='div'>
@@ -25,6 +26,7 @@ export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLo
       <TooltipInfo title={'Fonte: '+ tooltip}> 
         <span><IoMdInformationCircleOutline size={16} color={'#1F1F1F'}/></span>
       </TooltipInfo>
+      {bullet && <span className={bullet} />}
     </div>
     <div className='text-wrapper-3'>
       {isLoading ? <Loading color={'#1F1F1F'} /> : (

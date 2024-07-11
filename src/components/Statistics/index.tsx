@@ -88,15 +88,15 @@ export function Statistics() {
         bgcolor={bgColorAnalytics}
         totalAdSpend={totalAdSpend}
       />
+      <DataSectionPay
+        bgcolor={bgColorPayment}
+      />
       <DataSectionCosts
         bgcolor={bgColorCosts}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
         isLoadingADSGoogle={isLoadingAnalytics}
         isLoadingADSMeta={isLoadingADSMeta}
-      />
-      <DataSectionPay
-        bgcolor={bgColorPayment}
       />
       <DataSectionCart
         bgcolor={bgColorConversaoVendas}
