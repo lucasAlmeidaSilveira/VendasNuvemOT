@@ -3,9 +3,11 @@ import { Loading } from '../Loading';
 import { formatCurrency } from '../../tools/tools';
 import { TooltipInfo } from "../TooltipInfo";
 import { IoMdInformationCircleOutline } from "react-icons/io";
+import { Small } from "./styles";
 
 interface BudgetItemProps {
   icon?: React.ElementType;
+  small?: string | number;
   iconColor?: string;
   title: string;
   value: number | string;
@@ -13,7 +15,7 @@ interface BudgetItemProps {
   tooltip?: string;
 }
 
-export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLoading }: BudgetItemProps) {
+export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLoading, small }: BudgetItemProps) {
   
   return (
     <div className='div'>
@@ -26,6 +28,9 @@ export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLo
     </div>
     <div className='text-wrapper-3'>
       {isLoading ? <Loading color={'#1F1F1F'} /> : value}
+      {small && (isLoading && small ? <Loading color={'#1F1F1F'} /> : (
+        <Small>({small})</Small>
+      ))}
     </div>
   </div>
   )

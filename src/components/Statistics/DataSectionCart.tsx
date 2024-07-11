@@ -26,6 +26,14 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
   const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
 
+  const [creditCardTransactions, setCreditCardTransactions] = useState(DEFAULT_VALUE);
+  const [pixTransactions, setPixTransactions] = useState(DEFAULT_VALUE);
+  const [boletoTransactions, setBoletoTransactions] = useState(DEFAULT_VALUE);
+
+  const [creditCardPercentage, setCreditCardPercentage] = useState(DEFAULT_PERCENTAGE);
+  const [pixPercentage, setPixPercentage] = useState(DEFAULT_PERCENTAGE);
+  const [boletoPercentage, setBoletoPercentage] = useState(DEFAULT_PERCENTAGE);
+
   useEffect(() => {
     if (data) {
       const { totalVisits, carts, beginCheckout } = data;
@@ -48,6 +56,21 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       setPassRate(passRateValue.toFixed(1) + '%');
     }
   }, [orders, ordersFiltered, paidOrders.length]); 
+
+  useEffect(() => {
+    const creditCardCount = paidOrders.filter(order => order.data.payment_details.method === 'credit_card').length;
+    const pixCount = paidOrders.filter(order => order.data.payment_details.method === 'pix').length;
+    const boletoCount = paidOrders.filter(order => order.data.payment_details.method === 'boleto').length;
+    const totalPaidOrders = paidOrders.length;
+
+    setCreditCardTransactions(creditCardCount.toString());
+    setPixTransactions(pixCount.toString());
+    setBoletoTransactions(boletoCount.toString());
+
+    setCreditCardPercentage(((creditCardCount / totalPaidOrders) * 100).toFixed(0) + '%');
+    setPixPercentage(((pixCount / totalPaidOrders) * 100).toFixed(0) + '%');
+    setBoletoPercentage(((boletoCount / totalPaidOrders) * 100).toFixed(0) + '%');
+  }, [paidOrders]);
 
   const cartRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));
@@ -75,16 +98,11 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>Dados de Venda</h4>
+        <h4>Dados de Carrinho e Popup</h4>
         <div className="row">
           <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingAnalytics} />
-        </div>
-        <div className="row">
-          <BudgetItem title="Vendas" tooltip="Nuvemshop" value={paidOrders.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersFiltered.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de aprovação" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">
           <BudgetItem title="Inscrição Popup" tooltip="Nuvemshop" value={customers.length} isLoading={isLoadingCustomers} />

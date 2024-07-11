@@ -11,6 +11,7 @@ import { DataSectionTPago } from './DataSectionTPago';
 import { DataSectionAnalytics } from './DataSectionAnalytics';
 import { DataSectionCart } from './DataSectionCart';
 import { DataSectionCosts } from './DataSectionCosts';
+import { DataSectionPay } from "./DataSectionPay";
 
 export function Statistics() {
   const { data, isLoading: isLoadingAnalytics, dataADSMeta, isLoadingADSMeta } = useAnalytics();
@@ -68,6 +69,7 @@ export function Statistics() {
   const bgColorCosts = '#978800';
   const bgColorAnalytics = '#006BC8';
   const bgColorConversaoVendas = '#592DEA';
+  const bgColorPayment = '#008006';
 
   return (
     <Container>
@@ -92,6 +94,9 @@ export function Statistics() {
         totalOrdersFormatted={totalPaidAmountFormatted}
         isLoadingADSGoogle={isLoadingAnalytics}
         isLoadingADSMeta={isLoadingADSMeta}
+      />
+      <DataSectionPay
+        bgcolor={bgColorPayment}
       />
       <DataSectionCart
         bgcolor={bgColorConversaoVendas}

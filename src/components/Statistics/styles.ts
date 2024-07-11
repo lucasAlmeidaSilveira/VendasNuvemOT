@@ -100,6 +100,8 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     letter-spacing: var(--body-heading-h4-letter-spacing);
     line-height: var(--body-heading-h4-line-height);
     white-space: nowrap;
+    display: flex;
+    gap: .4rem;
   }
 `
 
@@ -108,4 +110,10 @@ export const ContainerCharts = styled.div`
   width: 100%;
   flex-wrap: wrap;
   gap: 1.6rem;
+`
+
+export const Small = styled.span`
+  line-height: initial;
+  font-size: 1.4rem;
+  font-weight: 400;
 `
