@@ -9,6 +9,12 @@ export function filterOrders(orders, date) {
       order.status !== 'voided',
   );
 
+  // Filtrar os pedidos da data de hoje
+  const ordersAllToday = orders.filter(
+    order =>
+      isOrderOnDate(order.createdAt, date)
+  );
+
   // Total de todos os pedidos
   const totalOrders = ordersToday.reduce((total, order) => {
     const orderTotalNumber = parseFloat(order.total);
@@ -40,5 +46,6 @@ export function filterOrders(orders, date) {
     ordersToday,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
+    ordersAllToday
   };
 }
