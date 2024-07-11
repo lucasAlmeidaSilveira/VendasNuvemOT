@@ -27,10 +27,12 @@ export function BudgetItem ({ icon: Icon, iconColor, title, tooltip, value, isLo
       </TooltipInfo>
     </div>
     <div className='text-wrapper-3'>
-      {isLoading ? <Loading color={'#1F1F1F'} /> : value}
-      {small && (isLoading && small ? <Loading color={'#1F1F1F'} /> : (
-        <Small>({small})</Small>
-      ))}
+      {isLoading ? <Loading color={'#1F1F1F'} /> : (
+        <>
+          {value}
+          {small && <Small>({small})</Small>}
+        </>
+      )}
     </div>
   </div>
   )

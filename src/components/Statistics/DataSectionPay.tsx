@@ -1,10 +1,8 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useState } from "react";
 import { BudgetItem } from "./BudgetItem";
 import { ContainerOrders, ContainerGeral } from './styles';
-import { useAnalytics } from "../../context/AnalyticsContext";
 import { useOrders } from "../../context/OrdersContext";
 import { useFilterAllOrders } from '../../hooks/useFilterAllOrders'
-import { calculateAverageTicket, formatCurrency } from "../../tools/tools";
 import { filterOrders } from "../../tools/filterOrders";
 
 interface DataSectionCartProps {
