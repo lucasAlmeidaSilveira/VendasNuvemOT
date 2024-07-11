@@ -4,7 +4,7 @@ import { ContainerOrders, ContainerGeral } from './styles';
 import { useOrders } from "../../context/OrdersContext";
 import { filterOrders } from "../../tools/filterOrders";
 import { FaCreditCard, FaPix } from "react-icons/fa6";
-import { MdRequestPage } from "react-icons/md";
+import { FaFileInvoiceDollar } from "react-icons/fa";
 
 interface DataSectionCartProps {
   bgcolor: string;
@@ -76,12 +76,12 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
         <div className="row">
           <BudgetItem icon={FaCreditCard} iconColor={colorCard} title="Transações no Cartão" tooltip="Nuvemshop" value={creditCardTransactions} isLoading={isLoadingOrders} small={creditCardPercentage} />
           <BudgetItem icon={FaPix} iconColor={colorPix} title="Transações no Pix" tooltip="Nuvemshop" value={pixTransactions} isLoading={isLoadingOrders} small={pixPercentage} />
-          <BudgetItem icon={MdRequestPage} iconColor={colorBoleto} title="Transações no Boleto" tooltip="Nuvemshop" value={boletoTransactions} isLoading={isLoadingOrders} small={boletoPercentage} />
+          <BudgetItem icon={FaFileInvoiceDollar} iconColor={colorBoleto} title="Transações no Boleto" tooltip="Nuvemshop" value={boletoTransactions} isLoading={isLoadingOrders} small={boletoPercentage} />
         </div>
         <div className="row">
           <BudgetItem icon={FaCreditCard} iconColor={colorCard} title="Taxa de Aprovação no Cartão" tooltip="Nuvemshop" value={creditCardApprovalRate} isLoading={isLoadingOrders} />
           <BudgetItem icon={FaPix} iconColor={colorPix} title="Taxa de Aprovação no Pix" tooltip="Nuvemshop" value={pixApprovalRate} isLoading={isLoadingOrders} />
-          <BudgetItem icon={MdRequestPage} iconColor={colorBoleto} title="Taxa de Aprovação no Boleto" tooltip="Nuvemshop" value={boletoApprovalRate} isLoading={isLoadingOrders} />
+          <BudgetItem icon={FaFileInvoiceDollar} iconColor={colorBoleto} title="Taxa de Aprovação no Boleto" tooltip="Nuvemshop" value={boletoApprovalRate} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>
     </ContainerOrders>
