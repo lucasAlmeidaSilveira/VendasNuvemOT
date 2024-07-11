@@ -6,13 +6,15 @@ export function filterOrders(orders, date) {
     order =>
       isOrderOnDate(order.createdAt, date) &&
       order.statusOrder !== 'cancelled' &&
-      order.status !== 'voided',
+      order.status !== 'voided' &&
+      order.data.payment_details.method !== 'other'
   );
 
   // Filtrar os pedidos da data de hoje
   const ordersAllToday = orders.filter(
     order =>
       isOrderOnDate(order.createdAt, date)
+      && order.data.payment_details.method !== 'other'
   );
 
   // Total de todos os pedidos

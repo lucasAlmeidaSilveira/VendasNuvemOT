@@ -2,7 +2,6 @@ import React, { useEffect, useState } from "react";
 import { BudgetItem } from "./BudgetItem";
 import { ContainerOrders, ContainerGeral } from './styles';
 import { useOrders } from "../../context/OrdersContext";
-import { useFilterAllOrders } from '../../hooks/useFilterAllOrders'
 import { filterOrders } from "../../tools/filterOrders";
 import { FaCreditCard, FaPix } from "react-icons/fa6";
 import { MdRequestPage } from "react-icons/md";
@@ -17,29 +16,28 @@ const DEFAULT_PERCENTAGE = '0%';
 export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
   const { orders, isLoading: isLoadingOrders, date } = useOrders();
   const { paidOrders, ordersAllToday } = filterOrders(orders, date);
-  const { ordersFiltered } = useFilterAllOrders(orders, date);
-  const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
-  const [creditCardTransactions, setCreditCardTransactions] = useState(DEFAULT_VALUE);
-  const [pixTransactions, setPixTransactions] = useState(DEFAULT_VALUE);
-  const [boletoTransactions, setBoletoTransactions] = useState(DEFAULT_VALUE);
-  const [creditCardPercentage, setCreditCardPercentage] = useState(DEFAULT_PERCENTAGE);
-  const [pixPercentage, setPixPercentage] = useState(DEFAULT_PERCENTAGE);
-  const [boletoPercentage, setBoletoPercentage] = useState(DEFAULT_PERCENTAGE);
+  const [ passRate, setPassRate ] = useState(DEFAULT_PERCENTAGE);
+  const [ creditCardTransactions, setCreditCardTransactions ] = useState(DEFAULT_VALUE);
+  const [ pixTransactions, setPixTransactions ] = useState(DEFAULT_VALUE);
+  const [ boletoTransactions, setBoletoTransactions ] = useState(DEFAULT_VALUE);
+  const [ creditCardPercentage, setCreditCardPercentage ] = useState(DEFAULT_PERCENTAGE);
+  const [ pixPercentage, setPixPercentage ] = useState(DEFAULT_PERCENTAGE);
+  const [ boletoPercentage, setBoletoPercentage ] = useState(DEFAULT_PERCENTAGE);
 
-  const [creditCardApprovalRate, setCreditCardApprovalRate] = useState(DEFAULT_PERCENTAGE);
-  const [pixApprovalRate, setPixApprovalRate] = useState(DEFAULT_PERCENTAGE);
-  const [boletoApprovalRate, setBoletoApprovalRate] = useState(DEFAULT_PERCENTAGE);
+  const [ creditCardApprovalRate, setCreditCardApprovalRate ] = useState(DEFAULT_PERCENTAGE);
+  const [ pixApprovalRate, setPixApprovalRate ] = useState(DEFAULT_PERCENTAGE);
+  const [ boletoApprovalRate, setBoletoApprovalRate ] = useState(DEFAULT_PERCENTAGE);
 
   const colorCard = '#66bb6a'
   const colorPix = '#42a5f5'
   const colorBoleto = '#ffb74d'
 
   useEffect(() => {
-    if (ordersFiltered.length > 0) {
-      const passRateValue = (paidOrders.length / ordersFiltered.length) * 100;
+    if (ordersAllToday.length > 0) {
+      const passRateValue = (paidOrders.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [orders, ordersFiltered, paidOrders.length]); 
+  }, [orders, ordersAllToday, paidOrders.length]); 
 
   useEffect(() => {
     const creditCardCount = ordersAllToday.filter(order => order.data.payment_details.method === 'credit_card').length;
@@ -64,6 +62,9 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
     setCreditCardApprovalRate(((paidCreditCardCount / creditCardCount) * 100).toFixed(1) + '%');
     setPixApprovalRate(((paidPixCount / pixCount) * 100).toFixed(1) + '%');
     setBoletoApprovalRate(((paidBoletoCount / boletoCount) * 100).toFixed(1) + '%');
+
+    const otherTransactions = ordersAllToday.filter(order => !['credit_card', 'pix', 'boleto'].includes(order.data.payment_details.method));
+    console.log('Other Transactions:', otherTransactions);
   }, [paidOrders, ordersAllToday]);
 
   return (
@@ -72,7 +73,7 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
         <h4>Dados de Pagamento</h4>
         <div className="row">
           <BudgetItem title="Pago" tooltip="Nuvemshop" value={paidOrders.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersFiltered.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersAllToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação Geral" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">

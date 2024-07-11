@@ -21,7 +21,7 @@ export function BudgetItem ({ icon: Icon, iconColor, bullet, title, tooltip, val
   return (
     <div className='div'>
     <div className='title-box'>
-      {Icon && <Icon color={iconColor} fontSize={20} />}
+      {Icon && <Icon color={iconColor} fontSize={18} />}
         <p className='text-wrapper-2'>{title}</p> 
       <TooltipInfo title={'Fonte: '+ tooltip}> 
         <span><IoMdInformationCircleOutline size={16} color={'#1F1F1F'}/></span>
