@@ -28,9 +28,18 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
   const [ pixApprovalRate, setPixApprovalRate ] = useState(DEFAULT_PERCENTAGE);
   const [ boletoApprovalRate, setBoletoApprovalRate ] = useState(DEFAULT_PERCENTAGE);
 
-  const colorCard = '#66bb6a'
-  const colorPix = '#42a5f5'
-  const colorBoleto = '#ffb74d'
+  const colorCard = '#66bb6a';
+  const colorPix = '#42a5f5';
+  const colorBoleto = '#ffb74d';
+
+  const calculatePercentage = (count: number, total: number): string => 
+    total > 0 ? ((count / total) * 100).toFixed(1) + '%' : '0%';
+
+  const calculateCount = (method: string, status: null | string = null): number => 
+    ordersAllToday.filter(order => 
+      order.data.payment_details.method === method && 
+      (status ? order.status === status : true)
+    ).length;
 
   useEffect(() => {
     if (ordersAllToday.length > 0) {
@@ -40,28 +49,25 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
   }, [orders, ordersAllToday, paidOrders.length]); 
 
   useEffect(() => {
-    const creditCardCount = ordersAllToday.filter(order => order.data.payment_details.method === 'credit_card').length;
-    const paidCreditCardCount = ordersAllToday.filter(order => order.data.payment_details.method === 'credit_card' && order.status === 'paid').length;
-
-    const pixCount = ordersAllToday.filter(order => order.data.payment_details.method === 'pix').length;
-    const paidPixCount = ordersAllToday.filter(order => order.data.payment_details.method === 'pix' && order.status === 'paid').length;
-
-    const boletoCount = ordersAllToday.filter(order => order.data.payment_details.method === 'boleto').length;
-    const paidBoletoCount = ordersAllToday.filter(order => order.data.payment_details.method === 'boleto' && order.status === 'paid').length;
-
+    const creditCardCount = calculateCount('credit_card');
+    const paidCreditCardCount = calculateCount('credit_card', 'paid');
+    const pixCount = calculateCount('pix');
+    const paidPixCount = calculateCount('pix', 'paid');
+    const boletoCount = calculateCount('boleto');
+    const paidBoletoCount = calculateCount('boleto', 'paid');
     const totalOrdersToday = ordersAllToday.length;
 
     setCreditCardTransactions(creditCardCount.toString());
     setPixTransactions(pixCount.toString());
     setBoletoTransactions(boletoCount.toString());
+  
+    setCreditCardPercentage(calculatePercentage(creditCardCount, totalOrdersToday));
+    setPixPercentage(calculatePercentage(pixCount, totalOrdersToday));
+    setBoletoPercentage(calculatePercentage(boletoCount, totalOrdersToday));
 
-    setCreditCardPercentage(((creditCardCount / totalOrdersToday) * 100).toFixed(0) + '%');
-    setPixPercentage(((pixCount / totalOrdersToday) * 100).toFixed(0) + '%');
-    setBoletoPercentage(((boletoCount / totalOrdersToday) * 100).toFixed(0) + '%');
-
-    setCreditCardApprovalRate(((paidCreditCardCount / creditCardCount) * 100).toFixed(1) + '%');
-    setPixApprovalRate(((paidPixCount / pixCount) * 100).toFixed(1) + '%');
-    setBoletoApprovalRate(((paidBoletoCount / boletoCount) * 100).toFixed(1) + '%');
+    setCreditCardApprovalRate(calculatePercentage(paidCreditCardCount, creditCardCount));
+    setPixApprovalRate(calculatePercentage(paidPixCount, pixCount));
+    setBoletoApprovalRate(calculatePercentage(paidBoletoCount, boletoCount));
   }, [paidOrders, ordersAllToday]);
 
   return (

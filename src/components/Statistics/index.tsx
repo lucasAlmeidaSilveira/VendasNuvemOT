@@ -6,22 +6,21 @@ import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { Chart, ChartLine, ChartStates } from '../Chart';
-import { formatCurrency, parseCurrency } from '../../tools/tools';
+import { parseCurrency } from '../../tools/tools';
 import { DataSectionTPago } from './DataSectionTPago';
 import { DataSectionAnalytics } from './DataSectionAnalytics';
 import { DataSectionCart } from './DataSectionCart';
 import { DataSectionCosts } from './DataSectionCosts';
-import { DataSectionPay } from "./DataSectionPay";
+import { DataSectionPay } from './DataSectionPay';
 
 export function Statistics() {
   const { data, isLoading: isLoadingAnalytics, dataADSMeta, isLoadingADSMeta } = useAnalytics();
   const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders, totalOrdersFormatted, totalPaidAmountFormatted } =
-    filterOrders(orders, date);
-  const [usersByDevice, setUsersByDevice] = useState({});
-  const [verbaGoogle, setVerbaGoogle] = useState(0);
-  const [verbaMeta, setVerbaMeta] = useState(0);
-  const [totalAdSpend, setTotalAdSpend] = useState(0);
+  const { paidOrders, totalPaidAmountFormatted } = filterOrders(orders, date);
+  const [ usersByDevice, setUsersByDevice ] = useState({});
+  const [ verbaGoogle, setVerbaGoogle ] = useState(0);
+  const [ verbaMeta, setVerbaMeta ] = useState(0);
+  const [ totalAdSpend, setTotalAdSpend ] = useState(0);
 
   useEffect(() => {
     if (data) {
@@ -88,9 +87,7 @@ export function Statistics() {
         bgcolor={bgColorAnalytics}
         totalAdSpend={totalAdSpend}
       />
-      <DataSectionPay
-        bgcolor={bgColorPayment}
-      />
+      <DataSectionPay bgcolor={bgColorPayment} />
       <DataSectionCosts
         bgcolor={bgColorCosts}
         totalAdSpend={totalAdSpend}
