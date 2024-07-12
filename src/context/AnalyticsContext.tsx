@@ -4,10 +4,8 @@ import { formatDate } from '../tools/tools';
 
 interface ADSMetaEntry {
   account_id: string;
-  date_start: string;
-  date_stop: string;
-  impressions: string;
   spend: string;
+  impressions: number;
   // Adicione outras propriedades, se necessário
 }
 
