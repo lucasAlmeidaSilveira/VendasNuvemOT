@@ -122,8 +122,6 @@ export function Orders() {
 
   const emptyRows = rowsPerPage - Math.min(rowsPerPage, filteredOrders.length - page * rowsPerPage);
 
-  console.log(filteredOrders[0])
-
   return (
     <>
       <FilterContainer>
