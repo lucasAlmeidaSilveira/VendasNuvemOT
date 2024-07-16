@@ -1,7 +1,7 @@
 import { isOrderOnDate } from "./isOrderFromToday";
 
 export function filterOrders(orders, date) {
-  // Filtrar os pedidos da data de hoje
+  // Filtrar os pedidos da data de hoje, excluindo os de parceira method = 'other'
   const ordersToday = orders.filter(
     order =>
       isOrderOnDate(order.createdAt, date) &&
@@ -10,11 +10,17 @@ export function filterOrders(orders, date) {
       order.data.payment_details.method !== 'other'
   );
 
-  // Filtrar os pedidos da data de hoje
+  // Filtrar todos os pedidos da data de hoje, excluindo os de parceira method = 'other'
   const ordersAllToday = orders.filter(
     order =>
       isOrderOnDate(order.createdAt, date)
       && order.data.payment_details.method !== 'other'
+  );
+
+  // Filtrar todos os pedidos da data de hoje, excluindo os de parceira method = 'other'
+  const ordersAllTodayWithPartner = orders.filter(
+    order =>
+      isOrderOnDate(order.createdAt, date)
   );
 
   // Total de todos os pedidos
@@ -48,6 +54,7 @@ export function filterOrders(orders, date) {
     ordersToday,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
-    ordersAllToday
+    ordersAllToday,
+    ordersAllTodayWithPartner
   };
 }
