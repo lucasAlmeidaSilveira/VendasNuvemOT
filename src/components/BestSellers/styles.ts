@@ -61,6 +61,7 @@ export const ContainerBestSeller = styled.div`
 
     .categorie {
       width: fit-content;
+      font-weight: 600;
     }
 
     .sales-cetegorie{
@@ -68,6 +69,7 @@ export const ContainerBestSeller = styled.div`
       flex-direction: column;
       align-items: flex-end;
       font-size: 1.6rem;
+      font-weight: 600;
       
       .total-sales {
         font-size: 1.4rem;

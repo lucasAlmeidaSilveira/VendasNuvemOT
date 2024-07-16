@@ -14,7 +14,7 @@ export const ContainerChartPie = styled.div`
   box-shadow: 0px 4px 4px #00000040;
 
   h2 {
-    color: #1f1f1f;
+    color: var(--geralblack-100);
     font-weight: 600;
   }
 `
@@ -32,7 +32,7 @@ export const ContainerChartLine = styled.div`
 
   div.header {
     h2 {
-      color: #1f1f1f;
+      color: var(--geralblack-100);
       display: flex;
       align-items: center;
       font-weight: 600;
@@ -41,7 +41,7 @@ export const ContainerChartLine = styled.div`
         font-size: 1.4rem;
         box-shadow: initial !important;
         font-weight: 600;
-        color: #1f1f1f;
+        color: var(--geralblack-100);
         background: transparent;
       }
     }
@@ -69,7 +69,7 @@ export const ContainerChartStates= styled.div`
 
     select {
       opacity: .8;
-      background: #1f1f1f;
+      background: var(--geralblack-100);
 
       option{
         color: #fcfafb;
@@ -78,7 +78,7 @@ export const ContainerChartStates= styled.div`
   }
 
   h2 {
-    color: #1f1f1f;
+    color: var(--geralblack-100);
     font-weight: 600;
   }
 `

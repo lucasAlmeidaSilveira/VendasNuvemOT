@@ -18,7 +18,7 @@ export const Container = styled.div`
     box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
     
     option {
-      color: #1f1f1f;
+      color: var(--geralblack-100);
     }
   }
 `

@@ -30,7 +30,7 @@ export const Container = styled.div`
     button {
       font-size: 1rem;
       font-family: 'Poppins', sans-serif;
-      color: #1f1f1f;
+      color: var(--geralblack-100);
 
       span {
         font-size: 1.4rem;
@@ -77,7 +77,7 @@ export const QuickActionButton = styled.span<QuickActionButtonProps>`
   ${({ active }) =>
     active &&
     css`
-      background-color: #1f1f1f;
+      background-color: var(--geralblack-100);
       color: #fcfafb;
     `}
 `;

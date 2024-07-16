@@ -34,7 +34,7 @@ export const ContainerVariation = styled.div`
       .name-product {
         color: var(--geralblack-100);
         word-wrap: break-word;
-        font-weight: 700;
+        font-weight: 600;
         font-size: 1.2rem;
       }
 
