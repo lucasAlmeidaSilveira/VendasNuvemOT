@@ -1,5 +1,8 @@
 import React from 'react';
-import { FaTruck } from 'react-icons/fa';
+import { FaTruckArrowRight } from "react-icons/fa6";
+import { TbPackageExport } from "react-icons/tb";
+import { FaCheckCircle } from "react-icons/fa";
+import { MdAssignmentLate } from "react-icons/md";
 import { ShippingStatusContainer } from './styles';
 
 function calculateShippingStatus(statusOrder, status, createdAt, shippingMinDays, shippingMaxDays) {
@@ -11,16 +14,16 @@ function calculateShippingStatus(statusOrder, status, createdAt, shippingMinDays
 
   const backgroundColorMap = {
     unpacked: '#fffbe0', // Amarelo claro
-    shipped: '#c8edfa',
-    closed: '#c9fcc9',
-    late: '#ffcccc',
+    shipped: '#daf1fa',
+    closed: '#e0ffe0',
+    late: '#ffe0e0',
   };
 
   const borderColorMap = {
-    unpacked: '#ffe580', // Amarelo
-    shipped: '#b8e5fc',
-    closed: '#97ff97',
-    late: '#ff9999',
+    unpacked: '#f49820', // Amarelo
+    shipped: '#39abe4',
+    closed: '#38b257',
+    late: '#e64e4e',
   };
 
   let currentStatus = status;
@@ -42,6 +45,19 @@ function calculateShippingStatus(statusOrder, status, createdAt, shippingMinDays
   };
 }
 
+const getIcon = currentStatus => {
+  switch (currentStatus) {
+    case 'A Enviar':
+      return <TbPackageExport />;
+    case 'Enviado':
+      return <FaTruckArrowRight />;
+    case 'Entregue':
+      return <FaCheckCircle />;
+    case 'Atrasado':
+      return <MdAssignmentLate />;
+  }
+};
+
 export function ShippingStatus({ statusOrder, status, createdAt, shippingMinDays, shippingMaxDays, urlTracking }) {
   const { status: currentStatus, backgroundColor, borderColor } = calculateShippingStatus(
     statusOrder,
@@ -54,7 +70,7 @@ export function ShippingStatus({ statusOrder, status, createdAt, shippingMinDays
   return (
     <a href={urlTracking} target='_blank'>
       <ShippingStatusContainer backgroundColor={backgroundColor} borderColor={borderColor}>
-        <FaTruck />
+        {getIcon(currentStatus)}
         <span>{currentStatus}</span>
       </ShippingStatusContainer>
     </a>

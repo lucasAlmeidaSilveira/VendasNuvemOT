@@ -108,10 +108,15 @@ export const PaymentStatusContainer = styled.div<PaymentStatusContainerProps>`
   padding: 4px 8px;
   width: fit-content;
   font-size: 12px;
-  color: #000;
   margin-bottom: 4px;
 
+  span {
+    color: ${({ borderColor }) => borderColor};
+    font-weight: 600;
+  }
+  
   svg {
+    color: ${({ borderColor }) => borderColor};
     margin-right: 4px;
   }
 `;
@@ -130,10 +135,15 @@ export const ShippingStatusContainer = styled.div<ShippingStatusContainerProps>`
   padding: 4px 8px;
   width: fit-content;
   font-size: 12px;
-  color: #000;
-  margin-bottom: 4px;
-
+  
+  span {
+    color: ${({ borderColor }) => borderColor};
+    font-weight: 600;
+  }
+  
   svg {
+    color: ${({ borderColor }) => borderColor};
+    font-size: 16px;
     margin-right: 4px;
   }
 `;

@@ -6,9 +6,9 @@ import { TooltipInfo } from '../TooltipInfo';
 
 export function PaymentStatus({ status, payment }) {
   const statusMap = {
-    paid: 'Pagamento recebido',
-    pending: 'Aguardando pagamento',
-    voided: 'Pagamento recusado',
+    paid: 'Pago',
+    pending: 'Pendente',
+    voided: 'Recusado',
     refunded: 'Estornado'
   };
   
@@ -25,11 +25,12 @@ export function PaymentStatus({ status, payment }) {
     voided: '#ffe0e0', // Cor de fundo para status recusado
     refunded: '#d3d3d3'
   };
-
+  
   const borderColorMap = {
-    paid: '#a0ffa0', // Cor da borda para status pago
-    pending: '#ffffa0', // Cor da borda para status pendente
-    voided: '#ffa0a0', // Cor da borda para status recusado
+    paid: '#38b257', // Cor da borda para status pago
+    pending: '#f49820', // Cor da borda para status pendente
+    voided: '#e64e4e', // Cor da borda para status recusado
+    refunded: '#4d4d4d'
   };
 
   const getIcon = payment => {
