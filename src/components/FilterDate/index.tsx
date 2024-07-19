@@ -1,19 +1,27 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { Container, ButtonsContainer, QuickActionButton, ButtonActionContainer } from './styles';
 import { useOrders } from "../../context/OrdersContext";
-
+import { StatusDataLoading, StatusDataSuccess, StatusDataWait, StatusInitialDataLoading } from "../Status";
+import { formatTimeDifference } from "../../tools/tools";
 
 export function FilterDate() {
-  const { date, setDate } = useOrders();
+  const { date, setDate, currentDateLocalStorage, isLoading, isLoadingInitialSync, isLoadingPeriodic } = useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
+  const [timeDifference, setTimeDifference] = useState('')
 
   const handleDateChange = (date: any) => {
     setActiveButton(null); // Desativar botão ativo quando a data é selecionada manualmente
     setDate(date);
   };
+  
+  useEffect(() => {
+    if(currentDateLocalStorage){
+      setTimeDifference(formatTimeDifference(currentDateLocalStorage));
+    }
+  }, [60000, isLoading, isLoadingPeriodic, isLoadingInitialSync]);
 
   const handleQuickAction = (days: number, buttonId: string) => {
     const newEndDate = new Date();
@@ -89,7 +97,22 @@ export function FilterDate() {
             Últimos 31 dias
           </QuickActionButton>
         </ButtonActionContainer>
+        <span className="last-updated">
+          {
+            isLoadingInitialSync ? (
+              <StatusInitialDataLoading text={'Sincronizando todos os pedidos...'} tooltip={'Não feche a janela até concluir a sincronização.'} />
+            ) : isLoadingPeriodic ? (
+              <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados dos últimos meses'} />
+            ) : isLoading ? (
+              <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados recentes'} />
+            ) : timeDifference === '0 minutos' ? (
+              <StatusDataSuccess text={'Atualizado agora mesmo'} tooltip={'Os dados estão atualizados.'} />
+            ) : (
+              <StatusDataWait text={`Atualizado há ${timeDifference}`} tooltip={'Os dados estão atualizados.'} />
+            )
+          }
+        </span>
       </ButtonsContainer>
     </Container>
   );
-};
+}

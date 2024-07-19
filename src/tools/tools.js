@@ -47,3 +47,17 @@ export function calculateAverageTicket(orders) {
 export function formatDateToISO(date) {
   return date.toISOString()
 }
+
+export function formatTimeDifference(lastUpdated) {
+  const now = new Date();
+  const lastUpdatedDate = new Date(new Date(lastUpdated).getTime() + 3 * 60 * 60 * 1000); // Ajusta a data armazenada subtraindo 3 horas
+  const diff = Math.abs(now.getTime() - lastUpdatedDate.getTime());
+  const minutes = Math.floor(diff / (1000 * 60));
+  const hours = Math.floor(diff / (1000 * 60 * 60));
+
+  if (hours > 0) {
+    return `${hours} ${hours === 1 ? 'hora' : 'horas'}`;
+  } else {
+    return `${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
+  }
+};

@@ -6,6 +6,11 @@ export const Container = styled.div`
   gap: 1rem;
   margin-bottom: 2rem;
 
+  .last-updated{
+    font-size: 1.2rem;
+    color: var(--geralblack-100);
+  }
+
   .calendar {
     flex: 1;
   }

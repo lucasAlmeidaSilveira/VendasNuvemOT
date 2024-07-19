@@ -63,7 +63,7 @@ export function DataSectionTPago({
             title='Verba Total'
             tooltip="Google ADS x Meta ADS"
             value={totalAdSpend}
-            isLoading={isLoadingADSGoogle}
+            isLoading={isLoadingADSMeta}
           />
         </div>
         <div className='row'>
@@ -81,7 +81,7 @@ export function DataSectionTPago({
             title='ROAS'
             tooltip="Faturamento x Verba Total"
             value={roas}
-            isLoading={isLoadingOrders}
+            isLoading={isLoadingADSMeta}
           />
         </div>
       </ContainerGeral>

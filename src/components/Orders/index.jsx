@@ -27,14 +27,14 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     fontSize: 14,
     fontWeight: 600,
     fontFamily: 'Poppins',
-    padding: '14px 20px',
+    padding: '14px 16px',
     whiteSpace: 'collapse',
   },
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
     fontFamily: 'Poppins',
     borderRadius: '8px',
-    padding: '8px 20px',
+    padding: '8px 16px',
     lineHeight: '100%',
     overflow: 'hidden',
     textOverflow: 'ellipsis',
@@ -282,7 +282,7 @@ export function Orders() {
           <TableFooter>
             <TableRow>
               <TablePagination
-                rowsPerPageOptions={[5, 10, 25, 50]}
+                rowsPerPageOptions={[5, 10, 20, 50]}
                 colSpan={7}
                 count={filteredOrders.length}
                 rowsPerPage={rowsPerPage}

@@ -25,7 +25,7 @@ export const Container = styled.div`
 
   .div {
     align-items: center;
-    gap: 1rem;
+    gap: .4rem;
   }
 
   .div-2 {
@@ -36,7 +36,7 @@ export const Container = styled.div`
   .text-wrapper {
     color: #ffffff;
     font-family: var(--body-paragraph-regular-font-family);
-    font-size: 1.3rem;
+    font-size: 1rem;
     font-style: var(--body-paragraph-regular-font-style);
     font-weight: var(--body-paragraph-regular-font-weight);
     letter-spacing: var(--body-paragraph-regular-letter-spacing);
@@ -49,7 +49,7 @@ export const Container = styled.div`
   .text-wrapper-2, .store-select {
     color: #ffffff;
     font-family: var(--body-heading-h6-font-family);
-    font-size: 1.6rem;
+    font-size: 1.4rem;
     font-style: var(--body-heading-h6-font-style);
     font-weight: var(--body-heading-h6-font-weight);
     letter-spacing: var(--body-heading-h6-letter-spacing);
@@ -87,4 +87,17 @@ export const Container = styled.div`
     margin-right: -2px;
     width: 40px;
   }
+  span.label--switch-toggle {
+    color: #fcfafb;
+    font-size: 12px;
+    font-weight: 400;
+    font-family: 'Poppins', sans-serif;
+  }
+
+  @media (max-width: 610px) { 
+    span.label--switch-toggle {
+      display: none;
+    }
+  }
+  
 `
