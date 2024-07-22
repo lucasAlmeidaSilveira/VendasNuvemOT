@@ -8,7 +8,7 @@ import { StatusDataLoading, StatusDataSuccess, StatusDataWait, StatusInitialData
 import { formatTimeDifference } from "../../tools/tools";
 
 export function FilterDate() {
-  const { date, setDate, currentDateLocalStorage, isLoading, isLoadingInitialSync, isLoadingPeriodic } = useOrders();
+  const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingInitialSync, isLoadingPeriodic } = useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
   const [timeDifference, setTimeDifference] = useState('')
 
@@ -32,6 +32,17 @@ export function FilterDate() {
     newStartDate.setHours(0, 0, 0, 0);
     setActiveButton(buttonId);
     setDate([newStartDate, newEndDate]);
+  };
+
+  const handleDateAllAction = () => {
+    let initDay = new Date('2023-11-23');
+    if (store === 'artepropria') {
+      initDay = new Date('2023-12-30');
+    }
+    initDay.setHours(0, 0, 0, 0);
+    const today = new Date();
+    setActiveButton('all'); // Definir botão ativo
+    setDate([initDay, today]);
   };
 
   const handleTodayAction = () => {
@@ -95,6 +106,12 @@ export function FilterDate() {
             active={activeButton === 'last31days' ? 'true' : undefined}
           >
             Últimos 31 dias
+          </QuickActionButton>
+          <QuickActionButton
+            onClick={() => handleDateAllAction()}
+            active={activeButton === 'all' ? 'true' : undefined}
+          >
+            Todo o período
           </QuickActionButton>
         </ButtonActionContainer>
         <span className="last-updated">

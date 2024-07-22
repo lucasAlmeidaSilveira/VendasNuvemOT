@@ -13,7 +13,8 @@ export const Label = styled.label`
 `;
 
 export const Select = styled.select`
-  padding: 0.6rem 1.2rem;
+  padding: 0.4rem .8rem;
+  width: 14rem;
   font-size: 1.2rem;
   border-radius: 24px;
   border: none;

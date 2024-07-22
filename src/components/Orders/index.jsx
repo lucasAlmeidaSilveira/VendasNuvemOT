@@ -236,13 +236,25 @@ export function Orders() {
           totalList={filteredOrders.length}
         />
         <Selects>
+        <CustomSelect
+            label='Status de Envio:'
+            options={[
+              { value: 'all', label: 'Todos' },
+              { value: 'unpacked', label: 'A enviar' },
+              { value: 'shipped', label: 'Enviados' },
+              { value: 'closed', label: 'Entregues' },
+              { value: 'late', label: 'Atrasados' },
+            ]}
+            value={shippingStatusFilter}
+            onChange={e => setShippingStatusFilter(e.target.value)}
+          />
           <CustomSelect
             label='Status de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'paid', label: 'Pagos' },
               { value: 'voided', label: 'Recusados' },
-              { value: 'pending', label: 'Aguardando Pagamento' },
+              { value: 'pending', label: 'Pendentes' },
             ]}
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
@@ -251,7 +263,7 @@ export function Orders() {
             label='Meios de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
-              { value: 'credit_card', label: 'Cartão de Crédito' },
+              { value: 'credit_card', label: 'Cartão' },
               { value: 'pix', label: 'Pix' },
               { value: 'boleto', label: 'Boleto' },
               { value: 'other', label: 'Parcerias' },
