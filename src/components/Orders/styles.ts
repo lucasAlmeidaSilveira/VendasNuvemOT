@@ -24,6 +24,9 @@ export const ContainerOrder = styled.div`
   
   a.link-gateway {
     font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
   }
 
   table {

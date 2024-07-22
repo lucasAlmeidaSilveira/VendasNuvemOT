@@ -9,6 +9,7 @@ export const useOrders = () => useContext(OrdersContext);
 export const OrdersProvider = ({ children }) => {
   const [orders, setOrders] = useState([]);
   const [customers, setCustomers] = useState([]);
+  const [allOrders, setAllOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingPeriodic, setIsLoadingPeriodic] = useState(false);
   const [isLoadingInitialSync, setIsLoadingInitialSync] = useState(false);
@@ -46,6 +47,15 @@ export const OrdersProvider = ({ children }) => {
     }
   };
 
+  const fetchAllOrders = async () => {
+    try {
+      const allOrdersFromDB = await getOrders(store);
+      setAllOrders(allOrdersFromDB);
+    } catch (err) {
+      setError(err.message);
+    }
+  };
+
   const forceUpdate = async () => {
     const startDateISO = formatDateToISO(date[0]);
     const endDateISO = formatDateToISO(date[1]);
@@ -58,7 +68,8 @@ export const OrdersProvider = ({ children }) => {
       setError(err.message);
     } finally {
       setIsLoading(false);
-      saveDate()
+      saveDate();
+      await fetchAllOrders(); // Atualiza a lista de todos os pedidos após a atualização forçada
     }
   };
 
@@ -85,6 +96,8 @@ export const OrdersProvider = ({ children }) => {
       setError(err.message);
     } finally {
       setIsLoadingInitialSync(false);
+      saveDate();
+      await fetchAllOrders(); // Atualiza a lista de todos os pedidos após a sincronização inicial
     }
   };
 
@@ -142,7 +155,8 @@ export const OrdersProvider = ({ children }) => {
       setError(err.message);
     } finally {
       setIsLoading(false);
-      saveDate()
+      saveDate();
+      await fetchAllOrders(); // Atualiza a lista de todos os pedidos após a busca dos pedidos filtrados
     }
   };
 
@@ -167,7 +181,8 @@ export const OrdersProvider = ({ children }) => {
       setError(err.message);
     } finally {
       setIsLoadingPeriodic(false);
-      saveDate()
+      saveDate();
+      await fetchAllOrders(); // Atualiza a lista de todos os pedidos após a busca dos dados recentes
     }
   };
 
@@ -175,16 +190,16 @@ export const OrdersProvider = ({ children }) => {
     const adjustedDate = new Date();
     adjustedDate.setHours(adjustedDate.getHours() - 3); // Ajusta a data para o fuso horário correto
     localStorage.setItem('lastSyncDate', adjustedDate.toISOString());
-    setCurrentDateLocalStorage(adjustedDate.toISOString())
-  }
+    setCurrentDateLocalStorage(adjustedDate.toISOString());
+  };
 
   useEffect(() => {
     const handleBeforeUnload = (event) => {
       if (isLoadingInitialSync) {
         event.preventDefault();
-        event.returnValue = true;
+        event.returnValue = 'A sincronização inicial ainda está em andamento. Tem certeza de que deseja sair?';
       }
-      saveDate()
+      saveDate();
     };
 
     const initializeData = async () => {
@@ -204,6 +219,7 @@ export const OrdersProvider = ({ children }) => {
             await fetchOrdersData(startDateISO, endDateISO);
           }
         }
+        await fetchAllOrders(); // Atualiza a lista de todos os pedidos após a inicialização
       }
     };
 
@@ -243,6 +259,8 @@ export const OrdersProvider = ({ children }) => {
   const value = {
     orders,
     setOrders,
+    allOrders,
+    setAllOrders,
     customers,
     setCustomers,
     date,

@@ -8,9 +8,7 @@ import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
 import { useOrders } from '../../context/OrdersContext';
-import { filterOrders } from '../../tools/filterOrders';
 import { formatCurrency } from '../../tools/tools';
-import { Loading } from '../Loading';
 import { PaymentStatus } from './PaymentStatus';
 import { ShippingStatus } from './ShippingStatus';
 import { CustomSelect } from '../CustomSelect';
@@ -19,6 +17,8 @@ import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
+import { InputSearch } from '../InputSearch';
+import { filterOrdersAll } from '../../tools/filterOrders';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -33,7 +33,6 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.body}`]: {
     fontSize: 14,
     fontFamily: 'Poppins',
-    borderRadius: '8px',
     padding: '8px 16px',
     lineHeight: '100%',
     overflow: 'hidden',
@@ -51,47 +50,61 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
   },
 }));
 
-const isLate = (order) => {
+const isLate = order => {
   const shippingDeadline = new Date(order.createdAt);
-  shippingDeadline.setDate(shippingDeadline.getDate() + (order.data.shipping_max_days || order.data.shipping_min_days));
-  return new Date() > shippingDeadline && order.data.shipping_status !== 'closed';
+  shippingDeadline.setDate(
+    shippingDeadline.getDate() +
+      (order.data.shipping_max_days || order.data.shipping_min_days),
+  );
+  return (
+    new Date() > shippingDeadline && order.data.shipping_status !== 'closed'
+  );
 };
 
 export function Orders() {
-  const { orders, date, isLoading } = useOrders();
-  const { ordersAllTodayWithPartner, ordersAllToday } = filterOrders(orders, date);
-  const [usePartnerOrders, setUsePartnerOrders] = useState(false);
+  const { allOrders, date, isLoading } = useOrders();
+  const { ordersAllList } = filterOrdersAll(allOrders);
   const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
   const [paymentMethodFilter, setPaymentMethodFilter] = useState('all');
+  const [searchQuery, setSearchQuery] = useState('');
   const [expandedOrders, setExpandedOrders] = useState({});
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
-  const formatDate = (dateString) => {
+  const formatDate = dateString => {
     const date = new Date(dateString);
     const day = date.getDate();
-    const month = date.toLocaleString('default', { month: 'short' }).replace('.', '');
+    const month = date
+      .toLocaleString('default', { month: 'short' })
+      .replace('.', '');
     return `${day} ${month}`;
   };
 
-  const ordersToUse = usePartnerOrders ? ordersAllTodayWithPartner : ordersAllToday;
-
-  const filteredOrders = ordersToUse.filter(order => {
-    const paymentStatusMatch = statusFilter === 'all' || order.status === statusFilter;
+  const filteredOrders = ordersAllList.filter(order => {
+    const paymentStatusMatch =
+      statusFilter === 'all' || order.status === statusFilter;
     let shippingStatusMatch = shippingStatusFilter === 'all';
-    const paymentMethodMatch = paymentMethodFilter === 'all' || order.data.payment_details.method === paymentMethodFilter;
+    const paymentMethodMatch =
+      paymentMethodFilter === 'all' ||
+      order.data.payment_details.method === paymentMethodFilter;
 
     if (!shippingStatusMatch) {
       switch (shippingStatusFilter) {
         case 'unpacked':
-          shippingStatusMatch = order.data.shipping_status === 'unpacked' && order.data.status === 'open' && !isLate(order);
+          shippingStatusMatch =
+            order.data.shipping_status === 'unpacked' &&
+            order.data.status === 'open' &&
+            !isLate(order);
           break;
         case 'shipped':
-          shippingStatusMatch = order.data.shipping_status === 'shipped' && order.data.status === 'open';
+          shippingStatusMatch =
+            order.data.shipping_status === 'shipped' &&
+            order.data.status === 'open';
           break;
         case 'closed':
-          shippingStatusMatch = (order.status === 'paid' && order.data.status === 'closed');
+          shippingStatusMatch =
+            order.status === 'paid' && order.data.status === 'closed';
           break;
         case 'late':
           shippingStatusMatch = isLate(order) && order.data.status === 'open';
@@ -102,32 +115,48 @@ export function Orders() {
     }
 
     return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
+  })
+  .filter(order => {
+    const searchLower = searchQuery.toLowerCase();
+    return (
+      order.id.toString().toLowerCase().includes(searchLower) ||
+      order.data.customer.name.toLowerCase().includes(searchLower) ||
+      order.data.customer.identification.toLowerCase().includes(searchLower) ||
+      order.data.customer.email.toLowerCase().includes(searchLower)
+    );
   });
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
+    window.scroll({
+      top: 0,
+      left: 0,
+      behavior: 'smooth',
+    });
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleToggleExpand = (orderId) => {
+  const handleToggleExpand = orderId => {
     setExpandedOrders(prevState => ({
       ...prevState,
       [orderId]: !prevState[orderId],
     }));
   };
 
-  const emptyRows = rowsPerPage - Math.min(rowsPerPage, filteredOrders.length - page * rowsPerPage);
+  const emptyRows =
+    rowsPerPage -
+    Math.min(rowsPerPage, filteredOrders.length - page * rowsPerPage);
 
   return (
     <>
       <FilterContainer>
         <Selects>
           <CustomSelect
-            label="Status de Pagamento:"
+            label='Status de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'paid', label: 'Pagos' },
@@ -135,10 +164,10 @@ export function Orders() {
               { value: 'pending', label: 'Aguardando Pagamento' },
             ]}
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={e => setStatusFilter(e.target.value)}
           />
           <CustomSelect
-            label="Status de Envio:"
+            label='Status de Envio:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'unpacked', label: 'A enviar' },
@@ -147,10 +176,10 @@ export function Orders() {
               { value: 'late', label: 'Atrasado' },
             ]}
             value={shippingStatusFilter}
-            onChange={(e) => setShippingStatusFilter(e.target.value)}
+            onChange={e => setShippingStatusFilter(e.target.value)}
           />
           <CustomSelect
-            label="Meios de Pagamento:"
+            label='Meios de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'credit_card', label: 'Cartão de Crédito' },
@@ -159,18 +188,16 @@ export function Orders() {
               { value: 'other', label: 'Parcerias' },
             ]}
             value={paymentMethodFilter}
-            onChange={(e) => setPaymentMethodFilter(e.target.value)}
+            onChange={e => setPaymentMethodFilter(e.target.value)}
           />
         </Selects>
-        <label className="check--use-partner">
-          <input
-            type="checkbox"
-            checked={usePartnerOrders}
-            onChange={() => setUsePartnerOrders(prev => !prev)}
-          />
-          Incluir pedidos de parcerias
-        </label>
-        <p className='results'>(Total de {filteredOrders.length} pedidos)</p>
+        <InputSearch
+          label="Buscar pedido:"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Busque por nome, CPF, e-mail, ou ID"
+          totalList={filteredOrders.length}
+        />
       </FilterContainer>
 
       <ContainerOrder component={Paper}>
@@ -182,79 +209,76 @@ export function Orders() {
               <StyledTableCell>Cliente</StyledTableCell>
               <StyledTableCell>Produtos</StyledTableCell>
               <StyledTableCell>Valor</StyledTableCell>
-              <StyledTableCell>
-                Status de Pagamento
-              </StyledTableCell>
+              <StyledTableCell>Status de Pagamento</StyledTableCell>
               <StyledTableCell>Status de Envio</StyledTableCell>
             </TableRow>
           </TableHead>
-          {isLoading ? (
-            <TableBody>
-              <StyledTableRow>
-                <StyledTableCell colSpan={7} align='center'>
-                  <Loading color={'#1F1F1F'} />
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-          ) : (
-            filteredOrders.length >= 1 ? (
-              <TableBody>
-              {filteredOrders.slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage).map(order => (
+          <TableBody>
+            {filteredOrders
+              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
+              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+              .map(order => (
                 <>
-                <StyledTableRow
-                  key={order.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                >
-                  <StyledTableCell
-                    component='th'
-                    scope='row'
+                  <StyledTableRow
+                    key={order.id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    #{order.orderId}
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    {formatDate(order.createdAt)}
-                  </StyledTableCell>
-                  <StyledTableCell>{order.client}</StyledTableCell>
-                  <StyledTableCell
-                    onClick={() => handleToggleExpand(order.id)}
-                  >
-                    <a
-                      className='link'
+                    <StyledTableCell component='th' scope='row'>
+                      #{order.orderId}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      {formatDate(order.createdAt)}
+                    </StyledTableCell>
+                    <StyledTableCell>{order.client}</StyledTableCell>
+                    <StyledTableCell
+                      onClick={() => handleToggleExpand(order.id)}
                     >
-                    Ver {order.products.length} {expandedOrders[order.id] ? <FaChevronUp /> : <FaChevronDown />}
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    {formatCurrency(parseInt(order.total))}
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <PaymentStatus status={order.status} payment={order.data.payment_details.method} />
-                    <a
-                      className='link link-gateway'
-                      href={order.gatewayLink}
-                      target='_blank'
-                      rel='noopener noreferrer'
-                    >
-                      {order.gateway}
-                    </a>
-                  </StyledTableCell>
-                  <StyledTableCell>
-                    <ShippingStatus
-                      statusOrder={order.statusOrder}
-                      status={
-                        isLate(order) ? 'late' :
-                        order.status === 'paid' && order.statusOrder === 'closed'
-                          ? 'closed'
-                          : order.data.shipping_status
-                      }
-                      createdAt={order.createdAt}
-                      shippingMinDays={order.data.shipping_min_days}
-                      shippingMaxDays={order.data.shipping_max_days}
-                      urlTracking={order.data.shipping_tracking_url}
-                    />
-                  </StyledTableCell>
-                </StyledTableRow>
-                {expandedOrders[order.id] && (
+                      <a className='link'>
+                        Ver {order.products.length}{' '}
+                        {expandedOrders[order.id] ? (
+                          <FaChevronUp />
+                        ) : (
+                          <FaChevronDown />
+                        )}
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      {formatCurrency(parseInt(order.total))}
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <a
+                        className='link link-gateway'
+                        href={order.gatewayLink}
+                        target='_blank'
+                        rel='noopener noreferrer'
+                      >
+                        <PaymentStatus
+                          status={order.status}
+                          payment={order.data.payment_details.method}
+                        />
+
+                        {order.gateway}
+                      </a>
+                    </StyledTableCell>
+                    <StyledTableCell>
+                      <ShippingStatus
+                        statusOrder={order.statusOrder}
+                        status={
+                          isLate(order)
+                            ? 'late'
+                            : order.status === 'paid' &&
+                              order.statusOrder === 'closed'
+                            ? 'closed'
+                            : order.data.shipping_status
+                        }
+                        createdAt={order.createdAt}
+                        shippingMinDays={order.data.shipping_min_days}
+                        shippingMaxDays={order.data.shipping_max_days}
+                        urlTracking={order.data.shipping_tracking_url}
+                      />
+                    </StyledTableCell>
+                  </StyledTableRow>
+                  {expandedOrders[order.id] && (
                     <StyledTableRow>
                       <StyledTableCell colSpan={7}>
                         <ProductDetails products={order.products} />
@@ -263,22 +287,12 @@ export function Orders() {
                   )}
                 </>
               ))}
-              {emptyRows > 0 && (
-                <TableRow style={{ height: 53 * emptyRows }}>
-                  <StyledTableCell colSpan={7} />
-                </TableRow>
-              )}
-            </TableBody>
-            ) : (
-              <TableBody>
-              <StyledTableRow>
-                <StyledTableCell colSpan={7} align='center'>
-                  Nenhum pedido encontrado
-                </StyledTableCell>
-              </StyledTableRow>
-            </TableBody>
-            )
-          )}
+            {emptyRows > 0 && (
+              <TableRow style={{ height: 53 * emptyRows }}>
+                <StyledTableCell colSpan={7} />
+              </TableRow>
+            )}
+          </TableBody>
           <TableFooter>
             <TableRow>
               <TablePagination
@@ -290,8 +304,10 @@ export function Orders() {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
-                labelRowsPerPage="Linhas por página:"
-                labelDisplayedRows={({ from, to, count }) => `${from}–${to} de ${count}`}
+                labelRowsPerPage='Linhas por página:'
+                labelDisplayedRows={({ from, to, count }) =>
+                  `${from}–${to} de ${count}`
+                }
                 sx={{
                   '& .MuiTablePagination-toolbar': {
                     fontSize: '1.1rem',

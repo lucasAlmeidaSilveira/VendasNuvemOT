@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 import { Container, ContainerOrders, ContainerPago, ContainerGeral } from "./styles";
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
@@ -6,10 +6,6 @@ import { Loading, LoadingIcon } from "../Loading";
 import { useOrders } from "../../context/OrdersContext";
 import { BestSellers } from "../BestSellers";
 import { filterOrders } from "../../tools/filterOrders";
-
-type ValuePiece = Date | null;
-
-type Value = [ValuePiece, ValuePiece];
 
 export function Dashboard() {
   const { orders, isLoading, date, setDate } = useOrders();

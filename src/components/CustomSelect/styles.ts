@@ -9,28 +9,28 @@ export const SelectContainer = styled.div`
 export const Label = styled.label`
   font-size: 1.2rem;
   font-weight: 600;
-  color: #333;
+  color: var(--geralblack-100);
 `;
 
 export const Select = styled.select`
   padding: 0.6rem 1.2rem;
   font-size: 1.2rem;
-  border-radius: 8px;
+  border-radius: 24px;
   border: none;
-  background-color: #f1f1f1;
+  background-color: var(--geralwhite);
   font-family: 'Poppins', sans-serif;
   cursor: pointer;
   transition: background-color 0.3s ease-in-out;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  border: 1px solid transparent;
   transition: all 0.1s ease-in;
   
   &:hover {
-    background-color: #e1e1e1;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
+    border: 1px solid var(--geralblack-80);
   }
 
   &:focus {
-    border: none;
+    border: 1px solid var(--geralblack-80);
     outline: none;
   }
 
