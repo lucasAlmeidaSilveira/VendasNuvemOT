@@ -1,23 +1,21 @@
-import "./App.css"
-import { Header } from "./components/Header"
-import { Footer } from "./components/Footer"
-import { useTab } from "./context/TabContext"
-import { RoutesTabs } from "./tools/RoutesTabs"
-import { useOrders } from "./context/OrdersContext"
-import { FilterDate } from "./components/FilterDate"
+import './App.css';
+import { Header } from './components/Header';
+import { Footer } from './components/Footer';
+import { useTab } from './context/TabContext';
+import { RoutesTabs } from './tools/RoutesTabs';
+import { FilterDate } from './components/FilterDate';
 
 function App() {
-	const { activeTab } = useTab();
-	const { date, setDate } = useOrders();
+  const { activeTab } = useTab();
 
-	return (
-		<>
-		<Header />
-		<Footer />
-		<FilterDate />
-		<RoutesTabs activeTab={activeTab} />
-		</>
-	)
+  return (
+    <>
+      <Header />
+      <Footer />
+      {activeTab !== 1 && <FilterDate />}
+      <RoutesTabs activeTab={activeTab} />
+    </>
+  );
 }
 
-export default App
+export default App;

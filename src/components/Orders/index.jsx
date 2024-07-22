@@ -1,5 +1,10 @@
-import React, { useState } from 'react';
-import { ContainerOrder, FilterContainer, Selects } from './styles';
+import React, { useState, useEffect } from 'react';
+import {
+  ContainerOrder,
+  FilterContainer,
+  Selects,
+  StatusFilterContainer,
+} from './styles';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -72,6 +77,38 @@ export function Orders() {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
 
+  const [totalUnpacked, setTotalUnpacked] = useState(0);
+  const [totalShipped, setTotalShipped] = useState(0);
+  const [totalLate, setTotalLate] = useState(0);
+
+  useEffect(() => {
+    const unpackedCount = ordersAllList.filter(
+      order =>
+        order.data.shipping_status === 'unpacked' &&
+        order.data.status === 'open' &&
+        !isLate(order) &&
+        order.status === 'paid'
+    ).length;
+
+    const shippedCount = ordersAllList.filter(
+      order =>
+        order.data.shipping_status === 'shipped' &&
+        order.data.status === 'open' &&
+        order.status === 'paid'
+    ).length;
+
+    const lateCount = ordersAllList.filter(
+      order =>
+        isLate(order) &&
+        order.data.status === 'open' &&
+        order.status === 'paid'
+    ).length;
+
+    setTotalUnpacked(unpackedCount);
+    setTotalShipped(shippedCount);
+    setTotalLate(lateCount);
+  }, [ordersAllList]);
+
   const formatDate = dateString => {
     const date = new Date(dateString);
     const day = date.getDate();
@@ -81,50 +118,53 @@ export function Orders() {
     return `${day} ${month}`;
   };
 
-  const filteredOrders = ordersAllList.filter(order => {
-    const paymentStatusMatch =
-      statusFilter === 'all' || order.status === statusFilter;
-    let shippingStatusMatch = shippingStatusFilter === 'all';
-    const paymentMethodMatch =
-      paymentMethodFilter === 'all' ||
-      order.data.payment_details.method === paymentMethodFilter;
+  const filteredOrders = ordersAllList
+    .filter(order => {
+      const paymentStatusMatch =
+        statusFilter === 'all' || order.status === statusFilter;
+      let shippingStatusMatch = shippingStatusFilter === 'all';
+      const paymentMethodMatch =
+        paymentMethodFilter === 'all' ||
+        order.data.payment_details.method === paymentMethodFilter;
 
-    if (!shippingStatusMatch) {
-      switch (shippingStatusFilter) {
-        case 'unpacked':
-          shippingStatusMatch =
-            order.data.shipping_status === 'unpacked' &&
-            order.data.status === 'open' &&
-            !isLate(order);
-          break;
-        case 'shipped':
-          shippingStatusMatch =
-            order.data.shipping_status === 'shipped' &&
-            order.data.status === 'open';
-          break;
-        case 'closed':
-          shippingStatusMatch =
-            order.status === 'paid' && order.data.status === 'closed';
-          break;
-        case 'late':
-          shippingStatusMatch = isLate(order) && order.data.status === 'open';
-          break;
-        default:
-          shippingStatusMatch = false;
+      if (!shippingStatusMatch) {
+        switch (shippingStatusFilter) {
+          case 'unpacked':
+            shippingStatusMatch =
+              order.data.shipping_status === 'unpacked' &&
+              order.data.status === 'open' &&
+              !isLate(order);
+            break;
+          case 'shipped':
+            shippingStatusMatch =
+              order.data.shipping_status === 'shipped' &&
+              order.data.status === 'open';
+            break;
+          case 'closed':
+            shippingStatusMatch =
+              order.status === 'paid' && order.data.status === 'closed';
+            break;
+          case 'late':
+            shippingStatusMatch = isLate(order) && order.data.status === 'open';
+            break;
+          default:
+            shippingStatusMatch = false;
+        }
       }
-    }
 
-    return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
-  })
-  .filter(order => {
-    const searchLower = searchQuery.toLowerCase();
-    return (
-      order.id.toString().toLowerCase().includes(searchLower) ||
-      order.data.customer.name.toLowerCase().includes(searchLower) ||
-      order.data.customer.identification.toLowerCase().includes(searchLower) ||
-      order.data.customer.email.toLowerCase().includes(searchLower)
-    );
-  });
+      return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
+    })
+    .filter(order => {
+      const searchLower = searchQuery.toLowerCase();
+      return (
+        order.id.toString().toLowerCase().includes(searchLower) ||
+        order.data.customer.name.toLowerCase().includes(searchLower) ||
+        order.data.customer.identification
+          .toLowerCase()
+          .includes(searchLower) ||
+        order.data.customer.email.toLowerCase().includes(searchLower)
+      );
+    });
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -147,13 +187,54 @@ export function Orders() {
     }));
   };
 
+  const handleStatusBlockClick = status => {
+    setShippingStatusFilter(status);
+    setStatusFilter('paid');
+  };
+
   const emptyRows =
     rowsPerPage -
     Math.min(rowsPerPage, filteredOrders.length - page * rowsPerPage);
 
   return (
     <>
+      <StatusFilterContainer>
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'unpacked' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('unpacked')}
+        >
+          <span>Em produção</span>
+          <span>{totalUnpacked}</span>
+        </div>
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'shipped' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('shipped')}
+        >
+          <span>Enviados</span>
+          <span>{totalShipped}</span>
+        </div>
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'late' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('late')}
+        >
+          <span>Em atraso</span>
+          <span>{totalLate}</span>
+        </div>
+      </StatusFilterContainer>
       <FilterContainer>
+        <InputSearch
+          label='Buscar pedido:'
+          value={searchQuery}
+          onChange={e => setSearchQuery(e.target.value)}
+          placeholder='Busque por nome, CPF, e-mail, ou ID'
+          totalList={filteredOrders.length}
+        />
         <Selects>
           <CustomSelect
             label='Status de Pagamento:'
@@ -165,18 +246,6 @@ export function Orders() {
             ]}
             value={statusFilter}
             onChange={e => setStatusFilter(e.target.value)}
-          />
-          <CustomSelect
-            label='Status de Envio:'
-            options={[
-              { value: 'all', label: 'Todos' },
-              { value: 'unpacked', label: 'A enviar' },
-              { value: 'shipped', label: 'Enviado' },
-              { value: 'closed', label: 'Entregue' },
-              { value: 'late', label: 'Atrasado' },
-            ]}
-            value={shippingStatusFilter}
-            onChange={e => setShippingStatusFilter(e.target.value)}
           />
           <CustomSelect
             label='Meios de Pagamento:'
@@ -191,13 +260,6 @@ export function Orders() {
             onChange={e => setPaymentMethodFilter(e.target.value)}
           />
         </Selects>
-        <InputSearch
-          label="Buscar pedido:"
-          value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Busque por nome, CPF, e-mail, ou ID"
-          totalList={filteredOrders.length}
-        />
       </FilterContainer>
 
       <ContainerOrder component={Paper}>
@@ -256,7 +318,6 @@ export function Orders() {
                           status={order.status}
                           payment={order.data.payment_details.method}
                         />
-
                         {order.gateway}
                       </a>
                     </StyledTableCell>

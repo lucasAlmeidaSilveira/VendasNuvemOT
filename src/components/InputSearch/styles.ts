@@ -16,7 +16,6 @@ export const InputContainer = styled.div`
   display: flex;
   flex-direction: column;
   flex: 1;
-  max-width: 500px;
   gap: .4rem;
 `;
 
