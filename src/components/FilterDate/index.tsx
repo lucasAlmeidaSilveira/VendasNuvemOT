@@ -107,12 +107,12 @@ export function FilterDate() {
           >
             Últimos 31 dias
           </QuickActionButton>
-          <QuickActionButton
+          {/* <QuickActionButton
             onClick={() => handleDateAllAction()}
             active={activeButton === 'all' ? 'true' : undefined}
           >
             Todo o período
-          </QuickActionButton>
+          </QuickActionButton> */}
         </ButtonActionContainer>
         <span className="last-updated">
           {
