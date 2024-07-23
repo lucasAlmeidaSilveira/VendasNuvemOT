@@ -1,6 +1,5 @@
 import React from 'react';
 import { Loading } from '../Loading';
-import { formatCurrency } from '../../tools/tools';
 import { TooltipInfo } from "../TooltipInfo";
 import { IoMdInformationCircleOutline } from "react-icons/io";
 import { Small } from "./styles";

@@ -23,7 +23,8 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
 import { InputSearch } from '../InputSearch';
-import { filterOrdersAll } from '../../tools/filterOrders';
+import { filterOrders, filterOrdersAll } from '../../tools/filterOrders';
+import { SelectDatePickerIcon } from '../SelectDatePicker';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -67,8 +68,9 @@ const isLate = order => {
 };
 
 export function Orders() {
-  const { allOrders, date, isLoading } = useOrders();
-  const { ordersAllList } = filterOrdersAll(allOrders);
+  const { allOrders, isLoading } = useOrders();
+  const [date, setDate] = useState(['2023-11-22', new Date()])
+  const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
   const [paymentMethodFilter, setPaymentMethodFilter] = useState('all');
@@ -76,13 +78,12 @@ export function Orders() {
   const [expandedOrders, setExpandedOrders] = useState({});
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
-
   const [totalUnpacked, setTotalUnpacked] = useState(0);
   const [totalShipped, setTotalShipped] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
 
   useEffect(() => {
-    const unpackedCount = ordersAllList.filter(
+    const unpackedCount = ordersAllTodayWithPartner.filter(
       order =>
         order.data.shipping_status === 'unpacked' &&
         order.data.status === 'open' &&
@@ -90,14 +91,14 @@ export function Orders() {
         order.status === 'paid'
     ).length;
 
-    const shippedCount = ordersAllList.filter(
+    const shippedCount = ordersAllTodayWithPartner.filter(
       order =>
         order.data.shipping_status === 'shipped' &&
         order.data.status === 'open' &&
         order.status === 'paid'
     ).length;
 
-    const lateCount = ordersAllList.filter(
+    const lateCount = ordersAllTodayWithPartner.filter(
       order =>
         isLate(order) &&
         order.data.status === 'open' &&
@@ -107,7 +108,7 @@ export function Orders() {
     setTotalUnpacked(unpackedCount);
     setTotalShipped(shippedCount);
     setTotalLate(lateCount);
-  }, [ordersAllList]);
+  }, [ordersAllTodayWithPartner]);
 
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -118,7 +119,7 @@ export function Orders() {
     return `${day} ${month}`;
   };
 
-  const filteredOrders = ordersAllList
+  const filteredOrders = ordersAllTodayWithPartner
     .filter(order => {
       const paymentStatusMatch =
         statusFilter === 'all' || order.status === statusFilter;
@@ -165,6 +166,10 @@ export function Orders() {
         order.data.customer.email.toLowerCase().includes(searchLower)
       );
     });
+  
+  const handleDateChange = (date) => {
+    setDate(date);
+  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -192,9 +197,8 @@ export function Orders() {
     setStatusFilter('paid');
   };
 
-  const emptyRows =
-    rowsPerPage -
-    Math.min(rowsPerPage, filteredOrders.length - page * rowsPerPage);
+  const minSelectableDate = new Date('2023-11-23');
+  const maxSelectableDate = new Date();
 
   return (
     <>
@@ -272,6 +276,12 @@ export function Orders() {
             onChange={e => setPaymentMethodFilter(e.target.value)}
           />
         </Selects>
+        <SelectDatePickerIcon
+          onChange={handleDateChange}
+          value={date}
+          minDate={minSelectableDate}
+          maxDate={maxSelectableDate}
+        />
       </FilterContainer>
 
       <ContainerOrder component={Paper}>
@@ -360,9 +370,9 @@ export function Orders() {
                   )}
                 </>
               ))}
-            {emptyRows > 0 && (
-              <TableRow style={{ height: 53 * emptyRows }}>
-                <StyledTableCell colSpan={7} />
+            {filteredOrders.length === 0 && (
+              <TableRow>
+                <StyledTableCell style={{textAlign: 'center'}} colSpan={7}>Nenhum pedido encontrado</StyledTableCell>
               </TableRow>
             )}
           </TableBody>

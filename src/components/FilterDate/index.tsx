@@ -6,6 +6,7 @@ import { Container, ButtonsContainer, QuickActionButton, ButtonActionContainer }
 import { useOrders } from "../../context/OrdersContext";
 import { StatusDataLoading, StatusDataSuccess, StatusDataWait, StatusInitialDataLoading } from "../Status";
 import { formatTimeDifference } from "../../tools/tools";
+import { SelectDatePicker } from "../SelectDatePicker";
 
 export function FilterDate() {
   const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingInitialSync, isLoadingPeriodic } = useOrders();
@@ -71,14 +72,9 @@ export function FilterDate() {
     <Container>
       <h2>Filtro por data</h2>
       <ButtonsContainer>
-        <DatePicker
-          calendarClassName='calendar-view'
-          className='calendar'
-          selectRange={true}
-          format='dd/MM/yyyy'
+        <SelectDatePicker
           onChange={handleDateChange}
           value={date}
-          clearIcon={null}
           maxDate={maxSelectableDate}
           minDate={minSelectableDate}
         />

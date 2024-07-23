@@ -15,6 +15,7 @@ interface DataSectionTPagoProps {
   totalAdSpend: number;
   totalOrdersFormatted: number;
   roas: number | string;
+  roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
   isLoadingADSMeta: boolean;
@@ -27,6 +28,7 @@ export function DataSectionTPago({
   totalAdSpend,
   totalOrdersFormatted,
   roas,
+  roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
   isLoadingADSMeta,
@@ -81,6 +83,7 @@ export function DataSectionTPago({
             title='ROAS'
             tooltip="Faturamento x Verba Total"
             value={roas}
+            small={roasMax}
             isLoading={isLoadingADSMeta}
           />
         </div>

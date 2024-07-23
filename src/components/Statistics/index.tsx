@@ -16,7 +16,7 @@ import { DataSectionPay } from './DataSectionPay';
 export function Statistics() {
   const { data, isLoading: isLoadingAnalytics, dataADSMeta, isLoadingADSMeta } = useAnalytics();
   const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders, totalPaidAmountFormatted } = filterOrders(orders, date);
+  const { paidOrders, totalPaidAmountFormatted, totalPaidAllAmountFormatted } = filterOrders(orders, date);
   const [ usersByDevice, setUsersByDevice ] = useState({});
   const [ verbaGoogle, setVerbaGoogle ] = useState(0);
   const [ verbaMeta, setVerbaMeta ] = useState(0);
@@ -58,11 +58,22 @@ export function Statistics() {
     [totalPaidAmountFormatted],
   );
 
+  const totalOrdersAllNumber = useMemo(
+    () => parseCurrency(totalPaidAllAmountFormatted),
+    [totalPaidAllAmountFormatted],
+  );
+
   const roas = useMemo(() => {
     return totalAdSpend > 0
       ? (totalOrdersNumber / totalAdSpend).toFixed(2)
       : '0.00';
   }, [totalOrdersNumber, totalAdSpend]);
+
+  const roasMax = useMemo(() => {
+    return totalAdSpend > 0
+      ? (totalOrdersAllNumber / totalAdSpend).toFixed(2)
+      : '0.00';
+  }, [totalOrdersAllNumber, totalAdSpend]);
 
   const bgColorTrafegoPago = '#525252';
   const bgColorCosts = '#978800';
@@ -79,6 +90,7 @@ export function Statistics() {
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
         roas={roas}
+        roasMax={`Max.: ${roasMax}`}
         isLoadingADSGoogle={isLoadingAnalytics}
         isLoadingOrders={isLoadingOrders}
         isLoadingADSMeta={isLoadingADSMeta}

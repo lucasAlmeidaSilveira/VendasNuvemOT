@@ -52,6 +52,10 @@ export const FilterContainer = styled.div`
     gap: .2rem;
     font-size: 12px;
   }
+  .last-updated{
+    font-size: 1.2rem;
+    color: var(--geralblack-100);
+  }
 
 `;
 

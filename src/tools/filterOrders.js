@@ -48,11 +48,23 @@ export function filterOrders(orders, date) {
     currency: 'BRL',
   });
 
+  // Somar os valores totais dos pedidos com status "Pago"
+  const totalPaidAllAmount = ordersAllToday.reduce((total, order) => {
+    return total + parseFloat(order.total); // Use parseFloat para garantir que os valores sejam somados corretamente
+  }, 0);
+
+  // Total de pedidos pagos formatado
+  const totalPaidAllAmountFormatted = totalPaidAllAmount.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
   return {
     paidOrders,
     ordersToday,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
+    totalPaidAllAmountFormatted,
     ordersAllToday,
     ordersAllTodayWithPartner,
   };
