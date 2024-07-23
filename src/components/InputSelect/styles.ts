@@ -12,7 +12,7 @@ export const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     
-    background-color: #f1f0f2;
+    background-color: var(--geralwhite);
     border: none;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
   }

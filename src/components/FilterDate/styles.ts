@@ -36,7 +36,7 @@ export const QuickActionButton = styled.span<QuickActionButtonProps>`
   height: fit-content;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: #f1f0f2;
+  background-color: var(--geralwhite);
   opacity: .9;
   box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
   transition: all 0.1s ease-in;

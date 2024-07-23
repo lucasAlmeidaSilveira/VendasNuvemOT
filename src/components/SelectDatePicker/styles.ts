@@ -11,7 +11,7 @@ export const ContainerDatePickerIcon = styled.div`
     padding: 0.4rem 0.8rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-    background-color: #f1f0f2;
+    background-color: var(--geralwhite);
     border: none;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   }
@@ -46,7 +46,7 @@ export const ContainerDatePicker = styled.div`
     padding: 0.4rem 0.8rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
-    background-color: #f1f0f2;
+    background-color: var(--geralwhite);
     border: none;
     box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
   }
