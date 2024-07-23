@@ -82,7 +82,6 @@ export function Orders() {
   const [totalShipped, setTotalShipped] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
 
-
   useEffect(() => {
     const unpackedCount = ordersAllTodayWithPartner.filter(
       order =>
@@ -200,7 +199,6 @@ export function Orders() {
 
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
-  console.log(filteredOrders)
 
   return (
     <>
