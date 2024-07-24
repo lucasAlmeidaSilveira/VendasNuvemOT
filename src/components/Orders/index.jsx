@@ -159,6 +159,7 @@ export function Orders() {
       const searchLower = searchQuery.toLowerCase();
       return (
         order.id.toString().toLowerCase().includes(searchLower) ||
+        order.data.gateway_id?.toString().toLowerCase().includes(searchLower) ||
         order.data.customer.name.toLowerCase().includes(searchLower) ||
         order.data.customer.identification
           .toLowerCase()
@@ -236,7 +237,7 @@ export function Orders() {
           label='Buscar pedido:'
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
-          placeholder='Busque por nome, CPF, e-mail, ou ID'
+          placeholder='Busque por nome, CPF, e-mail, cód. transação ou ID'
           totalList={filteredOrders.length}
         />
         <Selects>
