@@ -201,6 +201,7 @@ export function Orders() {
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
 
+  console.log(filteredOrders[0])
   return (
     <>
       <StatusFilterContainer>
@@ -365,6 +366,7 @@ export function Orders() {
                   {expandedOrders[order.id] && (
                     <StyledTableRow>
                       <StyledTableCell colSpan={7}>
+
                         <ProductDetails products={order.products} />
                       </StyledTableCell>
                     </StyledTableRow>

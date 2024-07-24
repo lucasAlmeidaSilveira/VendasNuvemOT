@@ -36,7 +36,7 @@ export const Container = styled.div`
   .text-wrapper {
     color: #ffffff;
     font-family: var(--body-paragraph-regular-font-family);
-    font-size: 1rem;
+    font-size: 1.2rem;
     font-style: var(--body-paragraph-regular-font-style);
     font-weight: var(--body-paragraph-regular-font-weight);
     letter-spacing: var(--body-paragraph-regular-letter-spacing);
