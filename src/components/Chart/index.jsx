@@ -143,20 +143,27 @@ export function ChartLine({ orders, title, loading }) {
     { value: 'monthday', label: 'últimos 31 dias' },
   ];
 
+  const resetTimeToStartOfDay = date => {
+    date.setHours(0, 0, 0, 0);
+    return date;
+  };
+  
   const handleCategoryChange = event => {
     const selectedType = event.target.value;
     setTimeType(selectedType);
-
+  
+    const endDate = new Date(date[1]);
+    const newStartDate = new Date(endDate);
+  
     if (selectedType === 'weekday' && dateDiff < 7) {
-      const newStartDate = new Date(date[1]);
       newStartDate.setDate(newStartDate.getDate() - 7);
-      setDate([newStartDate, date[1]]);
+      setDate([resetTimeToStartOfDay(newStartDate), endDate]);
     } else if (selectedType === 'monthday' && dateDiff < 31) {
-      const newStartDate = new Date(date[1]);
       newStartDate.setDate(newStartDate.getDate() - 31);
-      setDate([newStartDate, date[1]]);
+      setDate([resetTimeToStartOfDay(newStartDate), endDate]);
     }
   };
+  
 
   return (
     <ContainerChartLine>
