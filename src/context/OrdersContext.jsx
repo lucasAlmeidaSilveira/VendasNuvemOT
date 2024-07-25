@@ -113,9 +113,7 @@ export const OrdersProvider = ({ children }) => {
     );
 
     return dateRange.every(date => {
-      console.log(date)
       const formattedDate = date.toISOString().split('T')[0];
-      console.log(formattedDate);
       return localOrders.some(
         order => order.createdAt.split('T')[0] === formattedDate,
       );
