@@ -250,3 +250,10 @@ export const StatusFilterContainer = styled.div`
     }
   }
 `;
+
+export const ContainerDetails = styled.div`
+  margin-top: 2.4rem;
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+`

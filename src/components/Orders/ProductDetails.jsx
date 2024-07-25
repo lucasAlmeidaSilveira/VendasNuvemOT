@@ -1,7 +1,16 @@
 import React from 'react';
-import { Table, TableBody, TableCell, TableHead, TableRow, TableContainer, Paper } from '@mui/material';
+import {
+  Table,
+  TableBody,
+  TableCell,
+  TableHead,
+  TableRow,
+  TableContainer,
+  Paper,
+} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { formatCurrency } from '../../tools/tools';
+import { ContainerDetails } from './styles';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
   fontSize: 14,
@@ -24,7 +33,7 @@ const ProductImage = styled('img')({
   borderRadius: 8,
 });
 
-const formatProductName = (name) => {
+const formatProductName = name => {
   const regex = /\((.*?)\)/;
   const match = name.match(regex);
   if (match) {
@@ -43,31 +52,40 @@ const formatProductName = (name) => {
 
 export function ProductDetails({ products }) {
   return (
-    <TableContainer component={Paper}>
-      <Table aria-label="products table">
-        <TableHead>
-          <TableRow>
-            <StyledTableHeadCell>Imagem</StyledTableHeadCell>
-            <StyledTableHeadCell>Nome</StyledTableHeadCell>
-            <StyledTableHeadCell>SKU</StyledTableHeadCell>
-            <StyledTableHeadCell>Quantidade</StyledTableHeadCell>
-            <StyledTableHeadCell>Total</StyledTableHeadCell>
-          </TableRow>
-        </TableHead>
-        <TableBody>
-          {products.map((product, index) => (
-            <TableRow key={index}>
-              <StyledTableCell>
-                <ProductImage src={product.image.src} alt={product.name} />
-              </StyledTableCell>
-              <StyledTableCell style={{width: '100%'}}>{formatProductName(product.name)}</StyledTableCell>
-              <StyledTableCell style={{whiteSpace: 'nowrap'}}>{product.sku}</StyledTableCell>
-              <StyledTableCell>{product.quantity}</StyledTableCell>
-              <StyledTableCell>{formatCurrency(product.price * product.quantity)}</StyledTableCell>
+    <ContainerDetails>
+      <h3>Pedido</h3>
+      <TableContainer component={Paper}>
+        <Table aria-label='products table'>
+          <TableHead>
+            <TableRow>
+              <StyledTableHeadCell>Imagem</StyledTableHeadCell>
+              <StyledTableHeadCell>Nome</StyledTableHeadCell>
+              <StyledTableHeadCell>SKU</StyledTableHeadCell>
+              <StyledTableHeadCell>Quantidade</StyledTableHeadCell>
+              <StyledTableHeadCell>Total</StyledTableHeadCell>
             </TableRow>
-          ))}
-        </TableBody>
-      </Table>
-    </TableContainer>
+          </TableHead>
+          <TableBody>
+            {products.map((product, index) => (
+              <TableRow key={index}>
+                <StyledTableCell>
+                  <ProductImage src={product.image.src} alt={product.name} />
+                </StyledTableCell>
+                <StyledTableCell style={{ width: '100%' }}>
+                  {formatProductName(product.name)}
+                </StyledTableCell>
+                <StyledTableCell style={{ whiteSpace: 'nowrap' }}>
+                  {product.sku}
+                </StyledTableCell>
+                <StyledTableCell>{product.quantity}</StyledTableCell>
+                <StyledTableCell>
+                  {formatCurrency(product.price * product.quantity)}
+                </StyledTableCell>
+              </TableRow>
+            ))}
+          </TableBody>
+        </Table>
+      </TableContainer>
+    </ContainerDetails>
   );
 }

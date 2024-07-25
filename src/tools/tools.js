@@ -1,3 +1,4 @@
+import parsePhoneNumberFromString from 'libphonenumber-js';
 import * as XLSX from 'xlsx';
 
 // Função para exportar a tabela para Excel
@@ -60,4 +61,25 @@ export function formatTimeDifference(lastUpdated) {
   } else {
     return `${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
   }
+};
+
+export function formatDateToUTC(dateString) {
+  const date = new Date(dateString);
+  return date.toLocaleString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    year: 'numeric',
+    month: '2-digit',
+    day: '2-digit',
+    hour: '2-digit',
+    minute: '2-digit',
+    second: '2-digit',
+  });
+};
+
+export function formatPhoneNumber(phoneNumber) {
+  const parsedNumber = parsePhoneNumberFromString(phoneNumber);
+  if (parsedNumber) {
+    return parsedNumber.formatNational();
+  }
+  return 'Número inválido';
 };

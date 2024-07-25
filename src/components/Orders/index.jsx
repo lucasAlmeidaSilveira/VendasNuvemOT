@@ -25,6 +25,7 @@ import { TablePaginationActions } from '../Pagination';
 import { InputSearch } from '../InputSearch';
 import { filterOrders, filterOrdersAll } from '../../tools/filterOrders';
 import { SelectDatePickerIcon } from '../SelectDatePicker';
+import { ClientDetails } from './ClientDetails';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -48,8 +49,15 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd)': {
+  '&:nth-of-type(odd):not(.row-order)': {
     backgroundColor: 'var(--geralblack-10)',
+  },
+  '&.row-order': {
+    backgroundColor: 'var(--geralblack-20)',
+    borderRadius: '8px',
+    '& div': {
+      borderRadius: '8px',
+    }
   },
   '&:last-child td, &:last-child th': {
     border: 0,
@@ -314,18 +322,20 @@ export function Orders() {
                     <StyledTableCell>
                       {formatDate(order.createdAt)}
                     </StyledTableCell>
-                    <StyledTableCell>{order.client}</StyledTableCell>
                     <StyledTableCell
                       onClick={() => handleToggleExpand(order.id)}
                     >
                       <a className='link'>
-                        Ver {order.products.length}{' '}
+                      {order.client}{' '}
                         {expandedOrders[order.id] ? (
                           <FaChevronUp />
                         ) : (
                           <FaChevronDown />
                         )}
                       </a>
+                    </StyledTableCell>
+                    <StyledTableCell>
+                     {order.products.length}
                     </StyledTableCell>
                     <StyledTableCell>
                       {formatCurrency(parseInt(order.total))}
@@ -363,9 +373,9 @@ export function Orders() {
                     </StyledTableCell>
                   </StyledTableRow>
                   {expandedOrders[order.id] && (
-                    <StyledTableRow>
+                    <StyledTableRow className='row-order'>
                       <StyledTableCell colSpan={7}>
-
+                        <ClientDetails order={order} />
                         <ProductDetails products={order.products} />
                       </StyledTableCell>
                     </StyledTableRow>

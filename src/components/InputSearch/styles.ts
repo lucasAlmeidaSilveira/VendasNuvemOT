@@ -3,9 +3,9 @@ import styled from 'styled-components';
 export const Container = styled.div`
   display: flex;
   flex: 1;
-  justify-content: right;
   align-items: flex-end;
   gap: .8rem;
+  flex-wrap: wrap;
 
   p.results {
     font-size: 12px;
