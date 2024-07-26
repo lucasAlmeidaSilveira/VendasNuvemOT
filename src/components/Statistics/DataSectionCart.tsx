@@ -5,6 +5,9 @@ import { useAnalytics } from "../../context/AnalyticsContext";
 import { useOrders } from "../../context/OrdersContext";
 import { formatCurrency } from "../../tools/tools";
 import { useCoupons } from "../../context/CouponsContext";
+import { FaWhatsapp } from "react-icons/fa";
+import { IoIosMail } from "react-icons/io";
+import { filterOrders } from "../../tools/filterOrders";
 
 interface DataSectionCartProps {
   bgcolor: string;
@@ -26,25 +29,47 @@ interface Order {
   };
 }
 
+interface CouponProps {
+  code: string;
+  id: number;
+  type: string;
+  used: number;
+  value: string;
+}
+
 const DEFAULT_VALUE = '0';
 
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoading } = useOrders();
+  const { orders, date, isLoading } = useOrders();
+  const { ordersToday } = filterOrders(orders, date);
   const { coupons } = useCoupons();
-  const [ordersWithCashback, setOrdersWithCashback] = useState<Order[]>([]);
-  const [visits, setVisits] = useState(DEFAULT_VALUE);
-  const [carts, setCarts] = useState(DEFAULT_VALUE);
-  const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
+  const [ ordersWithCashback, setOrdersWithCashback ] = useState<Order[]>([]);
+  const [ cartsRecoveryWhats, setCartsRecoveryWhats ] = useState<Order[]>([])
+  const [ cartsRecoveryEmail, setCartsRecoveryEmail ] = useState<Order[]>([])
+  const [ visits, setVisits ] = useState(DEFAULT_VALUE);
+  const [ carts, setCarts ] = useState(DEFAULT_VALUE);
+  const [ costCarts, setCostCart ] = useState(DEFAULT_VALUE);
+
+  const couponsCashback = coupons.filter((coupon: CouponProps) => coupon.code.startsWith('MTZ'))
 
   useEffect(() => {
-    const filteredOrders = orders.filter(order => 
+    const filteredOrdersCashBack = ordersToday.filter((order: Order) => 
       order.data.coupon && order.data.coupon.some(coupon => coupon.code.startsWith('MTZ'))
     );
-    setOrdersWithCashback(filteredOrders);
-  }, [orders]);
 
-  const couponsCashback = coupons.filter(coupon => coupon.code.startsWith('MTZ'))
+    const filteredOrdersCartsWhats = ordersToday.filter((order: Order) => 
+      order.data.coupon && order.data.coupon.some(coupon => coupon.code === 'WHATS10')
+    );
+
+    const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
+      order.data.coupon && order.data.coupon.some(coupon => coupon.code === 'OUTLET10' || coupon.code === 'GANHEI10')
+    );
+    
+    setOrdersWithCashback(() => filteredOrdersCashBack);
+    setCartsRecoveryWhats(() => filteredOrdersCartsWhats);
+    setCartsRecoveryEmail(() => filteredOrdersCartsEmail);
+  }, [orders, ordersToday]);
 
   useEffect(() => {
     if (data) {
@@ -90,6 +115,10 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
           <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingAnalytics} />
+        </div>
+        <div className="row">
+          <BudgetItem icon={FaWhatsapp} iconColor={'var(--uipositive-100)'} title="Carrinhos recuperados" small={'Whatsapp'} tooltip="Via whatsapp" value={cartsRecoveryWhats.length} isLoading={isLoading} />
+          <BudgetItem icon={IoIosMail} iconColor={'var(--geralblack-100)'} title="Carrinhos recuperados" small={'Email'} tooltip="Via email" value={cartsRecoveryEmail.length} isLoading={isLoading} />
         </div>
         <div className="row">
           <BudgetItem title="Vendas | Cashback" tooltip="Vendas com Cashback" value={totalCashbackSales} small={couponsCashback.length} isLoading={isLoading} />

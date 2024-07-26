@@ -143,6 +143,6 @@ export const ContainerCharts = styled.div`
 
 export const Small = styled.span`
   line-height: initial;
-  font-size: 1.4rem;
+  font-size: 1.2rem;
   font-weight: 400;
 `
