@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import {
   ContainerOrder,
   FilterContainer,
@@ -23,9 +23,12 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
 import { InputSearch } from '../InputSearch';
-import { filterOrders, filterOrdersAll } from '../../tools/filterOrders';
+import { filterOrders } from '../../tools/filterOrders';
 import { SelectDatePickerIcon } from '../SelectDatePicker';
 import { ClientDetails } from './ClientDetails';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import Box from '@mui/material/Box';
+import { visuallyHidden } from '@mui/utils';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -75,6 +78,85 @@ const isLate = order => {
   );
 };
 
+const descendingComparator = (a, b, orderBy) => {
+  if (b[orderBy] < a[orderBy]) {
+    return -1;
+  }
+  if (b[orderBy] > a[orderBy]) {
+    return 1;
+  }
+  return 0;
+};
+
+const getComparator = (order, orderBy) => {
+  return order === 'desc'
+    ? (a, b) => descendingComparator(a, b, orderBy)
+    : (a, b) => -descendingComparator(a, b, orderBy);
+};
+
+const stableSort = (array, comparator) => {
+  const stabilizedThis = array.map((el, index) => [el, index]);
+  stabilizedThis.sort((a, b) => {
+    const order = comparator(a[0], b[0]);
+    if (order !== 0) return order;
+    return a[1] - b[1];
+  });
+  return stabilizedThis.map(el => el[0]);
+};
+
+const headCells = [
+  { id: 'orderId', numeric: false, disablePadding: false, label: 'Pedido' },
+  { id: 'createdAt', numeric: false, disablePadding: false, label: 'Data' },
+  { id: 'client', numeric: false, disablePadding: false, label: 'Cliente' },
+  { id: 'products', numeric: false, disablePadding: false, label: 'Produtos' },
+  { id: 'total', numeric: true, disablePadding: false, label: 'Valor' },
+  { id: 'status', numeric: false, disablePadding: false, label: 'Status de Pagamento' },
+  { id: 'shipping_status', numeric: false, disablePadding: false, label: 'Status de Envio' },
+];
+
+const EnhancedTableHead = props => {
+  const { order, orderBy, onRequestSort } = props;
+  const createSortHandler = property => event => {
+    onRequestSort(event, property);
+  };
+
+  return (
+    <TableHead>
+      <TableRow>
+        {headCells.map(headCell => (
+          <StyledTableCell
+            key={headCell.id}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </StyledTableCell>
+        ))}
+      </TableRow>
+    </TableHead>
+  );
+};
+
+const handleLastDays = (days) => {
+  const newEndDate = new Date();
+  newEndDate.setDate(newEndDate.getDate());
+  newEndDate.setHours(23, 59, 59, 999);
+  const newStartDate = new Date(newEndDate);
+  newStartDate.setDate(newEndDate.getDate() - days);
+  newStartDate.setHours(0, 0, 0, 0);
+  return [newStartDate, newEndDate];
+};
+
 export function Orders() {
   const { allOrders, isLoading } = useOrders();
   const [date, setDate] = useState(['2023-11-22', new Date()])
@@ -89,6 +171,8 @@ export function Orders() {
   const [totalUnpacked, setTotalUnpacked] = useState(0);
   const [totalShipped, setTotalShipped] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
+  const [order, setOrder] = useState('desc');
+  const [orderBy, setOrderBy] = useState('createdAt');
 
   useEffect(() => {
     const unpackedCount = ordersAllTodayWithPartner.filter(
@@ -127,61 +211,70 @@ export function Orders() {
     return `${day} ${month}`;
   };
 
-  const filteredOrders = ordersAllTodayWithPartner
-    .filter(order => {
-      const paymentStatusMatch =
-        statusFilter === 'all' || order.status === statusFilter;
-      let shippingStatusMatch = shippingStatusFilter === 'all';
-      const paymentMethodMatch =
-        paymentMethodFilter === 'all' ||
-        order.data.payment_details.method === paymentMethodFilter;
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && order === 'asc';
+    setOrder(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+  };
 
-      if (!shippingStatusMatch) {
-        switch (shippingStatusFilter) {
-          case 'unpacked':
-            shippingStatusMatch =
-              order.data.shipping_status === 'unpacked' &&
-              order.data.status === 'open' &&
-              !isLate(order);
-            break;
-          case 'shipped':
-            shippingStatusMatch =
-              order.data.shipping_status === 'shipped' &&
-              order.data.status === 'open';
-            break;
-          case 'closed':
-            shippingStatusMatch =
-              order.status === 'paid' && order.data.status === 'closed';
-            break;
-          case 'late':
-            shippingStatusMatch = isLate(order) && order.data.status === 'open';
-            break;
-          default:
-            shippingStatusMatch = false;
-        }
-      }
+  const filteredOrders = useMemo(() => {
+    return stableSort(
+      ordersAllTodayWithPartner
+        .filter(order => {
+          const paymentStatusMatch =
+            statusFilter === 'all' || order.status === statusFilter;
+          let shippingStatusMatch = shippingStatusFilter === 'all';
+          const paymentMethodMatch =
+            paymentMethodFilter === 'all' ||
+            order.data.payment_details.method === paymentMethodFilter;
 
-      return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
-    })
-    .filter(order => {
-      const searchLower = searchQuery.toLowerCase();
-      return (
-        order.id.toString().toLowerCase().includes(searchLower) ||
-        order.orderId.toString().toLowerCase().includes(searchLower) ||
-        order.data.gateway_id?.toString().toLowerCase().includes(searchLower) ||
-        order.data.customer.name.toLowerCase().includes(searchLower) ||
-        order.data.customer.identification
-          .toLowerCase()
-          .includes(searchLower) ||
-        order.data.customer.email.toLowerCase().includes(searchLower)
-      );
-    });
-  
+          if (!shippingStatusMatch) {
+            switch (shippingStatusFilter) {
+              case 'unpacked':
+                shippingStatusMatch =
+                  order.data.shipping_status === 'unpacked' &&
+                  order.data.status === 'open' &&
+                  !isLate(order);
+                break;
+              case 'shipped':
+                shippingStatusMatch =
+                  order.data.shipping_status === 'shipped' &&
+                  order.data.status === 'open';
+                break;
+              case 'closed':
+                shippingStatusMatch =
+                  order.status === 'paid' && order.data.status === 'closed';
+                break;
+              case 'late':
+                shippingStatusMatch = isLate(order) && order.data.status === 'open';
+                break;
+              default:
+                shippingStatusMatch = false;
+            }
+          }
+
+          return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
+        })
+        .filter(order => {
+          const searchLower = searchQuery.toLowerCase();
+          return (
+            order.id.toString().toLowerCase().includes(searchLower) ||
+            order.orderId.toString().toLowerCase().includes(searchLower) ||
+            order.data.gateway_id?.toString().toLowerCase().includes(searchLower) ||
+            order.data.customer.name.toLowerCase().includes(searchLower) ||
+            order.data.customer.identification
+              .toLowerCase()
+              .includes(searchLower) ||
+            order.data.customer.email.toLowerCase().includes(searchLower)
+          );
+        }),
+      getComparator(order, orderBy)
+    );
+  }, [ordersAllTodayWithPartner, statusFilter, shippingStatusFilter, paymentMethodFilter, searchQuery, order, orderBy]);
+
   const handleDateChange = (date) => {
     setDate(date);
   };
-
-  console.log(filteredOrders[0])
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -248,7 +341,7 @@ export function Orders() {
           label='Buscar pedido:'
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
-          placeholder='Busque por nome, nº pedido, CPF, e-mail, cód. transação ou ID'
+          placeholder='Busque por nº pedido, nome, CPF, e-mail, cód. transação ou ID'
           totalList={filteredOrders.length}
         />
         <Selects>
@@ -298,20 +391,13 @@ export function Orders() {
 
       <ContainerOrder component={Paper}>
         <Table aria-label='simple table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableCell>Pedido</StyledTableCell>
-              <StyledTableCell>Data</StyledTableCell>
-              <StyledTableCell>Cliente</StyledTableCell>
-              <StyledTableCell>Produtos</StyledTableCell>
-              <StyledTableCell>Valor</StyledTableCell>
-              <StyledTableCell>Status de Pagamento</StyledTableCell>
-              <StyledTableCell>Status de Envio</StyledTableCell>
-            </TableRow>
-          </TableHead>
+          <EnhancedTableHead
+            order={order}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+          />
           <TableBody>
             {filteredOrders
-              .sort((a, b) => new Date(b.createdAt) - new Date(a.createdAt))
               .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
               .map(order => (
                 <>
