@@ -233,7 +233,7 @@ export const OrdersProvider = ({ children }) => {
   }, [store, isLoadingInitialSync]);
 
   useEffect(() => {
-    fetchData();
+    forceUpdate();
   }, [date, store]);
 
   useEffect(() => {
