@@ -32,7 +32,7 @@ import { ClientDetails } from './ClientDetails';
 import { TooltipInfo } from '../TooltipInfo';
 
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { AiFillMessage } from "react-icons/ai";
+import { AiFillMessage } from 'react-icons/ai';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -64,7 +64,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     borderRadius: '8px',
     '& div': {
       borderRadius: '8px',
-    }
+    },
   },
   '&:last-child td, &:last-child th': {
     border: 0,
@@ -114,8 +114,18 @@ const headCells = [
   { id: 'client', numeric: false, disablePadding: false, label: 'Cliente' },
   { id: 'products', numeric: false, disablePadding: false, label: 'Produtos' },
   { id: 'total', numeric: true, disablePadding: false, label: 'Valor' },
-  { id: 'status', numeric: false, disablePadding: false, label: 'Status de Pagamento' },
-  { id: 'shipping_status', numeric: false, disablePadding: false, label: 'Status de Envio' },
+  {
+    id: 'status',
+    numeric: false,
+    disablePadding: false,
+    label: 'Status de Pagamento',
+  },
+  {
+    id: 'shipping_status',
+    numeric: false,
+    disablePadding: false,
+    label: 'Status de Envio',
+  },
 ];
 
 const EnhancedTableHead = props => {
@@ -139,7 +149,7 @@ const EnhancedTableHead = props => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
+                <Box component='span' sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -151,7 +161,7 @@ const EnhancedTableHead = props => {
   );
 };
 
-const handleLastDays = (days) => {
+const handleLastDays = days => {
   const newEndDate = new Date();
   newEndDate.setDate(newEndDate.getDate());
   newEndDate.setHours(23, 59, 59, 999);
@@ -163,7 +173,7 @@ const handleLastDays = (days) => {
 
 export function Orders() {
   const { allOrders, isLoading } = useOrders();
-  const [date, setDate] = useState(['2023-11-22', new Date()])
+  const [date, setDate] = useState(['2023-11-22', new Date()]);
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
@@ -184,21 +194,21 @@ export function Orders() {
         order.data.shipping_status === 'unpacked' &&
         order.data.status === 'open' &&
         !isLate(order) &&
-        order.status === 'paid'
+        order.status === 'paid',
     ).length;
 
     const shippedCount = ordersAllTodayWithPartner.filter(
       order =>
         order.data.shipping_status === 'shipped' &&
         order.data.status === 'open' &&
-        order.status === 'paid'
+        order.status === 'paid',
     ).length;
 
     const lateCount = ordersAllTodayWithPartner.filter(
       order =>
         isLate(order) &&
         order.data.status === 'open' &&
-        order.status === 'paid'
+        order.status === 'paid',
     ).length;
 
     setTotalUnpacked(unpackedCount);
@@ -250,21 +260,27 @@ export function Orders() {
                   order.status === 'paid' && order.data.status === 'closed';
                 break;
               case 'late':
-                shippingStatusMatch = isLate(order) && order.data.status === 'open';
+                shippingStatusMatch =
+                  isLate(order) && order.data.status === 'open';
                 break;
               default:
                 shippingStatusMatch = false;
             }
           }
 
-          return paymentStatusMatch && shippingStatusMatch && paymentMethodMatch;
+          return (
+            paymentStatusMatch && shippingStatusMatch && paymentMethodMatch
+          );
         })
         .filter(order => {
           const searchLower = searchQuery.toLowerCase();
           return (
             order.id.toString().toLowerCase().includes(searchLower) ||
             order.orderId.toString().toLowerCase().includes(searchLower) ||
-            order.data.gateway_id?.toString().toLowerCase().includes(searchLower) ||
+            order.data.gateway_id
+              ?.toString()
+              .toLowerCase()
+              .includes(searchLower) ||
             order.data.customer.name.toLowerCase().includes(searchLower) ||
             order.data.customer.identification
               .toLowerCase()
@@ -272,11 +288,19 @@ export function Orders() {
             order.data.customer.email.toLowerCase().includes(searchLower)
           );
         }),
-      getComparator(order, orderBy)
+      getComparator(order, orderBy),
     );
-  }, [ordersAllTodayWithPartner, statusFilter, shippingStatusFilter, paymentMethodFilter, searchQuery, order, orderBy]);
+  }, [
+    ordersAllTodayWithPartner,
+    statusFilter,
+    shippingStatusFilter,
+    paymentMethodFilter,
+    searchQuery,
+    order,
+    orderBy,
+  ]);
 
-  const handleDateChange = (date) => {
+  const handleDateChange = date => {
     setDate(date);
   };
 
@@ -349,7 +373,7 @@ export function Orders() {
           totalList={filteredOrders.length}
         />
         <Selects>
-        <CustomSelect
+          <CustomSelect
             label='Status de Envio:'
             options={[
               { value: 'all', label: 'Todos' },
@@ -401,91 +425,98 @@ export function Orders() {
             onRequestSort={handleRequestSort}
           />
           <TableBody>
-            {filteredOrders
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(order => (
-                <>
-                  <StyledTableRow
-                    key={order.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <StyledTableCell component='th' scope='row'>
-                      #{order.orderId}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {formatDate(order.createdAt)}
-                    </StyledTableCell>
-                    <StyledTableCell
-                      onClick={() => handleToggleExpand(order.id)}
+            {isLoading ? (
+              <TableRow>
+                <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
+                  <LoadingIcon size={16} color='var(--geralblack-100)' />
+                </StyledTableCell>
+              </TableRow>
+            ) : filteredOrders.length === 0 ? (
+              <TableRow>
+                <StyledTableCell style={{ textAlign: 'center' }} colSpan={7}>
+                  Nenhum pedido encontrado
+                </StyledTableCell>
+              </TableRow>
+            ) : (
+              filteredOrders
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(order => (
+                  <>
+                    <StyledTableRow
+                      key={order.id}
+                      sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <a className='link'>
-                      {order.client}{' '}
-                        {expandedOrders[order.id] ? (
-                          <FaChevronUp />
-                        ) : (
-                          <FaChevronDown />
-                        )}
-                        {order.data.note && (
-                          <TooltipInfo title={order.data.note}>
-                            <span>
-                              <AiFillMessage color={'var(--geralblack-80'} />
-                            </span>
-                          </TooltipInfo>
-                        )}
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell>
-                     {order.products.length}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {formatCurrency(parseInt(order.total))}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      <a
-                        className='link link-gateway'
-                        href={order.gatewayLink}
-                        target='_blank'
-                        rel='noopener noreferrer'
+                      <StyledTableCell component='th' scope='row'>
+                        #{order.orderId}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        {formatDate(order.createdAt)}
+                      </StyledTableCell>
+                      <StyledTableCell
+                        onClick={() => handleToggleExpand(order.id)}
                       >
-                        <PaymentStatus
-                          status={order.status}
-                          payment={order.data.payment_details.method}
+                        <a className='link'>
+                          {order.client}{' '}
+                          {expandedOrders[order.id] ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                          {order.data.note && (
+                            <TooltipInfo title={order.data.note}>
+                              <span>
+                                <AiFillMessage color={'var(--geralblack-80'} />
+                              </span>
+                            </TooltipInfo>
+                          )}
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell>{order.products.length}</StyledTableCell>
+                      <StyledTableCell>
+                        {formatCurrency(parseInt(order.total))}
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <a
+                          className='link link-gateway'
+                          href={order.gatewayLink}
+                          target='_blank'
+                          rel='noopener noreferrer'
+                        >
+                          <PaymentStatus
+                            status={order.status}
+                            payment={order.data.payment_details.method}
+                          />
+                          {order.gateway}
+                        </a>
+                      </StyledTableCell>
+                      <StyledTableCell>
+                        <ShippingStatus
+                          statusOrder={order.statusOrder}
+                          status={
+                            isLate(order)
+                              ? 'late'
+                              : order.status === 'paid' &&
+                                order.statusOrder === 'closed'
+                              ? 'closed'
+                              : order.data.shipping_status
+                          }
+                          createdAt={order.createdAt}
+                          shippingMinDays={order.data.shipping_min_days}
+                          shippingMaxDays={order.data.shipping_max_days}
+                          urlTracking={order.data.shipping_tracking_url}
                         />
-                        {order.gateway}
-                      </a>
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      <ShippingStatus
-                        statusOrder={order.statusOrder}
-                        status={
-                          isLate(order)
-                            ? 'late'
-                            : order.status === 'paid' &&
-                              order.statusOrder === 'closed'
-                            ? 'closed'
-                            : order.data.shipping_status
-                        }
-                        createdAt={order.createdAt}
-                        shippingMinDays={order.data.shipping_min_days}
-                        shippingMaxDays={order.data.shipping_max_days}
-                        urlTracking={order.data.shipping_tracking_url}
-                      />
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  {expandedOrders[order.id] && (
-                    <StyledTableRow className='row-order'>
-                      <StyledTableCell colSpan={7}>
-                        <ClientDetails order={order} />
-                        <ProductDetails products={order.products} />
                       </StyledTableCell>
                     </StyledTableRow>
-                  )}
-                </>
-              ))}
-            {filteredOrders.length === 0 && (
-              <TableRow>
-                <StyledTableCell style={{textAlign: 'center'}} colSpan={7}>Nenhum pedido encontrado</StyledTableCell>
-              </TableRow>
+                    {expandedOrders[order.id] && (
+                      <StyledTableRow className='row-order'>
+                        <StyledTableCell colSpan={7}>
+                          <ClientDetails order={order} />
+                          <ProductDetails products={order.products} />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    )}
+                  </>
+                ))
             )}
           </TableBody>
           <TableFooter>
