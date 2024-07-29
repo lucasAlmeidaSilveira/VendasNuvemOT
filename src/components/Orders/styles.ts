@@ -256,4 +256,9 @@ export const ContainerDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+
+  h3 {
+    display: flex;
+    gap: .8rem;
+  }
 `

@@ -12,23 +12,27 @@ import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
+import TablePagination from '@mui/material/TablePagination';
+import Box from '@mui/material/Box';
+import TableFooter from '@mui/material/TableFooter';
+import TableSortLabel from '@mui/material/TableSortLabel';
+import { visuallyHidden } from '@mui/utils';
+
 import { useOrders } from '../../context/OrdersContext';
 import { formatCurrency } from '../../tools/tools';
 import { PaymentStatus } from './PaymentStatus';
 import { ShippingStatus } from './ShippingStatus';
 import { CustomSelect } from '../CustomSelect';
 import { ProductDetails } from './ProductDetails';
-import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import TableFooter from '@mui/material/TableFooter';
-import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
 import { InputSearch } from '../InputSearch';
 import { filterOrders } from '../../tools/filterOrders';
 import { SelectDatePickerIcon } from '../SelectDatePicker';
 import { ClientDetails } from './ClientDetails';
-import TableSortLabel from '@mui/material/TableSortLabel';
-import Box from '@mui/material/Box';
-import { visuallyHidden } from '@mui/utils';
+import { TooltipInfo } from '../TooltipInfo';
+
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { AiFillMessage } from "react-icons/ai";
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -305,6 +309,8 @@ export function Orders() {
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
 
+  console.log(filteredOrders[0])
+
   return (
     <>
       <StatusFilterContainer>
@@ -420,6 +426,13 @@ export function Orders() {
                           <FaChevronUp />
                         ) : (
                           <FaChevronDown />
+                        )}
+                        {order.data.note && (
+                          <TooltipInfo title={order.data.note}>
+                            <span>
+                              <AiFillMessage color={'var(--geralblack-80'} />
+                            </span>
+                          </TooltipInfo>
                         )}
                       </a>
                     </StyledTableCell>

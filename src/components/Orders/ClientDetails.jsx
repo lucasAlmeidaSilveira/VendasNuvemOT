@@ -12,6 +12,8 @@ import { styled } from '@mui/material/styles';
 import { ContainerDetails } from './styles';
 import { formatDateToUTC, formatPhoneNumber } from '../../tools/tools';
 import { FaWhatsapp } from "react-icons/fa";
+import { TooltipInfo } from '../TooltipInfo';
+import { AiFillMessage } from 'react-icons/ai';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
   backgroundColor: 'var(--geralblack-10)',
@@ -74,7 +76,15 @@ export function ClientDetails({ order }) {
 
   return (
     <ContainerDetails>
-      <h3>{order.client}</h3>
+      <h3>{order.client}
+        {order.data.note && (
+          <TooltipInfo title={order.data.note}>
+            <span>
+              <AiFillMessage color={'var(--geralblack-80'} />
+            </span>
+          </TooltipInfo>
+        )}
+      </h3>
       <TableContainer component={Paper}>
         <Table aria-label='products table'>
           <TableHead>
