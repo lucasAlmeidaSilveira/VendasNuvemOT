@@ -33,6 +33,7 @@ import { TooltipInfo } from '../TooltipInfo';
 
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { AiFillMessage } from 'react-icons/ai';
+import { LoadingIcon } from '../Loading';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -332,6 +333,8 @@ export function Orders() {
 
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
+
+  console.log(filteredOrders[0])
 
   return (
     <>
