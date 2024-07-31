@@ -22,11 +22,9 @@ interface Coupon {
 
 interface Order {
   id: string;
-  createdAt: string;
+  created_at: string;
   total: string;
-  data: {
-    coupon: Coupon[];
-  };
+  coupon: Coupon[];
 }
 
 interface CouponProps {
@@ -55,21 +53,21 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
 
   useEffect(() => {
     const filteredOrdersCashBack = ordersToday.filter((order: Order) => 
-      order.data.coupon && order.data.coupon.some(coupon => coupon.code.startsWith('MTZ'))
+      order.coupon && order.coupon.some(coupon => coupon.code.startsWith('MTZ'))
     );
 
     const filteredOrdersCartsWhats = ordersToday.filter((order: Order) => 
-      order.data.coupon && order.data.coupon.some(coupon => coupon.code === 'WHATS10')
+      order.coupon && order.coupon.some(coupon => coupon.code === 'WHATS10')
     );
 
     const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
-      order.data.coupon && order.data.coupon.some(coupon => coupon.code === 'OUTLET10' || coupon.code === 'GANHEI10')
+      order.coupon && order.coupon.some(coupon => coupon.code === 'OUTLET10' || coupon.code === 'GANHEI10')
     );
     
     setOrdersWithCashback(() => filteredOrdersCashBack);
     setCartsRecoveryWhats(() => filteredOrdersCartsWhats);
     setCartsRecoveryEmail(() => filteredOrdersCartsEmail);
-  }, [orders, ordersToday]);
+  }, [date]);
 
   useEffect(() => {
     if (data) {
@@ -100,7 +98,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   }, 0);
   
   const totalCashbackValue = ordersWithCashback.reduce((sum, order) => {
-    const coupon = order.data.coupon.find(c => c.code.startsWith('MTZ'));
+    const coupon = order.coupon.find(c => c.code.startsWith('MTZ'));
     return sum + (coupon ? parseFloat(coupon.value) : 0);
   }, 0);
 

@@ -34,7 +34,7 @@ export const getOrderByDateRange = async (storeName, startDateISO, endDateISO) =
   const store = tx.objectStore('orders');
   const allOrders = await store.getAll();
   return allOrders.filter(order => {
-    const orderDate = new Date(order.createdAt);
+    const orderDate = new Date(order.created_at);
     return orderDate >= new Date(startDateISO) && orderDate <= new Date(endDateISO);
   });
 };

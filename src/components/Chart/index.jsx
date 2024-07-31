@@ -77,7 +77,7 @@ function processOrdersForChart(orders, type) {
   const salesByTime = {};
 
   orders.forEach(order => {
-    const date = new Date(order.createdAt);
+    const date = new Date(order.created_at);
 
     let key;
     switch (type) {
@@ -125,15 +125,9 @@ export function ChartLine({ orders, title, loading }) {
   const [timeType, setTimeType] = useState('hour');
 
   useEffect(() => {
-    const [startDate, endDate] = date;
-    const filteredOrders = orders.filter(order => {
-      const orderDate = new Date(order.createdAt);
-      return orderDate >= startDate && orderDate <= endDate;
-    });
-
-    const data = processOrdersForChart(filteredOrders, timeType);
+    const data = processOrdersForChart(orders, timeType);
     setDataPoints(data);
-  }, [orders, timeType, date]);
+  }, [loading, timeType, date]);
 
   const dateDiff = Math.ceil((date[1] - date[0]) / (1000 * 60 * 60 * 24));
 
@@ -218,7 +212,7 @@ export function ChartStates({ orders, title, loading }) {
   useEffect(() => {
     const Vendas = {};
     orders.forEach(order => {
-      const estado = order.billingProvince;
+      const estado = order.billing_province;
       Vendas[estado] = (Vendas[estado] || 0) + 1; // Contando as vendas por estado
     });
     setVendasPorEstado(Vendas);

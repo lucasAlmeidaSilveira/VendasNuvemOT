@@ -5,7 +5,7 @@ import { FaCheckCircle } from "react-icons/fa";
 import { MdAssignmentLate } from "react-icons/md";
 import { ShippingStatusContainer } from './styles';
 
-function calculateShippingStatus(statusOrder, status, createdAt, shippingMinDays, shippingMaxDays) {
+function calculateShippingStatus(statusOrder, status, created_at, shippingMinDays, shippingMaxDays) {
   const statusMap = {
     unpacked: 'A Enviar',
     shipped: 'Enviado',
@@ -33,7 +33,7 @@ function calculateShippingStatus(statusOrder, status, createdAt, shippingMinDays
     currentStatus = 'closed';
   }
 
-  const shippingDeadline = new Date(createdAt);
+  const shippingDeadline = new Date(created_at);
   shippingDeadline.setDate(shippingDeadline.getDate() + (shippingMaxDays || shippingMinDays));
 
   const isLate = new Date() > shippingDeadline && currentStatus !== 'closed';
@@ -58,11 +58,11 @@ const getIcon = currentStatus => {
   }
 };
 
-export function ShippingStatus({ statusOrder, status, createdAt, shippingMinDays, shippingMaxDays, urlTracking }) {
+export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking }) {
   const { status: currentStatus, backgroundColor, borderColor } = calculateShippingStatus(
     statusOrder,
     status,
-    createdAt,
+    created_at,
     shippingMinDays,
     shippingMaxDays
   );

@@ -4,7 +4,7 @@ export function useFilterAllOrders(orders, date) {
   // Filtrar os pedidos da data de hoje
   const ordersFiltered = orders.filter(
     order =>
-      isOrderOnDate(order.createdAt, date)
+      isOrderOnDate(order.created_at, date)
   );
 
   // Total de todos os pedidos
@@ -20,7 +20,7 @@ export function useFilterAllOrders(orders, date) {
   });
 
   // Filtrar os pedidos com status "Pago"
-  const paidOrders = ordersFiltered.filter(order => order.status === 'paid');
+  const paidOrders = ordersFiltered.filter(order => order.payment_status === 'paid');
 
   // Somar os valores totais dos pedidos com status "Pago"
   const totalPaidAmount = paidOrders.reduce((total, order) => {

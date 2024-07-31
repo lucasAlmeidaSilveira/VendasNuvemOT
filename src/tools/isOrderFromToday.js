@@ -1,8 +1,8 @@
-export function isOrderOnDate(orderCreatedAt, dateRange) {
+export function isOrderOnDate(created_at, dateRange) {
 	const [startDate, endDate] = dateRange
 
 	// Convertendo a data do pedido para o fuso horário local
-	const orderDate = new Date(orderCreatedAt)
+	const orderDate = new Date(created_at)
 
 	// Se startDate estiver definido, ajuste para o início do dia
 	const start = startDate ? new Date(new Date(startDate).setHours(

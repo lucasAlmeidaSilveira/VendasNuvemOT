@@ -76,9 +76,9 @@ export function ClientDetails({ order }) {
 
   return (
     <ContainerDetails>
-      <h3>{order.client}
-        {order.data.note && (
-          <TooltipInfo title={order.data.note}>
+      <h3>{order.contact_name}
+        {order.note && (
+          <TooltipInfo title={order.note}>
             <span>
               <AiFillMessage color={'var(--geralblack-80'} />
             </span>
@@ -98,14 +98,14 @@ export function ClientDetails({ order }) {
           <TableBody>
             <TableRow>
               <StyledTableCell>
-                {order.data.contact_identification}
+                {order.contact_identification}
               </StyledTableCell>
-              <StyledTableCell>{order.data.contact_email}</StyledTableCell>
+              <StyledTableCell>{order.contact_email}</StyledTableCell>
               <StyledTableCell style={{display: 'flex', gap: '4px', alignItems: 'center'}}>
-                {formatPhoneNumber(order.data.contact_phone)}
-                <a href={linkWhats(order.client, order.data.contact_phone)} target='_blank'><FaWhatsapp size={20} color='var(--uipositive-100)'/></a>
+                {formatPhoneNumber(order.contact_phone)}
+                <a href={linkWhats(order.contact_name, order.contact_phone)} target='_blank'><FaWhatsapp size={20} color='var(--uipositive-100)'/></a>
               </StyledTableCell>
-              <StyledTableCell>{formatLocation(order.data.billing_city, order.data.billing_province)}</StyledTableCell>
+              <StyledTableCell>{formatLocation(order.billing_city, order.billing_province)}</StyledTableCell>
             </TableRow>
           </TableBody>
           <TableHead>
@@ -118,18 +118,18 @@ export function ClientDetails({ order }) {
           </TableHead>
           <TableBody>
             <TableRow>
-              <StyledTableCell>{formatDateToUTC(order.createdAt)}</StyledTableCell>
-              <StyledTableCell>{formatDateToUTC(order.data.updated_at)}</StyledTableCell>
+              <StyledTableCell>{formatDateToUTC(order.created_at)}</StyledTableCell>
+              <StyledTableCell>{formatDateToUTC(order.updated_at)}</StyledTableCell>
               <StyledTableCell>
                 <a
-                  href={createUrlPageBuy(order.id, order.data.token)}
+                  href={createUrlPageBuy(order.id, order.token)}
                   target='_blank'
                   rel='noopener noreferrer'
                   >
                   Link de acompanhamento
                 </a>
               </StyledTableCell>
-              <StyledTableCell>{formatCoupon(order.data.coupon)}</StyledTableCell>
+              <StyledTableCell>{formatCoupon(order.coupon)}</StyledTableCell>
             </TableRow>
           </TableBody>
         </Table>

@@ -131,7 +131,7 @@ export function BestSellers() {
       },
     });
 
-  }, [orders, numberProducts, selectedCategory]); // Adicionar selectedCategory como dependência
+  }, [isLoading, date, numberProducts, selectedCategory]); // Adicionar selectedCategory como dependência
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);

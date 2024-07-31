@@ -30,10 +30,10 @@ import { filterOrders } from '../../tools/filterOrders';
 import { SelectDatePickerIcon } from '../SelectDatePicker';
 import { ClientDetails } from './ClientDetails';
 import { TooltipInfo } from '../TooltipInfo';
+import { Loading, LoadingIcon } from '../Loading';
 
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { AiFillMessage } from 'react-icons/ai';
-import { LoadingIcon } from '../Loading';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -73,14 +73,12 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 const isLate = order => {
-  const shippingDeadline = new Date(order.createdAt);
+  const shippingDeadline = new Date(order.created_at);
   shippingDeadline.setDate(
     shippingDeadline.getDate() +
-      (order.data.shipping_max_days || order.data.shipping_min_days),
+      (order.shipping_max_days || order.shipping_min_days),
   );
-  return (
-    new Date() > shippingDeadline && order.data.shipping_status !== 'closed'
-  );
+  return new Date() > shippingDeadline && order.shipping_status !== 'closed';
 };
 
 const descendingComparator = (a, b, orderBy) => {
@@ -110,8 +108,8 @@ const stableSort = (array, comparator) => {
 };
 
 const headCells = [
-  { id: 'orderId', numeric: false, disablePadding: false, label: 'Pedido' },
-  { id: 'createdAt', numeric: false, disablePadding: false, label: 'Data' },
+  { id: 'order_id', numeric: false, disablePadding: false, label: 'Pedido' },
+  { id: 'created_at', numeric: false, disablePadding: false, label: 'Data' },
   { id: 'client', numeric: false, disablePadding: false, label: 'Cliente' },
   { id: 'products', numeric: false, disablePadding: false, label: 'Produtos' },
   { id: 'total', numeric: true, disablePadding: false, label: 'Valor' },
@@ -162,18 +160,8 @@ const EnhancedTableHead = props => {
   );
 };
 
-const handleLastDays = days => {
-  const newEndDate = new Date();
-  newEndDate.setDate(newEndDate.getDate());
-  newEndDate.setHours(23, 59, 59, 999);
-  const newStartDate = new Date(newEndDate);
-  newStartDate.setDate(newEndDate.getDate() - days);
-  newStartDate.setHours(0, 0, 0, 0);
-  return [newStartDate, newEndDate];
-};
-
 export function Orders() {
-  const { allOrders, isLoading } = useOrders();
+  const { allOrders, isLoadingAllOrders } = useOrders();
   const [date, setDate] = useState(['2023-11-22', new Date()]);
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -187,29 +175,29 @@ export function Orders() {
   const [totalShipped, setTotalShipped] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
   const [order, setOrder] = useState('desc');
-  const [orderBy, setOrderBy] = useState('createdAt');
+  const [orderBy, setOrderBy] = useState('created_at');
 
   useEffect(() => {
     const unpackedCount = ordersAllTodayWithPartner.filter(
       order =>
-        order.data.shipping_status === 'unpacked' &&
-        order.data.status === 'open' &&
+        order.shipping_status === 'unpacked' &&
+        order.status === 'open' &&
         !isLate(order) &&
-        order.status === 'paid',
+        order.payment_status === 'paid',
     ).length;
 
     const shippedCount = ordersAllTodayWithPartner.filter(
       order =>
-        order.data.shipping_status === 'shipped' &&
-        order.data.status === 'open' &&
-        order.status === 'paid',
+        order.shipping_status === 'shipped' &&
+        order.status === 'open' &&
+        order.payment_status === 'paid',
     ).length;
 
     const lateCount = ordersAllTodayWithPartner.filter(
       order =>
         isLate(order) &&
-        order.data.status === 'open' &&
-        order.status === 'paid',
+        order.status === 'open' &&
+        order.payment_status === 'paid',
     ).length;
 
     setTotalUnpacked(unpackedCount);
@@ -237,32 +225,31 @@ export function Orders() {
       ordersAllTodayWithPartner
         .filter(order => {
           const paymentStatusMatch =
-            statusFilter === 'all' || order.status === statusFilter;
+            statusFilter === 'all' || order.payment_status === statusFilter;
           let shippingStatusMatch = shippingStatusFilter === 'all';
           const paymentMethodMatch =
             paymentMethodFilter === 'all' ||
-            order.data.payment_details.method === paymentMethodFilter;
+            order.payment_details.method === paymentMethodFilter;
 
           if (!shippingStatusMatch) {
             switch (shippingStatusFilter) {
               case 'unpacked':
                 shippingStatusMatch =
-                  order.data.shipping_status === 'unpacked' &&
-                  order.data.status === 'open' &&
+                  order.shipping_status === 'unpacked' &&
+                  order.status === 'open' &&
                   !isLate(order);
                 break;
               case 'shipped':
                 shippingStatusMatch =
-                  order.data.shipping_status === 'shipped' &&
-                  order.data.status === 'open';
+                  order.shipping_status === 'shipped' &&
+                  order.status === 'open';
                 break;
               case 'closed':
                 shippingStatusMatch =
-                  order.status === 'paid' && order.data.status === 'closed';
+                  order.payment_status === 'paid' && order.status === 'closed';
                 break;
               case 'late':
-                shippingStatusMatch =
-                  isLate(order) && order.data.status === 'open';
+                shippingStatusMatch = isLate(order) && order.status === 'open';
                 break;
               default:
                 shippingStatusMatch = false;
@@ -277,16 +264,11 @@ export function Orders() {
           const searchLower = searchQuery.toLowerCase();
           return (
             order.id.toString().toLowerCase().includes(searchLower) ||
-            order.orderId.toString().toLowerCase().includes(searchLower) ||
-            order.data.gateway_id
-              ?.toString()
-              .toLowerCase()
-              .includes(searchLower) ||
-            order.data.customer.name.toLowerCase().includes(searchLower) ||
-            order.data.customer.identification
-              .toLowerCase()
-              .includes(searchLower) ||
-            order.data.customer.email.toLowerCase().includes(searchLower)
+            order.order_id.toString().toLowerCase().includes(searchLower) ||
+            order.gateway_id?.toString().toLowerCase().includes(searchLower) ||
+            order.customer.name.toLowerCase().includes(searchLower) ||
+            order.customer.identification.toLowerCase().includes(searchLower) ||
+            order.customer.email.toLowerCase().includes(searchLower)
           );
         }),
       getComparator(order, orderBy),
@@ -319,10 +301,10 @@ export function Orders() {
     setPage(0);
   };
 
-  const handleToggleExpand = orderId => {
+  const handleToggleExpand = order_id => {
     setExpandedOrders(prevState => ({
       ...prevState,
-      [orderId]: !prevState[orderId],
+      [order_id]: !prevState[order_id],
     }));
   };
 
@@ -334,8 +316,6 @@ export function Orders() {
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
 
-  console.log(filteredOrders[0])
-
   return (
     <>
       <StatusFilterContainer>
@@ -346,7 +326,13 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('unpacked')}
         >
           <span>Em produção</span>
-          <span>{totalUnpacked}</span>
+          <span>
+            {isLoadingAllOrders ? (
+              <Loading size={16} color='var(--geralblack-100)' />
+            ) : (
+              totalUnpacked
+            )}
+          </span>
         </div>
         <div
           className={`status-filter ${
@@ -355,7 +341,13 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('shipped')}
         >
           <span>Enviados</span>
-          <span>{totalShipped}</span>
+          <span>
+            {isLoadingAllOrders ? (
+              <Loading size={16} color='var(--geralblack-100)' />
+            ) : (
+              totalShipped
+            )}
+          </span>
         </div>
         <div
           className={`status-filter ${
@@ -364,7 +356,13 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('late')}
         >
           <span>Em atraso</span>
-          <span>{totalLate}</span>
+          <span>
+            {isLoadingAllOrders ? (
+              <Loading size={16} color='var(--geralblack-100)' />
+            ) : (
+              totalLate
+            )}
+          </span>
         </div>
       </StatusFilterContainer>
       <FilterContainer>
@@ -428,7 +426,7 @@ export function Orders() {
             onRequestSort={handleRequestSort}
           />
           <TableBody>
-            {isLoading ? (
+            {isLoadingAllOrders ? (
               <TableRow>
                 <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
                   <LoadingIcon size={16} color='var(--geralblack-100)' />
@@ -450,23 +448,23 @@ export function Orders() {
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <StyledTableCell component='th' scope='row'>
-                        #{order.orderId}
+                        #{order.order_id}
                       </StyledTableCell>
                       <StyledTableCell>
-                        {formatDate(order.createdAt)}
+                        {formatDate(order.created_at)}
                       </StyledTableCell>
                       <StyledTableCell
                         onClick={() => handleToggleExpand(order.id)}
                       >
                         <a className='link'>
-                          {order.client}{' '}
+                          {order.contact_name}{' '}
                           {expandedOrders[order.id] ? (
                             <FaChevronUp />
                           ) : (
                             <FaChevronDown />
                           )}
-                          {order.data.note && (
-                            <TooltipInfo title={order.data.note}>
+                          {order.note && (
+                            <TooltipInfo title={order.note}>
                               <span>
                                 <AiFillMessage color={'var(--geralblack-80'} />
                               </span>
@@ -481,32 +479,32 @@ export function Orders() {
                       <StyledTableCell>
                         <a
                           className='link link-gateway'
-                          href={order.gatewayLink}
+                          href={order.gateway_link}
                           target='_blank'
                           rel='noopener noreferrer'
                         >
                           <PaymentStatus
-                            status={order.status}
-                            payment={order.data.payment_details.method}
+                            status={order.payment_status}
+                            payment={order.payment_details.method}
                           />
-                          {order.gateway}
+                          {order.gateway_name}
                         </a>
                       </StyledTableCell>
                       <StyledTableCell>
                         <ShippingStatus
-                          statusOrder={order.statusOrder}
+                          statusOrder={order.status}
                           status={
                             isLate(order)
                               ? 'late'
-                              : order.status === 'paid' &&
-                                order.statusOrder === 'closed'
+                              : order.payment_status === 'paid' &&
+                                order.status === 'closed'
                               ? 'closed'
-                              : order.data.shipping_status
+                              : order.shipping_status
                           }
-                          createdAt={order.createdAt}
-                          shippingMinDays={order.data.shipping_min_days}
-                          shippingMaxDays={order.data.shipping_max_days}
-                          urlTracking={order.data.shipping_tracking_url}
+                          created_at={order.created_at}
+                          shippingMinDays={order.shipping_min_days}
+                          shippingMaxDays={order.shipping_max_days}
+                          urlTracking={order.shipping_tracking_url}
                         />
                       </StyledTableCell>
                     </StyledTableRow>

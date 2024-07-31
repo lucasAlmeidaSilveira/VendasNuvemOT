@@ -64,12 +64,12 @@ export function Coupons() {
     const couponUsageMap = {};
 
     orders.forEach(order => {
-      const orderDate = new Date(order.createdAt);
+      const orderDate = new Date(order.created_at);
       if (
         orderDate >= new Date(startDateISO) &&
         orderDate <= new Date(endDateISO)
       ) {
-        order.data.coupon.forEach(coupon => {
+        order.coupon.forEach(coupon => {
           if (!couponUsageMap[coupon.code]) {
             couponUsageMap[coupon.code] = {
               ...coupon,
@@ -84,8 +84,9 @@ export function Coupons() {
     const sortedCoupons = Object.values(couponUsageMap).sort(
       (a, b) => b.used - a.used,
     );
+
     setFilteredCoupons(sortedCoupons);
-  }, [orders, date]);
+  }, [orders]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

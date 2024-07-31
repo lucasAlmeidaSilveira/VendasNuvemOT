@@ -37,8 +37,8 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
 
   const calculateCount = (method: string, status: null | string = null): number => 
     ordersAllToday.filter(order => 
-      order.data.payment_details.method === method && 
-      (status ? order.status === status : true)
+      order.payment_details.method === method && 
+      (status ? order.payment_status === status : true)
     ).length;
 
   useEffect(() => {

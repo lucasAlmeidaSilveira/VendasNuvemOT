@@ -6,7 +6,7 @@ import { Container } from "./styles.ts";
 import { SwitchToggle } from "../SwitchToggle"; // Certifique-se de ajustar o caminho conforme necessário
 
 export function Header() {
-  const { store, setStore, resetData, isLoadingInitialSync, automaticUpdate, setAutomaticUpdate } = useOrders();
+  const { store, setStore, resetData, setAutomaticUpdate } = useOrders();
 
   // Função para lidar com a mudança do select
   const handleStoreChange = (event) => {

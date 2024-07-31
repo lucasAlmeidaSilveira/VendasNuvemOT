@@ -44,7 +44,7 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
   useEffect(() => {
     const ticket = calculateAverageTicket(ordersToday);
     setAverageTicket(formatCurrency(ticket));
-  }, [ordersToday]);
+  }, [date]);
 
   const conversionRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));

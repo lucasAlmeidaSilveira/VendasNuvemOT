@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from 'react';
-import DatePicker from 'react-date-picker';
 import 'react-date-picker/dist/DatePicker.css';
 import 'react-calendar/dist/Calendar.css';
 import { Container, ButtonsContainer, QuickActionButton, ButtonActionContainer } from './styles';
@@ -9,7 +8,7 @@ import { formatTimeDifference } from "../../tools/tools";
 import { SelectDatePicker } from "../SelectDatePicker";
 
 export function FilterDate() {
-  const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingInitialSync, isLoadingPeriodic } = useOrders();
+  const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingAllOrders, isLoadingPeriodic } = useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
   const [timeDifference, setTimeDifference] = useState('')
 
@@ -22,7 +21,7 @@ export function FilterDate() {
     if(currentDateLocalStorage){
       setTimeDifference(formatTimeDifference(currentDateLocalStorage));
     }
-  }, [60000, isLoading, isLoadingPeriodic, isLoadingInitialSync]);
+  }, [60000, isLoading, isLoadingPeriodic, isLoadingAllOrders]);
 
   const handleQuickAction = (days: number, buttonId: string) => {
     const newEndDate = new Date();
@@ -47,7 +46,7 @@ export function FilterDate() {
   };
 
   const handleTodayAction = () => {
-    const today = new Date();
+    let today = new Date();
     today.setHours(0, 0, 0, 0);
     const endOfToday = new Date(today);
     endOfToday.setHours(23, 59, 59, 999);
@@ -112,7 +111,7 @@ export function FilterDate() {
         </ButtonActionContainer>
         <span className="last-updated">
           {
-            isLoadingInitialSync ? (
+            isLoadingAllOrders ? (
               <StatusInitialDataLoading text={'Sincronizando todos os pedidos...'} tooltip={'Não feche a janela até concluir a sincronização.'} />
             ) : isLoadingPeriodic ? (
               <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados dos últimos meses'} />
