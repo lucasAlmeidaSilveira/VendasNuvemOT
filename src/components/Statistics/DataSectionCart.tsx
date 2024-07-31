@@ -120,8 +120,8 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
         </div>
         <div className="row">
           <BudgetItem title="Vendas | Cashback" tooltip="Vendas com Cashback" value={totalCashbackSales} small={couponsCashback.length} isLoading={isLoading} />
-          <BudgetItem title="Faturamento | Cashback" tooltip="Vendas com Cashback (R$)" value={formatCurrency(totalCashbackRevenue)} isLoading={isLoading} />
-          <BudgetItem title="Custo | Cashback" tooltip="Custo com cashback" value={costCashback} small={`ROI: ${roiCashback}`} isLoading={isLoading} />
+          <BudgetItem title="Faturamento | Cashback" tooltip="Vendas com Cashback (R$)" value={formatCurrency(totalCashbackRevenue)} small={`ROI: ${roiCashback}`}  isLoading={isLoading} />
+          <BudgetItem title="Custo | Cashback" tooltip="Custo com cashback" value={costCashback} isLoading={isLoading} />
         </div>
       </ContainerGeral>
     </ContainerOrders>
