@@ -57,7 +57,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
     );
 
     const filteredOrdersCartsWhats = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => coupon.code === 'WHATS10')
+      order.coupon && order.coupon.some(coupon => coupon.code === 'WHATS10' || coupon.code === 'WHATS15' || coupon.code === 'WHATS20')
     );
 
     const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
