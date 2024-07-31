@@ -161,7 +161,7 @@ const EnhancedTableHead = props => {
 };
 
 export function Orders() {
-  const { allOrders, isLoadingAllOrders } = useOrders();
+  const { allOrders, isLoadingAllOrders, store } = useOrders();
   const [date, setDate] = useState(['2023-11-22', new Date()]);
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -274,6 +274,7 @@ export function Orders() {
       getComparator(order, orderBy),
     );
   }, [
+    store,
     ordersAllTodayWithPartner,
     statusFilter,
     shippingStatusFilter,
