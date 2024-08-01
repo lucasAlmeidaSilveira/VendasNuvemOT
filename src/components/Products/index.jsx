@@ -7,6 +7,7 @@ import { Oval } from 'react-loader-spinner';
 import { InputSearch } from '../InputSearch';
 import { ListVariation } from '../ListVariation';
 import { formatCurrency } from '../../tools/tools';
+import { InputSelect } from '../InputSelect';
 
 export function Products() {
   const { allOrders, isLoadingAllOrders } = useOrders();
@@ -15,7 +16,7 @@ export function Products() {
   const [productSales, setProductSales] = useState({});
   const [variations, setVariations] = useState({});
   const [filteredVariations, setFilteredVariations] = useState([]);
-  const [numberProducts, setNumberProducts] = useState(10);
+  const [numberProducts, setNumberProducts] = useState(5);
 
   useEffect(() => {
     if (!isLoadingAllOrders) {
@@ -92,10 +93,10 @@ export function Products() {
 
       setFilteredVariations(filteredVar);
     } else {
-      setFilteredProducts(Object.values(productSales).sort((a, b) => b.sales - a.sales).slice(0, 5));
+      setFilteredProducts(Object.values(productSales).sort((a, b) => b.sales - a.sales).slice(0, numberProducts));
       setFilteredVariations(Object.values(variations).sort((a, b) => b.sales - a.sales));
     }
-  }, [searchQuery, productSales, variations]);
+  }, [searchQuery, numberProducts, productSales, variations]);
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
@@ -110,6 +111,10 @@ export function Products() {
           onChange={handleSearchChange}
           placeholder="Busque por nome ou SKU"
         />
+      </div>
+      <div className="header--number-products">
+        <h1>Mais vendidos</h1>
+        <InputSelect setNumberProducts={setNumberProducts} />
       </div>
       <ContainerBestSellers>
         <ContainerBestSeller>

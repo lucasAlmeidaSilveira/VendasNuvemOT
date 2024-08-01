@@ -15,6 +15,20 @@ export const Container = styled.div`
     width: 100%;
     gap: 2rem;
   }
+  
+  .header--number-products {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    flex: 1;
+    gap: 2rem;
+
+    h1 {
+      color: var(--geralblack-100);
+      font-size: var(--body-heading-h5-font-size);
+      font-weight: var(--body-heading-h5-font-weight);
+    }
+  }
 `
 
 export const ContainerBestSellers = styled.div`
