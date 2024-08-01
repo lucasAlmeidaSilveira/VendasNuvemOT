@@ -3,6 +3,7 @@ import { Dashboard } from '../components/Dashboard';
 import { Coupons } from '../components/Coupons';
 import { Statistics } from '../components/Statistics';
 import { Orders } from '../components/Orders';
+import { Products } from '../components/Products';
 
 export function RoutesTabs({ activeTab }) {
   switch (activeTab) {
@@ -13,6 +14,8 @@ export function RoutesTabs({ activeTab }) {
     case 2:
       return <Statistics />;
     case 3:
+      return <Products />;
+    case 4:
       return <Coupons />;
     // Você pode adicionar mais casos aqui para outras abas
     default:

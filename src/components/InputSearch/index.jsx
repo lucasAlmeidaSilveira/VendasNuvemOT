@@ -33,7 +33,7 @@ export function InputSearch({
           />
         </InputWrapper>
       </InputContainer>
-      <p className='results'>(Total de {totalList} pedidos)</p>
+      {totalList && <p className='results'>(Total de {totalList} pedidos)</p>}
     </Container>
   );
 }

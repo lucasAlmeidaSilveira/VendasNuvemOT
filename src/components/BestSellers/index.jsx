@@ -189,6 +189,9 @@ export function BestSellers() {
                   />
                 ))
               )}
+              {products[category].length === 0 && !isLoading && (
+                <div className="loading">Nenhum produto encontrado</div>
+              )}
             </div>
           </ContainerBestSeller>
         ))}
@@ -215,6 +218,9 @@ export function BestSellers() {
                   sales={variant.sales}
                 />
               ))
+            )}
+            {products.variations.length === 0 && !isLoading && (
+              <div className="loading">Nenhuma variação encontrado</div>
             )}
           </div>
         </ContainerBestSeller>

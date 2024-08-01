@@ -7,6 +7,7 @@ import ArticleIcon from '@mui/icons-material/Article';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
 import { useTab } from '../../context/TabContext';
 import { styled } from '@mui/material/styles';
+import { FaBoxOpen } from 'react-icons/fa';
 
 const TabItem = styled(Tab)(({ theme }) => ({
   flex: 1,
@@ -56,6 +57,7 @@ export function Footer() {
       <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
       <TabItem icon={<ArticleIcon />} label='PEDIDOS' />
       <TabItem icon={<EqualizerIcon />} label='MÉTRICAS' />
+      <TabItem icon={<FaBoxOpen />} label='PRODUTOS' />
       <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
     </Tabs>
   );
