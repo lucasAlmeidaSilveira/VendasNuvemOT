@@ -12,7 +12,9 @@ function App() {
     <>
       <Header />
       <Footer />
-      {activeTab !== 1 && <FilterDate />}
+      <div className={activeTab === 1 || activeTab === 3 ? 'hidden' : ''}>
+        <FilterDate />
+      </div>
       <RoutesTabs activeTab={activeTab} />
     </>
   );

@@ -194,3 +194,7 @@ button:focus-visible {
 .row {
   display: flex;
 }
+
+.hidden {
+  display: none;
+}
