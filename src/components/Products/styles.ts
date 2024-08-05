@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 export const Container = styled.div`
   align-items: flex-start;
@@ -9,13 +9,13 @@ export const Container = styled.div`
 
   .header-container {
     display: flex;
-    align-items: center;
+    align-items: flex-end;
     justify-content: space-between;
     flex: 1;
     width: 100%;
     gap: 2rem;
   }
-  
+
   .header--number-products {
     display: flex;
     align-items: center;
@@ -29,15 +29,15 @@ export const Container = styled.div`
       font-weight: var(--body-heading-h5-font-weight);
     }
   }
-`
+`;
 
 export const ContainerBestSellers = styled.div`
   align-items: flex-start;
   justify-content: center;
   display: flex;
   gap: 4rem;
-  flex-wrap: wrap; 
-`
+  flex-wrap: wrap;
+`;
 
 export const ContainerBestSeller = styled.div`
   align-items: flex-start;
@@ -60,7 +60,7 @@ export const ContainerBestSeller = styled.div`
     padding: 1.6rem;
 
     div {
-      font-size: 1.6rem
+      font-size: 1.6rem;
     }
   }
 
@@ -80,7 +80,7 @@ export const ContainerBestSeller = styled.div`
       font-weight: 600;
     }
 
-    .sales-cetegorie{
+    .sales-cetegorie {
       display: flex;
       flex-direction: column;
       align-items: flex-end;
@@ -92,7 +92,7 @@ export const ContainerBestSeller = styled.div`
       font-weight: 300;
     }
   }
-  
+
   .table {
     align-items: flex-start;
     border-radius: 0 0 1.6rem 1.6rem;
@@ -100,6 +100,54 @@ export const ContainerBestSeller = styled.div`
     flex: 0 0 auto;
     flex-direction: column;
     justify-content: center;
-    width: 100%;    
+    width: 100%;
   }
+`;
+
+export const ContainerProductRegistration = styled.div`
+  margin: 0 auto;
+  min-width: 400px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 0.8rem;
+`;
+
+export const TitlePage = styled.h1`
+  font-family: "Poppins", sans-serif;
+  font-size: 2.8rem;
+  font-weight: 600;
+  line-height: 120%;
 `
+
+export const Label = styled.label`
+  display: flex;
+  flex-direction: column;
+  gap: 0.4rem;
+  font-size: 1.4rem;
+  font-weight: 600;
+  color: var(--geralblack-100);
+`;
+
+export const ContainerButton = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.8rem;
+
+  &.codImage {
+    flex: .4;
+  }
+`;
+
+export const ContainerButtonRow = styled.div`
+  display: flex;
+  width: 100%;
+  gap: 1.6rem;
+`;
+
+export const ContainerForm = styled.form`
+  display: flex;
+  flex-direction: column;
+  gap: 1.6rem;
+`;

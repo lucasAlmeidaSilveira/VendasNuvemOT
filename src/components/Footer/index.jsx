@@ -57,7 +57,16 @@ export function Footer() {
       <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
       <TabItem icon={<ArticleIcon />} label='PEDIDOS' />
       <TabItem icon={<EqualizerIcon />} label='MÉTRICAS' />
-      <TabItem icon={<FaBoxOpen />} label='PRODUTOS' />
+      <TabItem 
+        icon={<FaBoxOpen />} 
+        label='PRODUTOS'
+        sx={{
+          display: {
+            xs: 'none', // esconde no mobile
+            md: 'flex'  // exibe no desktop
+          }
+        }}
+      />
       <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
     </Tabs>
   );
