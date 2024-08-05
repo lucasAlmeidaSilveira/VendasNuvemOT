@@ -384,11 +384,7 @@ export function ProductRegistration() {
           <Label>Imagens de Still:</Label>
           {renderImageFields()}
 
-          {framesNumber > 1 && <span>As imagens Still devem conter uma de cada imagem, e outra com todas as artes da composição</span>}
-          <Button type='button' onClick={addImageUrlField}>
-            <FaCirclePlus size={20} cursor={'pointer'} />
-            Clique aqui para adicionar mais imagens
-          </Button>
+          {framesNumber > 1 && <span>As imagens Still devem conter uma de cada imagem, e outra com todas as artes da composição.</span>}
         </ContainerButton>
         <ContainerButton>
           <Label>Categorias:</Label>
