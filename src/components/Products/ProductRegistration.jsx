@@ -223,6 +223,22 @@ export function ProductRegistration() {
     const plural = framesNum === 'one' ? 'Tela' : 'Telas';
     const productName = `Quadro Decorativo ${framesNumber} ${plural} ${categoryNames[0]} ${nameArt}`;
 
+      // Imagens padrão para cada loja
+  const defaultImagesOutlet = [
+    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canvas_zgquje-7992c817448a11f9f617140659149535-480-0.webp', position: 8 },
+    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/sem_vidro_yodpsx-ae6f6fe0cdfdb3674b17140659278662-480-0.webp', position: 9 },
+    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/com_vidro_fvastx-dd79b1c16e294709d917140659214570-480-0.webp', position: 10 },
+    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canaleta_txfhis-a6eb00c1451545947d17140659084033-480-0.webp', position: 11 }
+  ];
+
+  const defaultImagesArtepropria = [
+    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_sprxkb-8fa81b8457a896518217073382756360-640-0.webp', position: 8 },
+    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-quadro_com_vidro_qoysbu-0012313385157d6fc017073382822078-640-0.webp', position: 9 },
+    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_com_canaleta_fbasky-1e75aa0bf55dfe19b317073382889011-640-0.webp', position: 10 },
+    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-metacrilato_bmoucm-08401e65cd641c718617073382956305-640-0.webp', position: 11 },
+    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-impressc3a3o_lpiyfi-68d8054ea930d2748c17073383028046-640-0.webp', position: 12 }
+  ];
+
     const body = {
       name: { pt: productName },
       attributes: [
@@ -232,9 +248,11 @@ export function ProductRegistration() {
       ],
       variants: [],
       categories: store === 'outlet' ? [21612799] : [23591533],
-      images: imageUrls
+      images: [...imageUrls
         .filter(url => url)
         .map((src, index) => ({ src, position: index + 1 })),
+        ...(store === 'outlet' ? defaultImagesOutlet : defaultImagesArtepropria)
+      ],
       tags: skuNumber,
       published: visible,
       free_shipping: true,
@@ -372,7 +390,7 @@ export function ProductRegistration() {
                 key={index}
                 label={`URL da Imagem ${index + 1}`}
                 size='small'
-                required
+                required={index === 0 ? true : false}
                 onChange={e => handleImageUrlChange(index, e.target.value)}
                 value={url}
               />
