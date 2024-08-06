@@ -147,7 +147,7 @@ export const OrdersProvider = ({ children }) => {
     const intervalId = setInterval(() => {
       fetchRecentData();
       fetchAllOrders()
-    }, 600000); // 10 minutos em milissegundos
+    }, 1800000); // 30 minutos em milissegundos
 
     return () => clearInterval(intervalId); // Cleanup on unmount
   }, [store]);
