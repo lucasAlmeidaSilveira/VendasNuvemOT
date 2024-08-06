@@ -255,7 +255,7 @@ export function ProductRegistration() {
       ],
       tags: skuNumber,
       published: visible,
-      free_shipping: true,
+      free_shipping: false,
       seo_title: productName,
       brand: store === 'outlet' ? 'Outlet dos Quadros' : 'Arte Própria',
     };
