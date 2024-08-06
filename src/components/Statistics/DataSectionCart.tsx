@@ -39,7 +39,7 @@ const DEFAULT_VALUE = '0';
 
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, date, isLoading } = useOrders();
+  const { orders, date, isLoading, allOrders } = useOrders();
   const { ordersToday } = filterOrders(orders, date);
   const { coupons } = useCoupons();
   const [ ordersWithCashback, setOrdersWithCashback ] = useState<Order[]>([]);
@@ -67,7 +67,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
     setOrdersWithCashback(() => filteredOrdersCashBack);
     setCartsRecoveryWhats(() => filteredOrdersCartsWhats);
     setCartsRecoveryEmail(() => filteredOrdersCartsEmail);
-  }, [date]);
+  }, [date, orders]);
 
   useEffect(() => {
     if (data) {
