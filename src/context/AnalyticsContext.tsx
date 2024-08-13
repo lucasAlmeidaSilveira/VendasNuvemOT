@@ -5,11 +5,13 @@ import { formatDate } from '../tools/tools';
 interface ADSMetaEntry {
   account_id: string;
   spend: string;
+  spendEcom: string;
   impressions: number;
   // Adicione outras propriedades, se necessário
 }
 
 interface DataProps {
+  totalCostEcom: string;
   totalVisits: string;
   usersByDevice: object;
   totalCost: string;
@@ -37,7 +39,7 @@ export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 export const useAnalytics = () => useContext(AnalyticsContext);
 
 export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
-  const [data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: '' });
+  const [data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: '', totalCostEcom: '' });
   const [isLoading, setIsLoading] = useState(false);
   const [isLoadingADSMeta, setIsLoadingADSMeta] = useState(false); // Estado de loading adicionado
   const [dataADSMeta, setDataADSMeta] = useState<Array<ADSMetaEntry>>([]); // Estado para dados ADS Meta
@@ -94,7 +96,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
     isLoadingADSMeta,
     error,
     resetData: () => {
-      setData({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: '' });
+      setData({ totalVisits: '', usersByDevice: {}, totalCost: '', totalCostEcom: '', carts: '', beginCheckout: '' });
       setDataADSMeta([]);
       setError(null);
     },

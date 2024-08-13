@@ -36,7 +36,7 @@
   --body-heading-h4-letter-spacing: 0px;
   --body-heading-h4-line-height: 120%;
   --body-heading-h5-font-family: "Poppins";
-  --body-heading-h5-font-size: 2.4rem;
+  --body-heading-h5-font-size: 2rem;
   --body-heading-h5-font-style: normal;
   --body-heading-h5-font-weight: 600;
   --body-heading-h5-letter-spacing: 0px;
@@ -170,6 +170,12 @@ h4 {
   font-weight: var(--body-heading-h4-font-weight);
   font-size: 2.4rem;
   line-height: 120%;
+}
+
+h5 {
+  font-size: var(--body-heading-h5-font-size);
+  font-weight: var(--body-heading-h5-font-weight);
+  line-height: var(--body-heading-h5-line-height);
 }
 
 button {

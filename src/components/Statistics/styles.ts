@@ -52,6 +52,11 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     color: var(--geralwhite);
     text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
   }
+  
+  h5 {
+    color: var(--geralwhite);
+    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+  }
 
   .dev {
     font-size: 14px;

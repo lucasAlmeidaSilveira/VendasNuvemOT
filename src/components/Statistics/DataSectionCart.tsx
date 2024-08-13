@@ -64,9 +64,9 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       order.coupon && order.coupon.some(coupon => coupon.code === 'OUTLET10' || coupon.code === 'GANHEI10')
     );
     
-    setOrdersWithCashback(() => filteredOrdersCashBack);
-    setCartsRecoveryWhats(() => filteredOrdersCartsWhats);
-    setCartsRecoveryEmail(() => filteredOrdersCartsEmail);
+    setOrdersWithCashback(filteredOrdersCashBack);
+    setCartsRecoveryWhats(filteredOrdersCartsWhats);
+    setCartsRecoveryEmail(filteredOrdersCartsEmail);
   }, [date, orders]);
 
   useEffect(() => {
@@ -102,7 +102,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
     return sum + (coupon ? parseFloat(coupon.value) : 0);
   }, 0);
 
-  const costCashback = totalCashbackValue > 0 ? formatCurrency(totalCashbackValue) : '0.00';
+  const costCashback = totalCashbackValue > 0 ? formatCurrency(totalCashbackValue) : 'R$ 0,00';
   const roiCashback = totalCashbackValue > 0 ? (totalCashbackRevenue / totalCashbackValue).toFixed(2) : '0.00';
 
   return (

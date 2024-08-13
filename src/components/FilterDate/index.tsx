@@ -8,7 +8,7 @@ import { formatTimeDifference } from "../../tools/tools";
 import { SelectDatePicker } from "../SelectDatePicker";
 
 export function FilterDate() {
-  const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingAllOrders, isLoadingPeriodic } = useOrders();
+  const { date, setDate, store, currentDateLocalStorage, isLoading, isLoadingAllOrders, isLoadingPeriodic, error } = useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
   const [timeDifference, setTimeDifference] = useState('')
 
@@ -111,16 +111,20 @@ export function FilterDate() {
         </ButtonActionContainer>
         <span className="last-updated">
           {
-            isLoadingAllOrders ? (
-              <StatusInitialDataLoading text={'Sincronizando todos os pedidos...'} tooltip={'Não feche a janela até concluir a sincronização.'} />
-            ) : isLoadingPeriodic ? (
-              <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados dos últimos meses'} />
-            ) : isLoading ? (
-              <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados recentes'} />
-            ) : timeDifference === '0 minutos' ? (
-              <StatusDataSuccess text={'Atualizado agora mesmo'} tooltip={'Os dados estão atualizados.'} />
+            error === 'Failed to fecth' ? (
+              <StatusInitialDataLoading text={'Reiniciando servidor...'} tooltip={'Erro no servidor, aguarde a reinicialização.'} />
             ) : (
-              <StatusDataWait text={`Atualizado há ${timeDifference}`} tooltip={'Os dados estão atualizados.'} />
+              isLoadingAllOrders ? (
+                <StatusInitialDataLoading text={'Sincronizando todos os pedidos...'} tooltip={'Não feche a janela até concluir a sincronização.'} />
+              ) : isLoadingPeriodic ? (
+                <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados dos últimos meses'} />
+              ) : isLoading ? (
+                <StatusDataLoading text={'Atualizando dados...'} tooltip={'Atualizando dados recentes.'} />
+              ) : timeDifference === '0 minutos' ? (
+                <StatusDataSuccess text={'Atualizado agora mesmo'} tooltip={'Os dados estão atualizados.'} />
+              ) : (
+                <StatusDataWait text={`Atualizado há ${timeDifference}`} tooltip={'Os dados estão atualizados.'} />
+              )
             )
           }
         </span>

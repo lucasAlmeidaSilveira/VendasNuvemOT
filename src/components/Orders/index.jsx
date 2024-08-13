@@ -78,7 +78,7 @@ const isLate = order => {
     shippingDeadline.getDate() +
       (order.shipping_max_days || order.shipping_min_days),
   );
-  return new Date() > shippingDeadline && order.shipping_status !== 'closed';
+  return new Date() > shippingDeadline && order.shipping_status !== 'closed' && order.payment_details.method !== 'other';
 };
 
 const descendingComparator = (a, b, orderBy) => {
@@ -249,7 +249,7 @@ export function Orders() {
                   order.payment_status === 'paid' && order.status === 'closed';
                 break;
               case 'late':
-                shippingStatusMatch = isLate(order) && order.status === 'open';
+                shippingStatusMatch = isLate(order) && order.status === 'open' && order.payment_details.method !== 'other';
                 break;
               default:
                 shippingStatusMatch = false;

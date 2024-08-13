@@ -1,4 +1,4 @@
-import React, { createContext, useState, useContext, useEffect } from 'react';
+import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
 import { adjustDate } from '../tools/tools';
 
 export const OrdersContext = createContext();
@@ -16,11 +16,17 @@ export const OrdersProvider = ({ children }) => {
   const [store, setStore] = useState('outlet');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
 
-  const currentDateStart = new Date();
-  currentDateStart.setHours(0, 0, 0, 0);
+  const currentDateStart = useMemo(() => {
+    const date = new Date();
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }, []);
 
-  const currentDateEnd = new Date();
-  currentDateEnd.setHours(23, 59, 59, 999);
+  const currentDateEnd = useMemo(() => {
+    const date = new Date();
+    date.setHours(23, 59, 59, 999);
+    return date;
+  }, []);
 
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
   const [error, setError] = useState(null);
@@ -118,8 +124,8 @@ export const OrdersProvider = ({ children }) => {
   const saveDate = () => {
     const adjustedDate = new Date();
     adjustedDate.setHours(adjustedDate.getHours() - 3); // Ajusta a data para o fuso horário correto
-    localStorage.setItem('lastSyncDate', adjustedDate);
-    setCurrentDateLocalStorage(adjustedDate);
+    localStorage.setItem('lastSyncDate', adjustedDate.toISOString());
+    setCurrentDateLocalStorage(adjustedDate.toISOString());
   };
 
   useEffect(() => {
@@ -128,7 +134,7 @@ export const OrdersProvider = ({ children }) => {
   
   useEffect(() => {
     forceUpdate();
-    fetchAllOrders()
+    fetchAllOrders();
   }, [store]);
   
   useEffect(() => {
@@ -140,13 +146,12 @@ export const OrdersProvider = ({ children }) => {
       
       return () => clearInterval(intervalPeriodicFilter); // Cleanup on unmount
     }
-    
   }, [store, automaticUpdate]);
   
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchRecentData();
-      fetchAllOrders()
+      fetchAllOrders();
     }, 1800000); // 30 minutos em milissegundos
 
     return () => clearInterval(intervalId); // Cleanup on unmount

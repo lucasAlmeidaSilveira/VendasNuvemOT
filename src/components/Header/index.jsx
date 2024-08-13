@@ -34,11 +34,6 @@ export function Header() {
           </select>
         </div>
       </div>
-      {/* <SwitchToggle
-        checked={automaticUpdate}
-        onChange={handleToggleAutomaticUpdate}
-        name="automaticUpdate"
-      /> */}
       <ButtonReload />
     </Container>
   );

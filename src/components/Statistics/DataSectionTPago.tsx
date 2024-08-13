@@ -9,6 +9,7 @@ import { DiGoogleAnalytics } from 'react-icons/di';
 import { formatCurrency } from '../../tools/tools';
 
 interface DataSectionTPagoProps {
+  title: string;
   bgcolor: string;
   verbaGoogle: number;
   verbaMeta: number;
@@ -22,6 +23,7 @@ interface DataSectionTPagoProps {
 }
 
 export function DataSectionTPago({
+  title,
   bgcolor,
   verbaGoogle,
   verbaMeta,
@@ -41,7 +43,7 @@ export function DataSectionTPago({
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>
-          Tráfego Pago
+          {title}
         </h4>
         <div className='row'>
           <BudgetItem
@@ -65,7 +67,7 @@ export function DataSectionTPago({
             title='Verba Total'
             tooltip="Google ADS x Meta ADS"
             value={totalAdSpend}
-            isLoading={isLoadingADSMeta}
+            isLoading={isLoadingADSMeta || isLoadingADSGoogle}
           />
         </div>
         <div className='row'>
@@ -84,7 +86,7 @@ export function DataSectionTPago({
             tooltip="Faturamento x Verba Total"
             value={roas}
             small={roasMax}
-            isLoading={isLoadingADSMeta}
+            isLoading={isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders}
           />
         </div>
       </ContainerGeral>
