@@ -18,10 +18,15 @@ export function FilterDate() {
   };
   
   useEffect(() => {
-    if(currentDateLocalStorage){
-      setTimeDifference(formatTimeDifference(currentDateLocalStorage));
-    }
-  }, [60000, isLoading, isLoadingPeriodic, isLoadingAllOrders]);
+    setTimeDifference(formatTimeDifference(currentDateLocalStorage));
+    const intervalId = setInterval(() => {
+      if (currentDateLocalStorage) {
+        setTimeDifference(formatTimeDifference(currentDateLocalStorage));
+      }
+    }, 30000); // 30 segundos em milissegundos
+
+    return () => clearInterval(intervalId); // Cleanup do intervalo quando o componente desmontar
+  }, [currentDateLocalStorage]);
 
   const handleQuickAction = (days: number, buttonId: string) => {
     const newEndDate = new Date();
