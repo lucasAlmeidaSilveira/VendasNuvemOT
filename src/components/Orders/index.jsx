@@ -324,7 +324,6 @@ export function Orders() {
 
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
-  console.log(filteredOrders)
 
   return (
     <>
