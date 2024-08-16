@@ -314,8 +314,8 @@ export function Orders() {
     setStatusFilter('paid');
   };
 
-  const formatUrlTracking = (urlTracking, code) => {
-    if(!urlTracking) {
+  const formatUrlTracking = (urlTracking, shippingStatus, code) => {
+    if(!urlTracking && shippingStatus === 'shipped') {
       return `https://rastreae.com.br/resultado/${code}`;
     }
 
@@ -513,7 +513,7 @@ export function Orders() {
                           created_at={order.created_at}
                           shippingMinDays={order.shipping_min_days}
                           shippingMaxDays={order.shipping_max_days}
-                          urlTracking={formatUrlTracking(order.shipping_tracking_url, order.shipping_tracking_number)}
+                          urlTracking={formatUrlTracking(order.shipping_tracking_url, order.shipping_status, order.shipping_tracking_number)}
                         />
                       </StyledTableCell>
                     </StyledTableRow>
