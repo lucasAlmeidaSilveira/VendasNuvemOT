@@ -314,8 +314,17 @@ export function Orders() {
     setStatusFilter('paid');
   };
 
+  const formatUrlTracking = (urlTracking, code) => {
+    if(!urlTracking) {
+      return `https://rastreae.com.br/resultado/${code}`;
+    }
+
+    return urlTracking
+  }
+
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
+  console.log(filteredOrders)
 
   return (
     <>
@@ -505,7 +514,7 @@ export function Orders() {
                           created_at={order.created_at}
                           shippingMinDays={order.shipping_min_days}
                           shippingMaxDays={order.shipping_max_days}
-                          urlTracking={order.shipping_tracking_url}
+                          urlTracking={formatUrlTracking(order.shipping_tracking_url, order.shipping_tracking_number)}
                         />
                       </StyledTableCell>
                     </StyledTableRow>
