@@ -11,7 +11,7 @@ import { ListVariation } from '../ListVariation';
 import { CategorySelect } from '../CategorySelect';
 
 export function BestSellers() {
-  const { orders, isLoading, date } = useOrders();
+  const { orders, isLoading, date, store } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [], variations: [] });
   const [numberProducts, setNumberProducts] = useState(5);
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
@@ -32,6 +32,10 @@ export function BestSellers() {
             const productId = product.product_id;
             const price = parseFloat(product.price);
             const existingProduct = acc.find(p => p.id === productId);
+            let skuNumber = product.sku.split("-")[0]
+            if(store === "outlet") {
+              skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("|")[1] : product.sku.split("-")[0].split('OT')[1]
+            }
 
             // Contar a frequência das variações
             const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
@@ -43,9 +47,10 @@ export function BestSellers() {
                 variantCount[variations] = (variantCount[variations] || 0) + 1;
               }
             } else {
+
               acc.push({
                 id: productId,
-                skuNumber: product.sku.split("-")[0],
+                skuNumber,
                 name: cleanedName,
                 image: product.image.src,
                 sales: 1,

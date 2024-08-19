@@ -11,7 +11,7 @@ import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
 
 export function Products() {
-  const { allOrders, isLoadingAllOrders } = useOrders();
+  const { allOrders, isLoadingAllOrders, store } = useOrders();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [productSales, setProductSales] = useState({});
@@ -29,11 +29,16 @@ export function Products() {
 
       allOrders.forEach(order => {
         order.products.forEach(product => {
+          const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
+          let skuNumber = product.sku.split("-")[0]
+          if(store === "outlet") {
+            skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("OT")[1] : product.sku.split("-")[0].split('OT')[1]
+          }
           if (!salesMap[product.product_id]) {
             salesMap[product.product_id] = {
               id: product.product_id,
-              skuNumber: product.sku.split("-")[0],
-              name: product.name.replace(/\(.*?\)/g, "").trim(),
+              skuNumber,
+              name: cleanedName,
               image: product.image.src,
               sales: 0,
               variantCount: {},
