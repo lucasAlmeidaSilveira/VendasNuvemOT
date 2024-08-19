@@ -275,7 +275,7 @@ export function ProductRegistration() {
 
     // Montar as variants conforme a store
     const variantsMapping = store === 'outlet' ? variantsMappingOutlet : variantsMappingArtepropria;
-    const prefix = store === 'outlet' ? 'OT' : 'AP';
+    const prefix = store === 'outlet' ? 'OT|' : 'AP';
     const skuNumbers = skuNumber.replace(/,/g, '_');
     body.variants = deepCopy(variantsMapping[getVariantKey()]) || [];
 
