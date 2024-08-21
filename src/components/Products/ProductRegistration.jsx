@@ -252,7 +252,7 @@ export function ProductRegistration() {
       images: [...imageUrls
         .filter(url => url)
         .map((src, index) => ({ src, position: index + 1 })),
-        ...(!unit && (store === 'outlet' ? defaultImagesOutlet : defaultImagesArtepropria))
+        ...(store === 'outlet' ? defaultImagesOutlet : defaultImagesArtepropria)
       ],
       tags: skuNumber,
       published: visible,
