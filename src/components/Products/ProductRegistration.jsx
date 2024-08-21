@@ -119,6 +119,7 @@ export function ProductRegistration() {
   const [format, setFormat] = useState('');
   const [framesNumber, setFramesNumber] = useState('');
   const [visible, setVisible] = useState(false);
+  const [unit, setUnit] = useState(false);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
@@ -304,7 +305,7 @@ export function ProductRegistration() {
         type='text'
         value={url}
         onChange={e => handleImageUrlChange(index + 2, e.target.value)}
-        required
+        {...(!unit && { required: true })}
       />
     ));
   };
@@ -376,6 +377,15 @@ export function ProductRegistration() {
               { value: true, label: 'Sim' },
             ]}
             value={visible}
+          />
+          <CustomSelect
+            label={'Imagem unitária:'}
+            onChange={e => setUnit(e.target.value)}
+            options={[
+              { value: false, label: 'Não' },
+              { value: true, label: 'Sim' },
+            ]}
+            value={unit}
           />
         </ContainerButtonRow>
         <ContainerButton>
