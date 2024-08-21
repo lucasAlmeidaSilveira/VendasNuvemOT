@@ -393,20 +393,22 @@ export function ProductRegistration() {
           <a href='https://postimages.org/' target='_blank'>
             <span>Clique aqui para gerar as URLs</span>
           </a>
-          {imageUrls.slice(0, 2).map((url, index) => (
-            <>
-              <TextFieldInput
-                variant='filled'
-                key={index}
-                label={`URL da Imagem ${index + 1}`}
-                size='small'
-                required={index === 0 ? true : false}
-                onChange={e => handleImageUrlChange(index, e.target.value)}
-                value={url}
-              />
-              {index === 0 && <span>Imagem principal</span>}
-            </>
-          ))}
+          {!unit && (
+            imageUrls.slice(0, 2).map((url, index) => (
+              <>
+                <TextFieldInput
+                  variant='filled'
+                  key={index}
+                  label={`URL da Imagem ${index + 1}`}
+                  size='small'
+                  required={index === 0 ? true : false}
+                  onChange={e => handleImageUrlChange(index, e.target.value)}
+                  value={url}
+                />
+                {index === 0 && <span>Imagem principal</span>}
+              </>
+            ))
+          )}
         </ContainerButton>
         <ContainerButton>
           <Label>Imagens de Still:</Label>
