@@ -169,6 +169,10 @@ export function ProductRegistration() {
   const handleFormatChange = event => {
     setFormat(event.target.value);
   };
+  
+  const handleFramesNumberChange = event => {
+    setFramesNumber(event.target.value)
+  }
 
   const resetInputs = () => {
     setNameArt('');
@@ -186,20 +190,25 @@ export function ProductRegistration() {
 
   const handleConfirm = async () => {
     setLoading(true);
-    const productData = handleProductCreation();
-    const response = await createProduct(store, productData);
     
-    if (response.status === 200 || response.status === 201) {
-      setSuccess(true);
-      setTimeout(() => {
-        resetInputs();
-        setLoading(false);
-        setOpen(false);
-        setSuccess(false);
-      }, 1000);
-    } else {
+    try {
+      const productData = handleProductCreation();
+      const response = await createProduct(store, productData);
+
+      if (response.status === 200 || response.status === 201) {
+        setSuccess(true);
+        setTimeout(() => {
+          resetInputs();
+          setLoading(false);
+          setOpen(false);
+          setSuccess(false);
+        }, 1000);
+      } 
+      
+    } catch (error) {
       setLoading(false);
     }
+
   };
 
   const handleClose = () => {
@@ -207,9 +216,10 @@ export function ProductRegistration() {
   };
 
   const getVariantKey = () => {
-    return `${convertFramesNumber(framesNumber)}${
+    const key = `${convertFramesNumber(framesNumber)}${
       format.charAt(0).toUpperCase() + format.slice(1).toLowerCase()
-    }`;
+    }`
+    return key;
   };
 
   const findCategoryId = categoryName => {
@@ -360,7 +370,7 @@ export function ProductRegistration() {
           />
           <CustomSelect
             label={'Quantidade de Telas:'}
-            onChange={e => setFramesNumber(e.target.value)}
+            onChange={handleFramesNumberChange}
             options={[
               { value: '', label: 'Selecione' },
               { value: '1', label: '1 Tela' },
