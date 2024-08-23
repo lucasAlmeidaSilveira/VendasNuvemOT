@@ -78,7 +78,7 @@ const isLate = order => {
     shippingDeadline.getDate() +
       (order.shipping_max_days || order.shipping_min_days),
   );
-  return new Date() > shippingDeadline && order.shipping_status !== 'closed' && order.payment_details.method !== 'other';
+  return new Date() > shippingDeadline && order.shipping_status !== 'closed' && order.payment_details.method !== 'other' && order.payment_status === 'paid';
 };
 
 const descendingComparator = (a, b, orderBy) => {

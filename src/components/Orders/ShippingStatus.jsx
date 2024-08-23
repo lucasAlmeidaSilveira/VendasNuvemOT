@@ -5,11 +5,12 @@ import { FaCheckCircle } from "react-icons/fa";
 import { MdAssignmentLate } from "react-icons/md";
 import { ShippingStatusContainer } from './styles';
 
-function calculateShippingStatus(statusOrder, status, created_at, shippingMinDays, shippingMaxDays) {
+function calculateShippingStatus(statusOrder, status, created_at, shippingMinDays, shippingMaxDays, paymentStatus) {
   const statusMap = {
     unpacked: 'A Enviar',
     shipped: 'Enviado',
     closed: 'Entregue',
+    late: 'Atrasado'
   };
 
   const backgroundColorMap = {
@@ -27,16 +28,16 @@ function calculateShippingStatus(statusOrder, status, created_at, shippingMinDay
   };
 
   let currentStatus = status;
+
+  // Se o pedido está fechado, o status é 'Entregue'
   if (statusOrder === 'closed') {
     currentStatus = 'closed';
-  } else if (statusOrder === 'paid' && status === 'closed') {
-    currentStatus = 'closed';
-  }
+  } 
 
+  // Verifica se o pagamento foi realizado e se o pedido está atrasado
   const shippingDeadline = new Date(created_at);
   shippingDeadline.setDate(shippingDeadline.getDate() + (shippingMaxDays || shippingMinDays));
-
-  const isLate = new Date() > shippingDeadline && currentStatus !== 'closed';
+  const isLate = new Date() > shippingDeadline && currentStatus !== 'closed' && paymentStatus === 'paid';
 
   return {
     status: isLate ? 'Atrasado' : statusMap[currentStatus],
@@ -55,16 +56,19 @@ const getIcon = currentStatus => {
       return <FaCheckCircle />;
     case 'Atrasado':
       return <MdAssignmentLate />;
+    default:
+      return null;
   }
 };
 
-export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking }) {
+export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus }) {
   const { status: currentStatus, backgroundColor, borderColor } = calculateShippingStatus(
     statusOrder,
     status,
     created_at,
     shippingMinDays,
-    shippingMaxDays
+    shippingMaxDays,
+    paymentStatus // Passa o status de pagamento
   );
 
   return (
