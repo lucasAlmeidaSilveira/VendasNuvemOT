@@ -228,7 +228,7 @@ export const StatusFilterContainer = styled.div`
       &:first-child {
         color: var(--geralblack-100);
         font-family: var(--body-paragraph-regular-font-family);
-        font-size: var(--body-paragraph-regular-font-size);
+        font-size: var(--body-small-regular-font-size);
         font-style: var(--body-paragraph-regular-font-style);
         font-weight: var(--body-paragraph-regular-font-weight);
         letter-spacing: var(--body-paragraph-regular-letter-spacing);

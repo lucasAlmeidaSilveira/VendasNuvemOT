@@ -19,7 +19,8 @@ export function filterOrders(orders, date) {
 
   // Filtrar todos os pedidos da data de hoje, excluindo os de parceira method = 'other'
   const ordersAllTodayWithPartner = orders.filter(order =>
-    isOrderOnDate(order.created_at, date),
+    isOrderOnDate(order.created_at, date) &&
+    order.status !== 'cancelled'
   );
 
   // Total de todos os pedidos
