@@ -69,7 +69,7 @@ export function ProductDetails({ products }) {
             {products.map((product, index) => (
               <TableRow key={index}>
                 <StyledTableCell>
-                  <ProductImage src={product.image.src} alt={product.name} />
+                  <ProductImage src={product.image?.src} alt={product.name} />
                 </StyledTableCell>
                 <StyledTableCell style={{ width: '100%' }}>
                   {formatProductName(product.name)}
