@@ -40,7 +40,7 @@ export function Products() {
                 id: product.product_id,
                 skuNumber,
                 name: cleanedName,
-                image: product.image.src,
+                image: product.image?.src,
                 sales: 0,
                 variantCount: {},
               };
