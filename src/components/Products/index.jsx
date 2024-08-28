@@ -28,39 +28,41 @@ export function Products() {
       const variationMap = {};
 
       allOrders.forEach(order => {
-        order.products.forEach(product => {
-          const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
-          let skuNumber = product.sku.split("-")[0]
-          if(store === "outlet") {
-            skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("OT")[1] : product.sku.split("-")[0].split('OT')[1]
-          }
-          if (!salesMap[product.product_id]) {
-            salesMap[product.product_id] = {
-              id: product.product_id,
-              skuNumber,
-              name: cleanedName,
-              image: product.image.src,
-              sales: 0,
-              variantCount: {},
-            };
-          }
-          salesMap[product.product_id].sales += 1;
-
-          const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
-          if (variations) {
-            if (!salesMap[product.product_id].variantCount[variations]) {
-              salesMap[product.product_id].variantCount[variations] = 0;
+        if(order.products) {
+          order.products.forEach(product => {
+            const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
+            let skuNumber = product.sku.split("-")[0]
+            if(store === "outlet") {
+              skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("OT")[1] : product.sku.split("-")[0].split('OT')[1]
             }
-            salesMap[product.product_id].variantCount[variations] += 1;
-          }
-
-          if (variations) {
-            if (!variationMap[variations]) {
-              variationMap[variations] = { name: variations, sales: 0, id: variations };
+            if (!salesMap[product.product_id]) {
+              salesMap[product.product_id] = {
+                id: product.product_id,
+                skuNumber,
+                name: cleanedName,
+                image: product.image.src,
+                sales: 0,
+                variantCount: {},
+              };
             }
-            variationMap[variations].sales += 1;
-          }
-        });
+            salesMap[product.product_id].sales += 1;
+  
+            const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
+            if (variations) {
+              if (!salesMap[product.product_id].variantCount[variations]) {
+                salesMap[product.product_id].variantCount[variations] = 0;
+              }
+              salesMap[product.product_id].variantCount[variations] += 1;
+            }
+  
+            if (variations) {
+              if (!variationMap[variations]) {
+                variationMap[variations] = { name: variations, sales: 0, id: variations };
+              }
+              variationMap[variations].sales += 1;
+            }
+          });
+        }
       });
 
       const sortedProducts = Object.values(salesMap).sort((a, b) => b.sales - a.sales);
