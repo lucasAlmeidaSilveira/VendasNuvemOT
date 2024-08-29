@@ -79,7 +79,7 @@ export function Products() {
     if (searchQuery !== '') {
       const filtered = Object.values(productSales).filter(product =>
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-        product.skuNumber.includes(searchQuery.toLowerCase())
+        product.skuNumber?.includes(searchQuery.toLowerCase())
       );
       setFilteredProducts(filtered.sort((a, b) => b.sales - a.sales));
 
