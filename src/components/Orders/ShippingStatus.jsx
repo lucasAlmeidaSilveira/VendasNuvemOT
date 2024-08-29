@@ -1,7 +1,7 @@
 import React from 'react';
 import { FaTruckArrowRight } from "react-icons/fa6";
 import { TbPackageExport } from "react-icons/tb";
-import { FaCheckCircle } from "react-icons/fa";
+import { FaCheckCircle, FaStore } from "react-icons/fa";
 import { MdAssignmentLate } from "react-icons/md";
 import { ShippingStatusContainer } from './styles';
 
@@ -61,7 +61,7 @@ const getIcon = currentStatus => {
   }
 };
 
-export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus }) {
+export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus, shipping }) {
   const { status: currentStatus, backgroundColor, borderColor } = calculateShippingStatus(
     statusOrder,
     status,
@@ -73,10 +73,17 @@ export function ShippingStatus({ statusOrder, status, created_at, shippingMinDay
 
   return (
     <a href={urlTracking} target='_blank'>
-      <ShippingStatusContainer backgroundColor={backgroundColor} borderColor={borderColor}>
-        {getIcon(currentStatus)}
-        <span>{currentStatus}</span>
-      </ShippingStatusContainer>
+      {shipping === 'Entrega Loja' ? (
+        <ShippingStatusContainer backgroundColor={backgroundColor} borderColor={borderColor}>
+          <FaStore />
+          <span>Entrega Loja</span>
+        </ShippingStatusContainer>
+      ) : (
+        <ShippingStatusContainer backgroundColor={backgroundColor} borderColor={borderColor}>
+          {getIcon(currentStatus)}
+          <span>{currentStatus}</span>
+        </ShippingStatusContainer>
+      )}
     </a>
   );
 }

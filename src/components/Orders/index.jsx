@@ -33,7 +33,12 @@ import { TooltipInfo } from '../TooltipInfo';
 import { Loading, LoadingIcon } from '../Loading';
 
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { MdDelete } from 'react-icons/md';
 import { AiFillMessage } from 'react-icons/ai';
+import { OrderPopup } from './OrderPopup';
+import { Button } from '../Button';
+import { deleteOrder } from '../../api';
+import { ConfirmationDialog } from '../Products/ConfirmationDialog';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -91,11 +96,13 @@ function addBusinessDays(startDate, days) {
 const isLate = order => {
   const shippingDays = order.shipping_max_days || order.shipping_min_days;
   const shippingDeadline = addBusinessDays(order.created_at, shippingDays);
-  
-  return new Date() > shippingDeadline && 
-         order.shipping_status !== 'closed' && 
-         order.payment_details.method !== 'other' && 
-         order.payment_status === 'paid';
+
+  return (
+    new Date() > shippingDeadline &&
+    order.shipping_status !== 'closed' &&
+    order.payment_details.method !== 'other' &&
+    order.payment_status === 'paid'
+  );
 };
 
 const descendingComparator = (a, b, orderBy) => {
@@ -178,7 +185,7 @@ const EnhancedTableHead = props => {
 };
 
 export function Orders() {
-  const { allOrders, isLoadingAllOrders, store } = useOrders();
+  const { allOrders, isLoadingAllOrders, store, setAllOrders } = useOrders();
   const [date, setDate] = useState(['2023-11-22', new Date()]);
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
@@ -193,6 +200,51 @@ export function Orders() {
   const [totalLate, setTotalLate] = useState(0);
   const [order, setOrder] = useState('desc');
   const [orderBy, setOrderBy] = useState('created_at');
+  const [openPopup, setOpenPopup] = useState(false);
+  const [openConfirmPopup, setOpenConfirmPopup] = useState(false);
+  const [selectedOwnerNote, setSelectedOwnerNote] = useState(null);
+  const [loadingDelete, setLoadingDelete] = useState(false);
+  const [successDelete, setSuccessDelete] = useState(false);
+
+  const handleOpenPopup = () => {
+    setOpenPopup(true);
+  };
+
+  const handleClosePopup = () => {
+    setOpenPopup(false);
+  };
+
+  const handleOpenConfirmPopup = ownerNote => {
+    setSelectedOwnerNote(ownerNote);
+    setOpenConfirmPopup(true);
+  };
+
+  const handleDeleteOrder = async () => {
+    if (selectedOwnerNote) {
+      setLoadingDelete(true);
+      try {
+        await deleteOrder(selectedOwnerNote, store);
+        setSuccessDelete(true);
+
+        // Atualiza a lista de pedidos removendo o pedido deletado
+        setAllOrders(prevOrders =>
+          prevOrders.filter(order => order.owner_note !== selectedOwnerNote),
+        );
+
+        // Após um tempo de confirmação, fechar o popup e resetar os estados
+        setTimeout(() => {
+          setLoadingDelete(false);
+          setSuccessDelete(false);
+          setOpenConfirmPopup(false);
+          setSelectedOwnerNote(null); // Limpa o ownerNote selecionado após a exclusão
+        }, 1000); // Espera 1 segundo para dar feedback visual do sucesso
+      } catch (error) {
+        setLoadingDelete(false);
+        setSuccessDelete(false);
+        console.error('Erro ao deletar o pedido:', error);
+      }
+    }
+  };
 
   useEffect(() => {
     const unpackedCount = ordersAllTodayWithPartner.filter(
@@ -266,7 +318,10 @@ export function Orders() {
                   order.payment_status === 'paid' && order.status === 'closed';
                 break;
               case 'late':
-                shippingStatusMatch = isLate(order) && order.status === 'open' && order.payment_details.method !== 'other';
+                shippingStatusMatch =
+                  isLate(order) &&
+                  order.status === 'open' &&
+                  order.payment_details.method !== 'other';
                 break;
               default:
                 shippingStatusMatch = false;
@@ -332,12 +387,12 @@ export function Orders() {
   };
 
   const formatUrlTracking = (urlTracking, shippingStatus, code) => {
-    if(!urlTracking && shippingStatus === 'shipped') {
+    if (!urlTracking && shippingStatus === 'shipped') {
       return `https://rastreae.com.br/resultado/${code}`;
     }
 
-    return urlTracking
-  }
+    return urlTracking;
+  };
 
   const minSelectableDate = new Date('2023-11-23');
   const maxSelectableDate = new Date();
@@ -399,6 +454,11 @@ export function Orders() {
           placeholder='Busque por nº pedido, nome, CPF, e-mail, cód. transação ou ID'
           totalList={filteredOrders.length}
         />
+        {store === 'artepropria' && (
+          <Button variant='contained' color='primary' onClick={handleOpenPopup}>
+            Cadastrar pedido
+          </Button>
+        )}
         <Selects>
           <CustomSelect
             label='Status de Envio:'
@@ -474,7 +534,7 @@ export function Orders() {
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
                       <StyledTableCell component='th' scope='row'>
-                        #{order.order_id}
+                        #{order.order_id ? order.order_id : order.owner_note}
                       </StyledTableCell>
                       <StyledTableCell>
                         {formatDate(order.created_at)}
@@ -530,8 +590,23 @@ export function Orders() {
                           created_at={order.created_at}
                           shippingMinDays={order.shipping_min_days}
                           shippingMaxDays={order.shipping_max_days}
-                          urlTracking={formatUrlTracking(order.shipping_tracking_url, order.shipping_status, order.shipping_tracking_number)}
+                          urlTracking={formatUrlTracking(
+                            order.shipping_tracking_url,
+                            order.shipping_status,
+                            order.shipping_tracking_number,
+                          )}
+                          shipping={order.shipping}
                         />
+                        {order.storefront === 'Loja' && (
+                          <Button
+                            typeStyle={'delete'}
+                            onClick={() =>
+                              handleOpenConfirmPopup(order.owner_note)
+                            }
+                          >
+                            <MdDelete size={14} />
+                          </Button>
+                        )}
                       </StyledTableCell>
                     </StyledTableRow>
                     {expandedOrders[order.id] && (
@@ -584,6 +659,16 @@ export function Orders() {
           </TableFooter>
         </Table>
       </ContainerOrder>
+
+      <OrderPopup open={openPopup} onClose={handleClosePopup} />
+      <ConfirmationDialog
+        open={openConfirmPopup}
+        onClose={() => setOpenConfirmPopup(false)}
+        onConfirm={handleDeleteOrder}
+        loading={loadingDelete}
+        success={successDelete}
+        action={'Excluir'}
+      />
     </>
   );
 }

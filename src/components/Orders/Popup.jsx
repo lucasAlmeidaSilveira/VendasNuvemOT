@@ -17,12 +17,11 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
   }
 }));
 
-const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
-  fontFamily: 'Poppins, sans-serif',
-  fontSize: 'var(--body-heading-h5-font-size)',
-  fontWeight: 'var(--body-heading-h5-font-weight)',
-}));
+const StyledDialogTitle = styled(DialogTitle)({
+  fontFamily: "'Poppins', sans-serif",
+  fontSize: '2rem',
+  fontWeight: '600',
+})
 
 const StyledDialogContentText = styled(DialogContentText)(({ theme }) => ({
   color: 'var(--geralblack-100)',
@@ -31,7 +30,7 @@ const StyledDialogContentText = styled(DialogContentText)(({ theme }) => ({
   fontWeight: 'var(--body-small-regular-font-weight)',
 }));
 
-export function ConfirmationDialog({ open, onClose, onConfirm, loading, success, action }) {
+export function ConfirmDeletePopup({ open, onClose, onConfirm, loading, success, action }) {
   return (
     <StyledDialog
       open={open}
@@ -40,29 +39,30 @@ export function ConfirmationDialog({ open, onClose, onConfirm, loading, success,
       aria-describedby='alert-dialog-description'
     >
       <StyledDialogTitle id='alert-dialog-title'>
-        Confirmar ação
+        Confirmar ação?
       </StyledDialogTitle>
       <DialogContent>
         <StyledDialogContentText id='alert-dialog-description'>
-          Você tem certeza que deseja {action}?
+          Você tem certeza {action}?
         </StyledDialogContentText>
       </DialogContent>
       <DialogActions>
         <Button typeStyle={'simple'} onClick={onClose} type='button'>
           Cancelar
         </Button>
-        <Button typeStyle={'confirm'} onClick={onConfirm} type='button'>
-        {loading ? (
+        <Button typeStyle={'delete'} onClick={onConfirm} type='button'>
+          {loading ? (
             success ? (
               <PiCheckCircleBold size={20} />
             ) : (
               <LoadingIcon size={20} color={'var(--geralwhite'} />
             )
           ) : (
-            <>{action}</>
+            {action}
           )}
         </Button>
       </DialogActions>
     </StyledDialog>
   );
 }
+

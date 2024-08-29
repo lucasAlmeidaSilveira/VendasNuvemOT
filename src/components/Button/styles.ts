@@ -42,4 +42,15 @@ export const ButtonStyled = styled.button`
       opacity: .9;
     }
   }
+
+  &.delete {
+    background-color: var(--uinegative-100);
+    color: var(--geralwhite);
+    opacity: .4;
+    padding: .8rem;
+
+    &:hover {
+      opacity: 1;
+    }
+  }
 `

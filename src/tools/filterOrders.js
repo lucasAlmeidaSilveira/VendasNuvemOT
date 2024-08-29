@@ -7,14 +7,14 @@ export function filterOrders(orders, date) {
       isOrderOnDate(order.created_at, date) &&
       order.status !== 'cancelled' &&
       order.payment_status !== 'voided' &&
-      order.payment_details.method !== 'other',
+      order.payment_details?.method !== 'other',
   );
 
   // Filtrar todos os pedidos da data de hoje, excluindo os de parceira method = 'other'
   const ordersAllToday = orders.filter(
     order =>
       isOrderOnDate(order.created_at, date) &&
-      order.payment_details.method !== 'other',
+      order.payment_details?.method !== 'other',
   );
 
   // Filtrar todos os pedidos da data de hoje, excluindo os de parceira method = 'other'

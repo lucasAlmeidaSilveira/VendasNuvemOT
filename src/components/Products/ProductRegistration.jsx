@@ -464,6 +464,7 @@ export function ProductRegistration() {
         onConfirm={handleConfirm}
         loading={loading}
         success={success}
+        action={'Cadastrar'}
       />
     </ContainerProductRegistration>
   );

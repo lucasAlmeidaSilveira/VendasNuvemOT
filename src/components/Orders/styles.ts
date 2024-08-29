@@ -262,3 +262,10 @@ export const ContainerDetails = styled.div`
     gap: .8rem;
   }
 `
+
+export const ContainerButton = styled.div`
+  display: flex;
+  flex: 1;
+  flex-direction: column;
+  gap: 0.8rem;
+`;
