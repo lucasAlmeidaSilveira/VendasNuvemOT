@@ -64,8 +64,8 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
         </div>
         <div className="row">
           <BudgetItem title="Ticket Médio" tooltip="Nuvemshop" value={averageTicket} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Faturamento x Visitas" value={priceSession} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Aquisição (CPA)" tooltip="Faturamento x Vendas" value={priceAcquisition} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Verba Total / Visitas" value={priceSession} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Aquisição (CPA)" tooltip="Verba Total / Vendas" value={priceAcquisition} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>
     </ContainerOrders>
