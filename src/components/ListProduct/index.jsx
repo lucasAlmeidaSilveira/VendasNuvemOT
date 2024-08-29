@@ -15,7 +15,7 @@ export function ListProduct({ idProduct, position, name, skuNumber, variations, 
           const { canonical_url } = await getProduct(store, idProduct);
           setUrlProduct(canonical_url); // Atualiza o estado com a URL obtida
         } catch (error) {
-          console.error("Failed to fetch product URL:", error);
+          // console.error("Failed to fetch product URL:", error);
           setUrlProduct(""); // Em caso de erro, define a URL como string vazia
         }
       };

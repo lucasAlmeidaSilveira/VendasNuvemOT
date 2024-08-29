@@ -116,8 +116,8 @@ export function FilterDate() {
         </ButtonActionContainer>
         <span className="last-updated">
           {
-            error === 'Failed to fecth' ? (
-              <StatusInitialDataLoading text={'Reiniciando servidor...'} tooltip={'Erro no servidor, aguarde a reinicialização.'} />
+            error.type === 'server_offline' ? (
+              <StatusInitialDataLoading text={'Reiniciando servidor...'} tooltip={'Erro no servidor, aguarde alguns instantes e tente novamente.'} />
             ) : (
               isLoadingAllOrders ? (
                 <StatusInitialDataLoading text={'Sincronizando todos os pedidos...'} tooltip={'Não feche a janela até concluir a sincronização.'} />

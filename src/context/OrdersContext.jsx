@@ -29,7 +29,7 @@ export const OrdersProvider = ({ children }) => {
   }, []);
 
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
-  const [error, setError] = useState(null);
+  const [error, setError] = useState({});
 
   const resetData = () => {
     setOrders([]);
@@ -45,6 +45,10 @@ export const OrdersProvider = ({ children }) => {
       const data = await response.json();
       return data;
     } catch (err) {
+      setError({
+        message: err.message,
+        type: 'server_offline',
+      });
       throw err;
     }
   };
@@ -59,6 +63,10 @@ export const OrdersProvider = ({ children }) => {
       const data = await response.json();
       return data;
     } catch (err) {
+      setError({
+        message: err.message,
+        type: 'server_offline',
+      });
       throw err;
     } finally {
       setIsLoadingAllOrders(false);
@@ -70,7 +78,7 @@ export const OrdersProvider = ({ children }) => {
       const allOrdersFromDB = await fetchAllOrdersData();
       setAllOrders(allOrdersFromDB);
     } catch (err) {
-      setError(err.message);
+      
     }
   };
 
