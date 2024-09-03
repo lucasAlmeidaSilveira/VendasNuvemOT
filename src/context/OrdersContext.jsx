@@ -89,6 +89,7 @@ export const OrdersProvider = ({ children }) => {
       setIsLoading(true);
       const allOrdersFromDB = await fetchOrdersData(startDateISO, endDateISO);
       setOrders(allOrdersFromDB);
+      setError({})
     } catch (err) {
       setError(err.message);
     } finally {
@@ -105,6 +106,7 @@ export const OrdersProvider = ({ children }) => {
       setIsLoading(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
       setOrders(ordersData);
+      setError({})
     } catch (err) {
       setError(err.message);
     } finally {
@@ -121,6 +123,7 @@ export const OrdersProvider = ({ children }) => {
       setIsLoadingPeriodic(true);
       const localOrders = await fetchOrdersData(startDateISO, endDateISO);
       setOrders(localOrders);
+      setError({})
     } catch (err) {
       setError(err.message);
     } finally {
