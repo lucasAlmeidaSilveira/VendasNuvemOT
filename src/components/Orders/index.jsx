@@ -185,8 +185,7 @@ const EnhancedTableHead = props => {
 };
 
 export function Orders() {
-  const { allOrders, isLoadingAllOrders, store, setAllOrders } = useOrders();
-  const [date, setDate] = useState(['2023-11-22', new Date()]);
+  const { allOrders, isLoadingAllOrders, store, setAllOrders, date } = useOrders();
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
@@ -272,7 +271,7 @@ export function Orders() {
     setTotalUnpacked(unpackedCount);
     setTotalShipped(shippedCount);
     setTotalLate(lateCount);
-  }, [ordersAllTodayWithPartner]);
+  }, [allOrders, store, ordersAllTodayWithPartner]);
 
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -288,6 +287,7 @@ export function Orders() {
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
+
 
   const filteredOrders = useMemo(() => {
     return stableSort(
@@ -346,6 +346,7 @@ export function Orders() {
       getComparator(order, orderBy),
     );
   }, [
+    allOrders,
     store,
     ordersAllTodayWithPartner,
     statusFilter,
@@ -355,10 +356,6 @@ export function Orders() {
     order,
     orderBy,
   ]);
-
-  const handleDateChange = date => {
-    setDate(date);
-  };
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -496,12 +493,6 @@ export function Orders() {
             onChange={e => setPaymentMethodFilter(e.target.value)}
           />
         </Selects>
-        <SelectDatePickerIcon
-          onChange={handleDateChange}
-          value={date}
-          minDate={minSelectableDate}
-          maxDate={maxSelectableDate}
-        />
       </FilterContainer>
 
       <ContainerOrder component={Paper}>

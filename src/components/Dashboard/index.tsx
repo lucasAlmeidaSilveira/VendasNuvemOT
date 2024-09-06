@@ -8,8 +8,8 @@ import { BestSellers } from "../BestSellers";
 import { filterOrders } from "../../tools/filterOrders";
 
 export function Dashboard() {
-  const { orders, isLoading, date, setDate } = useOrders();
-  const { ordersToday, totalOrdersFormatted, totalPaidAmountFormatted, paidOrders } = filterOrders(orders, date)
+  const { allOrders, isLoading, isLoadingAllOrders, date, setDate } = useOrders();
+  const { ordersToday, totalOrdersFormatted, totalPaidAmountFormatted, paidOrders } = filterOrders(allOrders, date)
 
   return (
     <Container>
@@ -18,14 +18,14 @@ export function Dashboard() {
           <div className="text-wrapper">Pago</div>
           <div className="div">
             <div className="text-wrapper-2">
-            {isLoading ? (
+            {isLoading || isLoadingAllOrders ? (
               <LoadingIcon color={'#FCFAFB'} size={16}  />
               ) : (
                 `${paidOrders.length} Vendas`
               )}
             </div>
             <div className="text-wrapper-3">
-              {isLoading ? (
+              {isLoading || isLoadingAllOrders ? (
                 <Loading color={'#FCFAFB'} />
                 ) : (
                   totalPaidAmountFormatted
@@ -38,14 +38,14 @@ export function Dashboard() {
           <div className="text-wrapper">Geral</div>
           <div className="div">
             <div className="text-wrapper-2">
-            {isLoading ? (
+            {isLoading || isLoadingAllOrders ? (
                 <LoadingIcon color={'var(--geralblack-100)'} size={16}  />
               ) : (
                 `${ordersToday.length} Vendas`
               )}
             </div>
             <div className="text-wrapper-3">
-            {isLoading ? (
+            {isLoading || isLoadingAllOrders ? (
                 <Loading color={'var(--geralblack-100)'} />
                 ) : (
                   totalOrdersFormatted

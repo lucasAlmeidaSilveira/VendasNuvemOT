@@ -14,8 +14,8 @@ const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
 
 export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
-  const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders, ordersAllToday } = filterOrders(orders, date);
+  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
+  const { paidOrders, ordersAllToday } = filterOrders(allOrders, date);
   const [ passRate, setPassRate ] = useState(DEFAULT_PERCENTAGE);
   const [ creditCardTransactions, setCreditCardTransactions ] = useState(DEFAULT_VALUE);
   const [ pixTransactions, setPixTransactions ] = useState(DEFAULT_VALUE);
@@ -46,7 +46,7 @@ export function DataSectionPay({ bgcolor }: DataSectionCartProps) {
       const passRateValue = (paidOrders.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [orders, ordersAllToday, paidOrders.length]); 
+  }, [allOrders, ordersAllToday, paidOrders.length]); 
 
   useEffect(() => {
     const creditCardCount = calculateCount('credit_card');

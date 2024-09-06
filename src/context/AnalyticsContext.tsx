@@ -22,7 +22,7 @@ interface DataProps {
 interface DataAnalyticsProps {
   data: DataProps;
   dataADSMeta: Array<ADSMetaEntry>;
-  isLoading: boolean;
+  isLoadingADSGoogle: boolean;
   isLoadingADSMeta: boolean;
   error: string | null;
   resetData: () => void;
@@ -40,7 +40,7 @@ export const useAnalytics = () => useContext(AnalyticsContext);
 
 export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
   const [data, setData] = useState<DataProps>({ totalVisits: '', usersByDevice: {}, totalCost: '', carts: '', beginCheckout: '', totalCostEcom: '' });
-  const [isLoading, setIsLoading] = useState(false);
+  const [isLoadingADSGoogle, setIsLoadingADSGoogle] = useState(false);
   const [isLoadingADSMeta, setIsLoadingADSMeta] = useState(false); // Estado de loading adicionado
   const [dataADSMeta, setDataADSMeta] = useState<Array<ADSMetaEntry>>([]); // Estado para dados ADS Meta
   const [error, setError] = useState<string | null>(null);
@@ -52,7 +52,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
   // Função para buscar dados do Google Analytics e ADS
   const fetchDataGoogle = async () => {
     try {
-      setIsLoading(true);
+      setIsLoadingADSGoogle(true);
       const response = await fetch(`https://node-vendasnuvemot.onrender.com/analytics/${store}/${startDate}/${endDate}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar dados');
@@ -62,7 +62,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
     } catch (err) {
       setError('Falha ao carregar os dados: ' + err.message);
     } finally {
-      setIsLoading(false);
+      setIsLoadingADSGoogle(false);
     }
   };
 
@@ -92,7 +92,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
   const value = {
     data,
     dataADSMeta,
-    isLoading,
+    isLoadingADSGoogle,
     isLoadingADSMeta,
     error,
     resetData: () => {

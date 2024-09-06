@@ -11,13 +11,13 @@ import { ListVariation } from '../ListVariation';
 import { CategorySelect } from '../CategorySelect';
 
 export function BestSellers() {
-  const { orders, isLoading, date, store } = useOrders();
+  const { allOrders, isLoadingAllOrders, date, store } = useOrders();
   const [products, setProducts] = useState({ quadros: [], espelhos: [], variations: [] });
   const [numberProducts, setNumberProducts] = useState(5);
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
   const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 } });
   const [selectedCategory, setSelectedCategory] = useState('Quadro Decorativo'); // Estado para a categoria selecionada
-  const { ordersToday } = filterOrders(orders, date);
+  const { ordersToday } = filterOrders(allOrders, date);
 
   useEffect(() => {
     const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
@@ -136,7 +136,7 @@ export function BestSellers() {
       },
     });
 
-  }, [isLoading, date, numberProducts, selectedCategory]); // Adicionar selectedCategory como dependência
+  }, [isLoadingAllOrders, date, numberProducts, selectedCategory, allOrders]); // Adicionar selectedCategory como dependência
 
   const handleCategoryChange = (event) => {
     setSelectedCategory(event.target.value);
@@ -158,7 +158,7 @@ export function BestSellers() {
           <ContainerBestSeller key={index}>
             <header className="header">
               <h2 className="categorie">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-              {isLoading ? (
+              {isLoadingAllOrders ? (
                 <Oval
                   height={16}
                   width={16}
@@ -176,7 +176,7 @@ export function BestSellers() {
               )}
             </header>
             <div className="table">
-              {isLoading ? (
+              {isLoadingAllOrders ? (
                 <div className="loading">
                   <Loading color={"#1F1F1F"} />
                 </div>
@@ -194,7 +194,7 @@ export function BestSellers() {
                   />
                 ))
               )}
-              {products[category].length === 0 && !isLoading && (
+              {products[category].length === 0 && !isLoadingAllOrders && (
                 <div className="loading">Nenhum produto encontrado</div>
               )}
             </div>
@@ -210,7 +210,7 @@ export function BestSellers() {
             />
           </header>
           <div className="table">
-            {isLoading ? (
+            {isLoadingAllOrders ? (
               <div className="loading">
                 <Loading color={"#1F1F1F"} />
               </div>
@@ -224,7 +224,7 @@ export function BestSellers() {
                 />
               ))
             )}
-            {products.variations.length === 0 && !isLoading && (
+            {products.variations.length === 0 && !isLoadingAllOrders && (
               <div className="loading">Nenhuma variação encontrado</div>
             )}
           </div>

@@ -24,8 +24,8 @@ export function DataSectionCosts({
   totalAdSpend = formatCurrency(totalAdSpend);
 
   const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders } = filterOrders(orders, date);
+  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
+  const { paidOrders } = filterOrders(allOrders, date);
   const [productCost, setProductCost] = useState('R$ 0,00');
   const [grossProfit, setGrossProfit] = useState('R$ 0,00');
   const [grossMargin, setGrossMargin] = useState('0%');

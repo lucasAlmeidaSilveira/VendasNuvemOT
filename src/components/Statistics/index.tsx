@@ -16,13 +16,13 @@ import { DataSectionPay } from './DataSectionPay';
 export function Statistics() {
   const {
     data,
-    isLoading: isLoadingAnalytics,
     dataADSMeta,
+    isLoadingADSGoogle,
     isLoadingADSMeta,
   } = useAnalytics();
-  const { orders, isLoading: isLoadingOrders, date, store } = useOrders();
+  const { allOrders, isLoadingAllOrders: isLoadingOrders, date, store } = useOrders();
   const { paidOrders, totalPaidAmountFormatted, totalPaidAllAmountFormatted } =
-    filterOrders(orders, date);
+    filterOrders(allOrders, date);
   const [usersByDevice, setUsersByDevice] = useState({});
   const [verbaGoogle, setVerbaGoogle] = useState(0);
   const [verbaMeta, setVerbaMeta] = useState(0);
@@ -42,7 +42,7 @@ export function Statistics() {
       setVerbaGoogle(parseFloat(data.totalCost));
       setVerbaGoogleEcom(parseFloat(data.totalCostEcom));
     }
-  }, [date, data, isLoadingAnalytics]);
+  }, [date, data, isLoadingADSGoogle]);
 
   useEffect(() => {
     if (dataADSMeta && dataADSMeta.length > 0) {
@@ -109,7 +109,7 @@ export function Statistics() {
           totalOrdersFormatted={totalPaidAmountFormatted}
           roas={roasEcom}
           roasMax={`Max.: ${roasMaxEcom}`}
-          isLoadingADSGoogle={isLoadingAnalytics}
+          isLoadingADSGoogle={isLoadingADSGoogle}
           isLoadingOrders={isLoadingOrders}
           isLoadingADSMeta={isLoadingADSMeta}
         />
@@ -124,7 +124,7 @@ export function Statistics() {
         totalOrdersFormatted={totalPaidAmountFormatted}
         roas={roas}
         roasMax={`Max.: ${roasMax}`}
-        isLoadingADSGoogle={isLoadingAnalytics}
+        isLoadingADSGoogle={isLoadingADSGoogle}
         isLoadingOrders={isLoadingOrders}
         isLoadingADSMeta={isLoadingADSMeta}
       />
@@ -138,7 +138,7 @@ export function Statistics() {
         bgcolor={bgColorCosts}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
-        isLoadingADSGoogle={isLoadingAnalytics}
+        isLoadingADSGoogle={isLoadingADSGoogle}
         isLoadingADSMeta={isLoadingADSMeta}
       />
       <DataSectionCart
@@ -149,7 +149,7 @@ export function Statistics() {
         <Chart
           title={'Sessões por dispositivo'}
           usersByDevice={usersByDevice}
-          loading={isLoadingAnalytics}
+          loading={isLoadingADSGoogle}
         />
         <ChartStates
           title={'Vendas por estado'}

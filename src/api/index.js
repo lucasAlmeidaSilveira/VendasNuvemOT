@@ -4,7 +4,6 @@ export async function getProduct(store, id) {
       `https://node-vendasnuvemot.onrender.com/product/${store}/${id}`,
     );
     if (!response.ok) {
-      console.log(id)
       throw new Error('Erro ao buscar pedidos');
     }
     const data = await response.json();

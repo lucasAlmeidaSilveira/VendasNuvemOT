@@ -5,11 +5,10 @@ import { useOrders } from "../../context/OrdersContext";
 import { useAnalytics } from "../../context/AnalyticsContext";
 
 export function ButtonReload() {
-  const { forceUpdate, isLoading, isLoadingAllOrders, fetchAllOrders } = useOrders();
+  const { isLoading, isLoadingAllOrders, fetchAllOrders } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
 
   const handleReload = () => {
-		forceUpdate(); // Chama a função para buscar os dados da API
     fetchAllOrders()
 		fetchDataGoogle();
 		fetchDataADSMeta();

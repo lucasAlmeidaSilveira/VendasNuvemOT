@@ -12,8 +12,8 @@ interface DataSectionAnalyticsProps {
 }
 
 export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnalyticsProps) {
-  const { data, isLoading: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoading: isLoadingOrders, date } = useOrders();
+  const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
+  const { orders, isLoadingAllOrders: isLoadingOrders, date } = useOrders();
   const { ordersToday } = filterOrders(orders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');

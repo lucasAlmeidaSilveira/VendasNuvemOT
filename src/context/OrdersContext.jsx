@@ -56,6 +56,7 @@ export const OrdersProvider = ({ children }) => {
   const fetchAllOrdersData = async () => {
     try {
       setIsLoadingAllOrders(true);
+      setIsLoading(true);
       const response = await fetch(`https://node-vendasnuvemot.onrender.com/db/orders/${store}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
@@ -70,6 +71,7 @@ export const OrdersProvider = ({ children }) => {
       throw err;
     } finally {
       setIsLoadingAllOrders(false);
+      setIsLoading(false);
     }
   };
 
@@ -80,20 +82,7 @@ export const OrdersProvider = ({ children }) => {
     } catch (err) {
       
     }
-  };
-
-  const forceUpdate = async () => {
-    const startDateISO = adjustDate(date[0]);
-    const endDateISO = adjustDate(date[1]);
-    try {
-      setIsLoading(true);
-      const allOrdersFromDB = await fetchOrdersData(startDateISO, endDateISO);
-      setOrders(allOrdersFromDB);
-      setError({})
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoading(false);
+    finally {
       saveDate();
     }
   };
@@ -140,25 +129,11 @@ export const OrdersProvider = ({ children }) => {
   };
 
   useEffect(() => {
+    resetData()
     fetchData();
-  }, [date, store]);
-  
-  useEffect(() => {
-    forceUpdate();
     fetchAllOrders();
   }, [store]);
-  
-  useEffect(() => {
-    if (automaticUpdate) {
-      forceUpdate();
-      const intervalPeriodicFilter = setInterval(() => {
-        forceUpdate();
-      }, 60000); // 1 minuto em milissegundos
-      
-      return () => clearInterval(intervalPeriodicFilter); // Cleanup on unmount
-    }
-  }, [store, automaticUpdate]);
-  
+
   useEffect(() => {
     const intervalId = setInterval(() => {
       fetchRecentData();
@@ -186,7 +161,6 @@ export const OrdersProvider = ({ children }) => {
     isLoadingAllOrders,
     fetchData,
     fetchAllOrders,
-    forceUpdate,
     automaticUpdate,
     setAutomaticUpdate,
     currentDateLocalStorage,

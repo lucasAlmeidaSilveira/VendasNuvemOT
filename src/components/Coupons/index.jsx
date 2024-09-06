@@ -13,6 +13,7 @@ import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
 import { formatDateToISO } from '../../tools/tools';
 import { LoadingIcon } from '../Loading';
+import { filterOrders } from '../../tools/filterOrders';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -52,7 +53,8 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export function Coupons() {
-  const { orders, date, isLoading } = useOrders();
+  const { allOrders, date, isLoading } = useOrders();
+  const { ordersToday } = filterOrders(allOrders, date);
   const [filteredCoupons, setFilteredCoupons] = useState([]);
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
@@ -63,7 +65,7 @@ export function Coupons() {
 
     const couponUsageMap = {};
 
-    orders.forEach(order => {
+    ordersToday.forEach(order => {
       const orderDate = new Date(order.created_at);
       if (
         orderDate >= new Date(startDateISO) &&
@@ -86,7 +88,7 @@ export function Coupons() {
     );
 
     setFilteredCoupons(sortedCoupons);
-  }, [orders]);
+  }, [ordersToday]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
