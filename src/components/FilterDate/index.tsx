@@ -138,7 +138,7 @@ export function FilterDate() {
           {isLoadingAllOrders ? (
             <StatusDataLoading
               text={'Atualizando dados...'}
-              tooltip={'Atualizando dados recentes.'}
+              tooltip={'Atualizando dados...'}
             />
           ) : timeDifference === '0 minutos' ? (
             <StatusDataSuccess

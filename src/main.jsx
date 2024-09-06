@@ -1,23 +1,23 @@
-import React from "react";
-import ReactDOM from "react-dom/client";
-import App from "./App.jsx";
-import "./index.css";
-import { OrdersProvider } from "./context/OrdersContext"; // Importe o provedor do contexto de pedidos
-import { TabProvider } from "./context/TabContext"; // Importe o provedor do contexto de abas
-import { CouponProvider } from "./context/CouponsContext";
-import { AnalyticsProvider } from "./context/AnalyticsContext.tsx";
+import React from 'react';
+import ReactDOM from 'react-dom/client';
+import App from './App.jsx';
+import './index.css';
+import { OrdersProvider } from './context/OrdersContext'; // Importe o provedor do contexto de pedidos
+import { TabProvider } from './context/TabContext'; // Importe o provedor do contexto de abas
+import { CouponProvider } from './context/CouponsContext';
+import { AnalyticsProvider } from './context/AnalyticsContext.tsx';
 
-const root = ReactDOM.createRoot(document.getElementById("root"));
+const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
     <OrdersProvider>
-      <AnalyticsProvider>
-        <CouponProvider>
-          <TabProvider>
+      <TabProvider>
+        <AnalyticsProvider>
+          <CouponProvider>
             <App />
-          </TabProvider>
-        </CouponProvider>
-      </AnalyticsProvider>
+          </CouponProvider>
+        </AnalyticsProvider>
+      </TabProvider>
     </OrdersProvider>
-  </React.StrictMode>
+  </React.StrictMode>,
 );
