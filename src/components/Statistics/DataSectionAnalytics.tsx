@@ -13,8 +13,8 @@ interface DataSectionAnalyticsProps {
 
 export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { orders, isLoadingAllOrders: isLoadingOrders, date } = useOrders();
-  const { ordersToday } = filterOrders(orders, date);
+  const { allOrders, isLoadingAllOrders: isLoadingOrders, date } = useOrders();
+  const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
   const [priceAcquisition, setPriceAcquisition] = useState('R$ -');
