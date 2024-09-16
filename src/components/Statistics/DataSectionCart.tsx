@@ -39,12 +39,13 @@ const DEFAULT_VALUE = '0';
 
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
   const { data, isLoadingADSGoogle } = useAnalytics();
-  const { allOrders, date, isLoading } = useOrders();
+  const { allOrders, date, isLoading, store } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const { coupons } = useCoupons();
   const [ ordersWithCashback, setOrdersWithCashback ] = useState<Order[]>([]);
   const [ cartsRecoveryWhats, setCartsRecoveryWhats ] = useState<Order[]>([])
   const [ cartsRecoveryEmail, setCartsRecoveryEmail ] = useState<Order[]>([])
+  const [ cartsRecoveryPopup, setCartsRecoveryPopup ] = useState<Order[]>([])
   const [ visits, setVisits ] = useState(DEFAULT_VALUE);
   const [ carts, setCarts ] = useState(DEFAULT_VALUE);
   const [ costCarts, setCostCart ] = useState(DEFAULT_VALUE);
@@ -52,6 +53,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const couponsCashback = coupons.filter((coupon: CouponProps) => coupon.code.startsWith('MTZ'))
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20']
   const couponsEmail = ['OUTLET10', 'GANHEI10']
+  const couponsPopup = store === 'outlet' ? ['GANHEI5'] : ['GANHEI10']
 
   useEffect(() => {
     const filteredOrdersCashBack = ordersToday.filter((order: Order) => 
@@ -65,10 +67,15 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
     const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
       order.coupon && order.coupon.some(coupon => couponsEmail.includes(coupon.code))
     );
+
+    const filteredOrdersCartsPopup = ordersToday.filter((order: Order) => 
+      order.coupon && order.coupon.some(coupon => couponsPopup.includes(coupon.code))
+    );
     
     setOrdersWithCashback(filteredOrdersCashBack);
     setCartsRecoveryWhats(filteredOrdersCartsWhats);
     setCartsRecoveryEmail(filteredOrdersCartsEmail);
+    setCartsRecoveryPopup(filteredOrdersCartsPopup);
   }, [date, allOrders]);
 
   useEffect(() => {
@@ -93,6 +100,16 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       ? ((numericCarts / numericVisits) * 100).toFixed(2) + '%'
       : '0.00';
   }, [carts, visits]);
+
+  const popupRate = useMemo(() => {
+    const numericOrders = ordersToday.length;
+    const numericPopups = cartsRecoveryPopup.length;
+    
+    // Verifica se há pedidos antes de calcular a taxa
+    return numericOrders > 0
+      ? ((numericPopups / numericOrders) * 100).toFixed(2) + '%'
+      : '0.00%';
+  }, [ordersToday, cartsRecoveryPopup]);
 
   const totalCashbackSales = ordersWithCashback.length;
   const totalCashbackRevenue = ordersWithCashback.reduce((sum, order) => {
@@ -119,6 +136,10 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
         <div className="row">
           <BudgetItem icon={FaWhatsapp} iconColor={'var(--uipositive-100)'} title="Carrinhos recuperados" small={'Whatsapp'} tooltip={`Cupons: ${couponsWhats.join(', ')}`} value={cartsRecoveryWhats.length} isLoading={isLoading} />
           <BudgetItem icon={IoIosMail} iconColor={'var(--geralblack-100)'} title="Carrinhos recuperados" small={'Email'} tooltip={`Cupons: ${couponsEmail.join(', ')}`} value={cartsRecoveryEmail.length} isLoading={isLoading} />
+        </div>
+        <div className="row">
+          <BudgetItem title="Cupom Popup" small={ordersToday.length} tooltip='Pedidos realizados com Cupom Popup' value={cartsRecoveryPopup.length} isLoading={isLoading} />
+          <BudgetItem title="Taxa de Conversão de Popup" tooltip="Popup x Pedidos" value={popupRate} isLoading={isLoading} />        
         </div>
         <div className="row">
           <BudgetItem title="Vendas | Cashback" tooltip="Vendas com Cashback" value={totalCashbackSales} small={couponsCashback.length} isLoading={isLoading} />
