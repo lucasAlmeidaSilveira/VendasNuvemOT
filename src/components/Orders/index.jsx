@@ -390,7 +390,7 @@ export function Orders() {
   };
 
   const formatUrlTracking = (urlTracking, shippingStatus, code) => {
-    if (!urlTracking && shippingStatus === 'shipped') {
+    if (!urlTracking && shippingStatus === 'shipped' && code) {
       return `https://rastreae.com.br/resultado/${code}`;
     }
 
