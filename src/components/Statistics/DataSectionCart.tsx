@@ -38,7 +38,7 @@ interface CouponProps {
 const DEFAULT_VALUE = '0';
 
 export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
-  const { data, isLoading: isLoadingAnalytics } = useAnalytics();
+  const { data, isLoadingADSGoogle } = useAnalytics();
   const { allOrders, date, isLoading } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const { coupons } = useCoupons();
@@ -50,6 +50,8 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const [ costCarts, setCostCart ] = useState(DEFAULT_VALUE);
 
   const couponsCashback = coupons.filter((coupon: CouponProps) => coupon.code.startsWith('MTZ'))
+  const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20']
+  const couponsEmail = ['OUTLET10', 'GANHEI10']
 
   useEffect(() => {
     const filteredOrdersCashBack = ordersToday.filter((order: Order) => 
@@ -57,11 +59,11 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
     );
 
     const filteredOrdersCartsWhats = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => coupon.code === 'WHATS10' || coupon.code === 'WHATS15' || coupon.code === 'WHATS20')
+      order.coupon && order.coupon.some(coupon => couponsWhats.includes(coupon.code))
     );
 
     const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => coupon.code === 'OUTLET10' || coupon.code === 'GANHEI10')
+      order.coupon && order.coupon.some(coupon => couponsEmail.includes(coupon.code))
     );
     
     setOrdersWithCashback(filteredOrdersCashBack);
@@ -110,13 +112,13 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Carrinho e Cashback</h4>
         <div className="row">
-          <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingADSGoogle} />
+          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingADSGoogle} />
+          <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingADSGoogle} />
         </div>
         <div className="row">
-          <BudgetItem icon={FaWhatsapp} iconColor={'var(--uipositive-100)'} title="Carrinhos recuperados" small={'Whatsapp'} tooltip="Via whatsapp" value={cartsRecoveryWhats.length} isLoading={isLoading} />
-          <BudgetItem icon={IoIosMail} iconColor={'var(--geralblack-100)'} title="Carrinhos recuperados" small={'Email'} tooltip="Via email" value={cartsRecoveryEmail.length} isLoading={isLoading} />
+          <BudgetItem icon={FaWhatsapp} iconColor={'var(--uipositive-100)'} title="Carrinhos recuperados" small={'Whatsapp'} tooltip={`Cupons: ${couponsWhats.join(', ')}`} value={cartsRecoveryWhats.length} isLoading={isLoading} />
+          <BudgetItem icon={IoIosMail} iconColor={'var(--geralblack-100)'} title="Carrinhos recuperados" small={'Email'} tooltip={`Cupons: ${couponsEmail.join(', ')}`} value={cartsRecoveryEmail.length} isLoading={isLoading} />
         </div>
         <div className="row">
           <BudgetItem title="Vendas | Cashback" tooltip="Vendas com Cashback" value={totalCashbackSales} small={couponsCashback.length} isLoading={isLoading} />
