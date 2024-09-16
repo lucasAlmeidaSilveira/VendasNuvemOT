@@ -59,6 +59,12 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
     textOverflow: 'ellipsis',
     whiteSpace: 'collapse',
   },
+  [`&.${'d-row'}`]: {
+    display: 'flex',
+    gap: '8px',
+    alignItems: 'center',
+    padding: '16px'
+  }
 }));
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -336,7 +342,7 @@ export function Orders() {
           const searchLower = searchQuery.toLowerCase();
           return (
             order.id.toString().toLowerCase().includes(searchLower) ||
-            order.order_id.toString().toLowerCase().includes(searchLower) ||
+            order.order_id?.toString().toLowerCase().includes(searchLower) ||
             order.gateway_id?.toString().toLowerCase().includes(searchLower) ||
             order.customer.name.toLowerCase().includes(searchLower) ||
             order.customer.identification.toLowerCase().includes(searchLower) ||
@@ -567,7 +573,9 @@ export function Orders() {
                           {order.gateway_name}
                         </a>
                       </StyledTableCell>
-                      <StyledTableCell>
+                      <StyledTableCell 
+                        className={order.storefront === 'Loja' && 'd-row'}
+                      >
                         <ShippingStatus
                           statusOrder={order.status}
                           status={
