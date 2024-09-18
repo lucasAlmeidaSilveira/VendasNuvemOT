@@ -59,7 +59,7 @@ export function ConfirmationDialog({ open, onClose, onConfirm, loading, success,
               <LoadingIcon size={20} color={'var(--geralwhite'} />
             )
           ) : (
-            <>{action}</>
+            <>Confirmar</>
           )}
         </Button>
       </DialogActions>
