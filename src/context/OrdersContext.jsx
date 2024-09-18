@@ -1,11 +1,19 @@
-import React, { createContext, useState, useContext, useEffect, useMemo } from 'react';
+import React, {
+  createContext,
+  useState,
+  useContext,
+  useEffect,
+  useMemo,
+} from 'react';
 import { adjustDate } from '../tools/tools';
+import { useAuth } from './AuthContext';
 
 export const OrdersContext = createContext();
 
 export const useOrders = () => useContext(OrdersContext);
 
 export const OrdersProvider = ({ children }) => {
+  const { user } = useAuth()
   const [orders, setOrders] = useState([]);
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
@@ -38,7 +46,9 @@ export const OrdersProvider = ({ children }) => {
 
   const fetchOrdersData = async (startDateISO, endDateISO) => {
     try {
-      const response = await fetch(`https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`);
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`,
+      );
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
       }
@@ -57,7 +67,9 @@ export const OrdersProvider = ({ children }) => {
     try {
       setIsLoadingAllOrders(true);
       setIsLoading(true);
-      const response = await fetch(`https://node-vendasnuvemot.onrender.com/db/orders/${store}`);
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/db/orders/${store}`,
+      );
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
       }
@@ -80,9 +92,7 @@ export const OrdersProvider = ({ children }) => {
       const allOrdersFromDB = await fetchAllOrdersData();
       setAllOrders(allOrdersFromDB);
     } catch (err) {
-      
-    }
-    finally {
+    } finally {
       saveDate();
     }
   };
@@ -95,7 +105,7 @@ export const OrdersProvider = ({ children }) => {
       setIsLoading(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
       setOrders(ordersData);
-      setError({})
+      setError({});
     } catch (err) {
       setError(err.message);
     } finally {
@@ -112,7 +122,7 @@ export const OrdersProvider = ({ children }) => {
       setIsLoadingPeriodic(true);
       const localOrders = await fetchOrdersData(startDateISO, endDateISO);
       setOrders(localOrders);
-      setError({})
+      setError({});
     } catch (err) {
       setError(err.message);
     } finally {
@@ -128,20 +138,28 @@ export const OrdersProvider = ({ children }) => {
     setCurrentDateLocalStorage(adjustedDate.toISOString());
   };
 
+  // Alterando o useEffect para só buscar pedidos se o usuário estiver autenticado
   useEffect(() => {
-    resetData()
-    fetchData();
-    fetchAllOrders();
-  }, [store]);
-
-  useEffect(() => {
-    const intervalId = setInterval(() => {
-      fetchRecentData();
+    if (user) {
+      // Verifica se o usuário está autenticado
+      resetData();
+      fetchData();
       fetchAllOrders();
-    }, 1800000); // 30 minutos em milissegundos
+    }
+  }, [store, user]); // Agora escuta mudanças no "user" também
 
-    return () => clearInterval(intervalId); // Cleanup on unmount
-  }, [store]);
+  // Outro useEffect que realiza chamadas periódicas de atualização, mas só se o usuário estiver autenticado
+  useEffect(() => {
+    if (user) {
+      // Verifica se o usuário está autenticado
+      const intervalId = setInterval(() => {
+        fetchRecentData();
+        fetchAllOrders();
+      }, 1800000); // 30 minutos em milissegundos
+
+      return () => clearInterval(intervalId); // Cleanup on unmount
+    }
+  }, [store, user]); // Agora escuta mudanças no "user" também
 
   const value = {
     orders,

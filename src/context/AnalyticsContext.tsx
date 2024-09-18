@@ -2,6 +2,7 @@ import React, { ReactNode, createContext, useState, useContext, useEffect } from
 import { useOrders } from './OrdersContext';
 import { formatDate } from '../tools/tools';
 import { useTab } from "./TabContext";
+import { useAuth } from "./AuthContext";
 
 interface ADSMetaEntry {
   account_id: string;
@@ -46,6 +47,7 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
   const [dataADSMeta, setDataADSMeta] = useState<Array<ADSMetaEntry>>([]); // Estado para dados ADS Meta
   const [error, setError] = useState<string | null>(null);
   const { store, date } = useOrders();
+  const { user } = useAuth()
   const { activeTab } = useTab()
 
   const startDate = formatDate(date[0]);
@@ -87,11 +89,13 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
 
   // Chamada da API quando 'date' ou 'store' mudam
   useEffect(() => {
-    if(activeTab === 2) {
-      fetchDataGoogle();
-      fetchDataADSMeta();
+    if(user) {
+      if(activeTab === 2) {
+        fetchDataGoogle();
+        fetchDataADSMeta();
+      }
     }
-  }, [date, store, activeTab]);
+  }, [date, store, activeTab, user]);
 
   const value = {
     data,

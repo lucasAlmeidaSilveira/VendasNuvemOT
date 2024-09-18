@@ -19,21 +19,23 @@ export const Container = styled.div`
   }
 
   div {
-    flex: 1;
     display: flex;
   }
-
+  
   .div {
+    flex: 1;
     align-items: center;
     gap: .4rem;
   }
-
+  
   .div-2 {
+    flex: 1;
     align-items: flex-start;
     flex-direction: column;
   }
-
+  
   .text-wrapper {
+    flex: 1;
     color: #ffffff;
     font-family: var(--body-paragraph-regular-font-family);
     font-size: 1.2rem;
@@ -99,5 +101,8 @@ export const Container = styled.div`
       display: none;
     }
   }
-  
+`
+export const BoxRight = styled.div`
+  gap: .8rem;
+  align-items: center;
 `

@@ -3,15 +3,19 @@ import "./style.css";
 import { IoReloadCircleSharp } from "react-icons/io5";
 import { useOrders } from "../../context/OrdersContext";
 import { useAnalytics } from "../../context/AnalyticsContext";
+import { useAuth } from "../../context/AuthContext";
 
 export function ButtonReload() {
   const { isLoading, isLoadingAllOrders, fetchAllOrders } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
+  const { user } = useAuth()
 
   const handleReload = () => {
-    fetchAllOrders()
-		fetchDataGoogle();
-		fetchDataADSMeta();
+    if(user) {
+      fetchAllOrders()
+      fetchDataGoogle();
+      fetchDataADSMeta();
+    }
   };
 
   return (

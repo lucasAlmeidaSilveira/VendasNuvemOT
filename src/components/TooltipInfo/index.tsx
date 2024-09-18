@@ -12,7 +12,7 @@ export function TooltipInfo({ children, title }: TooltipInfoProps) {
   return (
     <Tooltip
       TransitionComponent={Zoom}
-      style={{}}
+      style={{cursor: 'pointer'}}
       title={<span style={{ fontSize: 12 }}>{title}</span>}
       disableFocusListener
       followCursor
