@@ -9,6 +9,7 @@ import { Button } from '../Button';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
 import { createOrder } from '../../api';
 import { useOrders } from '../../context/OrdersContext';
+import { useAuth } from '../../context/AuthContext';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .css-1t1j96h-MuiPaper-root-MuiDialog-paper': {
@@ -44,6 +45,7 @@ const TextFieldInput = styled(TextField)({
 });
 
 export function OrderPopup({ open, onClose }) {
+  const { user } = useAuth()
   const { fetchAllOrders } = useOrders();
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('');
@@ -88,8 +90,8 @@ export function OrderPopup({ open, onClose }) {
         weight: '',
         coupon: [],
         customer: {
-          name: 'Cliente Loja Física',
-          email: 'loja@artepropria.com',
+          name: user.displayName,
+          email: user.email,
           identification: "99999999999"
         },
         has_shippable_products: '',
@@ -114,7 +116,7 @@ export function OrderPopup({ open, onClose }) {
           created_at: createdAt,
           floor: 'Loja',
           locality: 'Loja',
-          name: 'Cliente Loja Física',
+          name: user.displayName,
         },
         shipping_cost_customer: '0.00',
         shipping_cost_owner: '0.00',
@@ -138,12 +140,12 @@ export function OrderPopup({ open, onClose }) {
         billing_number: 'Loja',
         billing_phone: 'Loja',
         billing_province: 'São Paulo',
-        note: 'Loja',
+        note: 'Chatbot',
         storefront: 'Loja',
-        owner_note: 'Loja',
-        contact_email: 'lojas@artepropria.com',
+        owner_note: 'Chatbot',
+        contact_email: user.email,
         contact_identification: '99999999999',
-        contact_name: 'Cliente Loja Física',
+        contact_name: `Chatbot: ${user.displayName.split(' ')[0]}`,
         contact_phone: '+5511999999999',
         shipping_option: 'Entrega Loja',
         currency: 'BRL',
@@ -156,7 +158,7 @@ export function OrderPopup({ open, onClose }) {
         token: '999999',
         gateway: 'pagamento-loja',
         gateway_id: '9999',
-        gateway_link: 'https://www.artepropria.com.br/',
+        gateway_link: null,
         gateway_name: 'Pagamento Loja',
       },
     };
