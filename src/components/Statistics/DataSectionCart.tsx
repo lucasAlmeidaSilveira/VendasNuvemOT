@@ -130,7 +130,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
         <h4>Dados de Carrinho e Cashback</h4>
         <div className="row">
           <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingADSGoogle} />
-          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Visitas" value={cartRate} isLoading={isLoadingADSGoogle} />
+          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Sessões" value={cartRate} isLoading={isLoadingADSGoogle} />
           <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingADSGoogle} />
         </div>
         <div className="row">

@@ -58,13 +58,13 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Analytics</h4>
         <div className="row">
-          <BudgetItem title="Visitas" tooltip="Google Analytics" value={visits} isLoading={isLoadingAnalytics} />
+          <BudgetItem title="Sessões" tooltip="Google Analytics" value={visits} isLoading={isLoadingAnalytics} />
           <BudgetItem title="Vendas" tooltip="Nuvemshop (Geral)" value={ordersToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de conversão" tooltip="Visitas x Vendas" value={conversionRate} isLoading={isLoadingOrders} />
+          <BudgetItem title="Taxa de conversão" tooltip="Sessões x Vendas" value={conversionRate} isLoading={isLoadingOrders} />
         </div>
         <div className="row">
           <BudgetItem title="Ticket Médio" tooltip="Nuvemshop" value={averageTicket} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Verba Total / Visitas" value={priceSession} isLoading={isLoadingOrders} />
+          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Verba Total / Sessões" value={priceSession} isLoading={isLoadingOrders} />
           <BudgetItem title="Custo p/ Aquisição (CPA)" tooltip="Verba Total / Vendas" value={priceAcquisition} isLoading={isLoadingOrders} />
         </div>
       </ContainerGeral>

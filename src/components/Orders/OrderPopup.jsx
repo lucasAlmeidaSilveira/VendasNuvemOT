@@ -45,8 +45,6 @@ const TextFieldInput = styled(TextField)({
 
 export function OrderPopup({ open, onClose }) {
   const { fetchAllOrders } = useOrders();
-  const [contactName, setContactName] = useState('');
-  const [ownerNote, setOwnerNote] = useState('');
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('');
   const [loading, setLoading] = useState(false);
@@ -54,8 +52,6 @@ export function OrderPopup({ open, onClose }) {
   const [openConfirm, setOpenConfirm] = useState(false);
 
   const resetInputs = () => {
-    setContactName('');
-    setOwnerNote('');
     setCreatedAt(new Date());
     setTotal('0');
   };
@@ -92,7 +88,7 @@ export function OrderPopup({ open, onClose }) {
         weight: '',
         coupon: [],
         customer: {
-          name: contactName,
+          name: 'Cliente Loja Física',
           email: 'loja@artepropria.com',
           identification: "99999999999"
         },
@@ -116,9 +112,9 @@ export function OrderPopup({ open, onClose }) {
           province: 'São Paulo',
           country: 'BR',
           created_at: createdAt,
-          floor: ownerNote,
-          locality: ownerNote,
-          name: contactName,
+          floor: 'Loja',
+          locality: 'Loja',
+          name: 'Cliente Loja Física',
         },
         shipping_cost_customer: '0.00',
         shipping_cost_owner: '0.00',
@@ -138,16 +134,16 @@ export function OrderPopup({ open, onClose }) {
         billing_country: 'BR',
         billing_floor: 'Loja',
         billing_locality: 'Loja',
-        billing_name: contactName,
+        billing_name: 'Cliente Loja Física',
         billing_number: 'Loja',
         billing_phone: 'Loja',
         billing_province: 'São Paulo',
-        note: ownerNote,
+        note: 'Loja',
         storefront: 'Loja',
-        owner_note: ownerNote,
+        owner_note: 'Loja',
         contact_email: 'lojas@artepropria.com',
         contact_identification: '99999999999',
-        contact_name: contactName,
+        contact_name: 'Cliente Loja Física',
         contact_phone: '+5511999999999',
         shipping_option: 'Entrega Loja',
         currency: 'BRL',
@@ -202,24 +198,6 @@ export function OrderPopup({ open, onClose }) {
         <DialogTitleCustom>Cadastrar Pedido</DialogTitleCustom>
         <DialogContent>
           <ContainerButton>
-            <TextFieldInput
-              variant='filled'
-              type='text'
-              label='Nome do Cliente'
-              size='small'
-              value={contactName}
-              onChange={e => setContactName(e.target.value)}
-              required
-            />
-            <TextFieldInput
-              variant='filled'
-              type='text'
-              label='Loja'
-              size='small'
-              value={ownerNote}
-              onChange={e => setOwnerNote(e.target.value)}
-              required
-            />
             <TextFieldInput
               variant='filled'
               label='Data da Compra'
