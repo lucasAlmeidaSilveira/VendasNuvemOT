@@ -20,7 +20,7 @@ export const AuthProvider = ({ children }) => {
           'thamires@consultoria.space',
           'juliana@consultoria.space',
           'gabrielle@consultoria.space',
-          'lucas@galeria9.com',
+          'lucas@galeria9.com.br',
           'paulo.h.artepropria@gmail.com',
           'ranierihernandes@gmail.com'
         ];
