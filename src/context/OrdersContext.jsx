@@ -23,6 +23,8 @@ export const OrdersProvider = ({ children }) => {
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
   const [store, setStore] = useState('outlet');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
+  const [isOnline, setIsOnline] = useState(navigator.onLine);
+  const [error, setError] = useState({});
 
   const currentDateStart = useMemo(() => {
     const date = new Date();
@@ -37,7 +39,6 @@ export const OrdersProvider = ({ children }) => {
   }, []);
 
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
-  const [error, setError] = useState({});
 
   const resetData = () => {
     setOrders([]);
@@ -161,6 +162,20 @@ export const OrdersProvider = ({ children }) => {
     }
   }, [store, user]); // Agora escuta mudanças no "user" também
 
+  // Verificação de conexão com a internet
+  useEffect(() => {
+    const handleOnline = () => setIsOnline(true);
+    const handleOffline = () => setIsOnline(false);
+
+    window.addEventListener('online', handleOnline);
+    window.addEventListener('offline', handleOffline);
+
+    return () => {
+      window.removeEventListener('online', handleOnline);
+      window.removeEventListener('offline', handleOffline);
+    };
+  }, []);
+
   const value = {
     orders,
     setOrders,
@@ -182,6 +197,7 @@ export const OrdersProvider = ({ children }) => {
     automaticUpdate,
     setAutomaticUpdate,
     currentDateLocalStorage,
+    isOnline,
     error,
   };
 

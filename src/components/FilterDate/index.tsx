@@ -8,26 +8,13 @@ import {
   ButtonActionContainer,
 } from './styles';
 import { useOrders } from '../../context/OrdersContext';
-import {
-  StatusDataLoading,
-  StatusDataSuccess,
-  StatusDataWait,
-  StatusInitialDataLoading,
-} from '../Status';
+import { StatusUpdate } from '../Status';
 import { formatTimeDifference } from '../../tools/tools';
 import { SelectDatePicker } from '../SelectDatePicker';
 
 export function FilterDate() {
-  const {
-    date,
-    setDate,
-    store,
-    currentDateLocalStorage,
-    isLoading,
-    isLoadingAllOrders,
-    isLoadingPeriodic,
-    error,
-  } = useOrders();
+  const { date, setDate, store, currentDateLocalStorage, isLoadingAllOrders } =
+    useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
   const [timeDifference, setTimeDifference] = useState('');
 
@@ -135,22 +122,10 @@ export function FilterDate() {
           </QuickActionButton>
         </ButtonActionContainer>
         <span className='last-updated'>
-          {isLoadingAllOrders ? (
-            <StatusDataLoading
-              text={'Atualizando dados...'}
-              tooltip={'Atualizando dados...'}
-            />
-          ) : timeDifference === '0 minutos' ? (
-            <StatusDataSuccess
-              text={'Atualizado agora mesmo'}
-              tooltip={'Os dados estão atualizados.'}
-            />
-          ) : (
-            <StatusDataWait
-              text={`Atualizado há ${timeDifference}`}
-              tooltip={'Os dados estão atualizados.'}
-            />
-          )}
+          <StatusUpdate
+            isLoadingAllOrders={isLoadingAllOrders}
+            timeDifference={timeDifference}
+          />
         </span>
       </ButtonsContainer>
     </Container>
