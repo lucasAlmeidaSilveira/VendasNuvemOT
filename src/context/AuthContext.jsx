@@ -22,7 +22,8 @@ export const AuthProvider = ({ children }) => {
           'gabrielle@consultoria.space',
           'lucas@galeria9.com.br',
           'paulo.h.artepropria@gmail.com',
-          'ranierihernandes@gmail.com'
+          'ranierihernandes@gmail.com',
+          'samezimaleticia@gmail.com'
         ];
         if (allowedEmails.includes(user.email)) {
           setUser(user);
