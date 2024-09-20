@@ -7,6 +7,7 @@ import { FilterDate } from './components/FilterDate';
 import { AuthPopup } from './components/AuthPopup';
 import { BackToTop } from './components/BackToTop';
 import { Toolbar } from '@mui/material';
+import { StatusInternet } from './components/StatusInternet';
 
 function App() {
   const { activeTab } = useTab();
@@ -22,6 +23,7 @@ function App() {
       </div>
       <RoutesTabs activeTab={activeTab} />
       <BackToTop />
+      <StatusInternet />
     </>
   );
 }
