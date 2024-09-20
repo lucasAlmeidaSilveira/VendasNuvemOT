@@ -101,9 +101,17 @@ export function ClientDetails({ order }) {
                 {order.contact_identification}
               </StyledTableCell>
               <StyledTableCell>{order.contact_email}</StyledTableCell>
-              <StyledTableCell style={{display: 'flex', gap: '4px', alignItems: 'center'}}>
-                {formatPhoneNumber(order.contact_phone)}
-                <a href={linkWhats(order.contact_name, order.contact_phone)} target='_blank'><FaWhatsapp size={20} color='var(--uipositive-100)'/></a>
+              <StyledTableCell style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+                {order.contact_phone ? (
+                  <>
+                    {formatPhoneNumber(order.contact_phone)}
+                    <a href={linkWhats(order.contact_name, order.contact_phone)} target='_blank' rel='noopener noreferrer'>
+                      <FaWhatsapp size={20} color='var(--uipositive-100)' />
+                    </a>
+                  </>
+                ) : (
+                  'Não informado'
+                )}
               </StyledTableCell>
               <StyledTableCell>{formatLocation(order.billing_city, order.billing_province)}</StyledTableCell>
             </TableRow>
