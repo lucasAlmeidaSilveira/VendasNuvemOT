@@ -61,6 +61,8 @@ export function OrderPopup({ open, onClose }) {
   const handleDateChange = e => {
     const date = new Date(e.target.value);
     if (!isNaN(date)) {
+      // Adiciona 3 horas à data selecionada
+      date.setHours(date.getHours() + 3);
       setCreatedAt(date);
     }
   };
