@@ -6,13 +6,13 @@ import { useAnalytics } from "../../context/AnalyticsContext";
 import { useAuth } from "../../context/AuthContext";
 
 export function ButtonReload() {
-  const { isLoading, isLoadingAllOrders, fetchAllOrders } = useOrders();
+  const { isLoading, isLoadingAllOrders, fetchData } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
   const { user } = useAuth()
 
   const handleReload = () => {
     if(user) {
-      fetchAllOrders()
+      fetchData()
       fetchDataGoogle();
       fetchDataADSMeta();
     }

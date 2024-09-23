@@ -88,7 +88,7 @@ export function Coupons() {
     );
 
     setFilteredCoupons(sortedCoupons);
-  }, [ordersToday]);
+  }, [date]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);

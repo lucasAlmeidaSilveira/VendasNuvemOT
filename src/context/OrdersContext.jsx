@@ -104,12 +104,14 @@ export const OrdersProvider = ({ children }) => {
 
     try {
       setIsLoading(true);
+      setIsLoadingAllOrders(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
-      setOrders(ordersData);
+      setAllOrders(ordersData);
       setError({});
     } catch (err) {
       setError(err.message);
     } finally {
+      setIsLoadingAllOrders(false);
       setIsLoading(false);
       saveDate();
     }
@@ -145,22 +147,22 @@ export const OrdersProvider = ({ children }) => {
       // Verifica se o usuário está autenticado
       resetData();
       fetchData();
-      fetchAllOrders();
+      // fetchAllOrders();
     }
-  }, [store, user]); // Agora escuta mudanças no "user" também
+  }, [store, date, user]); // Agora escuta mudanças no "user" também
 
   // Outro useEffect que realiza chamadas periódicas de atualização, mas só se o usuário estiver autenticado
   useEffect(() => {
     if (user) {
       // Verifica se o usuário está autenticado
       const intervalId = setInterval(() => {
-        fetchRecentData();
-        fetchAllOrders();
+        fetchData();
+        // fetchAllOrders();
       }, 1800000); // 30 minutos em milissegundos
 
       return () => clearInterval(intervalId); // Cleanup on unmount
     }
-  }, [store, user]); // Agora escuta mudanças no "user" também
+  }, [store, date, user]); // Agora escuta mudanças no "user" também
 
   // Verificação de conexão com a internet
   useEffect(() => {
