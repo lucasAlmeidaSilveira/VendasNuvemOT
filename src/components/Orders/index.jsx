@@ -557,7 +557,7 @@ export function Orders() {
                       </StyledTableCell>
                       <StyledTableCell>{order.products.length}</StyledTableCell>
                       <StyledTableCell>
-                        {formatCurrency(parseInt(order.total))}
+                        {formatCurrency(order.total)}
                       </StyledTableCell>
                       <StyledTableCell>
                         <a

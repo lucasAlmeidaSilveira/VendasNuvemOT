@@ -10,6 +10,10 @@ export function exportTableToExcel(tableId, filename = 'table.xlsx') {
 
 // Função para formatar o valor em reais
 export function formatCurrency(value) {
+  if(value !== Number) {
+    value = Number(value);
+    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  }
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
