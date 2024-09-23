@@ -24,17 +24,6 @@ export function StatusUpdate({ isLoadingAllOrders, timeDifference }) {
     );
   }
 
-  // if(error.message === 'Failed to fetch' && error.type === 'server_offline') {
-  //   return (
-  //     <TooltipInfo title={'Tente novamente em instantes...'}>
-  //       <ContainerStatusInitialData>
-  //         <PiWarningCircleBold size={16} />
-  //         {'Reiniciando servidor...'}
-  //       </ContainerStatusInitialData>
-  //     </TooltipInfo>
-  //   );
-  // }
-
   if (isLoadingAllOrders) {
     return (
       <TooltipInfo title={'Sincronizando dados...'}>
