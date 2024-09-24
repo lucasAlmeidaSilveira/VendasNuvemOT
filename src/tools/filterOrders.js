@@ -20,8 +20,10 @@ export function filterOrders(orders, date) {
 
   const totals = {
     totalOrdersFormatted: calculateTotal(ordersToday).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
-    totalPaidAmountFormatted: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAmountChatbotFormatted: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid' && order.storefront === 'Loja')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    totalPaidAmountEcomFormatted: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid' && order.storefront !== 'Loja')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    totalPaidAllAmountEcomFormatted: calculateTotal(ordersToday.filter(order => order.storefront !== 'Loja')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    totalPaidAmountFormatted: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAllAmountFormatted: calculateTotal(ordersAllToday).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
   };
 

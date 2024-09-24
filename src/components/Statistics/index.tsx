@@ -20,7 +20,7 @@ export function Statistics() {
     metaEcom: 0,
   });
 
-  const { ordersToday, totalPaidAmountFormatted, totalPaidAllAmountFormatted, totalPaidAmountChatbotFormatted } = 
+  const { ordersToday, totalPaidAmountFormatted, totalPaidAllAmountFormatted, totalPaidAllAmountEcomFormatted, totalPaidAmountChatbotFormatted, totalPaidAmountEcomFormatted } = 
     filterOrders(allOrders, date);
 
   // Set users by device
@@ -52,16 +52,21 @@ export function Statistics() {
   const totalAdSpendEcom = useMemo(() => adSpends.googleEcom + adSpends.metaEcom, [adSpends]);
 
   // ROAS calculations
-  const totalOrdersNumber = useMemo(() => parseCurrency(totalPaidAmountFormatted), [totalPaidAmountFormatted]);
-  const totalOrdersAllNumber = useMemo(() => parseCurrency(totalPaidAllAmountFormatted), [totalPaidAllAmountFormatted]);
-  const totalOrdersAllChatbotNumber = useMemo(() => parseCurrency(totalPaidAmountChatbotFormatted), [totalPaidAmountChatbotFormatted]);
+  const ordersNumber = useMemo(() => parseCurrency(totalPaidAmountFormatted), [totalPaidAmountFormatted]);
+  const ordersAllNumber = useMemo(() => parseCurrency(totalPaidAllAmountFormatted), [totalPaidAllAmountFormatted]);
+  
+  const ordersEcomNumber = useMemo(() => parseCurrency(totalPaidAmountEcomFormatted), [totalPaidAmountEcomFormatted]);
+  const ordersAllEcomNumber = useMemo(() => parseCurrency(totalPaidAllAmountEcomFormatted), [totalPaidAllAmountEcomFormatted]);
+  
+  const ordersAllChatbotNumber = useMemo(() => parseCurrency(totalPaidAmountChatbotFormatted), [totalPaidAmountChatbotFormatted]);
 
-  const roas = useMemo(() => calculateRoas(totalOrdersNumber, totalAdSpend), [totalOrdersNumber, totalAdSpend]);
-  const roasMax = useMemo(() => calculateRoas(totalOrdersAllNumber, totalAdSpend), [totalOrdersAllNumber, totalAdSpend]);
-  const roasEcom = useMemo(() => calculateRoas(totalOrdersNumber, totalAdSpendEcom), [totalOrdersNumber, totalAdSpendEcom]);
-  const roasMaxEcom = useMemo(() => calculateRoas(totalOrdersAllNumber, totalAdSpendEcom), [totalOrdersAllNumber, totalAdSpendEcom]);
-  const roasChatbot = useMemo(() => calculateRoas(totalOrdersAllChatbotNumber, totalAdSpend), [totalOrdersAllChatbotNumber, totalAdSpend]);
-  const roasMaxChatbot = useMemo(() => calculateRoas(totalOrdersAllChatbotNumber, totalAdSpend), [totalOrdersAllChatbotNumber, totalAdSpend]);
+  const roas = useMemo(() => calculateRoas(ordersNumber, totalAdSpend), [ordersNumber, totalAdSpend]);
+  const roasMax = useMemo(() => calculateRoas(ordersAllNumber, totalAdSpend), [ordersAllNumber, totalAdSpend]);
+
+  const roasEcom = useMemo(() => calculateRoas(ordersEcomNumber, totalAdSpendEcom), [ordersEcomNumber, totalAdSpendEcom]);
+  const roasMaxEcom = useMemo(() => calculateRoas(ordersAllEcomNumber, totalAdSpendEcom), [ordersAllEcomNumber, totalAdSpendEcom]);
+
+  const roasChatbot = useMemo(() => calculateRoas(ordersAllChatbotNumber, totalAdSpend), [ordersAllChatbotNumber, totalAdSpend]);
 
   const bgColors = {
     trafegoPago: '#525252',
@@ -109,7 +114,6 @@ export function Statistics() {
             totalAdSpend={totalAdSpend}
             totalOrdersFormatted={totalPaidAmountChatbotFormatted}
             roas={roasChatbot}
-            roasMax={`Max.: ${roasMaxChatbot}`}
             isLoadingADSGoogle={isLoadingADSGoogle}
             isLoadingOrders={isLoading}
             isLoadingADSMeta={isLoadingADSMeta}
