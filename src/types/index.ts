@@ -1,9 +1,9 @@
 export interface DataSectionTPagoProps {
   title: string;
   bgcolor: string;
-  verbaGoogle: number;
-  verbaMeta: number;
-  totalAdSpend: number;
+  verbaGoogle: number | string;
+  verbaMeta: number | string;
+  totalAdSpend: number | string;
   totalOrdersFormatted: number;
   roas: number | string;
   roasMax?: number | string;
@@ -14,14 +14,6 @@ export interface DataSectionTPagoProps {
 
 export interface DataSectionCartProps {
   bgcolor: string;
-}
-
-export interface DataSectionTPagoProps {
-  bgcolor: string;
-  totalAdSpend: number;
-  totalOrdersFormatted: number;
-  isLoadingADSGoogle: boolean;
-  isLoadingADSMeta: boolean;
 }
 
 export interface DataSectionCartProps {
@@ -35,7 +27,7 @@ export interface DataSectionPayProps {
 
 export interface DataSectionCostsProps {
   bgcolor: string;
-  totalAdSpend: number;
+  totalAdSpend: number | string;
   totalOrdersFormatted: number;
   isLoadingADSGoogle: boolean;
   isLoadingADSMeta: boolean

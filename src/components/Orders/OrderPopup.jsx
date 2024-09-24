@@ -46,7 +46,7 @@ const TextFieldInput = styled(TextField)({
 
 export function OrderPopup({ open, onClose }) {
   const { user } = useAuth()
-  const { fetchAllOrders } = useOrders();
+  const { fetchData } = useOrders();
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('');
   const [loading, setLoading] = useState(false);
@@ -171,7 +171,7 @@ export function OrderPopup({ open, onClose }) {
 
       if (response.status === 200 || response.status === 201) {
         setSuccess(true);
-        fetchAllOrders()
+        fetchData()
         setTimeout(() => {
           resetInputs();
           setLoading(false);

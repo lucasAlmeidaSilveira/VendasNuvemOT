@@ -23,10 +23,14 @@ export function formatDate(date: Date) {
   return `${year}-${formattedMonth}-${formattedDay}`;
 }
 
-export function parseCurrency(value: string) {
-  const number = Number(value.replace(/[^0-9,-]+/g, "").replace(",", "."));
+export function parseCurrency(value: string | number): number {
+  const stringValue = typeof value === 'number' ? value.toString() : value;
+  const number = Number(
+    stringValue.replace(/[^0-9,-]+/g, "").replace(",", ".")
+  );
   return isNaN(number) ? 0 : number;
 }
+
 
 export function calculateAverageTicket(orders: Order[]): number {
   if (orders.length === 0) return 0;

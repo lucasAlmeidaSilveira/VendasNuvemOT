@@ -6,7 +6,7 @@ import { useAnalytics } from "../../context/AnalyticsContext";
 import { useAuth } from "../../context/AuthContext";
 
 export function ButtonReload() {
-  const { isLoading, isLoadingAllOrders, fetchData } = useOrders();
+  const { isLoading, fetchData } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
   const { user } = useAuth()
 
@@ -20,7 +20,7 @@ export function ButtonReload() {
 
   return (
     <button
-      className={`boxReload ${(isLoadingAllOrders || isLoading) && "loading"}`}
+      className={`boxReload ${(isLoading) && "loading"}`}
       onClick={handleReload}
       aria-label="Recarregar dados"
     >

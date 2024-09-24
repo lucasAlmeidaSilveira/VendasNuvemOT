@@ -9,7 +9,6 @@ interface ADSMetaEntry {
   spend: string;
   spendEcom: string;
   impressions: number;
-  // Adicione outras propriedades, se necessário
 }
 
 interface DataProps {
@@ -61,29 +60,28 @@ export const AnalyticsProvider = ({ children }: AnalyticsProviderprops) => {
       if (!response.ok) {
         throw new Error('Erro ao buscar dados');
       }
-      const jsonData = await response.json();
-      setData(jsonData);
+      const data = await response.json();
+      setData(data);
+      setIsLoadingADSGoogle(false);
     } catch (err) {
       setError('Falha ao carregar os dados: ' + err.message);
-    } finally {
-      setIsLoadingADSGoogle(false);
     }
   };
 
   // Função para buscar dados ADS Meta
   const fetchDataADSMeta = async () => {
-    setIsLoadingADSMeta(true);
     try {
+      setIsLoadingADSMeta(true);
       const response = await fetch(`https://node-vendasnuvemot.onrender.com/ads/meta/${store}/${startDate}/${endDate}`);
       if (!response.ok) {
         throw new Error('Failed to fetch data');
       }
       const data = await response.json();
       setDataADSMeta(data);
+      setIsLoadingADSMeta(false);
     } catch (error) {
       setError('Falha ao carregar os dados ADS Meta: ' + error.message);
     } finally {
-      setIsLoadingADSMeta(false);
     }
   };
 

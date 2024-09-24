@@ -94,7 +94,7 @@ export function DataSectionTPago({
 
 export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders, ordersAllToday } = filterOrders(allOrders, date);
+  const { ordersToday, ordersAllToday } = filterOrders(allOrders, date);
   const [ passRate, setPassRate ] = useState(DEFAULT_PERCENTAGE);
   const [ creditCardTransactions, setCreditCardTransactions ] = useState(DEFAULT_VALUE);
   const [ pixTransactions, setPixTransactions ] = useState(DEFAULT_VALUE);
@@ -122,10 +122,10 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
 
   useEffect(() => {
     if (ordersAllToday.length > 0) {
-      const passRateValue = (paidOrders.length / ordersAllToday.length) * 100;
+      const passRateValue = (ordersToday.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [allOrders, ordersAllToday, paidOrders.length]); 
+  }, [allOrders, ordersAllToday, ordersToday.length]); 
 
   useEffect(() => {
     const creditCardCount = calculateCount('credit_card');
@@ -147,14 +147,14 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     setCreditCardApprovalRate(calculatePercentage(paidCreditCardCount, creditCardCount));
     setPixApprovalRate(calculatePercentage(paidPixCount, pixCount));
     setBoletoApprovalRate(calculatePercentage(paidBoletoCount, boletoCount));
-  }, [paidOrders, ordersAllToday]);
+  }, [ordersToday, ordersAllToday]);
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Pagamento</h4>
         <div className="row">
-          <BudgetItem title="Pago" tooltip="Nuvemshop" value={paidOrders.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Pago" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersAllToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação Geral" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>
@@ -184,7 +184,7 @@ export function DataSectionCosts({
 
   const { data } = useAnalytics();
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
-  const { paidOrders } = filterOrders(allOrders, date);
+  const { ordersToday } = filterOrders(allOrders, date);
   const [productCost, setProductCost] = useState('R$ 0,00');
   const [grossProfit, setGrossProfit] = useState('R$ 0,00');
   const [grossMargin, setGrossMargin] = useState('0%');
@@ -193,8 +193,8 @@ export function DataSectionCosts({
   const [totalProfit, setTotalProfit] = useState('R$ 0,00');
 
   useEffect(() => {
-    if (paidOrders.length > 0) {
-      const totalProductCost = paidOrders.reduce((totalOrderCost, order) => {
+    if (ordersToday.length > 0) {
+      const totalProductCost = ordersToday.reduce((totalOrderCost, order) => {
         const orderProductCost = order.products.reduce(
           (productTotal, product) => {
             const cost = product.cost ? parseFloat(product.cost) : 0; // Verifica se o custo não é null
@@ -235,7 +235,7 @@ export function DataSectionCosts({
       const totalProfitValue = totalOrderValue - totalProductCost - adSpend;
       setTotalProfit(formatCurrency(totalProfitValue));
     }
-  }, [paidOrders, data]);
+  }, [ordersToday, data]);
 
   return (
     <ContainerOrders>
@@ -410,7 +410,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
 
 export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { allOrders, isLoadingAllOrders: isLoadingOrders, date } = useOrders();
+  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');

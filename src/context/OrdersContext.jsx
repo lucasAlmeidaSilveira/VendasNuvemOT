@@ -13,13 +13,10 @@ export const OrdersContext = createContext();
 export const useOrders = () => useContext(OrdersContext);
 
 export const OrdersProvider = ({ children }) => {
-  const { user } = useAuth()
-  const [orders, setOrders] = useState([]);
+  const { user } = useAuth();
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
-  const [isLoadingPeriodic, setIsLoadingPeriodic] = useState(false);
-  const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(false);
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
   const [store, setStore] = useState('outlet');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
@@ -41,7 +38,7 @@ export const OrdersProvider = ({ children }) => {
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
 
   const resetData = () => {
-    setOrders([]);
+    setAllOrders([])
     setCustomers([]);
   };
 
@@ -64,72 +61,19 @@ export const OrdersProvider = ({ children }) => {
     }
   };
 
-  const fetchAllOrdersData = async () => {
-    try {
-      setIsLoadingAllOrders(true);
-      setIsLoading(true);
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/db/orders/${store}`,
-      );
-      if (!response.ok) {
-        throw new Error('Erro ao buscar pedidos');
-      }
-      const data = await response.json();
-      return data;
-    } catch (err) {
-      setError({
-        message: err.message,
-        type: 'server_offline',
-      });
-      throw err;
-    } finally {
-      setIsLoadingAllOrders(false);
-      setIsLoading(false);
-    }
-  };
-
-  const fetchAllOrders = async () => {
-    try {
-      const allOrdersFromDB = await fetchAllOrdersData();
-      setAllOrders(allOrdersFromDB);
-    } catch (err) {
-    } finally {
-      saveDate();
-    }
-  };
-
   const fetchData = async () => {
     const startDateISO = adjustDate(date[0]);
     const endDateISO = adjustDate(date[1]);
 
     try {
       setIsLoading(true);
-      setIsLoadingAllOrders(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
       setAllOrders(ordersData);
       setError({});
-    } catch (err) {
-      setError(err.message);
-    } finally {
-      setIsLoadingAllOrders(false);
       setIsLoading(false);
-      saveDate();
-    }
-  };
-
-  const fetchRecentData = async () => {
-    const startDateISO = adjustDate(date[0]);
-    const endDateISO = adjustDate(date[1]);
-
-    try {
-      setIsLoadingPeriodic(true);
-      const localOrders = await fetchOrdersData(startDateISO, endDateISO);
-      setOrders(localOrders);
-      setError({});
     } catch (err) {
       setError(err.message);
     } finally {
-      setIsLoadingPeriodic(false);
       saveDate();
     }
   };
@@ -147,7 +91,6 @@ export const OrdersProvider = ({ children }) => {
       // Verifica se o usuário está autenticado
       resetData();
       fetchData();
-      // fetchAllOrders();
     }
   }, [store, date, user]); // Agora escuta mudanças no "user" também
 
@@ -157,7 +100,6 @@ export const OrdersProvider = ({ children }) => {
       // Verifica se o usuário está autenticado
       const intervalId = setInterval(() => {
         fetchData();
-        // fetchAllOrders();
       }, 900000); // 15 minutos em milissegundos
 
       return () => clearInterval(intervalId); // Cleanup on unmount
@@ -179,8 +121,6 @@ export const OrdersProvider = ({ children }) => {
   }, []);
 
   const value = {
-    orders,
-    setOrders,
     allOrders,
     setAllOrders,
     customers,
@@ -191,11 +131,8 @@ export const OrdersProvider = ({ children }) => {
     store,
     setStore,
     isLoading,
-    isLoadingPeriodic,
     setIsLoading,
-    isLoadingAllOrders,
     fetchData,
-    fetchAllOrders,
     automaticUpdate,
     setAutomaticUpdate,
     currentDateLocalStorage,

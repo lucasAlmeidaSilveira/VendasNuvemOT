@@ -11,7 +11,7 @@ import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
 
 export function Products() {
-  const { allOrders, isLoadingAllOrders, store } = useOrders();
+  const { allOrders, isLoading, store } = useOrders();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [productSales, setProductSales] = useState({});
@@ -23,7 +23,7 @@ export function Products() {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (!isLoadingAllOrders) {
+    if (!isLoading) {
       const salesMap = {};
       const variationMap = {};
 
@@ -73,7 +73,7 @@ export function Products() {
       setFilteredVariations(sortedVariations);
       setVariations(variationMap);
     }
-  }, [isLoadingAllOrders, allOrders]);
+  }, [isLoading, allOrders]);
 
   useEffect(() => {
     if (searchQuery !== '') {
@@ -165,7 +165,7 @@ export function Products() {
                 <h2 className="total-sales">Vendas</h2>
               </header>
               <div className="table">
-                {isLoadingAllOrders ? (
+                {isLoading ? (
                   <div className="loading">
                     <Loading color={"#1F1F1F"} />
                   </div>
@@ -183,7 +183,7 @@ export function Products() {
                     />
                   ))
                 )}
-                {filteredProducts.length === 0 && !isLoadingAllOrders && (
+                {filteredProducts.length === 0 && !isLoading && (
                   <div className="loading">Nenhum produto encontrado</div>
                 )}
               </div>
@@ -193,7 +193,7 @@ export function Products() {
                 <h2 className="categorie">Variações</h2>
               </header>
               <div className="table">
-                {isLoadingAllOrders ? (
+                {isLoading ? (
                   <div className="loading">
                     <Loading color={"#1F1F1F"} />
                   </div>
@@ -207,7 +207,7 @@ export function Products() {
                     />
                   ))
                 )}
-                {filteredVariations.length === 0 && !isLoadingAllOrders && (
+                {filteredVariations.length === 0 && !isLoading && (
                   <div className="loading">Nenhuma variação encontrada</div>
                 )}
               </div>

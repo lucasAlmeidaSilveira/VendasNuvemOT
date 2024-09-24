@@ -191,7 +191,7 @@ const EnhancedTableHead = props => {
 };
 
 export function Orders() {
-  const { allOrders, isLoadingAllOrders, store, setAllOrders, date } = useOrders();
+  const { allOrders, isLoading, store, setAllOrders, date } = useOrders();
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
@@ -411,7 +411,7 @@ export function Orders() {
         >
           <span>Em produção</span>
           <span>
-            {isLoadingAllOrders ? (
+            {isLoading ? (
               <Loading size={16} color='var(--geralblack-100)' />
             ) : (
               totalUnpacked
@@ -426,7 +426,7 @@ export function Orders() {
         >
           <span>Enviados</span>
           <span>
-            {isLoadingAllOrders ? (
+            {isLoading ? (
               <Loading size={16} color='var(--geralblack-100)' />
             ) : (
               totalShipped
@@ -441,7 +441,7 @@ export function Orders() {
         >
           <span>Em atraso</span>
           <span>
-            {isLoadingAllOrders ? (
+            {isLoading ? (
               <Loading size={16} color='var(--geralblack-100)' />
             ) : (
               totalLate
@@ -509,7 +509,7 @@ export function Orders() {
             onRequestSort={handleRequestSort}
           />
           <TableBody>
-            {isLoadingAllOrders ? (
+            {isLoading ? (
               <TableRow>
                 <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
                   <LoadingIcon size={16} color='var(--geralblack-100)' />

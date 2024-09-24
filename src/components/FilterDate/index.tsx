@@ -13,7 +13,7 @@ import { formatTimeDifference } from '../../tools/tools';
 import { SelectDatePicker } from '../SelectDatePicker';
 
 export function FilterDate() {
-  const { date, setDate, store, currentDateLocalStorage, isLoadingAllOrders } =
+  const { date, setDate, store, currentDateLocalStorage, isLoading } =
     useOrders();
   const [activeButton, setActiveButton] = useState<string | null>('today');
   const [timeDifference, setTimeDifference] = useState('');
@@ -123,7 +123,7 @@ export function FilterDate() {
         </ButtonActionContainer>
         <span className='last-updated'>
           <StatusUpdate
-            isLoadingAllOrders={isLoadingAllOrders}
+            isLoadingAllOrders={isLoading}
             timeDifference={timeDifference}
           />
         </span>

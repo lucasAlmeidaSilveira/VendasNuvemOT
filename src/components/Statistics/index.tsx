@@ -11,7 +11,7 @@ import 'react-calendar/dist/Calendar.css';
 
 export function Statistics() {
   const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } = useAnalytics();
-  const { allOrders, isLoadingAllOrders, date, store } = useOrders();
+  const { allOrders, isLoading, date, store } = useOrders();
   const [usersByDevice, setUsersByDevice] = useState({});
   const [adSpends, setAdSpends] = useState({
     google: 0,
@@ -20,7 +20,7 @@ export function Statistics() {
     metaEcom: 0,
   });
 
-  const { paidOrders, totalPaidAmountFormatted, totalPaidAllAmountFormatted, totalPaidAmountChatbotFormatted } = 
+  const { ordersToday, totalPaidAmountFormatted, totalPaidAllAmountFormatted, totalPaidAmountChatbotFormatted } = 
     filterOrders(allOrders, date);
 
   // Set users by device
@@ -83,7 +83,7 @@ export function Statistics() {
         roas={roas}
         roasMax={`Max.: ${roasMax}`}
         isLoadingADSGoogle={isLoadingADSGoogle}
-        isLoadingOrders={isLoadingAllOrders}
+        isLoadingOrders={isLoading}
         isLoadingADSMeta={isLoadingADSMeta}
       />
       {store === 'artepropria' && (
@@ -98,7 +98,7 @@ export function Statistics() {
             roas={roasEcom}
             roasMax={`Max.: ${roasMaxEcom}`}
             isLoadingADSGoogle={isLoadingADSGoogle}
-            isLoadingOrders={isLoadingAllOrders}
+            isLoadingOrders={isLoading}
             isLoadingADSMeta={isLoadingADSMeta}
           />
           <DataSectionTPago
@@ -111,7 +111,7 @@ export function Statistics() {
             roas={roasChatbot}
             roasMax={`Max.: ${roasMaxChatbot}`}
             isLoadingADSGoogle={isLoadingADSGoogle}
-            isLoadingOrders={isLoadingAllOrders}
+            isLoadingOrders={isLoading}
             isLoadingADSMeta={isLoadingADSMeta}
           />
         </>
@@ -130,11 +130,11 @@ export function Statistics() {
 
       <ContainerCharts>
         <Chart title="Sessões por dispositivo" usersByDevice={usersByDevice} loading={isLoadingADSGoogle} />
-        <ChartStates title="Vendas por estado" orders={paidOrders} loading={isLoadingAllOrders} />
+        <ChartStates title="Vendas por estado" orders={ordersToday} loading={isLoading} />
       </ContainerCharts>
 
       <ContainerCharts>
-        <ChartLine title="Vendas por período" orders={paidOrders} loading={isLoadingAllOrders} />
+        <ChartLine title="Vendas por período" orders={ordersToday} loading={isLoading} />
       </ContainerCharts>
     </Container>
   );
