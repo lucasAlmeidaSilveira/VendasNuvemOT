@@ -1,24 +1,17 @@
 import parsePhoneNumberFromString from 'libphonenumber-js';
-import * as XLSX from 'xlsx';
-
-// Função para exportar a tabela para Excel
-export function exportTableToExcel(tableId, filename = 'table.xlsx') {
-  let table = document.getElementById(tableId);
-  let workbook = XLSX.utils.table_to_book(table);
-  XLSX.writeFile(workbook, filename);
-}
+import { Order } from "../types";
 
 // Função para formatar o valor em reais
-export function formatCurrency(value) {
-  if(value !== Number) {
-    value = Number(value);
-    return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+export function formatCurrency(value: string | number): string {
+  if (typeof value === 'string') {
+    value = parseFloat(value);
   }
+
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 
 // Função para formatar a data para "YYYY-MM-DD"
-export function formatDate(date) {
+export function formatDate(date: Date) {
   const year = date.getFullYear();
   const month = date.getMonth() + 1; // getMonth() retorna 0-11, adicionar 1 para 1-12
   const day = date.getDate();
@@ -30,17 +23,17 @@ export function formatDate(date) {
   return `${year}-${formattedMonth}-${formattedDay}`;
 }
 
-export function parseCurrency(value) {
+export function parseCurrency(value: string) {
   const number = Number(value.replace(/[^0-9,-]+/g, "").replace(",", "."));
   return isNaN(number) ? 0 : number;
 }
 
-export function calculateAverageTicket(orders) {
+export function calculateAverageTicket(orders: Order[]): number {
   if (orders.length === 0) return 0;
 
-  const totalSum = orders.reduce((sum, order) => {
+  const totalSum = orders.reduce((sum: number, order: Order) => {
     const orderTotal = parseFloat(
-      order.total.replace(/[.,]/g, '').replace(/(\d+)(\d{2})$/, '$1.$2'),
+      order.total.replace(/[.,]/g, '').replace(/(\d+)(\d{2})$/, '$1.$2')
     );
     return sum + orderTotal;
   }, 0);
@@ -48,18 +41,19 @@ export function calculateAverageTicket(orders) {
   return totalSum / orders.length;
 }
 
-export function adjustDate(date) {
+
+export function adjustDate(date: string) {
   const newDate = new Date(date);
   newDate.setHours(0, 0, 0, 0);
   return newDate.toISOString().toString()
 };
 
 // Função para formatar a data para ISO 8601
-export function formatDateToISO(date) {
+export function formatDateToISO(date: Date) {
   return date.toISOString()
 }
 
-export function formatTimeDifference(lastUpdated) {
+export function formatTimeDifference(lastUpdated: string) {
   const now = new Date();
   const lastUpdatedDate = new Date(new Date(lastUpdated).getTime() + 3 * 60 * 60 * 1000); // Ajusta a data armazenada subtraindo 3 horas
   const diff = Math.abs(now.getTime() - lastUpdatedDate.getTime());
@@ -73,7 +67,7 @@ export function formatTimeDifference(lastUpdated) {
   }
 };
 
-export function formatDateToUTC(dateString) {
+export function formatDateToUTC(dateString: string) {
   const date = new Date(dateString);
   return date.toLocaleString('pt-BR', {
     timeZone: 'America/Sao_Paulo',
@@ -86,10 +80,13 @@ export function formatDateToUTC(dateString) {
   });
 };
 
-export function formatPhoneNumber(phoneNumber) {
+export function formatPhoneNumber(phoneNumber: string) {
   const parsedNumber = parsePhoneNumberFromString(phoneNumber);
   if (parsedNumber) {
     return parsedNumber.formatNational();
   }
   return 'Número inválido';
 };
+
+export const calculateRoas = (ordersNumber: number, adSpend: number) => 
+  adSpend > 0 ? (ordersNumber / adSpend).toFixed(2) : '0.00';

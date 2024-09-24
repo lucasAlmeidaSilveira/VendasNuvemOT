@@ -5,7 +5,7 @@ import React, {
   useEffect,
   useMemo,
 } from 'react';
-import { adjustDate } from '../tools/tools';
+import { adjustDate } from '../tools/tools.ts';
 import { useAuth } from './AuthContext';
 
 export const OrdersContext = createContext();

@@ -10,7 +10,7 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ContainerDetails } from './styles';
-import { formatDateToUTC, formatPhoneNumber } from '../../tools/tools';
+import { formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
 import { FaWhatsapp } from "react-icons/fa";
 import { TooltipInfo } from '../TooltipInfo';
 import { AiFillMessage } from 'react-icons/ai';

@@ -38,6 +38,17 @@ export function filterOrders(orders, date) {
   // Filtrar os pedidos com status "Pago"
   const paidOrders = ordersToday.filter(order => order.payment_status === 'paid');
 
+  // Filtrar os pedidos do Chatbot
+  const paidOrdersChatbot = ordersToday.filter(order => 
+    order.payment_status === 'paid' &&
+    order.storefront === 'Loja'
+  );
+
+  // Somar os valores totais dos pedidos com status "Pago"
+  const totalPaidAmountChatbot = paidOrdersChatbot.reduce((total, order) => {
+    return total + parseFloat(order.total); // Use parseFloat para garantir que os valores sejam somados corretamente
+  }, 0);
+
   // Somar os valores totais dos pedidos com status "Pago"
   const totalPaidAmount = paidOrders.reduce((total, order) => {
     return total + parseFloat(order.total); // Use parseFloat para garantir que os valores sejam somados corretamente
@@ -45,6 +56,12 @@ export function filterOrders(orders, date) {
 
   // Total de pedidos pagos formatado
   const totalPaidAmountFormatted = totalPaidAmount.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
+  // Total de pedidos pagos Chatbot formatado
+  const totalPaidAmountChatbotFormatted = totalPaidAmountChatbot.toLocaleString('pt-BR', {
     style: 'currency',
     currency: 'BRL',
   });
@@ -65,6 +82,8 @@ export function filterOrders(orders, date) {
     ordersToday,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
+    totalPaidAmountChatbot,
+    totalPaidAmountChatbotFormatted,
     totalPaidAllAmountFormatted,
     ordersAllToday,
     ordersAllTodayWithPartner,

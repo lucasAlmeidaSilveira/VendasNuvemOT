@@ -1,168 +1,140 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { Container, ContainerCharts } from './styles';
-import 'react-date-picker/dist/DatePicker.css';
-import 'react-calendar/dist/Calendar.css';
 import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { Chart, ChartLine, ChartStates } from '../Chart';
-import { parseCurrency } from '../../tools/tools';
-import { DataSectionTPago } from './DataSectionTPago';
-import { DataSectionAnalytics } from './DataSectionAnalytics';
-import { DataSectionCart } from './DataSectionCart';
-import { DataSectionCosts } from './DataSectionCosts';
-import { DataSectionPay } from './DataSectionPay';
+import { DataSectionAnalytics, DataSectionCart, DataSectionCosts, DataSectionPay, DataSectionTPago } from "./Sections"; 
+import { calculateRoas, parseCurrency } from '../../tools/tools';
+import { Container, ContainerCharts } from './styles';
+import 'react-date-picker/dist/DatePicker.css';
+import 'react-calendar/dist/Calendar.css';
 
 export function Statistics() {
-  const {
-    data,
-    dataADSMeta,
-    isLoadingADSGoogle,
-    isLoadingADSMeta,
-  } = useAnalytics();
-  const { allOrders, isLoadingAllOrders: isLoadingOrders, date, store } = useOrders();
-  const { paidOrders, totalPaidAmountFormatted, totalPaidAllAmountFormatted } =
-    filterOrders(allOrders, date);
+  const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } = useAnalytics();
+  const { allOrders, isLoadingAllOrders, date, store } = useOrders();
   const [usersByDevice, setUsersByDevice] = useState({});
-  const [verbaGoogle, setVerbaGoogle] = useState(0);
-  const [verbaMeta, setVerbaMeta] = useState(0);
-  const [verbaGoogleEcom, setVerbaGoogleEcom] = useState(0);
-  const [verbaMetaEcom, setVerbaMetaEcom] = useState(0);
-  const [totalAdSpend, setTotalAdSpend] = useState(0);
-  const [totalAdSpendEcom, setTotalAdSpendEcom] = useState(0);
+  const [adSpends, setAdSpends] = useState({
+    google: 0,
+    meta: 0,
+    googleEcom: 0,
+    metaEcom: 0,
+  });
 
+  const { paidOrders, totalPaidAmountFormatted, totalPaidAllAmountFormatted, totalPaidAmountChatbotFormatted } = 
+    filterOrders(allOrders, date);
+
+  // Set users by device
+  useEffect(() => {
+    if (data) setUsersByDevice(data.usersByDevice);
+  }, [data]);
+
+  // Set ad spend data
   useEffect(() => {
     if (data) {
-      setUsersByDevice(data.usersByDevice);
+      setAdSpends(prev => ({
+        ...prev,
+        google: parseFloat(data.totalCost),
+        googleEcom: parseFloat(data.totalCostEcom),
+      }));
     }
-  }, [date, data, dataADSMeta]);
-
-  useEffect(() => {
-    if (data) {
-      setVerbaGoogle(parseFloat(data.totalCost));
-      setVerbaGoogleEcom(parseFloat(data.totalCostEcom));
-    }
-  }, [date, data, isLoadingADSGoogle]);
-
-  useEffect(() => {
     if (dataADSMeta && dataADSMeta.length > 0) {
       const firstEntry = dataADSMeta[0];
-      setVerbaMeta(parseFloat(firstEntry.spend));
-      setVerbaMetaEcom(parseFloat(firstEntry.spendEcom));
+      setAdSpends(prev => ({
+        ...prev,
+        meta: parseFloat(firstEntry.spend),
+        metaEcom: parseFloat(firstEntry.spendEcom),
+      }));
     }
-  }, [date, dataADSMeta, isLoadingADSMeta]);
+  }, [data, dataADSMeta]);
 
-  useEffect(() => {
-    setTotalAdSpend(verbaGoogle + verbaMeta);
-    setTotalAdSpendEcom(verbaGoogleEcom + verbaMetaEcom);
-  }, [date, verbaGoogle, verbaMeta, verbaGoogleEcom, verbaMetaEcom]);
+  // Total ad spend
+  const totalAdSpend = useMemo(() => adSpends.google + adSpends.meta, [adSpends]);
+  const totalAdSpendEcom = useMemo(() => adSpends.googleEcom + adSpends.metaEcom, [adSpends]);
 
-  const totalOrdersNumber = useMemo(
-    () => parseCurrency(totalPaidAmountFormatted),
-    [totalPaidAmountFormatted],
-  );
+  // ROAS calculations
+  const totalOrdersNumber = useMemo(() => parseCurrency(totalPaidAmountFormatted), [totalPaidAmountFormatted]);
+  const totalOrdersAllNumber = useMemo(() => parseCurrency(totalPaidAllAmountFormatted), [totalPaidAllAmountFormatted]);
+  const totalOrdersAllChatbotNumber = useMemo(() => parseCurrency(totalPaidAmountChatbotFormatted), [totalPaidAmountChatbotFormatted]);
 
-  const totalOrdersAllNumber = useMemo(
-    () => parseCurrency(totalPaidAllAmountFormatted),
-    [totalPaidAllAmountFormatted],
-  );
+  const roas = useMemo(() => calculateRoas(totalOrdersNumber, totalAdSpend), [totalOrdersNumber, totalAdSpend]);
+  const roasMax = useMemo(() => calculateRoas(totalOrdersAllNumber, totalAdSpend), [totalOrdersAllNumber, totalAdSpend]);
+  const roasEcom = useMemo(() => calculateRoas(totalOrdersNumber, totalAdSpendEcom), [totalOrdersNumber, totalAdSpendEcom]);
+  const roasMaxEcom = useMemo(() => calculateRoas(totalOrdersAllNumber, totalAdSpendEcom), [totalOrdersAllNumber, totalAdSpendEcom]);
+  const roasChatbot = useMemo(() => calculateRoas(totalOrdersAllChatbotNumber, totalAdSpend), [totalOrdersAllChatbotNumber, totalAdSpend]);
+  const roasMaxChatbot = useMemo(() => calculateRoas(totalOrdersAllChatbotNumber, totalAdSpend), [totalOrdersAllChatbotNumber, totalAdSpend]);
 
-  const roas = useMemo(() => {
-    return totalAdSpend > 0
-      ? (totalOrdersNumber / totalAdSpend).toFixed(2)
-      : '0.00';
-  }, [totalOrdersNumber, totalAdSpend]);
-
-  const roasMax = useMemo(() => {
-    return totalAdSpend > 0
-      ? (totalOrdersAllNumber / totalAdSpend).toFixed(2)
-      : '0.00';
-  }, [totalOrdersAllNumber, totalAdSpend]);
-
-  const roasEcom = useMemo(() => {
-    return totalAdSpendEcom > 0
-      ? (totalOrdersNumber / totalAdSpendEcom).toFixed(2)
-      : '0.00';
-  }, [totalOrdersNumber, totalAdSpendEcom]);
-
-  const roasMaxEcom = useMemo(() => {
-    return totalAdSpendEcom > 0
-      ? (totalOrdersAllNumber / totalAdSpendEcom).toFixed(2)
-      : '0.00';
-  }, [totalOrdersAllNumber, totalAdSpendEcom]);
-
-  const bgColorTrafegoPago = '#525252';
-  const bgColorCosts = '#978800';
-  const bgColorAnalytics = '#006BC8';
-  const bgColorConversaoVendas = '#592DEA';
-  const bgColorPayment = '#008006';
+  const bgColors = {
+    trafegoPago: '#525252',
+    costs: '#978800',
+    analytics: '#006BC8',
+    conversaoVendas: '#592DEA',
+    payment: '#008006',
+  };
 
   return (
     <Container>
-      {store === 'artepropria' && (
-        <DataSectionTPago
-          title={'Tráfego Pago | Ecom'}
-          bgcolor={bgColorTrafegoPago}
-          verbaGoogle={verbaGoogleEcom}
-          verbaMeta={verbaMetaEcom}
-          totalAdSpend={totalAdSpendEcom}
-          totalOrdersFormatted={totalPaidAmountFormatted}
-          roas={roasEcom}
-          roasMax={`Max.: ${roasMaxEcom}`}
-          isLoadingADSGoogle={isLoadingADSGoogle}
-          isLoadingOrders={isLoadingOrders}
-          isLoadingADSMeta={isLoadingADSMeta}
-        />
-      )}
-
       <DataSectionTPago
-        title={'Tráfego Pago | Geral'}
-        bgcolor={bgColorTrafegoPago}
-        verbaGoogle={verbaGoogle}
-        verbaMeta={verbaMeta}
+        title="Tráfego Pago | Geral"
+        bgcolor={bgColors.trafegoPago}
+        verbaGoogle={adSpends.google}
+        verbaMeta={adSpends.meta}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
         roas={roas}
         roasMax={`Max.: ${roasMax}`}
         isLoadingADSGoogle={isLoadingADSGoogle}
-        isLoadingOrders={isLoadingOrders}
+        isLoadingOrders={isLoadingAllOrders}
         isLoadingADSMeta={isLoadingADSMeta}
       />
+      {store === 'artepropria' && (
+        <>
+          <DataSectionTPago
+            title="Tráfego Pago | Ecom"
+            bgcolor={bgColors.trafegoPago}
+            verbaGoogle={adSpends.googleEcom}
+            verbaMeta={adSpends.metaEcom}
+            totalAdSpend={totalAdSpendEcom}
+            totalOrdersFormatted={totalPaidAmountFormatted}
+            roas={roasEcom}
+            roasMax={`Max.: ${roasMaxEcom}`}
+            isLoadingADSGoogle={isLoadingADSGoogle}
+            isLoadingOrders={isLoadingAllOrders}
+            isLoadingADSMeta={isLoadingADSMeta}
+          />
+          <DataSectionTPago
+            title="Tráfego Pago | Chatbot"
+            bgcolor={bgColors.trafegoPago}
+            verbaGoogle={adSpends.google}
+            verbaMeta={adSpends.meta}
+            totalAdSpend={totalAdSpend}
+            totalOrdersFormatted={totalPaidAmountChatbotFormatted}
+            roas={roasChatbot}
+            roasMax={`Max.: ${roasMaxChatbot}`}
+            isLoadingADSGoogle={isLoadingADSGoogle}
+            isLoadingOrders={isLoadingAllOrders}
+            isLoadingADSMeta={isLoadingADSMeta}
+          />
+        </>
+      )}
 
-      <DataSectionAnalytics
-        bgcolor={bgColorAnalytics}
-        totalAdSpend={totalAdSpend}
-      />
-      <DataSectionPay bgcolor={bgColorPayment} />
+      <DataSectionAnalytics bgcolor={bgColors.analytics} totalAdSpend={totalAdSpend} />
+      <DataSectionPay bgcolor={bgColors.payment} />
       <DataSectionCosts
-        bgcolor={bgColorCosts}
+        bgcolor={bgColors.costs}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
         isLoadingADSGoogle={isLoadingADSGoogle}
         isLoadingADSMeta={isLoadingADSMeta}
       />
-      <DataSectionCart
-        bgcolor={bgColorConversaoVendas}
-        totalAdSpend={totalAdSpend}
-      />
+      <DataSectionCart bgcolor={bgColors.conversaoVendas} totalAdSpend={totalAdSpend} />
+
       <ContainerCharts>
-        <Chart
-          title={'Sessões por dispositivo'}
-          usersByDevice={usersByDevice}
-          loading={isLoadingADSGoogle}
-        />
-        <ChartStates
-          title={'Vendas por estado'}
-          orders={paidOrders}
-          loading={isLoadingOrders}
-        />
+        <Chart title="Sessões por dispositivo" usersByDevice={usersByDevice} loading={isLoadingADSGoogle} />
+        <ChartStates title="Vendas por estado" orders={paidOrders} loading={isLoadingAllOrders} />
       </ContainerCharts>
+
       <ContainerCharts>
-        <ChartLine
-          title={'Vendas por '}
-          orders={paidOrders}
-          loading={isLoadingOrders}
-        />
+        <ChartLine title="Vendas por período" orders={paidOrders} loading={isLoadingAllOrders} />
       </ContainerCharts>
     </Container>
   );

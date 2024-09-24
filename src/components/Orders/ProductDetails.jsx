@@ -9,7 +9,7 @@ import {
   Paper,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { formatCurrency } from '../../tools/tools';
+import { formatCurrency } from '../../tools/tools.ts';
 import { ContainerDetails } from './styles';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
