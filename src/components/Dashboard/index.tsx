@@ -9,7 +9,7 @@ import { filterOrders } from "../../tools/filterOrders";
 
 export function Dashboard() {
   const { allOrders, isLoading, date, setDate } = useOrders();
-  const { ordersToday, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(allOrders, date)
+  const { ordersToday, ordersTodayPaid, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(allOrders, date)
 
   return (
     <Container>
@@ -21,7 +21,7 @@ export function Dashboard() {
             {isLoading ? (
               <LoadingIcon color={'#FCFAFB'} size={16}  />
               ) : (
-                `${ordersToday.length} Vendas`
+                `${ordersTodayPaid.length} Vendas`
               )}
             </div>
             <div className="text-wrapper-3">

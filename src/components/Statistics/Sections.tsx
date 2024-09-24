@@ -94,7 +94,7 @@ export function DataSectionTPago({
 
 export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
-  const { ordersToday, ordersAllToday } = filterOrders(allOrders, date);
+  const { ordersTodayPaid, ordersAllToday } = filterOrders(allOrders, date);
   const [ passRate, setPassRate ] = useState(DEFAULT_PERCENTAGE);
   const [ creditCardTransactions, setCreditCardTransactions ] = useState(DEFAULT_VALUE);
   const [ pixTransactions, setPixTransactions ] = useState(DEFAULT_VALUE);
@@ -122,10 +122,10 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
 
   useEffect(() => {
     if (ordersAllToday.length > 0) {
-      const passRateValue = (ordersToday.length / ordersAllToday.length) * 100;
+      const passRateValue = (ordersTodayPaid.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [allOrders, ordersAllToday, ordersToday.length]); 
+  }, [allOrders, ordersAllToday, ordersTodayPaid.length]); 
 
   useEffect(() => {
     const creditCardCount = calculateCount('credit_card');
@@ -147,14 +147,14 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     setCreditCardApprovalRate(calculatePercentage(paidCreditCardCount, creditCardCount));
     setPixApprovalRate(calculatePercentage(paidPixCount, pixCount));
     setBoletoApprovalRate(calculatePercentage(paidBoletoCount, boletoCount));
-  }, [ordersToday, ordersAllToday]);
+  }, [ordersTodayPaid, ordersAllToday]);
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Pagamento</h4>
         <div className="row">
-          <BudgetItem title="Pago" tooltip="Nuvemshop" value={ordersToday.length} isLoading={isLoadingOrders} />
+          <BudgetItem title="Pago" tooltip="Nuvemshop" value={ordersTodayPaid.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersAllToday.length} isLoading={isLoadingOrders} />
           <BudgetItem title="Taxa de aprovação Geral" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
         </div>
