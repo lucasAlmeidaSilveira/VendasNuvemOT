@@ -99,7 +99,7 @@ export function Statistics() {
             verbaGoogle={adSpends.googleEcom}
             verbaMeta={adSpends.metaEcom}
             totalAdSpend={totalAdSpendEcom}
-            totalOrdersFormatted={totalPaidAmountFormatted}
+            totalOrdersFormatted={totalPaidAmountEcomFormatted}
             roas={roasEcom}
             roasMax={`Max.: ${roasMaxEcom}`}
             isLoadingADSGoogle={isLoadingADSGoogle}
