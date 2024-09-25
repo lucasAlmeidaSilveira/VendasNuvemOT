@@ -26,7 +26,8 @@ export const AuthProvider = ({ children }) => {
           'samezimaleticia@gmail.com',
           'hermogenesdj@gmail.com',
           'danielerosepedroso@gmail.com',
-          'micjfeltrin@gmail.com'
+          'micjfeltrin@gmail.com',
+          'bruna.artepropria@gmail.com'
         ];
         if (allowedEmails.includes(user.email)) {
           setUser(user);
