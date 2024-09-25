@@ -16,7 +16,9 @@ export const OrdersProvider = ({ children }) => {
   const { user } = useAuth();
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
+  const [allFullOrders, setAllFullOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(true);
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
   const [store, setStore] = useState('outlet');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
@@ -42,6 +44,10 @@ export const OrdersProvider = ({ children }) => {
     setCustomers([]);
   };
 
+  const resetDataAll = () => {
+    setAllFullOrders([])
+  };
+
   const fetchOrdersData = async (startDateISO, endDateISO) => {
     try {
       const response = await fetch(
@@ -60,6 +66,36 @@ export const OrdersProvider = ({ children }) => {
       throw err;
     }
   };
+
+  const fetchAllOrdersData = async () => {
+    try {
+      const response = await fetch(`https://node-vendasnuvemot.onrender.com/db/orders/${store}`);
+      if (!response.ok) {
+        throw new Error('Erro ao buscar todos os pedidos');
+      }
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      setError({
+        message: err.message,
+        type: 'server_offline',
+      });
+      throw err;
+    }
+  }  
+
+  const fetchDataAll = async () => {
+  
+    try {
+      setIsLoadingAllOrders(true);
+      const ordersData = await fetchAllOrdersData();
+      setAllFullOrders(ordersData);
+      setError({});
+      setIsLoadingAllOrders(false);
+    } catch (err) {
+      setError(err.message);
+    }
+  }
 
   const fetchData = async () => {
     const startDateISO = adjustDate(date[0]);
@@ -94,6 +130,15 @@ export const OrdersProvider = ({ children }) => {
     }
   }, [store, date, user]); // Agora escuta mudanças no "user" também
 
+  // Recuperando todo os pedidos para mostrar quantidade de vendas de todos produtos
+  useEffect(() => {
+    if (user) {
+      // Verifica se o usuário está autenticado
+      resetDataAll();
+      fetchDataAll();
+    }
+  }, [store]); // Agora escuta mudanças no "user" também
+
   // Outro useEffect que realiza chamadas periódicas de atualização, mas só se o usuário estiver autenticado
   useEffect(() => {
     if (user) {
@@ -122,6 +167,7 @@ export const OrdersProvider = ({ children }) => {
 
   const value = {
     allOrders,
+    allFullOrders,
     setAllOrders,
     customers,
     setCustomers,
@@ -131,6 +177,7 @@ export const OrdersProvider = ({ children }) => {
     store,
     setStore,
     isLoading,
+    isLoadingAllOrders,
     setIsLoading,
     fetchData,
     automaticUpdate,

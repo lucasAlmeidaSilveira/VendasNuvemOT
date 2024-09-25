@@ -11,7 +11,7 @@ import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
 
 export function Products() {
-  const { allOrders, isLoading, store } = useOrders();
+  const { allFullOrders, isLoadingAllOrders, store } = useOrders();
   const [searchQuery, setSearchQuery] = useState('');
   const [filteredProducts, setFilteredProducts] = useState([]);
   const [productSales, setProductSales] = useState({});
@@ -23,11 +23,11 @@ export function Products() {
   const [authenticated, setAuthenticated] = useState(false);
 
   useEffect(() => {
-    if (!isLoading) {
+    if (!isLoadingAllOrders) {
       const salesMap = {};
       const variationMap = {};
 
-      allOrders.forEach(order => {
+      allFullOrders.forEach(order => {
         if(order.products) {
           order.products.forEach(product => {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
@@ -73,7 +73,7 @@ export function Products() {
       setFilteredVariations(sortedVariations);
       setVariations(variationMap);
     }
-  }, [isLoading, allOrders]);
+  }, [isLoadingAllOrders, allFullOrders]);
 
   useEffect(() => {
     if (searchQuery !== '') {
@@ -165,7 +165,7 @@ export function Products() {
                 <h2 className="total-sales">Vendas</h2>
               </header>
               <div className="table">
-                {isLoading ? (
+                {isLoadingAllOrders ? (
                   <div className="loading">
                     <Loading color={"#1F1F1F"} />
                   </div>
@@ -183,7 +183,7 @@ export function Products() {
                     />
                   ))
                 )}
-                {filteredProducts.length === 0 && !isLoading && (
+                {filteredProducts.length === 0 && !isLoadingAllOrders && (
                   <div className="loading">Nenhum produto encontrado</div>
                 )}
               </div>
@@ -193,7 +193,7 @@ export function Products() {
                 <h2 className="categorie">Variações</h2>
               </header>
               <div className="table">
-                {isLoading ? (
+                {isLoadingAllOrders ? (
                   <div className="loading">
                     <Loading color={"#1F1F1F"} />
                   </div>
@@ -207,7 +207,7 @@ export function Products() {
                     />
                   ))
                 )}
-                {filteredVariations.length === 0 && !isLoading && (
+                {filteredVariations.length === 0 && !isLoadingAllOrders && (
                   <div className="loading">Nenhuma variação encontrada</div>
                 )}
               </div>
