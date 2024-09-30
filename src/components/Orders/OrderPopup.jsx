@@ -14,7 +14,7 @@ import { useAuth } from '../../context/AuthContext';
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .css-1t1j96h-MuiPaper-root-MuiDialog-paper': {
     padding: '1rem',
-  }
+  },
 }));
 
 const DialogTitleCustom = styled(DialogTitle)({
@@ -45,10 +45,11 @@ const TextFieldInput = styled(TextField)({
 });
 
 export function OrderPopup({ open, onClose }) {
-  const { user } = useAuth()
+  const { user } = useAuth();
   const { fetchData } = useOrders();
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('');
+  const [note, setNote] = useState('');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -56,6 +57,7 @@ export function OrderPopup({ open, onClose }) {
   const resetInputs = () => {
     setCreatedAt(new Date());
     setTotal('0');
+    setNote('')
   };
 
   const handleDateChange = e => {
@@ -65,6 +67,10 @@ export function OrderPopup({ open, onClose }) {
       date.setHours(date.getHours() + 3);
       setCreatedAt(date);
     }
+  };
+
+  const handleNote = e => {
+    setNote(e.target.value);
   };
 
   const formatCurrency = value => {
@@ -94,23 +100,24 @@ export function OrderPopup({ open, onClose }) {
         customer: {
           name: user.displayName,
           email: user.email,
-          identification: "99999999999"
+          identification: '99999999999',
         },
         has_shippable_products: '',
         paid_at: createdAt,
         payment_count: 1,
         payment_details: {
-          method: 'loja'
+          method: 'loja',
         },
         payment_status: 'paid',
-        products: [{
-          name: "Produto Loja",
-          name_without_variants: "Produto Loja",
-          price: parseFloat(cleanedTotal),
-          sku: 'produto-loja',
-          quantity: 1,
-
-        }],
+        products: [
+          {
+            name: 'Produto Loja',
+            name_without_variants: 'Produto Loja',
+            price: parseFloat(cleanedTotal),
+            sku: 'produto-loja',
+            quantity: 1,
+          },
+        ],
         shipping_address: {
           city: 'São Paulo',
           province: 'São Paulo',
@@ -142,7 +149,7 @@ export function OrderPopup({ open, onClose }) {
         billing_number: 'Loja',
         billing_phone: 'Loja',
         billing_province: 'São Paulo',
-        note: 'Chatbot',
+        note: note,
         storefront: 'Loja',
         owner_note: 'Chatbot',
         contact_email: user.email,
@@ -171,7 +178,7 @@ export function OrderPopup({ open, onClose }) {
 
       if (response.status === 200 || response.status === 201) {
         setSuccess(true);
-        fetchData()
+        fetchData();
         setTimeout(() => {
           resetInputs();
           setLoading(false);
@@ -218,6 +225,14 @@ export function OrderPopup({ open, onClose }) {
               value={total}
               onChange={e => setTotal(formatCurrency(e.target.value))}
               required
+            />
+            <TextFieldInput
+              variant='filled'
+              type='text'
+              label='Observações'
+              size='small'
+              value={note}
+              onChange={handleNote}
             />
           </ContainerButton>
         </DialogContent>
