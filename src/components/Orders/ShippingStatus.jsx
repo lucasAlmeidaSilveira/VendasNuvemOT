@@ -86,8 +86,10 @@ export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays
   useEffect(() => {
     const fetchDataOrderTiny = async (orderId, orderIdentification) => {
       const order = await getOrderTiny(orderId, orderIdentification)
-      setStatus(order.situacao)
-      return order
+      if(order) {
+        setStatus(order.situacao)
+        return order
+      }
     }
 
     if(order.storefront !== 'Loja') {
