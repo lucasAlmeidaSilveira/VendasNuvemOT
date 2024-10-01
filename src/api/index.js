@@ -57,13 +57,16 @@ export async function createProduct(store, body) {
 export async function createOrder(newOrder) {
   try {
     // Chama a rota do backend para adicionar o pedido
-    const response = await fetch('https://node-vendasnuvemot.onrender.com/order/artepropria', {
-      method: 'POST',
-      headers: {
-        'Content-Type': 'application/json',
+    const response = await fetch(
+      'https://node-vendasnuvemot.onrender.com/order/artepropria',
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(newOrder),
       },
-      body: JSON.stringify(newOrder),
-    });
+    );
 
     if (!response.ok) {
       throw new Error('Erro ao cadastrar o pedido');
@@ -71,23 +74,46 @@ export async function createOrder(newOrder) {
 
     return response;
   } catch (error) {
-
     throw error;
   }
 }
 
 export async function deleteOrder(ownerNote, store) {
   try {
-    const response = await fetch(`https://node-vendasnuvemot.onrender.com/order/${store}/${ownerNote}`, {
-      method: 'DELETE',
-      headers: {'Content-Type': 'application/json'}
-    })
+    const response = await fetch(
+      `https://node-vendasnuvemot.onrender.com/order/${store}/${ownerNote}`,
+      {
+        method: 'DELETE',
+        headers: { 'Content-Type': 'application/json' },
+      },
+    );
 
-    if(!response.ok){
-      throw new Error('Erro ao excluir pedido')
+    if (!response.ok) {
+      throw new Error('Erro ao excluir pedido');
     }
-    return response
+    return response;
   } catch (error) {
-    throw error
+    throw error;
+  }
+}
+
+export async function getOrderTiny(id, cpf) {
+  try {
+    const response = await fetch(
+      `https://node-vendasnuvemot.onrender.com/tiny/order/${id}/${cpf}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    if (response) {
+      return response.json();
+    }
+    return
+  } catch (error) {
+    console.log(error);
   }
 }

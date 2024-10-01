@@ -27,7 +27,6 @@ import { ProductDetails } from './ProductDetails';
 import { TablePaginationActions } from '../Pagination';
 import { InputSearch } from '../InputSearch';
 import { filterOrders } from '../../tools/filterOrders';
-import { SelectDatePickerIcon } from '../SelectDatePicker';
 import { ClientDetails } from './ClientDetails';
 import { TooltipInfo } from '../TooltipInfo';
 import { Loading, LoadingIcon } from '../Loading';
@@ -147,13 +146,13 @@ const headCells = [
     id: 'status',
     numeric: false,
     disablePadding: false,
-    label: 'Status de Pagamento',
+    label: 'Pagamento',
   },
   {
     id: 'shipping_status',
     numeric: false,
     disablePadding: false,
-    label: 'Status de Envio',
+    label: 'Status',
   },
 ];
 
@@ -199,7 +198,7 @@ export function Orders() {
   const [searchQuery, setSearchQuery] = useState('');
   const [expandedOrders, setExpandedOrders] = useState({});
   const [page, setPage] = useState(0);
-  const [rowsPerPage, setRowsPerPage] = useState(10);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
   const [totalUnpacked, setTotalUnpacked] = useState(0);
   const [totalShipped, setTotalShipped] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
@@ -373,7 +372,7 @@ export function Orders() {
   };
 
   const handleChangeRowsPerPage = event => {
-    setRowsPerPage(parseInt(event.target.value, 10));
+    setRowsPerPage(parseInt(event.target.value, 5));
     setPage(0);
   };
 
@@ -396,9 +395,6 @@ export function Orders() {
 
     return urlTracking;
   };
-
-  const minSelectableDate = new Date('2023-11-23');
-  const maxSelectableDate = new Date();
 
   return (
     <>
@@ -577,15 +573,8 @@ export function Orders() {
                         className={order.storefront === 'Loja' && 'd-row'}
                       >
                         <ShippingStatus
+                          order={order}
                           statusOrder={order.status}
-                          status={
-                            isLate(order)
-                              ? 'late'
-                              : order.payment_status === 'paid' &&
-                                order.status === 'closed'
-                              ? 'closed'
-                              : order.shipping_status
-                          }
                           created_at={order.created_at}
                           shippingMinDays={order.shipping_min_days}
                           shippingMaxDays={order.shipping_max_days}

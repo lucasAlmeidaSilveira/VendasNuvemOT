@@ -1,31 +1,38 @@
-import React from 'react';
+import React, { useEffect, useState } from 'react';
+import { getOrderTiny } from '../../api';
 import { FaTruckArrowRight } from "react-icons/fa6";
-import { TbPackageExport } from "react-icons/tb";
+import { TbClockStop, TbNotes, TbPackageExport, TbReload, TbXboxX } from "react-icons/tb";
 import { FaCheckCircle, FaStore } from "react-icons/fa";
 import { MdAssignmentLate } from "react-icons/md";
 import { ShippingStatusContainer } from './styles';
 
 function calculateShippingStatus(statusOrder, status, created_at, shippingMinDays, shippingMaxDays, paymentStatus) {
-  const statusMap = {
-    unpacked: 'A Enviar',
-    shipped: 'Enviado',
-    closed: 'Entregue',
-    late: 'Atrasado'
-  };
-
   const backgroundColorMap = {
-    unpacked: '#fffbe0', // Amarelo claro
-    shipped: '#daf1fa',
-    closed: '#e0ffe0',
-    late: '#ffe0e0',
+    'Preparando envio': '#d8e9f3', // Azul claro
+    'Em aberto': '#fef6d7', // Amarelo
+    'Aprovado': '#d4f8d1', // Verde claro
+    'Faturado (atendido)': '#d8e9f3', // Azul claro
+    'Pronto para envio': '#ffe3c0', // Laranja claro
+    'Enviado': '#d8e9f3', // Azul claro
+    'Entregue': '#d4f8d1', // Verde claro
+    'Não Entregue': '#e0e0e0', // Cinza claro
+    'Cancelado': '#fbd4d4', // Vermelho claro
+    late: '#fbd4d4', // Vermelho claro para atrasados
   };
-
+  
   const borderColorMap = {
-    unpacked: '#f49820', // Amarelo
-    shipped: '#39abe4',
-    closed: '#38b257',
-    late: '#e64e4e',
+    'Preparando envio': '#3498db', // Azul escuro
+    'Em aberto': '#f1c40f', // Amarelo escuro
+    'Aprovado': '#2ecc71', // Verde escuro
+    'Faturado (atendido)': '#3498db', // Azul escuro
+    'Pronto para envio': '#e67e22', // Laranja escuro
+    'Enviado': '#3498db', // Azul escuro
+    'Entregue': '#2ecc71', // Verde escuro
+    'Não Entregue': '#95a5a6', // Cinza escuro
+    'Cancelado': '#e74c3c', // Vermelho escuro
+    late: '#e74c3c', // Vermelho escuro para atrasados
   };
+  
 
   let currentStatus = status;
 
@@ -40,7 +47,7 @@ function calculateShippingStatus(statusOrder, status, created_at, shippingMinDay
   const isLate = new Date() > shippingDeadline && currentStatus !== 'closed' && paymentStatus === 'paid';
 
   return {
-    status: isLate ? 'Atrasado' : statusMap[currentStatus],
+    status: isLate ? 'Atrasado' : status,
     backgroundColor: isLate ? backgroundColorMap.late : backgroundColorMap[currentStatus],
     borderColor: isLate ? borderColorMap.late : borderColorMap[currentStatus],
   };
@@ -48,20 +55,46 @@ function calculateShippingStatus(statusOrder, status, created_at, shippingMinDay
 
 const getIcon = currentStatus => {
   switch (currentStatus) {
-    case 'A Enviar':
+    case 'Atualizando status...':
+      return <TbReload />;
+    case 'Preparando envio':
       return <TbPackageExport />;
+    case 'Pronto para envio':
+      return <TbPackageExport />;
+    case 'Aprovado':
+      return <TbPackageExport />;
+    case 'Em aberto':
+      return <TbClockStop />;
+    case 'Faturado':
+      return <TbNotes />
     case 'Enviado':
       return <FaTruckArrowRight />;
     case 'Entregue':
       return <FaCheckCircle />;
     case 'Atrasado':
       return <MdAssignmentLate />;
+    case 'Cancelado':
+      return <TbXboxX />;
     default:
       return null;
   }
 };
 
-export function ShippingStatus({ statusOrder, status, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus, shipping }) {
+export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus, shipping }) {
+  const [status, setStatus ] =  useState('Atualizando status...')
+
+  useEffect(() => {
+    const fetchDataOrderTiny = async (orderId, orderIdentification) => {
+      const order = await getOrderTiny(orderId, orderIdentification)
+      setStatus(order.situacao)
+      return order
+    }
+
+    if(order.storefront !== 'Loja') {
+      fetchDataOrderTiny(order.order_id, order.customer.identification)
+    }
+  }, [])
+
   const { status: currentStatus, backgroundColor, borderColor } = calculateShippingStatus(
     statusOrder,
     status,
