@@ -74,6 +74,8 @@ export function ClientDetails({ order }) {
     return 'Não'
   }
 
+  console.log(order)
+
   return (
     <ContainerDetails>
       <h3>{order.contact_name}
@@ -101,7 +103,7 @@ export function ClientDetails({ order }) {
                 {order.contact_identification}
               </StyledTableCell>
               <StyledTableCell>{order.contact_email}</StyledTableCell>
-              <StyledTableCell style={{ display: 'flex', gap: '4px', alignItems: 'center' }}>
+              <StyledTableCell style={{ display: 'flex', gap: '4px', alignItems: 'center', borderBottom: 'none' }}>
                 {order.contact_phone ? (
                   <>
                     {formatPhoneNumber(order.contact_phone)}
@@ -113,7 +115,10 @@ export function ClientDetails({ order }) {
                   'Não informado'
                 )}
               </StyledTableCell>
-              <StyledTableCell>{formatLocation(order.billing_city, order.billing_province)}</StyledTableCell>
+              <StyledTableCell>
+                {order.shipping_address.city}, {order.shipping_address.province}
+                <p style={{fontSize: '12px', color: 'var(--geralblack-70)'}}>{order.shipping_address.address}, {order.shipping_address.number}</p>
+              </StyledTableCell>
             </TableRow>
           </TableBody>
           <TableHead>
