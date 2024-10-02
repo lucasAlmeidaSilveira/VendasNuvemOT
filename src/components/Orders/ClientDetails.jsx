@@ -74,8 +74,6 @@ export function ClientDetails({ order }) {
     return 'Não'
   }
 
-  console.log(order)
-
   return (
     <ContainerDetails>
       <h3>{order.contact_name}
