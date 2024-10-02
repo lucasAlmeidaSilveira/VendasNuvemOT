@@ -193,6 +193,7 @@ export function Orders() {
   const { allOrders, isLoading, store, setAllOrders, date } = useOrders();
   const { ordersAllTodayWithPartner } = filterOrders(allOrders, date);
   const [statusFilter, setStatusFilter] = useState('all');
+  const [filteredOrders, setFilteredOrders] = useState([])
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
   const [paymentMethodFilter, setPaymentMethodFilter] = useState('all');
   const [searchQuery, setSearchQuery] = useState('');
@@ -294,8 +295,8 @@ export function Orders() {
   };
 
 
-  const filteredOrders = useMemo(() => {
-    return stableSort(
+  useEffect(() => {
+    const filteredOrdersCalc = stableSort(
       ordersAllTodayWithPartner
         .filter(order => {
           const paymentStatusMatch =
@@ -348,8 +349,10 @@ export function Orders() {
             order.customer.email.toLowerCase().includes(searchLower)
           );
         }),
-      getComparator(order, orderBy),
+      getComparator(order, orderBy)
     );
+
+    setFilteredOrders(filteredOrdersCalc); // Atualiza o estado com os pedidos filtrados
   }, [
     allOrders,
     store,
