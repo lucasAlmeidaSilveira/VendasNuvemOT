@@ -8,7 +8,7 @@ import { BestSellers } from "../BestSellers";
 import { filterOrders } from "../../tools/filterOrders";
 
 export function Dashboard() {
-  const { allOrders, isLoading, date, setDate } = useOrders();
+  const { allOrders, isLoading, date } = useOrders();
   const { ordersToday, ordersTodayPaid, totalOrdersFormatted, totalPaidAmountFormatted } = filterOrders(allOrders, date)
 
   return (
@@ -19,7 +19,7 @@ export function Dashboard() {
           <div className="div">
             <div className="text-wrapper-2">
             {isLoading ? (
-              <Loading />
+              <Loading bgColor="#FCFAFB"/>
               ) : (
                 `${ordersTodayPaid.length} Vendas`
               )}
