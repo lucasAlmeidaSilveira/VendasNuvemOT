@@ -113,7 +113,6 @@ export function DataSectionTPago({
   const metaCosts = formatCostsByPlatform(verba, 'meta');
   let totalCosts = [{ name: '', value: 0 }];
   totalCosts = sumCostsByCombinedPlatform(verba);
-  console.log(totalCosts)
 
   const roasQuadros = calculateRoas(totalQuadrosFormatted, totalCosts[0]?.value);
   const roasEspelhos = calculateRoas(
@@ -121,8 +120,6 @@ export function DataSectionTPago({
     totalCosts[1]?.value,
     );
   const roasGeral = calculateRoas(parseCurrency(totalPaidAmountFormatted), totalCosts[2]?.value);
-  console.log("totalCosts: ", totalCosts)
-  console.log(totalPaidAmountFormatted ,totalQuadrosFormatted, totalEspelhosFormatted)
 
   const dataRoas = [
     { name: 'Quadros', value: roasQuadros },
