@@ -12,7 +12,7 @@ import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
 import { formatDateToISO } from '../../tools/tools';
-import { LoadingIcon } from '../Loading';
+import { Loading } from '../Loading';
 import { filterOrders } from '../../tools/filterOrders';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
@@ -118,7 +118,7 @@ export function Coupons() {
           {isLoading ? (
             <TableRow>
               <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
-                <LoadingIcon size={16} color='var(--geralblack-100)' />
+                <Loading />
               </StyledTableCell>
             </TableRow>
           ) : filteredCoupons.length === 0 ? (

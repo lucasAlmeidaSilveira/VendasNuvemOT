@@ -178,7 +178,7 @@ export function BestSellers() {
             <div className="table">
               {isLoading ? (
                 <div className="loading">
-                  <Loading color={"#1F1F1F"} />
+                  <Loading />
                 </div>
               ) : (
                 products[category].slice(0, numberProducts).map((product, productIndex) => (
@@ -212,7 +212,7 @@ export function BestSellers() {
           <div className="table">
             {isLoading ? (
               <div className="loading">
-                <Loading color={"#1F1F1F"} />
+                <Loading />
               </div>
             ) : (
               products.variations.slice(0, numberProducts).map((variant, variantIndex) => (

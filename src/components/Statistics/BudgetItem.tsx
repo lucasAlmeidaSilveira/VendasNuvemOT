@@ -9,8 +9,8 @@ import { MdOutlineHelpOutline } from 'react-icons/md';
 interface BudgetItemStatisticsProps {
   icon?: React.ElementType;
   iconColor?: string;
-  dataCosts: DataCosts[];
-  small?: string;
+  dataCosts?: DataCosts[];
+  small?: number | string;
   info?: string;
   title: string;
   value: number | string;
@@ -58,7 +58,7 @@ export function BudgetItemStatistics({
       </div>
       <div className='text-wrapper-4'>
         {isLoading ? (
-          <Loading color={'#1F1F1F'} />
+          <Loading />
         ) : (
           <>
             <div>
@@ -73,14 +73,16 @@ export function BudgetItemStatistics({
               )}
             </div>
             <div className='column-list'>
-              {dataCosts.map((data, index) => (
-                <div key={index} className='row-list'>
-                  <span>
-                    {title === 'ROAS' ? data.value : formatCurrency(data.value)}
-                  </span>
-                  <span>{data.name}</span>
-                </div>
-              ))}
+              {dataCosts && (
+                dataCosts.map((data, index) => (
+                  <div key={index} className='row-list'>
+                    <span>
+                      {title === 'ROAS' ? data.value : formatCurrency(data.value)}
+                    </span>
+                    <span>{data.name}</span>
+                  </div>
+                ))
+              )}
             </div>
           </>
         )}
@@ -113,7 +115,7 @@ export function BudgetItem({
       </div>
       <div className='text-wrapper-3'>
         {isLoading ? (
-          <Loading color={'#1F1F1F'} />
+          <Loading />
         ) : (
           <>
             {value}

@@ -92,7 +92,7 @@ export function Statistics() {
   return (
     <Container>
       <DataSectionTPago
-        title='Tráfego Pago | Geral'
+        title='Geral'
         bgcolor={bgColors.trafegoPago}
         verba={adSpends}
         totalOrdersFormatted={totalPaidAmountFormatted}
@@ -106,7 +106,7 @@ export function Statistics() {
       {store === 'artepropria' && (
         <>
           <DataSectionTPago
-            title='Tráfego Pago | Ecom'
+            title='Ecom'
             bgcolor={bgColors.trafegoPago}
             verba={adSpends}
             totalOrdersFormatted={totalPaidAmountEcomFormatted}
@@ -117,7 +117,7 @@ export function Statistics() {
             isLoadingADSMeta={isLoadingADSMeta}
           />
           <DataSectionTPago
-            title='Tráfego Pago | Chatbot'
+            title='Chatbot'
             bgcolor={bgColors.trafegoPago}
             verba={adSpends}
             totalOrdersFormatted={totalPaidAmountChatbotFormatted}

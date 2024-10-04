@@ -1,40 +1,15 @@
 /* eslint-disable react/prop-types */
-import { Oval } from 'react-loader-spinner';
-import { ContainerLoading } from './styles';
+import { Skeleton } from '@mui/material';
 
-export function Loading({ color }) {
+export function Loading() {
   return (
-    <ContainerLoading>
-      Carregando...
-      <Oval
-        height={32}
-        width={24}
-        color={color}
-        wrapperStyle={{}}
-        wrapperClass=''
-        visible={true}
-        ariaLabel='oval-loading'
-        secondaryColor={color}
-        strokeWidth={4}
-        strokeWidthSecondary={4}
-      />
-    </ContainerLoading>
-  );
-}
-
-export function LoadingIcon({ color, size }) {
-  return (
-    <Oval
-      height={size}
-      width={size}
-      color={color}
-      wrapperStyle={{}}
-      wrapperClass=''
-      visible={true}
-      ariaLabel='oval-loading'
-      secondaryColor={color}
-      strokeWidth={4}
-      strokeWidthSecondary={4}
+    <Skeleton
+      variant='rectangular'
+      width={'100%'}
+      height={40}
+      sx={{
+        mixBlendMode: 'color-burn', // Modo de mesclagem para ajustar a cor de contraste
+      }}
     />
   );
 }

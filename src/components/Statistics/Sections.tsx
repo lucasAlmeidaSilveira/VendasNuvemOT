@@ -130,7 +130,7 @@ export function DataSectionTPago({
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>{title}</h4>
+        <h4>Tráfego Pago | {title}</h4>
         <div className='row'>
           <BudgetItemStatistics
             icon={FcGoogle}
@@ -174,10 +174,10 @@ export function DataSectionTPago({
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
-            dataCosts={dataRoas}
+            dataCosts={title !== 'Chatbot' ? dataRoas : undefined} 
             tooltip='Faturamento x Verba Total'
             value={roas}
-            small={`Max.: ${roasMax}`}
+            small={title !== 'Chatbot' ? roasMax : undefined}
             isLoading={
               isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders
             }

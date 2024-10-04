@@ -2,7 +2,7 @@ import React from "react";
 import { Container, ContainerOrders, ContainerPago, ContainerGeral } from "./styles";
 import 'react-date-picker/dist/DatePicker.css'
 import 'react-calendar/dist/Calendar.css'
-import { Loading, LoadingIcon } from "../Loading";
+import { Loading } from "../Loading";
 import { useOrders } from "../../context/OrdersContext";
 import { BestSellers } from "../BestSellers";
 import { filterOrders } from "../../tools/filterOrders";
@@ -19,14 +19,14 @@ export function Dashboard() {
           <div className="div">
             <div className="text-wrapper-2">
             {isLoading ? (
-              <LoadingIcon color={'#FCFAFB'} size={16}  />
+              <Loading />
               ) : (
                 `${ordersTodayPaid.length} Vendas`
               )}
             </div>
             <div className="text-wrapper-3">
               {isLoading ? (
-                <Loading color={'#FCFAFB'} />
+                <Loading />
                 ) : (
                   totalPaidAmountFormatted
                 )
@@ -39,14 +39,14 @@ export function Dashboard() {
           <div className="div">
             <div className="text-wrapper-2">
             {isLoading ? (
-                <LoadingIcon color={'var(--geralblack-100)'} size={16}  />
+                <Loading />
               ) : (
                 `${ordersToday.length} Vendas`
               )}
             </div>
             <div className="text-wrapper-3">
             {isLoading ? (
-                <Loading color={'var(--geralblack-100)'} />
+                <Loading />
                 ) : (
                   totalOrdersFormatted
                 )

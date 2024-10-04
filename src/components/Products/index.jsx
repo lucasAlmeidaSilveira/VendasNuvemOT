@@ -167,7 +167,7 @@ export function Products() {
               <div className="table">
                 {isLoadingAllOrders ? (
                   <div className="loading">
-                    <Loading color={"#1F1F1F"} />
+                    <Loading />
                   </div>
                 ) : (
                   filteredProducts.slice(0, numberProducts).map((product, productIndex) => (
@@ -195,7 +195,7 @@ export function Products() {
               <div className="table">
                 {isLoadingAllOrders ? (
                   <div className="loading">
-                    <Loading color={"#1F1F1F"} />
+                    <Loading />
                   </div>
                 ) : (
                   filteredVariations.slice(0, numberProducts).map((variant, variantIndex) => (

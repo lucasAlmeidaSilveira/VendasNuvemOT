@@ -29,7 +29,7 @@ import { InputSearch } from '../InputSearch';
 import { filterOrders } from '../../tools/filterOrders';
 import { ClientDetails } from './ClientDetails';
 import { TooltipInfo } from '../TooltipInfo';
-import { Loading, LoadingIcon } from '../Loading';
+import { Loading } from '../Loading';
 
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
@@ -411,7 +411,7 @@ export function Orders() {
           <span>Em produção</span>
           <span>
             {isLoading ? (
-              <Loading size={16} color='var(--geralblack-100)' />
+              <Loading />
             ) : (
               totalUnpacked
             )}
@@ -426,7 +426,7 @@ export function Orders() {
           <span>Enviados</span>
           <span>
             {isLoading ? (
-              <Loading size={16} color='var(--geralblack-100)' />
+              <Loading />
             ) : (
               totalShipped
             )}
@@ -441,7 +441,7 @@ export function Orders() {
           <span>Em atraso</span>
           <span>
             {isLoading ? (
-              <Loading size={16} color='var(--geralblack-100)' />
+              <Loading />
             ) : (
               totalLate
             )}
@@ -511,7 +511,7 @@ export function Orders() {
             {isLoading ? (
               <TableRow>
                 <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
-                  <LoadingIcon size={16} color='var(--geralblack-100)' />
+                  <Loading />
                 </StyledTableCell>
               </TableRow>
             ) : filteredOrders.length === 0 ? (

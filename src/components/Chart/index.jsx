@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { PieChart, pieArcLabelClasses } from '@mui/x-charts/PieChart';
 import { BarChart, Bar, XAxis, YAxis, Tooltip, ResponsiveContainer, Cell, CartesianGrid } from 'recharts';
-import { LoadingIcon } from '../Loading';
+import { Loading } from '../Loading';
 import { CategorySelect } from '../CategorySelect';
 import { useOrders } from '../../context/OrdersContext';
 import { ContainerChartLine, ContainerChartPie, ContainerChartStates } from './styles';
@@ -45,7 +45,7 @@ export function Chart({ usersByDevice, title, loading }) {
     <ContainerChartPie>
       <h2>{title}</h2>
       {loading ? (
-        <LoadingIcon color='#1F1F1F' size={32} />
+        <Loading />
       ) : (
         <PieChart
           series={[
@@ -171,7 +171,7 @@ export function ChartLine({ orders, title, loading }) {
         </h2>
       </div>
       {loading ? (
-        <LoadingIcon color='#1F1F1F' size={32} />
+        <Loading />
       ) : (
         <ResponsiveContainer width="100%" height={300}>
           <BarChart data={dataPoints} layout="horizontal">
@@ -250,7 +250,7 @@ export function ChartStates({ orders, title, loading }) {
         />
       </div>
       {loading ? (
-        <LoadingIcon color='#1F1F1F' size={32} />
+        <Loading />
       ) : (
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={estados} layout="vertical">

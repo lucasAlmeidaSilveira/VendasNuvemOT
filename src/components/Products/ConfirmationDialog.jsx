@@ -8,7 +8,7 @@ import {
   styled,
 } from '@mui/material';
 import { Button } from '../Button';
-import { LoadingIcon } from '../Loading';
+import { Loading } from '../Loading';
 import { PiCheckCircleBold } from 'react-icons/pi';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
@@ -56,7 +56,7 @@ export function ConfirmationDialog({ open, onClose, onConfirm, loading, success,
             success ? (
               <PiCheckCircleBold size={20} />
             ) : (
-              <LoadingIcon size={20} color={'var(--geralwhite'} />
+              <Loading />
             )
           ) : (
             <>Confirmar</>
