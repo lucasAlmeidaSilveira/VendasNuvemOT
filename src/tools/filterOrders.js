@@ -4,6 +4,19 @@ import { isOrderOnDate } from './isOrderFromToday';
 const calculateTotal = (orders) =>
   orders.reduce((total, order) => total + parseFloat(order.total), 0);
 
+// Função genérica para calcular totais baseado nos produtos
+const calculateTotalByProductType = (orders, productType) =>
+  orders.reduce((total, order) => {
+    const filteredProducts = order.products.filter(product => 
+      product.name.toLowerCase().includes(productType.toLowerCase())
+    );
+    
+    // Somando o preço dos produtos que correspondem ao tipo (Quadro ou Espelho)
+    const productTotal = filteredProducts.reduce((sum, product) => sum + parseFloat(product.price), 0);
+    
+    return total + productTotal;
+  }, 0);
+
 export function filterOrders(orders, date) {
   const filterOrdersByConditions = (extraConditions) =>
     orders.filter(order => 
@@ -18,6 +31,9 @@ export function filterOrders(orders, date) {
   const ordersAllTodayWithPartner = orders.filter(order =>
     isOrderOnDate(order.created_at, date) && order.status !== 'cancelled'
   );
+    // Cálculo do faturamento por tipo de produto
+    const totalQuadros = calculateTotalByProductType(ordersTodayPaid, 'Quadro');
+    const totalEspelhos = calculateTotalByProductType(ordersTodayPaid, 'Espelho');
 
   const totals = {
     totalOrdersFormatted: calculateTotal(ordersToday).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
@@ -26,6 +42,8 @@ export function filterOrders(orders, date) {
     totalPaidAllAmountEcomFormatted: calculateTotal(ordersToday.filter(order => order.storefront !== 'Loja')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAmountFormatted: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid')).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAllAmountFormatted: calculateTotal(ordersAllToday).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    totalQuadrosFormatted: totalQuadros,
+    totalEspelhosFormatted: totalEspelhos,
   };
 
   return {

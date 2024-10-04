@@ -1,15 +1,28 @@
+import { ReactNode } from "react";
+
 export interface DataSectionTPagoProps {
   title: string;
   bgcolor: string;
-  verbaGoogle: number | string;
-  verbaMeta: number | string;
-  totalAdSpend: number | string;
+  verba: Verba;
   totalOrdersFormatted: number;
   roas: number | string;
   roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
   isLoadingADSMeta: boolean;
+}
+
+type Verba = {
+  google: number,
+  googleEcom: number,
+  googleQuadros: number,
+  googleEspelhos: number,
+  googleGeral: number,
+  meta: number,
+  metaEcom: number,
+  metaQuadros: number,
+  metaEspelhos: number,
+  metaGeral: number,
 }
 
 export interface DataSectionCartProps {
@@ -59,3 +72,47 @@ export interface CouponProps {
   value: string;
 }
 
+// Analytics
+
+export interface ADSMetaEntry {
+  account_id: string;
+  totalCost: TotalCost;
+  impressions: number;
+}
+
+export type TotalCost = {
+  all: number;
+  ecom: number;
+  quadros: number;
+  espelhos: number;
+  geral: number;
+};
+
+export type UsersByDevice = {
+  mobile: number;
+  desktop: number;
+  tablet: number;
+};
+
+export interface DataProps {
+  totalVisits: number;
+  usersByDevice: UsersByDevice;
+  totalCost: TotalCost;
+  carts: number;
+  beginCheckout: number;
+}
+
+export interface DataAnalyticsProps {
+  data: DataProps;
+  dataADSMeta: ADSMetaEntry[];
+  isLoadingADSGoogle: boolean;
+  isLoadingADSMeta: boolean;
+  error: string | null;
+  resetData: () => void;
+  fetchDataGoogle: () => void;
+  fetchDataADSMeta: () => void;
+}
+
+export interface AnalyticsProviderProps {
+  children: ReactNode;
+}

@@ -1,21 +1,34 @@
-import React, { useEffect, useMemo, useState } from "react";
+import React, { useEffect, useMemo, useState } from 'react';
 import { useAnalytics } from '../../context/AnalyticsContext';
-import { useCoupons } from "../../context/CouponsContext";
-import { useOrders } from "../../context/OrdersContext";
-import { BudgetItem } from './BudgetItem';
-import { calculateAverageTicket, formatCurrency, parseCurrency } from '../../tools/tools';
-import { filterOrders } from "../../tools/filterOrders";
+import { useCoupons } from '../../context/CouponsContext';
+import { useOrders } from '../../context/OrdersContext';
+import { BudgetItem, BudgetItemStatistics } from './BudgetItem';
+import {
+  calculateAverageTicket,
+  calculateRoas,
+  formatCurrency,
+  parseCurrency,
+} from '../../tools/tools';
+import { filterOrders } from '../../tools/filterOrders';
 import { ContainerOrders, ContainerGeral } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
 import { FaMeta } from 'react-icons/fa6';
 import { MdOutlineAttachMoney } from 'react-icons/md';
-import { FaCreditCard, FaPix } from "react-icons/fa6";
-import { FaFileInvoiceDollar } from "react-icons/fa";
-import { FaWhatsapp } from "react-icons/fa";
-import { IoIosMail } from "react-icons/io";
-import { CouponProps, DataSectionAnalyticsProps, DataSectionCartProps, DataSectionCostsProps, DataSectionPayProps, DataSectionTPagoProps, Order } from "../../types";
+import { FaCreditCard, FaPix } from 'react-icons/fa6';
+import { FaFileInvoiceDollar } from 'react-icons/fa';
+import { FaWhatsapp } from 'react-icons/fa';
+import { IoIosMail } from 'react-icons/io';
+import {
+  CouponProps,
+  DataSectionAnalyticsProps,
+  DataSectionCartProps,
+  DataSectionCostsProps,
+  DataSectionPayProps,
+  DataSectionTPagoProps,
+  Order,
+} from '../../types';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -23,9 +36,7 @@ const DEFAULT_PERCENTAGE = '0%';
 export function DataSectionTPago({
   title,
   bgcolor,
-  verbaGoogle,
-  verbaMeta,
-  totalAdSpend,
+  verba,
   totalOrdersFormatted,
   roas,
   roasMax,
@@ -33,58 +44,146 @@ export function DataSectionTPago({
   isLoadingOrders,
   isLoadingADSMeta,
 }: DataSectionTPagoProps) {
-  verbaGoogle = formatCurrency(verbaGoogle);
-  verbaMeta = formatCurrency(verbaMeta);
-  totalAdSpend = formatCurrency(totalAdSpend);
+  const { allOrders, date } = useOrders();
+  // Filtros para pedidos
+  const { totalEspelhosFormatted, totalQuadrosFormatted, totalPaidAmountFormatted } = filterOrders(
+    allOrders,
+    date,
+  );
+
+  const totalByCategory = [
+    {
+      name: 'Quadros',
+      value: totalQuadrosFormatted,
+    },
+    { name: 'Espelhos', value: totalEspelhosFormatted },
+  ];
+
+  const verbaGoogle = formatCurrency(verba.google);
+  const verbaMeta = formatCurrency(verba.meta);
+  const totalAdSpend = formatCurrency(verba.google + verba.meta);
+
+  // Função para converter o objeto em arrays separados por plataforma
+  const formatCostsByPlatform = (
+    costs: Record<string, number>,
+    platform: string,
+  ) => {
+    const filteredCosts = Object.entries(costs)
+      .filter(
+        ([key, value]) =>
+          key.toLowerCase().includes(platform.toLowerCase()) &&
+          key !== platform &&
+          value !== 0,
+      ) // Filtra por plataforma
+      .map(([key, value]) => ({
+        name: key.replace(platform, ''), // Remove o nome da plataforma
+        value, // Formata para BRL
+      }));
+
+    return filteredCosts;
+  };
+
+  const sumCostsByCombinedPlatform = (costs: Record<string, number>) => {
+    const platformTotals: Record<string, number> = {};
+
+    Object.entries(costs).forEach(([key, value]) => {
+      // Extraímos a parte comum da chave (ex: "Quadros", "Espelhos", etc.)
+      const platformType = key.replace(/^(google|meta)/i, '').toLowerCase();
+
+      if (typeof value === 'number') {
+        // Soma os valores da mesma categoria, independentemente da plataforma (google/meta)
+        platformTotals[platformType] =
+          (platformTotals[platformType] || 0) + value;
+      }
+    });
+
+    // Converte o objeto em um array de objetos, formatando as categorias
+    return Object.entries(platformTotals)
+      .filter(
+        ([name, value]) =>
+          value !== 0 && name !== 'google' && name !== 'meta' && name !== '',
+      )
+      .map(([name, value]) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1), // Capitaliza o nome da plataforma
+        value, // Formata o total com duas casas decimais
+      }));
+  };
+
+  const googleCosts = formatCostsByPlatform(verba, 'google');
+  const metaCosts = formatCostsByPlatform(verba, 'meta');
+  let totalCosts = [{ name: '', value: 0 }];
+  totalCosts = sumCostsByCombinedPlatform(verba);
+  console.log(totalCosts)
+
+  const roasQuadros = calculateRoas(totalQuadrosFormatted, totalCosts[0]?.value);
+  const roasEspelhos = calculateRoas(
+    totalEspelhosFormatted,
+    totalCosts[1]?.value,
+    );
+  const roasGeral = calculateRoas(parseCurrency(totalPaidAmountFormatted), totalCosts[2]?.value);
+  console.log("totalCosts: ", totalCosts)
+  console.log(totalPaidAmountFormatted ,totalQuadrosFormatted, totalEspelhosFormatted)
+
+  const dataRoas = [
+    { name: 'Quadros', value: roasQuadros },
+    { name: 'Espelhos', value: roasEspelhos },
+    { name: 'Geral', value: roasGeral },
+  ];
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>
-          {title}
-        </h4>
+        <h4>{title}</h4>
         <div className='row'>
-          <BudgetItem
+          <BudgetItemStatistics
             icon={FcGoogle}
             title='Verba Google'
-            tooltip="Google ADS"
+            dataCosts={googleCosts}
+            tooltip='Google ADS'
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
           />
-          <BudgetItem
+          <BudgetItemStatistics
             icon={FaMeta}
             iconColor='#008bff'
             title='Verba Meta'
-            tooltip="Meta ADS"
+            dataCosts={metaCosts}
+            tooltip='Meta ADS'
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
           />
-          <BudgetItem
+          <BudgetItemStatistics
             icon={GrMoney}
             iconColor='var(--geralblack-100)'
             title='Verba Total'
-            tooltip="Google ADS x Meta ADS"
+            dataCosts={totalCosts}
+            tooltip='Google ADS x Meta ADS'
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
           />
         </div>
         <div className='row'>
-          <BudgetItem
+          <BudgetItemStatistics
             icon={MdOutlineAttachMoney}
             iconColor='var(--uipositive-100)'
             title='Faturamento'
-            tooltip="Nuvemshop" 
+            info="Frete incluído"
+            dataCosts={totalByCategory}
+            tooltip='Nuvemshop'
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
-          <BudgetItem
+          <BudgetItemStatistics
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
-            tooltip="Faturamento x Verba Total"
+            dataCosts={dataRoas}
+            tooltip='Faturamento x Verba Total'
             value={roas}
-            small={roasMax}
-            isLoading={isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders}
+            small={`Max.: ${roasMax}`}
+            isLoading={
+              isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders
+            }
           />
         </div>
       </ContainerGeral>
@@ -95,37 +194,46 @@ export function DataSectionTPago({
 export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
   const { ordersTodayPaid, ordersAllToday } = filterOrders(allOrders, date);
-  const [ passRate, setPassRate ] = useState(DEFAULT_PERCENTAGE);
-  const [ creditCardTransactions, setCreditCardTransactions ] = useState(DEFAULT_VALUE);
-  const [ pixTransactions, setPixTransactions ] = useState(DEFAULT_VALUE);
-  const [ boletoTransactions, setBoletoTransactions ] = useState(DEFAULT_VALUE);
-  const [ creditCardPercentage, setCreditCardPercentage ] = useState(DEFAULT_PERCENTAGE);
-  const [ pixPercentage, setPixPercentage ] = useState(DEFAULT_PERCENTAGE);
-  const [ boletoPercentage, setBoletoPercentage ] = useState(DEFAULT_PERCENTAGE);
+  const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
+  const [creditCardTransactions, setCreditCardTransactions] =
+    useState(DEFAULT_VALUE);
+  const [pixTransactions, setPixTransactions] = useState(DEFAULT_VALUE);
+  const [boletoTransactions, setBoletoTransactions] = useState(DEFAULT_VALUE);
+  const [creditCardPercentage, setCreditCardPercentage] =
+    useState(DEFAULT_PERCENTAGE);
+  const [pixPercentage, setPixPercentage] = useState(DEFAULT_PERCENTAGE);
+  const [boletoPercentage, setBoletoPercentage] = useState(DEFAULT_PERCENTAGE);
 
-  const [ creditCardApprovalRate, setCreditCardApprovalRate ] = useState(DEFAULT_PERCENTAGE);
-  const [ pixApprovalRate, setPixApprovalRate ] = useState(DEFAULT_PERCENTAGE);
-  const [ boletoApprovalRate, setBoletoApprovalRate ] = useState(DEFAULT_PERCENTAGE);
+  const [creditCardApprovalRate, setCreditCardApprovalRate] =
+    useState(DEFAULT_PERCENTAGE);
+  const [pixApprovalRate, setPixApprovalRate] = useState(DEFAULT_PERCENTAGE);
+  const [boletoApprovalRate, setBoletoApprovalRate] =
+    useState(DEFAULT_PERCENTAGE);
 
   const colorCard = '#66bb6a';
   const colorPix = '#42a5f5';
   const colorBoleto = '#ffb74d';
 
-  const calculatePercentage = (count: number, total: number): string => 
+  const calculatePercentage = (count: number, total: number): string =>
     total > 0 ? ((count / total) * 100).toFixed(1) + '%' : '0%';
 
-  const calculateCount = (method: string, status: null | string = null): number => 
-    ordersAllToday.filter(order => 
-      order.payment_details.method === method && 
-      (status ? order.payment_status === status : true)
+  const calculateCount = (
+    method: string,
+    status: null | string = null,
+  ): number =>
+    ordersAllToday.filter(
+      order =>
+        order.payment_details.method === method &&
+        (status ? order.payment_status === status : true),
     ).length;
 
   useEffect(() => {
     if (ordersAllToday.length > 0) {
-      const passRateValue = (ordersTodayPaid.length / ordersAllToday.length) * 100;
+      const passRateValue =
+        (ordersTodayPaid.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [allOrders, ordersAllToday, ordersTodayPaid.length]); 
+  }, [allOrders, ordersAllToday, ordersTodayPaid.length]);
 
   useEffect(() => {
     const creditCardCount = calculateCount('credit_card');
@@ -139,12 +247,16 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     setCreditCardTransactions(creditCardCount.toString());
     setPixTransactions(pixCount.toString());
     setBoletoTransactions(boletoCount.toString());
-  
-    setCreditCardPercentage(calculatePercentage(creditCardCount, totalOrdersToday));
+
+    setCreditCardPercentage(
+      calculatePercentage(creditCardCount, totalOrdersToday),
+    );
     setPixPercentage(calculatePercentage(pixCount, totalOrdersToday));
     setBoletoPercentage(calculatePercentage(boletoCount, totalOrdersToday));
 
-    setCreditCardApprovalRate(calculatePercentage(paidCreditCardCount, creditCardCount));
+    setCreditCardApprovalRate(
+      calculatePercentage(paidCreditCardCount, creditCardCount),
+    );
     setPixApprovalRate(calculatePercentage(paidPixCount, pixCount));
     setBoletoApprovalRate(calculatePercentage(paidBoletoCount, boletoCount));
   }, [ordersTodayPaid, ordersAllToday]);
@@ -153,20 +265,80 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Pagamento</h4>
-        <div className="row">
-          <BudgetItem title="Pago" tooltip="Nuvemshop" value={ordersTodayPaid.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Clicado em comprar" tooltip="Nuvemshop" value={ordersAllToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de aprovação Geral" tooltip="Vendas x Clicado em comprar" value={passRate} isLoading={isLoadingOrders} />
+        <div className='row'>
+          <BudgetItem
+            title='Pago'
+            tooltip='Nuvemshop'
+            value={ordersTodayPaid.length}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title='Clicado em comprar'
+            tooltip='Nuvemshop'
+            value={ordersAllToday.length}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title='Taxa de aprovação Geral'
+            tooltip='Vendas x Clicado em comprar'
+            value={passRate}
+            isLoading={isLoadingOrders}
+          />
         </div>
-        <div className="row">
-          <BudgetItem icon={FaCreditCard} iconColor={colorCard} title="Transações no Cartão" tooltip="Nuvemshop" value={creditCardTransactions} isLoading={isLoadingOrders} small={creditCardPercentage} />
-          <BudgetItem icon={FaPix} iconColor={colorPix} title="Transações no Pix" tooltip="Nuvemshop" value={pixTransactions} isLoading={isLoadingOrders} small={pixPercentage} />
-          <BudgetItem icon={FaFileInvoiceDollar} iconColor={colorBoleto} title="Transações no Boleto" tooltip="Nuvemshop" value={boletoTransactions} isLoading={isLoadingOrders} small={boletoPercentage} />
+        <div className='row'>
+          <BudgetItem
+            icon={FaCreditCard}
+            iconColor={colorCard}
+            title='Transações no Cartão'
+            tooltip='Nuvemshop'
+            value={creditCardTransactions}
+            isLoading={isLoadingOrders}
+            small={creditCardPercentage}
+          />
+          <BudgetItem
+            icon={FaPix}
+            iconColor={colorPix}
+            title='Transações no Pix'
+            tooltip='Nuvemshop'
+            value={pixTransactions}
+            isLoading={isLoadingOrders}
+            small={pixPercentage}
+          />
+          <BudgetItem
+            icon={FaFileInvoiceDollar}
+            iconColor={colorBoleto}
+            title='Transações no Boleto'
+            tooltip='Nuvemshop'
+            value={boletoTransactions}
+            isLoading={isLoadingOrders}
+            small={boletoPercentage}
+          />
         </div>
-        <div className="row">
-          <BudgetItem icon={FaCreditCard} iconColor={colorCard} title="Taxa de Aprovação no Cartão" tooltip="Nuvemshop" value={creditCardApprovalRate} isLoading={isLoadingOrders} />
-          <BudgetItem icon={FaPix} iconColor={colorPix} title="Taxa de Aprovação no Pix" tooltip="Nuvemshop" value={pixApprovalRate} isLoading={isLoadingOrders} />
-          <BudgetItem icon={FaFileInvoiceDollar} iconColor={colorBoleto} title="Taxa de Aprovação no Boleto" tooltip="Nuvemshop" value={boletoApprovalRate} isLoading={isLoadingOrders} />
+        <div className='row'>
+          <BudgetItem
+            icon={FaCreditCard}
+            iconColor={colorCard}
+            title='Taxa de Aprovação no Cartão'
+            tooltip='Nuvemshop'
+            value={creditCardApprovalRate}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            icon={FaPix}
+            iconColor={colorPix}
+            title='Taxa de Aprovação no Pix'
+            tooltip='Nuvemshop'
+            value={pixApprovalRate}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            icon={FaFileInvoiceDollar}
+            iconColor={colorBoleto}
+            title='Taxa de Aprovação no Boleto'
+            tooltip='Nuvemshop'
+            value={boletoApprovalRate}
+            isLoading={isLoadingOrders}
+          />
         </div>
       </ContainerGeral>
     </ContainerOrders>
@@ -294,41 +466,54 @@ export function DataSectionCosts({
   );
 }
 
-export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps) {
+export function DataSectionCart({
+  bgcolor,
+  totalAdSpend,
+}: DataSectionCartProps) {
   const { data, isLoadingADSGoogle } = useAnalytics();
   const { allOrders, date, isLoading, store } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const { coupons } = useCoupons();
-  const [ ordersWithCashback, setOrdersWithCashback ] = useState<Order[]>([]);
-  const [ cartsRecoveryWhats, setCartsRecoveryWhats ] = useState<Order[]>([])
-  const [ cartsRecoveryEmail, setCartsRecoveryEmail ] = useState<Order[]>([])
-  const [ cartsRecoveryPopup, setCartsRecoveryPopup ] = useState<Order[]>([])
-  const [ visits, setVisits ] = useState(DEFAULT_VALUE);
-  const [ carts, setCarts ] = useState(DEFAULT_VALUE);
-  const [ costCarts, setCostCart ] = useState(DEFAULT_VALUE);
+  const [ordersWithCashback, setOrdersWithCashback] = useState<Order[]>([]);
+  const [cartsRecoveryWhats, setCartsRecoveryWhats] = useState<Order[]>([]);
+  const [cartsRecoveryEmail, setCartsRecoveryEmail] = useState<Order[]>([]);
+  const [cartsRecoveryPopup, setCartsRecoveryPopup] = useState<Order[]>([]);
+  const [visits, setVisits] = useState(DEFAULT_VALUE);
+  const [carts, setCarts] = useState(DEFAULT_VALUE);
+  const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
 
-  const couponsCashback = coupons.filter((coupon: CouponProps) => coupon.code.startsWith('MTZ'))
-  const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20']
-  const couponsEmail = ['OUTLET10', 'GANHEI10']
-  const couponsPopup = store === 'outlet' ? ['GANHEI5'] : ['GANHEI10']
+  const couponsCashback = coupons.filter((coupon: CouponProps) =>
+    coupon.code.startsWith('MTZ'),
+  );
+  const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
+  const couponsEmail = ['OUTLET10', 'GANHEI10'];
+  const couponsPopup = store === 'outlet' ? ['GANHEI5'] : ['GANHEI10'];
 
   useEffect(() => {
-    const filteredOrdersCashBack = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => coupon.code.startsWith('MTZ'))
+    const filteredOrdersCashBack = ordersToday.filter(
+      (order: Order) =>
+        order.coupon &&
+        order.coupon.some(coupon => coupon.code.startsWith('MTZ')),
     );
 
-    const filteredOrdersCartsWhats = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => couponsWhats.includes(coupon.code))
+    const filteredOrdersCartsWhats = ordersToday.filter(
+      (order: Order) =>
+        order.coupon &&
+        order.coupon.some(coupon => couponsWhats.includes(coupon.code)),
     );
 
-    const filteredOrdersCartsEmail = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => couponsEmail.includes(coupon.code))
+    const filteredOrdersCartsEmail = ordersToday.filter(
+      (order: Order) =>
+        order.coupon &&
+        order.coupon.some(coupon => couponsEmail.includes(coupon.code)),
     );
 
-    const filteredOrdersCartsPopup = ordersToday.filter((order: Order) => 
-      order.coupon && order.coupon.some(coupon => couponsPopup.includes(coupon.code))
+    const filteredOrdersCartsPopup = ordersToday.filter(
+      (order: Order) =>
+        order.coupon &&
+        order.coupon.some(coupon => couponsPopup.includes(coupon.code)),
     );
-    
+
     setOrdersWithCashback(filteredOrdersCashBack);
     setCartsRecoveryWhats(filteredOrdersCartsWhats);
     setCartsRecoveryEmail(filteredOrdersCartsEmail);
@@ -338,14 +523,14 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   useEffect(() => {
     if (data) {
       const { totalVisits, carts } = data;
-      setVisits(parseInt(totalVisits).toLocaleString('pt-BR'));
-      setCarts(parseInt(carts).toLocaleString('pt-BR'));
+      setVisits(totalVisits.toLocaleString('pt-BR'));
+      setCarts(carts.toLocaleString('pt-BR'));
     }
   }, [data]);
 
   useEffect(() => {
     const numericCarts = parseInt(carts.replace(/\D/g, ''));
-    if((totalAdSpend && numericCarts) !== 0){
+    if ((totalAdSpend && numericCarts) !== 0) {
       setCostCart(formatCurrency(totalAdSpend / numericCarts));
     }
   }, [carts, totalAdSpend]);
@@ -361,7 +546,7 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const popupRate = useMemo(() => {
     const numericOrders = ordersToday.length;
     const numericPopups = cartsRecoveryPopup.length;
-    
+
     // Verifica se há pedidos antes de calcular a taxa
     return numericOrders > 0
       ? ((numericPopups / numericOrders) * 100).toFixed(2) + '%'
@@ -372,43 +557,109 @@ export function DataSectionCart({ bgcolor, totalAdSpend }: DataSectionCartProps)
   const totalCashbackRevenue = ordersWithCashback.reduce((sum, order) => {
     return sum + parseFloat(order.total);
   }, 0);
-  
+
   const totalCashbackValue = ordersWithCashback.reduce((sum, order) => {
     const coupon = order.coupon.find(c => c.code.startsWith('MTZ'));
     return sum + (coupon ? parseFloat(coupon.value) : 0);
   }, 0);
 
-  const costCashback = totalCashbackValue > 0 ? formatCurrency(totalCashbackValue) : 'R$ 0,00';
-  const roiCashback = totalCashbackValue > 0 ? (totalCashbackRevenue / totalCashbackValue).toFixed(2) : '0.00';
+  const costCashback =
+    totalCashbackValue > 0 ? formatCurrency(totalCashbackValue) : 'R$ 0,00';
+  const roiCashback =
+    totalCashbackValue > 0
+      ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
+      : '0.00';
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Carrinho e Cashback</h4>
-        <div className="row">
-          <BudgetItem title="Carrinhos criados" tooltip="Google Analytics" value={carts} isLoading={isLoadingADSGoogle} />
-          <BudgetItem title="Taxa de carrinho" tooltip="Carrinhos x Sessões" value={cartRate} isLoading={isLoadingADSGoogle} />
-          <BudgetItem title="Custo de carrinho" tooltip="Vendas x Carrinhos" value={costCarts} isLoading={isLoadingADSGoogle} />
+        <div className='row'>
+          <BudgetItem
+            title='Carrinhos criados'
+            tooltip='Google Analytics'
+            value={carts}
+            isLoading={isLoadingADSGoogle}
+          />
+          <BudgetItem
+            title='Taxa de carrinho'
+            tooltip='Carrinhos x Sessões'
+            value={cartRate}
+            isLoading={isLoadingADSGoogle}
+          />
+          <BudgetItem
+            title='Custo de carrinho'
+            tooltip='Vendas x Carrinhos'
+            value={costCarts}
+            isLoading={isLoadingADSGoogle}
+          />
         </div>
-        <div className="row">
-          <BudgetItem icon={FaWhatsapp} iconColor={'var(--uipositive-100)'} title="Carrinhos recuperados" small={'Whatsapp'} tooltip={`Cupons: ${couponsWhats.join(', ')}`} value={cartsRecoveryWhats.length} isLoading={isLoading} />
-          <BudgetItem icon={IoIosMail} iconColor={'var(--geralblack-100)'} title="Carrinhos recuperados" small={'Email'} tooltip={`Cupons: ${couponsEmail.join(', ')}`} value={cartsRecoveryEmail.length} isLoading={isLoading} />
+        <div className='row'>
+          <BudgetItem
+            icon={FaWhatsapp}
+            iconColor={'var(--uipositive-100)'}
+            title='Carrinhos recuperados'
+            small={'Whatsapp'}
+            tooltip={`Cupons: ${couponsWhats.join(', ')}`}
+            value={cartsRecoveryWhats.length}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            icon={IoIosMail}
+            iconColor={'var(--geralblack-100)'}
+            title='Carrinhos recuperados'
+            small={'Email'}
+            tooltip={`Cupons: ${couponsEmail.join(', ')}`}
+            value={cartsRecoveryEmail.length}
+            isLoading={isLoading}
+          />
         </div>
-        <div className="row">
-          <BudgetItem title="Cupom Popup" small={ordersToday.length} tooltip='Pedidos realizados com Cupom Popup' value={cartsRecoveryPopup.length} isLoading={isLoading} />
-          <BudgetItem title="Taxa de Conversão de Popup" tooltip="Popup x Pedidos" value={popupRate} isLoading={isLoading} />        
+        <div className='row'>
+          <BudgetItem
+            title='Cupom Popup'
+            small={ordersToday.length}
+            tooltip='Pedidos realizados com Cupom Popup'
+            value={cartsRecoveryPopup.length}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            title='Taxa de Conversão de Popup'
+            tooltip='Popup x Pedidos'
+            value={popupRate}
+            isLoading={isLoading}
+          />
         </div>
-        <div className="row">
-          <BudgetItem title="Vendas | Cashback" tooltip="Vendas com Cashback" value={totalCashbackSales} small={couponsCashback.length} isLoading={isLoading} />
-          <BudgetItem title="Faturamento | Cashback" tooltip="Vendas com Cashback (R$)" value={formatCurrency(totalCashbackRevenue)} small={`ROI: ${roiCashback}`}  isLoading={isLoading} />
-          <BudgetItem title="Custo | Cashback" tooltip="Custo com cashback" value={costCashback} isLoading={isLoading} />
+        <div className='row'>
+          <BudgetItem
+            title='Vendas | Cashback'
+            tooltip='Vendas com Cashback'
+            value={totalCashbackSales}
+            small={couponsCashback.length}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            title='Faturamento | Cashback'
+            tooltip='Vendas com Cashback (R$)'
+            value={formatCurrency(totalCashbackRevenue)}
+            small={`ROI: ${roiCashback}`}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            title='Custo | Cashback'
+            tooltip='Custo com cashback'
+            value={costCashback}
+            isLoading={isLoading}
+          />
         </div>
       </ContainerGeral>
     </ContainerOrders>
   );
 }
 
-export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnalyticsProps) {
+export function DataSectionAnalytics({
+  bgcolor,
+  totalAdSpend,
+}: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
@@ -418,11 +669,11 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
   const [averageTicket, setAverageTicket] = useState('R$ -');
 
   useEffect(() => {
-      setVisits(parseInt(data.totalVisits).toLocaleString('pt-BR'));
+    setVisits(data.totalVisits.toLocaleString('pt-BR'));
   }, [data]);
 
   useEffect(() => {
-    setPriceSession('R$ -')
+    setPriceSession('R$ -');
     const visitsNumber = parseInt(visits.replace(/\D/g, ''));
     if (!isNaN(visitsNumber) && visitsNumber !== 0) {
       setPriceSession(formatCurrency(totalAdSpend / visitsNumber));
@@ -454,15 +705,45 @@ export function DataSectionAnalytics({ bgcolor, totalAdSpend }: DataSectionAnaly
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Analytics</h4>
-        <div className="row">
-          <BudgetItem title="Sessões" tooltip="Google Analytics" value={visits} isLoading={isLoadingAnalytics} />
-          <BudgetItem title="Vendas" tooltip="Nuvemshop (Geral)" value={ordersToday.length} isLoading={isLoadingOrders} />
-          <BudgetItem title="Taxa de conversão" tooltip="Sessões x Vendas" value={conversionRate} isLoading={isLoadingOrders} />
+        <div className='row'>
+          <BudgetItem
+            title='Sessões'
+            tooltip='Google Analytics'
+            value={visits}
+            isLoading={isLoadingAnalytics}
+          />
+          <BudgetItem
+            title='Vendas'
+            tooltip='Nuvemshop (Geral)'
+            value={ordersToday.length}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title='Taxa de conversão'
+            tooltip='Sessões x Vendas'
+            value={conversionRate}
+            isLoading={isLoadingOrders}
+          />
         </div>
-        <div className="row">
-          <BudgetItem title="Ticket Médio" tooltip="Nuvemshop" value={averageTicket} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Sessão (CPS)" tooltip="Verba Total / Sessões" value={priceSession} isLoading={isLoadingOrders} />
-          <BudgetItem title="Custo p/ Aquisição (CPA)" tooltip="Verba Total / Vendas" value={priceAcquisition} isLoading={isLoadingOrders} />
+        <div className='row'>
+          <BudgetItem
+            title='Ticket Médio'
+            tooltip='Nuvemshop'
+            value={averageTicket}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title='Custo p/ Sessão (CPS)'
+            tooltip='Verba Total / Sessões'
+            value={priceSession}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title='Custo p/ Aquisição (CPA)'
+            tooltip='Verba Total / Vendas'
+            value={priceAcquisition}
+            isLoading={isLoadingOrders}
+          />
         </div>
       </ContainerGeral>
     </ContainerOrders>
