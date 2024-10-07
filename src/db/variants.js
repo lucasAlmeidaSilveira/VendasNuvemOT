@@ -1959,7 +1959,7 @@ export const OTtwoFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-0-40x60-2',
+    sku: '-1-000+373-1-1-0-0-40x60-2',
     price: '741.70',
     promotional_price: '445.00',
     stock: null,
@@ -2034,7 +2034,7 @@ export const OTtwoFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-1-40x60-2',
+    sku: '-1-000+373-1-1-0-1-40x60-2',
     price: '923.30',
     promotional_price: '554.00',
     stock: null,
@@ -2592,7 +2592,7 @@ export const OTtwoFrameHorizontal = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-0-40x60-2',
+    sku: '-1-000+373-1-1-0-0-40x60-2',
     price: '741.70',
     promotional_price: '445.00',
     stock: null,
@@ -2667,7 +2667,7 @@ export const OTtwoFrameHorizontal = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-1-40x60-2',
+    sku: '-1-000+373-1-1-0-1-40x60-2',
     price: '923.30',
     promotional_price: '554.00',
     stock: null,
@@ -3858,7 +3858,7 @@ export const OTthreeFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-0-40x60-3',
+    sku: '-1-000+373-1-1-0-0-40x60-3',
     price: '831.70',
     promotional_price: '499.00',
     stock: null,
@@ -3933,7 +3933,7 @@ export const OTthreeFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-1-40x60-3',
+    sku: '-1-000+373-1-1-0-1-40x60-3',
     price: '998.30',
     promotional_price: '599.00',
     stock: null,
@@ -4491,7 +4491,7 @@ export const OTthreeFrameHorizontal = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-0-40x60-3',
+    sku: '-1-000+373-1-1-0-0-40x60-3',
     price: '831.70',
     promotional_price: '499.00',
     stock: null,
@@ -4566,7 +4566,7 @@ export const OTthreeFrameHorizontal = [
     ],
   },
   {
-    sku: '-1-000+376-1-1-0-1-40x60-3',
+    sku: '-1-000+373-1-1-0-1-40x60-3',
     price: '998.30',
     promotional_price: '599.00',
     stock: null,
