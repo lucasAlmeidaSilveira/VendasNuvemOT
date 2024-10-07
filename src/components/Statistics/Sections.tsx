@@ -15,7 +15,7 @@ import { ContainerOrders, ContainerGeral } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
-import { FaMeta } from 'react-icons/fa6';
+import { FaHandshakeSimple, FaMeta } from 'react-icons/fa6';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
@@ -481,10 +481,9 @@ export function DataSectionCart({
   const { ordersToday } = filterOrders(allOrders, date);
   const { coupons } = useCoupons();
   const [ordersWithCashback, setOrdersWithCashback] = useState<Order[]>([]);
+  const [cartsRecoveryPartners, setCartsRecoveryPartners] = useState<Order[]>([]);
   const [cartsRecoveryInsta, setCartsRecoveryInsta] = useState<Order[]>([]);
-  const [cartsRecoveryInstaDirect, setCartsRecoveryInstaDirect] = useState<
-    Order[]
-  >([]);
+  const [cartsRecoveryInstaDirect, setCartsRecoveryInstaDirect] = useState<Order[]>([]);
   const [cartsRecoveryWhats, setCartsRecoveryWhats] = useState<Order[]>([]);
   const [cartsRecoveryEmail, setCartsRecoveryEmail] = useState<Order[]>([]);
   const [cartsRecoveryPopup, setCartsRecoveryPopup] = useState<Order[]>([]);
@@ -492,20 +491,49 @@ export function DataSectionCart({
   const [carts, setCarts] = useState(DEFAULT_VALUE);
   const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
 
-  const couponsCashback = coupons.filter((coupon: CouponProps) =>
-    coupon.code.startsWith('MTZ'),
-  );
+  const couponsPartners = [
+    'ALEXIA',
+    'BAIXINHO',
+    'BELISARIO10',
+    'BRUNA15',
+    'DAMIAO15',
+    'DANI15',
+    'FRAZAO15',
+    'ISA10',
+    'JOAOHANBIKE',
+    'JUJUFRANCO',
+    'LARISSAM10',
+    'LEPANAR',
+    'MARI15',
+    'MATHEUSF10',
+    'MEL15',
+    'NOSSAAMORA10',
+    'ORLANDO15',
+    'TATI15',
+    'TECAESTT15',
+    'THAINATANI15',
+  ];
   const couponsInsta = ['INSTA10'];
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
   const couponsEmail = ['OUTLET10', 'GANHEI10'];
   const couponsPopup =
     store === 'outlet' ? ['GANHEI5'] : ['GANHEI10', 'GANHEI5'];
 
+  const couponsCashback = coupons.filter((coupon: CouponProps) =>
+    coupon.code.startsWith('MTZ'),
+  );
+
   useEffect(() => {
     const filteredOrdersCashBack = ordersToday.filter(
       (order: Order) =>
         order.coupon &&
         order.coupon.some(coupon => coupon.code.startsWith('MTZ')),
+    );
+
+    const filteredOrdersCartsPartners = ordersToday.filter(
+      (order: Order) =>
+        order.coupon &&
+        order.coupon.some(coupon => couponsPartners.includes(coupon.code)),
     );
 
     const filteredOrdersCartsWhats = ordersToday.filter(
@@ -538,6 +566,7 @@ export function DataSectionCart({
         order.coupon.some(coupon => couponsPopup.includes(coupon.code)),
     );
 
+    setCartsRecoveryPartners(filteredOrdersCartsPartners);
     setOrdersWithCashback(filteredOrdersCashBack);
     setCartsRecoveryWhats(filteredOrdersCartsWhats);
     setCartsRecoveryInsta(filteredOrdersCartsInsta);
@@ -568,6 +597,11 @@ export function DataSectionCart({
       ? ((numericCarts / numericVisits) * 100).toFixed(2) + '%'
       : '0.00';
   }, [carts, visits]);
+
+  const popupRateCouponPartners = useMemo(
+    () => calculatePopupRate(ordersToday, cartsRecoveryPartners),
+    [ordersToday, cartsRecoveryPartners],
+  );
 
   const popupRateCouponPopup = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryPopup),
@@ -604,7 +638,7 @@ export function DataSectionCart({
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>Dados de Carrinho e Cashback</h4>
+        <h4>Carrinho e Cupom</h4>
         <div className='row'>
           <BudgetItem
             title='Carrinhos criados'
@@ -645,7 +679,19 @@ export function DataSectionCart({
             isLoading={isLoading}
           />
         </div>
+
         <div className='row'>
+        {store === 'outlet' && (
+          <BudgetItem
+            icon={FaHandshakeSimple}
+            iconColor={'var(--geralblack-100)'}
+            title='Cupom Parceria'
+            small={popupRateCouponPartners}
+            tooltip='Pedidos com cupom de parceria'
+            value={cartsRecoveryPartners.length}
+            isLoading={isLoading}
+          />
+        )}
           <BudgetItem
             title='Cupom Popup'
             small={popupRateCouponPopup}
