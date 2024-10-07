@@ -1,5 +1,5 @@
 import parsePhoneNumberFromString from 'libphonenumber-js';
-import { Order } from "../types";
+import { CouponProps, Order } from '../types';
 
 // Função para formatar o valor em reais
 export function formatCurrency(value: string | number): string {
@@ -26,18 +26,17 @@ export function formatDate(date: Date) {
 export function parseCurrency(value: string | number): number {
   const stringValue = typeof value === 'number' ? value.toString() : value;
   const number = Number(
-    stringValue.replace(/[^0-9,-]+/g, "").replace(",", ".")
+    stringValue.replace(/[^0-9,-]+/g, '').replace(',', '.'),
   );
   return isNaN(number) ? 0 : number;
 }
-
 
 export function calculateAverageTicket(orders: Order[]): number {
   if (orders.length === 0) return 0;
 
   const totalSum = orders.reduce((sum: number, order: Order) => {
     const orderTotal = parseFloat(
-      order.total.replace(/[.,]/g, '').replace(/(\d+)(\d{2})$/, '$1.$2')
+      order.total.replace(/[.,]/g, '').replace(/(\d+)(\d{2})$/, '$1.$2'),
     );
     return sum + orderTotal;
   }, 0);
@@ -45,21 +44,22 @@ export function calculateAverageTicket(orders: Order[]): number {
   return totalSum / orders.length;
 }
 
-
 export function adjustDate(date: string) {
   const newDate = new Date(date);
   newDate.setHours(0, 0, 0, 0);
-  return newDate.toISOString().toString()
-};
+  return newDate.toISOString().toString();
+}
 
 // Função para formatar a data para ISO 8601
 export function formatDateToISO(date: Date) {
-  return date.toISOString()
+  return date.toISOString();
 }
 
 export function formatTimeDifference(lastUpdated: string) {
   const now = new Date();
-  const lastUpdatedDate = new Date(new Date(lastUpdated).getTime() + 3 * 60 * 60 * 1000); // Ajusta a data armazenada subtraindo 3 horas
+  const lastUpdatedDate = new Date(
+    new Date(lastUpdated).getTime() + 3 * 60 * 60 * 1000,
+  ); // Ajusta a data armazenada subtraindo 3 horas
   const diff = Math.abs(now.getTime() - lastUpdatedDate.getTime());
   const minutes = Math.floor(diff / (1000 * 60));
   const hours = Math.floor(diff / (1000 * 60 * 60));
@@ -69,7 +69,7 @@ export function formatTimeDifference(lastUpdated: string) {
   } else {
     return `${minutes} ${minutes === 1 ? 'minuto' : 'minutos'}`;
   }
-};
+}
 
 export function formatDateToUTC(dateString: string) {
   const date = new Date(dateString);
@@ -82,7 +82,7 @@ export function formatDateToUTC(dateString: string) {
     minute: '2-digit',
     second: '2-digit',
   });
-};
+}
 
 export function formatPhoneNumber(phoneNumber: string) {
   const parsedNumber = parsePhoneNumberFromString(phoneNumber);
@@ -90,7 +90,16 @@ export function formatPhoneNumber(phoneNumber: string) {
     return parsedNumber.formatNational();
   }
   return 'Número inválido';
-};
+}
 
-export const calculateRoas = (ordersNumber: number, adSpend: number) => 
+export const calculateRoas = (ordersNumber: number, adSpend: number) =>
   adSpend > 0 ? (ordersNumber / adSpend).toFixed(2) : '0.00';
+
+export const calculatePopupRate = (orders: Order[], popups: Order[]) => {
+  const numericOrders = orders.length;
+  const numericPopups = popups.length;
+
+  return numericOrders > 0
+    ? ((numericPopups / numericOrders) * 100).toFixed(2) + '%'
+    : '0.00%';
+};
