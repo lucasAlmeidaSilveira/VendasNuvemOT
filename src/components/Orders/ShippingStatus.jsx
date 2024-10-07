@@ -80,14 +80,24 @@ const getIcon = currentStatus => {
   }
 };
 
-export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays, shippingMaxDays, urlTracking, paymentStatus, shipping }) {
-  const [status, setStatus ] =  useState('Atualizando status...')
+const formatUrlTracking = (code) => {
+  if (code) {
+    return `https://rastreae.com.br/resultado/${code}`;
+  }
+
+  return code;
+};
+
+export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays, shippingMaxDays, paymentStatus, shipping }) {
+  const [ status, setStatus ] =  useState('Atualizando status...')
+  const [ urlTracking, setUrlTracking ] = useState('')
 
   useEffect(() => {
     const fetchDataOrderTiny = async (orderId, orderIdentification) => {
       const order = await getOrderTiny(orderId, orderIdentification)
       if(order) {
         setStatus(order.situacao)
+        setUrlTracking(() => formatUrlTracking(order.codigo_rastreamento))
         return order
       }
     }
@@ -107,7 +117,7 @@ export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays
   );
 
   return (
-    <a href={urlTracking} target='_blank'>
+    <a href={urlTracking || undefined} target={urlTracking ? '_blank' : undefined}>
       {shipping === 'Entrega Loja' ? (
         <ShippingStatusContainer backgroundColor={backgroundColor} borderColor={borderColor}>
           <FaStore />

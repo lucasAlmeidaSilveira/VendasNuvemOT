@@ -277,7 +277,7 @@ export function Orders() {
     setTotalUnpacked(unpackedCount);
     setTotalShipped(shippedCount);
     setTotalLate(lateCount);
-  }, [allOrders, store, ordersAllTodayWithPartner]);
+  }, [allOrders, store]);
 
   const formatDate = dateString => {
     const date = new Date(dateString);
@@ -356,7 +356,6 @@ export function Orders() {
   }, [
     allOrders,
     store,
-    ordersAllTodayWithPartner,
     statusFilter,
     shippingStatusFilter,
     paymentMethodFilter,
@@ -389,14 +388,6 @@ export function Orders() {
   const handleStatusBlockClick = status => {
     setShippingStatusFilter(status);
     setStatusFilter('paid');
-  };
-
-  const formatUrlTracking = (urlTracking, shippingStatus, code) => {
-    if (!urlTracking && shippingStatus === 'shipped' && code) {
-      return `https://rastreae.com.br/resultado/${code}`;
-    }
-
-    return urlTracking;
   };
 
   return (
@@ -581,11 +572,6 @@ export function Orders() {
                           created_at={order.created_at}
                           shippingMinDays={order.shipping_min_days}
                           shippingMaxDays={order.shipping_max_days}
-                          urlTracking={formatUrlTracking(
-                            order.shipping_tracking_url,
-                            order.shipping_status,
-                            order.shipping_tracking_number,
-                          )}
                           shipping={order.shipping}
                         />
                         {order.storefront === 'Loja' && (
