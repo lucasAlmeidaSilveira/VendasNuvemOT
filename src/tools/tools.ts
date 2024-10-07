@@ -103,3 +103,15 @@ export const calculatePopupRate = (orders: Order[], popups: Order[]) => {
     ? ((numericPopups / numericOrders) * 100).toFixed(2) + '%'
     : '0.00%';
 };
+
+export const formatUrlProduct = (landing_url: string) => {
+  const parts = landing_url.split('/');
+  
+  // Se a URL tiver menos de 5 partes, retornamos a URL inteira
+  if (parts.length < 5) {
+    return landing_url;
+  }
+  
+  // Junta as partes até o quinto '/'
+  return parts.slice(0, 5).join('/');
+}

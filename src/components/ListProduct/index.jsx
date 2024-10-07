@@ -1,10 +1,16 @@
 import { useEffect, useState } from "react";
 import { Container } from "./styles";
-import { getProduct } from "../../api";
-import { useOrders } from "../../context/OrdersContext";
+import { formatUrlProduct } from "../../tools/tools";
 
-export function ListProduct({ idProduct, position, name, skuNumber, variations, urlImage, sales }) {
-
+export function ListProduct({ idProduct, position, name, skuNumber, variations, landingUrl, urlImage, sales }) {
+  const [urlProduct, setUrlProduct ] = useState()
+  
+  useEffect(() => {
+    if(landingUrl){
+      setUrlProduct(() => formatUrlProduct(landingUrl))
+    }
+  }, [landingUrl])
+  
   return (
     <Container>
       <div className="frame">

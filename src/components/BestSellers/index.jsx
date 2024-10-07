@@ -32,10 +32,7 @@ export function BestSellers() {
             const productId = product.product_id;
             const price = parseFloat(product.price);
             const existingProduct = acc.find(p => p.id === productId);
-            let skuNumber = product.sku.split("-")[0]
-            if(store === "outlet") {
-              skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("|")[1] : product.sku.split("-")[0].split('OT')[1]
-            }
+            let skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("|")[1] : product.sku.split("-")[0].split('OT')[1]
 
             // Contar a frequência das variações
             const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
@@ -51,6 +48,7 @@ export function BestSellers() {
               acc.push({
                 id: productId,
                 skuNumber,
+                urlProduct: product.landing_url,
                 name: cleanedName,
                 image: product.image.src,
                 sales: 1,
