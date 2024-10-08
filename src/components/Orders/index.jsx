@@ -19,7 +19,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 
 import { useOrders } from '../../context/OrdersContext';
-import { formatCurrency } from '../../tools/tools';
+import { formatCurrency, isLate } from '../../tools/tools';
 import { PaymentStatus } from './PaymentStatus';
 import { ShippingStatus } from './ShippingStatus';
 import { CustomSelect } from '../CustomSelect';
@@ -81,34 +81,6 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
     border: 0,
   },
 }));
-
-function addBusinessDays(startDate, days) {
-  let date = new Date(startDate);
-  let addedDays = 0;
-
-  while (addedDays < days) {
-    date.setDate(date.getDate() + 1);
-
-    // Se não for sábado ou domingo, contar como um dia útil
-    if (date.getDay() !== 0 && date.getDay() !== 6) {
-      addedDays++;
-    }
-  }
-
-  return date;
-}
-
-const isLate = order => {
-  const shippingDays = order.shipping_max_days || order.shipping_min_days;
-  const shippingDeadline = addBusinessDays(order.created_at, shippingDays);
-
-  return (
-    new Date() > shippingDeadline &&
-    order.shipping_status !== 'closed' &&
-    order.payment_details.method !== 'other' &&
-    order.payment_status === 'paid'
-  );
-};
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
