@@ -9,12 +9,14 @@ import {
   DataSectionCosts,
   DataSectionPay,
   DataSectionTPago,
+  DataSectionTPagoAP,
 } from './Sections';
 import { calculateRoas, parseCurrency } from '../../tools/tools';
 import { Container, ContainerCharts } from './styles';
 
 export function Statistics() {
-  const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } = useAnalytics();
+  const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } =
+    useAnalytics();
   const { allOrders, isLoading, date, store } = useOrders();
 
   const [usersByDevice, setUsersByDevice] = useState({});
@@ -40,7 +42,7 @@ export function Statistics() {
     totalPaidAmountChatbotFormatted,
     totalPaidAmountEcomFormatted,
     totalEspelhosFormatted,
-    totalQuadrosFormatted
+    totalQuadrosFormatted,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
@@ -69,16 +71,37 @@ export function Statistics() {
   }, [data, dataADSMeta]);
 
   // Cálculo total de gastos e ROAS
-  const totalAdSpend = useMemo(() => adSpends.google + adSpends.meta, [adSpends]);
-  const totalAdSpendEcom = useMemo(() => adSpends.googleEcom + adSpends.metaEcom, [adSpends]);
+  const totalAdSpend = useMemo(
+    () => adSpends.google + adSpends.meta,
+    [adSpends],
+  );
+  const totalAdSpendEcom = useMemo(
+    () => adSpends.googleEcom + adSpends.metaEcom,
+    [adSpends],
+  );
 
-  const roas = calculateRoas(parseCurrency(totalPaidAmountFormatted), totalAdSpend);
-  const roasMax = calculateRoas(parseCurrency(totalPaidAllAmountFormatted), totalAdSpend);
+  const roas = calculateRoas(
+    parseCurrency(totalPaidAmountFormatted),
+    totalAdSpend,
+  );
+  const roasMax = calculateRoas(
+    parseCurrency(totalPaidAllAmountFormatted),
+    totalAdSpend,
+  );
 
-  const roasEcom = calculateRoas(parseCurrency(totalPaidAmountEcomFormatted), totalAdSpendEcom);
-  const roasMaxEcom = calculateRoas(parseCurrency(totalPaidAllAmountEcomFormatted), totalAdSpendEcom);
+  const roasEcom = calculateRoas(
+    parseCurrency(totalPaidAmountEcomFormatted),
+    totalAdSpendEcom,
+  );
+  const roasMaxEcom = calculateRoas(
+    parseCurrency(totalPaidAllAmountEcomFormatted),
+    totalAdSpendEcom,
+  );
 
-  const roasChatbot = calculateRoas(parseCurrency(totalPaidAmountChatbotFormatted), totalAdSpend);
+  const roasChatbot = calculateRoas(
+    parseCurrency(totalPaidAmountChatbotFormatted),
+    totalAdSpend,
+  );
 
   // Cores de fundo para diferentes seções
   const bgColors = {
@@ -91,24 +114,42 @@ export function Statistics() {
 
   return (
     <Container>
-      <DataSectionTPago
-        title='Geral'
-        bgcolor={bgColors.trafegoPago}
-        verba={adSpends}
-        totalOrdersFormatted={totalPaidAmountFormatted}
-        roas={roas}
-        roasMax={roasMax}
-        isLoadingADSGoogle={isLoadingADSGoogle}
-        isLoadingOrders={isLoading}
-        isLoadingADSMeta={isLoadingADSMeta}
-      />
+      {store === 'artepropria' ? (
+        <DataSectionTPagoAP
+          title='Tráfego Pago | Geral'
+          bgcolor={bgColors.trafegoPago}
+          verbaGoogle={adSpends.google}
+          verbaMeta={adSpends.meta}
+          totalAdSpend={totalAdSpend}
+          totalOrdersFormatted={totalPaidAmountFormatted}
+          roas={roas}
+          roasMax={`Max.: ${roasMax}`}
+          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingOrders={isLoading}
+          isLoadingADSMeta={isLoadingADSMeta}
+        />
+      ) : (
+        <DataSectionTPago
+          title='Geral'
+          bgcolor={bgColors.trafegoPago}
+          verba={adSpends}
+          totalOrdersFormatted={totalPaidAmountFormatted}
+          roas={roas}
+          roasMax={roasMax}
+          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingOrders={isLoading}
+          isLoadingADSMeta={isLoadingADSMeta}
+        />
+      )}
 
       {store === 'artepropria' && (
         <>
-          <DataSectionTPago
-            title='Ecom'
+          <DataSectionTPagoAP
+            title='Tráfego Pago | Ecom'
             bgcolor={bgColors.trafegoPago}
-            verba={adSpends}
+            verbaGoogle={adSpends.googleEcom}
+            verbaMeta={adSpends.metaEcom}
+            totalAdSpend={totalAdSpendEcom}
             totalOrdersFormatted={totalPaidAmountEcomFormatted}
             roas={roasEcom}
             roasMax={`Max.: ${roasMaxEcom}`}
@@ -116,10 +157,12 @@ export function Statistics() {
             isLoadingOrders={isLoading}
             isLoadingADSMeta={isLoadingADSMeta}
           />
-          <DataSectionTPago
-            title='Chatbot'
+          <DataSectionTPagoAP
+            title='Tráfego Pago | Chatbot'
             bgcolor={bgColors.trafegoPago}
-            verba={adSpends}
+            verbaGoogle={adSpends.google}
+            verbaMeta={adSpends.meta}
+            totalAdSpend={totalAdSpend}
             totalOrdersFormatted={totalPaidAmountChatbotFormatted}
             roas={roasChatbot}
             isLoadingADSGoogle={isLoadingADSGoogle}
@@ -129,7 +172,10 @@ export function Statistics() {
         </>
       )}
 
-      <DataSectionAnalytics bgcolor={bgColors.analytics} totalAdSpend={totalAdSpend} />
+      <DataSectionAnalytics
+        bgcolor={bgColors.analytics}
+        totalAdSpend={totalAdSpend}
+      />
       <DataSectionPay bgcolor={bgColors.payment} />
       <DataSectionCosts
         bgcolor={bgColors.costs}
@@ -138,7 +184,10 @@ export function Statistics() {
         isLoadingADSGoogle={isLoadingADSGoogle}
         isLoadingADSMeta={isLoadingADSMeta}
       />
-      <DataSectionCart bgcolor={bgColors.conversaoVendas} totalAdSpend={totalAdSpend} />
+      <DataSectionCart
+        bgcolor={bgColors.conversaoVendas}
+        totalAdSpend={totalAdSpend}
+      />
 
       <ContainerCharts>
         <Chart
@@ -146,11 +195,19 @@ export function Statistics() {
           usersByDevice={usersByDevice}
           loading={isLoadingADSGoogle}
         />
-        <ChartStates title='Vendas por estado' orders={ordersToday} loading={isLoading} />
+        <ChartStates
+          title='Vendas por estado'
+          orders={ordersToday}
+          loading={isLoading}
+        />
       </ContainerCharts>
 
       <ContainerCharts>
-        <ChartLine title='Vendas por período' orders={ordersToday} loading={isLoading} />
+        <ChartLine
+          title='Vendas por período'
+          orders={ordersToday}
+          loading={isLoading}
+        />
       </ContainerCharts>
     </Container>
   );

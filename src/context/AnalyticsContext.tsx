@@ -87,7 +87,6 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     if(activeTab === 2) {
       fetchDataGoogle();
       fetchDataADSMeta();
-      console.log('trocou')
     }
   }, [allOrders, store, user, activeTab]);
 

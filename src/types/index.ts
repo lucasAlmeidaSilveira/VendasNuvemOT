@@ -12,6 +12,20 @@ export interface DataSectionTPagoProps {
   isLoadingADSMeta: boolean;
 }
 
+export interface DataSectionTPagoAPProps {
+  title: string;
+  bgcolor: string;
+  verbaGoogle: number | string;
+  verbaMeta: number | string;
+  totalAdSpend: number | string;
+  totalOrdersFormatted: number;
+  roas: number | string;
+  roasMax?: number | string;
+  isLoadingADSGoogle: boolean;
+  isLoadingOrders: boolean;
+  isLoadingADSMeta: boolean;
+}
+
 type Verba = {
   google: number,
   googleEcom: number,
@@ -59,6 +73,13 @@ export interface Coupon {
 
 export interface Order {
   id: string;
+  shipping_status: string;
+  shipping_min_days: number;
+  shipping_max_days: number;
+  payment_details: {
+    method: string;
+  }
+  payment_status: string;
   created_at: string;
   total: string;
   coupon: Coupon[];
