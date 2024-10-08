@@ -84,9 +84,12 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   };
 
   useEffect(() => {
-    fetchDataGoogle();
-    fetchDataADSMeta();
-  }, [allOrders, store, user]);
+    if(activeTab === 2) {
+      fetchDataGoogle();
+      fetchDataADSMeta();
+      console.log('trocou')
+    }
+  }, [allOrders, store, user, activeTab]);
 
   const resetData = (): void => {
     setData({
