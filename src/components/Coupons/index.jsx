@@ -53,7 +53,7 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export function Coupons() {
-  const { allOrders, date, isLoading } = useOrders();
+  const { allOrders, date, isLoading, store } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [filteredCoupons, setFilteredCoupons] = useState([]);
   const [page, setPage] = useState(0);
@@ -88,7 +88,7 @@ export function Coupons() {
     );
 
     setFilteredCoupons(sortedCoupons);
-  }, [date]);
+  }, [date, store, allOrders]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
