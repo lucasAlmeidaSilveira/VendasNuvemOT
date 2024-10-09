@@ -44,6 +44,8 @@ export function filterOrders(orders, date) {
     totalPaidAllAmountFormatted: calculateTotal(ordersAllToday).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalQuadrosFormatted: totalQuadros,
     totalEspelhosFormatted: totalEspelhos,
+    totalPaidAmountChatbot: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid' && order.storefront === 'Loja')),
+    totalPaidAllAmountEcom: calculateTotal(ordersToday.filter(order => order.storefront !== 'Loja')),
   };
 
   return {

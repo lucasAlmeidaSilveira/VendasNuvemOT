@@ -176,6 +176,10 @@ export function Statistics() {
         bgcolor={bgColors.analytics}
         totalAdSpend={totalAdSpend}
       />
+      <DataSectionCart
+        bgcolor={bgColors.conversaoVendas}
+        totalAdSpend={totalAdSpend}
+      />
       <DataSectionPay bgcolor={bgColors.payment} />
       <DataSectionCosts
         bgcolor={bgColors.costs}
@@ -183,10 +187,6 @@ export function Statistics() {
         totalOrdersFormatted={totalPaidAmountFormatted}
         isLoadingADSGoogle={isLoadingADSGoogle}
         isLoadingADSMeta={isLoadingADSMeta}
-      />
-      <DataSectionCart
-        bgcolor={bgColors.conversaoVendas}
-        totalAdSpend={totalAdSpend}
       />
 
       <ContainerCharts>

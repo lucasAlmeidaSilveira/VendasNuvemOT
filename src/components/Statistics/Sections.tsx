@@ -53,14 +53,24 @@ export function DataSectionTPago({
     totalEspelhosFormatted,
     totalQuadrosFormatted,
     totalPaidAmountFormatted,
+    totalPaidAllAmountEcom,
+    totalPaidAmountChatbot
   } = filterOrders(allOrders, date);
 
-  const totalByCategory = [
+  const totalByCategoryOT = [
     {
       name: 'Quadros',
       value: totalQuadrosFormatted,
     },
     { name: 'Espelhos', value: totalEspelhosFormatted },
+  ];
+
+  const totalByCategoryAP = [
+    {
+      name: 'Ecom',
+      value: totalPaidAllAmountEcom,
+    },
+    { name: 'Chatbot', value: totalPaidAmountChatbot },
   ];
 
   const verbaGoogle = formatCurrency(verba.google);
@@ -131,7 +141,13 @@ export function DataSectionTPago({
     totalCosts[2]?.value,
   );
 
-  const dataRoas = [
+  const dataRoasOT = [
+    { name: 'Quadros', value: roasQuadros },
+    { name: 'Espelhos', value: roasEspelhos },
+    { name: 'Geral', value: roasGeral },
+  ];
+
+  const dataRoasAP = [
     { name: 'Quadros', value: roasQuadros },
     { name: 'Espelhos', value: roasEspelhos },
     { name: 'Geral', value: roasGeral },
@@ -175,7 +191,7 @@ export function DataSectionTPago({
             iconColor='var(--uipositive-100)'
             title='Faturamento'
             info='Frete incluído'
-            dataCosts={title !== 'Chatbot' ? totalByCategory : undefined}
+            dataCosts={title !== 'Chatbot' ? totalByCategoryOT : undefined}
             tooltip='Nuvemshop'
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
@@ -184,7 +200,7 @@ export function DataSectionTPago({
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
-            dataCosts={title !== 'Chatbot' ? dataRoas : undefined}
+            dataCosts={title !== 'Chatbot' ? dataRoasOT : undefined}
             tooltip='Faturamento x Verba Total'
             value={roas}
             small={title !== 'Chatbot' ? roasMax : undefined}
@@ -596,56 +612,54 @@ export function DataSectionCart({
   );
 
   useEffect(() => {
-    const filteredOrdersCashBack = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => coupon.code.startsWith('MTZ')),
-    );
-
-    const filteredOrdersCartsPartners = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => couponsPartners.includes(coupon.code)),
-    );
-
-    const filteredOrdersCartsWhats = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => couponsWhats.includes(coupon.code)),
-    );
-
-    const filteredOrdersCartsInsta = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => couponsInsta.includes(coupon.code)),
-    );
-
-    const filteredOrdersCartsInstaDirect = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => coupon.code.endsWith('-10')),
-    );
-
-    const filteredOrdersCartsEmail = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => couponsEmail.includes(coupon.code)),
-    );
-
-    const filteredOrdersCartsPopup = ordersToday.filter(
-      (order: Order) =>
-        order.coupon &&
-        order.coupon.some(coupon => couponsPopup.includes(coupon.code)),
-    );
-
-    setCartsRecoveryPartners(filteredOrdersCartsPartners);
-    setOrdersWithCashback(filteredOrdersCashBack);
-    setCartsRecoveryWhats(filteredOrdersCartsWhats);
-    setCartsRecoveryInsta(filteredOrdersCartsInsta);
-    setCartsRecoveryInstaDirect(filteredOrdersCartsInstaDirect);
-    setCartsRecoveryEmail(filteredOrdersCartsEmail);
-    setCartsRecoveryPopup(filteredOrdersCartsPopup);
-  }, [date, allOrders]);
+    // Função genérica para filtrar e calcular o total dos pedidos
+    const filterAndCalculateTotal = (filterCondition) => {
+      const filteredOrders = ordersToday.filter((order: Order) => filterCondition(order));
+      return { filteredOrders };
+    };
+  
+    const cashbackCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => coupon.code.startsWith('MTZ'));
+  
+    const partnersCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsPartners.includes(coupon.code));
+  
+    const whatsCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsWhats.includes(coupon.code));
+  
+    const instaCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsInsta.includes(coupon.code));
+  
+    const instaDirectCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => coupon.code.endsWith('-10'));
+  
+    const emailCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsEmail.includes(coupon.code));
+  
+    const popupCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsPopup.includes(coupon.code));
+  
+    // Cria um objeto que armazena os pedidos e seus totais
+    const filteredData = {
+      cashBack: filterAndCalculateTotal(cashbackCondition),
+      cartsPartners: filterAndCalculateTotal(partnersCondition),
+      cartsWhats: filterAndCalculateTotal(whatsCondition),
+      cartsInsta: filterAndCalculateTotal(instaCondition),
+      cartsInstaDirect: filterAndCalculateTotal(instaDirectCondition),
+      cartsEmail: filterAndCalculateTotal(emailCondition),
+      cartsPopup: filterAndCalculateTotal(popupCondition),
+    };
+  
+    // Atualiza os estados dos pedidos filtrados e dos totais
+    setCartsRecoveryPartners(filteredData.cartsPartners.filteredOrders);
+    setOrdersWithCashback(filteredData.cashBack.filteredOrders);
+    setCartsRecoveryWhats(filteredData.cartsWhats.filteredOrders);
+    setCartsRecoveryInsta(filteredData.cartsInsta.filteredOrders);
+    setCartsRecoveryInstaDirect(filteredData.cartsInstaDirect.filteredOrders);
+    setCartsRecoveryEmail(filteredData.cartsEmail.filteredOrders);
+    setCartsRecoveryPopup(filteredData.cartsPopup.filteredOrders);
+  
+  }, [date, allOrders]);  
 
   useEffect(() => {
     if (data) {
@@ -670,22 +684,32 @@ export function DataSectionCart({
       : '0.00';
   }, [carts, visits]);
 
-  const popupRateCouponPartners = useMemo(
+  const rateCouponWhats = useMemo(
+    () => calculatePopupRate(ordersToday, cartsRecoveryWhats),
+    [ordersToday, cartsRecoveryWhats],
+  );
+
+  const rateCouponEmail = useMemo(
+    () => calculatePopupRate(ordersToday, cartsRecoveryEmail),
+    [ordersToday, cartsRecoveryEmail],
+  );
+
+  const rateCouponPartners = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryPartners),
     [ordersToday, cartsRecoveryPartners],
   );
 
-  const popupRateCouponPopup = useMemo(
+  const rateCouponPopup = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryPopup),
     [ordersToday, cartsRecoveryPopup],
   );
 
-  const popupRateCouponInsta = useMemo(
+  const rateCouponInsta = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryInsta),
     [ordersToday, cartsRecoveryInsta],
   );
 
-  const popupRateCouponInstaDirect = useMemo(
+  const rateCouponInstaDirect = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryInstaDirect),
     [ordersToday, cartsRecoveryInstaDirect],
   );
@@ -735,80 +759,130 @@ export function DataSectionCart({
           <BudgetItem
             icon={FaWhatsapp}
             iconColor={'var(--uipositive-100)'}
-            title='Carrinhos recuperados'
-            small={'Whatsapp'}
+            title='Cupom Whatsapp'
+            small={rateCouponWhats}
             tooltip={`Cupons: ${couponsWhats.join(', ')}`}
             value={cartsRecoveryWhats.length}
             isLoading={isLoading}
           />
           <BudgetItem
+            icon={FaWhatsapp}
+            iconColor={'var(--uipositive-100)'}
+            title='Faturamento'
+            tooltip={`Cupons: ${couponsWhats.join(', ')}`}
+            value={formatCurrency(cartsRecoveryWhats.reduce((acc, order) => acc + parseInt(order.total), 0))}
+            isLoading={isLoading}
+          />
+          <BudgetItem
             icon={IoIosMail}
             iconColor={'var(--geralblack-100)'}
-            title='Carrinhos recuperados'
-            small={'Email'}
+            title='Cupom Email'
+            small={rateCouponEmail}
             tooltip={`Cupons: ${couponsEmail.join(', ')}`}
             value={cartsRecoveryEmail.length}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            icon={IoIosMail}
+            iconColor={'var(--geralblack-100)'}
+            title='Faturamento'
+            tooltip={`Cupons: ${couponsEmail.join(', ')}`}
+            value={formatCurrency(cartsRecoveryEmail.reduce((acc, order) => acc + parseInt(order.total), 0))}
             isLoading={isLoading}
           />
         </div>
 
         <div className='row'>
         {store === 'outlet' && (
-          <BudgetItem
-            icon={FaHandshakeSimple}
-            iconColor={'var(--geralblack-100)'}
-            title='Cupom Parceria'
-            small={popupRateCouponPartners}
-            tooltip='Pedidos com cupom de parceria'
-            value={cartsRecoveryPartners.length}
-            isLoading={isLoading}
-          />
+          <>
+            <BudgetItem
+              icon={FaHandshakeSimple}
+              iconColor={'var(--geralblack-100)'}
+              title='Cupom Parceria'
+              small={rateCouponPartners}
+              tooltip='Pedidos com cupom de parceria'
+              value={cartsRecoveryPartners.length}
+              isLoading={isLoading}
+            />
+            <BudgetItem
+              icon={FaHandshakeSimple}
+              iconColor={'var(--geralblack-100)'}
+              title='Faturamento'
+              tooltip='Faturamento com cupom de parceria'
+              value={formatCurrency(cartsRecoveryPartners.reduce((acc, order) => acc + parseInt(order.total), 0))}
+              isLoading={isLoading}
+            />
+          </>
         )}
           <BudgetItem
             title='Cupom Popup'
-            small={popupRateCouponPopup}
-            tooltip='Pedidos realizados com Cupom Popup'
+            small={rateCouponPopup}
+            tooltip='Pedidos realizados com cupom do Popup'
             value={cartsRecoveryPopup.length}
+            isLoading={isLoading}
+          />
+          <BudgetItem
+            title='Faturamento'
+            tooltip='Faturamento com cupom do Popup'
+            value={formatCurrency(cartsRecoveryPopup.reduce((acc, order) => acc + parseInt(order.total), 0))}
             isLoading={isLoading}
           />
           <BudgetItem
             icon={FaInstagram}
             iconColor={'#d6249f'}
-            small={popupRateCouponInsta}
+            small={rateCouponInsta}
             title='Cupom Instagram'
             tooltip={`Cupom: ${couponsInsta.join(', ')}`}
             value={cartsRecoveryInsta.length}
             isLoading={isLoading}
           />
+          <BudgetItem
+            icon={FaInstagram}
+            iconColor={'#d6249f'}
+            title='Faturamento'
+            tooltip={`Faturamento com cupom: ${couponsInsta.join(', ')}`}
+            value={formatCurrency(cartsRecoveryInsta.reduce((acc, order) => acc + parseInt(order.total), 0))}
+            isLoading={isLoading}
+          />
           {store === 'outlet' && (
-            <BudgetItem
-              icon={RiMessengerLine}
-              iconColor={'#fd5949'}
-              small={popupRateCouponInstaDirect}
-              title='Cupom Direct Instagram'
-              tooltip={`Cupons enviados via Direct Instagram`}
-              value={cartsRecoveryInstaDirect.length}
-              isLoading={isLoading}
-            />
+            <>
+              <BudgetItem
+                icon={RiMessengerLine}
+                iconColor={'#fd5949'}
+                small={rateCouponInstaDirect}
+                title='Cupom Direct Instagram'
+                tooltip={`Cupons enviados via Direct`}
+                value={cartsRecoveryInstaDirect.length}
+                isLoading={isLoading}
+              />
+              <BudgetItem
+                icon={RiMessengerLine}
+                iconColor={'#fd5949'}
+                title='Faturamento'
+                tooltip={`Faturamento com cupons enviados via Direct Instagram`}
+                value={formatCurrency(cartsRecoveryInstaDirect.reduce((acc, order) => acc + parseInt(order.total), 0))}
+                isLoading={isLoading}
+              />
+            </>
           )}
         </div>
         <div className='row'>
           <BudgetItem
-            title='Vendas | Cashback'
+            title='Cupom Cashback'
             tooltip='Vendas com Cashback'
             value={totalCashbackSales}
             small={couponsCashback.length}
             isLoading={isLoading}
           />
           <BudgetItem
-            title='Faturamento | Cashback'
+            title='Faturamento Cashback'
             tooltip='Vendas com Cashback (R$)'
             value={formatCurrency(totalCashbackRevenue)}
             small={`ROI: ${roiCashback}`}
             isLoading={isLoading}
           />
           <BudgetItem
-            title='Custo | Cashback'
+            title='Custo Cashback'
             tooltip='Custo com cashback'
             value={costCashback}
             isLoading={isLoading}
