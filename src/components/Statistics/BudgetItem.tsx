@@ -5,36 +5,9 @@ import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { Small } from './styles';
 import { formatCurrency } from '../../tools/tools';
 import { MdOutlineHelpOutline } from 'react-icons/md';
+import { BudgetItemListProps, BudgetItemProps } from "../../types";
 
-interface BudgetItemStatisticsProps {
-  icon?: React.ElementType;
-  iconColor?: string;
-  dataCosts?: DataCosts[];
-  small?: number | string;
-  info?: string;
-  title: string;
-  value: number | string;
-  isLoading: boolean;
-  tooltip?: string;
-}
-
-interface BudgetItemProps {
-  icon?: React.ElementType;
-  iconColor?: string;
-  bullet?: string;
-  small?: string | number;
-  title: string;
-  value: number | string;
-  isLoading: boolean;
-  tooltip?: string;
-}
-
-interface DataCosts {
-  name: string;
-  value: number | string;
-}
-
-export function BudgetItemStatistics({
+export function BudgetItemList({
   icon: Icon,
   iconColor,
   dataCosts,
@@ -44,7 +17,7 @@ export function BudgetItemStatistics({
   value,
   isLoading,
   small,
-}: BudgetItemStatisticsProps) {
+}: BudgetItemListProps) {
   return (
     <div className='div'>
       <div className='title-box'>
@@ -76,10 +49,10 @@ export function BudgetItemStatistics({
               {dataCosts && (
                 dataCosts.map((data, index) => (
                   <div key={index} className='row-list'>
-                    <span>
+                    <span style={data.name === 'Total' ? {fontWeight: 'bold', color: 'var(--geralblack-80)'} : {fontWeight: 'inherit'}}>
                       {title === 'ROAS' ? data.value : formatCurrency(data.value)}
                     </span>
-                    <span>{data.name}</span>
+                    <span style={data.name === 'Total' ? {fontWeight: 'bold', color: 'var(--geralblack-80)'} : {fontWeight: 'normal'}}>{data.name}</span>
                   </div>
                 ))
               )}

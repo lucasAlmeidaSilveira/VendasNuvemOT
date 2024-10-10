@@ -137,3 +137,31 @@ export interface DataAnalyticsProps {
 export interface AnalyticsProviderProps {
   children: ReactNode;
 }
+
+export interface BudgetItemListProps {
+  icon?: React.ElementType;
+  iconColor?: string;
+  dataCosts?: DataCosts[];
+  small?: number | string;
+  info?: string;
+  title: string;
+  value: number | string;
+  isLoading: boolean;
+  tooltip?: string;
+}
+
+export interface BudgetItemProps {
+  icon?: React.ElementType;
+  iconColor?: string;
+  bullet?: string;
+  small?: string | number;
+  title: string;
+  value: number | string;
+  isLoading: boolean;
+  tooltip?: string;
+}
+
+export interface DataCosts {
+  name: string;
+  value: number | string;
+}

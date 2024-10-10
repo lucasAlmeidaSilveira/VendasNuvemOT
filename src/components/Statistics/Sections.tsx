@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useCoupons } from '../../context/CouponsContext';
 import { useOrders } from '../../context/OrdersContext';
-import { BudgetItem, BudgetItemStatistics } from './BudgetItem';
+import { BudgetItem, BudgetItemList } from './BudgetItem';
 import {
   calculateAverageTicket,
   calculatePopupRate,
@@ -31,6 +31,7 @@ import {
   DataSectionTPagoProps,
   DataSectionTPagoAPProps,
   Order,
+  Coupon,
 } from '../../types';
 
 const DEFAULT_VALUE = '0';
@@ -158,7 +159,7 @@ export function DataSectionTPago({
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Tráfego Pago | {title}</h4>
         <div className='row'>
-          <BudgetItemStatistics
+          <BudgetItemList
             icon={FcGoogle}
             title='Verba Google'
             dataCosts={googleCosts}
@@ -166,7 +167,7 @@ export function DataSectionTPago({
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
           />
-          <BudgetItemStatistics
+          <BudgetItemList
             icon={FaMeta}
             iconColor='#008bff'
             title='Verba Meta'
@@ -175,7 +176,7 @@ export function DataSectionTPago({
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
           />
-          <BudgetItemStatistics
+          <BudgetItemList
             icon={GrMoney}
             iconColor='var(--geralblack-100)'
             title='Verba Total'
@@ -186,7 +187,7 @@ export function DataSectionTPago({
           />
         </div>
         <div className='row'>
-          <BudgetItemStatistics
+          <BudgetItemList
             icon={MdOutlineAttachMoney}
             iconColor='var(--uipositive-100)'
             title='Faturamento'
@@ -196,7 +197,7 @@ export function DataSectionTPago({
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
-          <BudgetItemStatistics
+          <BudgetItemList
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
@@ -601,9 +602,9 @@ export function DataSectionCart({
     'TECAESTT15',
     'THAINATANI15',
   ];
-  const couponsInsta = ['INSTA10'];
+  const couponsInsta = ['INSTA10', 'INSTA20'];
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
-  const couponsEmail = ['OUTLET10', 'GANHEI10'];
+  const couponsEmail = store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
   const couponsPopup =
     store === 'outlet' ? ['GANHEI5'] : ['GANHEI10', 'GANHEI5'];
 
@@ -731,6 +732,21 @@ export function DataSectionCart({
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
 
+  const generateDataCosts = (orders: Order[], couponsList: string[]) => {
+    return [
+      { 
+        name: 'Total', 
+        value: orders.reduce((acc, order) => acc + parseInt(order.total), 0)
+      },
+      ...couponsList.map(couponCode => ({
+        name: couponCode,
+        value: orders
+          .filter(order => order.coupon.some(coupon => coupon.code === couponCode))
+          .reduce((acc, order) => acc + parseInt(order.total), 0),
+      })),
+    ];
+  };
+
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
@@ -756,7 +772,7 @@ export function DataSectionCart({
           />
         </div>
         <div className='row'>
-          <BudgetItem
+          <BudgetItemList
             icon={FaWhatsapp}
             iconColor={'var(--uipositive-100)'}
             title='Cupom Whatsapp'
@@ -764,89 +780,21 @@ export function DataSectionCart({
             tooltip={`Cupons: ${couponsWhats.join(', ')}`}
             value={cartsRecoveryWhats.length}
             isLoading={isLoading}
+            dataCosts={generateDataCosts(cartsRecoveryWhats, couponsWhats)}
           />
-          <BudgetItem
-            icon={FaWhatsapp}
-            iconColor={'var(--uipositive-100)'}
-            title='Faturamento'
-            tooltip={`Cupons: ${couponsWhats.join(', ')}`}
-            value={formatCurrency(cartsRecoveryWhats.reduce((acc, order) => acc + parseInt(order.total), 0))}
-            isLoading={isLoading}
-          />
-          <BudgetItem
-            icon={IoIosMail}
-            iconColor={'var(--geralblack-100)'}
-            title='Cupom Email'
-            small={rateCouponEmail}
-            tooltip={`Cupons: ${couponsEmail.join(', ')}`}
-            value={cartsRecoveryEmail.length}
-            isLoading={isLoading}
-          />
-          <BudgetItem
-            icon={IoIosMail}
-            iconColor={'var(--geralblack-100)'}
-            title='Faturamento'
-            tooltip={`Cupons: ${couponsEmail.join(', ')}`}
-            value={formatCurrency(cartsRecoveryEmail.reduce((acc, order) => acc + parseInt(order.total), 0))}
-            isLoading={isLoading}
-          />
-        </div>
-
-        <div className='row'>
-        {store === 'outlet' && (
-          <>
-            <BudgetItem
-              icon={FaHandshakeSimple}
-              iconColor={'var(--geralblack-100)'}
-              title='Cupom Parceria'
-              small={rateCouponPartners}
-              tooltip='Pedidos com cupom de parceria'
-              value={cartsRecoveryPartners.length}
-              isLoading={isLoading}
-            />
-            <BudgetItem
-              icon={FaHandshakeSimple}
-              iconColor={'var(--geralblack-100)'}
-              title='Faturamento'
-              tooltip='Faturamento com cupom de parceria'
-              value={formatCurrency(cartsRecoveryPartners.reduce((acc, order) => acc + parseInt(order.total), 0))}
-              isLoading={isLoading}
-            />
-          </>
-        )}
-          <BudgetItem
-            title='Cupom Popup'
-            small={rateCouponPopup}
-            tooltip='Pedidos realizados com cupom do Popup'
-            value={cartsRecoveryPopup.length}
-            isLoading={isLoading}
-          />
-          <BudgetItem
-            title='Faturamento'
-            tooltip='Faturamento com cupom do Popup'
-            value={formatCurrency(cartsRecoveryPopup.reduce((acc, order) => acc + parseInt(order.total), 0))}
-            isLoading={isLoading}
-          />
-          <BudgetItem
+          <BudgetItemList
+            title='Cupom Instagram'
             icon={FaInstagram}
             iconColor={'#d6249f'}
             small={rateCouponInsta}
-            title='Cupom Instagram'
             tooltip={`Cupom: ${couponsInsta.join(', ')}`}
             value={cartsRecoveryInsta.length}
             isLoading={isLoading}
-          />
-          <BudgetItem
-            icon={FaInstagram}
-            iconColor={'#d6249f'}
-            title='Faturamento'
-            tooltip={`Faturamento com cupom: ${couponsInsta.join(', ')}`}
-            value={formatCurrency(cartsRecoveryInsta.reduce((acc, order) => acc + parseInt(order.total), 0))}
-            isLoading={isLoading}
+            dataCosts={generateDataCosts(cartsRecoveryInsta, couponsInsta)}
           />
           {store === 'outlet' && (
             <>
-              <BudgetItem
+              <BudgetItemList
                 icon={RiMessengerLine}
                 iconColor={'#fd5949'}
                 small={rateCouponInstaDirect}
@@ -854,17 +802,44 @@ export function DataSectionCart({
                 tooltip={`Cupons enviados via Direct`}
                 value={cartsRecoveryInstaDirect.length}
                 isLoading={isLoading}
+                dataCosts={[
+                  {name: 'Total', value: cartsRecoveryInstaDirect.reduce((acc, order) => acc + parseInt(order.total), 0)}
+                ]}
               />
-              <BudgetItem
-                icon={RiMessengerLine}
-                iconColor={'#fd5949'}
-                title='Faturamento'
-                tooltip={`Faturamento com cupons enviados via Direct Instagram`}
-                value={formatCurrency(cartsRecoveryInstaDirect.reduce((acc, order) => acc + parseInt(order.total), 0))}
+              <BudgetItemList
+                icon={FaHandshakeSimple}
+                iconColor={'var(--geralblack-100)'}
+                title='Cupom Parceria'
+                small={rateCouponPartners}
+                tooltip='Pedidos com cupom de parceria'
+                value={cartsRecoveryPartners.length}
                 isLoading={isLoading}
+                dataCosts={[
+                  {name: 'Total', value: cartsRecoveryPartners.reduce((acc, order) => acc + parseInt(order.total), 0)}
+                ]}
+              />
+              <BudgetItemList
+                icon={IoIosMail}
+                iconColor={'var(--geralblack-100)'}
+                title='Cupom Email'
+                small={rateCouponEmail}
+                tooltip={`Cupons: ${couponsEmail.join(', ')}`}
+                value={cartsRecoveryEmail.length}
+                isLoading={isLoading}
+                dataCosts={generateDataCosts(cartsRecoveryEmail, couponsEmail)}
               />
             </>
           )}
+          <BudgetItemList
+            title='Cupom Popup'
+            small={rateCouponPopup}
+            tooltip='Pedidos realizados com cupom do Popup'
+            value={cartsRecoveryPopup.length}
+            isLoading={isLoading}
+            dataCosts={[
+              {name: 'Total', value: cartsRecoveryPopup.reduce((acc, order) => acc + parseInt(order.total), 0)}
+            ]}
+          />
         </div>
         <div className='row'>
           <BudgetItem
