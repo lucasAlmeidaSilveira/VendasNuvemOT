@@ -28,7 +28,8 @@ export const AuthProvider = ({ children }) => {
           'danielerosepedroso@gmail.com',
           'micjfeltrin@gmail.com',
           'bruna.artepropria@gmail.com',
-          'dev@artepropria.com'
+          'dev@artepropria.com',
+          'mamoluma@gmail.com',
         ];
         if (allowedEmails.includes(user.email)) {
           setUser(user);
