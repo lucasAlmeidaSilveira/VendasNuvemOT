@@ -20,7 +20,7 @@ export const OrdersProvider = ({ children }) => {
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(true);
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
-  const [store, setStore] = useState('outlet');
+  const [store, setStore] = useState('artepropria');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
   const [isOnline, setIsOnline] = useState(navigator.onLine);
   const [error, setError] = useState({});
