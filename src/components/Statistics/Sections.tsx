@@ -601,6 +601,7 @@ export function DataSectionCart({
     'TATI15',
     'TECAESTT15',
     'THAINATANI15',
+    'GABICOSTA'
   ];
   const couponsInsta = ['INSTA10', 'INSTA20'];
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
