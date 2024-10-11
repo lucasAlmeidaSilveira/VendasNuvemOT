@@ -29,6 +29,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     totalCost: {
       all: 0,
       ecom: 0,
+      chatbot: 0,
       quadros: 0,
       espelhos: 0,
       geral: 0,
@@ -97,6 +98,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       totalCost: {
         all: 0,
         ecom: 0,
+        chatbot: 0,
         quadros: 0,
         espelhos: 0,
         geral: 0,

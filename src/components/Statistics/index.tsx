@@ -28,6 +28,7 @@ export function Statistics() {
     googleGeral: 0,
     meta: 0,
     metaEcom: 0,
+    metaChatbot: 0,
     metaQuadros: 0,
     metaEspelhos: 0,
     metaGeral: 0,
@@ -63,6 +64,7 @@ export function Statistics() {
         ...prev,
         meta: firstEntry.totalCost.all,
         metaEcom: firstEntry.totalCost.ecom,
+        metaChatbot: firstEntry.totalCost.chatbot,
         metaQuadros: firstEntry.totalCost.quadros,
         metaEspelhos: firstEntry.totalCost.espelhos,
         metaGeral: firstEntry.totalCost.geral,
@@ -75,6 +77,12 @@ export function Statistics() {
     () => adSpends.google + adSpends.meta,
     [adSpends],
   );
+
+  const totalAdSpendChatbot = useMemo(
+    () => adSpends.google + adSpends.metaChatbot,
+    [adSpends],
+  );
+
   const totalAdSpendEcom = useMemo(
     () => adSpends.googleEcom + adSpends.metaEcom,
     [adSpends],
@@ -100,7 +108,7 @@ export function Statistics() {
 
   const roasChatbot = calculateRoas(
     parseCurrency(totalPaidAmountChatbotFormatted),
-    totalAdSpend,
+    totalAdSpendChatbot,
   );
 
   // Cores de fundo para diferentes seções
@@ -111,6 +119,8 @@ export function Statistics() {
     conversaoVendas: '#592DEA',
     payment: '#008006',
   };
+
+  console.log(dataADSMeta)
 
   return (
     <Container>
@@ -161,8 +171,8 @@ export function Statistics() {
             title='Tráfego Pago | Chatbot'
             bgcolor={bgColors.trafegoPago}
             verbaGoogle={adSpends.google}
-            verbaMeta={adSpends.meta}
-            totalAdSpend={totalAdSpend}
+            verbaMeta={adSpends.metaChatbot}
+            totalAdSpend={totalAdSpendChatbot}
             totalOrdersFormatted={totalPaidAmountChatbotFormatted}
             roas={roasChatbot}
             isLoadingADSGoogle={isLoadingADSGoogle}

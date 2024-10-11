@@ -104,6 +104,7 @@ export interface ADSMetaEntry {
 export type TotalCost = {
   all: number;
   ecom: number;
+  chatbot: number;
   quadros: number;
   espelhos: number;
   geral: number;
