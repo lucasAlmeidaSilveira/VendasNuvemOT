@@ -121,24 +121,27 @@ export function Coupons() {
 
   return (
     <>
-      <FormGroup>
-        <FormControlLabel 
-          control={
-            <Checkbox
-              checked={isSellerFilterActive}
-              onChange={handleSellerFilterChange}
-              inputProps={{ 'aria-label': 'controlled' }}
-              size='large'
-            />
-          } 
-          label={
-            <Typography variant="subtitle1" style={{ fontFamily: 'Poppins', color: 'var(--geralblack-100)', fontSize: 12 }}>
-              Mostrar somente cupons de vendedores
-            </Typography>
-          }
-          
-        />
-      </FormGroup>
+    {
+      store === "artepropria" && (
+        <FormGroup>
+          <FormControlLabel 
+            control={
+              <Checkbox
+                checked={isSellerFilterActive}
+                onChange={handleSellerFilterChange}
+                inputProps={{ 'aria-label': 'controlled' }}
+                size='large'
+              />
+            } 
+            label={
+              <Typography variant="subtitle1" style={{ fontFamily: 'Poppins', color: 'var(--geralblack-100)', fontSize: 12 }}>
+                Mostrar somente cupons de vendedores
+              </Typography>
+            }
+          />
+        </FormGroup>
+      )
+    }
       <ContainerCoupon component={Paper}>
         <Table aria-label='simple table'>
           <TableHead>
