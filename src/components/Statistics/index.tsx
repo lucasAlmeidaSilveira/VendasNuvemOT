@@ -39,11 +39,6 @@ export function Statistics() {
     ordersToday,
     totalPaidAmountFormatted,
     totalPaidAllAmountFormatted,
-    totalPaidAllAmountEcomFormatted,
-    totalPaidAmountChatbotFormatted,
-    totalPaidAmountEcomFormatted,
-    totalEspelhosFormatted,
-    totalQuadrosFormatted,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
@@ -78,16 +73,6 @@ export function Statistics() {
     [adSpends],
   );
 
-  const totalAdSpendChatbot = useMemo(
-    () => adSpends.google + adSpends.metaChatbot,
-    [adSpends],
-  );
-
-  const totalAdSpendEcom = useMemo(
-    () => adSpends.googleEcom + adSpends.metaEcom,
-    [adSpends],
-  );
-
   const roas = calculateRoas(
     parseCurrency(totalPaidAmountFormatted),
     totalAdSpend,
@@ -95,20 +80,6 @@ export function Statistics() {
   const roasMax = calculateRoas(
     parseCurrency(totalPaidAllAmountFormatted),
     totalAdSpend,
-  );
-
-  const roasEcom = calculateRoas(
-    parseCurrency(totalPaidAmountEcomFormatted),
-    totalAdSpendEcom,
-  );
-  const roasMaxEcom = calculateRoas(
-    parseCurrency(totalPaidAllAmountEcomFormatted),
-    totalAdSpendEcom,
-  );
-
-  const roasChatbot = calculateRoas(
-    parseCurrency(totalPaidAmountChatbotFormatted),
-    totalAdSpendChatbot,
   );
 
   // Cores de fundo para diferentes seções
@@ -120,67 +91,19 @@ export function Statistics() {
     payment: '#008006',
   };
 
-  console.log(dataADSMeta)
-
   return (
     <Container>
-      {store === 'artepropria' ? (
-        <DataSectionTPagoAP
-          title='Tráfego Pago | Geral'
-          bgcolor={bgColors.trafegoPago}
-          verbaGoogle={adSpends.google}
-          verbaMeta={adSpends.meta}
-          totalAdSpend={totalAdSpend}
-          totalOrdersFormatted={totalPaidAmountFormatted}
-          roas={roas}
-          roasMax={`Max.: ${roasMax}`}
-          isLoadingADSGoogle={isLoadingADSGoogle}
-          isLoadingOrders={isLoading}
-          isLoadingADSMeta={isLoadingADSMeta}
-        />
-      ) : (
-        <DataSectionTPago
-          title='Geral'
-          bgcolor={bgColors.trafegoPago}
-          verba={adSpends}
-          totalOrdersFormatted={totalPaidAmountFormatted}
-          roas={roas}
-          roasMax={roasMax}
-          isLoadingADSGoogle={isLoadingADSGoogle}
-          isLoadingOrders={isLoading}
-          isLoadingADSMeta={isLoadingADSMeta}
-        />
-      )}
-
-      {store === 'artepropria' && (
-        <>
-          <DataSectionTPagoAP
-            title='Tráfego Pago | Ecom'
-            bgcolor={bgColors.trafegoPago}
-            verbaGoogle={adSpends.googleEcom}
-            verbaMeta={adSpends.metaEcom}
-            totalAdSpend={totalAdSpendEcom}
-            totalOrdersFormatted={totalPaidAmountEcomFormatted}
-            roas={roasEcom}
-            roasMax={`Max.: ${roasMaxEcom}`}
-            isLoadingADSGoogle={isLoadingADSGoogle}
-            isLoadingOrders={isLoading}
-            isLoadingADSMeta={isLoadingADSMeta}
-          />
-          <DataSectionTPagoAP
-            title='Tráfego Pago | Chatbot'
-            bgcolor={bgColors.trafegoPago}
-            verbaGoogle={adSpends.google}
-            verbaMeta={adSpends.metaChatbot}
-            totalAdSpend={totalAdSpendChatbot}
-            totalOrdersFormatted={totalPaidAmountChatbotFormatted}
-            roas={roasChatbot}
-            isLoadingADSGoogle={isLoadingADSGoogle}
-            isLoadingOrders={isLoading}
-            isLoadingADSMeta={isLoadingADSMeta}
-          />
-        </>
-      )}
+      <DataSectionTPago
+        title='Geral'
+        bgcolor={bgColors.trafegoPago}
+        verba={adSpends}
+        totalOrdersFormatted={totalPaidAmountFormatted}
+        roas={roas}
+        roasMax={`Max.: ${roasMax}`}
+        isLoadingADSGoogle={isLoadingADSGoogle}
+        isLoadingOrders={isLoading}
+        isLoadingADSMeta={isLoadingADSMeta}
+      />
 
       <DataSectionAnalytics
         bgcolor={bgColors.analytics}

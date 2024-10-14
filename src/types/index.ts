@@ -34,6 +34,7 @@ type Verba = {
   googleGeral: number,
   meta: number,
   metaEcom: number,
+  metaChatbot: number,
   metaQuadros: number,
   metaEspelhos: number,
   metaGeral: number,
@@ -165,4 +166,14 @@ export interface BudgetItemProps {
 export interface DataCosts {
   name: string;
   value: number | string;
+}
+
+export interface Category {
+  name: string;
+  value: number;
+}
+
+export interface Cost {
+  name: string;
+  value: number;
 }

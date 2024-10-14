@@ -9,7 +9,7 @@ import { BudgetItemListProps, BudgetItemProps } from "../../types";
 
 export function BudgetItemList({
   icon: Icon,
-  iconColor,
+  iconColor = 'var(--geralblack-100)',
   dataCosts,
   title,
   tooltip,

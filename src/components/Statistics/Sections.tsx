@@ -8,6 +8,8 @@ import {
   calculatePopupRate,
   calculateRoas,
   formatCurrency,
+  generateDataCosts,
+  generateRoasData,
   parseCurrency,
 } from '../../tools/tools';
 import { filterOrders } from '../../tools/filterOrders';
@@ -15,7 +17,7 @@ import { ContainerOrders, ContainerGeral } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
-import { FaHandshakeSimple, FaMeta } from 'react-icons/fa6';
+import { FaHandshakeSimple, FaMeta, FaPeopleGroup } from 'react-icons/fa6';
 import { MdOutlineAttachMoney } from 'react-icons/md';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
@@ -48,35 +50,20 @@ export function DataSectionTPago({
   isLoadingOrders,
   isLoadingADSMeta,
 }: DataSectionTPagoProps) {
-  const { allOrders, date } = useOrders();
+  const { allOrders, date, store } = useOrders();
   // Filtros para pedidos
   const {
     totalEspelhosFormatted,
     totalQuadrosFormatted,
-    totalPaidAmountFormatted,
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot
   } = filterOrders(allOrders, date);
+  const verbaGoogleSum = verba.googleEcom + verba.googleEspelhos + verba.googleGeral + verba.googleQuadros
+  const verbaMetaSum = verba.metaEcom + verba.metaEspelhos + verba.metaGeral + verba.metaQuadros + verba.metaChatbot
 
-  const totalByCategoryOT = [
-    {
-      name: 'Quadros',
-      value: totalQuadrosFormatted,
-    },
-    { name: 'Espelhos', value: totalEspelhosFormatted },
-  ];
-
-  const totalByCategoryAP = [
-    {
-      name: 'Ecom',
-      value: totalPaidAllAmountEcom,
-    },
-    { name: 'Chatbot', value: totalPaidAmountChatbot },
-  ];
-
-  const verbaGoogle = formatCurrency(verba.google);
-  const verbaMeta = formatCurrency(verba.meta);
-  const totalAdSpend = formatCurrency(verba.google + verba.meta);
+  const verbaGoogle = formatCurrency(verbaGoogleSum);
+  const verbaMeta = formatCurrency(verbaMetaSum);
+  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum);
 
   // Função para converter o objeto em arrays separados por plataforma
   const formatCostsByPlatform = (
@@ -129,30 +116,22 @@ export function DataSectionTPago({
   let totalCosts = [{ name: '', value: 0 }];
   totalCosts = sumCostsByCombinedPlatform(verba);
 
-  const roasQuadros = calculateRoas(
-    totalQuadrosFormatted,
-    totalCosts[0]?.value,
-  );
-  const roasEspelhos = calculateRoas(
-    totalEspelhosFormatted,
-    totalCosts[1]?.value,
-  );
-  const roasGeral = calculateRoas(
-    parseCurrency(totalPaidAmountFormatted),
-    totalCosts[2]?.value,
-  );
-
-  const dataRoasOT = [
-    { name: 'Quadros', value: roasQuadros },
-    { name: 'Espelhos', value: roasEspelhos },
-    { name: 'Geral', value: roasGeral },
+  const totalByCategory = store === 'outlet' ? [
+    {
+      name: 'Quadros',
+      value: totalQuadrosFormatted,
+    },
+    { name: 'Espelhos', value: totalEspelhosFormatted },
+  ] : [
+    {
+      name: 'Ecom',
+      value: totalPaidAllAmountEcom,
+    },
+    { name: 'Chatbot', value: totalPaidAmountChatbot },
   ];
 
-  const dataRoasAP = [
-    { name: 'Quadros', value: roasQuadros },
-    { name: 'Espelhos', value: roasEspelhos },
-    { name: 'Geral', value: roasGeral },
-  ];
+
+  const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
   return (
     <ContainerOrders>
@@ -192,7 +171,7 @@ export function DataSectionTPago({
             iconColor='var(--uipositive-100)'
             title='Faturamento'
             info='Frete incluído'
-            dataCosts={title !== 'Chatbot' ? totalByCategoryOT : undefined}
+            dataCosts={totalByCategory}
             tooltip='Nuvemshop'
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
@@ -201,7 +180,7 @@ export function DataSectionTPago({
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
-            dataCosts={title !== 'Chatbot' ? dataRoasOT : undefined}
+            dataCosts={dataRoas}
             tooltip='Faturamento x Verba Total'
             value={roas}
             small={title !== 'Chatbot' ? roasMax : undefined}
@@ -570,6 +549,7 @@ export function DataSectionCart({
   const { ordersToday } = filterOrders(allOrders, date);
   const { coupons } = useCoupons();
   const [ordersWithCashback, setOrdersWithCashback] = useState<Order[]>([]);
+  const [ordersSellers, setOrdersSellers] = useState<Order[]>([]);
   const [cartsRecoveryPartners, setCartsRecoveryPartners] = useState<Order[]>([]);
   const [cartsRecoveryInsta, setCartsRecoveryInsta] = useState<Order[]>([]);
   const [cartsRecoveryInstaDirect, setCartsRecoveryInstaDirect] = useState<Order[]>([]);
@@ -603,6 +583,8 @@ export function DataSectionCart({
     'THAINATANI15',
     'GABICOSTA'
   ];
+
+  const couponsSellers = ['CIBELEAP', 'CLAUDIOAP', 'DIEGOAP', 'IAGOAP', 'YARAAP']
   const couponsInsta = ['INSTA10', 'INSTA20'];
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
   const couponsEmail = store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
@@ -625,6 +607,9 @@ export function DataSectionCart({
   
     const partnersCondition = (order: Order) =>
       order.coupon && order.coupon.some(coupon => couponsPartners.includes(coupon.code));
+
+    const sellersCondition = (order: Order) =>
+      order.coupon && order.coupon.some(coupon => couponsSellers.includes(coupon.code));
   
     const whatsCondition = (order: Order) =>
       order.coupon && order.coupon.some(coupon => couponsWhats.includes(coupon.code));
@@ -645,6 +630,7 @@ export function DataSectionCart({
     const filteredData = {
       cashBack: filterAndCalculateTotal(cashbackCondition),
       cartsPartners: filterAndCalculateTotal(partnersCondition),
+      cartsSellers: filterAndCalculateTotal(sellersCondition),
       cartsWhats: filterAndCalculateTotal(whatsCondition),
       cartsInsta: filterAndCalculateTotal(instaCondition),
       cartsInstaDirect: filterAndCalculateTotal(instaDirectCondition),
@@ -654,6 +640,7 @@ export function DataSectionCart({
   
     // Atualiza os estados dos pedidos filtrados e dos totais
     setCartsRecoveryPartners(filteredData.cartsPartners.filteredOrders);
+    setOrdersSellers(filteredData.cartsSellers.filteredOrders);
     setOrdersWithCashback(filteredData.cashBack.filteredOrders);
     setCartsRecoveryWhats(filteredData.cartsWhats.filteredOrders);
     setCartsRecoveryInsta(filteredData.cartsInsta.filteredOrders);
@@ -701,6 +688,11 @@ export function DataSectionCart({
     [ordersToday, cartsRecoveryPartners],
   );
 
+  const rateCouponSellers = useMemo(
+    () => calculatePopupRate(ordersToday, ordersSellers),
+    [ordersToday, ordersSellers],
+  );
+
   const rateCouponPopup = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryPopup),
     [ordersToday, cartsRecoveryPopup],
@@ -732,21 +724,6 @@ export function DataSectionCart({
     totalCashbackValue > 0
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
-
-  const generateDataCosts = (orders: Order[], couponsList: string[]) => {
-    return [
-      { 
-        name: 'Total', 
-        value: orders.reduce((acc, order) => acc + parseInt(order.total), 0)
-      },
-      ...couponsList.map(couponCode => ({
-        name: couponCode,
-        value: orders
-          .filter(order => order.coupon.some(coupon => coupon.code === couponCode))
-          .reduce((acc, order) => acc + parseInt(order.total), 0),
-      })),
-    ];
-  };
 
   return (
     <ContainerOrders>
@@ -809,7 +786,6 @@ export function DataSectionCart({
               />
               <BudgetItemList
                 icon={FaHandshakeSimple}
-                iconColor={'var(--geralblack-100)'}
                 title='Cupom Parceria'
                 small={rateCouponPartners}
                 tooltip='Pedidos com cupom de parceria'
@@ -821,7 +797,6 @@ export function DataSectionCart({
               />
               <BudgetItemList
                 icon={IoIosMail}
-                iconColor={'var(--geralblack-100)'}
                 title='Cupom Email'
                 small={rateCouponEmail}
                 tooltip={`Cupons: ${couponsEmail.join(', ')}`}
@@ -841,6 +816,17 @@ export function DataSectionCart({
               {name: 'Total', value: cartsRecoveryPopup.reduce((acc, order) => acc + parseInt(order.total), 0)}
             ]}
           />
+          {store === 'artepropria' && (
+            <BudgetItemList
+              icon={FaPeopleGroup}
+              title='Cupom Vendedores'
+              small={rateCouponSellers}
+              tooltip='Pedidos realizados com cupom de vendedor'
+              value={ordersSellers.length}
+              isLoading={isLoading}
+              dataCosts={generateDataCosts(ordersSellers, couponsSellers)}
+            />
+          )}
         </div>
         <div className='row'>
           <BudgetItem

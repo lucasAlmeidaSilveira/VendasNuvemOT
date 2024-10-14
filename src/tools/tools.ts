@@ -1,5 +1,5 @@
 import parsePhoneNumberFromString from 'libphonenumber-js';
-import { CouponProps, Order } from '../types';
+import { Category, Cost, CouponProps, Order } from '../types';
 
 // Função para formatar o valor em reais
 export function formatCurrency(value: string | number): string {
@@ -142,4 +142,32 @@ export const isLate = (order: Order) => {
     order.payment_details.method !== 'other' &&
     order.payment_status === 'paid'
   );
+};
+
+export const generateDataCosts = (orders: Order[], couponsList: string[]) => {
+  return [
+    { 
+      name: 'Total', 
+      value: orders.reduce((acc, order) => acc + parseInt(order.total), 0)
+    },
+    ...couponsList.map(couponCode => ({
+      name: couponCode,
+      value: orders
+        .filter(order => order.coupon.some(coupon => coupon.code === couponCode))
+        .reduce((acc, order) => acc + parseInt(order.total), 0),
+    })),
+  ];
+};
+
+export const generateRoasData = (categories: Category[], totalCosts: Cost[]) => {
+  return categories.map((category) => {
+    const matchingCost = totalCosts.find(
+      (cost) => cost.name.toLowerCase() === category.name.toLowerCase()
+    );
+
+    return {
+      name: category.name,
+      value: calculateRoas(category.value, matchingCost?.value || 0),
+    };
+  });
 };

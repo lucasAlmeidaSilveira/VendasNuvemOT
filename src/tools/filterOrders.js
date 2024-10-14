@@ -45,7 +45,7 @@ export function filterOrders(orders, date) {
     totalQuadrosFormatted: totalQuadros,
     totalEspelhosFormatted: totalEspelhos,
     totalPaidAmountChatbot: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid' && order.storefront === 'Loja')),
-    totalPaidAllAmountEcom: calculateTotal(ordersToday.filter(order => order.storefront !== 'Loja')),
+    totalPaidAllAmountEcom: calculateTotal(ordersToday.filter(order => order.payment_status === 'paid' && order.storefront !== 'Loja')),
   };
 
   return {
