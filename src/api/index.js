@@ -114,6 +114,6 @@ export async function getOrderTiny(id, cpf) {
     }
     return
   } catch (error) {
-    console.log(error);
+    // console.log(error);
   }
 }
