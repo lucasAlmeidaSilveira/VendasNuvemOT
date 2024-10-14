@@ -62,9 +62,9 @@ export function Coupons() {
   useEffect(() => {
     const startDateISO = formatDateToISO(date[0]);
     const endDateISO = formatDateToISO(date[1]);
-
+  
     const couponUsageMap = {};
-
+  
     ordersToday.forEach(order => {
       const orderDate = new Date(order.created_at);
       if (
@@ -76,19 +76,21 @@ export function Coupons() {
             couponUsageMap[coupon.code] = {
               ...coupon,
               used: 0,
+              totalRevenue: 0,
             };
           }
           couponUsageMap[coupon.code].used += 1;
+          couponUsageMap[coupon.code].totalRevenue += parseFloat(order.total);
         });
       }
     });
-
+  
     const sortedCoupons = Object.values(couponUsageMap).sort(
       (a, b) => b.used - a.used,
     );
-
+  
     setFilteredCoupons(sortedCoupons);
-  }, [date, store, allOrders]);
+  }, [date, store, allOrders]);  
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -110,6 +112,7 @@ export function Coupons() {
         <TableHead>
           <TableRow>
             <StyledTableCell>Código</StyledTableCell>
+            <StyledTableCell>Desconto</StyledTableCell>
             <StyledTableCell>Valor</StyledTableCell>
             <StyledTableCell>Usado</StyledTableCell>
           </TableRow>
@@ -143,6 +146,7 @@ export function Coupons() {
                   ) : (
                     <StyledTableCell>{`R$ ${parseFloat(coupon.value).toFixed(2).replace('.', ',')}`}</StyledTableCell>
                   )}
+                  <StyledTableCell>{`R$ ${coupon.totalRevenue.toFixed(2).replace('.', ',')}`}</StyledTableCell>
                   <StyledTableCell>{coupon.used}</StyledTableCell>
                 </StyledTableRow>
               ))
