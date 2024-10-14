@@ -11,7 +11,7 @@ import Paper from '@mui/material/Paper';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
-import { formatDateToISO } from '../../tools/tools';
+import { formatCurrency, formatDateToISO } from '../../tools/tools';
 import { Loading } from '../Loading';
 import { filterOrders } from '../../tools/filterOrders';
 import { Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material';
@@ -181,7 +181,7 @@ export function Coupons() {
                       ) : (
                         <StyledTableCell>{`R$ ${parseFloat(coupon.value).toFixed(2).replace('.', ',')}`}</StyledTableCell>
                         )}
-                    <StyledTableCell>{`R$ ${coupon.totalRevenue.toFixed(2).replace('.', ',')}`}</StyledTableCell>
+                    <StyledTableCell>{formatCurrency(coupon.totalRevenue)}</StyledTableCell>
                     <StyledTableCell>{coupon.used}</StyledTableCell>
                   </StyledTableRow>
                 ))
