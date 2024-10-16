@@ -1944,7 +1944,7 @@ export const OTtwoFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+371-1-1-0-0-60x90-2',
+    sku: '-1-000+371-1-1-0-0-40x60-2',
     price: '741.70',
     promotional_price: '445.00',
     stock: null,
@@ -3843,7 +3843,7 @@ export const OTthreeFrameVertical = [
     ],
   },
   {
-    sku: '-1-000+371-1-1-0-0-60x90-3',
+    sku: '-1-000+371-1-1-0-0-40x60-3',
     price: '831.70',
     promotional_price: '499.00',
     stock: null,
