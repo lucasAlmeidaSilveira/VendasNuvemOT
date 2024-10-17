@@ -42,6 +42,7 @@ import {
 } from './styles.ts';
 import { Button } from '../Button/index.jsx';
 import { ConfirmationDialog } from './ConfirmationDialog.jsx';
+import { ConvertImage } from '../ConvertImage';
 
 // Mapeamento de variants para cada store
 const variantsMappingOutlet = {
@@ -399,6 +400,7 @@ export function ProductRegistration() {
           />
         </ContainerButtonRow>
         <ContainerButton>
+          <ConvertImage />
           <Label>Imagens de Ambiente:</Label>
           <a href='https://postimages.org/' target='_blank'>
             <span>Clique aqui para gerar as URLs</span>
