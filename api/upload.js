@@ -1,6 +1,6 @@
 import multer from 'multer';
+import nextConnect from 'next-connect'; // Mantido como ESModule import
 import path from 'path';
-const nextConnect = require('next-connect'); // Alterado para CommonJS
 
 // Configurando o Multer para salvar os arquivos em uma pasta temporária
 const upload = multer({
