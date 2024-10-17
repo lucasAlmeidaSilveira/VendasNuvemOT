@@ -1,11 +1,13 @@
 import React, { useState } from 'react';
 import { ChangeEvent } from 'react';
-import { Button } from "../Button";
+import { Button } from '../Button';
 
 export function ConvertImage() {
   const [imagem, setImagem] = useState<File | null>(null);
   const [imagemConvertida, setImagemConvertida] = useState<string | null>(null);
-  const [nomeArquivoConvertido, setNomeArquivoConvertido] = useState<string | null>(null);
+  const [nomeArquivoConvertido, setNomeArquivoConvertido] = useState<
+    string | null
+  >(null);
 
   const handleImagemChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -26,13 +28,14 @@ export function ConvertImage() {
           canvas.height = img.height;
           const ctx = canvas.getContext('2d');
           ctx?.drawImage(img, 0, 0);
-          canvas.toBlob((blob) => {
+          canvas.toBlob(blob => {
             if (blob) {
               const url = URL.createObjectURL(blob);
               setImagemConvertida(url);
-              
+
               // Define o nome do arquivo original com a nova extensão .webp
-              const nomeConvertido = imagem.name.replace(/\.[^/.]+$/, "") + ".webp";
+              const nomeConvertido =
+                imagem.name.replace(/\.[^/.]+$/, '') + '.webp';
               setNomeArquivoConvertido(nomeConvertido);
             }
           }, 'image/webp');
@@ -56,14 +59,8 @@ export function ConvertImage() {
     <div>
       <h3>Conversor de Imagem</h3>
       <div>
-        <label htmlFor="imagem">
-          Imagem:
-        </label>
-        <input
-          type="file"
-          id="imagem"
-          onChange={handleImagemChange}
-        />
+        <label htmlFor='imagem'>Imagem:</label>
+        <input type='file' id='imagem' onChange={handleImagemChange} />
         <Button
           typeStyle={'simple'}
           type='button'
@@ -72,7 +69,6 @@ export function ConvertImage() {
         />
         {imagemConvertida && (
           <div>
-            <img src={imagemConvertida} width={'240px'} alt="" />
             <Button
               typeStyle={'confirm'}
               type='button'
