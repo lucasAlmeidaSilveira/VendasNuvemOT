@@ -1,5 +1,5 @@
 import multer from 'multer';
-import nextConnect from 'next-connect'; // Mantido como ESModule import
+import {nextConnect} from 'next-connect'; // Mantido como ESModule import
 import path from 'path';
 
 // Configurando o Multer para salvar os arquivos em uma pasta temporária
