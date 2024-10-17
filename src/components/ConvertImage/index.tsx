@@ -2,82 +2,112 @@ import React, { useState, ChangeEvent, DragEvent } from 'react';
 import { Button } from '../Button';
 import { Actions, BoxInput, Container, InputImage } from './styles';
 import { FaFile } from 'react-icons/fa6';
+import JSZip from 'jszip'; // Importa JSZip para criar o arquivo zip
+import saveAs from 'file-saver'; // Importa file-saver para salvar o arquivo zip
 import { Oval } from "react-loader-spinner";
 
 export function ConvertImage() {
-  const [imagem, setImagem] = useState<File | null>(null);
-  const [imagemConvertida, setImagemConvertida] = useState<string | null>(null);
-  const [nomeArquivoConvertido, setNomeArquivoConvertido] = useState<string | null>(null);
-  const [isDragging, setIsDragging] = useState(false); // Novo estado para controlar o "dragging"
-  const [isLoading, setIsLoading] = useState(false); // Novo estado para controle de loading
+  const [imagens, setImagens] = useState<File[]>([]); // Estado para múltiplas imagens
+  const [imagensConvertidas, setImagensConvertidas] = useState<string[]>([]); // URLs das imagens convertidas
+  const [nomesArquivosConvertidos, setNomesArquivosConvertidos] = useState<string[]>([]); // Nomes dos arquivos convertidos
+  const [isDragging, setIsDragging] = useState(false); // Estado para o arraste
+  const [isLoading, setIsLoading] = useState(false); // Estado de loading
 
   const handleImagemChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setImagemConvertida(null);
-    if (event.target.files) {
-      setImagem(event.target.files[0]);
-    }
+    setImagensConvertidas([]); // Limpa as imagens convertidas
+    const files = event.target.files ? Array.from(event.target.files) : [];
+    setImagens(files); // Armazena as imagens selecionadas
   };
-  
+
   const handleDrop = (event: DragEvent) => {
     event.preventDefault();
-    setImagemConvertida(null);
+    setImagensConvertidas([]); // Limpa as imagens convertidas
     setIsDragging(false);
-
-    if (event.dataTransfer.files && event.dataTransfer.files.length > 0) {
-      setImagem(event.dataTransfer.files[0]);
-    }
+    
+    const files = event.dataTransfer.files ? Array.from(event.dataTransfer.files) : [];
+    setImagens(files); // Armazena as imagens arrastadas
   };
 
   const handleDragOver = (event: DragEvent) => {
     event.preventDefault();
-    setIsDragging(true); // Quando o arquivo é arrastado sobre a área
+    setIsDragging(true);
   };
 
   const handleDragLeave = () => {
-    setIsDragging(false); // Quando o arquivo sai da área
+    setIsDragging(false);
   };
 
-  const converterImagem = () => {
-    if (imagem) {
-      setIsLoading(true); // Inicia o estado de loading
-      setImagemConvertida(null);
-      const reader = new FileReader();
-      reader.onload = () => {
-        const imagemBase64 = reader.result as string;
-        const img = new Image();
-        img.onload = () => {
-          const canvas = document.createElement('canvas');
-          canvas.width = img.width;
-          canvas.height = img.height;
-          const ctx = canvas.getContext('2d');
-          ctx?.drawImage(img, 0, 0);
-          canvas.toBlob(blob => {
-            if (blob) {
-              const url = URL.createObjectURL(blob);
-              setImagemConvertida(url);
+  const converterImagens = () => {
+    if (imagens.length > 0) {
+      setIsLoading(true);
+      const novasImagensConvertidas: string[] = [];
+      const novosNomesArquivosConvertidos: string[] = [];
 
-              // Define o nome do arquivo original com a nova extensão .webp
-              const nomeConvertido =
-                imagem.name.replace(/\.[^/.]+$/, '') + '.webp';
-              setNomeArquivoConvertido(nomeConvertido);
-              setIsLoading(false); // Finaliza o loading após a conversão
-            }
-          }, 'image/webp');
+      imagens.forEach((imagem, index) => {
+        const reader = new FileReader();
+        reader.onload = () => {
+          const imagemBase64 = reader.result as string;
+          const img = new Image();
+          img.onload = () => {
+            const canvas = document.createElement('canvas');
+            canvas.width = img.width;
+            canvas.height = img.height;
+            const ctx = canvas.getContext('2d');
+            ctx?.drawImage(img, 0, 0);
+            canvas.toBlob(blob => {
+              if (blob) {
+                const url = URL.createObjectURL(blob);
+                novasImagensConvertidas.push(url);
+
+                const nomeConvertido = imagem.name.replace(/\.[^/.]+$/, '') + '.webp';
+                novosNomesArquivosConvertidos.push(nomeConvertido);
+
+                // Quando todas as imagens forem convertidas, atualiza o estado
+                if (novasImagensConvertidas.length === imagens.length) {
+                  setImagensConvertidas(novasImagensConvertidas);
+                  setNomesArquivosConvertidos(novosNomesArquivosConvertidos);
+                  setIsLoading(false);
+                }
+              }
+            }, 'image/webp');
+          };
+          img.src = imagemBase64;
         };
-        img.src = imagemBase64;
-      };
-      reader.readAsDataURL(imagem);
+        reader.readAsDataURL(imagem);
+      });
     }
   };
 
-  const downloadImagem = () => {
-    if (imagemConvertida && nomeArquivoConvertido) {
-      const link = document.createElement('a');
-      link.href = imagemConvertida;
-      link.download = nomeArquivoConvertido;
-      link.click();
+  const downloadImagens = async () => {
+    if (imagensConvertidas.length === 1) {
+      // Se houver apenas uma imagem, faz o download direto dela
+      const url = imagensConvertidas[0];
+      const nomeArquivo = nomesArquivosConvertidos[0];
+      const response = await fetch(url);
+      const blob = await response.blob();
+      saveAs(blob, nomeArquivo); // Salva a imagem diretamente
+    } else if (imagensConvertidas.length > 1) {
+      const zip = new JSZip(); // Cria um novo arquivo zip
+  
+      // Adiciona cada imagem convertida ao zip
+      for (let i = 0; i < imagensConvertidas.length; i++) {
+        const url = imagensConvertidas[i];
+        const nomeArquivo = nomesArquivosConvertidos[i];
+  
+        // Faz o download dos blobs das imagens
+        const response = await fetch(url);
+        const blob = await response.blob();
+  
+        // Adiciona a imagem ao zip
+        zip.file(nomeArquivo, blob);
+      }
+  
+      // Gera o arquivo zip e faz o download
+      zip.generateAsync({ type: 'blob' }).then(content => {
+        saveAs(content, 'imagens_convertidas.zip'); // Salva o arquivo zip com FileSaver.js
+      });
     }
-  };
+  };  
 
   return (
     <Container>
@@ -87,17 +117,28 @@ export function ConvertImage() {
         onDragLeave={handleDragLeave}
         className={isDragging ? 'isDragging' : ''}
       >
-        <InputImage type='file' id='imagem' onChange={handleImagemChange} />
+        <InputImage
+          type='file'
+          id='imagem'
+          onChange={handleImagemChange}
+          multiple // Permite seleção de múltiplos arquivos
+        />
         <label htmlFor='imagem'>
           <span>
             <FaFile size={20} />
           </span>{' '}
-          {imagem ? imagem.name : 'Selecione uma imagem ou arraste aqui'}
+          {imagens.length > 0 ? (
+            imagens.length > 1 ? (`${imagens.length} imagens selecionadas`) : (imagens[0].name)
+          ) : 'Selecione ou arraste as imagens'}
         </label>
       </BoxInput>
       <Actions>
-        {!imagemConvertida && isLoading ? (
-          <Button typeStyle={'simple'} type='button' onClick={converterImagem}>
+        {!isLoading ? (
+          <Button typeStyle={'simple'} type='button' onClick={converterImagens}>
+            Converter Imagens
+          </Button>
+        ) : (
+          <Button typeStyle={'simple'} type='button' onClick={converterImagens}>
             <Oval
               height={16}
               width={16}
@@ -108,14 +149,17 @@ export function ConvertImage() {
               strokeWidthSecondary={4}
             />
           </Button>
-        ) : !imagemConvertida ? (
-          <Button typeStyle={'simple'} type='button' onClick={converterImagem}>
-            Converter Imagem
-          </Button>
-        ) : (
-          <Button typeStyle={'confirm'} type='button' onClick={downloadImagem}>
-            Baixar Imagem
-          </Button>
+        )}
+        {imagensConvertidas.length > 0 && (
+          <div>
+            <Button
+              typeStyle={'confirm'}
+              type='button'
+              onClick={downloadImagens} // Faz o download das imagens zipadas
+            >
+              Baixar imagens ({imagensConvertidas.length})
+            </Button>
+          </div>
         )}
       </Actions>
     </Container>
