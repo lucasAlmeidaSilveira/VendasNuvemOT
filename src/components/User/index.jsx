@@ -5,9 +5,12 @@ import Logout from '@mui/icons-material/Logout';
 import { useAuth } from '../../context/AuthContext';
 import { TooltipInfo } from '../TooltipInfo';
 import { NameUser, Container, Avatar, MenuItem, MenuText } from './styles';
+import { Popup } from '../Popup';
+import { ConvertImage } from '../ConvertImage';
 
 export function User() {
   const { user, handleLogout } = useAuth(); // Pegue o usuário e a função de logout do contexto
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -15,9 +18,18 @@ export function User() {
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
-
+  
   const handleClose = () => {
     setAnchorEl(null);
+  };
+  
+  const handleOpenPopup = () => {
+    setIsPopupOpen(true);
+    setAnchorEl(false);
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
@@ -46,12 +58,23 @@ export function User() {
         <MenuItem>
           <MenuText>{user?.email || 'email@example.com'}</MenuText>
         </MenuItem>
+        <MenuItem onClick={handleOpenPopup}>
+          <MenuText>Conversor de Imagem</MenuText>
+        </MenuItem>
         <Divider />
-        <MenuItem className='logout' onClick={handleLogout}>
+        <MenuItem onClick={handleLogout}>
           <Logout fontSize='small' />
           Sair
         </MenuItem>
       </Menu>
+
+      <Popup
+        open={isPopupOpen}
+        onClose={handleClosePopup}
+        title='Conversor de imagem WEBP'
+      >
+        <ConvertImage />
+      </Popup>
     </Container>
   );
 }

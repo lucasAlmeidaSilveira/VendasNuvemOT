@@ -28,13 +28,11 @@ export const MenuItem = styled.div`
   gap: .8rem;
   padding: .8rem 1.6rem;
 
-  &.logout {
-    cursor: pointer;
-    transition: background .2s ease-out;
+  cursor: pointer;
+  transition: background .2s ease-out;
 
-    &:hover {
-      background: var(--geralblack-20);
-    }
+  &:hover {
+    background: var(--geralblack-20);
   }
 `
 

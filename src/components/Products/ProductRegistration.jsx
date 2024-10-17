@@ -400,7 +400,6 @@ export function ProductRegistration() {
           />
         </ContainerButtonRow>
         <ContainerButton>
-          <ConvertImage />
           <Label>Imagens de Ambiente:</Label>
           <a href='https://postimages.org/' target='_blank'>
             <span>Clique aqui para gerar as URLs</span>
