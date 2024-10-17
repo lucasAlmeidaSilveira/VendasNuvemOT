@@ -1,11 +1,11 @@
 import multer from 'multer';
-import nextConnect from 'next-connect';
 import path from 'path';
+const nextConnect = require('next-connect'); // Alterado para CommonJS
 
 // Configurando o Multer para salvar os arquivos em uma pasta temporária
 const upload = multer({
   storage: multer.diskStorage({
-    destination: '/tmp', // Pasta temporária na Vercel
+    destination: '/tmp', // Pasta temporária da Vercel
     filename: (req, file, cb) => {
       cb(null, Date.now() + path.extname(file.originalname)); // Gera um nome único
     },
