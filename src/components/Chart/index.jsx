@@ -5,6 +5,7 @@ import { Loading } from '../Loading';
 import { CategorySelect } from '../CategorySelect';
 import { useOrders } from '../../context/OrdersContext';
 import { ContainerChartLine, ContainerChartPie, ContainerChartStates } from './styles';
+import { formatCurrency } from '../../tools/tools';
 
 const regions = {
   Norte: ['Acre', 'Amapá', 'Amazonas', 'Pará', 'Rondônia', 'Roraima', 'Tocantins'],
@@ -93,7 +94,15 @@ function processOrdersForChart(orders, type) {
       default:
         key = `${Math.floor(date.getHours() / 2) * 2}:00`;
     }
-    salesByTime[key] = (salesByTime[key] || 0) + 1;
+
+    // Se o salesByTime[key] ainda não existe, inicializamos com vendas = 0 e totalVendas = 0
+    if (!salesByTime[key]) {
+      salesByTime[key] = { vendas: 0, totalVendas: 0 };
+    }
+
+    // Incrementa a quantidade de vendas e o total de vendas para cada chave
+    salesByTime[key].vendas += 1;
+    salesByTime[key].totalVendas += parseFloat(order.total); // Assumindo que 'order.total' é o valor da venda
   });
 
   let labels;
@@ -111,9 +120,11 @@ function processOrdersForChart(orders, type) {
       labels = Array.from({ length: 12 }, (_, index) => `${index * 2}:00`);
   }
 
+  // Montando o array de dados com 'vendas' e 'totalVendas'
   const data = labels.map(label => ({
     name: label,
-    vendas: salesByTime[label] || 0,
+    vendas: salesByTime[label]?.vendas || 0,
+    value: salesByTime[label]?.totalVendas || 0,
   }));
 
   return data;
@@ -173,7 +184,7 @@ export function ChartLine({ orders, title, loading }) {
       {loading ? (
         <Loading />
       ) : (
-        <ResponsiveContainer width="100%" height={300}>
+        <ResponsiveContainer width="100%" height={320}>
           <BarChart data={dataPoints} layout="horizontal">
             <CartesianGrid strokeDasharray="3 3" />
             <XAxis type="category" dataKey="name" />
@@ -189,6 +200,9 @@ export function ChartLine({ orders, title, loading }) {
 
 const CustomTooltip = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
+    const sales = payload[0].value
+    const totalSales = payload[0]?.payload?.value === undefined ? '0,00' : payload[0]?.payload?.value
+
     return (
       <div style={{
         background: 'white',
@@ -197,13 +211,14 @@ const CustomTooltip = ({ active, payload, label }) => {
         borderRadius: '5px',
         boxShadow: '0 0 10px rgba(0,0,0,0.1)',
       }}>
-        <p style={{ fontSize: 12 }}><span style={{ color: baseColor }}>● </span> {payload[0].value} venda{payload[0].value > 1 && 's'}</p>
+        <p style={{ fontSize: 12 }}><span style={{ color: baseColor }}>● </span> {sales} venda{sales > 1 && 's'}</p>
+        <p style={{ fontSize: 12 }}><span style={{ color: '#82ca9d' }}>● </span>{formatCurrency(totalSales)}</p>
       </div>
     );
   }
 
   return null;
-};
+}
 
 export function ChartStates({ orders, title, loading }) {
   const [vendasPorEstado, setVendasPorEstado] = useState({});
@@ -213,18 +228,23 @@ export function ChartStates({ orders, title, loading }) {
     const Vendas = {};
     orders.forEach(order => {
       const estado = order.billing_province;
-      Vendas[estado] = (Vendas[estado] || 0) + 1; // Contando as vendas por estado
+      if (!Vendas[estado]) {
+        Vendas[estado] = { vendas: 0, totalVendas: 0 }; // Inicializa com vendas e totalVendas
+      }
+      Vendas[estado].vendas += 1; // Contando as vendas por estado
+      Vendas[estado].totalVendas += parseFloat(order.total); // Acumulando o valor total das vendas
     });
     setVendasPorEstado(Vendas);
   }, [orders]);
 
   let estados = Object.keys(vendasPorEstado).map(estado => ({
     nome: estado,
-    Vendas: vendasPorEstado[estado],
+    vendas: vendasPorEstado[estado].vendas,
+    value: vendasPorEstado[estado].totalVendas,
     regiao: getRegiao(estado),
   }));
 
-  estados = estados.sort((a, b) => b.Vendas - a.Vendas).slice(0, numberOptions); // Ordenar os estados pela quantidade de vendas e pegar os 5 primeiros
+  estados = estados.sort((a, b) => b.vendas - a.vendas).slice(0, numberOptions); // Ordenar os estados pela quantidade de vendas e pegar os 5 primeiros
 
   const getOpacity = (index) => 1 - (index * 0.2); // Reduz a opacidade gradualmente
 
@@ -258,7 +278,7 @@ export function ChartStates({ orders, title, loading }) {
             <XAxis type="number" />
             <YAxis type="category" dataKey="nome" />
             <Tooltip content={<CustomTooltip />} />
-            <Bar dataKey="Vendas">
+            <Bar dataKey="vendas" name="Quantidade de Vendas">
               {estados.map((entry, index) => (
                 <Cell key={`cell-${index}`} fill={`rgba(2, 178, 175, ${getOpacity(index)})`} />
               ))}
