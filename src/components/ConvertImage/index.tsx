@@ -5,7 +5,7 @@ import { Button } from "../Button";
 export function ConvertImage() {
   const [imagem, setImagem] = useState<File | null>(null);
   const [imagemConvertida, setImagemConvertida] = useState<string | null>(null);
- 
+  const [nomeArquivoConvertido, setNomeArquivoConvertido] = useState<string | null>(null);
 
   const handleImagemChange = (event: ChangeEvent<HTMLInputElement>) => {
     if (event.target.files) {
@@ -15,7 +15,7 @@ export function ConvertImage() {
 
   const converterImagem = () => {
     if (imagem) {
-      setImagemConvertida(null)
+      setImagemConvertida(null);
       const reader = new FileReader();
       reader.onload = () => {
         const imagemBase64 = reader.result as string;
@@ -30,6 +30,10 @@ export function ConvertImage() {
             if (blob) {
               const url = URL.createObjectURL(blob);
               setImagemConvertida(url);
+              
+              // Define o nome do arquivo original com a nova extensão .webp
+              const nomeConvertido = imagem.name.replace(/\.[^/.]+$/, "") + ".webp";
+              setNomeArquivoConvertido(nomeConvertido);
             }
           }, 'image/webp');
         };
@@ -40,10 +44,10 @@ export function ConvertImage() {
   };
 
   const downloadImagem = () => {
-    if (imagemConvertida) {
+    if (imagemConvertida && nomeArquivoConvertido) {
       const link = document.createElement('a');
-      link.href = imagemConvertida;
-      link.download = 'imagem_convertida.webp';
+      link.href = nomeArquivoConvertido;
+      link.download = nomeArquivoConvertido; // Nome do arquivo convertido
       link.click();
     }
   };
@@ -68,6 +72,7 @@ export function ConvertImage() {
         />
         {imagemConvertida && (
           <div>
+            <img src={imagemConvertida} width={'240px'} alt="" />
             <Button
               typeStyle={'confirm'}
               type='button'
@@ -79,4 +84,4 @@ export function ConvertImage() {
       </div>
     </div>
   );
-};
+}
