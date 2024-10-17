@@ -318,7 +318,8 @@ export function Orders() {
             order.gateway_id?.toString().toLowerCase().includes(searchLower) ||
             order.customer.name.toLowerCase().includes(searchLower) ||
             order.customer.identification.toLowerCase().includes(searchLower) ||
-            order.customer.email.toLowerCase().includes(searchLower)
+            order.customer.email.toLowerCase().includes(searchLower) ||
+            order.coupon.some(coupon => coupon.code.toLowerCase().includes(searchLower))
           );
         }),
       getComparator(order, orderBy)
@@ -416,7 +417,7 @@ export function Orders() {
           label='Buscar pedido:'
           value={searchQuery}
           onChange={e => setSearchQuery(e.target.value)}
-          placeholder='Busque por nº pedido, nome, CPF, e-mail, cód. transação ou ID'
+          placeholder='Busque por nº pedido, nome, CPF, e-mail, cupom, cód. transação ou ID'
           totalList={filteredOrders.length}
         />
         {store === 'artepropria' && (
