@@ -9,7 +9,6 @@ import { InputSelect } from '../InputSelect';
 import { ProductRegistration } from './ProductRegistration';
 import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
-import FileUploader from '../FileUploader';
 
 export function Products() {
   const { allFullOrders, isLoadingAllOrders, store } = useOrders();
@@ -135,7 +134,6 @@ export function Products() {
 
   return (
     <Container>
-      <FileUploader />
       <div className="header-container">
         <InputSearch
           label="Buscar produto:"
