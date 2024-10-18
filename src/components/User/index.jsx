@@ -6,7 +6,7 @@ import { useAuth } from '../../context/AuthContext';
 import { TooltipInfo } from '../TooltipInfo';
 import { NameUser, Container, Avatar, MenuItem, MenuText } from './styles';
 import { Popup } from '../Popup';
-import { ConvertImage } from '../ConvertImage';
+import { Converters } from '../Converters';
 
 export function User() {
   const { user, handleLogout } = useAuth(); // Pegue o usuário e a função de logout do contexto
@@ -59,7 +59,7 @@ export function User() {
           <MenuText>{user?.email || 'email@example.com'}</MenuText>
         </MenuItem>
         <MenuItem onClick={handleOpenPopup}>
-          <MenuText>Conversor de Imagem</MenuText>
+          <MenuText>Conversor de Mídia</MenuText>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
@@ -71,9 +71,11 @@ export function User() {
       <Popup
         open={isPopupOpen}
         onClose={handleClosePopup}
-        title='Conversor de imagem WEBP'
+        title='Conversor de mídia'
       >
-        <ConvertImage />
+        <Converters />
+        <br />
+        {/* <ConvertVideo /> */}
       </Popup>
     </Container>
   );

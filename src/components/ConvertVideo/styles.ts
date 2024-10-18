@@ -2,12 +2,14 @@ import styled from 'styled-components';
 
 export const Container = styled.div`
   display: flex;
+  align-items: center;
   flex-direction: column;
   gap: 2.4rem;
 `
 
 export const BoxInput = styled.div`
   position: relative;
+  width: 100%;
   display: inline-block;
   border-radius: 16px; /* Bordas arredondadas */
   transition: border-color .2s;
@@ -40,7 +42,7 @@ export const BoxInput = styled.div`
   }
 `
 
-export const InputImage = styled.input`
+export const InputVideo = styled.input`
   position: absolute;
   left: 0;
   top: 0;
@@ -50,8 +52,12 @@ export const InputImage = styled.input`
   cursor: pointer;
 `
 
+export const SelectFormat = styled.select`` 
+
 export const Actions = styled.div`
   display: flex;
   flex-direction: column;
   gap: .8rem;
+  width: 100%;
+
 `

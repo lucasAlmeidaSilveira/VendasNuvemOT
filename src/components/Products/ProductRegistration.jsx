@@ -42,7 +42,6 @@ import {
 } from './styles.ts';
 import { Button } from '../Button/index.jsx';
 import { ConfirmationDialog } from './ConfirmationDialog.jsx';
-import { ConvertImage } from '../ConvertImage';
 
 // Mapeamento de variants para cada store
 const variantsMappingOutlet = {
