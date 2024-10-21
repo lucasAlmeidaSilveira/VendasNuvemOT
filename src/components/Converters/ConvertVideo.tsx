@@ -2,7 +2,8 @@ import React, { useState, useEffect, ChangeEvent } from 'react';
 import { Button } from '../Button';
 import { Actions, BoxInput, Container, InputVideo, SelectFormat } from '../ConvertVideo/styles';
 import { FaFileVideo } from 'react-icons/fa6';
-// import { createFFmpeg, fetchFile } from '@ffmpeg/ffmpeg';
+import { FFmpeg } from '@ffmpeg/ffmpeg'
+import { fetchFile } from '@ffmpeg/util'
 import { Oval } from 'react-loader-spinner';
 import saveAs from 'file-saver';
 
@@ -14,7 +15,7 @@ export function ConvertVideo() {
   // const [progress, setProgress] = useState<number>(0);
   // const [ffmpegLoaded, setFfmpegLoaded] = useState(false);
 
-  // const ffmpeg = createFFmpeg({ log: true });
+  // const ffmpeg = new FFmpeg();
 
   // // Carregar o FFmpeg na primeira renderização
   // useEffect(() => {
@@ -37,7 +38,7 @@ export function ConvertVideo() {
   //     setProgress(0);
 
   //     // Enviar o arquivo para o sistema de arquivos virtual do FFmpeg
-  //     ffmpeg.FS('writeFile', video.name, await fetchFile(video));
+  //     ffmpeg.writeFile('writeFile', video.name);
 
   //     // Configurar o comando de conversão
   //     const outputFilename = `output.${format}`;
@@ -62,7 +63,7 @@ export function ConvertVideo() {
 
   return (
     <Container>
-      <h3>Em construção</h3>
+     <h3>Em construção</h3>
       {/* <SelectFormat value={format} onChange={(e) => setFormat(e.target.value as 'mp4' | 'webm')}>
         <option value="mp4">MP4</option>
         <option value="webm">WebM</option>

@@ -1488,6 +1488,13 @@
   resolved "https://registry.npmjs.org/@types/file-saver/-/file-saver-2.0.7.tgz"
   integrity sha512-dNKVfHd/jk0SkR/exKGj2ggkB45MAkzvWCaqLUUgkyjITkGNzH8H+yUwr+BLJUBjZOe9w8X3wgmXhZDRg1ED6A==
 
+"@types/gif-encoder@^0.7.4":
+  version "0.7.4"
+  resolved "https://registry.yarnpkg.com/@types/gif-encoder/-/gif-encoder-0.7.4.tgz#d604e28e4626bd6be6dfe1b2e5931417c414db33"
+  integrity sha512-tke9j2sFpRpX2C1JLAxZpTMAzVILlWkkhuSGCbxWuyBvXYtA+og7KpxL5ag+4dbDYJxZ2zVmBH0taxwihgz0ZQ==
+  dependencies:
+    "@types/node" "*"
+
 "@types/json-schema@^7.0.12":
   version "7.0.15"
   resolved "https://registry.npmjs.org/@types/json-schema/-/json-schema-7.0.15.tgz"
@@ -1509,6 +1516,13 @@
   version "4.14.202"
   resolved "https://registry.npmjs.org/@types/lodash/-/lodash-4.14.202.tgz"
   integrity sha512-OvlIYQK9tNneDlS0VN54LLd5uiPCBOp7gS5Z0f1mjoJYBrtStzgmJBxONW3U6OZqdtNzZPmn9BS/7WI7BFFcFQ==
+
+"@types/node@*":
+  version "22.7.6"
+  resolved "https://registry.yarnpkg.com/@types/node/-/node-22.7.6.tgz#3ec3e2b071e136cd11093c19128405e1d1f92f33"
+  integrity sha512-/d7Rnj0/ExXDMcioS78/kf1lMzYk4BZV8MZGTBKzTGZ6/406ukkbYlIsZmMPhcR5KlkunDHQLrtAVmSq7r+mSw==
+  dependencies:
+    undici-types "~6.19.2"
 
 "@types/node@>=12.12.47", "@types/node@>=13.7.0":
   version "22.5.5"

@@ -8,12 +8,12 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyB1FZ2xYsE4TfxmWI3aScCuM3FtXZ8EzJI",
-  authDomain: "vendas-nuvem.firebaseapp.com",
-  projectId: "vendas-nuvem",
-  storageBucket: "vendas-nuvem.appspot.com",
-  messagingSenderId: "1091908647792",
-  appId: "1:1091908647792:web:e1f418330f4717bbfe2db5"
+  apiKey: "AIzaSyAKISeYeeSCe4vWzjxb9guIJaO4DFhB2-s",
+  authDomain: "dashboard-vendas-44df4.firebaseapp.com",
+  projectId: "dashboard-vendas-44df4",
+  storageBucket: "dashboard-vendas-44df4.appspot.com",
+  messagingSenderId: "244116719488",
+  appId: "1:244116719488:web:ba5f4236fa32b2d0452365"
 };
 
 // Initialize Firebase

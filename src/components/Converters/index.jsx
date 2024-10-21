@@ -56,8 +56,8 @@ export function Converters() {
           width: '100%',
         }}
       >
-        <TabItem icon={<FaImage />} label="Imagem" />
-        <TabItem icon={<FaVideo />} label="Vídeo" />
+        <TabItem icon={<FaImage size={16} />} label="Imagem" />
+        <TabItem icon={<FaVideo size={16} />} label="Vídeo" />
       </Tabs>
 
       {/* Conteúdo de cada aba */}
