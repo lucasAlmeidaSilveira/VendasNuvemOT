@@ -117,3 +117,24 @@ export async function getOrderTiny(id, cpf) {
     // console.log(error);
   }
 }
+
+export async function getLinkNoteTiny(id, cpf) {
+  try {
+    const response = await fetch(
+      `https://node-vendasnuvemot.onrender.com/tiny/note/${id}/${cpf}`,
+      {
+        method: 'GET',
+        headers: {
+          'Content-Type': 'application/json',
+        },
+      },
+    );
+
+    if (response) {
+      return response.json();
+    }
+    return
+  } catch (error) {
+    // console.log(error);
+  }
+}

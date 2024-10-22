@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 import {
   Table,
   TableBody,
@@ -10,10 +10,12 @@ import {
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ContainerDetails } from './styles';
-import { formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
+import { formatCurrency, formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
 import { FaWhatsapp } from "react-icons/fa";
 import { TooltipInfo } from '../TooltipInfo';
 import { AiFillMessage } from 'react-icons/ai';
+import { getLinkNoteTiny, getOrderTiny } from '../../api';
+import { Oval } from 'react-loader-spinner';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
   backgroundColor: 'var(--geralblack-10)',
@@ -32,47 +34,90 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 }));
 
 export function ClientDetails({ order }) {
+  const [isLoadingNote, setIsLoadingNote] = useState(false);
+  const [noteLink, setNoteLink] = useState('');
+
   function createUrlPageBuy(id, token) {
     const urlPageBuyCheckout = `https://www.outletdosquadros.com.br/checkout/v3/success/${id}/${token}`;
-
     return urlPageBuyCheckout;
   }
 
-  function linkWhats(name, numberContact){
-    const firstName = name.split(' ')[0]
-    const numberContactFormat = numberContact.split('+')[1]
-    const urlApiWhats = `https://api.whatsapp.com/send/?phone=${numberContactFormat}&text=Oi+${firstName}`
-
-    return urlApiWhats
+  function linkWhats(name, numberContact) {
+    const firstName = name.split(' ')[0];
+    const numberContactFormat = numberContact.split('+')[1];
+    const urlApiWhats = `https://api.whatsapp.com/send/?phone=${numberContactFormat}&text=Oi+${firstName}`;
+    return urlApiWhats;
   }
 
-  function formatLocation(city, province){
-    return `${city}, ${province}`
+  function shippingCost(cost) {
+    const isEcom = order.storefront !== 'Loja'
+    if(isEcom) {
+      if (cost === '0.00') {
+        return 'Frete Grátis';
+      } else {
+        return formatCurrency(cost);
+      }
+    } else {
+      return '-'
+    }
   }
 
-  function formatCoupon(coupon){
+  async function generateNoteLink(numberOrder, cpf) {
+    setIsLoadingNote(true);
+    try {
+      const isEcom = order.storefront !== 'Loja'
+
+      if(isEcom) {
+        const fetchedOrder = await getOrderTiny(numberOrder, cpf);
+        const isNote = fetchedOrder.situacao !== 'Em aberto' &&
+                      fetchedOrder.situacao !== 'Aprovado' &&
+                      fetchedOrder.situacao !== 'Preparando envio' &&
+                      fetchedOrder.situacao !== 'Cancelado'
+
+        if (isNote) {
+          const linkNote = await getLinkNoteTiny(numberOrder, cpf);
+          setNoteLink(linkNote);
+        } else {
+          setNoteLink('');
+        }
+      }
+      
+    } catch (error) {
+      console.error('Erro ao buscar a nota fiscal:', error);
+      setNoteLink('');
+    } finally {
+      setIsLoadingNote(false);
+    }
+  }
+
+  function formatCoupon(coupon) {
     const typeCouponMap = {
       percentage: '%',
-      absolute: 'R$'
-    }
+      absolute: 'R$',
+    };
 
-    const isCoupon = coupon.length >= 1
+    const isCoupon = coupon.length >= 1;
 
-    if(isCoupon){
-      const typeCoupon = coupon[0].type
-      const valueCoupon = coupon[0].value.split('.')[0]
-      const codeCoupon = coupon[0].code
-      if(typeCoupon === 'percentage'){
-        const couponFormatted = `${coupon[0].code} (${valueCoupon}${typeCouponMap[typeCoupon]})`
-        return couponFormatted
+    if (isCoupon) {
+      const typeCoupon = coupon[0].type;
+      const valueCoupon = coupon[0].value.split('.')[0];
+      const codeCoupon = coupon[0].code;
+      if (typeCoupon === 'percentage') {
+        const couponFormatted = `${coupon[0].code} (${valueCoupon}${typeCouponMap[typeCoupon]})`;
+        return couponFormatted;
       } else {
-        const couponFormatted = `${codeCoupon}, ${typeCouponMap[typeCoupon]} ${valueCoupon}`
-        return couponFormatted
+        const couponFormatted = `${codeCoupon}, ${typeCouponMap[typeCoupon]} ${valueCoupon}`;
+        return couponFormatted;
       }
     }
 
-    return 'Não'
+    return 'Não';
   }
+
+  // Chamar generateNoteLink quando o componente for montado
+  React.useEffect(() => {
+    generateNoteLink(order.number, order.contact_identification);
+  }, [order.number, order.contact_identification]);
 
   return (
     <ContainerDetails>
@@ -93,6 +138,7 @@ export function ClientDetails({ order }) {
               <StyledTableHeadCell>Email</StyledTableHeadCell>
               <StyledTableHeadCell>Telefone</StyledTableHeadCell>
               <StyledTableHeadCell>Localização</StyledTableHeadCell>
+              <StyledTableHeadCell>Nota Fiscal</StyledTableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -115,7 +161,28 @@ export function ClientDetails({ order }) {
               </StyledTableCell>
               <StyledTableCell>
                 {order.shipping_address.city}, {order.shipping_address.province}
-                <p style={{fontSize: '12px', color: 'var(--geralblack-70)'}}>{order.shipping_address.address}, {order.shipping_address.number}</p>
+                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
+                  {order.shipping_address.address}, {order.shipping_address.number}
+                </p>
+              </StyledTableCell>
+              <StyledTableCell>
+                {isLoadingNote ? (
+                  <Oval
+                    height={16}
+                    width={16}
+                    color="#FCFAFB"
+                    visible={true}
+                    ariaLabel='oval-loading'
+                    strokeWidth={4}
+                    strokeWidthSecondary={4}
+                  />
+                ) : (
+                  noteLink ? (
+                    <a href={noteLink} target="_blank" rel="noopener noreferrer">Clique para visualizar</a>
+                  ) : (
+                    'Não disponível'
+                  )
+                )}
               </StyledTableCell>
             </TableRow>
           </TableBody>
@@ -125,6 +192,7 @@ export function ClientDetails({ order }) {
               <StyledTableHeadCell>Última atualização</StyledTableHeadCell>
               <StyledTableHeadCell>Página do pedido</StyledTableHeadCell>
               <StyledTableHeadCell>Cupom de desconto</StyledTableHeadCell>
+              <StyledTableHeadCell>Frete</StyledTableHeadCell>
             </TableRow>
           </TableHead>
           <TableBody>
@@ -136,11 +204,15 @@ export function ClientDetails({ order }) {
                   href={createUrlPageBuy(order.id, order.token)}
                   target='_blank'
                   rel='noopener noreferrer'
-                  >
+                >
                   Link de acompanhamento
                 </a>
               </StyledTableCell>
               <StyledTableCell>{formatCoupon(order.coupon)}</StyledTableCell>
+              <StyledTableCell>
+                {shippingCost(order.shipping_cost_customer)} 
+                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>{order.shipping_option}</p>
+              </StyledTableCell>
             </TableRow>
           </TableBody>
         </Table>
