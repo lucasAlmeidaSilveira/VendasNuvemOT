@@ -58,8 +58,8 @@ export function DataSectionTPago({
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot
   } = filterOrders(allOrders, date);
-  const verbaGoogleSum = verba.googleEcom + verba.googleEspelhos + verba.googleGeral + verba.googleQuadros
-  const verbaMetaSum = verba.metaEcom + verba.metaEspelhos + verba.metaGeral + verba.metaQuadros + verba.metaChatbot
+  const verbaGoogleSum = verba.googleEcom + verba.googleEspelhos + verba.googleGeral + verba.googleQuadros + verba.googleLoja
+  const verbaMetaSum = verba.metaEcom + verba.metaEspelhos + verba.metaGeral + verba.metaQuadros + verba.metaChatbot + verba.metaInstagram
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
@@ -166,21 +166,19 @@ export function DataSectionTPago({
           />
         </div>
         <div className='row'>
-          <BudgetItemList
+          <BudgetItem
             icon={MdOutlineAttachMoney}
             iconColor='var(--uipositive-100)'
             title='Faturamento'
             info='Frete incluído'
-            dataCosts={totalByCategory}
             tooltip='Nuvemshop'
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
-          <BudgetItemList
+          <BudgetItem
             icon={DiGoogleAnalytics}
             iconColor='var(--geralblack-100)'
             title='ROAS'
-            dataCosts={dataRoas}
             tooltip='Faturamento x Verba Total'
             value={roas}
             small={title !== 'Chatbot' ? roasMax : undefined}

@@ -25,12 +25,14 @@ export function Statistics() {
     googleEcom: 0,
     googleQuadros: 0,
     googleEspelhos: 0,
+    googleLoja: 0,
     googleGeral: 0,
     meta: 0,
     metaEcom: 0,
     metaChatbot: 0,
     metaQuadros: 0,
     metaEspelhos: 0,
+    metaInstagram: 0,
     metaGeral: 0,
   });
 
@@ -50,6 +52,7 @@ export function Statistics() {
         googleEcom: data.totalCost.ecom,
         googleQuadros: data.totalCost.quadros,
         googleEspelhos: data.totalCost.espelhos,
+        googleLoja: data.totalCost.loja,
         googleGeral: data.totalCost.geral,
       }));
     }
@@ -62,6 +65,7 @@ export function Statistics() {
         metaChatbot: firstEntry.totalCost.chatbot,
         metaQuadros: firstEntry.totalCost.quadros,
         metaEspelhos: firstEntry.totalCost.espelhos,
+        metaInstagram: firstEntry.totalCost.instagram,
         metaGeral: firstEntry.totalCost.geral,
       }));
     }

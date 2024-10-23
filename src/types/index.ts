@@ -31,12 +31,14 @@ type Verba = {
   googleEcom: number,
   googleQuadros: number,
   googleEspelhos: number,
+  googleLoja: number,
   googleGeral: number,
   meta: number,
   metaEcom: number,
   metaChatbot: number,
   metaQuadros: number,
   metaEspelhos: number,
+  metaInstagram: number,
   metaGeral: number,
 }
 
@@ -98,16 +100,27 @@ export interface CouponProps {
 
 export interface ADSMetaEntry {
   account_id: string;
-  totalCost: TotalCost;
+  totalCost: TotalCostMeta;
   impressions: number;
 }
 
-export type TotalCost = {
+export type TotalCostMeta = {
   all: number;
   ecom: number;
-  chatbot: number;
   quadros: number;
   espelhos: number;
+  instagram: number;
+  chatbot: number;
+  geral: number;
+};
+
+export type TotalCostGoogle = {
+  all: number;
+  ecom: number;
+  quadros: number;
+  espelhos: number;
+  loja: number;
+  chatbot: number;
   geral: number;
 };
 
@@ -120,7 +133,7 @@ export type UsersByDevice = {
 export interface DataProps {
   totalVisits: number;
   usersByDevice: UsersByDevice;
-  totalCost: TotalCost;
+  totalCost: TotalCostGoogle;
   carts: number;
   beginCheckout: number;
 }
@@ -157,6 +170,7 @@ export interface BudgetItemProps {
   iconColor?: string;
   bullet?: string;
   small?: string | number;
+  info?: string;
   title: string;
   value: number | string;
   isLoading: boolean;

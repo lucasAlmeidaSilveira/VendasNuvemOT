@@ -69,6 +69,7 @@ export function BudgetItem({
   value,
   isLoading,
   small,
+  info
 }: BudgetItemProps) {
   return (
     <div className='div'>
@@ -87,6 +88,11 @@ export function BudgetItem({
           <>
             {value}
             {small && <Small>({small})</Small>}
+            {info && (
+              <TooltipInfo title={info}>
+                  <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
+              </TooltipInfo>
+            )}
           </>
         )}
       </div>
