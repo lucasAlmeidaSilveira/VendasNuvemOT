@@ -9,13 +9,15 @@ import {
   Paper,
 } from '@mui/material';
 import { styled } from '@mui/material/styles';
-import { ContainerDetails } from './styles';
+import { ContainerDetails, RowTitle } from './styles';
 import { formatCurrency, formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
 import { FaWhatsapp } from "react-icons/fa";
 import { TooltipInfo } from '../TooltipInfo';
 import { AiFillMessage } from 'react-icons/ai';
 import { getLinkNoteTiny, getOrderTiny } from '../../api';
 import { Oval } from 'react-loader-spinner';
+import { Tag } from '../Tag';
+import { IoReload, IoReloadCircleSharp } from 'react-icons/io5';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
   backgroundColor: 'var(--geralblack-10)',
@@ -36,6 +38,7 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 export function ClientDetails({ order }) {
   const [isLoadingNote, setIsLoadingNote] = useState(false);
   const [noteLink, setNoteLink] = useState('');
+  const [markOrderTiny, setMarkOrderTiny] = useState([]);
 
   function createUrlPageBuy(id, token) {
     const urlPageBuyCheckout = `https://www.outletdosquadros.com.br/checkout/v3/success/${id}/${token}`;
@@ -57,12 +60,10 @@ export function ClientDetails({ order }) {
       } else {
         return formatCurrency(cost);
       }
-    } else {
-      return '-'
     }
   }
 
-  async function generateNoteLink(numberOrder, cpf) {
+  async function infoOrderTiny(numberOrder, cpf) {
     setIsLoadingNote(true);
     try {
       const isEcom = order.storefront !== 'Loja'
@@ -77,8 +78,10 @@ export function ClientDetails({ order }) {
         if (isNote) {
           const linkNote = await getLinkNoteTiny(numberOrder, cpf);
           setNoteLink(linkNote);
-        } else {
-          setNoteLink('');
+          
+        } 
+        if (fetchedOrder && fetchedOrder.marcadores) {
+          setMarkOrderTiny(fetchedOrder.marcadores.map((item) => item.marcador));
         }
       }
       
@@ -89,6 +92,14 @@ export function ClientDetails({ order }) {
       setIsLoadingNote(false);
     }
   }
+
+  function formatDescription(descricao) {
+    if (descricao.includes('LOTE')) {
+      const [, lote] = descricao.split('LOTE');
+      return `OP: ${lote.trim()}`;
+    }
+    return descricao;
+  };
 
   function formatCoupon(coupon) {
     const typeCouponMap = {
@@ -114,22 +125,49 @@ export function ClientDetails({ order }) {
     return 'Não';
   }
 
-  // Chamar generateNoteLink quando o componente for montado
+  async function handleInfoOrderTiny() {
+    await infoOrderTiny(order.number, order.contact_identification);
+  };
+
+  // Chamar infoOrderTiny quando o componente for montado
   React.useEffect(() => {
-    generateNoteLink(order.number, order.contact_identification);
+    infoOrderTiny(order.number, order.contact_identification);
   }, [order.number, order.contact_identification]);
 
   return (
     <ContainerDetails>
-      <h3>{order.contact_name}
+      <RowTitle>
+      <h3>{order.contact_name}</h3>
+
+      {isLoadingNote ? (
+        <Oval
+          height={16}
+          width={16}
+          color="#1874cd"
+          visible={true}
+          ariaLabel='oval-loading'
+          strokeWidth={4}
+          strokeWidthSecondary={4}
+        />
+      ) : (
+        markOrderTiny.length >= 1 && (
+          markOrderTiny.map((marcador) => (
+            <Tag key={marcador.id}>{formatDescription(marcador.descricao)}</Tag>
+          ))
+        )
+      )}
+                
         {order.note && (
           <TooltipInfo title={order.note}>
-            <span>
-              <AiFillMessage color={'var(--geralblack-80'} />
-            </span>
+            <AiFillMessage color={'var(--geralblack-80'} />
           </TooltipInfo>
         )}
-      </h3>
+
+        <TooltipInfo title={'Atualizar informações do Tiny'}>
+            <IoReload class='btn-reload' onClick={handleInfoOrderTiny} />
+        </TooltipInfo>
+      </RowTitle>
+      
       <TableContainer component={Paper}>
         <Table aria-label='products table'>
           <TableHead>
@@ -170,7 +208,7 @@ export function ClientDetails({ order }) {
                   <Oval
                     height={16}
                     width={16}
-                    color="#FCFAFB"
+                    color="#1874cd"
                     visible={true}
                     ariaLabel='oval-loading'
                     strokeWidth={4}

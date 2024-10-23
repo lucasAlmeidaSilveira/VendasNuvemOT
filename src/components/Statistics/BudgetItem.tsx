@@ -24,9 +24,7 @@ export function BudgetItemList({
         {Icon && <Icon color={iconColor} fontSize={18} />}
         <p className='text-wrapper-2'>{title}</p>
         <TooltipInfo title={tooltip}>
-          <span>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
-          </span>
         </TooltipInfo>
       </div>
       <div className='text-wrapper-4'>
@@ -39,9 +37,7 @@ export function BudgetItemList({
               {small && <Small>({small})</Small>}
               {info && (
                 <TooltipInfo title={info}>
-                  <span>
                     <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
-                  </span>
                 </TooltipInfo>
               )}
             </div>
@@ -80,9 +76,7 @@ export function BudgetItem({
         {Icon && <Icon color={iconColor} fontSize={18} />}
         <p className='text-wrapper-2'>{title}</p>
         <TooltipInfo title={tooltip}>
-          <span>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
-          </span>
         </TooltipInfo>
         {bullet && <span className={bullet} />}
       </div>

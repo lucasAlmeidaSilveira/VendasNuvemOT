@@ -160,7 +160,7 @@ export function BestSellers() {
                 <Oval
                   height={16}
                   width={16}
-                  color="#FCFAFB"
+                  color="#1874cd"
                   visible={true}
                   ariaLabel='oval-loading'
                   strokeWidth={4}

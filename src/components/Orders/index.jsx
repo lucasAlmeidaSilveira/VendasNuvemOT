@@ -511,9 +511,7 @@ export function Orders() {
                           )}
                           {order.note && (
                             <TooltipInfo title={order.note}>
-                              <span>
-                                <AiFillMessage color={'var(--geralblack-80'} />
-                              </span>
+                              <AiFillMessage color={'var(--geralblack-80'} />
                             </TooltipInfo>
                           )}
                         </a>

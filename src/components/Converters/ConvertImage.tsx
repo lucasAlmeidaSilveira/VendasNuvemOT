@@ -142,7 +142,7 @@ export function ConvertImage() {
             <Oval
               height={16}
               width={16}
-              color="var(--geralwhite)"
+              color="#1874cd"
               visible={true}
               ariaLabel='oval-loading'
               strokeWidth={4}

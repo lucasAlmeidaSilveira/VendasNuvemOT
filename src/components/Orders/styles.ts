@@ -117,10 +117,8 @@ export const PaymentStatusContainer = styled.div<PaymentStatusContainerProps>`
   font-size: 12px;
   margin-bottom: 4px;
 
-  span {
-    color: ${({ borderColor }) => borderColor};
-    font-weight: 600;
-  }
+  color: ${({ borderColor }) => borderColor};
+  font-weight: 600;
   
   svg {
     color: ${({ borderColor }) => borderColor};
@@ -256,10 +254,17 @@ export const ContainerDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+`
 
-  h3 {
-    display: flex;
-    gap: .8rem;
+export const RowTitle = styled.div`
+  display: flex;
+  align-items: center;
+  gap: .8rem;
+
+  .btn-reload {
+    cursor: pointer;
+    font-size: 18px;
+    color: var(--geralblack-100);
   }
 `
 

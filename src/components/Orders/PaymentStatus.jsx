@@ -55,7 +55,7 @@ export function PaymentStatus({ status, payment }) {
         borderColor={borderColorMap[status] || 'rgba(0,0,0,0.1)'}
       >
         {getIcon(payment)}
-        <span>{statusMap[status] || status}</span>
+        {statusMap[status] || status}
       </PaymentStatusContainer>
     </TooltipInfo>
   );

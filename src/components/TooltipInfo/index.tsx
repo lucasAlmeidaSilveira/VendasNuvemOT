@@ -17,7 +17,9 @@ export function TooltipInfo({ children, title }: TooltipInfoProps) {
       disableFocusListener
       followCursor
     >
-      {children}
+      <span>
+        {children}
+      </span>
     </Tooltip>
   );
 }
