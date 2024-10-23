@@ -166,11 +166,12 @@ export function DataSectionTPago({
           />
         </div>
         <div className='row'>
-          <BudgetItem
+          <BudgetItemList
             icon={MdOutlineAttachMoney}
             iconColor='var(--uipositive-100)'
             title='Faturamento'
             info='Frete incluído'
+            dataCosts={totalByCategory}
             tooltip='Nuvemshop'
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
