@@ -56,7 +56,6 @@ export function Products() {
               };
             }
             salesMap[product.product_id].sales += 1;
-            console.log(product)
             salesMap[product.product_id].revenue += parseFloat(product.price || 0); // Atualiza o valor do faturamento corretamente
   
             const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
