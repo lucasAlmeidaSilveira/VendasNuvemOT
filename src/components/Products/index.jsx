@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { useOrders } from '../../context/OrdersContext';
 import { ListProduct } from '../ListProduct';
-import { ContainerBestSellers, ContainerBestSeller, Container } from './styles';
+import { ContainerBestSellers, ContainerBestSeller, Container, ContainerSelect } from './styles';
 import { Loading } from '../Loading';
 import { InputSearch } from '../InputSearch';
 import { ListVariation } from '../ListVariation';
@@ -9,6 +9,8 @@ import { InputSelect } from '../InputSelect';
 import { ProductRegistration } from './ProductRegistration';
 import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
+import { formatCurrency } from '../../tools/tools';
+import { Oval } from 'react-loader-spinner';
 
 export function Products() {
   const { allFullOrders, isLoadingAllOrders, store } = useOrders();
@@ -18,7 +20,8 @@ export function Products() {
   const [variations, setVariations] = useState({});
   const [filteredVariations, setFilteredVariations] = useState([]);
   const [numberProducts, setNumberProducts] = useState(5);
-  const [showProductRegistration, setShowProductRegistration] = useState(false); // Estado para controle da visualização
+  const [sortType, setSortType] = useState('sales'); // Tipo de ordenação
+  const [showProductRegistration, setShowProductRegistration] = useState(false); 
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
@@ -28,12 +31,18 @@ export function Products() {
       const variationMap = {};
 
       allFullOrders.forEach(order => {
-        if(order.products) {
+        if (order.products) {
           order.products.forEach(product => {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
-            let skuNumber = product.sku.split("-")[0]
-            if(store === "outlet") {
-              skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("OT")[1] : product.sku.split("-")[0].split('OT')[1]
+
+            // Verificar se o produto é "Produto Loja" e pular se for
+            if (cleanedName.toLowerCase() === "produto loja") {
+              return; // Pula este produto
+            }
+
+            let skuNumber = product.sku.split("-")[0];
+            if (store === "outlet") {
+              skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("OT")[1] : product.sku.split("-")[0].split('OT')[1];
             }
             if (!salesMap[product.product_id]) {
               salesMap[product.product_id] = {
@@ -42,10 +51,13 @@ export function Products() {
                 name: cleanedName,
                 image: product.image?.src,
                 sales: 0,
+                revenue: 0, // Inicializa faturamento
                 variantCount: {},
               };
             }
             salesMap[product.product_id].sales += 1;
+            console.log(product)
+            salesMap[product.product_id].revenue += parseFloat(product.price || 0); // Atualiza o valor do faturamento corretamente
   
             const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
             if (variations) {
@@ -65,7 +77,10 @@ export function Products() {
         }
       });
 
-      const sortedProducts = Object.values(salesMap).sort((a, b) => b.sales - a.sales);
+      // Ordena os produtos conforme o tipo de ordenação selecionado
+      const sortedProducts = Object.values(salesMap).sort((a, b) => {
+        return sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
+      });
       setFilteredProducts(sortedProducts.slice(0, 10));
       setProductSales(salesMap);
 
@@ -73,7 +88,7 @@ export function Products() {
       setFilteredVariations(sortedVariations);
       setVariations(variationMap);
     }
-  }, [isLoadingAllOrders, allFullOrders]);
+  }, [isLoadingAllOrders, allFullOrders, sortType]);
 
   useEffect(() => {
     if (searchQuery !== '') {
@@ -81,7 +96,9 @@ export function Products() {
         product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
         product.skuNumber?.includes(searchQuery.toLowerCase())
       );
-      setFilteredProducts(filtered.sort((a, b) => b.sales - a.sales));
+      setFilteredProducts(filtered.sort((a, b) => {
+        return sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
+      }));
 
       const filteredVar = filtered.flatMap(product => 
         Object.entries(product.variantCount).map(([variant, sales]) => ({
@@ -101,10 +118,12 @@ export function Products() {
 
       setFilteredVariations(filteredVar);
     } else {
-      setFilteredProducts(Object.values(productSales).sort((a, b) => b.sales - a.sales).slice(0, numberProducts));
+      setFilteredProducts(Object.values(productSales).sort((a, b) => {
+        return sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
+      }).slice(0, numberProducts));
       setFilteredVariations(Object.values(variations).sort((a, b) => b.sales - a.sales));
     }
-  }, [searchQuery, numberProducts, productSales, variations]);
+  }, [searchQuery, numberProducts, productSales, variations, sortType]);
 
   useEffect(() => {
     const auth = localStorage.getItem('authenticated');
@@ -113,6 +132,10 @@ export function Products() {
 
   const handleSearchChange = (event) => {
     setSearchQuery(event.target.value);
+  };
+
+  const handleSortTypeChange = (event) => {
+    setSortType(event.target.value);
   };
 
   const toggleView = () => {
@@ -141,7 +164,7 @@ export function Products() {
           onChange={handleSearchChange}
           placeholder="Busque por nome ou SKU"
         />
-      <Button onClick={toggleView} type ='button'>
+        <Button onClick={toggleView} type='button'>
           {showProductRegistration ? 'Voltar para Lista de Produtos' : 'Cadastrar Produto'}
         </Button>
       </div>
@@ -155,19 +178,33 @@ export function Products() {
       ) : (
         <>
           <div className="header--number-products">
-            <h1>Mais vendidos</h1>
+            <h1>{sortType === 'sales' ? 'Mais Vendidos' : 'Maior Faturamento'}</h1>
             <InputSelect setNumberProducts={setNumberProducts} />
+            <ContainerSelect>
+              <select onChange={handleSortTypeChange} value={sortType}>
+                <option value="sales">Mais Vendidos</option>
+                <option value="revenue">Faturamento</option>
+              </select>
+            </ContainerSelect>
           </div>
           <ContainerBestSellers>
             <ContainerBestSeller>
               <header className="header">
                 <h2 className="categorie">Produtos</h2>
-                <h2 className="total-sales">Vendas</h2>
+                <h2 className="total-sales">{sortType === 'sales' ? 'Vendas' : 'Faturamento'}</h2>
               </header>
               <div className="table">
                 {isLoadingAllOrders ? (
                   <div className="loading">
-                    <Loading />
+                    <Oval
+                      height={16}
+                      width={16}
+                      color="#1874cd"
+                      visible={true}
+                      ariaLabel='oval-loading'
+                      strokeWidth={4}
+                      strokeWidthSecondary={4}
+                    />
                   </div>
                 ) : (
                   filteredProducts.slice(0, numberProducts).map((product, productIndex) => (
@@ -177,7 +214,7 @@ export function Products() {
                       position={productIndex + 1}
                       skuNumber={product.skuNumber}
                       name={product.name}
-                      sales={product.sales}
+                      sales={sortType === 'sales' ? product.sales : formatCurrency(product.revenue)}
                       urlImage={product.image}
                       variations={product.variations}
                     />
@@ -195,7 +232,15 @@ export function Products() {
               <div className="table">
                 {isLoadingAllOrders ? (
                   <div className="loading">
-                    <Loading />
+                    <Oval
+                      height={16}
+                      width={16}
+                      color="#1874cd"
+                      visible={true}
+                      ariaLabel='oval-loading'
+                      strokeWidth={4}
+                      strokeWidthSecondary={4}
+                    />
                   </div>
                 ) : (
                   filteredVariations.slice(0, numberProducts).map((variant, variantIndex) => (
