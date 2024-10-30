@@ -254,7 +254,7 @@ export function ClientDetails({ order }) {
               <StyledTableCell>{formatDateToUTC(order.created_at)}</StyledTableCell>
               {/* <StyledTableCell>{formatDateToUTC(order.updated_at)}</StyledTableCell> */}
               <StyledTableCell>
-                {calculateEstimatedDeliveryDate(order.created_at, order.shipping_min_days)}
+                {calculateEstimatedDeliveryDate(order.created_at, order.shipping_max_days)}
               </StyledTableCell>
               <StyledTableCell>
                 <a
