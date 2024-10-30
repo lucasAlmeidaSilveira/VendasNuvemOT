@@ -17,7 +17,7 @@ import { AiFillMessage } from 'react-icons/ai';
 import { getLinkNoteTiny, getOrderTiny } from '../../api';
 import { Oval } from 'react-loader-spinner';
 import { Tag } from '../Tag';
-import { IoReload, IoReloadCircleSharp } from 'react-icons/io5';
+import { IoReload } from 'react-icons/io5';
 
 const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
   backgroundColor: 'var(--geralblack-10)',
@@ -53,8 +53,8 @@ export function ClientDetails({ order }) {
   }
 
   function shippingCost(cost) {
-    const isEcom = order.storefront !== 'Loja'
-    if(isEcom) {
+    const isEcom = order.storefront !== 'Loja';
+    if (isEcom) {
       if (cost === '0.00') {
         return 'Frete Grátis';
       } else {
@@ -66,25 +66,23 @@ export function ClientDetails({ order }) {
   async function infoOrderTiny(numberOrder, cpf) {
     setIsLoadingNote(true);
     try {
-      const isEcom = order.storefront !== 'Loja'
+      const isEcom = order.storefront !== 'Loja';
 
-      if(isEcom) {
+      if (isEcom) {
         const fetchedOrder = await getOrderTiny(numberOrder, cpf);
         const isNote = fetchedOrder.situacao !== 'Em aberto' &&
-                      fetchedOrder.situacao !== 'Aprovado' &&
-                      fetchedOrder.situacao !== 'Preparando envio' &&
-                      fetchedOrder.situacao !== 'Cancelado'
+          fetchedOrder.situacao !== 'Aprovado' &&
+          fetchedOrder.situacao !== 'Preparando envio' &&
+          fetchedOrder.situacao !== 'Cancelado';
 
         if (isNote) {
           const linkNote = await getLinkNoteTiny(numberOrder, cpf);
           setNoteLink(linkNote);
-          
-        } 
+        }
         if (fetchedOrder && fetchedOrder.marcadores) {
           setMarkOrderTiny(fetchedOrder.marcadores.map((item) => item.marcador));
         }
       }
-      
     } catch (error) {
       console.error('Erro ao buscar a nota fiscal:', error);
       setNoteLink('');
@@ -99,7 +97,7 @@ export function ClientDetails({ order }) {
       return `OP: ${lote.trim()}`;
     }
     return descricao;
-  };
+  }
 
   function formatCoupon(coupon) {
     const typeCouponMap = {
@@ -134,29 +132,48 @@ export function ClientDetails({ order }) {
     infoOrderTiny(order.number, order.contact_identification);
   }, [order.number, order.contact_identification]);
 
+  // Função para calcular a data de entrega prevista com base nos dias úteis
+  function calculateEstimatedDeliveryDate(startDate, days) {
+    const addBusinessDays = (date, days) => {
+      let resultDate = new Date(date);
+      let addedDays = 0;
+      while (addedDays < days) {
+        resultDate.setDate(resultDate.getDate() + 1);
+        if (resultDate.getDay() !== 0 && resultDate.getDay() !== 6) {
+          addedDays++;
+        }
+      }
+      return resultDate;
+    };
+    
+    const deliveryDate = addBusinessDays(startDate, days);
+
+    return `${formatDateToUTC(deliveryDate, 'dateSimple')}`;
+  }
+
   return (
     <ContainerDetails>
       <RowTitle>
-      <h3>{order.contact_name}</h3>
+        <h3>{order.contact_name}</h3>
 
-      {isLoadingNote ? (
-        <Oval
-          height={16}
-          width={16}
-          color="#1874cd"
-          visible={true}
-          ariaLabel='oval-loading'
-          strokeWidth={4}
-          strokeWidthSecondary={4}
-        />
-      ) : (
-        markOrderTiny.length >= 1 && (
-          markOrderTiny.map((marcador) => (
-            <Tag key={marcador.id}>{formatDescription(marcador.descricao)}</Tag>
-          ))
-        )
-      )}
-                
+        {isLoadingNote ? (
+          <Oval
+            height={16}
+            width={16}
+            color="#1874cd"
+            visible={true}
+            ariaLabel='oval-loading'
+            strokeWidth={4}
+            strokeWidthSecondary={4}
+          />
+        ) : (
+          markOrderTiny.length >= 1 && (
+            markOrderTiny.map((marcador) => (
+              <Tag key={marcador.id}>{formatDescription(marcador.descricao)}</Tag>
+            ))
+          )
+        )}
+
         {order.note && (
           <TooltipInfo title={order.note}>
             <AiFillMessage color={'var(--geralblack-80'} />
@@ -164,10 +181,10 @@ export function ClientDetails({ order }) {
         )}
 
         <TooltipInfo title={'Atualizar informações do Tiny'}>
-            <IoReload class='btn-reload' onClick={handleInfoOrderTiny} />
+          <IoReload className='btn-reload' onClick={handleInfoOrderTiny} />
         </TooltipInfo>
       </RowTitle>
-      
+
       <TableContainer component={Paper}>
         <Table aria-label='products table'>
           <TableHead>
@@ -181,9 +198,7 @@ export function ClientDetails({ order }) {
           </TableHead>
           <TableBody>
             <TableRow>
-              <StyledTableCell>
-                {order.contact_identification}
-              </StyledTableCell>
+              <StyledTableCell>{order.contact_identification}</StyledTableCell>
               <StyledTableCell>{order.contact_email}</StyledTableCell>
               <StyledTableCell style={{ display: 'flex', gap: '4px', alignItems: 'center', borderBottom: 'none' }}>
                 {order.contact_phone ? (
@@ -227,7 +242,8 @@ export function ClientDetails({ order }) {
           <TableHead>
             <TableRow>
               <StyledTableHeadCell>Data da compra</StyledTableHeadCell>
-              <StyledTableHeadCell>Última atualização</StyledTableHeadCell>
+              {/* <StyledTableHeadCell>Última atualização</StyledTableHeadCell> */}
+              <StyledTableHeadCell>Previsão de entrega</StyledTableHeadCell>
               <StyledTableHeadCell>Página do pedido</StyledTableHeadCell>
               <StyledTableHeadCell>Cupom de desconto</StyledTableHeadCell>
               <StyledTableHeadCell>Frete</StyledTableHeadCell>
@@ -236,7 +252,10 @@ export function ClientDetails({ order }) {
           <TableBody>
             <TableRow>
               <StyledTableCell>{formatDateToUTC(order.created_at)}</StyledTableCell>
-              <StyledTableCell>{formatDateToUTC(order.updated_at)}</StyledTableCell>
+              {/* <StyledTableCell>{formatDateToUTC(order.updated_at)}</StyledTableCell> */}
+              <StyledTableCell>
+                {calculateEstimatedDeliveryDate(order.created_at, order.shipping_min_days)}
+              </StyledTableCell>
               <StyledTableCell>
                 <a
                   href={createUrlPageBuy(order.id, order.token)}
@@ -248,7 +267,7 @@ export function ClientDetails({ order }) {
               </StyledTableCell>
               <StyledTableCell>{formatCoupon(order.coupon)}</StyledTableCell>
               <StyledTableCell>
-                {shippingCost(order.shipping_cost_customer)} 
+                {shippingCost(order.shipping_cost_customer)}
                 <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>{order.shipping_option}</p>
               </StyledTableCell>
             </TableRow>

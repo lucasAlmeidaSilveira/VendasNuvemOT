@@ -71,18 +71,32 @@ export function formatTimeDifference(lastUpdated: string) {
   }
 }
 
-export function formatDateToUTC(dateString: string) {
+export function formatDateToUTC(dateString: string, typeDate: string = 'default') {
   const date = new Date(dateString);
-  return date.toLocaleString('pt-BR', {
-    timeZone: 'America/Sao_Paulo',
-    year: 'numeric',
-    month: '2-digit',
-    day: '2-digit',
-    hour: '2-digit',
-    minute: '2-digit',
-    second: '2-digit',
-  });
+
+  const options = {
+    dateSimple: {
+      timeZone: 'America/Sao_Paulo',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+    },
+    default: {
+      timeZone: 'America/Sao_Paulo',
+      year: 'numeric',
+      month: '2-digit',
+      day: '2-digit',
+      hour: '2-digit',
+      minute: '2-digit',
+      second: '2-digit',
+    }
+  };
+
+  const formatOptions = typeDate && options[typeDate] ? options[typeDate] : options.default;
+
+  return date.toLocaleString('pt-BR', formatOptions);
 }
+
 
 export function formatPhoneNumber(phoneNumber: string) {
   const parsedNumber = parsePhoneNumberFromString(phoneNumber);
