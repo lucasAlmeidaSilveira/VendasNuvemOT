@@ -12,10 +12,10 @@ import { CategorySelect } from '../CategorySelect';
 
 export function BestSellers() {
   const { allOrders, isLoading, date, store } = useOrders();
-  const [products, setProducts] = useState({ quadros: [], espelhos: [], variations: [] });
+  const [products, setProducts] = useState({ quadros: [], espelhos: [], artesanais: [], variations: [] });
   const [numberProducts, setNumberProducts] = useState(5);
-  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
-  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0 }, valor: { quadros: 0, espelhos: 0 } });
+  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, artesanais: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
+  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0, artesanais: 0 }, valor: { quadros: 0, espelhos: 0, artesanais: 0 } });
   const [selectedCategory, setSelectedCategory] = useState('Quadro Decorativo'); // Estado para a categoria selecionada
   const { ordersToday } = filterOrders(allOrders, date);
 
@@ -107,30 +107,35 @@ export function BestSellers() {
       return sortedVariations;
     };
 
-    const quadros = processProducts("Quadro");
+    const quadros = processProducts("Decorativo");
     const espelhos = processProducts("Espelho");
+    const artesanais = processProducts("Artesanal");
     const variations = processVariations(selectedCategory); // Usar a categoria selecionada
 
     setProducts({
       quadros: quadros.products,
       espelhos: espelhos.products,
+      artesanais: artesanais.products,
       variations: variations,
     });
 
     setTotalSales({
       quadros: { count: quadros.totalSales, value: quadros.totalValue },
       espelhos: { count: espelhos.totalSales, value: espelhos.totalValue },
+      artesanais: { count: artesanais.totalSales, value: artesanais.totalValue },
     });
 
     // Calcula os percentuais
     setPercentual({
       vendas: {
         quadros: (quadros.totalSales / totals.vendas) * 100,
-        espelhos: (espelhos.totalSales / totals.vendas) * 100,
+        espelhos: (espelhos.totalSales / totals.vendas) * 100,          
+        artesanais: (artesanais.totalSales / totals.vendas) * 100,          
       },
       valor: {
         quadros: (quadros.totalValue / totals.valor) * 100,
         espelhos: (espelhos.totalValue / totals.valor) * 100,
+        artesanais: (artesanais.totalValue / totals.valor) * 100,
       },
     });
 
@@ -152,7 +157,8 @@ export function BestSellers() {
         <InputSelect setNumberProducts={setNumberProducts} />
       </div>
       <ContainerBestSellers>
-        {['quadros', 'espelhos'].map((category, index) => (
+        {['quadros', 'artesanais', 'espelhos'].map((category, index) => (
+          (category === 'artesanais' && store !== 'artepropria') ? null : (
           <ContainerBestSeller key={index}>
             <header className="header">
               <h2 className="categorie">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
@@ -197,6 +203,7 @@ export function BestSellers() {
               )}
             </div>
           </ContainerBestSeller>
+          )
         ))}
         <ContainerBestSeller className="variations">
           <header className="header">

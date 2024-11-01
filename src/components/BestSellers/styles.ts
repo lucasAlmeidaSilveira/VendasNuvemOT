@@ -55,7 +55,7 @@ export const ContainerBestSeller = styled.div`
     background: var(--geralblack-100);
     border-radius: 1.6rem 1.6rem 0 0;
     flex: 0 0 auto;
-    padding: 1.6rem 2.4rem;
+    padding: 1.2rem 2rem;
     width: 100%;
     color: var(--geralwhite);
 

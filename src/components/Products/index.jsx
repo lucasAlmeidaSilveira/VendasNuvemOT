@@ -11,6 +11,7 @@ import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
 import { formatCurrency } from '../../tools/tools';
 import { Oval } from 'react-loader-spinner';
+import { getProduct } from '../../api';
 
 export function Products() {
   const { allFullOrders, isLoadingAllOrders, store } = useOrders();
@@ -86,6 +87,11 @@ export function Products() {
       const sortedVariations = Object.values(variationMap).sort((a, b) => b.sales - a.sales);
       setFilteredVariations(sortedVariations);
       setVariations(variationMap);
+
+
+      const response = getProduct(store, sortedProducts[1].id)
+
+    console.log('response',response)
     }
   }, [isLoadingAllOrders, allFullOrders, sortType]);
 
