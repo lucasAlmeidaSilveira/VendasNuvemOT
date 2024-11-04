@@ -89,6 +89,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     display: flex;
     align-items: center;
     gap: 0.4rem;
+    width: 100%;
 
     span.colorCard {
       width: 8px;
@@ -188,6 +189,21 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
           font-weight: 400;
         }
       }
+    }
+  }
+
+  & .btn-reload {
+    margin-left: auto;
+    padding: 4px;
+    background: var(--geralblack-30);
+    border-radius: 50%;
+    
+    transition: opacity .2s ease-in;
+    opacity: .5;
+    
+    &:hover {
+      opacity: 1;
+      box-shadow: 0px 3px 4px #00000040;
     }
   }
 `

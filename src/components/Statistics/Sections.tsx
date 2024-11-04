@@ -51,6 +51,7 @@ export function DataSectionTPago({
   isLoadingADSMeta,
 }: DataSectionTPagoProps) {
   const { allOrders, date, store } = useOrders();
+  const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
   // Filtros para pedidos
   const {
     totalEspelhosFormatted,
@@ -145,6 +146,7 @@ export function DataSectionTPago({
             tooltip='Google ADS'
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
+            handleAction={() => fetchDataGoogle()}
           />
           <BudgetItemList
             icon={FaMeta}
@@ -154,6 +156,7 @@ export function DataSectionTPago({
             tooltip='Meta ADS'
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
+            handleAction={() => fetchDataADSMeta()}
           />
           <BudgetItemList
             icon={GrMoney}

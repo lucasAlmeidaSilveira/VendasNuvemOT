@@ -6,6 +6,7 @@ import { Small } from './styles';
 import { formatCurrency } from '../../tools/tools';
 import { MdOutlineHelpOutline } from 'react-icons/md';
 import { BudgetItemListProps, BudgetItemProps } from "../../types";
+import { IoReload } from "react-icons/io5";
 
 export function BudgetItemList({
   icon: Icon,
@@ -17,6 +18,7 @@ export function BudgetItemList({
   value,
   isLoading,
   small,
+  handleAction
 }: BudgetItemListProps) {
   return (
     <div className='div'>
@@ -26,6 +28,11 @@ export function BudgetItemList({
         <TooltipInfo title={tooltip}>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
         </TooltipInfo>
+        {handleAction && (
+          <TooltipInfo className={'btn-reload'} title={'Recarregar dados'}>
+            <IoReload size={16} onClick={handleAction} />
+          </TooltipInfo>
+        )}
       </div>
       <div className='text-wrapper-4'>
         {isLoading ? (

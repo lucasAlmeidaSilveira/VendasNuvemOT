@@ -163,6 +163,7 @@ export interface BudgetItemListProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
+  handleAction?: () => void;
 }
 
 export interface BudgetItemProps {
