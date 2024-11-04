@@ -131,6 +131,10 @@ export function DataSectionTPago({
     { name: 'Chatbot', value: totalPaidAmountChatbot },
   ];
 
+  const handleUpdateDataADS = () => {
+    fetchDataGoogle()
+    fetchDataADSMeta()
+  }
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
@@ -146,7 +150,7 @@ export function DataSectionTPago({
             tooltip='Google ADS'
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
-            handleAction={() => fetchDataGoogle()}
+            handleAction={fetchDataGoogle}
           />
           <BudgetItemList
             icon={FaMeta}
@@ -156,8 +160,8 @@ export function DataSectionTPago({
             tooltip='Meta ADS'
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
-            handleAction={() => fetchDataADSMeta()}
-          />
+            handleAction={fetchDataADSMeta}
+            />
           <BudgetItemList
             icon={GrMoney}
             iconColor='var(--geralblack-100)'
@@ -166,6 +170,7 @@ export function DataSectionTPago({
             tooltip='Google ADS x Meta ADS'
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
+            handleAction={handleUpdateDataADS}
           />
         </div>
         <div className='row'>
