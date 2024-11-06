@@ -230,28 +230,32 @@ export function ProductRegistration() {
   };
 
   const handleProductCreation = () => {
-    const framesNum = convertFramesNumber(framesNumber);
-    const plural = framesNum === 'one' ? 'Tela' : 'Telas';
-    const productName = `Quadro Decorativo ${framesNumber} ${plural} ${categoryNames[0]} ${nameArt}`;
+    let updatedNameArt = nameArt; // Armazena o valor atualizado de nameArt
 
-      // Imagens padrão para cada loja
-  const defaultImagesOutlet = [
-    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canvas_zgquje-7992c817448a11f9f617140659149535-480-0.webp', position: 8 },
-    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/sem_vidro_yodpsx-ae6f6fe0cdfdb3674b17140659278662-480-0.webp', position: 9 },
-    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/com_vidro_fvastx-dd79b1c16e294709d917140659214570-480-0.webp', position: 10 },
-    { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canaleta_txfhis-a6eb00c1451545947d17140659084033-480-0.webp', position: 11 }
-  ];
+    if (!unit) {
+      const prefix = framesNumber === '1' ? 'Quadro Decorativo' : `Kit ${framesNumber} Quadros Decorativos`;
+      const categorie = categoryNames[0] ? categoryNames[0] : ''
+      updatedNameArt = `${prefix} ${categorie} ${nameArt}`;
+    }
 
-  const defaultImagesArtepropria = [
-    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_sprxkb-8fa81b8457a896518217073382756360-640-0.webp', position: 8 },
-    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-quadro_com_vidro_qoysbu-0012313385157d6fc017073382822078-640-0.webp', position: 9 },
-    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_com_canaleta_fbasky-1e75aa0bf55dfe19b317073382889011-640-0.webp', position: 10 },
-    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-metacrilato_bmoucm-08401e65cd641c718617073382956305-640-0.webp', position: 11 },
-    { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-impressc3a3o_lpiyfi-68d8054ea930d2748c17073383028046-640-0.webp', position: 12 }
-  ];
+    // Imagens padrão para cada loja
+    const defaultImagesOutlet = [
+      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canvas_zgquje-7992c817448a11f9f617140659149535-480-0.webp', position: 8 },
+      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/sem_vidro_yodpsx-ae6f6fe0cdfdb3674b17140659278662-480-0.webp', position: 9 },
+      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/com_vidro_fvastx-dd79b1c16e294709d917140659214570-480-0.webp', position: 10 },
+      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canaleta_txfhis-a6eb00c1451545947d17140659084033-480-0.webp', position: 11 }
+    ];
+
+    const defaultImagesArtepropria = [
+      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_sprxkb-8fa81b8457a896518217073382756360-640-0.webp', position: 8 },
+      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-quadro_com_vidro_qoysbu-0012313385157d6fc017073382822078-640-0.webp', position: 9 },
+      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_com_canaleta_fbasky-1e75aa0bf55dfe19b317073382889011-640-0.webp', position: 10 },
+      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-metacrilato_bmoucm-08401e65cd641c718617073382956305-640-0.webp', position: 11 },
+      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-impressc3a3o_lpiyfi-68d8054ea930d2748c17073383028046-640-0.webp', position: 12 }
+    ];
 
     const body = {
-      name: { pt: nameArt },
+      name: { pt: updatedNameArt },
       attributes: [
         'Selecione o tamanho',
         'Selecione o acabamento',
@@ -267,7 +271,7 @@ export function ProductRegistration() {
       tags: skuNumber,
       published: visible,
       free_shipping: false,
-      seo_title: productName,
+      seo_title: updatedNameArt,
       brand: store === 'outlet' ? 'Outlet dos Quadros' : 'Arte Própria',
     };
 

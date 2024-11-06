@@ -10,6 +10,7 @@ import {
 import { Button } from '../Button';
 import { Loading } from '../Loading';
 import { PiCheckCircleBold } from 'react-icons/pi';
+import { Oval } from 'react-loader-spinner';
 
 const StyledDialog = styled(Dialog)(({ theme }) => ({
   '& .css-1t1j96h-MuiPaper-root-MuiDialog-paper': {
@@ -56,7 +57,15 @@ export function ConfirmationDialog({ open, onClose, onConfirm, loading, success,
             success ? (
               <PiCheckCircleBold size={20} />
             ) : (
-              <Loading />
+              <Oval
+                height={18}
+                width={18}
+                color="#fcfafb"
+                visible={true}
+                ariaLabel='oval-loading'
+                strokeWidth={4}
+                strokeWidthSecondary={4}
+              />
             )
           ) : (
             <>Confirmar</>

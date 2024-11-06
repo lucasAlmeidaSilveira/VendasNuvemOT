@@ -88,10 +88,6 @@ export function Products() {
       setFilteredVariations(sortedVariations);
       setVariations(variationMap);
 
-
-      const response = getProduct(store, sortedProducts[1].id)
-
-    console.log('response',response)
     }
   }, [isLoadingAllOrders, allFullOrders, sortType]);
 
