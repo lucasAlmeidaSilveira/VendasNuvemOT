@@ -8,6 +8,7 @@ interface PopupProps {
   onClose: () => void;
   title?: string;
   children: ReactElement;
+  size: 'sm' | 'md' | 'lg' | 'xl' | 'xs';
 }
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
@@ -17,9 +18,9 @@ const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
   fontWeight: 'var(--body-heading-h5-font-weight)',
 }));
 
-export function Popup({ open, onClose, title, children }: PopupProps) {
+export function Popup({ open, onClose, title, children, size }: PopupProps) {
   return (
-    <Dialog open={open} onClose={onClose} maxWidth='sm' fullWidth>
+    <Dialog open={open} onClose={onClose} maxWidth={size} fullWidth>
       {title && (
         <StyledDialogTitle>
           {title}

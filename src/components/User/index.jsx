@@ -72,6 +72,7 @@ export function User() {
         open={isPopupOpen}
         onClose={handleClosePopup}
         title='Conversor de mídia'
+        size='sm'
       >
         <Converters />
         <br />

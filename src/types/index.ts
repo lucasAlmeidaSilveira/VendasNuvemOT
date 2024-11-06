@@ -76,6 +76,13 @@ export interface Coupon {
 
 export interface Order {
   id: string;
+  order_id: string;
+  owner_note: string;
+  contact_name: string;
+  products: [];
+  gateway_link: string;
+  status: string;
+  shipping: string;
   shipping_status: string;
   shipping_min_days: number;
   shipping_max_days: number;
@@ -164,6 +171,7 @@ export interface BudgetItemListProps {
   isLoading: boolean;
   tooltip?: string;
   handleAction?: () => void;
+  orders?: Order[];
 }
 
 export interface BudgetItemProps {
@@ -176,6 +184,7 @@ export interface BudgetItemProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
+  orders?: Order[];
 }
 
 export interface DataCosts {

@@ -5,10 +5,9 @@ import {
   Selects,
   StatusFilterContainer,
 } from './styles';
-import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
-import TableCell, { tableCellClasses } from '@mui/material/TableCell';
+
 import TableHead from '@mui/material/TableHead';
 import TableRow from '@mui/material/TableRow';
 import Paper from '@mui/material/Paper';
@@ -30,7 +29,6 @@ import { filterOrders } from '../../tools/filterOrders';
 import { ClientDetails } from './ClientDetails';
 import { TooltipInfo } from '../TooltipInfo';
 import { Loading } from '../Loading';
-
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { MdDelete } from 'react-icons/md';
 import { AiFillMessage } from 'react-icons/ai';
@@ -38,49 +36,7 @@ import { OrderPopup } from './OrderPopup';
 import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  [`&.${tableCellClasses.head}`]: {
-    backgroundColor: 'var(--geralblack-30)',
-    color: 'var(--geralblack-100)',
-    fontSize: 14,
-    fontWeight: 600,
-    fontFamily: 'Poppins',
-    padding: '14px 16px',
-    whiteSpace: 'collapse',
-  },
-  [`&.${tableCellClasses.body}`]: {
-    fontSize: 14,
-    fontFamily: 'Poppins',
-    padding: '8px 16px',
-    lineHeight: '100%',
-    overflow: 'hidden',
-    textOverflow: 'ellipsis',
-    whiteSpace: 'collapse',
-  },
-  [`&.${'d-row'}`]: {
-    display: 'flex',
-    gap: '8px',
-    alignItems: 'center',
-    padding: '16px'
-  }
-}));
-
-const StyledTableRow = styled(TableRow)(({ theme }) => ({
-  '&:nth-of-type(odd):not(.row-order)': {
-    backgroundColor: 'var(--geralblack-10)',
-  },
-  '&.row-order': {
-    backgroundColor: 'var(--geralblack-20)',
-    borderRadius: '8px',
-    '& div': {
-      borderRadius: '8px',
-    },
-  },
-  '&:last-child td, &:last-child th': {
-    border: 0,
-  },
-}));
+import { StyledTableCell, StyledTableRow } from '../../tools/table';
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {

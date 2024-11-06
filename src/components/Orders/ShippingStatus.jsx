@@ -88,7 +88,7 @@ const formatUrlTracking = (code) => {
   return code;
 };
 
-export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays, shippingMaxDays, paymentStatus, shipping }) {
+export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays, shippingMaxDays, shipping }) {
   const [ status, setStatus ] =  useState('Atualizando status...')
   const [ urlTracking, setUrlTracking ] = useState('')
 
@@ -113,7 +113,6 @@ export function ShippingStatus({ statusOrder, order, created_at, shippingMinDays
     created_at,
     shippingMinDays,
     shippingMaxDays,
-    paymentStatus // Passa o status de pagamento
   );
 
   return (

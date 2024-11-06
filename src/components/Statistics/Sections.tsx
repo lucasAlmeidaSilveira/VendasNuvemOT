@@ -276,10 +276,9 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
   const { ordersTodayPaid, ordersAllToday } = filterOrders(allOrders, date);
   const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
-  const [creditCardTransactions, setCreditCardTransactions] =
-    useState(DEFAULT_VALUE);
-  const [pixTransactions, setPixTransactions] = useState(DEFAULT_VALUE);
-  const [boletoTransactions, setBoletoTransactions] = useState(DEFAULT_VALUE);
+  const [creditCardTransactions, setCreditCardTransactions] = useState<Order[]>([]);
+  const [pixTransactions, setPixTransactions] = useState<Order[]>([]);
+  const [boletoTransactions, setBoletoTransactions] = useState<Order[]>([]);
   const [creditCardPercentage, setCreditCardPercentage] =
     useState(DEFAULT_PERCENTAGE);
   const [pixPercentage, setPixPercentage] = useState(DEFAULT_PERCENTAGE);
@@ -295,18 +294,18 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const colorPix = '#42a5f5';
   const colorBoleto = '#ffb74d';
 
-  const calculatePercentage = (count: number, total: number): string =>
-    total > 0 ? ((count / total) * 100).toFixed(1) + '%' : '0%';
+  const calculatePercentage = (orders: Order[], total: number): string =>
+    total > 0 ? ((orders.length / total) * 100).toFixed(1) + '%' : '0%';
 
-  const calculateCount = (
+  const filterTransactions = (
     method: string,
     status: null | string = null,
-  ): number =>
+  ) =>
     ordersAllToday.filter(
       order =>
         order.payment_details.method === method &&
         (status ? order.payment_status === status : true),
-    ).length;
+    );
 
   useEffect(() => {
     if (ordersAllToday.length > 0) {
@@ -314,33 +313,33 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
         (ordersTodayPaid.length / ordersAllToday.length) * 100;
       setPassRate(passRateValue.toFixed(1) + '%');
     }
-  }, [allOrders, ordersAllToday, ordersTodayPaid.length]);
+  }, []);
 
   useEffect(() => {
-    const creditCardCount = calculateCount('credit_card');
-    const paidCreditCardCount = calculateCount('credit_card', 'paid');
-    const pixCount = calculateCount('pix');
-    const paidPixCount = calculateCount('pix', 'paid');
-    const boletoCount = calculateCount('boleto');
-    const paidBoletoCount = calculateCount('boleto', 'paid');
+    const creditCardFilter = filterTransactions('credit_card');
+    const paidCreditCardFilter = filterTransactions('credit_card', 'paid');
+    const pixFilter = filterTransactions('pix');
+    const paidPixFilter = filterTransactions('pix', 'paid');
+    const boletoFilter = filterTransactions('boleto');
+    const paidBoletoFilter = filterTransactions('boleto', 'paid');
     const totalOrdersToday = ordersAllToday.length;
 
-    setCreditCardTransactions(creditCardCount.toString());
-    setPixTransactions(pixCount.toString());
-    setBoletoTransactions(boletoCount.toString());
+    setCreditCardTransactions(creditCardFilter);
+    setPixTransactions(pixFilter);
+    setBoletoTransactions(boletoFilter);
 
     setCreditCardPercentage(
-      calculatePercentage(creditCardCount, totalOrdersToday),
+      calculatePercentage(creditCardFilter, totalOrdersToday),
     );
-    setPixPercentage(calculatePercentage(pixCount, totalOrdersToday));
-    setBoletoPercentage(calculatePercentage(boletoCount, totalOrdersToday));
+    setPixPercentage(calculatePercentage(pixFilter, totalOrdersToday));
+    setBoletoPercentage(calculatePercentage(boletoFilter, totalOrdersToday));
 
     setCreditCardApprovalRate(
-      calculatePercentage(paidCreditCardCount, creditCardCount),
+      calculatePercentage(paidCreditCardFilter, creditCardFilter.length),
     );
-    setPixApprovalRate(calculatePercentage(paidPixCount, pixCount));
-    setBoletoApprovalRate(calculatePercentage(paidBoletoCount, boletoCount));
-  }, [ordersTodayPaid, ordersAllToday]);
+    setPixApprovalRate(calculatePercentage(paidPixFilter, pixFilter.length));
+    setBoletoApprovalRate(calculatePercentage(paidBoletoFilter, boletoFilter.length));
+  }, [allOrders]);
 
   return (
     <ContainerOrders>
@@ -352,12 +351,14 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
             tooltip='Nuvemshop'
             value={ordersTodayPaid.length}
             isLoading={isLoadingOrders}
+            orders={ordersTodayPaid}
           />
           <BudgetItem
             title='Clicado em comprar'
             tooltip='Nuvemshop'
             value={ordersAllToday.length}
             isLoading={isLoadingOrders}
+            orders={ordersAllToday}
           />
           <BudgetItem
             title='Taxa de aprovação Geral'
@@ -372,27 +373,30 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
             iconColor={colorCard}
             title='Transações no Cartão'
             tooltip='Nuvemshop'
-            value={creditCardTransactions}
+            value={creditCardTransactions.length}
             isLoading={isLoadingOrders}
             small={creditCardPercentage}
+            orders={creditCardTransactions}
           />
           <BudgetItem
             icon={FaPix}
             iconColor={colorPix}
             title='Transações no Pix'
             tooltip='Nuvemshop'
-            value={pixTransactions}
+            value={pixTransactions.length}
             isLoading={isLoadingOrders}
             small={pixPercentage}
+            orders={pixTransactions}
           />
           <BudgetItem
             icon={FaFileInvoiceDollar}
             iconColor={colorBoleto}
             title='Transações no Boleto'
             tooltip='Nuvemshop'
-            value={boletoTransactions}
+            value={boletoTransactions.length}
             isLoading={isLoadingOrders}
             small={boletoPercentage}
+            orders={boletoTransactions}
           />
         </div>
         <div className='row'>
@@ -634,7 +638,7 @@ export function DataSectionCart({
       order.coupon && order.coupon.some(coupon => couponsPopup.includes(coupon.code));
   
     // Cria um objeto que armazena os pedidos e seus totais
-    const filteredData = {
+    const ordersFiltered = {
       cashBack: filterAndCalculateTotal(cashbackCondition),
       cartsPartners: filterAndCalculateTotal(partnersCondition),
       cartsSellers: filterAndCalculateTotal(sellersCondition),
@@ -646,14 +650,14 @@ export function DataSectionCart({
     };
   
     // Atualiza os estados dos pedidos filtrados e dos totais
-    setCartsRecoveryPartners(filteredData.cartsPartners.filteredOrders);
-    setOrdersSellers(filteredData.cartsSellers.filteredOrders);
-    setOrdersWithCashback(filteredData.cashBack.filteredOrders);
-    setCartsRecoveryWhats(filteredData.cartsWhats.filteredOrders);
-    setCartsRecoveryInsta(filteredData.cartsInsta.filteredOrders);
-    setCartsRecoveryInstaDirect(filteredData.cartsInstaDirect.filteredOrders);
-    setCartsRecoveryEmail(filteredData.cartsEmail.filteredOrders);
-    setCartsRecoveryPopup(filteredData.cartsPopup.filteredOrders);
+    setCartsRecoveryPartners(ordersFiltered.cartsPartners.filteredOrders);
+    setOrdersSellers(ordersFiltered.cartsSellers.filteredOrders);
+    setOrdersWithCashback(ordersFiltered.cashBack.filteredOrders);
+    setCartsRecoveryWhats(ordersFiltered.cartsWhats.filteredOrders);
+    setCartsRecoveryInsta(ordersFiltered.cartsInsta.filteredOrders);
+    setCartsRecoveryInstaDirect(ordersFiltered.cartsInstaDirect.filteredOrders);
+    setCartsRecoveryEmail(ordersFiltered.cartsEmail.filteredOrders);
+    setCartsRecoveryPopup(ordersFiltered.cartsPopup.filteredOrders);
   
   }, [date, allOrders]);  
 
@@ -766,6 +770,7 @@ export function DataSectionCart({
             value={cartsRecoveryWhats.length}
             isLoading={isLoading}
             dataCosts={generateDataCosts(cartsRecoveryWhats, couponsWhats)}
+            orders={cartsRecoveryWhats}
           />
           <BudgetItemList
             title='Cupom Instagram'
@@ -776,6 +781,7 @@ export function DataSectionCart({
             value={cartsRecoveryInsta.length}
             isLoading={isLoading}
             dataCosts={generateDataCosts(cartsRecoveryInsta, couponsInsta)}
+            orders={cartsRecoveryInsta}
           />
           {store === 'outlet' && (
             <>
@@ -790,6 +796,7 @@ export function DataSectionCart({
                 dataCosts={[
                   {name: 'Total', value: cartsRecoveryInstaDirect.reduce((acc, order) => acc + parseInt(order.total), 0)}
                 ]}
+                orders={cartsRecoveryInstaDirect}
               />
               <BudgetItemList
                 icon={FaHandshakeSimple}
@@ -801,6 +808,7 @@ export function DataSectionCart({
                 dataCosts={[
                   {name: 'Total', value: cartsRecoveryPartners.reduce((acc, order) => acc + parseInt(order.total), 0)}
                 ]}
+                orders={cartsRecoveryPartners}
               />
               <BudgetItemList
                 icon={IoIosMail}
@@ -810,6 +818,7 @@ export function DataSectionCart({
                 value={cartsRecoveryEmail.length}
                 isLoading={isLoading}
                 dataCosts={generateDataCosts(cartsRecoveryEmail, couponsEmail)}
+                orders={cartsRecoveryEmail}
               />
             </>
           )}
@@ -822,6 +831,7 @@ export function DataSectionCart({
             dataCosts={[
               {name: 'Total', value: cartsRecoveryPopup.reduce((acc, order) => acc + parseInt(order.total), 0)}
             ]}
+            orders={cartsRecoveryPopup}
           />
           {store === 'artepropria' && (
             <BudgetItemList
@@ -832,6 +842,7 @@ export function DataSectionCart({
               value={ordersSellers.length}
               isLoading={isLoading}
               dataCosts={generateDataCosts(ordersSellers, couponsSellers)}
+              orders={ordersSellers}
             />
           )}
         </div>
@@ -842,6 +853,7 @@ export function DataSectionCart({
             value={totalCashbackSales}
             small={couponsCashback.length}
             isLoading={isLoading}
+            orders={ordersWithCashback}
           />
           <BudgetItem
             title='Faturamento Cashback'
@@ -923,6 +935,7 @@ export function DataSectionAnalytics({
             tooltip='Nuvemshop (Geral)'
             value={ordersToday.length}
             isLoading={isLoadingOrders}
+            orders={ordersToday}
           />
           <BudgetItem
             title='Taxa de conversão'

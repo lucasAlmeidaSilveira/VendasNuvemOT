@@ -83,6 +83,18 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     flex-direction: column;
     gap: 0.8rem;
     padding: 1.6rem 2.4rem;
+    transition: all .2s ease-in;
+    border: 1px solid transparent;
+
+    &.orders {
+      cursor: pointer;
+    }
+    
+    &.orders:hover {
+      border: 1px solid var(--geralblack-100);
+      background-color: var(--geralblack-20);
+
+    }
   }
 
   & .title-box {
