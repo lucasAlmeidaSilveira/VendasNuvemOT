@@ -251,7 +251,7 @@ export function ProductRegistration() {
   ];
 
     const body = {
-      name: { pt: productName },
+      name: { pt: nameArt },
       attributes: [
         'Selecione o tamanho',
         'Selecione o acabamento',
