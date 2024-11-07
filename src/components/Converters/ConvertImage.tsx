@@ -5,6 +5,7 @@ import { FaFile } from 'react-icons/fa6';
 import JSZip from 'jszip'; // Importa JSZip para criar o arquivo zip
 import saveAs from 'file-saver'; // Importa file-saver para salvar o arquivo zip
 import { Oval } from "react-loader-spinner";
+import heic2any from 'heic2any'; // Importa a biblioteca heic2any para converter imagens HEIC
 
 export function ConvertImage() {
   const [imagens, setImagens] = useState<File[]>([]); // Estado para múltiplas imagens
@@ -13,19 +14,57 @@ export function ConvertImage() {
   const [isDragging, setIsDragging] = useState(false); // Estado para o arraste
   const [isLoading, setIsLoading] = useState(false); // Estado de loading
 
-  const handleImagemChange = (event: ChangeEvent<HTMLInputElement>) => {
-    setImagensConvertidas([]); // Limpa as imagens convertidas
+  const handleImagemChange = async (event: ChangeEvent<HTMLInputElement>) => {
+    setImagensConvertidas([]);
     const files = event.target.files ? Array.from(event.target.files) : [];
-    setImagens(files); // Armazena as imagens selecionadas
+    setIsLoading(true);
+    
+    // Converte arquivos HEIC para JPEG, se necessário
+    const convertedFiles = await Promise.all(
+      files.map(async (file) => {
+        if (file.type === 'image/heic' || file.name.toLocaleLowerCase().endsWith('.heic')) {
+          try {
+            const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg' });
+            // Assegura que o retorno é um único Blob
+            const blob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+            return new File([blob], file.name.replace(/\.heic$/, '.jpeg'), { type: 'image/jpeg' });
+          } catch (error) {
+            console.error('Erro ao converter HEIC:', error);
+          }
+        }
+        return file;
+      })
+      );
+      
+    setIsLoading(false);
+    setImagens(convertedFiles);
   };
 
-  const handleDrop = (event: DragEvent) => {
+  const handleDrop = async (event: DragEvent) => {
     event.preventDefault();
-    setImagensConvertidas([]); // Limpa as imagens convertidas
+    setImagensConvertidas([]);
     setIsDragging(false);
-    
+
     const files = event.dataTransfer.files ? Array.from(event.dataTransfer.files) : [];
-    setImagens(files); // Armazena as imagens arrastadas
+
+    // Converte arquivos HEIC para JPEG, se necessário
+    const convertedFiles = await Promise.all(
+      files.map(async (file) => {
+        if (file.type === 'image/heic' || file.name.endsWith('.heic')) {
+          try {
+            const convertedBlob = await heic2any({ blob: file, toType: 'image/jpeg' });
+            // Assegura que o retorno é um único Blob
+            const blob = Array.isArray(convertedBlob) ? convertedBlob[0] : convertedBlob;
+            return new File([blob], file.name.replace(/\.heic$/, '.jpeg'), { type: 'image/jpeg' });
+          } catch (error) {
+            console.error('Erro ao converter HEIC:', error);
+          }
+        }
+        return file;
+      })
+    );
+
+    setImagens(convertedFiles);
   };
 
   const handleDragOver = (event: DragEvent) => {
@@ -80,34 +119,27 @@ export function ConvertImage() {
 
   const downloadImagens = async () => {
     if (imagensConvertidas.length === 1) {
-      // Se houver apenas uma imagem, faz o download direto dela
       const url = imagensConvertidas[0];
       const nomeArquivo = nomesArquivosConvertidos[0];
       const response = await fetch(url);
       const blob = await response.blob();
-      saveAs(blob, nomeArquivo); // Salva a imagem diretamente
+      saveAs(blob, nomeArquivo);
     } else if (imagensConvertidas.length > 1) {
-      const zip = new JSZip(); // Cria um novo arquivo zip
-  
-      // Adiciona cada imagem convertida ao zip
+      const zip = new JSZip();
+
       for (let i = 0; i < imagensConvertidas.length; i++) {
         const url = imagensConvertidas[i];
         const nomeArquivo = nomesArquivosConvertidos[i];
-  
-        // Faz o download dos blobs das imagens
         const response = await fetch(url);
         const blob = await response.blob();
-  
-        // Adiciona a imagem ao zip
         zip.file(nomeArquivo, blob);
       }
-  
-      // Gera o arquivo zip e faz o download
+
       zip.generateAsync({ type: 'blob' }).then(content => {
-        saveAs(content, 'imagens_convertidas.zip'); // Salva o arquivo zip com FileSaver.js
+        saveAs(content, 'imagens_convertidas.zip');
       });
     }
-  };  
+  };
 
   return (
     <Container>
@@ -121,15 +153,34 @@ export function ConvertImage() {
           type='file'
           id='imagem'
           onChange={handleImagemChange}
-          multiple // Permite seleção de múltiplos arquivos
+          multiple
         />
         <label htmlFor='imagem'>
-          <span>
-            <FaFile size={20} />
-          </span>{' '}
-          {imagens.length > 0 ? (
-            imagens.length > 1 ? (`${imagens.length} imagens selecionadas`) : (imagens[0].name)
-          ) : 'Selecione ou arraste as imagens'}
+          {!isLoading ? (
+            <>
+              <span>
+                <FaFile size={20} />
+              </span>
+              {imagens.length > 0
+                ? imagens.length > 1
+                  ? `${imagens.length} imagens selecionadas`
+                  : imagens[0].name
+                : 'Selecione ou arraste as imagens'}
+            </>
+          ) : (
+            <>
+              <Oval
+                height={16}
+                width={16}
+                color="#1874cd"
+                visible={true}
+                ariaLabel="oval-loading"
+                strokeWidth={4}
+                strokeWidthSecondary={4}
+              />
+                Carregando imagens...
+            </>
+          )}
         </label>
       </BoxInput>
       <Actions>
@@ -155,7 +206,7 @@ export function ConvertImage() {
             <Button
               typeStyle={'confirm'}
               type='button'
-              onClick={downloadImagens} // Faz o download das imagens zipadas
+              onClick={downloadImagens}
             >
               Baixar imagens ({imagensConvertidas.length})
             </Button>
