@@ -18,7 +18,7 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 
 import { useOrders } from '../../context/OrdersContext';
-import { formatCurrency, isLate } from '../../tools/tools';
+import { formatCurrency, formatDateShort, isLate } from '../../tools/tools';
 import { PaymentStatus } from './PaymentStatus';
 import { ShippingStatus } from './ShippingStatus';
 import { CustomSelect } from '../CustomSelect';
@@ -207,21 +207,11 @@ export function Orders() {
     setTotalLate(lateCount);
   }, [allOrders, store]);
 
-  const formatDate = dateString => {
-    const date = new Date(dateString);
-    const day = date.getDate();
-    const month = date
-      .toLocaleString('default', { month: 'short' })
-      .replace('.', '');
-    return `${day} ${month}`;
-  };
-
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
   };
-
 
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
@@ -453,7 +443,7 @@ export function Orders() {
                         #{order.order_id ? order.order_id : order.owner_note}
                       </StyledTableCell>
                       <StyledTableCell>
-                        {formatDate(order.created_at)}
+                        {formatDateShort(order.created_at)}
                       </StyledTableCell>
                       <StyledTableCell
                         onClick={() => handleToggleExpand(order.id)}

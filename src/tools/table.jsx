@@ -59,12 +59,12 @@ export const headCells = [
     disablePadding: false,
     label: 'Pagamento',
   },
-  {
-    id: 'shipping_status',
-    numeric: false,
-    disablePadding: false,
-    label: 'Status',
-  },
+  // {
+  //   id: 'shipping_status',
+  //   numeric: false,
+  //   disablePadding: false,
+  //   label: 'Status',
+  // },
 ];
 
 export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {

@@ -3,7 +3,7 @@ import { Loading } from '../Loading';
 import { TooltipInfo } from '../TooltipInfo';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
 import { Small } from './styles';
-import { formatCurrency, formatDate } from '../../tools/tools';
+import { formatCurrency, formatDateShort } from '../../tools/tools';
 import { MdOutlineHelpOutline } from 'react-icons/md';
 import { BudgetItemListProps, BudgetItemProps } from '../../types';
 import { IoReload } from 'react-icons/io5';
@@ -24,6 +24,10 @@ import { PaymentStatus } from '../Orders/PaymentStatus';
 import { ShippingStatus } from '../Orders/ShippingStatus';
 import { ContainerOrder } from '../Orders/styles';
 import { TablePaginationActions } from '../Pagination';
+import { ClientDetails } from "../Orders/ClientDetails";
+import { ProductDetails } from "../Orders/ProductDetails";
+import { FaChevronDown, FaChevronUp } from "react-icons/fa";
+import { AiFillMessage } from "react-icons/ai";
 
 export function BudgetItemList({
   icon: Icon,
@@ -196,6 +200,7 @@ function TableOrders({ orders }: any) {
   const [orderBy, setOrderBy] = useState('created_at');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [expandedOrders, setExpandedOrders] = useState({});
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && sort === 'asc';
@@ -212,6 +217,13 @@ function TableOrders({ orders }: any) {
     setPage(0);
   };
 
+  const handleToggleExpand = order_id => {
+    setExpandedOrders(prevState => ({
+      ...prevState,
+      [order_id]: !prevState[order_id],
+    }));
+  };
+
   return (
     <ContainerOrder>
       <Table aria-label='simple table'>
@@ -223,7 +235,7 @@ function TableOrders({ orders }: any) {
         <TableBody>
           {orders.length === 0 ? (
             <TableRow>
-              <StyledTableCell style={{ textAlign: 'center' }} colSpan={7}>
+              <StyledTableCell style={{ textAlign: 'center' }} colSpan={6}>
                 Nenhum pedido encontrado
               </StyledTableCell>
             </TableRow>
@@ -240,12 +252,20 @@ function TableOrders({ orders }: any) {
                       #{order.order_id ? order.order_id : order.owner_note}
                     </StyledTableCell>
                     <StyledTableCell>
-                      {formatDate(new Date(order.created_at))}
+                      {formatDateShort(order.created_at)}
                     </StyledTableCell>
-                    <StyledTableCell>
-                      {order.contact_name}{' '}
-                      {/* {expandedOrders[order.id] ? <FaChevronUp /> : <FaChevronDown />} */}
-                    </StyledTableCell>
+                    <StyledTableCell
+                        onClick={() => handleToggleExpand(order.id)}
+                      >
+                        <a className='link'>
+                          {order.contact_name}{' '}
+                          {expandedOrders[order.id] ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                        </a>
+                      </StyledTableCell>
                     <StyledTableCell>{order.products.length}</StyledTableCell>
                     <StyledTableCell>
                       {formatCurrency(order.total)}
@@ -263,17 +283,15 @@ function TableOrders({ orders }: any) {
                         />
                       </a>
                     </StyledTableCell>
-                    <StyledTableCell className={'d-row'}>
-                      <ShippingStatus
-                        order={order}
-                        statusOrder={order.status}
-                        created_at={order.created_at}
-                        shippingMinDays={order.shipping_min_days}
-                        shippingMaxDays={order.shipping_max_days}
-                        shipping={order.shipping}
-                      />
-                    </StyledTableCell>
                   </StyledTableRow>
+                  {expandedOrders[order.id] && (
+                      <StyledTableRow className='row-order'>
+                        <StyledTableCell colSpan={7}>
+                          <ClientDetails order={order} />
+                          <ProductDetails products={order.products} />
+                        </StyledTableCell>
+                      </StyledTableRow>
+                    )}
                 </>
               ))
           )}

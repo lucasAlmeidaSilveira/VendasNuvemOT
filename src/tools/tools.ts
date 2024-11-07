@@ -23,6 +23,15 @@ export function formatDate(date: Date) {
   return `${year}-${formattedMonth}-${formattedDay}`;
 }
 
+export function formatDateShort(dateString: string) {
+  const date = new Date(dateString);
+  const day = date.getDate();
+  const month = date
+    .toLocaleString('default', { month: 'short' })
+    .replace('.', '');
+  return `${day} ${month}`;
+};
+
 export function parseCurrency(value: string | number): number {
   const stringValue = typeof value === 'number' ? value.toString() : value;
   const number = Number(
