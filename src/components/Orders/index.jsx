@@ -5,12 +5,7 @@ import {
   Selects,
   StatusFilterContainer,
 } from './styles';
-import Table from '@mui/material/Table';
-import TableBody from '@mui/material/TableBody';
 
-import TableHead from '@mui/material/TableHead';
-import TableRow from '@mui/material/TableRow';
-import Paper from '@mui/material/Paper';
 import TablePagination from '@mui/material/TablePagination';
 import Box from '@mui/material/Box';
 import TableFooter from '@mui/material/TableFooter';
@@ -36,7 +31,7 @@ import { OrderPopup } from './OrderPopup';
 import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
-import { StyledTableCell, StyledTableRow } from '../../tools/table';
+import { Table, Theme } from '@radix-ui/themes';
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -91,10 +86,10 @@ const EnhancedTableHead = props => {
   };
 
   return (
-    <TableHead>
-      <TableRow>
+    <Table.Header style={{ backgroundColor: 'lightgray'}}>
+      <Table.Row >
         {headCells.map(headCell => (
-          <StyledTableCell
+          <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -110,10 +105,10 @@ const EnhancedTableHead = props => {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </StyledTableCell>
+          </Table.ColumnHeaderCell>
         ))}
-      </TableRow>
-    </TableHead>
+      </Table.Row>
+    </Table.Header>
   );
 };
 
@@ -310,7 +305,7 @@ export function Orders() {
   };
 
   return (
-    <>
+    <Theme>
       <StatusFilterContainer>
         <div
           className={`status-filter ${
@@ -410,42 +405,42 @@ export function Orders() {
         </Selects>
       </FilterContainer>
 
-      <ContainerOrder component={Paper}>
-        <Table aria-label='simple table'>
+      <ContainerOrder>
+        <Table.Root variant='surface' layout={'fixed'}>
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}
             onRequestSort={handleRequestSort}
           />
-          <TableBody>
+          <Table.Body>
             {isLoading ? (
-              <TableRow>
-                <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
+              <Table.Row>
+                <Table.Cell justify={'center'} colSpan={4}>
                   <Loading />
-                </StyledTableCell>
-              </TableRow>
+                </Table.Cell>
+              </Table.Row>
             ) : filteredOrders.length === 0 ? (
-              <TableRow>
-                <StyledTableCell style={{ textAlign: 'center' }} colSpan={7}>
+              <Table.Row>
+                <Table.Cell justify={'center'} colSpan={7}>
                   Nenhum pedido encontrado
-                </StyledTableCell>
-              </TableRow>
+                </Table.Cell>
+              </Table.Row>
             ) : (
               filteredOrders
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map(order => (
                   <>
-                    <StyledTableRow
+                    <Table.Row
                       key={order.id}
                       sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                     >
-                      <StyledTableCell component='th' scope='row'>
+                      <Table.Cell>
                         #{order.order_id ? order.order_id : order.owner_note}
-                      </StyledTableCell>
-                      <StyledTableCell>
+                      </Table.Cell>
+                      <Table.Cell>
                         {formatDateShort(order.created_at)}
-                      </StyledTableCell>
-                      <StyledTableCell
+                      </Table.Cell>
+                      <Table.Cell
                         onClick={() => handleToggleExpand(order.id)}
                       >
                         <a className='link'>
@@ -461,12 +456,12 @@ export function Orders() {
                             </TooltipInfo>
                           )}
                         </a>
-                      </StyledTableCell>
-                      <StyledTableCell>{order.products.length}</StyledTableCell>
-                      <StyledTableCell>
+                      </Table.Cell>
+                      <Table.Cell>{order.products.length}</Table.Cell>
+                      <Table.Cell>
                         {formatCurrency(order.total)}
-                      </StyledTableCell>
-                      <StyledTableCell>
+                      </Table.Cell>
+                      <Table.Cell>
                         <a
                           className='link link-gateway'
                           href={order.gateway_link}
@@ -479,8 +474,8 @@ export function Orders() {
                           />
                           {order.gateway_name}
                         </a>
-                      </StyledTableCell>
-                      <StyledTableCell 
+                      </Table.Cell>
+                      <Table.Cell 
                         className={order.storefront === 'Loja' && 'd-row'}
                       >
                         <ShippingStatus
@@ -501,22 +496,22 @@ export function Orders() {
                             <MdDelete size={14} />
                           </Button>
                         )}
-                      </StyledTableCell>
-                    </StyledTableRow>
+                      </Table.Cell>
+                    </Table.Row>
                     {expandedOrders[order.id] && (
-                      <StyledTableRow className='row-order'>
-                        <StyledTableCell colSpan={7}>
+                      <Table.Row className='row-order'>
+                        <Table.Cell colSpan={7}>
                           <ClientDetails order={order} />
                           <ProductDetails products={order.products} />
-                        </StyledTableCell>
-                      </StyledTableRow>
+                        </Table.Cell>
+                      </Table.Row>
                     )}
                   </>
                 ))
             )}
-          </TableBody>
+          </Table.Body>
           <TableFooter>
-            <TableRow>
+            <Table.Row>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 20, 50]}
                 colSpan={7}
@@ -549,9 +544,9 @@ export function Orders() {
                   },
                 }}
               />
-            </TableRow>
+            </Table.Row>
           </TableFooter>
-        </Table>
+        </Table.Root>
       </ContainerOrder>
 
       <OrderPopup open={openPopup} onClose={handleClosePopup} />
@@ -563,6 +558,6 @@ export function Orders() {
         success={successDelete}
         action={'Excluir'}
       />
-    </>
+    </Theme>
   );
 }

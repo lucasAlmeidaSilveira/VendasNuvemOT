@@ -101,58 +101,6 @@ export const FilterButton = styled.button<FilterButtonProps>`
     `}
 `;
 
-interface PaymentStatusContainerProps {
-  backgroundColor: string;
-  borderColor: string;
-}
-
-export const PaymentStatusContainer = styled.div<PaymentStatusContainerProps>`
-  display: flex;
-  align-items: center;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: 12px;
-  padding: 4px 8px;
-  width: fit-content;
-  font-size: 12px;
-  margin-bottom: 4px;
-
-  color: ${({ borderColor }) => borderColor};
-  font-weight: 600;
-  
-  svg {
-    color: ${({ borderColor }) => borderColor};
-    margin-right: 4px;
-  }
-`;
-
-interface ShippingStatusContainerProps {
-  backgroundColor: string;
-  borderColor: string;
-}
-
-export const ShippingStatusContainer = styled.div<ShippingStatusContainerProps>`
-  display: flex;
-  align-items: center;
-  background-color: ${({ backgroundColor }) => backgroundColor};
-  border: 1px solid ${({ borderColor }) => borderColor};
-  border-radius: 12px;
-  padding: 4px 8px;
-  width: fit-content;
-  font-size: 12px;
-  
-  span {
-    color: ${({ borderColor }) => borderColor};
-    font-weight: 600;
-  }
-  
-  svg {
-    color: ${({ borderColor }) => borderColor};
-    font-size: 16px;
-    margin-right: 4px;
-  }
-`;
-
 export const ProductDetailsContainer = styled.div`
 display: flex;
 flex-direction: column;
@@ -190,6 +138,13 @@ img {
   text-align: right;
 }
 `;
+
+export const ProductImage = styled.img`
+  width: 4.8rem;
+  height: 4.8rem;
+  object-fit: 'cover';
+  border-radius: .8rem;
+`
 
 export const StatusFilterContainer = styled.div`
   display: flex;
@@ -254,6 +209,12 @@ export const ContainerDetails = styled.div`
   display: flex;
   flex-direction: column;
   gap: 1.6rem;
+
+  a.link-whatsapp{
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+  }
 `
 
 export const RowTitle = styled.div`

@@ -121,6 +121,15 @@
   --uipositive-50: rgba(122, 227, 169, 1);
   --uiwarning-100: rgba(255, 200, 44, 1);
   --uiwarning-50: rgba(255, 224, 137, 1);
+
+  .radix-themes {
+    --default-font-family: 'Poppins', sans-serif;
+    --heading-font-family: 'Poppins', sans-serif;
+    --code-font-family: 'Poppins', sans-serif;
+    --strong-font-family: 'Poppins', sans-serif;
+    --em-font-family: 'Poppins', sans-serif;
+    --quote-font-family: 'Poppins', sans-serif;
+  }
 }
 
 * {

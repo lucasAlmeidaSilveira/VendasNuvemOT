@@ -2,32 +2,18 @@ import React, { useState } from 'react';
 import { Loading } from '../Loading';
 import { TooltipInfo } from '../TooltipInfo';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
-import { Small } from './styles';
+import { Small, ContainerTable } from './styles';
 import { formatCurrency, formatDateShort } from '../../tools/tools';
 import { MdOutlineHelpOutline } from 'react-icons/md';
 import { BudgetItemListProps, BudgetItemProps } from '../../types';
 import { IoReload } from 'react-icons/io5';
 import { Popup } from '../Popup';
-import {
-  Table,
-  TableBody,
-  TableFooter,
-  TablePagination,
-  TableRow,
-} from '@mui/material';
-import {
-  EnhancedTableHead,
-  StyledTableCell,
-  StyledTableRow,
-} from '../../tools/table';
+import { EnhancedTableHead } from '../../tools/table';
 import { PaymentStatus } from '../Orders/PaymentStatus';
-import { ShippingStatus } from '../Orders/ShippingStatus';
-import { ContainerOrder } from '../Orders/styles';
-import { TablePaginationActions } from '../Pagination';
-import { ClientDetails } from "../Orders/ClientDetails";
-import { ProductDetails } from "../Orders/ProductDetails";
-import { FaChevronDown, FaChevronUp } from "react-icons/fa";
-import { AiFillMessage } from "react-icons/ai";
+import { ClientDetails } from '../Orders/ClientDetails';
+import { ProductDetails } from '../Orders/ProductDetails';
+import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
+import { Flex, Table, Theme } from '@radix-ui/themes';
 
 export function BudgetItemList({
   icon: Icon,
@@ -225,79 +211,79 @@ function TableOrders({ orders }: any) {
   };
 
   return (
-    <ContainerOrder>
-      <Table aria-label='simple table'>
-        <EnhancedTableHead
-          order={sort}
-          orderBy={orderBy}
-          onRequestSort={handleRequestSort}
-        />
-        <TableBody>
-          {orders.length === 0 ? (
-            <TableRow>
-              <StyledTableCell style={{ textAlign: 'center' }} colSpan={6}>
-                Nenhum pedido encontrado
-              </StyledTableCell>
-            </TableRow>
-          ) : (
-            orders
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map((order: any) => (
-                <>
-                  <StyledTableRow
-                    key={order.id}
-                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
-                  >
-                    <StyledTableCell component='th' scope='row'>
-                      #{order.order_id ? order.order_id : order.owner_note}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      {formatDateShort(order.created_at)}
-                    </StyledTableCell>
-                    <StyledTableCell
-                        onClick={() => handleToggleExpand(order.id)}
-                      >
-                        <a className='link'>
-                          {order.contact_name}{' '}
-                          {expandedOrders[order.id] ? (
-                            <FaChevronUp />
-                          ) : (
-                            <FaChevronDown />
-                          )}
-                        </a>
-                      </StyledTableCell>
-                    <StyledTableCell>{order.products.length}</StyledTableCell>
-                    <StyledTableCell>
-                      {formatCurrency(order.total)}
-                    </StyledTableCell>
-                    <StyledTableCell>
-                      <a
-                        className='link link-gateway'
-                        href={order.gateway_link}
-                        target='_blank'
-                        rel='noopener noreferrer'
-                      >
-                        <PaymentStatus
-                          status={order.payment_status}
-                          payment={order.payment_details.method}
-                        />
-                      </a>
-                    </StyledTableCell>
-                  </StyledTableRow>
-                  {expandedOrders[order.id] && (
-                      <StyledTableRow className='row-order'>
-                        <StyledTableCell colSpan={7}>
-                          <ClientDetails order={order} />
-                          <ProductDetails products={order.products} />
-                        </StyledTableCell>
-                      </StyledTableRow>
-                    )}
-                </>
-              ))
-          )}
-        </TableBody>
-        <TableFooter>
-          <TableRow>
+    <Theme style={{ minHeight: '10%' }}>
+      <ContainerTable>
+        <Flex align={'center'} justify={'center'}>
+          <Table.Root variant='surface' layout={'fixed'}>
+            <EnhancedTableHead
+              order={sort}
+              orderBy={orderBy}
+              onRequestSort={handleRequestSort}
+            />
+            <Table.Body>
+              {orders.length === 0 ? (
+                <Table.Row>
+                  <Table.Cell align='center' colSpan={6}>
+                    Nenhum pedido encontrado
+                  </Table.Cell>
+                </Table.Row>
+              ) : (
+                orders
+                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                  .map((order: any) => (
+                    <>
+                      <Table.Row key={order.id} align={'center'}>
+                        <Table.Cell p={'4'}>
+                          #{order.order_id ? order.order_id : order.owner_note}
+                        </Table.Cell>
+                        <Table.Cell p={'4'}>
+                          {formatDateShort(order.created_at)}
+                        </Table.Cell>
+                        <Table.Cell
+                          p={'4'}
+                          onClick={() => handleToggleExpand(order.id)}
+                        >
+                          <a className='link'>
+                            {order.contact_name}{' '}
+                            {expandedOrders[order.id] ? (
+                              <FaChevronUp />
+                            ) : (
+                              <FaChevronDown />
+                            )}
+                          </a>
+                        </Table.Cell>
+                        <Table.Cell p={'4'}>{order.products.length}</Table.Cell>
+                        <Table.Cell p={'4'}>
+                          {formatCurrency(order.total)}
+                        </Table.Cell>
+                        <Table.Cell p={'4'}>
+                          <a
+                            className='link link-gateway'
+                            href={order.gateway_link}
+                            target='_blank'
+                            rel='noopener noreferrer'
+                          >
+                            <PaymentStatus
+                              status={order.payment_status}
+                              payment={order.payment_details.method}
+                            />
+                          </a>
+                        </Table.Cell>
+                      </Table.Row>
+                      {expandedOrders[order.id] && (
+                        <Table.Row className='row-order'>
+                          <Table.Cell colSpan={7}>
+                            <ClientDetails order={order} />
+                            <ProductDetails products={order.products} />
+                          </Table.Cell>
+                        </Table.Row>
+                      )}
+                    </>
+                  ))
+              )}
+            </Table.Body>
+            {/* <TableFooter>
+          <Table.Row>
             <TablePagination
               rowsPerPageOptions={[5, 10, 20, 50]}
               colSpan={7}
@@ -330,9 +316,11 @@ function TableOrders({ orders }: any) {
                 },
               }}
             />
-          </TableRow>
-        </TableFooter>
-      </Table>
-    </ContainerOrder>
+          </Table.Row>
+        </TableFooter> */}
+          </Table.Root>
+        </Flex>
+      </ContainerTable>
+    </Theme>
   );
 }

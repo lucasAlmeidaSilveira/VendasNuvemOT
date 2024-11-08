@@ -1,13 +1,4 @@
 import React, { useState } from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableContainer,
-  Paper,
-} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { ContainerDetails, RowTitle } from './styles';
 import { formatCurrency, formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
@@ -18,22 +9,7 @@ import { getLinkNoteTiny, getOrderTiny } from '../../api';
 import { Oval } from 'react-loader-spinner';
 import { Tag } from '../Tag';
 import { IoReload } from 'react-icons/io5';
-
-const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
-  backgroundColor: 'var(--geralblack-10)',
-  fontSize: 14,
-  fontWeight: 600,
-  padding: '8px 16px',
-  fontFamily: 'Poppins',
-}));
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  textAlign: 'left',
-  fontSize: 14,
-  fontFamily: 'Poppins',
-  padding: '8px 16px',
-  whiteSpace: 'pre-wrap',
-}));
+import { Table, Theme } from '@radix-ui/themes';
 
 export function ClientDetails({ order }) {
   const [isLoadingNote, setIsLoadingNote] = useState(false);
@@ -152,6 +128,7 @@ export function ClientDetails({ order }) {
   }
 
   return (
+    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
     <ContainerDetails>
       <RowTitle>
         <h3>{order.contact_name}</h3>
@@ -185,40 +162,39 @@ export function ClientDetails({ order }) {
         </TooltipInfo>
       </RowTitle>
 
-      <TableContainer component={Paper}>
-        <Table aria-label='products table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableHeadCell>CPF/CNPJ</StyledTableHeadCell>
-              <StyledTableHeadCell>Email</StyledTableHeadCell>
-              <StyledTableHeadCell>Telefone</StyledTableHeadCell>
-              <StyledTableHeadCell>Localização</StyledTableHeadCell>
-              <StyledTableHeadCell>Nota Fiscal</StyledTableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <StyledTableCell>{order.contact_identification}</StyledTableCell>
-              <StyledTableCell>{order.contact_email}</StyledTableCell>
-              <StyledTableCell style={{ display: 'flex', gap: '4px', alignItems: 'center', borderBottom: 'none' }}>
+        <Table.Root variant='surface' layout={'fixed'}>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>CPF/CNPJ</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Email</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Telefone</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Localização</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Nota Fiscal</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell p={'4'}>{order.contact_identification}</Table.Cell>
+              <Table.Cell p={'4'}>{order.contact_email}</Table.Cell>
+              <Table.Cell p={'4'}>
                 {order.contact_phone ? (
                   <>
-                    {formatPhoneNumber(order.contact_phone)}
-                    <a href={linkWhats(order.contact_name, order.contact_phone)} target='_blank' rel='noopener noreferrer'>
+                    <a className='link-whatsapp' href={linkWhats(order.contact_name, order.contact_phone)} target='_blank' rel='noopener noreferrer'>
+                      {formatPhoneNumber(order.contact_phone)}
                       <FaWhatsapp size={20} color='var(--uipositive-100)' />
                     </a>
                   </>
                 ) : (
                   'Não informado'
                 )}
-              </StyledTableCell>
-              <StyledTableCell>
+              </Table.Cell>
+              <Table.Cell p={'4'}>
                 {order.shipping_address.city}, {order.shipping_address.province}
                 <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
                   {order.shipping_address.address}, {order.shipping_address.number}
                 </p>
-              </StyledTableCell>
-              <StyledTableCell>
+              </Table.Cell>
+              <Table.Cell p={'4'}>
                 {isLoadingNote ? (
                   <Oval
                     height={16}
@@ -236,27 +212,27 @@ export function ClientDetails({ order }) {
                     'Não disponível'
                   )
                 )}
-              </StyledTableCell>
-            </TableRow>
-          </TableBody>
-          <TableHead>
-            <TableRow>
-              <StyledTableHeadCell>Data da compra</StyledTableHeadCell>
-              {/* <StyledTableHeadCell>Última atualização</StyledTableHeadCell> */}
-              <StyledTableHeadCell>Previsão de entrega</StyledTableHeadCell>
-              <StyledTableHeadCell>Página do pedido</StyledTableHeadCell>
-              <StyledTableHeadCell>Cupom de desconto</StyledTableHeadCell>
-              <StyledTableHeadCell>Frete</StyledTableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
-            <TableRow>
-              <StyledTableCell>{formatDateToUTC(order.created_at)}</StyledTableCell>
-              {/* <StyledTableCell>{formatDateToUTC(order.updated_at)}</StyledTableCell> */}
-              <StyledTableCell>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>Data da compra</Table.ColumnHeaderCell>
+              {/* <Table.ColumnHeaderCell>Última atualização</Table.ColumnHeaderCell> */}
+              <Table.ColumnHeaderCell>Previsão de entrega</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Página do pedido</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Cupom de desconto</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Frete</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
+            <Table.Row>
+              <Table.Cell p={'4'}>{formatDateToUTC(order.created_at)}</Table.Cell>
+              {/* <Table.Cell p={'4'}>{formatDateToUTC(order.updated_at)}</Table.Cell> */}
+              <Table.Cell p={'4'}>
                 {calculateEstimatedDeliveryDate(order.created_at, order.shipping_max_days)}
-              </StyledTableCell>
-              <StyledTableCell>
+              </Table.Cell>
+              <Table.Cell p={'4'}>
                 <a
                   href={createUrlPageBuy(order.id, order.token)}
                   target='_blank'
@@ -264,16 +240,16 @@ export function ClientDetails({ order }) {
                 >
                   Link de acompanhamento
                 </a>
-              </StyledTableCell>
-              <StyledTableCell>{formatCoupon(order.coupon)}</StyledTableCell>
-              <StyledTableCell>
+              </Table.Cell>
+              <Table.Cell p={'4'}>{formatCoupon(order.coupon)}</Table.Cell>
+              <Table.Cell p={'4'}>
                 {shippingCost(order.shipping_cost_customer)}
                 <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>{order.shipping_option}</p>
-              </StyledTableCell>
-            </TableRow>
-          </TableBody>
-        </Table>
-      </TableContainer>
+              </Table.Cell>
+            </Table.Row>
+          </Table.Body>
+        </Table.Root>
     </ContainerDetails>
+    </Theme>
   );
 }

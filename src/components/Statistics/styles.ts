@@ -232,3 +232,23 @@ export const Small = styled.span`
   font-size: 1.2rem;
   font-weight: 400;
 `
+
+export const ContainerTable = styled.div`
+  display: flex;
+  width: 100%;
+
+  a.link {
+    display: flex;
+    align-items: center;
+    gap: .4rem;
+    text-decoration: none;
+    cursor: pointer;
+  }
+  
+  a.link-gateway {
+    font-size: 12px;
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+  }
+`

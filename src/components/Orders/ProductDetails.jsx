@@ -1,37 +1,8 @@
 import React from 'react';
-import {
-  Table,
-  TableBody,
-  TableCell,
-  TableHead,
-  TableRow,
-  TableContainer,
-  Paper,
-} from '@mui/material';
 import { styled } from '@mui/material/styles';
 import { formatCurrency } from '../../tools/tools.ts';
-import { ContainerDetails } from './styles';
-
-const StyledTableHeadCell = styled(TableCell)(({ theme }) => ({
-  fontSize: 14,
-  fontWeight: 600,
-  fontFamily: 'Poppins',
-}));
-
-const StyledTableCell = styled(TableCell)(({ theme }) => ({
-  textAlign: 'left',
-  fontSize: 14,
-  fontFamily: 'Poppins',
-  padding: '8px 20px',
-  whiteSpace: 'pre-wrap',
-}));
-
-const ProductImage = styled('img')({
-  width: 48,
-  height: 48,
-  objectFit: 'cover',
-  borderRadius: 8,
-});
+import { ContainerDetails, ProductImage } from './styles';
+import { Table, Theme } from '@radix-ui/themes';
 
 const formatProductName = name => {
   const regex = /\((.*?)\)/;
@@ -52,40 +23,40 @@ const formatProductName = name => {
 
 export function ProductDetails({ products }) {
   return (
+    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
     <ContainerDetails>
       <h3>Pedido</h3>
-      <TableContainer component={Paper}>
-        <Table aria-label='products table'>
-          <TableHead>
-            <TableRow>
-              <StyledTableHeadCell>Imagem</StyledTableHeadCell>
-              <StyledTableHeadCell>Nome</StyledTableHeadCell>
-              <StyledTableHeadCell>SKU</StyledTableHeadCell>
-              <StyledTableHeadCell>Quantidade</StyledTableHeadCell>
-              <StyledTableHeadCell>Total</StyledTableHeadCell>
-            </TableRow>
-          </TableHead>
-          <TableBody>
+        <Table.Root variant='surface' layout={'auto'}>
+          <Table.Header>
+            <Table.Row>
+              <Table.ColumnHeaderCell>Imagem</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Nome</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>SKU</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Quantidade</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>Total</Table.ColumnHeaderCell>
+            </Table.Row>
+          </Table.Header>
+          <Table.Body>
             {products.map((product, index) => (
-              <TableRow key={index}>
-                <StyledTableCell>
+              <Table.Row key={index}>
+                <Table.Cell>
                   <ProductImage src={product.image?.src} alt={product.name} />
-                </StyledTableCell>
-                <StyledTableCell style={{ width: '100%' }}>
+                </Table.Cell>
+                <Table.Cell>
                   {formatProductName(product.name)}
-                </StyledTableCell>
-                <StyledTableCell style={{ whiteSpace: 'nowrap' }}>
+                </Table.Cell>
+                <Table.Cell style={{ whiteSpace: 'nowrap' }}>
                   {product.sku}
-                </StyledTableCell>
-                <StyledTableCell>{product.quantity}</StyledTableCell>
-                <StyledTableCell>
+                </Table.Cell>
+                <Table.Cell>{product.quantity}</Table.Cell>
+                <Table.Cell>
                   {formatCurrency(product.price * product.quantity)}
-                </StyledTableCell>
-              </TableRow>
+                </Table.Cell>
+              </Table.Row>
             ))}
-          </TableBody>
-        </Table>
-      </TableContainer>
+          </Table.Body>
+        </Table.Root>
     </ContainerDetails>
+    </Theme>
   );
 }

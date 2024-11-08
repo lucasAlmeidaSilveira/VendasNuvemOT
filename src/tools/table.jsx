@@ -3,6 +3,7 @@ import { styled } from '@mui/material/styles';
 import TableCell, { tableCellClasses } from '@mui/material/TableCell';
 import { Box, TableHead, TableSortLabel } from '@mui/material';
 import { visuallyHidden } from '@mui/utils';
+import { Table } from '@radix-ui/themes';
 
 export const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -73,10 +74,10 @@ export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
   };
 
   return (
-    <TableHead>
-      <TableRow>
+    <Table.Header style={{ backgroundColor: 'lightgray'}}>
+      <Table.Row>
         {headCells.map(headCell => (
-          <StyledTableCell
+          <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
           >
@@ -92,9 +93,9 @@ export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
                 </Box>
               ) : null}
             </TableSortLabel>
-          </StyledTableCell>
+          </Table.ColumnHeaderCell>
         ))}
-      </TableRow>
-    </TableHead>
+      </Table.Row>
+    </Table.Header>
   );
 };

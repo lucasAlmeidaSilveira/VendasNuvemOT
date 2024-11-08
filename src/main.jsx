@@ -7,6 +7,8 @@ import { TabProvider } from './context/TabContext'; // Importe o provedor do con
 import { CouponProvider } from './context/CouponsContext';
 import { AnalyticsProvider } from './context/AnalyticsContext.tsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { Theme } from '@radix-ui/themes';
+import '@radix-ui/themes/styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
