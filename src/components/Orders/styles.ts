@@ -2,18 +2,17 @@ import styled, { css } from 'styled-components';
 
 export const ContainerOrder = styled.div`
   display: flex;
-  align-items: flex-end;
-  justify-content: flex-start;
+  align-items: center;
+  justify-content: center;
   gap: 2rem;
   flex-wrap: wrap;
   border-radius: 8px;
   overflow-x: auto; /* Adicionado para rolagem horizontal */
-  width: 100%; /* Garantir que o contêiner ocupe toda a largura disponível */
 
   & > div {
     width: 100% !important;
   }
-
+  
   a.link {
     display: flex;
     align-items: center;

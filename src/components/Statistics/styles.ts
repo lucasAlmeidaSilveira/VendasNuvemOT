@@ -237,6 +237,10 @@ export const ContainerTable = styled.div`
   display: flex;
   width: 100%;
 
+  & > div {
+    width: 100% !important;
+  }
+
   a.link {
     display: flex;
     align-items: center;

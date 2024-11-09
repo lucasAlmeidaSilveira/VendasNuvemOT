@@ -162,7 +162,7 @@ export function ClientDetails({ order }) {
         </TooltipInfo>
       </RowTitle>
 
-        <Table.Root variant='surface' layout={'fixed'}>
+        <Table.Root variant='surface' layout={'auto'}>
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>CPF/CNPJ</Table.ColumnHeaderCell>

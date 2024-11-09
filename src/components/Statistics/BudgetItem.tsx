@@ -213,8 +213,7 @@ function TableOrders({ orders }: any) {
   return (
     <Theme style={{ minHeight: '10%' }}>
       <ContainerTable>
-        <Flex align={'center'} justify={'center'}>
-          <Table.Root variant='surface' layout={'fixed'}>
+          <Table.Root variant='surface' layout={'auto'}>
             <EnhancedTableHead
               order={sort}
               orderBy={orderBy}
@@ -319,7 +318,6 @@ function TableOrders({ orders }: any) {
           </Table.Row>
         </TableFooter> */}
           </Table.Root>
-        </Flex>
       </ContainerTable>
     </Theme>
   );

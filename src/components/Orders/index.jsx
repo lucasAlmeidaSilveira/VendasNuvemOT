@@ -406,7 +406,7 @@ export function Orders() {
       </FilterContainer>
 
       <ContainerOrder>
-        <Table.Root variant='surface' layout={'fixed'}>
+        <Table.Root variant='surface' layout={'auto'}>
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}
