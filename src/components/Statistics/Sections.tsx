@@ -600,7 +600,7 @@ export function DataSectionCart({
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
   const couponsEmail = store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
   const couponsPopup =
-    store === 'outlet' ? ['GANHEI5'] : ['GANHEI10', 'GANHEI5'];
+    store === 'outlet' ? ['GANHEI5', 'FRETEGRATIS'] : ['GANHEI10', 'GANHEI5'];
 
   const couponsCashback = coupons.filter((coupon: CouponProps) =>
     coupon.code.startsWith('MTZ'),
