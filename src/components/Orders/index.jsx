@@ -133,6 +133,7 @@ export function Orders() {
   const [selectedOwnerNote, setSelectedOwnerNote] = useState(null);
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [successDelete, setSuccessDelete] = useState(false);
+  const [layout, setLayout] = useState('auto');
 
   const handleOpenPopup = () => {
     setOpenPopup(true);
@@ -278,6 +279,24 @@ export function Orders() {
     orderBy,
   ]);
 
+  useEffect(() => {
+    // Função para checar o tamanho da tela
+    const updateLayout = () => {
+      if (window.innerWidth >= 768) {
+        setLayout('fixed');
+      } else {
+        setLayout('auto');
+      }
+    };
+
+    // Chama a função ao carregar a página e ao redimensionar a janela
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    // Limpa o event listener ao desmontar o componente
+    return () => window.removeEventListener('resize', updateLayout);
+  }, []);
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
     window.scroll({
@@ -406,7 +425,7 @@ export function Orders() {
       </FilterContainer>
 
       <ContainerOrder>
-        <Table.Root variant='surface' layout={'auto'}>
+        <Table.Root variant='surface' layout={layout}>
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}
