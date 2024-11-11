@@ -150,7 +150,8 @@ export interface DataAnalyticsProps {
   dataADSMeta: ADSMetaEntry[];
   isLoadingADSGoogle: boolean;
   isLoadingADSMeta: boolean;
-  error: string | null;
+  errorGoogle: boolean;
+  errorMeta: boolean;
   resetData: () => void;
   fetchDataGoogle: () => void;
   fetchDataADSMeta: () => void;
@@ -172,6 +173,7 @@ export interface BudgetItemListProps {
   tooltip?: string;
   handleAction?: () => void;
   orders?: Order[];
+  error?: boolean;
 }
 
 export interface BudgetItemProps {

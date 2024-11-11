@@ -41,7 +41,8 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   const [isLoadingADSGoogle, setIsLoadingADSGoogle] = useState<boolean>(false);
   const [isLoadingADSMeta, setIsLoadingADSMeta] = useState<boolean>(false);
   const [dataADSMeta, setDataADSMeta] = useState<ADSMetaEntry[]>([]);
-  const [error, setError] = useState<string | null>(null);
+  const [errorGoogle, setErrorGoogle] = useState<boolean>(false);
+  const [errorMeta, setErrorMeta] = useState<boolean>(false);
   const { store, date, allOrders } = useOrders();
   const { user } = useAuth();
   const { activeTab } = useTab();
@@ -61,7 +62,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       const data = await response.json();
       setData(data);
     } catch (err: any) {
-      setError('Falha ao carregar os dados: ' + err.message);
+      setErrorGoogle(true);
     } finally {
       setIsLoadingADSGoogle(false);
     }
@@ -79,7 +80,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       const data = await response.json();
       setDataADSMeta(data);
     } catch (error: any) {
-      setError('Falha ao carregar os dados ADS Meta: ' + error.message);
+      setErrorMeta(true);
     } finally {
       setIsLoadingADSMeta(false);
     }
@@ -109,7 +110,6 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       beginCheckout: 0,
     });
     setDataADSMeta([]);
-    setError(null);
   };
 
   return (
@@ -119,7 +119,8 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
         dataADSMeta,
         isLoadingADSGoogle,
         isLoadingADSMeta,
-        error,
+        errorGoogle,
+        errorMeta,
         resetData,
         fetchDataGoogle,
         fetchDataADSMeta,

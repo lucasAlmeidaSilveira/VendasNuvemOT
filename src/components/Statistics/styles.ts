@@ -209,9 +209,14 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     padding: 4px;
     background: var(--geralblack-30);
     border-radius: 50%;
+    border: 1px solid transparent;
     
     transition: opacity .2s ease-in;
     opacity: .5;
+
+    &.error {
+      border: 1px solid red;
+    }
     
     &:hover {
       opacity: 1;

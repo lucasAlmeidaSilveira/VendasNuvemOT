@@ -27,6 +27,7 @@ export function BudgetItemList({
   small,
   handleAction,
   orders,
+  error
 }: BudgetItemListProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -49,8 +50,11 @@ export function BudgetItemList({
           <TooltipInfo title={tooltip}>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
           </TooltipInfo>
+          {error && (
+            <span style={{color: "red"}}>Erro no servidor, tente novamente</span>
+          )}
           {handleAction && (
-            <TooltipInfo className={'btn-reload'} title={'Recarregar dados'}>
+            <TooltipInfo className={`btn-reload ${error && 'error'}`} title={'Recarregar dados'}>
               <IoReload size={16} onClick={handleAction} />
             </TooltipInfo>
           )}
