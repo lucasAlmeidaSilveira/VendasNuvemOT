@@ -61,6 +61,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       }
       const data = await response.json();
       setData(data);
+      setErrorGoogle(false);
     } catch (err: any) {
       setErrorGoogle(true);
     } finally {
@@ -79,6 +80,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       }
       const data = await response.json();
       setDataADSMeta(data);
+      setErrorMeta(false);
     } catch (error: any) {
       setErrorMeta(true);
     } finally {
