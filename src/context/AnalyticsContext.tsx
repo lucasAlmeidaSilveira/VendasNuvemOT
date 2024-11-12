@@ -63,7 +63,9 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       setData(data);
       setErrorGoogle(false);
     } catch (err: any) {
+      setIsLoadingADSGoogle(true);
       setErrorGoogle(true);
+      fetchDataGoogle();
     } finally {
       setIsLoadingADSGoogle(false);
     }
@@ -74,15 +76,17 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       setIsLoadingADSMeta(true);
       const response = await fetch(
         `https://node-vendasnuvemot.onrender.com/ads/meta/${store}/${startDate}/${endDate}`,
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-      const data = await response.json();
-      setDataADSMeta(data);
-      setErrorMeta(false);
-    } catch (error: any) {
+        );
+        if (!response.ok) {
+          throw new Error('Failed to fetch data');
+        }
+        const data = await response.json();
+        setDataADSMeta(data);
+        setErrorMeta(false);
+      } catch (error: any) {
+      setIsLoadingADSMeta(true);
       setErrorMeta(true);
+      fetchDataADSMeta();
     } finally {
       setIsLoadingADSMeta(false);
     }
