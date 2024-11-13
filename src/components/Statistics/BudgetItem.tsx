@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Loading } from '../Loading';
 import { TooltipInfo } from '../TooltipInfo';
 import { IoMdInformationCircleOutline } from 'react-icons/io';
@@ -14,6 +14,8 @@ import { ClientDetails } from '../Orders/ClientDetails';
 import { ProductDetails } from '../Orders/ProductDetails';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Flex, Table, Theme } from '@radix-ui/themes';
+import { TableFooter, TablePagination } from "@mui/material";
+import { TablePaginationActions } from "../Pagination";
 
 export function BudgetItemList({
   icon: Icon,
@@ -191,6 +193,7 @@ function TableOrders({ orders }: any) {
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [expandedOrders, setExpandedOrders] = useState({});
+  const [layout, setLayout] = useState<'auto' | 'fixed'>('auto');
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && sort === 'asc';
@@ -214,10 +217,28 @@ function TableOrders({ orders }: any) {
     }));
   };
 
+  useEffect(() => {
+    // Função para checar o tamanho da tela
+    const updateLayout = () => {
+      if (window.innerWidth >= 768) {
+        setLayout('fixed');
+      } else {
+        setLayout('auto');
+      }
+    };
+
+    // Chama a função ao carregar a página e ao redimensionar a janela
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    // Limpa o event listener ao desmontar o componente
+    return () => window.removeEventListener('resize', updateLayout);
+  }, []);
+
   return (
     <Theme style={{ minHeight: '10%' }}>
       <ContainerTable>
-          <Table.Root variant='surface' layout={'auto'}>
+          <Table.Root variant='surface' layout={layout}>
             <EnhancedTableHead
               order={sort}
               orderBy={orderBy}
@@ -275,7 +296,7 @@ function TableOrders({ orders }: any) {
                       </Table.Row>
                       {expandedOrders[order.id] && (
                         <Table.Row className='row-order'>
-                          <Table.Cell colSpan={7}>
+                          <Table.Cell colSpan={6}>
                             <ClientDetails order={order} />
                             <ProductDetails products={order.products} />
                           </Table.Cell>
@@ -285,11 +306,11 @@ function TableOrders({ orders }: any) {
                   ))
               )}
             </Table.Body>
-            {/* <TableFooter>
+            <TableFooter>
           <Table.Row>
             <TablePagination
               rowsPerPageOptions={[5, 10, 20, 50]}
-              colSpan={7}
+              colSpan={6}
               count={orders.length}
               rowsPerPage={rowsPerPage}
               page={page}
@@ -320,7 +341,7 @@ function TableOrders({ orders }: any) {
               }}
             />
           </Table.Row>
-        </TableFooter> */}
+        </TableFooter>
           </Table.Root>
       </ContainerTable>
     </Theme>
