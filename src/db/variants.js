@@ -8426,5967 +8426,12787 @@ export const OTthreeFrameQuadrado = [
 
 export const APoneFrameHorizontal = [
   {
-    sku: '-1-000+000-0-1-0-0-40x60-1',
-    price: '309.80',
-    promotional_price: '185.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-60x90-1',
-    price: '548.20',
-    promotional_price: '328.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-80x120-1',
-    price: '914.80',
-    promotional_price: '548.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-100x150-1',
-    price: '1281.50',
-    promotional_price: '768.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-40x60-1',
-    price: '511.50',
-    promotional_price: '306.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-60x90-1',
-    price: '870.80',
-    promotional_price: '522.50',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-80x120-1',
-    price: '1373.20',
-    promotional_price: '823.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-100x150-1',
-    price: '2198.20',
-    promotional_price: '1318.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-40x60-1',
-    price: '1061.50',
-    promotional_price: '636.90',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-60x90-1',
-    price: '2377.80',
-    promotional_price: '1426.70',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-80x120-1',
-    price: '4214.80',
-    promotional_price: '2528.90',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-100x150-1',
-    price: '6598.20',
-    promotional_price: '3958.90',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-];
-
-export const APoneFrameQuadrado = [
-  {
-    sku: '-1-000+000-0-1-0-0-50x50-1',
-    price: '309.80',
-    promotional_price: '185.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-70x70-1',
-    price: '548.20',
-    promotional_price: '328.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-90x90-1',
-    price: '914.80',
-    promotional_price: '548.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-120x120-1',
-    price: '1281.50',
-    promotional_price: '768.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-50x50-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-70x70-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-90x90-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-120x120-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-50x50-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-50x50-1',
-    price: '511.50',
-    promotional_price: '306.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-70x70-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-70x70-1',
-    price: '870.80',
-    promotional_price: '522.50',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-90x90-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-90x90-1',
-    price: '1373.20',
-    promotional_price: '823.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-120x120-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-120x120-1',
-    price: '2198.20',
-    promotional_price: '1318.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-50x50-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-50x50-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-50x50-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-70x70-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-70x70-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-70x70-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-90x90-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-90x90-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-90x90-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-120x120-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-120x120-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-120x120-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-50x50-1',
-    price: '1061.50',
-    promotional_price: '636.90',
-    stock: null,
-    weight: '5.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-70x70-1',
-    price: '2377.80',
-    promotional_price: '1426.70',
-    stock: null,
-    weight: '5.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-90x90-1',
-    price: '4214.80',
-    promotional_price: '2528.90',
-    stock: null,
-    weight: '5.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-120x120-1',
-    price: '6598.20',
-    promotional_price: '3958.90',
-    stock: null,
-    weight: '5.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "309.80",
+    "promotional_price": "139.41",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "11.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "548.20",
+    "promotional_price": "246.69",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "17.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "914.80",
+    "promotional_price": "411.66",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "28.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1281.50",
+    "promotional_price": "576.68",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "45.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "511.50",
+    "promotional_price": "230.18",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "870.80",
+    "promotional_price": "391.86",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1373.20",
+    "promotional_price": "617.94",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2198.20",
+    "promotional_price": "989.19",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1061.50",
+    "promotional_price": "477.68",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "300.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2377.80",
+    "promotional_price": "1070.01",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "407.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4214.80",
+    "promotional_price": "1896.66",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "559.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6598.20",
+    "promotional_price": "2969.19",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "699.00"
+  }
 ];
 
 export const APoneFrameVertical = [
   {
-    sku: 'AP|3499-1-000+000-0-1-0-0-40x60-1',
-    price: '309.80',
-    promotional_price: '185.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "309.80",
+    "promotional_price": "139.41",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "11.00"
   },
   {
-    sku: 'AP|3499-1-000+000-0-1-0-0-60x90-1',
-    price: '548.20',
-    promotional_price: '328.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "548.20",
+    "promotional_price": "246.69",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "17.00"
   },
   {
-    sku: 'AP|3499-1-000+000-0-1-0-0-80x120-1',
-    price: '914.80',
-    promotional_price: '548.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "914.80",
+    "promotional_price": "411.66",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "28.00"
   },
   {
-    sku: 'AP|3499-1-000+000-0-1-0-0-100x150-1',
-    price: '1281.50',
-    promotional_price: '768.90',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1281.50",
+    "promotional_price": "576.68",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "45.00"
   },
   {
-    sku: 'AP|3499-1-000+385-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+384-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+387-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+386-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-1",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+385-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+384-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+387-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+386-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+385-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+384-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+387-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+386-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+385-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+384-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+387-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+386-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+400-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+399-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+402-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+401-1-1-0-1-40x60-1',
-    price: '584.80',
-    promotional_price: '350.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "54.00"
   },
   {
-    sku: 'AP|3499-1-000+400-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+399-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+402-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+401-1-1-0-1-60x90-1',
-    price: '1024.80',
-    promotional_price: '614.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "99.00"
   },
   {
-    sku: 'AP|3499-1-000+400-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+399-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+402-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+401-1-1-0-1-80x120-1',
-    price: '1666.50',
-    promotional_price: '999.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "161.00"
   },
   {
-    sku: 'AP|3499-1-000+400-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+399-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+402-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-000+401-1-1-0-1-100x150-1',
-    price: '2663.80',
-    promotional_price: '1598.30',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "250.00"
   },
   {
-    sku: 'AP|3499-1-424+382-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "511.50",
+    "promotional_price": "230.18",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: 'AP|3499-1-000+424-1-4-0-0-40x60-1',
-    price: '511.50',
-    promotional_price: '306.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "68.00"
   },
   {
-    sku: 'AP|3499-1-424+382-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "68.00"
   },
   {
-    sku: 'AP|3499-1-000+424-1-4-0-0-60x90-1',
-    price: '870.80',
-    promotional_price: '522.50',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "68.00"
   },
   {
-    sku: 'AP|3499-1-424+382-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "68.00"
   },
   {
-    sku: 'AP|3499-1-000+424-1-4-0-0-80x120-1',
-    price: '1373.20',
-    promotional_price: '823.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "870.80",
+    "promotional_price": "391.86",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": null
   },
   {
-    sku: 'AP|3499-1-424+382-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "114.00"
   },
   {
-    sku: 'AP|3499-1-000+424-1-4-0-0-100x150-1',
-    price: '2198.20',
-    promotional_price: '1318.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "114.00"
   },
   {
-    sku: 'AP|3499-1-424+381-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "114.00"
   },
   {
-    sku: 'AP|3499-1-424+383-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "114.00"
   },
   {
-    sku: 'AP|3499-1-424+452-1-4-0-0-40x60-1',
-    price: '845.20',
-    promotional_price: '507.10',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1373.20",
+    "promotional_price": "617.94",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": null
   },
   {
-    sku: 'AP|3499-1-424+381-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "176.00"
   },
   {
-    sku: 'AP|3499-1-424+383-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "176.00"
   },
   {
-    sku: 'AP|3499-1-424+452-1-4-0-0-60x90-1',
-    price: '1336.50',
-    promotional_price: '801.90',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "176.00"
   },
   {
-    sku: 'AP|3499-1-424+381-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "176.00"
   },
   {
-    sku: 'AP|3499-1-424+383-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2198.20",
+    "promotional_price": "989.19",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": null
   },
   {
-    sku: 'AP|3499-1-424+452-1-4-0-0-80x120-1',
-    price: '2014.80',
-    promotional_price: '1208.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "283.00"
   },
   {
-    sku: 'AP|3499-1-424+381-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "283.00"
   },
   {
-    sku: 'AP|3499-1-424+383-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "283.00"
   },
   {
-    sku: 'AP|3499-1-424+452-1-4-0-0-100x150-1',
-    price: '3426.50',
-    promotional_price: '2055.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "283.00"
   },
   {
-    sku: 'AP|3499-1-000+000-6-5-0-0-40x60-1',
-    price: '1061.50',
-    promotional_price: '636.90',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1061.50",
+    "promotional_price": "477.68",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-1",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "300.00"
   },
   {
-    sku: 'AP|3499-1-000+000-6-5-0-0-60x90-1',
-    price: '2377.80',
-    promotional_price: '1426.70',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2377.80",
+    "promotional_price": "1070.01",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-1",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "407.00"
   },
   {
-    sku: 'AP|3499-1-000+000-6-5-0-0-80x120-1',
-    price: '4214.80',
-    promotional_price: '2528.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4214.80",
+    "promotional_price": "1896.66",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "559.00"
   },
   {
-    sku: 'AP|3499-1-000+000-6-5-0-0-100x150-1',
-    price: '6598.20',
-    promotional_price: '3958.90',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6598.20",
+    "promotional_price": "2969.19",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-1",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "699.00"
+  }
 ];
 
-export const APthreeFrameHorizontal = [
-  {
-    sku: '-1-000+000-0-1-0-0-40x60-3',
-    price: '929.50',
-    promotional_price: '557.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-60x90-3',
-    price: '1644.50',
-    promotional_price: '986.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-80x120-3',
-    price: '2744.50',
-    promotional_price: '1646.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-100x150-3',
-    price: '3844.50',
-    promotional_price: '2306.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-40x60-3',
-    price: '1534.50',
-    promotional_price: '920.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-60x90-3',
-    price: '2612.50',
-    promotional_price: '1567.50',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-80x120-3',
-    price: '4119.50',
-    promotional_price: '2471.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-100x150-3',
-    price: '6594.50',
-    promotional_price: '3956.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-40x60-3',
-    price: '3184.50',
-    promotional_price: '1910.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '60x40' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-60x90-3',
-    price: '7133.50',
-    promotional_price: '4280.10',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '90x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-80x120-3',
-    price: '12644.50',
-    promotional_price: '7586.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '120x80' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-100x150-3',
-    price: '19794.50',
-    promotional_price: '11876.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '150x100' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-];
-
-export const APthreeFrameQuadrado = [
-  {
-    sku: '-1-000+000-0-1-0-0-50x50-3',
-    price: '929.50',
-    promotional_price: '557.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-70x70-3',
-    price: '1644.50',
-    promotional_price: '986.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-90x90-3',
-    price: '2744.50',
-    promotional_price: '1646.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-120x120-3',
-    price: '3844.50',
-    promotional_price: '2306.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-50x50-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-70x70-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-90x90-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-120x120-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-50x50-3',
-    price: '1534.50',
-    promotional_price: '920.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-50x50-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-50x50-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-50x50-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-50x50-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-70x70-3',
-    price: '2612.50',
-    promotional_price: '1567.50',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-70x70-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-70x70-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-70x70-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-70x70-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-90x90-3',
-    price: '4119.50',
-    promotional_price: '2471.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-90x90-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-90x90-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-90x90-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-90x90-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-120x120-3',
-    price: '6594.50',
-    promotional_price: '3956.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-120x120-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-120x120-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-120x120-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-120x120-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-50x50-3',
-    price: '3184.50',
-    promotional_price: '1910.70',
-    stock: null,
-    weight: '15.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '21.00',
-    values: [{ pt: '50x50' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-70x70-3',
-    price: '7133.50',
-    promotional_price: '4280.10',
-    stock: null,
-    weight: '15.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '21.00',
-    values: [{ pt: '70x70' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-90x90-3',
-    price: '12644.50',
-    promotional_price: '7586.70',
-    stock: null,
-    weight: '15.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '90x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-120x120-3',
-    price: '19794.50',
-    promotional_price: '11876.70',
-    stock: null,
-    weight: '15.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '120x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-];
-
-export const APthreeFrameVertical = [
-  {
-    sku: '-1-000+000-0-1-0-0-40x60-3',
-    price: '929.50',
-    promotional_price: '557.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-60x90-3',
-    price: '1644.50',
-    promotional_price: '986.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-80x120-3',
-    price: '2744.50',
-    promotional_price: '1646.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-100x150-3',
-    price: '3844.50',
-    promotional_price: '2306.70',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-40x60-3',
-    price: '1754.50',
-    promotional_price: '1052.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-60x90-3',
-    price: '3074.50',
-    promotional_price: '1844.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-80x120-3',
-    price: '4999.50',
-    promotional_price: '2999.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-100x150-3',
-    price: '7991.50',
-    promotional_price: '4794.90',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-40x60-3',
-    price: '1534.50',
-    promotional_price: '920.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-60x90-3',
-    price: '2612.50',
-    promotional_price: '1567.50',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-80x120-3',
-    price: '4119.50',
-    promotional_price: '2471.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-100x150-3',
-    price: '6594.50',
-    promotional_price: '3956.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-40x60-3',
-    price: '2535.50',
-    promotional_price: '1521.30',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-60x90-3',
-    price: '4009.50',
-    promotional_price: '2405.70',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-80x120-3',
-    price: '6044.50',
-    promotional_price: '3626.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-100x150-3',
-    price: '10279.50',
-    promotional_price: '6167.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-40x60-3',
-    price: '3184.50',
-    promotional_price: '1910.70',
-    stock: null,
-    weight: '15.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '21.00',
-    values: [{ pt: '40x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-60x90-3',
-    price: '7133.50',
-    promotional_price: '4280.10',
-    stock: null,
-    weight: '15.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '21.00',
-    values: [{ pt: '60x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-80x120-3',
-    price: '12644.50',
-    promotional_price: '7586.70',
-    stock: null,
-    weight: '15.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '80x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-100x150-3',
-    price: '19794.50',
-    promotional_price: '11876.70',
-    stock: null,
-    weight: '15.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '21.00',
-    values: [{ pt: '100x150' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-];
-
-export const APtwoFrameHorizontal = [
-  {
-    sku: '-1-000+000-0-1-0-0-40x60-2',
-    price: '619.70',
-    promotional_price: '371.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '60x40' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-60x90-2',
-    price: '1096.30',
-    promotional_price: '657.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '90x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-80x120-2',
-    price: '1829.70',
-    promotional_price: '1097.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '120x80' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-100x150-2',
-    price: '2563.00',
-    promotional_price: '1537.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '150x100' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-40x60-2',
-    price: '1023.00',
-    promotional_price: '613.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-60x90-2',
-    price: '1741.70',
-    promotional_price: '1045.00',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-80x120-2',
-    price: '2746.30',
-    promotional_price: '1647.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-100x150-2',
-    price: '4396.30',
-    promotional_price: '2637.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-40x60-2',
-    price: '2123.00',
-    promotional_price: '1273.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '60x40' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-60x90-2',
-    price: '4755.70',
-    promotional_price: '2853.40',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-80x120-2',
-    price: '8429.70',
-    promotional_price: '5057.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x80' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-100x150-2',
-    price: '13196.30',
-    promotional_price: '7917.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '150x100' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-];
-
-export const APtwoFrameQuadrado = [
-  {
-    sku: '-1-000+000-0-1-0-0-50x50-2',
-    price: '619.70',
-    promotional_price: '371.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '55.00',
-    depth: '7.00',
-    values: [{ pt: '50x50' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-70x70-2',
-    price: '1096.30',
-    promotional_price: '657.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '75.00',
-    depth: '7.00',
-    values: [{ pt: '70x70' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-90x90-2',
-    price: '1829.70',
-    promotional_price: '1097.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '95.00',
-    depth: '7.00',
-    values: [{ pt: '90x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-0-1-0-0-120x120-2',
-    price: '2563.00',
-    promotional_price: '1537.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '120.00',
-    depth: '7.00',
-    values: [{ pt: '120x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+385-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+384-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+387-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+386-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-50x50-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-70x70-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-90x90-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+400-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+399-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+402-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-000+401-1-1-0-1-120x120-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-50x50-2',
-    price: '1023.00',
-    promotional_price: '613.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-50x50-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-50x50-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-50x50-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-50x50-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-70x70-2',
-    price: '1741.70',
-    promotional_price: '1045.00',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+382-1-4-0-0-70x70-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-000+424-1-4-0-0-70x70-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-70x70-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-70x70-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-90x90-2',
-    price: '2746.30',
-    promotional_price: '1647.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-90x90-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-90x90-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-90x90-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-90x90-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-120x120-2',
-    price: '4396.30',
-    promotional_price: '2637.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-120x120-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
-  },
-  {
-    sku: '-1-424+381-1-4-0-0-120x120-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
-  },
-  {
-    sku: '-1-424+383-1-4-0-0-120x120-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
-  },
-  {
-    sku: '-1-424+452-1-4-0-0-120x120-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-50x50-2',
-    price: '2123.00',
-    promotional_price: '1273.80',
-    stock: null,
-    weight: '10.000',
-    width: '55.00',
-    height: '55.00',
-    depth: '14.00',
-    values: [{ pt: '50x50' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-70x70-2',
-    price: '4755.70',
-    promotional_price: '2853.40',
-    stock: null,
-    weight: '10.000',
-    width: '75.00',
-    height: '75.00',
-    depth: '14.00',
-    values: [{ pt: '70x70' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-90x90-2',
-    price: '8429.70',
-    promotional_price: '5057.80',
-    stock: null,
-    weight: '10.000',
-    width: '95.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '90x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
-  {
-    sku: '-1-000+000-6-5-0-0-120x120-2',
-    price: '13196.30',
-    promotional_price: '7917.80',
-    stock: null,
-    weight: '10.000',
-    width: '120.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '120x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
-  },
+export const APoneFrameQuadrado = [
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "309.80",
+    "promotional_price": "139.41",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-50x50-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "11.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "548.20",
+    "promotional_price": "246.69",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-70x70-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "17.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "914.80",
+    "promotional_price": "411.66",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-90x90-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "28.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1281.50",
+    "promotional_price": "576.68",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-120x120-1",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "45.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-50x50-1",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-50x50-1",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-50x50-1",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-50x50-1",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-70x70-1",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-70x70-1",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-70x70-1",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-70x70-1",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-90x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-90x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-90x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-90x90-1",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-120x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-120x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-120x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-120x120-1",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "584.80",
+    "promotional_price": "263.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "54.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1024.80",
+    "promotional_price": "461.16",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "99.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1666.50",
+    "promotional_price": "749.93",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "161.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2663.80",
+    "promotional_price": "1198.71",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "250.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "511.50",
+    "promotional_price": "230.18",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "870.80",
+    "promotional_price": "391.86",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1373.20",
+    "promotional_price": "617.94",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2198.20",
+    "promotional_price": "989.19",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": null
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "845.20",
+    "promotional_price": "380.34",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "68.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1336.50",
+    "promotional_price": "601.43",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "114.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2014.80",
+    "promotional_price": "906.66",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "176.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3426.50",
+    "promotional_price": "1541.93",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "283.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1061.50",
+    "promotional_price": "477.68",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-50x50-1",
+    "weight": "5.000",
+    "width": "55.00",
+    "cost": "300.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2377.80",
+    "promotional_price": "1070.01",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-70x70-1",
+    "weight": "5.000",
+    "width": "75.00",
+    "cost": "407.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4214.80",
+    "promotional_price": "1896.66",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-90x90-1",
+    "weight": "5.000",
+    "width": "95.00",
+    "cost": "559.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6598.20",
+    "promotional_price": "2969.19",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-120x120-1",
+    "weight": "5.000",
+    "width": "120.00",
+    "cost": "699.00"
+  }
 ];
 
 export const APtwoFrameVertical = [
   {
-    sku: '-1-000+000-0-1-0-0-40x60-2',
-    price: '619.70',
-    promotional_price: '371.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '45.00',
-    depth: '7.00',
-    values: [{ pt: '40x60' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "619.70",
+    "promotional_price": "278.87",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "15.00"
   },
   {
-    sku: '-1-000+000-0-1-0-0-60x90-2',
-    price: '1096.30',
-    promotional_price: '657.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '65.00',
-    depth: '7.00',
-    values: [{ pt: '60x90' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1096.30",
+    "promotional_price": "493.34",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "33.00"
   },
   {
-    sku: '-1-000+000-0-1-0-0-80x120-2',
-    price: '1829.70',
-    promotional_price: '1097.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '85.00',
-    depth: '7.00',
-    values: [{ pt: '80x120' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1829.70",
+    "promotional_price": "823.37",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "57.00"
   },
   {
-    sku: '-1-000+000-0-1-0-0-100x150-2',
-    price: '2563.00',
-    promotional_price: '1537.80',
-    stock: null,
-    weight: '0.500',
-    width: '7.00',
-    height: '105.00',
-    depth: '7.00',
-    values: [{ pt: '100x150' }, { pt: 'Impressão' }, { pt: 'Sem moldura' }],
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2563.00",
+    "promotional_price": "1153.35",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "82.00"
   },
   {
-    sku: '-1-000+385-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+384-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+387-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+386-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '6.100',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+385-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+384-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+387-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+386-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '6.100',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+385-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+384-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+387-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+386-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '6.100',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+385-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+384-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+387-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+386-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '6.100',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Caixa c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+400-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+399-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+402-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+401-1-1-0-1-40x60-2',
-    price: '1169.70',
-    promotional_price: '701.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
   },
   {
-    sku: '-1-000+400-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+399-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+402-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+401-1-1-0-1-60x90-2',
-    price: '2049.70',
-    promotional_price: '1229.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
   },
   {
-    sku: '-1-000+400-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+399-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+402-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+401-1-1-0-1-80x120-2',
-    price: '3333.00',
-    promotional_price: '1999.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
   },
   {
-    sku: '-1-000+400-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+399-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+402-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-000+401-1-1-0-1-100x150-2',
-    price: '5327.70',
-    promotional_price: '3196.60',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Cone c/ Vidro' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
   },
   {
-    sku: '-1-424+382-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
   },
   {
-    sku: '-1-000+424-1-4-0-0-40x60-2',
-    price: '1023.00',
-    promotional_price: '613.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1023.00",
+    "promotional_price": "460.35",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": null
   },
   {
-    sku: '-1-424+382-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: '-1-000+424-1-4-0-0-60x90-2',
-    price: '1741.70',
-    promotional_price: '1045.00',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1741.70",
+    "promotional_price": "783.77",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: '-1-424+382-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
   },
   {
-    sku: '-1-000+424-1-4-0-0-80x120-2',
-    price: '2746.30',
-    promotional_price: '1647.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2746.30",
+    "promotional_price": "1235.84",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": null
   },
   {
-    sku: '-1-424+382-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Branca' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
   },
   {
-    sku: '-1-000+424-1-4-0-0-100x150-2',
-    price: '4396.30',
-    promotional_price: '2637.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4396.30",
+    "promotional_price": "1978.34",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": null
   },
   {
-    sku: '-1-424+381-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
   },
   {
-    sku: '-1-424+383-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
   },
   {
-    sku: '-1-424+452-1-4-0-0-40x60-2',
-    price: '1690.30',
-    promotional_price: '1014.20',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
   },
   {
-    sku: '-1-424+381-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: '-1-424+383-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: '-1-424+452-1-4-0-0-60x90-2',
-    price: '2673.00',
-    promotional_price: '1603.80',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
   },
   {
-    sku: '-1-424+381-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
   },
   {
-    sku: '-1-424+383-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
   },
   {
-    sku: '-1-424+452-1-4-0-0-80x120-2',
-    price: '4029.70',
-    promotional_price: '2417.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
   },
   {
-    sku: '-1-424+381-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Preta' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
   },
   {
-    sku: '-1-424+383-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Natural' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
   },
   {
-    sku: '-1-424+452-1-4-0-0-100x150-2',
-    price: '6853.00',
-    promotional_price: '4111.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Canvas' }, { pt: 'Tabaco' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
   },
   {
-    sku: '-1-000+000-6-5-0-0-40x60-2',
-    price: '2123.00',
-    promotional_price: '1273.80',
-    stock: null,
-    weight: '10.000',
-    width: '45.00',
-    height: '65.00',
-    depth: '14.00',
-    values: [{ pt: '40x60' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2123.00",
+    "promotional_price": "955.35",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "580.00"
   },
   {
-    sku: '-1-000+000-6-5-0-0-60x90-2',
-    price: '4755.70',
-    promotional_price: '2853.40',
-    stock: null,
-    weight: '10.000',
-    width: '65.00',
-    height: '95.00',
-    depth: '14.00',
-    values: [{ pt: '60x90' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4755.70",
+    "promotional_price": "2140.07",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "776.00"
   },
   {
-    sku: '-1-000+000-6-5-0-0-80x120-2',
-    price: '8429.70',
-    promotional_price: '5057.80',
-    stock: null,
-    weight: '10.000',
-    width: '85.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '80x120' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "8429.70",
+    "promotional_price": "3793.37",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "1058.00"
   },
   {
-    sku: '-1-000+000-6-5-0-0-100x150-2',
-    price: '13196.30',
-    promotional_price: '7917.80',
-    stock: null,
-    weight: '10.000',
-    width: '105.00',
-    height: '120.00',
-    depth: '14.00',
-    values: [{ pt: '100x150' }, { pt: 'Metacrilato' }, { pt: 'Sem moldura' }],
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "13196.30",
+    "promotional_price": "5938.34",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "1308.00"
+  }
+];
+
+export const APtwoFrameHorizontal = [
+  {
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "619.70",
+    "promotional_price": "278.87",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "15.00"
   },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1096.30",
+    "promotional_price": "493.34",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "33.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1829.70",
+    "promotional_price": "823.37",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "57.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2563.00",
+    "promotional_price": "1153.35",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "82.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-2",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-2",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-2",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-2",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1023.00",
+    "promotional_price": "460.35",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1741.70",
+    "promotional_price": "783.77",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2746.30",
+    "promotional_price": "1235.84",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4396.30",
+    "promotional_price": "1978.34",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2123.00",
+    "promotional_price": "955.35",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-2",
+    "weight": "10.000",
+    "width": "45.00",
+    "cost": "580.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4755.70",
+    "promotional_price": "2140.07",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-2",
+    "weight": "10.000",
+    "width": "65.00",
+    "cost": "776.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "8429.70",
+    "promotional_price": "3793.37",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-2",
+    "weight": "10.000",
+    "width": "85.00",
+    "cost": "1058.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "13196.30",
+    "promotional_price": "5938.34",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-2",
+    "weight": "10.000",
+    "width": "105.00",
+    "cost": "1308.00"
+  }
+];
+
+export const APtwoFrameQuadrado = [
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "619.70",
+    "promotional_price": "278.87",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-50x50-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "15.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-50x50-2",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-50x50-2",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-50x50-2",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-50x50-2",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1169.70",
+    "promotional_price": "526.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "88.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1023.00",
+    "promotional_price": "460.35",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1690.30",
+    "promotional_price": "760.64",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "116.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2123.00",
+    "promotional_price": "955.35",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-50x50-2",
+    "weight": "10.000",
+    "width": "55.00",
+    "cost": "580.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1096.30",
+    "promotional_price": "493.34",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-70x70-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "33.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-70x70-2",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-70x70-2",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-70x70-2",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-70x70-2",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2049.70",
+    "promotional_price": "922.37",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": "160.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1741.70",
+    "promotional_price": "783.77",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2673.00",
+    "promotional_price": "1202.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4755.70",
+    "promotional_price": "2140.07",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-70x70-2",
+    "weight": "10.000",
+    "width": "75.00",
+    "cost": "776.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1829.70",
+    "promotional_price": "823.37",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-90x90-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "57.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-90x90-2",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-90x90-2",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-90x90-2",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-90x90-2",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3333.00",
+    "promotional_price": "1499.85",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "262.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2746.30",
+    "promotional_price": "1235.84",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4029.70",
+    "promotional_price": "1813.37",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "292.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "8429.70",
+    "promotional_price": "3793.37",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-90x90-2",
+    "weight": "10.000",
+    "width": "95.00",
+    "cost": "1058.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2563.00",
+    "promotional_price": "1153.35",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-120x120-2",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "82.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-120x120-2",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-120x120-2",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-120x120-2",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-120x120-2",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "5327.70",
+    "promotional_price": "2397.47",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "410.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4396.30",
+    "promotional_price": "1978.34",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": null
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6853.00",
+    "promotional_price": "3083.85",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "476.00"
+  },
+  {
+    "depth": "14.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "13196.30",
+    "promotional_price": "5938.34",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-120x120-2",
+    "weight": "10.000",
+    "width": "120.00",
+    "cost": "1308.00"
+  }
+];
+
+export const APthreeFrameVertical = [
+  {
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "929.50",
+    "promotional_price": "418.28",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "22.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1644.50",
+    "promotional_price": "740.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "49.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2744.50",
+    "promotional_price": "1235.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "87.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3844.50",
+    "promotional_price": "1730.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "119.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1534.50",
+    "promotional_price": "690.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2612.50",
+    "promotional_price": "1175.63",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4119.50",
+    "promotional_price": "1853.78",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6594.50",
+    "promotional_price": "2967.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3184.50",
+    "promotional_price": "1433.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "860.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "7133.50",
+    "promotional_price": "3210.08",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "1145.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "12644.50",
+    "promotional_price": "5690.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "1557.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "19794.50",
+    "promotional_price": "8907.53",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "1917.00"
+  }
+];
+
+export const APthreeFrameHorizontal = [
+  {
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "929.50",
+    "promotional_price": "418.28",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "22.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "45.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "929.50",
+    "promotional_price": "418.28",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "22.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1644.50",
+    "promotional_price": "740.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "49.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1644.50",
+    "promotional_price": "740.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "49.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2744.50",
+    "promotional_price": "1235.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "87.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "85.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2744.50",
+    "promotional_price": "1235.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "87.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3844.50",
+    "promotional_price": "1730.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "119.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "105.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3844.50",
+    "promotional_price": "1730.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "119.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-40x60-3",
+    "weight": "6.100",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-60x90-3",
+    "weight": "6.100",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-80x120-3",
+    "weight": "6.100",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-100x150-3",
+    "weight": "6.100",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1534.50",
+    "promotional_price": "690.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1534.50",
+    "promotional_price": "690.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2612.50",
+    "promotional_price": "1175.63",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2612.50",
+    "promotional_price": "1175.63",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4119.50",
+    "promotional_price": "1853.78",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4119.50",
+    "promotional_price": "1853.78",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6594.50",
+    "promotional_price": "2967.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "100x150"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6594.50",
+    "promotional_price": "2967.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "60x40"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3184.50",
+    "promotional_price": "1433.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "860.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "65.00",
+    "values": [
+      {
+        "pt": "40x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3184.50",
+    "promotional_price": "1433.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "45.00",
+    "cost": "860.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x60"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "7133.50",
+    "promotional_price": "3210.08",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "1145.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "60x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "7133.50",
+    "promotional_price": "3210.08",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "65.00",
+    "cost": "1145.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x80"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "12644.50",
+    "promotional_price": "5690.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "1557.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "80x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "12644.50",
+    "promotional_price": "5690.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "85.00",
+    "cost": "1557.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "150x100"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "19794.50",
+    "promotional_price": "8907.53",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "105.00",
+    "cost": "1917.00"
+  }
+];
+
+export const APthreeFrameQuadrado = [
+  {
+    "depth": "7.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "929.50",
+    "promotional_price": "418.28",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-40x60-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "22.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1644.50",
+    "promotional_price": "740.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-60x90-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "49.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2744.50",
+    "promotional_price": "1235.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-80x120-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "87.00"
+  },
+  {
+    "depth": "7.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Impressão"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3844.50",
+    "promotional_price": "1730.03",
+    "stock": null,
+    "sku": "-1-000+000-0-1-0-0-100x150-3",
+    "weight": "0.500",
+    "width": "7.00",
+    "cost": "119.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-50x50-3",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-50x50-3",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-50x50-3",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-50x50-3",
+    "weight": "6.100",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-70x70-3",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-70x70-3",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-70x70-3",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-70x70-3",
+    "weight": "6.100",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-90x90-3",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-90x90-3",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-90x90-3",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-90x90-3",
+    "weight": "6.100",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+385-1-1-0-1-120x120-3",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+384-1-1-0-1-120x120-3",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+387-1-1-0-1-120x120-3",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Caixa c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+386-1-1-0-1-120x120-3",
+    "weight": "6.100",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "1754.50",
+    "promotional_price": "789.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "122.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "3074.50",
+    "promotional_price": "1383.53",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "221.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4999.50",
+    "promotional_price": "2249.78",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "363.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+400-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+399-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+402-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Cone c/ Vidro"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "7991.50",
+    "promotional_price": "3596.18",
+    "stock": null,
+    "sku": "-1-000+401-1-1-0-1-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "570.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "1534.50",
+    "promotional_price": "690.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "2535.50",
+    "promotional_price": "1140.98",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "164.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "2612.50",
+    "promotional_price": "1175.63",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "4009.50",
+    "promotional_price": "1804.28",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "266.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "4119.50",
+    "promotional_price": "1853.78",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "6044.50",
+    "promotional_price": "2720.03",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "408.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "6594.50",
+    "promotional_price": "2967.53",
+    "stock": null,
+    "sku": "-1-000+424-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": null
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Branca"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+382-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Preta"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+381-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Natural"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+383-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Canvas"
+      },
+      {
+        "pt": "Tabaco"
+      }
+    ],
+    "price": "10279.50",
+    "promotional_price": "4625.78",
+    "stock": null,
+    "sku": "-1-424+452-1-4-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "669.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "55.00",
+    "values": [
+      {
+        "pt": "50x50"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "3184.50",
+    "promotional_price": "1433.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-40x60-3",
+    "weight": "15.000",
+    "width": "55.00",
+    "cost": "860.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "75.00",
+    "values": [
+      {
+        "pt": "70x70"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "7133.50",
+    "promotional_price": "3210.08",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-60x90-3",
+    "weight": "15.000",
+    "width": "75.00",
+    "cost": "1145.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "95.00",
+    "values": [
+      {
+        "pt": "90x90"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "12644.50",
+    "promotional_price": "5690.03",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-80x120-3",
+    "weight": "15.000",
+    "width": "95.00",
+    "cost": "1557.00"
+  },
+  {
+    "depth": "21.00",
+    "height": "120.00",
+    "values": [
+      {
+        "pt": "120x120"
+      },
+      {
+        "pt": "Metacrilato"
+      },
+      {
+        "pt": "Sem moldura"
+      }
+    ],
+    "price": "19794.50",
+    "promotional_price": "8907.53",
+    "stock": null,
+    "sku": "-1-000+000-6-5-0-0-100x150-3",
+    "weight": "15.000",
+    "width": "120.00",
+    "cost": "1917.00"
+  }
 ];
