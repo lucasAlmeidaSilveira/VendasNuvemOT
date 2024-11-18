@@ -262,7 +262,8 @@ export function ProductRegistration() {
         'Selecione a cor da moldura',
       ],
       variants: [],
-      categories: store === 'outlet' ? [21612799] : [23591533],
+      categories: store === 'outlet' && [21612799],
+      // categories: store === 'outlet' ? [21612799] : [23591533],
       images: [...imageUrls
         .filter(url => url)
         .map((src, index) => ({ src, position: index + 1 })),
