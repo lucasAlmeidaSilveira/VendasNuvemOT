@@ -1,5 +1,6 @@
 import parsePhoneNumberFromString from 'libphonenumber-js';
 import { Category, Cost, CouponProps, Order } from '../types';
+import Holidays from 'date-holidays';
 
 // Função para formatar o valor em reais
 export function formatCurrency(value: string | number): string {
@@ -30,7 +31,7 @@ export function formatDateShort(dateString: string) {
     .toLocaleString('default', { month: 'short' })
     .replace('.', '');
   return `${day} ${month}`;
-};
+}
 
 export function parseCurrency(value: string | number): number {
   const stringValue = typeof value === 'number' ? value.toString() : value;
@@ -80,7 +81,10 @@ export function formatTimeDifference(lastUpdated: string) {
   }
 }
 
-export function formatDateToUTC(dateString: string, typeDate: string = 'default') {
+export function formatDateToUTC(
+  dateString: string,
+  typeDate: string = 'default',
+) {
   const date = new Date(dateString);
 
   const options = {
@@ -98,14 +102,14 @@ export function formatDateToUTC(dateString: string, typeDate: string = 'default'
       hour: '2-digit',
       minute: '2-digit',
       second: '2-digit',
-    }
+    },
   };
 
-  const formatOptions = typeDate && options[typeDate] ? options[typeDate] : options.default;
+  const formatOptions =
+    typeDate && options[typeDate] ? options[typeDate] : options.default;
 
   return date.toLocaleString('pt-BR', formatOptions);
 }
-
 
 export function formatPhoneNumber(phoneNumber: string) {
   const parsedNumber = parsePhoneNumberFromString(phoneNumber);
@@ -129,25 +133,31 @@ export const calculatePopupRate = (orders: Order[], popups: Order[]) => {
 
 export const formatUrlProduct = (landing_url: string) => {
   const parts = landing_url.split('/');
-  
+
   // Se a URL tiver menos de 5 partes, retornamos a URL inteira
   if (parts.length < 5) {
     return landing_url;
   }
-  
+
   // Junta as partes até o quinto '/'
   return parts.slice(0, 5).join('/');
-}
+};
 
-function addBusinessDays(startDate: string, days: number){
+function addBusinessDays(startDate: string, days: number) {
   let date = new Date(startDate);
   let addedDays = 0;
+  const holidays_br = new Holidays('BR', 'sp');
+
+  const isHoliday = (date) => {
+    const holiday = holidays_br.isHoliday(date); // Retorna o feriado se for, ou `null`
+    return !!holiday;
+  };
 
   while (addedDays < days) {
     date.setDate(date.getDate() + 1);
 
     // Se não for sábado ou domingo, contar como um dia útil
-    if (date.getDay() !== 0 && date.getDay() !== 6) {
+    if (date.getDay() !== 0 && date.getDay() !== 6 && !isHoliday(date)) {
       addedDays++;
     }
   }
@@ -156,36 +166,42 @@ function addBusinessDays(startDate: string, days: number){
 }
 
 export const isLate = (order: Order) => {
-  const shippingDays = order.shipping_max_days || order.shipping_min_days;
+  const shippingDays = 3;
   const shippingDeadline = addBusinessDays(order.created_at, shippingDays);
 
   return (
     new Date() > shippingDeadline &&
     order.shipping_status !== 'closed' &&
     order.payment_details.method !== 'other' &&
-    order.payment_status === 'paid'
+    order.payment_status === 'paid' &&
+    order.shipping_status !== 'shipped'
   );
 };
 
 export const generateDataCosts = (orders: Order[], couponsList: string[]) => {
   return [
-    { 
-      name: 'Total', 
-      value: orders.reduce((acc, order) => acc + parseInt(order.total), 0)
+    {
+      name: 'Total',
+      value: orders.reduce((acc, order) => acc + parseInt(order.total), 0),
     },
-    ...couponsList.map(couponCode => ({
+    ...couponsList.map((couponCode) => ({
       name: couponCode,
       value: orders
-        .filter(order => order.coupon.some(coupon => coupon.code === couponCode))
+        .filter((order) =>
+          order.coupon.some((coupon) => coupon.code === couponCode),
+        )
         .reduce((acc, order) => acc + parseInt(order.total), 0),
     })),
   ];
 };
 
-export const generateRoasData = (categories: Category[], totalCosts: Cost[]) => {
+export const generateRoasData = (
+  categories: Category[],
+  totalCosts: Cost[],
+) => {
   return categories.map((category) => {
     const matchingCost = totalCosts.find(
-      (cost) => cost.name.toLowerCase() === category.name.toLowerCase()
+      (cost) => cost.name.toLowerCase() === category.name.toLowerCase(),
     );
 
     return {
