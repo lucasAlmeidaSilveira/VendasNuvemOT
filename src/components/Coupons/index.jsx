@@ -14,7 +14,12 @@ import { TablePaginationActions } from '../Pagination';
 import { formatCurrency, formatDateToISO } from '../../tools/tools';
 import { Loading } from '../Loading';
 import { filterOrders } from '../../tools/filterOrders';
-import { Checkbox, FormControlLabel, FormGroup, Typography } from '@mui/material';
+import {
+  Checkbox,
+  FormControlLabel,
+  FormGroup,
+  Typography,
+} from '@mui/material';
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
@@ -62,7 +67,18 @@ export function Coupons() {
   const [isSellerFilterActive, setIsSellerFilterActive] = useState(false);
 
   // Cupons de vendedores
-  const couponsSellers = ['CIBELEAP', 'CLAUDIOAP', 'DIEGOAP', 'IAGOAP', 'YARAAP'];
+  const couponsSellers = [
+    'CIBELEAP',
+    'CLAUDIOAP',
+    'DIEGOAP',
+    'IAGOAP',
+    'YARAAP',
+    'DIEGOBLACKAP',
+    'YARABLACKAP',
+    'IAGOBLACKAP',
+    'CLAUDIOBLACKAP',
+    'CIBELEBLACKAP',
+  ];
 
   useEffect(() => {
     const startDateISO = formatDateToISO(date[0]);
@@ -121,10 +137,9 @@ export function Coupons() {
 
   return (
     <>
-    {
-      store === "artepropria" && (
+      {store === 'artepropria' && (
         <FormGroup>
-          <FormControlLabel 
+          <FormControlLabel
             control={
               <Checkbox
                 checked={isSellerFilterActive}
@@ -132,16 +147,22 @@ export function Coupons() {
                 inputProps={{ 'aria-label': 'controlled' }}
                 size='large'
               />
-            } 
+            }
             label={
-              <Typography variant="subtitle1" style={{ fontFamily: 'Poppins', color: 'var(--geralblack-100)', fontSize: 12 }}>
+              <Typography
+                variant='subtitle1'
+                style={{
+                  fontFamily: 'Poppins',
+                  color: 'var(--geralblack-100)',
+                  fontSize: 12,
+                }}
+              >
                 Mostrar somente cupons de vendedores
               </Typography>
             }
           />
         </FormGroup>
-      )
-    }
+      )}
       <ContainerCoupon component={Paper}>
         <Table aria-label='simple table'>
           <TableHead>
@@ -167,25 +188,27 @@ export function Coupons() {
               </TableRow>
             ) : (
               filteredCoupons
-              .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-              .map(coupon => (
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map(coupon => (
                   <StyledTableRow
-                  key={coupon.id}
-                  sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
+                    key={coupon.id}
+                    sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <StyledTableCell component='th' scope='row'>
                       {coupon.code}
                     </StyledTableCell>
                     {coupon.type === 'percentage' ? (
                       <StyledTableCell>{`${parseInt(coupon.value)}%`}</StyledTableCell>
-                      ) : (
-                        <StyledTableCell>{`R$ ${parseFloat(coupon.value).toFixed(2).replace('.', ',')}`}</StyledTableCell>
-                        )}
-                    <StyledTableCell>{formatCurrency(coupon.totalRevenue)}</StyledTableCell>
+                    ) : (
+                      <StyledTableCell>{`R$ ${parseFloat(coupon.value).toFixed(2).replace('.', ',')}`}</StyledTableCell>
+                    )}
+                    <StyledTableCell>
+                      {formatCurrency(coupon.totalRevenue)}
+                    </StyledTableCell>
                     <StyledTableCell>{coupon.used}</StyledTableCell>
                   </StyledTableRow>
                 ))
-                )}
+            )}
           </TableBody>
           <TableFooter>
             <TableRow>
@@ -200,9 +223,9 @@ export function Coupons() {
                 ActionsComponent={TablePaginationActions}
                 labelRowsPerPage='Linhas por página:'
                 labelDisplayedRows={({ from, to, count }) =>
-                `${from}–${to} de ${count}`
-              }
-              sx={{
+                  `${from}–${to} de ${count}`
+                }
+                sx={{
                   '& .MuiTablePagination-toolbar': {
                     fontSize: '1.1rem',
                     fontFamily: 'Poppins, sans-serif',
@@ -220,7 +243,7 @@ export function Coupons() {
                     fontFamily: 'Poppins, sans-serif',
                   },
                 }}
-                />
+              />
             </TableRow>
           </TableFooter>
         </Table>
