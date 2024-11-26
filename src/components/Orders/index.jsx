@@ -32,6 +32,8 @@ import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
 import { Table, Theme } from '@radix-ui/themes';
+import Holidays from 'date-holidays';
+import { Popup } from '../Popup';
 
 const descendingComparator = (a, b, orderBy) => {
   if (b[orderBy] < a[orderBy]) {
@@ -134,6 +136,10 @@ export function Orders() {
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [successDelete, setSuccessDelete] = useState(false);
   const [layout, setLayout] = useState('auto');
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const [lateOrdersGrouped, setLateOrdersGrouped] = useState([]);
+  const [orderDirection, setOrderDirection] = useState('asc'); // Estado para rastrear a direção da ordenação
 
   const handleOpenPopup = () => {
     setOpenPopup(true);
@@ -146,6 +152,14 @@ export function Orders() {
   const handleOpenConfirmPopup = (ownerNote) => {
     setSelectedOwnerNote(ownerNote);
     setOpenConfirmPopup(true);
+  };
+
+  const handleIsOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+
+  const handleIsClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   const handleDeleteOrder = async () => {
@@ -299,6 +313,76 @@ export function Orders() {
     return () => window.removeEventListener('resize', updateLayout);
   }, []);
 
+  /* ---- Inclusão de popup para mensurar atrasos ----- */
+
+  // Função para ordenar os dados
+  const sortData = (data, direction) => {
+    return data.sort((a, b) => {
+      if (direction === 'asc') {
+        return new Date(a.date) - new Date(b.date);
+      } else {
+        return new Date(b.date) - new Date(a.date);
+      }
+    });
+  };
+
+  useEffect(() => {
+    const groupedLateOrders = ordersAllTodayWithPartner
+      .filter(
+        (order) =>
+          isLate(order) &&
+          order.status === 'open' &&
+          order.payment_status === 'paid',
+      )
+      .reduce((acc, order) => {
+        const date = order.created_at.split('T')[0];
+        acc[date] = (acc[date] || 0) + 1;
+        return acc;
+      }, {});
+
+    const result = Object.entries(groupedLateOrders).map(([date, count]) => {
+      const daysLate = calculateBusinessDaysLate(date);
+      return { date, count, daysLate };
+    });
+
+    setLateOrdersGrouped(sortData(result, orderDirection));
+  }, [ordersAllTodayWithPartner, orderDirection]);
+
+  // Função para calcular os dias úteis em atraso
+  const calculateBusinessDaysLate = (startDate) => {
+    const today = new Date();
+    const start = new Date(startDate);
+    const holidays_br = new Holidays('BR', 'sp');
+    const isHoliday = (start) => {
+      const holiday = holidays_br.isHoliday(start); // Retorna o feriado se for, ou `null`
+      return !!holiday;
+    };
+    let businessDays = 0;
+
+    while (start < today) {
+      const dayOfWeek = start.getDay(); // 0 = Domingo, 6 = Sábado
+
+      // Incrementa apenas se for dia útil (não sábado, não domingo, não feriado)
+      if (
+        dayOfWeek !== 5 &&
+        dayOfWeek !== 6 &&
+        !isHoliday(start) // Verifica se a data é feriado
+      ) {
+        businessDays++;
+      }
+      // Avança para o próximo dia
+      start.setDate(start.getDate() + 1);
+    }
+    return businessDays;
+  };
+
+  const toggleSortOrder = () => {
+    const newDirection = orderDirection === 'asc' ? 'desc' : 'asc';
+    setOrderDirection(newDirection);
+    setLateOrdersGrouped((prevData) => sortData([...prevData], newDirection));
+  };
+  /** ---------- -------- ------------*/
+
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
     window.scroll({
@@ -408,6 +492,88 @@ export function Orders() {
         </Selects>
       </FilterContainer>
 
+      /* ------ Inclusão de popup para mensurar atrasos ----- */
+      {shippingStatusFilter === 'late' ? (
+        <>
+          <Button
+            variant="contained"
+            color="primary"
+            onClick={handleIsOpenPopup}
+            style={{ marginBottom: '12px' }}
+          >
+            Analisar atrasos
+          </Button>
+          <Popup
+            open={isPopupOpen}
+            onClose={handleIsClosePopup}
+            size="lg"
+            title="Pedidos em Atraso"
+          >
+            <Table.Root variant="surface" layout={layout}>
+              <Table.Header style={{ backgroundColor: 'lightgray' }}>
+                <Table.Row>
+                  <Table.ColumnHeaderCell
+                    key={'01'}
+                    onClick={toggleSortOrder}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell key={'02'}>
+                    Quantidade de Pedidos
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell key={'03'}>
+                    Dias em Atraso
+                  </Table.ColumnHeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {isLoading ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={4}>
+                      <Loading />
+                    </Table.Cell>
+                  </Table.Row>
+                ) : lateOrdersGrouped.length === 0 ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={7}>
+                      Nenhum pedido em atraso
+                    </Table.Cell>
+                  </Table.Row>
+                ) : (
+                  lateOrdersGrouped.map(({ date, count, daysLate }) => (
+                    <>
+                      <Table.Row
+                        key={date}
+                        sx={{
+                          '&:last-child td, &:last-child th': { border: 0 },
+                        }}
+                      ></Table.Row>
+                      <Table.Row className="row-order" key={date}>
+                        {daysLate === 3 ? (
+                          ''
+                        ) : (
+                          <>
+                            <Table.Cell>{date}</Table.Cell>
+                            <Table.Cell>{count}</Table.Cell>
+                            <Table.Cell>
+                              {daysLate - 3}{' '}
+                              {daysLate - 3 === 1 ? 'dia' : 'dias'} em atraso
+                            </Table.Cell>
+                          </>
+                        )}
+                      </Table.Row>
+                    </>
+                  ))
+                )}
+              </Table.Body>
+            </Table.Root>
+          </Popup>
+        </>
+      ) : (
+        ''
+      )}
+      /* ------- ---- ------- */
       <ContainerOrder>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHead
