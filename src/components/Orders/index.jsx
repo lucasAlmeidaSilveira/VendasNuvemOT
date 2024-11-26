@@ -492,7 +492,6 @@ export function Orders() {
         </Selects>
       </FilterContainer>
 
-      /* ------ Inclusão de popup para mensurar atrasos ----- */
       {shippingStatusFilter === 'late' ? (
         <>
           <Button
@@ -573,7 +572,6 @@ export function Orders() {
       ) : (
         ''
       )}
-      /* ------- ---- ------- */
       <ContainerOrder>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHead
