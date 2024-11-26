@@ -502,72 +502,6 @@ export function Orders() {
           >
             Analisar atrasos
           </Button>
-          <Popup
-            open={isPopupOpen}
-            onClose={handleIsClosePopup}
-            size="lg"
-            title="Pedidos em Atraso"
-          >
-            <Table.Root variant="surface" layout={layout}>
-              <Table.Header style={{ backgroundColor: 'lightgray' }}>
-                <Table.Row>
-                  <Table.ColumnHeaderCell
-                    key={'01'}
-                    onClick={toggleSortOrder}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
-                  </Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell key={'02'}>
-                    Quantidade de Pedidos
-                  </Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell key={'03'}>
-                    Dias em Atraso
-                  </Table.ColumnHeaderCell>
-                </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {isLoading ? (
-                  <Table.Row>
-                    <Table.Cell justify={'center'} colSpan={4}>
-                      <Loading />
-                    </Table.Cell>
-                  </Table.Row>
-                ) : lateOrdersGrouped.length === 0 ? (
-                  <Table.Row>
-                    <Table.Cell justify={'center'} colSpan={7}>
-                      Nenhum pedido em atraso
-                    </Table.Cell>
-                  </Table.Row>
-                ) : (
-                  lateOrdersGrouped.map(({ date, count, daysLate }) => (
-                    <>
-                      <Table.Row
-                        key={date}
-                        sx={{
-                          '&:last-child td, &:last-child th': { border: 0 },
-                        }}
-                      ></Table.Row>
-                      <Table.Row className="row-order" key={date}>
-                        {daysLate === 3 ? (
-                          ''
-                        ) : (
-                          <>
-                            <Table.Cell>{date}</Table.Cell>
-                            <Table.Cell>{count}</Table.Cell>
-                            <Table.Cell>
-                              {daysLate - 3}{' '}
-                              {daysLate - 3 === 1 ? 'dia' : 'dias'} em atraso
-                            </Table.Cell>
-                          </>
-                        )}
-                      </Table.Row>
-                    </>
-                  ))
-                )}
-              </Table.Body>
-            </Table.Root>
-          </Popup>
         </>
       ) : (
         ''
@@ -721,6 +655,63 @@ export function Orders() {
         success={successDelete}
         action={'Excluir'}
       />
+      <Popup
+            open={isPopupOpen}
+            onClose={handleIsClosePopup}
+            size="lg"
+            title="Pedidos em Atraso"
+          >
+            <Table.Root variant="surface" layout={layout}>
+              <Table.Header style={{ backgroundColor: 'lightgray' }}>
+                <Table.Row>
+                  <Table.ColumnHeaderCell
+                    onClick={toggleSortOrder}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell>
+                    Quantidade de Pedidos
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell>
+                    Dias em Atraso
+                  </Table.ColumnHeaderCell>
+                </Table.Row>
+              </Table.Header>
+              <Table.Body>
+                {isLoading ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={4}>
+                      <Loading />
+                    </Table.Cell>
+                  </Table.Row>
+                ) : lateOrdersGrouped.length === 0 ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={7}>
+                      Nenhum pedido em atraso
+                    </Table.Cell>
+                  </Table.Row>
+                ) : (
+                  lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
+                      <Table.Row key={index} className="row-order" >
+                        {daysLate === 3 ? (
+                          ''
+                        ) : (
+                          <>
+                            <Table.Cell>{date}</Table.Cell>
+                            <Table.Cell>{count}</Table.Cell>
+                            <Table.Cell>
+                              {daysLate - 3}{' '}
+                              {daysLate - 3 === 1 ? 'dia' : 'dias'} em atraso
+                            </Table.Cell>
+                          </>
+                        )}
+                      </Table.Row>
+                  ))
+                )}
+              </Table.Body>
+            </Table.Root>
+          </Popup>
     </Theme>
   );
 }
