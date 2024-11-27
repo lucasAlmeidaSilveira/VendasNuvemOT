@@ -32,6 +32,7 @@ import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
 import { Table, Theme } from '@radix-ui/themes';
+import Holidays from 'date-holidays';
 import { Popup } from '../Popup';
 
 const descendingComparator = (a, b, orderBy) => {
@@ -57,7 +58,7 @@ const stableSort = (array, comparator) => {
     if (order !== 0) return order;
     return a[1] - b[1];
   });
-  return stabilizedThis.map((el) => el[0]);
+  return stabilizedThis.map(el => el[0]);
 };
 
 const headCells = [
@@ -80,16 +81,16 @@ const headCells = [
   },
 ];
 
-const EnhancedTableHead = (props) => {
+const EnhancedTableHead = props => {
   const { order, orderBy, onRequestSort } = props;
-  const createSortHandler = (property) => (event) => {
+  const createSortHandler = property => event => {
     onRequestSort(event, property);
   };
 
   return (
     <Table.Header style={{ backgroundColor: 'lightgray' }}>
       <Table.Row>
-        {headCells.map((headCell) => (
+        {headCells.map(headCell => (
           <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -101,7 +102,7 @@ const EnhancedTableHead = (props) => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component="span" sx={visuallyHidden}>
+                <Box component='span' sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -170,7 +171,7 @@ export function Orders() {
     setOpenPopup(false);
   };
 
-  const handleOpenConfirmPopup = (ownerNote) => {
+  const handleOpenConfirmPopup = ownerNote => {
     setSelectedOwnerNote(ownerNote);
     setOpenConfirmPopup(true);
   };
@@ -191,8 +192,8 @@ export function Orders() {
         setSuccessDelete(true);
 
         // Atualiza a lista de pedidos removendo o pedido deletado
-        setAllOrders((prevOrders) =>
-          prevOrders.filter((order) => order.owner_note !== selectedOwnerNote),
+        setAllOrders(prevOrders =>
+          prevOrders.filter(order => order.owner_note !== selectedOwnerNote),
         );
 
         // Após um tempo de confirmação, fechar o popup e resetar os estados
@@ -212,7 +213,7 @@ export function Orders() {
 
   useEffect(() => {
     const unpackedCount = ordersAllTodayWithPartner.filter(
-      (order) =>
+      order =>
         order.shipping_status === 'unpacked' &&
         order.status === 'open' &&
         !isLate(order) &&
@@ -220,14 +221,14 @@ export function Orders() {
     ).length;
 
     const shippedCount = ordersAllTodayWithPartner.filter(
-      (order) =>
+      order =>
         order.shipping_status === 'shipped' &&
         order.status === 'open' &&
         order.payment_status === 'paid',
     ).length;
 
     const lateCount = ordersAllTodayWithPartner.filter(
-      (order) =>
+      order =>
         isLate(order) &&
         order.status === 'open' &&
         order.payment_status === 'paid',
@@ -247,7 +248,7 @@ export function Orders() {
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
       ordersAllTodayWithPartner
-        .filter((order) => {
+        .filter(order => {
           const paymentStatusMatch =
             statusFilter === 'all' || order.payment_status === statusFilter;
           let shippingStatusMatch = shippingStatusFilter === 'all';
@@ -287,7 +288,7 @@ export function Orders() {
             paymentStatusMatch && shippingStatusMatch && paymentMethodMatch
           );
         })
-        .filter((order) => {
+        .filter(order => {
           const searchLower = searchQuery.toLowerCase();
           return (
             order.id.toString().toLowerCase().includes(searchLower) ||
@@ -296,7 +297,7 @@ export function Orders() {
             order.customer.name.toLowerCase().includes(searchLower) ||
             order.customer.identification.toLowerCase().includes(searchLower) ||
             order.customer.email.toLowerCase().includes(searchLower) ||
-            order.coupon.some((coupon) =>
+            order.coupon.some(coupon =>
               coupon.code.toLowerCase().includes(searchLower),
             )
           );
@@ -350,7 +351,7 @@ export function Orders() {
   useEffect(() => {
     const groupedLateOrders = ordersAllTodayWithPartner
       .filter(
-        (order) =>
+        order =>
           isLate(order) &&
           order.status === 'open' &&
           order.payment_status === 'paid',
@@ -370,10 +371,14 @@ export function Orders() {
   }, [ordersAllTodayWithPartner, orderDirection]);
   console.log(ordersAllTodayWithPartner);
   // Função para calcular os dias úteis em atraso
-  const calculateBusinessDaysLate = (startDate) => {
+  const calculateBusinessDaysLate = startDate => {
     const today = new Date();
     const start = new Date(startDate);
-
+    const holidays_br = new Holidays('BR', 'sp');
+    const isHoliday = (start) => {
+      const holiday = holidays_br.isHoliday(start); // Retorna o feriado se for, ou `null`
+      return !!holiday;
+    };
     let businessDays = 0;
 
     while (start < today) {
@@ -398,9 +403,7 @@ export function Orders() {
   const toggleSortOrder = () => {
     const newDirection = orderDirection === 'asc' ? 'desc' : 'asc';
     setOrderDirection(newDirection);
-
-    const sortedData = sortData([...lateOrdersGrouped], newDirection);
-    setLateOrdersGrouped(sortedData);
+    setLateOrdersGrouped((prevData) => sortData([...prevData], newDirection));
   };
 
   /** ---------- -------- ------------*/
@@ -414,19 +417,19 @@ export function Orders() {
     });
   };
 
-  const handleChangeRowsPerPage = (event) => {
+  const handleChangeRowsPerPage = event => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleToggleExpand = (order_id) => {
-    setExpandedOrders((prevState) => ({
+  const handleToggleExpand = order_id => {
+    setExpandedOrders(prevState => ({
       ...prevState,
       [order_id]: !prevState[order_id],
     }));
   };
 
-  const handleStatusBlockClick = (status) => {
+  const handleStatusBlockClick = status => {
     setShippingStatusFilter(status);
     setStatusFilter('paid');
   };
@@ -464,20 +467,20 @@ export function Orders() {
       </StatusFilterContainer>
       <FilterContainer>
         <InputSearch
-          label="Buscar pedido:"
+          label='Buscar pedido:'
           value={searchQuery}
-          onChange={(e) => setSearchQuery(e.target.value)}
-          placeholder="Busque por nº pedido, nome, CPF, e-mail, cupom, cód. transação ou ID"
+          onChange={e => setSearchQuery(e.target.value)}
+          placeholder='Busque por nº pedido, nome, CPF, e-mail, cupom, cód. transação ou ID'
           totalList={filteredOrders.length}
         />
         {store === 'artepropria' && (
-          <Button variant="contained" color="primary" onClick={handleOpenPopup}>
+          <Button variant='contained' color='primary' onClick={handleOpenPopup}>
             Cadastrar pedido
           </Button>
         )}
         <Selects>
           <CustomSelect
-            label="Status de Envio:"
+            label='Status de Envio:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'unpacked', label: 'A enviar' },
@@ -486,10 +489,10 @@ export function Orders() {
               { value: 'late', label: 'Atrasados' },
             ]}
             value={shippingStatusFilter}
-            onChange={(e) => setShippingStatusFilter(e.target.value)}
+            onChange={e => setShippingStatusFilter(e.target.value)}
           />
           <CustomSelect
-            label="Status de Pagamento:"
+            label='Status de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'paid', label: 'Pagos' },
@@ -497,10 +500,10 @@ export function Orders() {
               { value: 'pending', label: 'Pendentes' },
             ]}
             value={statusFilter}
-            onChange={(e) => setStatusFilter(e.target.value)}
+            onChange={e => setStatusFilter(e.target.value)}
           />
           <CustomSelect
-            label="Meios de Pagamento:"
+            label='Meios de Pagamento:'
             options={[
               { value: 'all', label: 'Todos' },
               { value: 'credit_card', label: 'Cartão' },
@@ -509,7 +512,7 @@ export function Orders() {
               { value: 'other', label: 'Parcerias' },
             ]}
             value={paymentMethodFilter}
-            onChange={(e) => setPaymentMethodFilter(e.target.value)}
+            onChange={e => setPaymentMethodFilter(e.target.value)}
           />
         </Selects>
       </FilterContainer>
@@ -517,8 +520,8 @@ export function Orders() {
       {shippingStatusFilter === 'late' ? (
         <>
           <Button
-            variant="contained"
-            color="primary"
+            variant='contained'
+            color='primary'
             onClick={handleIsOpenPopup}
             style={{ marginBottom: '12px' }}
           >
@@ -529,7 +532,7 @@ export function Orders() {
         ''
       )}
       <ContainerOrder>
-        <Table.Root variant="surface" layout={layout}>
+        <Table.Root variant='surface' layout={layout}>
           <EnhancedTableHead
             order={order}
             orderBy={orderBy}
@@ -551,7 +554,7 @@ export function Orders() {
             ) : (
               filteredOrders
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map((order) => (
+                .map(order => (
                   <>
                     <Table.Row
                       key={order.id}
@@ -564,7 +567,7 @@ export function Orders() {
                         {formatDateShort(order.created_at)}
                       </Table.Cell>
                       <Table.Cell onClick={() => handleToggleExpand(order.id)}>
-                        <a className="link">
+                        <a className='link'>
                           {order.contact_name}{' '}
                           {expandedOrders[order.id] ? (
                             <FaChevronUp />
@@ -582,10 +585,10 @@ export function Orders() {
                       <Table.Cell>{formatCurrency(order.total)}</Table.Cell>
                       <Table.Cell>
                         <a
-                          className="link link-gateway"
+                          className='link link-gateway'
                           href={order.gateway_link}
-                          target="_blank"
-                          rel="noopener noreferrer"
+                          target='_blank'
+                          rel='noopener noreferrer'
                         >
                           <PaymentStatus
                             status={order.payment_status}
@@ -618,7 +621,7 @@ export function Orders() {
                       </Table.Cell>
                     </Table.Row>
                     {expandedOrders[order.id] && (
-                      <Table.Row className="row-order">
+                      <Table.Row className='row-order'>
                         <Table.Cell colSpan={7}>
                           <ClientDetails order={order} />
                           <ProductDetails products={order.products} />
@@ -640,7 +643,7 @@ export function Orders() {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
-                labelRowsPerPage="Linhas por página:"
+                labelRowsPerPage='Linhas por página:'
                 labelDisplayedRows={({ from, to, count }) =>
                   `${from}–${to} de ${count}`
                 }
@@ -678,62 +681,62 @@ export function Orders() {
         action={'Excluir'}
       />
       <Popup
-        open={isPopupOpen}
-        onClose={handleIsClosePopup}
-        size="lg"
-        title="Pedidos em Atraso"
-      >
-        <Theme>
-          <Table.Root variant="surface" layout={layout}>
-            <Table.Header style={{ backgroundColor: 'lightgray' }}>
-              <Table.Row>
-                <Table.ColumnHeaderCell
-                  onClick={toggleSortOrder}
-                  style={{ cursor: 'pointer' }}
-                >
-                  Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>
-                  Quantidade de Pedidos
-                </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Dias em Atraso</Table.ColumnHeaderCell>
-              </Table.Row>
-            </Table.Header>
-            <Table.Body>
-              {isLoading ? (
+            open={isPopupOpen}
+            onClose={handleIsClosePopup}
+            size="lg"
+            title="Pedidos em Atraso"
+          >
+            <Table.Root variant="surface" layout={layout}>
+              <Table.Header style={{ backgroundColor: 'lightgray' }}>
                 <Table.Row>
-                  <Table.Cell justify={'center'} colSpan={4}>
-                    <Loading />
-                  </Table.Cell>
+                  <Table.ColumnHeaderCell
+                    onClick={toggleSortOrder}
+                    style={{ cursor: 'pointer' }}
+                  >
+                    Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell>
+                    Quantidade de Pedidos
+                  </Table.ColumnHeaderCell>
+                  <Table.ColumnHeaderCell>
+                    Dias em Atraso
+                  </Table.ColumnHeaderCell>
                 </Table.Row>
-              ) : lateOrdersGrouped.length === 0 ? (
-                <Table.Row>
-                  <Table.Cell justify={'center'} colSpan={7}>
-                    Nenhum pedido em atraso
-                  </Table.Cell>
-                </Table.Row>
-              ) : (
-                lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
-                  <Table.Row key={index} className="row-order">
-                    {daysLate === 3 ? (
-                      ''
-                    ) : (
-                      <>
-                        <Table.Cell>{date}</Table.Cell>
-                        <Table.Cell>{count}</Table.Cell>
-                        <Table.Cell>
-                          {daysLate - 3} {daysLate - 3 === 1 ? 'dia' : 'dias'}{' '}
-                          em atraso
-                        </Table.Cell>
-                      </>
-                    )}
+              </Table.Header>
+              <Table.Body>
+                {isLoading ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={4}>
+                      <Loading />
+                    </Table.Cell>
                   </Table.Row>
-                ))
-              )}
-            </Table.Body>
-          </Table.Root>
-        </Theme>
-      </Popup>
+                ) : lateOrdersGrouped.length === 0 ? (
+                  <Table.Row>
+                    <Table.Cell justify={'center'} colSpan={7}>
+                      Nenhum pedido em atraso
+                    </Table.Cell>
+                  </Table.Row>
+                ) : (
+                  lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
+                      <Table.Row key={index} className="row-order" >
+                        {daysLate === 3 ? (
+                          ''
+                        ) : (
+                          <>
+                            <Table.Cell>{date}</Table.Cell>
+                            <Table.Cell>{count}</Table.Cell>
+                            <Table.Cell>
+                              {daysLate - 3}{' '}
+                              {daysLate - 3 === 1 ? 'dia' : 'dias'} em atraso
+                            </Table.Cell>
+                          </>
+                        )}
+                      </Table.Row>
+                  ))
+                )}
+              </Table.Body>
+            </Table.Root>
+          </Popup>
     </Theme>
   );
 }
