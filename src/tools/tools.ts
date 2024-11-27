@@ -1,6 +1,5 @@
 import parsePhoneNumberFromString from 'libphonenumber-js';
 import { Category, Cost, CouponProps, Order } from '../types';
-import Holidays from 'date-holidays';
 
 // Função para formatar o valor em reais
 export function formatCurrency(value: string | number): string {
@@ -143,21 +142,51 @@ export const formatUrlProduct = (landing_url: string) => {
   return parts.slice(0, 5).join('/');
 };
 
-function addBusinessDays(startDate: string, days: number) {
+function addBusinessDays(startDate, days) {
+  const holidays_br = new Set([
+    // Feriados Nacionais
+    '2024-01-01', // Confraternização Universal (Ano Novo)
+    '2024-02-13', // Carnaval
+    '2024-03-29', // Sexta-feira Santa
+    '2024-03-31', // Páscoa
+    '2024-04-07', // Paixão de Cristo
+    '2024-04-21', // Tiradentes
+    '2024-05-01', // Dia do Trabalho
+    '2024-06-20', // Corpus Christi
+    '2024-09-07', // Independência do Brasil
+    '2024-10-12', // Nossa Senhora Aparecida
+    '2024-11-02', // Finados
+    '2024-11-15', // Proclamação da República
+    '2024-12-25', // Natal
+
+    // Feriados Estaduais
+    '2024-07-09', // Revolução Constitucionalista
+
+    // Feriados Municipais
+    '2024-01-25', // Aniversário da Cidade de São Paulo
+    '2024-11-20', // Consiencia Negra
+  ]);
+
+  // Função para formatar a data no formato 'yyyy-mm-dd'
+  const formatDate = (date) => {
+    const year = date.getFullYear();
+    const month = String(date.getMonth() + 1).padStart(2, '0');
+    const day = String(date.getDate()).padStart(2, '0');
+    return `${year}-${month}-${day}`;
+  };
+
   let date = new Date(startDate);
   let addedDays = 0;
-  const holidays_br = new Holidays('BR', 'sp');
-
-  const isHoliday = (date) => {
-    const holiday = holidays_br.isHoliday(date); // Retorna o feriado se for, ou `null`
-    return !!holiday;
-  };
 
   while (addedDays < days) {
     date.setDate(date.getDate() + 1);
 
-    // Se não for sábado ou domingo, contar como um dia útil
-    if (date.getDay() !== 0 && date.getDay() !== 6 && !isHoliday(date)) {
+    // Verificar se não é sábado (6), domingo (0) e se não é feriado
+    if (
+      date.getDay() !== 5 &&
+      date.getDay() !== 6 &&
+      !holidays_br.has(formatDate(date))
+    ) {
       addedDays++;
     }
   }
@@ -166,7 +195,7 @@ function addBusinessDays(startDate: string, days: number) {
 }
 
 export const isLate = (order: Order) => {
-  const shippingDays = 3;
+  const shippingDays = 4;
   const shippingDeadline = addBusinessDays(order.created_at, shippingDays);
 
   return (
