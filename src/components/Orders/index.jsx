@@ -32,7 +32,6 @@ import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
 import { Table, Theme } from '@radix-ui/themes';
-import Holidays from 'date-holidays';
 import { Popup } from '../Popup';
 
 const descendingComparator = (a, b, orderBy) => {
