@@ -31,7 +31,7 @@ import { OrderPopup } from './OrderPopup';
 import { Button } from '../Button';
 import { deleteOrder } from '../../api';
 import { ConfirmationDialog } from '../Products/ConfirmationDialog';
-import { Table, Theme } from '@radix-ui/themes';
+import { Flex, Table, Theme } from '@radix-ui/themes';
 import { Popup } from '../Popup';
 
 const descendingComparator = (a, b, orderBy) => {
@@ -140,26 +140,26 @@ export function Orders() {
   const [lateOrdersGrouped, setLateOrdersGrouped] = useState([]);
   const [orderDirection, setOrderDirection] = useState('asc'); // Estado para rastrear a direção da ordenação
   const holidays_br = new Set([
-  // Feriados Nacionais
-  '2024-01-01', // Confraternização Universal (Ano Novo)
-  '2024-02-13', // Carnaval
-  '2024-03-29', // Sexta-feira Santa
-  '2024-04-07', // Paixão de Cristo
-  '2024-04-21', // Tiradentes
-  '2024-05-01', // Dia do Trabalho
-  '2024-06-20', // Corpus Christi
-  '2024-09-07', // Independência do Brasil
-  '2024-10-12', // Nossa Senhora Aparecida
-  '2024-11-02', // Finados
-  '2024-11-15', // Proclamação da República
-  '2024-12-25', // Natal
+    // Feriados Nacionais
+    '2024-01-01', // Confraternização Universal (Ano Novo)
+    '2024-02-13', // Carnaval
+    '2024-03-29', // Sexta-feira Santa
+    '2024-04-07', // Paixão de Cristo
+    '2024-04-21', // Tiradentes
+    '2024-05-01', // Dia do Trabalho
+    '2024-06-20', // Corpus Christi
+    '2024-09-07', // Independência do Brasil
+    '2024-10-12', // Nossa Senhora Aparecida
+    '2024-11-02', // Finados
+    '2024-11-15', // Proclamação da República
+    '2024-12-25', // Natal
 
-  // Feriados Estaduais
-  '2024-07-09', // Revolução Constitucionalista
+    // Feriados Estaduais
+    '2024-07-09', // Revolução Constitucionalista
 
-  // Feriados Municipais
-  '2024-01-25', // Aniversário da Cidade de São Paulo
-  '2024-11-20', // Consiencia Negra
+    // Feriados Municipais
+    '2024-01-25', // Aniversário da Cidade de São Paulo
+    '2024-11-20', // Consiencia Negra
   ]);
 
   const handleOpenPopup = () => {
@@ -232,7 +232,6 @@ export function Orders() {
         order.status === 'open' &&
         order.payment_status === 'paid',
     ).length;
-    console.log(lateCount);
     setTotalUnpacked(unpackedCount);
     setTotalShipped(shippedCount);
     setTotalLate(lateCount);
@@ -368,16 +367,11 @@ export function Orders() {
 
     setLateOrdersGrouped(sortData(result, orderDirection));
   }, [ordersAllTodayWithPartner, orderDirection]);
-  console.log(ordersAllTodayWithPartner);
+
   // Função para calcular os dias úteis em atraso
   const calculateBusinessDaysLate = startDate => {
     const today = new Date();
     const start = new Date(startDate);
-    const holidays_br = new Holidays('BR', 'sp');
-    const isHoliday = (start) => {
-      const holiday = holidays_br.isHoliday(start); // Retorna o feriado se for, ou `null`
-      return !!holiday;
-    };
     let businessDays = 0;
 
     while (start < today) {
@@ -402,7 +396,7 @@ export function Orders() {
   const toggleSortOrder = () => {
     const newDirection = orderDirection === 'asc' ? 'desc' : 'asc';
     setOrderDirection(newDirection);
-    setLateOrdersGrouped((prevData) => sortData([...prevData], newDirection));
+    setLateOrdersGrouped(prevData => sortData([...prevData], newDirection));
   };
 
   /** ---------- -------- ------------*/
@@ -680,62 +674,69 @@ export function Orders() {
         action={'Excluir'}
       />
       <Popup
-            open={isPopupOpen}
-            onClose={handleIsClosePopup}
-            size="lg"
-            title="Pedidos em Atraso"
-          >
-            <Table.Root variant="surface" layout={layout}>
-              <Table.Header style={{ backgroundColor: 'lightgray' }}>
+        open={isPopupOpen}
+        onClose={handleIsClosePopup}
+        size='lg'
+        title='Pedidos em Atraso'
+      >
+        <Theme>
+          <Table.Root variant='surface' layout={layout}>
+            <Table.Header style={{ backgroundColor: 'lightgray' }}>
+              <Table.Row>
+                <Table.ColumnHeaderCell
+                  onClick={toggleSortOrder}
+                  style={{ cursor: 'pointer' }}
+                >
+                  <Flex align={'center'} gap={'1'}>
+                    Data
+                    {orderDirection === 'asc' ? (
+                      <FaChevronUp />
+                    ) : (
+                      <FaChevronDown />
+                    )}
+                  </Flex>
+                </Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>
+                  Quantidade de Pedidos
+                </Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Dias em Atraso</Table.ColumnHeaderCell>
+              </Table.Row>
+            </Table.Header>
+            <Table.Body>
+              {isLoading ? (
                 <Table.Row>
-                  <Table.ColumnHeaderCell
-                    onClick={toggleSortOrder}
-                    style={{ cursor: 'pointer' }}
-                  >
-                    Data {orderDirection === 'asc' ? '⬆️' : '⬇️'}
-                  </Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell>
-                    Quantidade de Pedidos
-                  </Table.ColumnHeaderCell>
-                  <Table.ColumnHeaderCell>
-                    Dias em Atraso
-                  </Table.ColumnHeaderCell>
+                  <Table.Cell justify={'center'} colSpan={4}>
+                    <Loading />
+                  </Table.Cell>
                 </Table.Row>
-              </Table.Header>
-              <Table.Body>
-                {isLoading ? (
-                  <Table.Row>
-                    <Table.Cell justify={'center'} colSpan={4}>
-                      <Loading />
-                    </Table.Cell>
+              ) : lateOrdersGrouped.length === 0 ? (
+                <Table.Row>
+                  <Table.Cell justify={'center'} colSpan={7}>
+                    Nenhum pedido em atraso
+                  </Table.Cell>
+                </Table.Row>
+              ) : (
+                lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
+                  <Table.Row key={index} className='row-order'>
+                    {daysLate === 3 ? (
+                      ''
+                    ) : (
+                      <>
+                        <Table.Cell>{date}</Table.Cell>
+                        <Table.Cell>{count}</Table.Cell>
+                        <Table.Cell>
+                          {daysLate - 3} {daysLate - 3 === 1 ? 'dia' : 'dias'}{' '}
+                          em atraso
+                        </Table.Cell>
+                      </>
+                    )}
                   </Table.Row>
-                ) : lateOrdersGrouped.length === 0 ? (
-                  <Table.Row>
-                    <Table.Cell justify={'center'} colSpan={7}>
-                      Nenhum pedido em atraso
-                    </Table.Cell>
-                  </Table.Row>
-                ) : (
-                  lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
-                      <Table.Row key={index} className="row-order" >
-                        {daysLate === 3 ? (
-                          ''
-                        ) : (
-                          <>
-                            <Table.Cell>{date}</Table.Cell>
-                            <Table.Cell>{count}</Table.Cell>
-                            <Table.Cell>
-                              {daysLate - 3}{' '}
-                              {daysLate - 3 === 1 ? 'dia' : 'dias'} em atraso
-                            </Table.Cell>
-                          </>
-                        )}
-                      </Table.Row>
-                  ))
-                )}
-              </Table.Body>
-            </Table.Root>
-          </Popup>
+                ))
+              )}
+            </Table.Body>
+          </Table.Root>
+        </Theme>
+      </Popup>
     </Theme>
   );
 }
