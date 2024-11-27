@@ -91,6 +91,7 @@ export interface Order {
   }
   payment_status: string;
   created_at: string;
+  paid_at: string;
   total: string;
   coupon: Coupon[];
 }

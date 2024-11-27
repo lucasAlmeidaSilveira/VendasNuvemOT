@@ -217,21 +217,21 @@ export function Orders() {
         order.status === 'open' &&
         !isLate(order) &&
         order.payment_status === 'paid',
-    ).length;
+    );
 
     const shippedCount = ordersAllTodayWithPartner.filter(
       order =>
         order.shipping_status === 'shipped' &&
         order.status === 'open' &&
         order.payment_status === 'paid',
-    ).length;
+    );
 
     const lateCount = ordersAllTodayWithPartner.filter(
       order =>
         isLate(order) &&
         order.status === 'open' &&
         order.payment_status === 'paid',
-    ).length;
+    );
     setTotalUnpacked(unpackedCount);
     setTotalShipped(shippedCount);
     setTotalLate(lateCount);
@@ -347,26 +347,20 @@ export function Orders() {
   };
 
   useEffect(() => {
-    const groupedLateOrders = ordersAllTodayWithPartner
-      .filter(
-        order =>
-          isLate(order) &&
-          order.status === 'open' &&
-          order.payment_status === 'paid',
-      )
-      .reduce((acc, order) => {
+    if (totalLate) {
+      const groupedLateOrders = totalLate.reduce((acc, order) => {
         const date = order.created_at.split('T')[0];
         acc[date] = (acc[date] || 0) + 1;
         return acc;
       }, {});
 
-    const result = Object.entries(groupedLateOrders).map(([date, count]) => {
-      const daysLate = calculateBusinessDaysLate(date);
-      return { date, count, daysLate };
-    });
-
-    setLateOrdersGrouped(sortData(result, orderDirection));
-  }, [ordersAllTodayWithPartner, orderDirection]);
+      const result = Object.entries(groupedLateOrders).map(([date, count]) => {
+        const daysLate = calculateBusinessDaysLate(date);
+        return { date, count, daysLate };
+      });
+      setLateOrdersGrouped(sortData(result, orderDirection));
+    }
+  }, [totalLate, orderDirection]);
 
   // Função para calcular os dias úteis em atraso
   const calculateBusinessDaysLate = startDate => {
@@ -437,7 +431,7 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('unpacked')}
         >
           <span>Em produção</span>
-          <span>{isLoading ? <Loading /> : totalUnpacked}</span>
+          <span>{isLoading ? <Loading /> : totalUnpacked.length}</span>
         </div>
         <div
           className={`status-filter ${
@@ -446,7 +440,7 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('shipped')}
         >
           <span>Enviados</span>
-          <span>{isLoading ? <Loading /> : totalShipped}</span>
+          <span>{isLoading ? <Loading /> : totalShipped.length}</span>
         </div>
         <div
           className={`status-filter ${
@@ -455,7 +449,7 @@ export function Orders() {
           onClick={() => handleStatusBlockClick('late')}
         >
           <span>Em atraso</span>
-          <span>{isLoading ? <Loading /> : totalLate}</span>
+          <span>{isLoading ? <Loading /> : totalLate.length}</span>
         </div>
       </StatusFilterContainer>
       <FilterContainer>
@@ -699,7 +693,7 @@ export function Orders() {
                 <Table.ColumnHeaderCell>
                   Quantidade de Pedidos
                 </Table.ColumnHeaderCell>
-                <Table.ColumnHeaderCell>Dias em Atraso</Table.ColumnHeaderCell>
+                <Table.ColumnHeaderCell>Dias de Atraso</Table.ColumnHeaderCell>
               </Table.Row>
             </Table.Header>
             <Table.Body>
@@ -718,18 +712,13 @@ export function Orders() {
               ) : (
                 lateOrdersGrouped.map(({ date, count, daysLate }, index) => (
                   <Table.Row key={index} className='row-order'>
-                    {daysLate === 3 ? (
-                      ''
-                    ) : (
-                      <>
-                        <Table.Cell>{date}</Table.Cell>
-                        <Table.Cell>{count}</Table.Cell>
-                        <Table.Cell>
-                          {daysLate - 3} {daysLate - 3 === 1 ? 'dia' : 'dias'}{' '}
-                          em atraso
-                        </Table.Cell>
-                      </>
-                    )}
+                    <Table.Cell>{date}</Table.Cell>
+                    <Table.Cell>{count}</Table.Cell>
+                    <Table.Cell>
+                      {daysLate === 3
+                        ? 'hoje'
+                        : `${daysLate - 3} ${daysLate - 3 === 1 ? 'dia' : 'dias'}`}
+                    </Table.Cell>
                   </Table.Row>
                 ))
               )}

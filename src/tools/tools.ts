@@ -196,7 +196,7 @@ function addBusinessDays(startDate, days) {
 
 export const isLate = (order: Order) => {
   const shippingDays = 4;
-  const shippingDeadline = addBusinessDays(order.created_at, shippingDays);
+  const shippingDeadline = addBusinessDays(order.paid_at, shippingDays);
 
   return (
     new Date() > shippingDeadline &&
