@@ -17,7 +17,7 @@ export function BestSellers() {
   const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, artesanais: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
   const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0, artesanais: 0 }, valor: { quadros: 0, espelhos: 0, artesanais: 0 } });
   const [selectedCategory, setSelectedCategory] = useState('Quadro Decorativo'); // Estado para a categoria selecionada
-  const { ordersToday } = filterOrders(allOrders, date);
+  const { ordersTodayPaid } = filterOrders(allOrders, date);
 
   useEffect(() => {
     const totals = { vendas: 0, valor: 0 }; // Para calcular os totais gerais
@@ -25,7 +25,7 @@ export function BestSellers() {
     const processProducts = (category) => {
       let totalCategoryValue = 0;
       let totalCategorySales = 0;
-      const processedProducts = ordersToday.reduce((acc, order) => {
+      const processedProducts = ordersTodayPaid.reduce((acc, order) => {
         order.products.forEach((product) => {
           if (product.name.includes(category)) {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
@@ -83,7 +83,7 @@ export function BestSellers() {
     const processVariations = (category) => {
       const variationCounts = {};
 
-      ordersToday.forEach(order => {
+      ordersTodayPaid.forEach(order => {
         order.products.forEach(product => {
           if (product.name.includes(category)) {
             const variation = product.variant_values.length > 0 ? product.variant_values.join(", ") : 'Slim';

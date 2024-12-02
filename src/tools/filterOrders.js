@@ -26,7 +26,7 @@ export function filterOrders(orders, date) {
     );
 
   const ordersToday = filterOrdersByConditions(order => order.status !== 'cancelled' && order.payment_status !== 'voided');
-  const ordersTodayPaid = filterOrdersByConditions(order => order.payment_status === 'paid');
+  const ordersTodayPaid = filterOrdersByConditions(order => order.payment_status === 'paid' && order.status !== 'cancelled' && order.payment_status !== 'voided');
   const ordersAllToday = filterOrdersByConditions(() => true);
   const ordersAllTodayWithPartner = orders.filter(order =>
     isOrderOnDate(order.created_at, date) && order.status !== 'cancelled'
