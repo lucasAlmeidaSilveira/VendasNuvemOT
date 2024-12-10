@@ -1,4 +1,4 @@
-import { ReactNode } from "react";
+import { ReactNode } from 'react';
 
 export interface DataSectionTPagoProps {
   title: string;
@@ -27,20 +27,20 @@ export interface DataSectionTPagoAPProps {
 }
 
 type Verba = {
-  google: number,
-  googleEcom: number,
-  googleQuadros: number,
-  googleEspelhos: number,
-  googleLoja: number,
-  googleGeral: number,
-  meta: number,
-  metaEcom: number,
-  metaChatbot: number,
-  metaQuadros: number,
-  metaEspelhos: number,
-  metaInstagram: number,
-  metaGeral: number,
-}
+  google: number;
+  googleEcom: number;
+  googleQuadros: number;
+  googleEspelhos: number;
+  googleLoja: number;
+  googleGeral: number;
+  meta: number;
+  metaEcom: number;
+  metaChatbot: number;
+  metaQuadros: number;
+  metaEspelhos: number;
+  metaInstagram: number;
+  metaGeral: number;
+};
 
 export interface DataSectionCartProps {
   bgcolor: string;
@@ -60,12 +60,22 @@ export interface DataSectionCostsProps {
   totalAdSpend: number | string;
   totalOrdersFormatted: number;
   isLoadingADSGoogle: boolean;
-  isLoadingADSMeta: boolean
+  isLoadingADSMeta: boolean;
 }
 
 export interface DataSectionAnalyticsProps {
   bgcolor: string;
   totalAdSpend: number;
+}
+
+export interface PlanilhaAnalyticsProps {
+  bgcolor: string; // Cor de fundo do componente
+  ordersToday: Array<{
+    contact_name: string;
+    total: string;
+    billing_name: string;
+  }>; // Lista de pedidos no formato esperado
+  isLoadingPlanilha: boolean;
 }
 
 export interface Coupon {
@@ -88,7 +98,7 @@ export interface Order {
   shipping_max_days: number;
   payment_details: {
     method: string;
-  }
+  };
   payment_status: string;
   created_at: string;
   paid_at: string;

@@ -37,16 +37,13 @@ export function Statistics() {
   });
 
   // Filtros para pedidos
-  const {
-    ordersToday,
-    totalPaidAmountFormatted,
-    totalPaidAllAmountFormatted,
-  } = filterOrders(allOrders, date);
+  const { ordersToday, totalPaidAmountFormatted, totalPaidAllAmountFormatted } =
+    filterOrders(allOrders, date);
 
   useEffect(() => {
     if (data) {
       setUsersByDevice(data.usersByDevice);
-      setAdSpends(prev => ({
+      setAdSpends((prev) => ({
         ...prev,
         google: data.totalCost.all,
         googleEcom: data.totalCost.ecom,
@@ -58,7 +55,7 @@ export function Statistics() {
     }
     if (dataADSMeta?.length > 0) {
       const firstEntry = dataADSMeta[0];
-      setAdSpends(prev => ({
+      setAdSpends((prev) => ({
         ...prev,
         meta: firstEntry.totalCost.all,
         metaEcom: firstEntry.totalCost.ecom,
@@ -93,12 +90,13 @@ export function Statistics() {
     analytics: '#006BC8',
     conversaoVendas: '#592DEA',
     payment: '#008006',
+    planilhaAnalytics: '#7002d0',
   };
 
   return (
     <Container>
       <DataSectionTPago
-        title='Geral'
+        title="Geral"
         bgcolor={bgColors.trafegoPago}
         verba={adSpends}
         totalOrdersFormatted={totalPaidAmountFormatted}
@@ -128,12 +126,12 @@ export function Statistics() {
 
       <ContainerCharts>
         <Chart
-          title='Sessões por dispositivo'
+          title="Sessões por dispositivo"
           usersByDevice={usersByDevice}
           loading={isLoadingADSGoogle}
         />
         <ChartStates
-          title='Vendas por estado'
+          title="Vendas por estado"
           orders={ordersToday}
           loading={isLoading}
         />
@@ -141,7 +139,7 @@ export function Statistics() {
 
       <ContainerCharts>
         <ChartLine
-          title='Vendas por período'
+          title="Vendas por período"
           orders={ordersToday}
           loading={isLoading}
         />

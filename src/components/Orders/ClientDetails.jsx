@@ -1,8 +1,12 @@
 import React, { useState } from 'react';
 import { styled } from '@mui/material/styles';
 import { ContainerDetails, RowTitle } from './styles';
-import { formatCurrency, formatDateToUTC, formatPhoneNumber } from '../../tools/tools.ts';
-import { FaWhatsapp } from "react-icons/fa";
+import {
+  formatCurrency,
+  formatDateToUTC,
+  formatPhoneNumber,
+} from '../../tools/tools.ts';
+import { FaWhatsapp } from 'react-icons/fa';
 import { TooltipInfo } from '../TooltipInfo';
 import { AiFillMessage } from 'react-icons/ai';
 import { getLinkNoteTiny, getOrderTiny } from '../../api';
@@ -46,7 +50,8 @@ export function ClientDetails({ order }) {
 
       if (isEcom) {
         const fetchedOrder = await getOrderTiny(numberOrder, cpf);
-        const isNote = fetchedOrder.situacao !== 'Em aberto' &&
+        const isNote =
+          fetchedOrder.situacao !== 'Em aberto' &&
           fetchedOrder.situacao !== 'Aprovado' &&
           fetchedOrder.situacao !== 'Preparando envio' &&
           fetchedOrder.situacao !== 'Cancelado';
@@ -56,7 +61,9 @@ export function ClientDetails({ order }) {
           setNoteLink(linkNote);
         }
         if (fetchedOrder && fetchedOrder.marcadores) {
-          setMarkOrderTiny(fetchedOrder.marcadores.map((item) => item.marcador));
+          setMarkOrderTiny(
+            fetchedOrder.marcadores.map((item) => item.marcador),
+          );
         }
       }
     } catch (error) {
@@ -101,7 +108,7 @@ export function ClientDetails({ order }) {
 
   async function handleInfoOrderTiny() {
     await infoOrderTiny(order.number, order.contact_identification);
-  };
+  }
 
   // Chamar infoOrderTiny quando o componente for montado
   React.useEffect(() => {
@@ -121,7 +128,7 @@ export function ClientDetails({ order }) {
       }
       return resultDate;
     };
-    
+
     const deliveryDate = addBusinessDays(startDate, days);
 
     return `${formatDateToUTC(deliveryDate, 'dateSimple')}`;
@@ -129,40 +136,41 @@ export function ClientDetails({ order }) {
 
   return (
     <Theme hasBackground={false} style={{ minHeight: '10%' }}>
-    <ContainerDetails>
-      <RowTitle>
-        <h3>{order.contact_name}</h3>
+      <ContainerDetails>
+        <RowTitle>
+          <h3>{order.contact_name}</h3>
 
-        {isLoadingNote ? (
-          <Oval
-            height={16}
-            width={16}
-            color="#1874cd"
-            visible={true}
-            ariaLabel='oval-loading'
-            strokeWidth={4}
-            strokeWidthSecondary={4}
-          />
-        ) : (
-          markOrderTiny.length >= 1 && (
+          {isLoadingNote ? (
+            <Oval
+              height={16}
+              width={16}
+              color="#1874cd"
+              visible={true}
+              ariaLabel="oval-loading"
+              strokeWidth={4}
+              strokeWidthSecondary={4}
+            />
+          ) : (
+            markOrderTiny.length >= 1 &&
             markOrderTiny.map((marcador) => (
-              <Tag key={marcador.id}>{formatDescription(marcador.descricao)}</Tag>
+              <Tag key={marcador.id}>
+                {formatDescription(marcador.descricao)}
+              </Tag>
             ))
-          )
-        )}
+          )}
 
-        {order.note && (
-          <TooltipInfo title={order.note}>
-            <AiFillMessage color={'var(--geralblack-80'} />
+          {order.note && (
+            <TooltipInfo title={order.note}>
+              <AiFillMessage color={'var(--geralblack-80'} />
+            </TooltipInfo>
+          )}
+
+          <TooltipInfo title={'Atualizar informações do Tiny'}>
+            <IoReload className="btn-reload" onClick={handleInfoOrderTiny} />
           </TooltipInfo>
-        )}
+        </RowTitle>
 
-        <TooltipInfo title={'Atualizar informações do Tiny'}>
-          <IoReload className='btn-reload' onClick={handleInfoOrderTiny} />
-        </TooltipInfo>
-      </RowTitle>
-
-        <Table.Root variant='surface' layout={'auto'}>
+        <Table.Root variant="surface" layout={'auto'}>
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>CPF/CNPJ</Table.ColumnHeaderCell>
@@ -179,9 +187,14 @@ export function ClientDetails({ order }) {
               <Table.Cell p={'4'}>
                 {order.contact_phone ? (
                   <>
-                    <a className='link-whatsapp' href={linkWhats(order.contact_name, order.contact_phone)} target='_blank' rel='noopener noreferrer'>
+                    <a
+                      className="link-whatsapp"
+                      href={linkWhats(order.contact_name, order.contact_phone)}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
                       {formatPhoneNumber(order.contact_phone)}
-                      <FaWhatsapp size={20} color='var(--uipositive-100)' />
+                      <FaWhatsapp size={20} color="var(--uipositive-100)" />
                     </a>
                   </>
                 ) : (
@@ -191,7 +204,8 @@ export function ClientDetails({ order }) {
               <Table.Cell p={'4'}>
                 {order.shipping_address.city}, {order.shipping_address.province}
                 <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
-                  {order.shipping_address.address}, {order.shipping_address.number}
+                  {order.shipping_address.address},{' '}
+                  {order.shipping_address.number}
                 </p>
               </Table.Cell>
               <Table.Cell p={'4'}>
@@ -201,16 +215,16 @@ export function ClientDetails({ order }) {
                     width={16}
                     color="#1874cd"
                     visible={true}
-                    ariaLabel='oval-loading'
+                    ariaLabel="oval-loading"
                     strokeWidth={4}
                     strokeWidthSecondary={4}
                   />
+                ) : noteLink ? (
+                  <a href={noteLink} target="_blank" rel="noopener noreferrer">
+                    Clique para visualizar
+                  </a>
                 ) : (
-                  noteLink ? (
-                    <a href={noteLink} target="_blank" rel="noopener noreferrer">Clique para visualizar</a>
-                  ) : (
-                    'Não disponível'
-                  )
+                  'Não disponível'
                 )}
               </Table.Cell>
             </Table.Row>
@@ -219,7 +233,9 @@ export function ClientDetails({ order }) {
             <Table.Row>
               <Table.ColumnHeaderCell>Data da compra</Table.ColumnHeaderCell>
               {/* <Table.ColumnHeaderCell>Última atualização</Table.ColumnHeaderCell> */}
-              <Table.ColumnHeaderCell>Previsão de entrega</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>
+                Previsão de entrega
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Página do pedido</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Cupom de desconto</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Frete</Table.ColumnHeaderCell>
@@ -227,16 +243,21 @@ export function ClientDetails({ order }) {
           </Table.Header>
           <Table.Body>
             <Table.Row>
-              <Table.Cell p={'4'}>{formatDateToUTC(order.created_at)}</Table.Cell>
+              <Table.Cell p={'4'}>
+                {formatDateToUTC(order.created_at)}
+              </Table.Cell>
               {/* <Table.Cell p={'4'}>{formatDateToUTC(order.updated_at)}</Table.Cell> */}
               <Table.Cell p={'4'}>
-                {calculateEstimatedDeliveryDate(order.created_at, order.shipping_max_days)}
+                {calculateEstimatedDeliveryDate(
+                  order.created_at,
+                  order.shipping_max_days,
+                )}
               </Table.Cell>
               <Table.Cell p={'4'}>
                 <a
                   href={createUrlPageBuy(order.id, order.token)}
-                  target='_blank'
-                  rel='noopener noreferrer'
+                  target="_blank"
+                  rel="noopener noreferrer"
                 >
                   Link de acompanhamento
                 </a>
@@ -244,12 +265,14 @@ export function ClientDetails({ order }) {
               <Table.Cell p={'4'}>{formatCoupon(order.coupon)}</Table.Cell>
               <Table.Cell p={'4'}>
                 {shippingCost(order.shipping_cost_customer)}
-                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>{order.shipping_option}</p>
+                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
+                  {order.shipping_option}
+                </p>
               </Table.Cell>
             </Table.Row>
           </Table.Body>
         </Table.Root>
-    </ContainerDetails>
+      </ContainerDetails>
     </Theme>
   );
 }

@@ -55,6 +55,7 @@ export async function createProduct(store, body) {
 }
 
 export async function createOrder(newOrder) {
+  console.log(newOrder);
   try {
     // Chama a rota do backend para adicionar o pedido
     const response = await fetch(
@@ -112,7 +113,7 @@ export async function getOrderTiny(id, cpf) {
     if (response) {
       return response.json();
     }
-    return
+    return;
   } catch (error) {
     // console.log(error);
   }
@@ -133,7 +134,7 @@ export async function getLinkNoteTiny(id, cpf) {
     if (response) {
       return response.json();
     }
-    return
+    return;
   } catch (error) {
     // console.log(error);
   }

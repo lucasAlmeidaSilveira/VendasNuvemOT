@@ -57,10 +57,10 @@ export function OrderPopup({ open, onClose }) {
   const resetInputs = () => {
     setCreatedAt(new Date());
     setTotal('0');
-    setNote('')
+    setNote('');
   };
 
-  const handleDateChange = e => {
+  const handleDateChange = (e) => {
     const date = new Date(e.target.value);
     if (!isNaN(date)) {
       // Adiciona 3 horas à data selecionada
@@ -69,11 +69,11 @@ export function OrderPopup({ open, onClose }) {
     }
   };
 
-  const handleNote = e => {
+  const handleNote = (e) => {
     setNote(e.target.value);
   };
 
-  const formatCurrency = value => {
+  const formatCurrency = (value) => {
     // Remove qualquer coisa que não seja número ou ponto
     value = value.replace(/\D/g, '');
 
@@ -150,11 +150,11 @@ export function OrderPopup({ open, onClose }) {
         billing_phone: 'Loja',
         billing_province: 'São Paulo',
         note: note,
-        storefront: 'Loja',
-        owner_note: 'Chatbot',
+        storefront: 'Loja Fisica',
+        owner_note: 'Teste',
         contact_email: user.email,
         contact_identification: '99999999999',
-        contact_name: `Chatbot: ${user.displayName.split(' ')[0]}`,
+        contact_name: `Teste: ${user.displayName.split(' ')[0]}`,
         contact_phone: '+5511999999999',
         shipping_option: 'Entrega Loja',
         currency: 'BRL',
@@ -210,37 +210,37 @@ export function OrderPopup({ open, onClose }) {
         <DialogContent>
           <ContainerButton>
             <TextFieldInput
-              variant='filled'
-              label='Data da Compra'
-              type='date'
-              size='small'
+              variant="filled"
+              label="Data da Compra"
+              type="date"
+              size="small"
               value={createdAt.toISOString().split('T')[0]} // Converte a data para o formato 'yyyy-mm-dd'
               onChange={handleDateChange}
             />
             <TextFieldInput
-              variant='filled'
-              type='text'
-              label='Total da Compra'
-              size='small'
+              variant="filled"
+              type="text"
+              label="Total da Compra"
+              size="small"
               value={total}
-              onChange={e => setTotal(formatCurrency(e.target.value))}
+              onChange={(e) => setTotal(formatCurrency(e.target.value))}
               required
             />
             <TextFieldInput
-              variant='filled'
-              type='text'
-              label='Observações'
-              size='small'
+              variant="filled"
+              type="text"
+              label="Observações"
+              size="small"
               value={note}
               onChange={handleNote}
             />
           </ContainerButton>
         </DialogContent>
         <DialogActions>
-          <Button onClick={onClose} className='simple'>
+          <Button onClick={onClose} className="simple">
             Cancelar
           </Button>
-          <Button onClick={handleSubmit} className='confirm'>
+          <Button onClick={handleSubmit} className="confirm">
             Cadastrar
           </Button>
         </DialogActions>
