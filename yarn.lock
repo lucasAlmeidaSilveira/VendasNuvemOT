@@ -5621,7 +5621,6 @@ util-deprecate@~1.0.1:
     react-query "^3.39.3"
     recharts "^2.12.7"
     styled-components "^6.1.1"
-    vendasnuvemot "file:"
     xlsx "^0.18.5"
 
 victory-vendor@^36.6.8:
