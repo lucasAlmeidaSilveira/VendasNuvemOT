@@ -37,7 +37,7 @@ export function Products() {
             const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
 
             // Verificar se o produto é "Produto Loja" e pular se for
-            if (cleanedName.toLowerCase() === "produto loja") {
+            if (cleanedName.toLowerCase().includes("produto")) {
               return; // Pula este produto
             }
 
