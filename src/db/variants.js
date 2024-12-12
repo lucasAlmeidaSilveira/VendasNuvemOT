@@ -8440,7 +8440,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "309.80",
-    "promotional_price": "139.41",
+    "promotional_price": "185.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-1",
     "weight": "0.500",
@@ -8462,7 +8462,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "548.20",
-    "promotional_price": "246.69",
+    "promotional_price": "328.92",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-1",
     "weight": "0.500",
@@ -8484,7 +8484,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "914.80",
-    "promotional_price": "411.66",
+    "promotional_price": "548.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-1",
     "weight": "0.500",
@@ -8506,7 +8506,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1281.50",
-    "promotional_price": "576.68",
+    "promotional_price": "768.90",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-1",
     "weight": "0.500",
@@ -8528,7 +8528,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -8550,7 +8550,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -8572,7 +8572,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -8594,7 +8594,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -8616,7 +8616,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -8638,7 +8638,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -8660,7 +8660,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -8682,7 +8682,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -8704,7 +8704,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -8726,7 +8726,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -8748,7 +8748,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -8770,7 +8770,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -8792,7 +8792,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -8814,7 +8814,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -8836,7 +8836,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -8858,7 +8858,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -8880,7 +8880,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -8902,7 +8902,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -8924,7 +8924,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -8946,7 +8946,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -8968,7 +8968,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -8990,7 +8990,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -9012,7 +9012,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -9034,7 +9034,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -9056,7 +9056,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -9078,7 +9078,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -9100,7 +9100,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -9122,7 +9122,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -9144,7 +9144,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -9166,7 +9166,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -9188,7 +9188,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -9210,7 +9210,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -9232,7 +9232,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "511.50",
-    "promotional_price": "230.18",
+    "promotional_price": "306.90",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -9254,7 +9254,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -9276,7 +9276,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -9298,7 +9298,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -9320,7 +9320,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -9342,7 +9342,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "870.80",
-    "promotional_price": "391.86",
+    "promotional_price": "522.48",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -9364,7 +9364,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -9386,7 +9386,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -9408,7 +9408,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -9430,7 +9430,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -9452,7 +9452,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1373.20",
-    "promotional_price": "617.94",
+    "promotional_price": "823.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -9474,7 +9474,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -9496,7 +9496,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -9518,7 +9518,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -9540,7 +9540,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -9562,7 +9562,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2198.20",
-    "promotional_price": "989.19",
+    "promotional_price": "1318.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -9584,7 +9584,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -9606,7 +9606,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -9628,7 +9628,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -9650,7 +9650,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -9672,7 +9672,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "1061.50",
-    "promotional_price": "477.68",
+    "promotional_price": "636.90",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-1",
     "weight": "10.000",
@@ -9694,7 +9694,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "2377.80",
-    "promotional_price": "1070.01",
+    "promotional_price": "1426.68",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-1",
     "weight": "10.000",
@@ -9716,7 +9716,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "4214.80",
-    "promotional_price": "1896.66",
+    "promotional_price": "2528.88",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-1",
     "weight": "10.000",
@@ -9738,7 +9738,7 @@ export const APoneFrameHorizontal = [
       }
     ],
     "price": "6598.20",
-    "promotional_price": "2969.19",
+    "promotional_price": "3958.92",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-1",
     "weight": "10.000",
@@ -9763,7 +9763,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "309.80",
-    "promotional_price": "139.41",
+    "promotional_price": "185.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-1",
     "weight": "0.500",
@@ -9785,7 +9785,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "548.20",
-    "promotional_price": "246.69",
+    "promotional_price": "328.92",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-1",
     "weight": "0.500",
@@ -9807,7 +9807,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "914.80",
-    "promotional_price": "411.66",
+    "promotional_price": "548.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-1",
     "weight": "0.500",
@@ -9829,7 +9829,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1281.50",
-    "promotional_price": "576.68",
+    "promotional_price": "768.90",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-1",
     "weight": "0.500",
@@ -9851,7 +9851,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -9873,7 +9873,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -9895,7 +9895,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -9917,7 +9917,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-1",
     "weight": "6.100",
@@ -9939,7 +9939,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -9961,7 +9961,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -9983,7 +9983,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -10005,7 +10005,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-1",
     "weight": "6.100",
@@ -10027,7 +10027,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -10049,7 +10049,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -10071,7 +10071,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -10093,7 +10093,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-1",
     "weight": "6.100",
@@ -10115,7 +10115,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -10137,7 +10137,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -10159,7 +10159,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -10181,7 +10181,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-1",
     "weight": "6.100",
@@ -10203,7 +10203,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -10225,7 +10225,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -10247,7 +10247,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -10269,7 +10269,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-1",
     "weight": "10.000",
@@ -10291,7 +10291,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -10313,7 +10313,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -10335,7 +10335,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -10357,7 +10357,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-1",
     "weight": "10.000",
@@ -10379,7 +10379,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -10401,7 +10401,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -10423,7 +10423,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -10445,7 +10445,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-1",
     "weight": "10.000",
@@ -10467,7 +10467,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -10489,7 +10489,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -10511,7 +10511,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -10533,7 +10533,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-1",
     "weight": "10.000",
@@ -10555,7 +10555,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "511.50",
-    "promotional_price": "230.18",
+    "promotional_price": "306.90",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -10577,7 +10577,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -10599,7 +10599,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -10621,7 +10621,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -10643,7 +10643,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-1",
     "weight": "10.000",
@@ -10665,7 +10665,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "870.80",
-    "promotional_price": "391.86",
+    "promotional_price": "522.48",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -10687,7 +10687,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -10709,7 +10709,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -10731,7 +10731,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -10753,7 +10753,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-1",
     "weight": "10.000",
@@ -10775,7 +10775,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1373.20",
-    "promotional_price": "617.94",
+    "promotional_price": "823.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -10797,7 +10797,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -10819,7 +10819,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -10841,7 +10841,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -10863,7 +10863,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-1",
     "weight": "10.000",
@@ -10885,7 +10885,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2198.20",
-    "promotional_price": "989.19",
+    "promotional_price": "1318.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -10907,7 +10907,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -10929,7 +10929,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -10951,7 +10951,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -10973,7 +10973,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-1",
     "weight": "10.000",
@@ -10995,7 +10995,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "1061.50",
-    "promotional_price": "477.68",
+    "promotional_price": "636.90",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-1",
     "weight": "10.000",
@@ -11017,7 +11017,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "2377.80",
-    "promotional_price": "1070.01",
+    "promotional_price": "1426.68",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-1",
     "weight": "10.000",
@@ -11039,7 +11039,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "4214.80",
-    "promotional_price": "1896.66",
+    "promotional_price": "2528.88",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-1",
     "weight": "10.000",
@@ -11061,7 +11061,7 @@ export const APoneFrameVertical = [
       }
     ],
     "price": "6598.20",
-    "promotional_price": "2969.19",
+    "promotional_price": "3958.92",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-1",
     "weight": "10.000",
@@ -11086,7 +11086,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "309.80",
-    "promotional_price": "139.41",
+    "promotional_price": "185.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-50x50-1",
     "weight": "0.500",
@@ -11108,7 +11108,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "548.20",
-    "promotional_price": "246.69",
+    "promotional_price": "328.92",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-70x70-1",
     "weight": "0.500",
@@ -11130,7 +11130,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "914.80",
-    "promotional_price": "411.66",
+    "promotional_price": "548.88",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-90x90-1",
     "weight": "0.500",
@@ -11152,7 +11152,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1281.50",
-    "promotional_price": "576.68",
+    "promotional_price": "768.90",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-120x120-1",
     "weight": "0.500",
@@ -11174,7 +11174,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-50x50-1",
     "weight": "6.100",
@@ -11196,7 +11196,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-50x50-1",
     "weight": "6.100",
@@ -11218,7 +11218,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-50x50-1",
     "weight": "6.100",
@@ -11240,7 +11240,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-50x50-1",
     "weight": "6.100",
@@ -11262,7 +11262,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-70x70-1",
     "weight": "6.100",
@@ -11284,7 +11284,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-70x70-1",
     "weight": "6.100",
@@ -11306,7 +11306,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-70x70-1",
     "weight": "6.100",
@@ -11328,7 +11328,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-70x70-1",
     "weight": "6.100",
@@ -11350,7 +11350,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-90x90-1",
     "weight": "6.100",
@@ -11372,7 +11372,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-90x90-1",
     "weight": "6.100",
@@ -11394,7 +11394,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-90x90-1",
     "weight": "6.100",
@@ -11416,7 +11416,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-90x90-1",
     "weight": "6.100",
@@ -11438,7 +11438,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-120x120-1",
     "weight": "6.100",
@@ -11460,7 +11460,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-120x120-1",
     "weight": "6.100",
@@ -11482,7 +11482,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-120x120-1",
     "weight": "6.100",
@@ -11504,7 +11504,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-120x120-1",
     "weight": "6.100",
@@ -11526,7 +11526,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-50x50-1",
     "weight": "5.000",
@@ -11548,7 +11548,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-50x50-1",
     "weight": "5.000",
@@ -11570,7 +11570,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-50x50-1",
     "weight": "5.000",
@@ -11592,7 +11592,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "584.80",
-    "promotional_price": "263.16",
+    "promotional_price": "350.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-50x50-1",
     "weight": "5.000",
@@ -11614,7 +11614,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-70x70-1",
     "weight": "5.000",
@@ -11636,7 +11636,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-70x70-1",
     "weight": "5.000",
@@ -11658,7 +11658,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-70x70-1",
     "weight": "5.000",
@@ -11680,7 +11680,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1024.80",
-    "promotional_price": "461.16",
+    "promotional_price": "614.88",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-70x70-1",
     "weight": "5.000",
@@ -11702,7 +11702,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-90x90-1",
     "weight": "5.000",
@@ -11724,7 +11724,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-90x90-1",
     "weight": "5.000",
@@ -11746,7 +11746,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-90x90-1",
     "weight": "5.000",
@@ -11768,7 +11768,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1666.50",
-    "promotional_price": "749.93",
+    "promotional_price": "999.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-90x90-1",
     "weight": "5.000",
@@ -11790,7 +11790,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-120x120-1",
     "weight": "5.000",
@@ -11812,7 +11812,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-120x120-1",
     "weight": "5.000",
@@ -11834,7 +11834,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-120x120-1",
     "weight": "5.000",
@@ -11856,7 +11856,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2663.80",
-    "promotional_price": "1198.71",
+    "promotional_price": "1598.28",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-120x120-1",
     "weight": "5.000",
@@ -11878,7 +11878,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-50x50-1",
     "weight": "5.000",
@@ -11900,7 +11900,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "511.50",
-    "promotional_price": "230.18",
+    "promotional_price": "306.90",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-50x50-1",
     "weight": "5.000",
@@ -11922,7 +11922,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-70x70-1",
     "weight": "5.000",
@@ -11944,7 +11944,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "870.80",
-    "promotional_price": "391.86",
+    "promotional_price": "522.48",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-70x70-1",
     "weight": "5.000",
@@ -11966,7 +11966,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-90x90-1",
     "weight": "5.000",
@@ -11988,7 +11988,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1373.20",
-    "promotional_price": "617.94",
+    "promotional_price": "823.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-90x90-1",
     "weight": "5.000",
@@ -12010,7 +12010,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-120x120-1",
     "weight": "5.000",
@@ -12032,7 +12032,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2198.20",
-    "promotional_price": "989.19",
+    "promotional_price": "1318.92",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-120x120-1",
     "weight": "5.000",
@@ -12054,7 +12054,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-50x50-1",
     "weight": "5.000",
@@ -12076,7 +12076,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-50x50-1",
     "weight": "5.000",
@@ -12098,7 +12098,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "845.20",
-    "promotional_price": "380.34",
+    "promotional_price": "507.12",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-50x50-1",
     "weight": "5.000",
@@ -12120,7 +12120,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-70x70-1",
     "weight": "5.000",
@@ -12142,7 +12142,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-70x70-1",
     "weight": "5.000",
@@ -12164,7 +12164,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1336.50",
-    "promotional_price": "601.43",
+    "promotional_price": "801.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-70x70-1",
     "weight": "5.000",
@@ -12186,7 +12186,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-90x90-1",
     "weight": "5.000",
@@ -12208,7 +12208,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-90x90-1",
     "weight": "5.000",
@@ -12230,7 +12230,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2014.80",
-    "promotional_price": "906.66",
+    "promotional_price": "1208.88",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-90x90-1",
     "weight": "5.000",
@@ -12252,7 +12252,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-120x120-1",
     "weight": "5.000",
@@ -12274,7 +12274,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-120x120-1",
     "weight": "5.000",
@@ -12296,7 +12296,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "3426.50",
-    "promotional_price": "1541.93",
+    "promotional_price": "2055.90",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-120x120-1",
     "weight": "5.000",
@@ -12318,7 +12318,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "1061.50",
-    "promotional_price": "477.68",
+    "promotional_price": "636.90",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-50x50-1",
     "weight": "5.000",
@@ -12340,7 +12340,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "2377.80",
-    "promotional_price": "1070.01",
+    "promotional_price": "1426.68",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-70x70-1",
     "weight": "5.000",
@@ -12362,7 +12362,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "4214.80",
-    "promotional_price": "1896.66",
+    "promotional_price": "2528.88",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-90x90-1",
     "weight": "5.000",
@@ -12384,7 +12384,7 @@ export const APoneFrameQuadrado = [
       }
     ],
     "price": "6598.20",
-    "promotional_price": "2969.19",
+    "promotional_price": "3958.92",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-120x120-1",
     "weight": "5.000",
@@ -12409,7 +12409,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "619.70",
-    "promotional_price": "278.87",
+    "promotional_price": "371.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-2",
     "weight": "0.500",
@@ -12431,7 +12431,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1096.30",
-    "promotional_price": "493.34",
+    "promotional_price": "657.78",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-2",
     "weight": "0.500",
@@ -12453,7 +12453,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1829.70",
-    "promotional_price": "823.37",
+    "promotional_price": "1097.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-2",
     "weight": "0.500",
@@ -12475,7 +12475,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2563.00",
-    "promotional_price": "1153.35",
+    "promotional_price": "1537.80",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-2",
     "weight": "0.500",
@@ -12497,7 +12497,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -12519,7 +12519,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -12541,7 +12541,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -12563,7 +12563,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -12585,7 +12585,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -12607,7 +12607,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -12629,7 +12629,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -12651,7 +12651,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -12673,7 +12673,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -12695,7 +12695,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -12717,7 +12717,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -12739,7 +12739,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -12761,7 +12761,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -12783,7 +12783,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -12805,7 +12805,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -12827,7 +12827,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -12849,7 +12849,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -12871,7 +12871,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -12893,7 +12893,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -12915,7 +12915,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -12937,7 +12937,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -12959,7 +12959,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -12981,7 +12981,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -13003,7 +13003,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -13025,7 +13025,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -13047,7 +13047,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -13069,7 +13069,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -13091,7 +13091,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -13113,7 +13113,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -13135,7 +13135,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -13157,7 +13157,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -13179,7 +13179,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -13201,7 +13201,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -13223,7 +13223,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1023.00",
-    "promotional_price": "460.35",
+    "promotional_price": "613.80",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -13245,7 +13245,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -13267,7 +13267,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1741.70",
-    "promotional_price": "783.77",
+    "promotional_price": "1045.02",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -13289,7 +13289,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -13311,7 +13311,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2746.30",
-    "promotional_price": "1235.84",
+    "promotional_price": "1647.78",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -13333,7 +13333,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -13355,7 +13355,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4396.30",
-    "promotional_price": "1978.34",
+    "promotional_price": "2637.78",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -13377,7 +13377,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -13399,7 +13399,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -13421,7 +13421,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -13443,7 +13443,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -13465,7 +13465,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -13487,7 +13487,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -13509,7 +13509,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -13531,7 +13531,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -13553,7 +13553,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -13575,7 +13575,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -13597,7 +13597,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -13619,7 +13619,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -13641,7 +13641,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "2123.00",
-    "promotional_price": "955.35",
+    "promotional_price": "1273.80",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-2",
     "weight": "10.000",
@@ -13663,7 +13663,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "4755.70",
-    "promotional_price": "2140.07",
+    "promotional_price": "2853.42",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-2",
     "weight": "10.000",
@@ -13685,7 +13685,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "8429.70",
-    "promotional_price": "3793.37",
+    "promotional_price": "5057.82",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-2",
     "weight": "10.000",
@@ -13707,7 +13707,7 @@ export const APtwoFrameVertical = [
       }
     ],
     "price": "13196.30",
-    "promotional_price": "5938.34",
+    "promotional_price": "7917.78",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-2",
     "weight": "10.000",
@@ -13732,7 +13732,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "619.70",
-    "promotional_price": "278.87",
+    "promotional_price": "371.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-2",
     "weight": "0.500",
@@ -13754,7 +13754,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1096.30",
-    "promotional_price": "493.34",
+    "promotional_price": "657.78",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-2",
     "weight": "0.500",
@@ -13776,7 +13776,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1829.70",
-    "promotional_price": "823.37",
+    "promotional_price": "1097.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-2",
     "weight": "0.500",
@@ -13798,7 +13798,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2563.00",
-    "promotional_price": "1153.35",
+    "promotional_price": "1537.80",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-2",
     "weight": "0.500",
@@ -13820,7 +13820,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -13842,7 +13842,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -13864,7 +13864,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -13886,7 +13886,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-2",
     "weight": "6.100",
@@ -13908,7 +13908,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -13930,7 +13930,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -13952,7 +13952,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -13974,7 +13974,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-2",
     "weight": "6.100",
@@ -13996,7 +13996,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -14018,7 +14018,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -14040,7 +14040,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -14062,7 +14062,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-2",
     "weight": "6.100",
@@ -14084,7 +14084,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -14106,7 +14106,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -14128,7 +14128,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -14150,7 +14150,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-2",
     "weight": "6.100",
@@ -14172,7 +14172,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -14194,7 +14194,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -14216,7 +14216,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -14238,7 +14238,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-2",
     "weight": "10.000",
@@ -14260,7 +14260,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -14282,7 +14282,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -14304,7 +14304,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -14326,7 +14326,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-2",
     "weight": "10.000",
@@ -14348,7 +14348,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -14370,7 +14370,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -14392,7 +14392,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -14414,7 +14414,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-2",
     "weight": "10.000",
@@ -14436,7 +14436,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -14458,7 +14458,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -14480,7 +14480,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -14502,7 +14502,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-2",
     "weight": "10.000",
@@ -14524,7 +14524,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -14546,7 +14546,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1023.00",
-    "promotional_price": "460.35",
+    "promotional_price": "613.80",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -14568,7 +14568,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -14590,7 +14590,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1741.70",
-    "promotional_price": "783.77",
+    "promotional_price": "1045.02",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -14612,7 +14612,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -14634,7 +14634,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2746.30",
-    "promotional_price": "1235.84",
+    "promotional_price": "1647.78",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -14656,7 +14656,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -14678,7 +14678,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4396.30",
-    "promotional_price": "1978.34",
+    "promotional_price": "2637.78",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -14700,7 +14700,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -14722,7 +14722,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -14744,7 +14744,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-2",
     "weight": "10.000",
@@ -14766,7 +14766,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -14788,7 +14788,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -14810,7 +14810,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-2",
     "weight": "10.000",
@@ -14832,7 +14832,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -14854,7 +14854,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -14876,7 +14876,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-2",
     "weight": "10.000",
@@ -14898,7 +14898,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -14920,7 +14920,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -14942,7 +14942,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-2",
     "weight": "10.000",
@@ -14964,7 +14964,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "2123.00",
-    "promotional_price": "955.35",
+    "promotional_price": "1273.80",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-2",
     "weight": "10.000",
@@ -14986,7 +14986,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "4755.70",
-    "promotional_price": "2140.07",
+    "promotional_price": "2853.42",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-2",
     "weight": "10.000",
@@ -15008,7 +15008,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "8429.70",
-    "promotional_price": "3793.37",
+    "promotional_price": "5057.82",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-2",
     "weight": "10.000",
@@ -15030,7 +15030,7 @@ export const APtwoFrameHorizontal = [
       }
     ],
     "price": "13196.30",
-    "promotional_price": "5938.34",
+    "promotional_price": "7917.78",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-2",
     "weight": "10.000",
@@ -15055,7 +15055,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "619.70",
-    "promotional_price": "278.87",
+    "promotional_price": "371.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-50x50-2",
     "weight": "0.500",
@@ -15077,7 +15077,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-70x70-2",
     "weight": "10.000",
@@ -15099,7 +15099,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-50x50-2",
     "weight": "6.100",
@@ -15121,7 +15121,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-50x50-2",
     "weight": "6.100",
@@ -15143,7 +15143,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-50x50-2",
     "weight": "6.100",
@@ -15165,7 +15165,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-50x50-2",
     "weight": "6.100",
@@ -15187,7 +15187,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-50x50-2",
     "weight": "10.000",
@@ -15209,7 +15209,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-50x50-2",
     "weight": "10.000",
@@ -15231,7 +15231,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-50x50-2",
     "weight": "10.000",
@@ -15253,7 +15253,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1169.70",
-    "promotional_price": "526.37",
+    "promotional_price": "701.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-50x50-2",
     "weight": "10.000",
@@ -15275,7 +15275,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1023.00",
-    "promotional_price": "460.35",
+    "promotional_price": "613.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-50x50-2",
     "weight": "10.000",
@@ -15297,7 +15297,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-50x50-2",
     "weight": "10.000",
@@ -15319,7 +15319,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-50x50-2",
     "weight": "10.000",
@@ -15341,7 +15341,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-50x50-2",
     "weight": "10.000",
@@ -15363,7 +15363,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1690.30",
-    "promotional_price": "760.64",
+    "promotional_price": "1014.18",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-50x50-2",
     "weight": "10.000",
@@ -15385,7 +15385,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2123.00",
-    "promotional_price": "955.35",
+    "promotional_price": "1273.80",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-50x50-2",
     "weight": "10.000",
@@ -15407,7 +15407,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1096.30",
-    "promotional_price": "493.34",
+    "promotional_price": "657.78",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-70x70-2",
     "weight": "0.500",
@@ -15429,7 +15429,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-70x70-2",
     "weight": "6.100",
@@ -15451,7 +15451,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-70x70-2",
     "weight": "6.100",
@@ -15473,7 +15473,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-70x70-2",
     "weight": "6.100",
@@ -15495,7 +15495,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-70x70-2",
     "weight": "6.100",
@@ -15517,7 +15517,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-70x70-2",
     "weight": "10.000",
@@ -15539,7 +15539,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-70x70-2",
     "weight": "10.000",
@@ -15561,7 +15561,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-70x70-2",
     "weight": "10.000",
@@ -15583,7 +15583,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2049.70",
-    "promotional_price": "922.37",
+    "promotional_price": "1229.82",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-70x70-2",
     "weight": "10.000",
@@ -15605,7 +15605,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1741.70",
-    "promotional_price": "783.77",
+    "promotional_price": "1045.02",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-70x70-2",
     "weight": "10.000",
@@ -15627,7 +15627,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-70x70-2",
     "weight": "10.000",
@@ -15649,7 +15649,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-70x70-2",
     "weight": "10.000",
@@ -15671,7 +15671,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2673.00",
-    "promotional_price": "1202.85",
+    "promotional_price": "1603.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-70x70-2",
     "weight": "10.000",
@@ -15693,7 +15693,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4755.70",
-    "promotional_price": "2140.07",
+    "promotional_price": "2853.42",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-70x70-2",
     "weight": "10.000",
@@ -15715,7 +15715,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "1829.70",
-    "promotional_price": "823.37",
+    "promotional_price": "1097.82",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-90x90-2",
     "weight": "0.500",
@@ -15737,7 +15737,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-90x90-2",
     "weight": "6.100",
@@ -15759,7 +15759,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-90x90-2",
     "weight": "6.100",
@@ -15781,7 +15781,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-90x90-2",
     "weight": "6.100",
@@ -15803,7 +15803,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-90x90-2",
     "weight": "6.100",
@@ -15825,7 +15825,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-90x90-2",
     "weight": "10.000",
@@ -15847,7 +15847,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-90x90-2",
     "weight": "10.000",
@@ -15869,7 +15869,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-90x90-2",
     "weight": "10.000",
@@ -15891,7 +15891,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "3333.00",
-    "promotional_price": "1499.85",
+    "promotional_price": "1999.80",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-90x90-2",
     "weight": "10.000",
@@ -15913,7 +15913,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2746.30",
-    "promotional_price": "1235.84",
+    "promotional_price": "1647.78",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-90x90-2",
     "weight": "10.000",
@@ -15935,7 +15935,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-90x90-2",
     "weight": "10.000",
@@ -15957,7 +15957,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-90x90-2",
     "weight": "10.000",
@@ -15979,7 +15979,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-90x90-2",
     "weight": "10.000",
@@ -16001,7 +16001,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4029.70",
-    "promotional_price": "1813.37",
+    "promotional_price": "2417.82",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-90x90-2",
     "weight": "10.000",
@@ -16023,7 +16023,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "8429.70",
-    "promotional_price": "3793.37",
+    "promotional_price": "5057.82",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-90x90-2",
     "weight": "10.000",
@@ -16045,7 +16045,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "2563.00",
-    "promotional_price": "1153.35",
+    "promotional_price": "1537.80",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-120x120-2",
     "weight": "0.500",
@@ -16067,7 +16067,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-120x120-2",
     "weight": "6.100",
@@ -16089,7 +16089,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-120x120-2",
     "weight": "6.100",
@@ -16111,7 +16111,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-120x120-2",
     "weight": "6.100",
@@ -16133,7 +16133,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-120x120-2",
     "weight": "6.100",
@@ -16155,7 +16155,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-120x120-2",
     "weight": "10.000",
@@ -16177,7 +16177,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-120x120-2",
     "weight": "10.000",
@@ -16199,7 +16199,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-120x120-2",
     "weight": "10.000",
@@ -16221,7 +16221,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "5327.70",
-    "promotional_price": "2397.47",
+    "promotional_price": "3196.62",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-120x120-2",
     "weight": "10.000",
@@ -16243,7 +16243,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "4396.30",
-    "promotional_price": "1978.34",
+    "promotional_price": "2637.78",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-120x120-2",
     "weight": "10.000",
@@ -16265,7 +16265,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-120x120-2",
     "weight": "10.000",
@@ -16287,7 +16287,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-120x120-2",
     "weight": "10.000",
@@ -16309,7 +16309,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-120x120-2",
     "weight": "10.000",
@@ -16331,7 +16331,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "6853.00",
-    "promotional_price": "3083.85",
+    "promotional_price": "4111.80",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-120x120-2",
     "weight": "10.000",
@@ -16353,7 +16353,7 @@ export const APtwoFrameQuadrado = [
       }
     ],
     "price": "13196.30",
-    "promotional_price": "5938.34",
+    "promotional_price": "7917.78",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-120x120-2",
     "weight": "10.000",
@@ -16378,7 +16378,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "929.50",
-    "promotional_price": "418.28",
+    "promotional_price": "557.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-3",
     "weight": "0.500",
@@ -16400,7 +16400,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1644.50",
-    "promotional_price": "740.03",
+    "promotional_price": "986.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-3",
     "weight": "0.500",
@@ -16422,7 +16422,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2744.50",
-    "promotional_price": "1235.03",
+    "promotional_price": "1646.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-3",
     "weight": "0.500",
@@ -16444,7 +16444,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3844.50",
-    "promotional_price": "1730.03",
+    "promotional_price": "2306.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-3",
     "weight": "0.500",
@@ -16466,7 +16466,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -16488,7 +16488,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -16510,7 +16510,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -16532,7 +16532,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -16554,7 +16554,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -16576,7 +16576,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -16598,7 +16598,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -16620,7 +16620,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -16642,7 +16642,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -16664,7 +16664,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -16686,7 +16686,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -16708,7 +16708,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -16730,7 +16730,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -16752,7 +16752,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -16774,7 +16774,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -16796,7 +16796,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -16818,7 +16818,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -16840,7 +16840,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -16862,7 +16862,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -16884,7 +16884,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -16906,7 +16906,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -16928,7 +16928,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -16950,7 +16950,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -16972,7 +16972,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -16994,7 +16994,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -17016,7 +17016,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -17038,7 +17038,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -17060,7 +17060,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -17082,7 +17082,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -17104,7 +17104,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -17126,7 +17126,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -17148,7 +17148,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -17170,7 +17170,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -17192,7 +17192,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "1534.50",
-    "promotional_price": "690.53",
+    "promotional_price": "920.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -17214,7 +17214,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -17236,7 +17236,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2612.50",
-    "promotional_price": "1175.63",
+    "promotional_price": "1567.50",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -17258,7 +17258,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -17280,7 +17280,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4119.50",
-    "promotional_price": "1853.78",
+    "promotional_price": "2471.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -17302,7 +17302,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -17324,7 +17324,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "6594.50",
-    "promotional_price": "2967.53",
+    "promotional_price": "3956.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -17346,7 +17346,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -17368,7 +17368,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -17390,7 +17390,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -17412,7 +17412,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -17434,7 +17434,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -17456,7 +17456,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -17478,7 +17478,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -17500,7 +17500,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -17522,7 +17522,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -17544,7 +17544,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -17566,7 +17566,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -17588,7 +17588,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -17610,7 +17610,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "3184.50",
-    "promotional_price": "1433.03",
+    "promotional_price": "1910.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-3",
     "weight": "15.000",
@@ -17632,7 +17632,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "7133.50",
-    "promotional_price": "3210.08",
+    "promotional_price": "4280.10",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-3",
     "weight": "15.000",
@@ -17654,7 +17654,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "12644.50",
-    "promotional_price": "5690.03",
+    "promotional_price": "7586.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-3",
     "weight": "15.000",
@@ -17676,7 +17676,7 @@ export const APthreeFrameVertical = [
       }
     ],
     "price": "19794.50",
-    "promotional_price": "8907.53",
+    "promotional_price": "11876.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-3",
     "weight": "15.000",
@@ -17701,7 +17701,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "929.50",
-    "promotional_price": "418.28",
+    "promotional_price": "557.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-3",
     "weight": "0.500",
@@ -17723,7 +17723,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "929.50",
-    "promotional_price": "418.28",
+    "promotional_price": "557.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-3",
     "weight": "0.500",
@@ -17745,7 +17745,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1644.50",
-    "promotional_price": "740.03",
+    "promotional_price": "986.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-3",
     "weight": "0.500",
@@ -17767,7 +17767,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1644.50",
-    "promotional_price": "740.03",
+    "promotional_price": "986.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-3",
     "weight": "0.500",
@@ -17789,7 +17789,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2744.50",
-    "promotional_price": "1235.03",
+    "promotional_price": "1646.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-3",
     "weight": "0.500",
@@ -17811,7 +17811,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2744.50",
-    "promotional_price": "1235.03",
+    "promotional_price": "1646.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-3",
     "weight": "0.500",
@@ -17833,7 +17833,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3844.50",
-    "promotional_price": "1730.03",
+    "promotional_price": "2306.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-3",
     "weight": "0.500",
@@ -17855,7 +17855,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3844.50",
-    "promotional_price": "1730.03",
+    "promotional_price": "2306.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-3",
     "weight": "0.500",
@@ -17877,7 +17877,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -17899,7 +17899,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -17921,7 +17921,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -17943,7 +17943,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-40x60-3",
     "weight": "6.100",
@@ -17965,7 +17965,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -17987,7 +17987,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -18009,7 +18009,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -18031,7 +18031,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-60x90-3",
     "weight": "6.100",
@@ -18053,7 +18053,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -18075,7 +18075,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -18097,7 +18097,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -18119,7 +18119,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-80x120-3",
     "weight": "6.100",
@@ -18141,7 +18141,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -18163,7 +18163,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -18185,7 +18185,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -18207,7 +18207,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-100x150-3",
     "weight": "6.100",
@@ -18229,7 +18229,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18251,7 +18251,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18273,7 +18273,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18295,7 +18295,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18317,7 +18317,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18339,7 +18339,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18361,7 +18361,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18383,7 +18383,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -18405,7 +18405,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18427,7 +18427,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18449,7 +18449,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18471,7 +18471,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18493,7 +18493,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18515,7 +18515,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18537,7 +18537,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18559,7 +18559,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -18581,7 +18581,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18603,7 +18603,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18625,7 +18625,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18647,7 +18647,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18669,7 +18669,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18691,7 +18691,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18713,7 +18713,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18735,7 +18735,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -18757,7 +18757,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18779,7 +18779,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18801,7 +18801,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18823,7 +18823,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18845,7 +18845,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18867,7 +18867,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18889,7 +18889,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18911,7 +18911,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -18933,7 +18933,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -18955,7 +18955,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -18977,7 +18977,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1534.50",
-    "promotional_price": "690.53",
+    "promotional_price": "920.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -18999,7 +18999,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "1534.50",
-    "promotional_price": "690.53",
+    "promotional_price": "920.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19021,7 +19021,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19043,7 +19043,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19065,7 +19065,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2612.50",
-    "promotional_price": "1175.63",
+    "promotional_price": "1567.50",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19087,7 +19087,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2612.50",
-    "promotional_price": "1175.63",
+    "promotional_price": "1567.50",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19109,7 +19109,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19131,7 +19131,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19153,7 +19153,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4119.50",
-    "promotional_price": "1853.78",
+    "promotional_price": "2471.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19175,7 +19175,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4119.50",
-    "promotional_price": "1853.78",
+    "promotional_price": "2471.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19197,7 +19197,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19219,7 +19219,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19241,7 +19241,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6594.50",
-    "promotional_price": "2967.53",
+    "promotional_price": "3956.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19263,7 +19263,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6594.50",
-    "promotional_price": "2967.53",
+    "promotional_price": "3956.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19285,7 +19285,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19307,7 +19307,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19329,7 +19329,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19351,7 +19351,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19373,7 +19373,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19395,7 +19395,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -19417,7 +19417,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19439,7 +19439,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19461,7 +19461,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19483,7 +19483,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19505,7 +19505,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19527,7 +19527,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -19549,7 +19549,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19571,7 +19571,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19593,7 +19593,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19615,7 +19615,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19637,7 +19637,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19659,7 +19659,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -19681,7 +19681,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19703,7 +19703,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19725,7 +19725,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -19747,7 +19747,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3184.50",
-    "promotional_price": "1433.03",
+    "promotional_price": "1910.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-3",
     "weight": "15.000",
@@ -19769,7 +19769,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "3184.50",
-    "promotional_price": "1433.03",
+    "promotional_price": "1910.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-3",
     "weight": "15.000",
@@ -19791,7 +19791,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7133.50",
-    "promotional_price": "3210.08",
+    "promotional_price": "4280.10",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-3",
     "weight": "15.000",
@@ -19813,7 +19813,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "7133.50",
-    "promotional_price": "3210.08",
+    "promotional_price": "4280.10",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-3",
     "weight": "15.000",
@@ -19835,7 +19835,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "12644.50",
-    "promotional_price": "5690.03",
+    "promotional_price": "7586.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-3",
     "weight": "15.000",
@@ -19857,7 +19857,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "12644.50",
-    "promotional_price": "5690.03",
+    "promotional_price": "7586.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-3",
     "weight": "15.000",
@@ -19879,7 +19879,7 @@ export const APthreeFrameHorizontal = [
       }
     ],
     "price": "19794.50",
-    "promotional_price": "8907.53",
+    "promotional_price": "11876.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-3",
     "weight": "15.000",
@@ -19904,7 +19904,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "929.50",
-    "promotional_price": "418.28",
+    "promotional_price": "557.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-40x60-3",
     "weight": "0.500",
@@ -19926,7 +19926,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1644.50",
-    "promotional_price": "740.03",
+    "promotional_price": "986.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-60x90-3",
     "weight": "0.500",
@@ -19948,7 +19948,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2744.50",
-    "promotional_price": "1235.03",
+    "promotional_price": "1646.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-80x120-3",
     "weight": "0.500",
@@ -19970,7 +19970,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3844.50",
-    "promotional_price": "1730.03",
+    "promotional_price": "2306.70",
     "stock": null,
     "sku": "-1-000+000-0-1-0-0-100x150-3",
     "weight": "0.500",
@@ -19992,7 +19992,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-50x50-3",
     "weight": "6.100",
@@ -20014,7 +20014,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-50x50-3",
     "weight": "6.100",
@@ -20036,7 +20036,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-50x50-3",
     "weight": "6.100",
@@ -20058,7 +20058,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-50x50-3",
     "weight": "6.100",
@@ -20080,7 +20080,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-70x70-3",
     "weight": "6.100",
@@ -20102,7 +20102,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-70x70-3",
     "weight": "6.100",
@@ -20124,7 +20124,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-70x70-3",
     "weight": "6.100",
@@ -20146,7 +20146,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-70x70-3",
     "weight": "6.100",
@@ -20168,7 +20168,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-90x90-3",
     "weight": "6.100",
@@ -20190,7 +20190,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-90x90-3",
     "weight": "6.100",
@@ -20212,7 +20212,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-90x90-3",
     "weight": "6.100",
@@ -20234,7 +20234,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-90x90-3",
     "weight": "6.100",
@@ -20256,7 +20256,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+385-1-1-0-1-120x120-3",
     "weight": "6.100",
@@ -20278,7 +20278,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+384-1-1-0-1-120x120-3",
     "weight": "6.100",
@@ -20300,7 +20300,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+387-1-1-0-1-120x120-3",
     "weight": "6.100",
@@ -20322,7 +20322,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+386-1-1-0-1-120x120-3",
     "weight": "6.100",
@@ -20344,7 +20344,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -20366,7 +20366,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -20388,7 +20388,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -20410,7 +20410,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1754.50",
-    "promotional_price": "789.53",
+    "promotional_price": "1052.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-40x60-3",
     "weight": "15.000",
@@ -20432,7 +20432,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -20454,7 +20454,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -20476,7 +20476,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -20498,7 +20498,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3074.50",
-    "promotional_price": "1383.53",
+    "promotional_price": "1844.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-60x90-3",
     "weight": "15.000",
@@ -20520,7 +20520,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -20542,7 +20542,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -20564,7 +20564,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -20586,7 +20586,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4999.50",
-    "promotional_price": "2249.78",
+    "promotional_price": "2999.70",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-80x120-3",
     "weight": "15.000",
@@ -20608,7 +20608,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+400-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -20630,7 +20630,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+399-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -20652,7 +20652,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+402-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -20674,7 +20674,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7991.50",
-    "promotional_price": "3596.18",
+    "promotional_price": "4794.90",
     "stock": null,
     "sku": "-1-000+401-1-1-0-1-100x150-3",
     "weight": "15.000",
@@ -20696,7 +20696,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "1534.50",
-    "promotional_price": "690.53",
+    "promotional_price": "920.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -20718,7 +20718,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -20740,7 +20740,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -20762,7 +20762,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -20784,7 +20784,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2535.50",
-    "promotional_price": "1140.98",
+    "promotional_price": "1521.30",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-40x60-3",
     "weight": "15.000",
@@ -20806,7 +20806,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "2612.50",
-    "promotional_price": "1175.63",
+    "promotional_price": "1567.50",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -20828,7 +20828,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -20850,7 +20850,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -20872,7 +20872,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -20894,7 +20894,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4009.50",
-    "promotional_price": "1804.28",
+    "promotional_price": "2405.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-60x90-3",
     "weight": "15.000",
@@ -20916,7 +20916,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "4119.50",
-    "promotional_price": "1853.78",
+    "promotional_price": "2471.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -20938,7 +20938,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -20960,7 +20960,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -20982,7 +20982,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -21004,7 +21004,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "6044.50",
-    "promotional_price": "2720.03",
+    "promotional_price": "3626.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-80x120-3",
     "weight": "15.000",
@@ -21026,7 +21026,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "6594.50",
-    "promotional_price": "2967.53",
+    "promotional_price": "3956.70",
     "stock": null,
     "sku": "-1-000+424-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -21048,7 +21048,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+382-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -21070,7 +21070,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+381-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -21092,7 +21092,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+383-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -21114,7 +21114,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "10279.50",
-    "promotional_price": "4625.78",
+    "promotional_price": "6167.70",
     "stock": null,
     "sku": "-1-424+452-1-4-0-0-100x150-3",
     "weight": "15.000",
@@ -21136,7 +21136,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "3184.50",
-    "promotional_price": "1433.03",
+    "promotional_price": "1910.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-40x60-3",
     "weight": "15.000",
@@ -21158,7 +21158,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "7133.50",
-    "promotional_price": "3210.08",
+    "promotional_price": "4280.10",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-60x90-3",
     "weight": "15.000",
@@ -21180,7 +21180,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "12644.50",
-    "promotional_price": "5690.03",
+    "promotional_price": "7586.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-80x120-3",
     "weight": "15.000",
@@ -21202,7 +21202,7 @@ export const APthreeFrameQuadrado = [
       }
     ],
     "price": "19794.50",
-    "promotional_price": "8907.53",
+    "promotional_price": "11876.70",
     "stock": null,
     "sku": "-1-000+000-6-5-0-0-100x150-3",
     "weight": "15.000",
