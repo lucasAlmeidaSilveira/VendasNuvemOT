@@ -31,7 +31,7 @@ function calculateShippingStatus(
     'Não Entregue': 'gray', // Cinza claro
     Cancelado: 'red', // Vermelho claro
     late: 'tomato', // Vermelho claro para atrasados
-    'Atualizando status...': 'gray'
+    'Atualizando status...': 'gray',
   };
 
   let currentStatus = status;
@@ -115,7 +115,7 @@ export function ShippingStatus({
       }
     };
 
-    if (order.storefront !== 'Loja') {
+    if (!order.storefront.includes('Loja')) {
       fetchDataOrderTiny(order.order_id, order.customer.identification);
     }
   }, []);
@@ -134,12 +134,12 @@ export function ShippingStatus({
       target={urlTracking ? '_blank' : undefined}
     >
       {shipping === 'Entrega Loja' ? (
-        <Badge variant='solid' radius="full" size={'2'} color={'purple'}>
+        <Badge variant='solid' radius='full' size={'2'} color={'purple'}>
           <FaStore />
           <span>Entrega Loja</span>
         </Badge>
       ) : (
-        <Badge variant='solid' radius="full" size={'2'} color={backgroundColor}>
+        <Badge variant='solid' radius='full' size={'2'} color={backgroundColor}>
           {getIcon(currentStatus)}
           <span>{currentStatus}</span>
         </Badge>
