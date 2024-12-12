@@ -150,7 +150,7 @@ export function OrderPopup({ open, onClose }) {
         billing_phone: 'Loja',
         billing_province: 'São Paulo',
         note: note,
-        storefront: 'Loja Fisica',
+        storefront: 'Chatbot',
         owner_note: 'Chatbot',
         contact_email: user.email,
         contact_identification: '99999999999',
