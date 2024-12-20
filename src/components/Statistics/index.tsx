@@ -37,8 +37,14 @@ export function Statistics() {
   });
 
   // Filtros para pedidos
-  const { ordersToday, totalPaidAmountFormatted, totalPaidAllAmountFormatted } =
-    filterOrders(allOrders, date);
+  const {
+    ordersToday,
+    totalRevenue,
+    totalPaidAmountFormatted,
+    totalPaidAllAmountFormatted,
+    totalPaidAmountChatbotFormatted,
+    totalPaidAllAmountEcom,
+  } = filterOrders(allOrders, date);
 
   useEffect(() => {
     if (data) {
@@ -73,10 +79,24 @@ export function Statistics() {
     () => adSpends.google + adSpends.meta,
     [adSpends],
   );
+  const totalAdSpendEcom = useMemo(
+    () => adSpends.googleEcom + adSpends.metaEcom,
+    [adSpends],
+  );
+  const totalAdSpendChatbot = useMemo(() => adSpends.metaChatbot, [adSpends]);
+  const totalAdSpendLoja = useMemo(() => adSpends.googleLoja, [adSpends]);
 
   const roas = calculateRoas(
     parseCurrency(totalPaidAmountFormatted),
     totalAdSpend,
+  );
+  const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
+
+  const roasLoja = calculateRoas(totalRevenue, totalAdSpendLoja);
+
+  const roasChatbot = calculateRoas(
+    parseCurrency(totalPaidAmountChatbotFormatted),
+    totalAdSpendChatbot,
   );
   const roasMax = calculateRoas(
     parseCurrency(totalPaidAllAmountFormatted),
@@ -95,17 +115,34 @@ export function Statistics() {
 
   return (
     <Container>
-      <DataSectionTPago
-        title="Geral"
-        bgcolor={bgColors.trafegoPago}
-        verba={adSpends}
-        totalOrdersFormatted={totalPaidAmountFormatted}
-        roas={roas}
-        roasMax={`Max.: ${roasMax}`}
-        isLoadingADSGoogle={isLoadingADSGoogle}
-        isLoadingOrders={isLoading}
-        isLoadingADSMeta={isLoadingADSMeta}
-      />
+      {store === 'outlet' ? (
+        <DataSectionTPago
+          title="Geral"
+          bgcolor={bgColors.trafegoPago}
+          verba={adSpends}
+          totalOrdersFormatted={totalPaidAmountFormatted}
+          roas={roas}
+          roasMax={`Max.: ${roasMax}`}
+          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingOrders={isLoading}
+          isLoadingADSMeta={isLoadingADSMeta}
+        />
+      ) : (
+        <DataSectionTPagoAP
+          title="Geral"
+          bgcolor={bgColors.trafegoPago}
+          verba={adSpends}
+          totalOrdersFormatted={totalPaidAmountFormatted}
+          roas={roas}
+          roasEcom={roasEcom}
+          roasLoja={roasLoja}
+          roasChatbot={roasChatbot}
+          roasMax={`Max.: ${roasMax}`}
+          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingOrders={isLoading}
+          isLoadingADSMeta={isLoadingADSMeta}
+        />
+      )}
 
       <DataSectionAnalytics
         bgcolor={bgColors.analytics}

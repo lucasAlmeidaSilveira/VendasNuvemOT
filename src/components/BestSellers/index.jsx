@@ -12,10 +12,22 @@ import { CategorySelect } from '../CategorySelect';
 
 export function BestSellers() {
   const { allOrders, isLoading, date, store } = useOrders();
-  const [products, setProducts] = useState({ quadros: [], espelhos: [], artesanais: [], variations: [] });
+  const [products, setProducts] = useState({
+    quadros: [],
+    espelhos: [],
+    artesanais: [],
+    variations: [],
+  });
   const [numberProducts, setNumberProducts] = useState(5);
-  const [totalSales, setTotalSales] = useState({ quadros: { count: 0, value: 0 }, artesanais: { count: 0, value: 0 }, espelhos: { count: 0, value: 0 } });
-  const [percentual, setPercentual] = useState({ vendas: { quadros: 0, espelhos: 0, artesanais: 0 }, valor: { quadros: 0, espelhos: 0, artesanais: 0 } });
+  const [totalSales, setTotalSales] = useState({
+    quadros: { count: 0, value: 0 },
+    artesanais: { count: 0, value: 0 },
+    espelhos: { count: 0, value: 0 },
+  });
+  const [percentual, setPercentual] = useState({
+    vendas: { quadros: 0, espelhos: 0, artesanais: 0 },
+    valor: { quadros: 0, espelhos: 0, artesanais: 0 },
+  });
   const [selectedCategory, setSelectedCategory] = useState('Quadro Decorativo'); // Estado para a categoria selecionada
   const { ordersTodayPaid } = filterOrders(allOrders, date);
 
@@ -25,68 +37,84 @@ export function BestSellers() {
     const processProducts = (category) => {
       let totalCategoryValue = 0;
       let totalCategorySales = 0;
-      const processedProducts = ordersTodayPaid.reduce((acc, order) => {
-        order.products.forEach((product) => {
-          if (product.name.includes(category)) {
-            const cleanedName = product.name.replace(/\(.*?\)/g, "").trim();
-            const productId = product.product_id;
-            const price = parseFloat(product.price);
-            const existingProduct = acc.find(p => p.id === productId);
-            let skuNumber = cleanedName.includes("Quadro") ? product.sku.split("-")[0].split("|")[1] : product.sku.split("-")[0].split('OT')[1]
+      const processedProducts = ordersTodayPaid
+        .reduce((acc, order) => {
+          order.products.forEach((product) => {
+            if (product.name.includes(category)) {
+              const cleanedName = product.name.replace(/\(.*?\)/g, '').trim();
+              const productId = product.product_id;
+              const price = parseFloat(product.price);
+              const existingProduct = acc.find((p) => p.id === productId);
+              let skuNumber = cleanedName.includes('Quadro')
+                ? product.sku.split('-')[0].split('|')[1]
+                : product.sku.split('-')[0].split('OT')[1];
 
-            // Contar a frequência das variações
-            const variations = Array.isArray(product.variant_values) ? product.variant_values.join(", ") : "";
-            let variantCount = {};
-            if (existingProduct) {
-              existingProduct.sales += 1;
-              if (variations) {
-                variantCount = existingProduct.variantCount;
-                variantCount[variations] = (variantCount[variations] || 0) + 1;
+              // Contar a frequência das variações
+              const variations = Array.isArray(product.variant_values)
+                ? product.variant_values.join(', ')
+                : '';
+              let variantCount = {};
+              if (existingProduct) {
+                existingProduct.sales += 1;
+                if (variations) {
+                  variantCount = existingProduct.variantCount;
+                  variantCount[variations] =
+                    (variantCount[variations] || 0) + 1;
+                }
+              } else {
+                acc.push({
+                  id: productId,
+                  skuNumber,
+                  urlProduct: product.landing_url,
+                  name: cleanedName,
+                  image: product.image.src,
+                  sales: 1,
+                  total: price,
+                  variantCount: variations ? { [variations]: 1 } : {},
+                });
               }
-            } else {
 
-              acc.push({
-                id: productId,
-                skuNumber,
-                urlProduct: product.landing_url,
-                name: cleanedName,
-                image: product.image.src,
-                sales: 1,
-                total: price,
-                variantCount: variations ? { [variations]: 1 } : {}
-              });
+              totalCategorySales += 1;
+              totalCategoryValue += price;
+              totals.vendas += 1;
+              totals.valor += price;
             }
-
-            totalCategorySales += 1;
-            totalCategoryValue += price;
-            totals.vendas += 1;
-            totals.valor += price;
-          }
-        });
-        return acc;
-      }, []).sort((a, b) => b.sales - a.sales);
+          });
+          return acc;
+        }, [])
+        .sort((a, b) => b.sales - a.sales);
 
       // Selecionar a variação mais vendida
-      processedProducts.forEach(product => {
+      processedProducts.forEach((product) => {
         const variantEntries = Object.entries(product.variantCount);
         if (variantEntries.length > 0) {
-          const mostSoldVariant = variantEntries.reduce((max, entry) => entry[1] > max[1] ? entry : max, variantEntries[0]);
+          const mostSoldVariant = variantEntries.reduce(
+            (max, entry) => (entry[1] > max[1] ? entry : max),
+            variantEntries[0],
+          );
           product.variations = mostSoldVariant[0];
         } else {
           product.variations = category === 'Espelho' ? 'Slim' : '';
         }
       });
 
-      return { products: processedProducts, totalSales: totalCategorySales, totalValue: totalCategoryValue };
+      return {
+        products: processedProducts,
+        totalSales: totalCategorySales,
+        totalValue: totalCategoryValue,
+      };
     };
 
     const processVariations = (category) => {
       const variationCounts = {};
 
-      ordersTodayPaid.forEach(order => {
-        order.products.forEach(product => {
+      ordersTodayPaid.forEach((order) => {
+        order.products.forEach((product) => {
           if (product.name.includes(category)) {
-            const variation = product.variant_values.length > 0 ? product.variant_values.join(", ") : 'Slim';
+            const variation =
+              product.variant_values.length > 0
+                ? product.variant_values.join(', ')
+                : 'Slim';
             if (variationCounts[variation]) {
               variationCounts[variation] += 1;
             } else {
@@ -101,15 +129,15 @@ export function BestSellers() {
         .map(([variation, count]) => ({
           name: variation,
           sales: count,
-          id: variation
+          id: variation,
         }));
 
       return sortedVariations;
     };
 
-    const quadros = processProducts("Decorativo");
-    const espelhos = processProducts("Espelho");
-    const artesanais = processProducts("Artesanal");
+    const quadros = processProducts('Decorativo');
+    const espelhos = processProducts('Espelho');
+    const artesanais = processProducts('Artesanal');
     const variations = processVariations(selectedCategory); // Usar a categoria selecionada
 
     setProducts({
@@ -122,15 +150,18 @@ export function BestSellers() {
     setTotalSales({
       quadros: { count: quadros.totalSales, value: quadros.totalValue },
       espelhos: { count: espelhos.totalSales, value: espelhos.totalValue },
-      artesanais: { count: artesanais.totalSales, value: artesanais.totalValue },
+      artesanais: {
+        count: artesanais.totalSales,
+        value: artesanais.totalValue,
+      },
     });
 
     // Calcula os percentuais
     setPercentual({
       vendas: {
         quadros: (quadros.totalSales / totals.vendas) * 100,
-        espelhos: (espelhos.totalSales / totals.vendas) * 100,          
-        artesanais: (artesanais.totalSales / totals.vendas) * 100,          
+        espelhos: (espelhos.totalSales / totals.vendas) * 100,
+        artesanais: (artesanais.totalSales / totals.vendas) * 100,
       },
       valor: {
         quadros: (quadros.totalValue / totals.valor) * 100,
@@ -138,7 +169,6 @@ export function BestSellers() {
         artesanais: (artesanais.totalValue / totals.valor) * 100,
       },
     });
-
   }, [isLoading, date, numberProducts, selectedCategory, allOrders]); // Adicionar selectedCategory como dependência
 
   const handleCategoryChange = (event) => {
@@ -157,54 +187,68 @@ export function BestSellers() {
         <InputSelect setNumberProducts={setNumberProducts} />
       </div>
       <ContainerBestSellers>
-        {['quadros', 'artesanais', 'espelhos'].map((category, index) => (
-          (category === 'artesanais' && store !== 'artepropria') ? null : (
-          <ContainerBestSeller key={index}>
-            <header className="header">
-              <h2 className="categorie">{category.charAt(0).toUpperCase() + category.slice(1)}</h2>
-              {isLoading ? (
-                <Oval
-                  height={16}
-                  width={16}
-                  color="#1874cd"
-                  visible={true}
-                  ariaLabel='oval-loading'
-                  strokeWidth={4}
-                  strokeWidthSecondary={4}
-                />
-              ) : (
-                <h2 className="sales-cetegorie">
-                  {products[category].reduce((acc, curr) => acc + curr.sales, 0)} unidades
-                  <span className='total-sales'>{formatCurrency(totalSales[category].value)} | {percentual.valor[category].toFixed(2)}%</span>
+        {['quadros', 'artesanais', 'espelhos'].map((category, index) =>
+          category === 'artesanais' && store !== 'artepropria' ? null : (
+            <ContainerBestSeller key={index}>
+              <header className="header">
+                <h2 className="categorie">
+                  {category.charAt(0).toUpperCase() + category.slice(1)}
                 </h2>
-              )}
-            </header>
-            <div className="table">
-              {isLoading ? (
-                <div className="loading">
-                  <Loading />
-                </div>
-              ) : (
-                products[category].slice(0, numberProducts).map((product, productIndex) => (
-                  <ListProduct
-                    key={product.id}
-                    idProduct={product.id}
-                    position={productIndex + 1}
-                    skuNumber={product.skuNumber}
-                    name={product.name}
-                    sales={product.sales}
-                    urlImage={product.image}
-                    variations={product.variations}
+                {isLoading ? (
+                  <Oval
+                    height={16}
+                    width={16}
+                    color="#1874cd"
+                    visible={true}
+                    ariaLabel="oval-loading"
+                    strokeWidth={4}
+                    strokeWidthSecondary={4}
                   />
-                ))
-              )}
-              {products[category].length === 0 && !isLoading && (
-                <div className="loading">Nenhum produto encontrado</div>
-              )}
-            </div>
-          </ContainerBestSeller>
-          )
-        ))}
+                ) : (
+                  <h2 className="sales-cetegorie">
+                    {products[category].reduce(
+                      (acc, curr) => acc + curr.sales,
+                      0,
+                    )}{' '}
+                    unidades
+                    <span className="total-sales">
+                      {formatCurrency(totalSales[category].value)} |{' '}
+                      {percentual.valor[category] === undefined
+                        ? '0'
+                        : percentual.valor[category].toFixed(2)}
+                      %
+                    </span>
+                  </h2>
+                )}
+              </header>
+              <div className="table">
+                {isLoading ? (
+                  <div className="loading">
+                    <Loading />
+                  </div>
+                ) : (
+                  products[category]
+                    .slice(0, numberProducts)
+                    .map((product, productIndex) => (
+                      <ListProduct
+                        key={product.id}
+                        idProduct={product.id}
+                        position={productIndex + 1}
+                        skuNumber={product.skuNumber}
+                        name={product.name}
+                        sales={product.sales}
+                        urlImage={product.image}
+                        variations={product.variations}
+                      />
+                    ))
+                )}
+                {products[category].length === 0 && !isLoading && (
+                  <div className="loading">Nenhum produto encontrado</div>
+                )}
+              </div>
+            </ContainerBestSeller>
+          ),
+        )}
         <ContainerBestSeller className="variations">
           <header className="header">
             <h2 className="categorie">Variações</h2>
@@ -220,14 +264,16 @@ export function BestSellers() {
                 <Loading />
               </div>
             ) : (
-              products.variations.slice(0, numberProducts).map((variant, variantIndex) => (
-                <ListVariation
-                  key={variant.id}
-                  position={variantIndex + 1}
-                  name={variant.name}
-                  sales={variant.sales}
-                />
-              ))
+              products.variations
+                .slice(0, numberProducts)
+                .map((variant, variantIndex) => (
+                  <ListVariation
+                    key={variant.id}
+                    position={variantIndex + 1}
+                    name={variant.name}
+                    sales={variant.sales}
+                  />
+                ))
             )}
             {products.variations.length === 0 && !isLoading && (
               <div className="loading">Nenhuma variação encontrado</div>

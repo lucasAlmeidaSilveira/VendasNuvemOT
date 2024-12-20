@@ -15,11 +15,12 @@ export interface DataSectionTPagoProps {
 export interface DataSectionTPagoAPProps {
   title: string;
   bgcolor: string;
-  verbaGoogle: number | string;
-  verbaMeta: number | string;
-  totalAdSpend: number | string;
+  verba: Verba;
   totalOrdersFormatted: number;
   roas: number | string;
+  roasEcom: number | string;
+  roasLoja: number | string;
+  roasChatbot: number | string;
   roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;

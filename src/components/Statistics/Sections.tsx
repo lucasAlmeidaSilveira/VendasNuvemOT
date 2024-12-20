@@ -224,64 +224,178 @@ export function DataSectionTPago({
 export function DataSectionTPagoAP({
   title,
   bgcolor,
-  verbaGoogle,
-  verbaMeta,
-  totalAdSpend,
+  verba,
   totalOrdersFormatted,
   roas,
+  roasEcom,
+  roasLoja,
+  roasChatbot,
   roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
   isLoadingADSMeta,
 }: DataSectionTPagoAPProps) {
-  verbaGoogle = formatCurrency(verbaGoogle);
-  verbaMeta = formatCurrency(verbaMeta);
-  totalAdSpend = formatCurrency(totalAdSpend);
+  const { allOrders, date, store } = useOrders();
+  const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
+    useAnalytics();
+  // Filtros para pedidos
+  const {
+    totalEspelhosFormatted,
+    totalQuadrosFormatted,
+    totalPaidAllAmountEcom,
+    totalPaidAmountChatbot,
+    totalRevenue,
+  } = filterOrders(allOrders, date);
+  const verbaGoogleSum =
+    verba.googleEcom +
+    verba.googleEspelhos +
+    verba.googleGeral +
+    verba.googleQuadros +
+    verba.googleLoja;
+  const verbaMetaSum =
+    verba.metaEcom +
+    verba.metaEspelhos +
+    verba.metaGeral +
+    verba.metaQuadros +
+    verba.metaChatbot +
+    verba.metaInstagram;
+
+  const verbaGoogle = formatCurrency(verbaGoogleSum);
+  const verbaMeta = formatCurrency(verbaMetaSum);
+  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum);
+
+  // Função para converter o objeto em arrays separados por plataforma
+  const formatCostsByPlatform = (
+    costs: Record<string, number>,
+    platform: string,
+  ) => {
+    const filteredCosts = Object.entries(costs)
+      .filter(
+        ([key, value]) =>
+          key.toLowerCase().includes(platform.toLowerCase()) &&
+          key !== platform &&
+          value !== 0,
+      ) // Filtra por plataforma
+      .map(([key, value]) => ({
+        name: key.replace(platform, ''), // Remove o nome da plataforma
+        value, // Formata para BRL
+      }));
+
+    return filteredCosts;
+  };
+
+  const sumCostsByCombinedPlatform = (costs: Record<string, number>) => {
+    const platformTotals: Record<string, number> = {};
+
+    Object.entries(costs).forEach(([key, value]) => {
+      // Extraímos a parte comum da chave (ex: "Quadros", "Espelhos", etc.)
+      const platformType = key.replace(/^(google|meta)/i, '').toLowerCase();
+
+      if (typeof value === 'number') {
+        // Soma os valores da mesma categoria, independentemente da plataforma (google/meta)
+        platformTotals[platformType] =
+          (platformTotals[platformType] || 0) + value;
+      }
+    });
+
+    // Converte o objeto em um array de objetos, formatando as categorias
+    return Object.entries(platformTotals)
+      .filter(
+        ([name, value]) =>
+          value !== 0 && name !== 'google' && name !== 'meta' && name !== '',
+      )
+      .map(([name, value]) => ({
+        name: name.charAt(0).toUpperCase() + name.slice(1), // Capitaliza o nome da plataforma
+        value, // Formata o total com duas casas decimais
+      }));
+  };
+
+  const googleCosts = formatCostsByPlatform(verba, 'google');
+  const metaCosts = formatCostsByPlatform(verba, 'meta');
+  let totalCosts = [{ name: '', value: 0 }];
+  totalCosts = sumCostsByCombinedPlatform(verba);
+
+  const handleUpdateDataADS = () => {
+    fetchDataGoogle();
+    fetchDataADSMeta();
+  };
+
+  // Filtros para pedidos
+
+  const totalByCategory = [
+    {
+      name: 'Ecom',
+      value: totalPaidAllAmountEcom,
+    },
+    { name: 'Chatbot', value: totalPaidAmountChatbot },
+    { name: 'Loja Física', value: totalRevenue },
+  ];
+
+  const totalByCategoryAP = [
+    {
+      name: 'Ecom',
+      value: roasEcom,
+    },
+    { name: 'Chatbot', value: roasChatbot },
+    { name: 'Loja Física', value: roasLoja },
+  ];
+
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
-        <h4>{title}</h4>
+        <h4>Tráfego Pago | {title}</h4>
         <div className="row">
-          <BudgetItem
+          <BudgetItemList
             icon={FcGoogle}
             title="Verba Google"
+            dataCosts={googleCosts}
             tooltip="Google ADS"
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
+            handleAction={fetchDataGoogle}
+            error={errorGoogle}
           />
-          <BudgetItem
+          <BudgetItemList
             icon={FaMeta}
             iconColor="#008bff"
             title="Verba Meta"
+            dataCosts={metaCosts}
             tooltip="Meta ADS"
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
+            handleAction={fetchDataADSMeta}
+            error={errorMeta}
           />
-          <BudgetItem
+          <BudgetItemList
             icon={GrMoney}
             iconColor="var(--geralblack-100)"
             title="Verba Total"
+            dataCosts={totalCosts}
             tooltip="Google ADS x Meta ADS"
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
+            handleAction={handleUpdateDataADS}
           />
         </div>
         <div className="row">
-          <BudgetItem
+          <BudgetItemList
             icon={MdOutlineAttachMoney}
             iconColor="var(--uipositive-100)"
             title="Faturamento"
+            info="Frete incluído"
+            dataCosts={totalByCategory}
             tooltip="Nuvemshop"
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
-          <BudgetItem
+          <BudgetItemList
             icon={DiGoogleAnalytics}
             iconColor="var(--geralblack-100)"
             title="ROAS"
             tooltip="Faturamento x Verba Total"
             value={roas}
-            small={roasMax}
+            dataCosts={totalByCategoryAP}
+            small={title !== 'Chatbot' ? roasMax : undefined}
             isLoading={
               isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders
             }
