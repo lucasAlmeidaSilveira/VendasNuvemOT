@@ -86,7 +86,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       } catch (error: any) {
       setIsLoadingADSMeta(true);
       setErrorMeta(true);
-      fetchDataADSMeta();
+      // fetchDataADSMeta();
     } finally {
       setIsLoadingADSMeta(false);
     }

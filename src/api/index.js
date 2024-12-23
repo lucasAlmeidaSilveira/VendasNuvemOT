@@ -55,7 +55,6 @@ export async function createProduct(store, body) {
 }
 
 export async function createOrder(newOrder) {
-  console.log(newOrder);
   try {
     // Chama a rota do backend para adicionar o pedido
     const response = await fetch(
