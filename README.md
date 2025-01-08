@@ -58,14 +58,6 @@ Contribuições, sugestões e feedbacks são sempre bem-vindos! Se você tem ide
 
 ---
 
-## 📞 Contato
-
-- **Desenvolvedor**: Lucas
-- **Email**: [seuemail@dominio.com](mailto:seuemail@dominio.com)
-- **LinkedIn**: [Seu LinkedIn](https://www.linkedin.com/in/seu-perfil)
-
----
-
 ### 📝 Licença
 
 Este projeto está licenciado sob a [Licença MIT](LICENSE).
