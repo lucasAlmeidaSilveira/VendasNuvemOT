@@ -44,6 +44,8 @@ export function Statistics() {
     totalPaidAllAmountFormatted,
     totalPaidAmountChatbotFormatted,
     totalPaidAllAmountEcom,
+    totalQuadros,
+    totalEspelhos,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
@@ -86,10 +88,23 @@ export function Statistics() {
   const totalAdSpendChatbot = useMemo(() => adSpends.metaChatbot, [adSpends]);
   const totalAdSpendLoja = useMemo(() => adSpends.googleLoja, [adSpends]);
 
+  const totalAdSpendQuadros = useMemo(
+    () => adSpends.googleQuadros + adSpends.metaQuadros,
+    [adSpends],
+  );
+
+  const totalAdSpendEspelhos = useMemo(
+    () => adSpends.googleEspelhos + adSpends.metaEspelhos,
+    [adSpends],
+  );
+
   const roas = calculateRoas(
     parseCurrency(totalPaidAmountFormatted),
     totalAdSpend,
   );
+  const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
+  const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
+
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
 
   const roasLoja = calculateRoas(totalRevenue, totalAdSpendLoja);
@@ -122,6 +137,8 @@ export function Statistics() {
           verba={adSpends}
           totalOrdersFormatted={totalPaidAmountFormatted}
           roas={roas}
+          roasEspelhos={roasEspelhos}
+          roasQuadros={roasQuadros}
           roasMax={`Max.: ${roasMax}`}
           isLoadingADSGoogle={isLoadingADSGoogle}
           isLoadingOrders={isLoading}

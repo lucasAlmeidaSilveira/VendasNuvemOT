@@ -10,6 +10,8 @@ export interface DataSectionTPagoProps {
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
   isLoadingADSMeta: boolean;
+  roasEspelhos: number | string;
+  roasQuadros: number | string;
 }
 
 export interface DataSectionTPagoAPProps {
@@ -198,6 +200,7 @@ export interface BudgetItemProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
+  dataCosts:;
   orders?: Order[];
 }
 

@@ -50,6 +50,8 @@ export function DataSectionTPago({
   isLoadingADSGoogle,
   isLoadingOrders,
   isLoadingADSMeta,
+  roasEspelhos,
+  roasQuadros,
 }: DataSectionTPagoProps) {
   const { allOrders, date, store } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
@@ -148,6 +150,13 @@ export function DataSectionTPago({
           { name: 'Chatbot', value: totalPaidAmountChatbot },
           { name: 'Loja Física', value: totalRevenue },
         ];
+  const totalByCategoryOT = [
+    {
+      name: 'Quadros',
+      value: roasQuadros,
+    },
+    { name: 'Espelhos', value: roasEspelhos },
+  ];
 
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
@@ -204,11 +213,12 @@ export function DataSectionTPago({
             value={totalOrdersFormatted}
             isLoading={isLoadingOrders}
           />
-          <BudgetItem
+          <BudgetItemList
             icon={DiGoogleAnalytics}
             iconColor="var(--geralblack-100)"
             title="ROAS"
             tooltip="Faturamento x Verba Total"
+            dataCosts={totalByCategoryOT}
             value={roas}
             small={title !== 'Chatbot' ? roasMax : undefined}
             isLoading={

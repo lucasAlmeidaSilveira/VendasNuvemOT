@@ -98,6 +98,8 @@ export function filterOrders(orders, date) {
           order.payment_status === 'paid' && order.storefront === 'Loja Fisica',
       ),
     ),
+    totalQuadros: calculateTotalByProductType(ordersTodayPaid, 'Quadro'),
+    totalEspelhos: calculateTotalByProductType(ordersTodayPaid, 'Espelho'),
   };
 
   return {
