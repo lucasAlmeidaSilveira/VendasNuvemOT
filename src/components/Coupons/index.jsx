@@ -78,6 +78,7 @@ export function Coupons() {
     'IAGOBLACKAP',
     'CLAUDIOBLACKAP',
     'CIBELEBLACKAP',
+    'CIBELE15',
   ];
 
   useEffect(() => {
@@ -86,13 +87,13 @@ export function Coupons() {
 
     const couponUsageMap = {};
 
-    ordersToday.forEach(order => {
+    ordersToday.forEach((order) => {
       const orderDate = new Date(order.created_at);
       if (
         orderDate >= new Date(startDateISO) &&
         orderDate <= new Date(endDateISO)
       ) {
-        order.coupon.forEach(coupon => {
+        order.coupon.forEach((coupon) => {
           if (isSellerFilterActive && !couponsSellers.includes(coupon.code)) {
             return; // Pula cupons que não são dos vendedores se o filtro estiver ativo
           }
@@ -126,12 +127,12 @@ export function Coupons() {
     });
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleSellerFilterChange = event => {
+  const handleSellerFilterChange = (event) => {
     setIsSellerFilterActive(event.target.checked);
   };
 
@@ -145,12 +146,12 @@ export function Coupons() {
                 checked={isSellerFilterActive}
                 onChange={handleSellerFilterChange}
                 inputProps={{ 'aria-label': 'controlled' }}
-                size='large'
+                size="large"
               />
             }
             label={
               <Typography
-                variant='subtitle1'
+                variant="subtitle1"
                 style={{
                   fontFamily: 'Poppins',
                   color: 'var(--geralblack-100)',
@@ -164,7 +165,7 @@ export function Coupons() {
         </FormGroup>
       )}
       <ContainerCoupon component={Paper}>
-        <Table aria-label='simple table'>
+        <Table aria-label="simple table">
           <TableHead>
             <TableRow>
               <StyledTableCell>Código</StyledTableCell>
@@ -189,12 +190,12 @@ export function Coupons() {
             ) : (
               filteredCoupons
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                .map(coupon => (
+                .map((coupon) => (
                   <StyledTableRow
                     key={coupon.id}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
-                    <StyledTableCell component='th' scope='row'>
+                    <StyledTableCell component="th" scope="row">
                       {coupon.code}
                     </StyledTableCell>
                     {coupon.type === 'percentage' ? (
@@ -221,7 +222,7 @@ export function Coupons() {
                 onPageChange={handleChangePage}
                 onRowsPerPageChange={handleChangeRowsPerPage}
                 ActionsComponent={TablePaginationActions}
-                labelRowsPerPage='Linhas por página:'
+                labelRowsPerPage="Linhas por página:"
                 labelDisplayedRows={({ from, to, count }) =>
                   `${from}–${to} de ${count}`
                 }
