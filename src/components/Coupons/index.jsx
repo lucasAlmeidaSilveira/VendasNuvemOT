@@ -79,6 +79,10 @@ export function Coupons() {
     'CLAUDIOBLACKAP',
     'CIBELEBLACKAP',
     'CIBELE15',
+    'DIEGO15',
+    'IAGO15',
+    'CLAUDIO15',
+    'YARA15',
   ];
 
   useEffect(() => {
