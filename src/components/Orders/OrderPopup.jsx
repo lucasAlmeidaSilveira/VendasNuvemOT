@@ -91,6 +91,7 @@ export function OrderPopup({ open, onClose }) {
 
   const handleAddOrder = async () => {
     const cleanedTotal = total.replace(/[^0-9,-]+/g, '').replace(',', '.');
+    console.log(cleanedTotal);
 
     const newOrder = {
       data: {
