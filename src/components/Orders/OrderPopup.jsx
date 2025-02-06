@@ -90,7 +90,11 @@ export function OrderPopup({ open, onClose }) {
   };
 
   const handleAddOrder = async () => {
-    const cleanedTotal = total.replace(/[^0-9,-]+/g, '').replace(',', '.');
+    const cleanedTotal = total
+      .replace(/[^0-9,-]+/g, '')
+      .replace(',', '.')
+      .toFixed(2)
+      .toString();
 
     const newOrder = {
       data: {
@@ -133,8 +137,8 @@ export function OrderPopup({ open, onClose }) {
         shipping_min_days: 0,
         shipping_suboption: {},
         store_id: 1146504,
-        subtotal: parseFloat(cleanedTotal),
-        total: parseFloat(cleanedTotal),
+        subtotal: cleanedTotal,
+        total: cleanedTotal,
         updated_at: createdAt,
         shipping_carrier_name: 'Loja',
         landing_url: 'https://www.artepropria.com.br/',
