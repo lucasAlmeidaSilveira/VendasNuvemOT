@@ -133,8 +133,8 @@ export function OrderPopup({ open, onClose }) {
         shipping_min_days: 0,
         shipping_suboption: {},
         store_id: 1146504,
-        subtotal: parseFloat(cleanedTotal),
-        total: parseFloat(cleanedTotal),
+        subtotal: cleanedTotal,
+        total: cleanedTotal,
         updated_at: createdAt,
         shipping_carrier_name: 'Loja',
         landing_url: 'https://www.artepropria.com.br/',
@@ -186,6 +186,7 @@ export function OrderPopup({ open, onClose }) {
           onCloseConfirm(); // Fecha o popup de confirmação após o envio
           onClose(); // Fecha o popup após o envio
         }, 1000);
+        console.log(response);
       } else {
         throw new Error('Erro ao cadastrar pedido');
       }
