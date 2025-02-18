@@ -91,7 +91,6 @@ export function OrderPopup({ open, onClose }) {
 
   const handleAddOrder = async () => {
     const cleanedTotal = total.replace(/[^0-9,-]+/g, '').replace(',', '.');
-    console.log(cleanedTotal);
 
     const newOrder = {
       data: {
@@ -187,7 +186,6 @@ export function OrderPopup({ open, onClose }) {
           onCloseConfirm(); // Fecha o popup de confirmação após o envio
           onClose(); // Fecha o popup após o envio
         }, 1000);
-        console.log(response);
       } else {
         throw new Error('Erro ao cadastrar pedido');
       }

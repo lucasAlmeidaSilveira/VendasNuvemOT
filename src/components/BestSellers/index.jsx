@@ -107,21 +107,39 @@ export function BestSellers() {
 
     const processVariations = (category) => {
       const variationCounts = {};
-
       ordersTodayPaid.forEach((order) => {
-        order.products.forEach((product) => {
-          if (product.name.includes(category)) {
-            const variation =
-              product.variant_values.length > 0
-                ? product.variant_values.join(', ')
-                : 'Slim';
-            if (variationCounts[variation]) {
-              variationCounts[variation] += 1;
-            } else {
-              variationCounts[variation] = 1;
+        if (category === 'Quadro Decorativo') {
+          order.products.forEach((product) => {
+            if (
+              product.name.includes('Quadro') ||
+              product.name.includes('Quadros')
+            ) {
+              const variation =
+                product.variant_values.length > 0
+                  ? product.variant_values.join(', ')
+                  : 'Slim';
+              if (variationCounts[variation]) {
+                variationCounts[variation] += 1;
+              } else {
+                variationCounts[variation] = 1;
+              }
             }
-          }
-        });
+          });
+        } else {
+          order.products.forEach((product) => {
+            if (product.name.includes('Espelho')) {
+              const variation =
+                product.variant_values.length > 0
+                  ? product.variant_values.join(', ')
+                  : 'Slim';
+              if (variationCounts[variation]) {
+                variationCounts[variation] += 1;
+              } else {
+                variationCounts[variation] = 1;
+              }
+            }
+          });
+        }
       });
 
       const sortedVariations = Object.entries(variationCounts)
