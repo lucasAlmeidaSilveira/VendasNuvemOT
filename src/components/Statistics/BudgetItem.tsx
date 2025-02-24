@@ -53,7 +53,7 @@ export function BudgetItemList({
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
           </TooltipInfo>
           {error && (
-            <span style={{color: "red"}}>Erro no servidor, tentando novamente...</span>
+            <span style={{color: "red"}}>Erro no servidor {title.split(' ')[1]}, tentando novamente...</span>
           )}
           {handleAction && (
             <TooltipInfo className={`btn-reload ${error && 'error'}`} title={'Recarregar dados'}>

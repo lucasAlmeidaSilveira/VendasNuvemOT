@@ -100,7 +100,7 @@ export async function deleteOrder(ownerNote, store) {
 export async function getOrderTiny(id, cpf) {
   try {
     const response = await fetch(
-      `https://node-vendasmarketplace.onrender.com/tiny/order/${id}/${cpf}`,
+      `http://localhost:8001/tiny/order/${id}/${cpf}`,
       {
         method: 'GET',
         headers: {
