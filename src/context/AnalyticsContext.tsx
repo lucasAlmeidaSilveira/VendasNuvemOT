@@ -65,7 +65,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     } catch (err: any) {
       setIsLoadingADSGoogle(true);
       setErrorGoogle(true);
-      fetchDataGoogle();
+      //fetchDataGoogle();
     } finally {
       setIsLoadingADSGoogle(false);
     }
@@ -76,14 +76,14 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       setIsLoadingADSMeta(true);
       const response = await fetch(
         `https://node-vendasnuvemot.onrender.com/ads/meta/${store}/${startDate}/${endDate}`,
-        );
-        if (!response.ok) {
-          throw new Error('Failed to fetch data');
-        }
-        const data = await response.json();
-        setDataADSMeta(data);
-        setErrorMeta(false);
-      } catch (error: any) {
+      );
+      if (!response.ok) {
+        throw new Error('Failed to fetch data');
+      }
+      const data = await response.json();
+      setDataADSMeta(data);
+      setErrorMeta(false);
+    } catch (error: any) {
       setIsLoadingADSMeta(true);
       setErrorMeta(true);
       // fetchDataADSMeta();
@@ -93,11 +93,11 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   };
 
   useEffect(() => {
-    if(activeTab === 2) {
+    if (activeTab === 2) {
       fetchDataGoogle();
       fetchDataADSMeta();
     }
-  }, [allOrders, store, user, activeTab]);
+  }, [store, user, activeTab]);
 
   const resetData = (): void => {
     setData({

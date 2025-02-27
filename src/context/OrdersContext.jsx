@@ -40,12 +40,12 @@ export const OrdersProvider = ({ children }) => {
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
 
   const resetData = () => {
-    setAllOrders([])
+    setAllOrders([]);
     setCustomers([]);
   };
 
   const resetDataAll = () => {
-    setAllFullOrders([])
+    setAllFullOrders([]);
   };
 
   const fetchOrdersData = async (startDateISO, endDateISO) => {
@@ -69,7 +69,9 @@ export const OrdersProvider = ({ children }) => {
 
   const fetchAllOrdersData = async () => {
     try {
-      const response = await fetch(`https://node-vendasnuvemot.onrender.com/db/orders/${store}`);
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/db/orders/${store}`,
+      );
       if (!response.ok) {
         throw new Error('Erro ao buscar todos os pedidos');
       }
@@ -82,10 +84,9 @@ export const OrdersProvider = ({ children }) => {
       });
       throw err;
     }
-  }  
+  };
 
   const fetchDataAll = async () => {
-  
     try {
       setIsLoadingAllOrders(true);
       const ordersData = await fetchAllOrdersData();
@@ -95,7 +96,7 @@ export const OrdersProvider = ({ children }) => {
     } catch (err) {
       setError(err.message);
     }
-  }
+  };
 
   const fetchData = async () => {
     const startDateISO = adjustDate(date[0]);
