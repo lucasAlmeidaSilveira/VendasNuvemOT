@@ -97,7 +97,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       fetchDataGoogle();
       fetchDataADSMeta();
     }
-  }, [store, user, activeTab]);
+  }, [store, user, activeTab, date]);
 
   const resetData = (): void => {
     setData({

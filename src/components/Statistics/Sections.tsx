@@ -1062,7 +1062,7 @@ export function DataSectionAnalytics({
   totalAdSpend,
 }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
+  const { allOrders, isLoading: isLoadingOrders, date, store } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
@@ -1093,7 +1093,7 @@ export function DataSectionAnalytics({
   useEffect(() => {
     const ticket = calculateAverageTicket(ordersToday);
     setAverageTicket(formatCurrency(ticket));
-  }, [date]);
+  }, [date, ordersToday]);
 
   const conversionRate = useMemo(() => {
     const numericVisits = parseInt(visits.replace(/\D/g, ''));
