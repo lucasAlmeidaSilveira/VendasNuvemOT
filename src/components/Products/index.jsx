@@ -46,12 +46,18 @@ export function Products() {
               return; // Pula este produto
             }
 
-            let skuNumber = product.sku.split('-')[0];
+            let skuNumber = product.sku ? product.sku.split('-')[0] : 'Slim';
+
             if (store === 'outlet') {
               skuNumber = cleanedName.includes('Quadro')
-                ? product.sku.split('-')[0].split('OT')[1]
-                : product.sku.split('-')[0].split('OT')[1];
+                ? product.sku.split('-')[0].split('OT')[1].split('|')[1]
+                : skuNumber;
+            } else if (store === 'artepropria') {
+              skuNumber = cleanedName.includes('Quadro')
+                ? product.sku.split('-')[0].split('AP')[1]
+                : skuNumber;
             }
+
             if (!salesMap[product.product_id]) {
               salesMap[product.product_id] = {
                 id: product.product_id,
