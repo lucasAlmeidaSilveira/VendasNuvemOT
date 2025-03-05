@@ -45,9 +45,11 @@ export function BestSellers() {
               const productId = product.product_id;
               const price = parseFloat(product.price);
               const existingProduct = acc.find((p) => p.id === productId);
-              let skuNumber = cleanedName.includes('Quadro')
-                ? product.sku.split('-')[0].split('|')[1]
-                : product.sku.split('-')[0].split('OT')[1];
+              let skuNumber =
+                cleanedName.includes('Quadro') ||
+                cleanedName.includes('Quadros')
+                  ? product.sku.split('-')[0].split('|')[1]
+                  : product.sku.split('-')[0].split('OT')[1];
 
               // Contar a frequência das variações
               const variations = Array.isArray(product.variant_values)
@@ -86,6 +88,7 @@ export function BestSellers() {
 
       // Selecionar a variação mais vendida
       processedProducts.forEach((product) => {
+        console.log(product);
         const variantEntries = Object.entries(product.variantCount);
         if (variantEntries.length > 0) {
           const mostSoldVariant = variantEntries.reduce(
@@ -107,12 +110,27 @@ export function BestSellers() {
 
     const processVariations = (category) => {
       const variationCounts = {};
+      console.log(ordersTodayPaid);
+
       ordersTodayPaid.forEach((order) => {
         if (category === 'Quadro Decorativo') {
           order.products.forEach((product) => {
             if (
-              product.name.includes('Quadro') ||
-              product.name.includes('Quadros')
+              product.name.includes('Quadro Artesanal') ||
+              product.name.includes('Quadros Artesanais')
+            ) {
+              const variation =
+                product.variant_values.length > 0
+                  ? product.variant_values.join(', ')
+                  : 'Artesanal';
+              if (variationCounts[variation]) {
+                variationCounts[variation] += 1;
+              } else {
+                variationCounts[variation] = 1;
+              }
+            } else if (
+              product.name.includes('Quadro Decorativo') ||
+              product.name.includes('Quadros Decorativos')
             ) {
               const variation =
                 product.variant_values.length > 0
@@ -153,9 +171,24 @@ export function BestSellers() {
       return sortedVariations;
     };
 
+    //  Função **mergeResults** criada para possibilitar a chamada duas vezes a função
+    //  **processProducts** com argumentos distintos, uma para "Artesanal" e outra para
+    //  "Artesanais”, e retornar os dois juntos na mesma categoria;
+    const mergeResults = (result1, result2) => ({
+      products: [...result1.products, ...result2.products],
+      totalSales: result1.totalSales + result2.totalSales,
+      totalValue: result1.totalValue + result2.totalValue,
+    });
+
     const quadros = processProducts('Decorativo');
     const espelhos = processProducts('Espelho');
-    const artesanais = processProducts('Artesanal');
+
+    //  Constante artesanais usando a função **mergeResults** para
+    //  chamar duas vezes **processProducts** com argumentos diferentes;
+    const artesanais = mergeResults(
+      processProducts('Artesanal'),
+      processProducts('Artesanais'),
+    );
     const variations = processVariations(selectedCategory); // Usar a categoria selecionada
 
     setProducts({

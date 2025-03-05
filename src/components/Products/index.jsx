@@ -55,7 +55,7 @@ export function Products() {
             } else if (store === 'artepropria') {
               skuNumber = cleanedName.includes('Quadro')
                 ? product.sku.split('-')[0].split('AP')[1]
-                : skuNumber;
+                : product.sku.split('-')[0].split('AP')[1];
             }
 
             if (!salesMap[product.product_id]) {
