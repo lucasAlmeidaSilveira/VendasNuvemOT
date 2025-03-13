@@ -751,7 +751,7 @@ export function DataSectionCart({
     'IAGOAP',
     'YARAAP',
   ];
-  const couponsInsta = ['INSTA10', 'INSTA20'];
+  const couponsInsta = ['INSTA10', 'INSTA20', 'VIP10'];
   const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
   const couponsEmail =
     store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
