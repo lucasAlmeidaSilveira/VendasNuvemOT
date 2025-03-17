@@ -218,3 +218,26 @@ export interface Cost {
   name: string;
   value: number;
 }
+
+
+// Definição da interface para o contexto de reembolsos
+export interface RefundCategory {
+  count: number;
+  value: number;
+}
+export interface RefundSummary {
+  totalRefunds: number;
+  totalValue: number;
+  categories: {
+    Atraso: RefundCategory;
+    "Não gostou": RefundCategory;
+    Avaria: RefundCategory;
+    Outros: RefundCategory;
+  };
+}
+export interface RefundsContextData {
+  refunds: any[]; // Pode ser melhor tipado se soubermos a estrutura exata de `refunds`
+  summary: RefundSummary;
+  loading: boolean;
+  error: string | null;
+}

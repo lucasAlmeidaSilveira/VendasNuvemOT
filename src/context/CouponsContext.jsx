@@ -10,6 +10,7 @@ export const CouponProvider = ({ children }) => {
   const [coupons, setCoupons] = useState([]);
   const [error, setError] = useState(null);
   const { store, date } = useOrders();
+  
   const { activeTab } = useTab();
 
   // Função para buscar dados da API

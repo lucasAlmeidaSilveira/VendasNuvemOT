@@ -88,7 +88,6 @@ export function BestSellers() {
 
       // Selecionar a variação mais vendida
       processedProducts.forEach((product) => {
-        console.log(product);
         const variantEntries = Object.entries(product.variantCount);
         if (variantEntries.length > 0) {
           const mostSoldVariant = variantEntries.reduce(
@@ -110,7 +109,6 @@ export function BestSellers() {
 
     const processVariations = (category) => {
       const variationCounts = {};
-      console.log(ordersTodayPaid);
 
       ordersTodayPaid.forEach((order) => {
         if (category === 'Quadro Decorativo') {

@@ -8,16 +8,28 @@ import {
   DataSectionCart,
   DataSectionCosts,
   DataSectionPay,
+  DataSectionReembolso,
   DataSectionTPago,
   DataSectionTPagoAP,
 } from './Sections';
-import { calculateRoas, parseCurrency } from '../../tools/tools';
+import {
+  calculateRoas,
+  formatCurrency,
+  parseCurrency,
+} from '../../tools/tools';
 import { Container, ContainerCharts } from './styles';
+import { Popup } from '../Popup';
+import { Button } from '../Button';
+import { ConfirmationDialog } from '../Products/ConfirmationDialog';
+import { DialogContent, DialogActions, styled } from '@mui/material';
+import { ContainerButton } from '../Orders/styles';
+import { RefundPopup } from '../Refunds/RefundsPopup';
 
 export function Statistics() {
   const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } =
     useAnalytics();
   const { allOrders, isLoading, date, store } = useOrders();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const [usersByDevice, setUsersByDevice] = useState({});
   const [adSpends, setAdSpends] = useState({
@@ -126,10 +138,26 @@ export function Statistics() {
     conversaoVendas: '#592DEA',
     payment: '#008006',
     planilhaAnalytics: '#7002d0',
+    reembolso: '#633B48',
+  };
+
+  const handleIsOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+  const handleIsClosePopup = () => {
+    setIsPopupOpen(false);
   };
 
   return (
     <Container>
+      <Button
+        variant="contained"
+        color="primary"
+        onClick={handleIsOpenPopup}
+        style={{ marginBottom: '12px' }}
+      >
+        Analisar atrasos
+      </Button>
       {store === 'outlet' ? (
         <DataSectionTPago
           title="Geral"
@@ -165,6 +193,10 @@ export function Statistics() {
         bgcolor={bgColors.analytics}
         totalAdSpend={totalAdSpend}
       />
+      <DataSectionReembolso
+        bgcolor={bgColors.reembolso}
+        totalAdSpend={totalAdSpend}
+      />
       <DataSectionCart
         bgcolor={bgColors.conversaoVendas}
         totalAdSpend={totalAdSpend}
@@ -198,6 +230,10 @@ export function Statistics() {
           loading={isLoading}
         />
       </ContainerCharts>
+      <RefundPopup
+        isPopupOpen={isPopupOpen}
+        handleIsClosePopup={handleIsClosePopup}
+      />
     </Container>
   );
 }

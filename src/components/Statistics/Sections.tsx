@@ -4,6 +4,7 @@ import { useCoupons } from '../../context/CouponsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { BudgetItem, BudgetItemList } from './BudgetItem';
 import {
+  adjustDate,
   calculateAverageTicket,
   calculatePopupRate,
   calculateRoas,
@@ -36,6 +37,7 @@ import {
   Order,
   Coupon,
 } from '../../types';
+import { useRefunds } from '../../context/RefundsContext';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -1145,6 +1147,71 @@ export function DataSectionAnalytics({
             tooltip="Verba Total / Vendas"
             value={priceAcquisition}
             isLoading={isLoadingOrders}
+          />
+        </div>
+      </ContainerGeral>
+    </ContainerOrders>
+  );
+}
+
+export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
+  const { summary, loading, error } = useRefunds();
+
+  if (loading) {
+    return <p>Carregando reembolsos...</p>;
+  }
+
+  if (error) {
+    return <p>Erro ao carregar reembolsos: {error}</p>;
+  }
+
+  return (
+    <ContainerOrders>
+      <ContainerGeral bgcolor={bgcolor}>
+        <h4>Reembolsos</h4>
+
+        <div className="row">
+          <BudgetItem
+            title="Total Reembolsos"
+            tooltip="Total de reembolsos feitos"
+            value={summary.totalRefunds}
+            isLoading={loading}
+          />
+          <BudgetItem
+            title="Valor Total"
+            tooltip="Valor total reembolsado"
+            value={`R$ ${summary.totalValue.toFixed(2)}`}
+            isLoading={loading}
+          />
+        </div>
+        <div className="row">
+          <BudgetItem
+            title="Atraso"
+            tooltip="Reembolsos por atraso"
+            value={summary.categories.Atraso.count}
+            small={`R$ ${summary.categories.Atraso.value.toFixed(2)}`}
+            isLoading={loading}
+          />
+          <BudgetItem
+            title="Não Gostou"
+            tooltip="Reembolsos por insatisfação"
+            value={summary.categories['Não gostou'].count}
+            small={`R$ ${summary.categories['Não gostou'].value.toFixed(2)}`}
+            isLoading={loading}
+          />
+          <BudgetItem
+            title="Avaria"
+            tooltip="Reembolsos por avaria"
+            value={summary.categories.Avaria.count}
+            small={`R$ ${summary.categories.Avaria.value.toFixed(2)}`}
+            isLoading={loading}
+          />
+          <BudgetItem
+            title="Outros"
+            tooltip="Outros motivos de reembolso"
+            value={summary.categories.Outros.count}
+            small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
+            isLoading={loading}
           />
         </div>
       </ContainerGeral>

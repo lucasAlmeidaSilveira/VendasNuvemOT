@@ -7,6 +7,7 @@ import { TabProvider } from './context/TabContext'; // Importe o provedor do con
 import { CouponProvider } from './context/CouponsContext';
 import { AnalyticsProvider } from './context/AnalyticsContext.tsx';
 import { AuthProvider } from './context/AuthContext.jsx';
+import { RefundsProvider } from './context/RefundsContext.tsx';
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 
@@ -15,13 +16,15 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <OrdersProvider>
-        <TabProvider>
-          <AnalyticsProvider>
-            <CouponProvider>
-              <App />
-            </CouponProvider>
-          </AnalyticsProvider>
-        </TabProvider>
+        <RefundsProvider>
+          <TabProvider>
+            <AnalyticsProvider>
+              <CouponProvider>
+                <App />
+              </CouponProvider>
+            </AnalyticsProvider>
+          </TabProvider>
+        </RefundsProvider>
       </OrdersProvider>
     </AuthProvider>
   </React.StrictMode>,
