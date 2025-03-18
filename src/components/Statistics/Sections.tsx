@@ -41,6 +41,7 @@ import {
 import { useRefunds } from '../../context/RefundsContext';
 import { TooltipInfo } from '../TooltipInfo';
 import { RefundPopup } from '../Refunds/RefundsPopup';
+import { IoIosMail } from 'react-icons/io';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
