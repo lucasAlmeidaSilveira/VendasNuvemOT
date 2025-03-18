@@ -1,4 +1,4 @@
-import styled from "styled-components";
+import styled from 'styled-components';
 
 interface ContainerGeralProps {
   bgcolor: string;
@@ -20,7 +20,7 @@ export const Container = styled.div`
     margin-top: -1px;
     white-space: nowrap;
   }
-`
+`;
 
 export const ContainerOrders = styled.div`
   display: flex;
@@ -28,14 +28,14 @@ export const ContainerOrders = styled.div`
   justify-content: flex-start;
   gap: 1.6rem;
   flex-wrap: wrap;
-`
+`;
 
-const bgColorCard = '#c8e6c9'
-const bgColorPix = '#bbdefb'
-const bgColorBoleto = '#ffe0b2'
-const borderColorCard = '#66bb6a'
-const borderColorPix = '#42a5f5'
-const borderColorBoleto = '#ffb74d'
+const bgColorCard = '#c8e6c9';
+const bgColorPix = '#bbdefb';
+const bgColorBoleto = '#ffe0b2';
+const borderColorCard = '#66bb6a';
+const borderColorPix = '#42a5f5';
+const borderColorBoleto = '#ffb74d';
 
 export const ContainerGeral = styled.div<ContainerGeralProps>`
   align-items: flex-start;
@@ -44,18 +44,18 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   flex: 1;
   flex-wrap: wrap;
   gap: 1.6rem;
-  background-color: ${props => props.bgcolor || 'var(var(--geralgray-10)'};
+  background-color: ${(props) => props.bgcolor || 'var(var(--geralgray-10)'};
   padding: 2.4rem;
   border-radius: 1.6rem;
 
   h4 {
     color: var(--geralwhite);
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   }
-  
+
   h5 {
     color: var(--geralwhite);
-    text-shadow: 0px 2px 4px rgba(0,0,0,0.5);
+    text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   .dev {
@@ -83,17 +83,16 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     flex-direction: column;
     gap: 0.8rem;
     padding: 1.6rem 2.4rem;
-    transition: all .2s ease-in;
+    transition: all 0.2s ease-in;
     border: 1px solid transparent;
 
     &.orders {
       cursor: pointer;
     }
-    
+
     &.orders:hover {
       border: 1px solid var(--geralblack-100);
       background-color: var(--geralblack-20);
-
     }
   }
 
@@ -148,7 +147,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     line-height: var(--body-heading-h4-line-height);
     white-space: nowrap;
     display: flex;
-    gap: .4rem;
+    gap: 0.4rem;
     width: 100%;
   }
 
@@ -163,31 +162,31 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     display: flex;
     flex-direction: column;
     align-items: flex-start;
-    gap: .4rem;
+    gap: 0.4rem;
     width: 100%;
 
     & > div {
       display: flex;
       align-items: center;
-      gap: .4rem;
+      gap: 0.4rem;
     }
-    
+
     .row-list {
       display: flex;
       width: 100%;
       align-items: baseline;
       justify-content: space-between;
-      
+
       & > span {
         font-size: var(--body-subtitle-font-size);
         font-weight: var(--body-subtitle-font-weight);
       }
     }
-    
+
     .column-list {
       display: flex;
       width: 100%;
-      gap: .2rem;
+      gap: 0.2rem;
       flex-direction: column;
       color: var(--geralgray-100);
 
@@ -210,33 +209,52 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     background: var(--geralblack-30);
     border-radius: 50%;
     border: 1px solid transparent;
-    
-    transition: opacity .2s ease-in;
-    opacity: .5;
+
+    transition: opacity 0.2s ease-in;
+    opacity: 0.5;
 
     &.error {
       border: 1px solid red;
     }
-    
+
     &:hover {
       opacity: 1;
       box-shadow: 0px 3px 4px #00000040;
     }
   }
-`
+  & .btn-plus {
+    margin-left: auto;
+    padding: 4px;
+    background: var(--geralblack-30);
+    border-radius: 50%;
+    border: 1px solid transparent;
+
+    transition: opacity 0.2s ease-in;
+    opacity: 0.5;
+
+    &.error {
+      border: 1px solid red;
+    }
+
+    &:hover {
+      opacity: 1;
+      box-shadow: 0px 3px 4px #00000040;
+    }
+  }
+`;
 
 export const ContainerCharts = styled.div`
   display: flex;
   width: 100%;
   flex-wrap: wrap;
   gap: 1.6rem;
-`
+`;
 
 export const Small = styled.span`
   line-height: initial;
   font-size: 1.2rem;
   font-weight: 400;
-`
+`;
 
 export const ContainerTable = styled.div`
   display: flex;
@@ -249,15 +267,15 @@ export const ContainerTable = styled.div`
   a.link {
     display: flex;
     align-items: center;
-    gap: .4rem;
+    gap: 0.4rem;
     text-decoration: none;
     cursor: pointer;
   }
-  
+
   a.link-gateway {
     font-size: 12px;
     display: flex;
     flex-direction: column;
     align-items: flex-start;
   }
-`
+`;

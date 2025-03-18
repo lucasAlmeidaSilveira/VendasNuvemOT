@@ -141,23 +141,11 @@ export function Statistics() {
     reembolso: '#633B48',
   };
 
-  const handleIsOpenPopup = () => {
-    setIsPopupOpen(true);
-  };
-  const handleIsClosePopup = () => {
-    setIsPopupOpen(false);
-  };
+
 
   return (
     <Container>
-      <Button
-        variant="contained"
-        color="primary"
-        onClick={handleIsOpenPopup}
-        style={{ marginBottom: '12px' }}
-      >
-        Cadastrar Reembolsos
-      </Button>
+
       {store === 'outlet' ? (
         <DataSectionTPago
           title="Geral"
@@ -230,10 +218,7 @@ export function Statistics() {
           loading={isLoading}
         />
       </ContainerCharts>
-      <RefundPopup
-        isPopupOpen={isPopupOpen}
-        handleIsClosePopup={handleIsClosePopup}
-      />
+      
     </Container>
   );
 }

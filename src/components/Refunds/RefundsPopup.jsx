@@ -1,6 +1,8 @@
 import React, { useState } from 'react';
 import { Popup } from '../Popup'; // Certifique-se de que esse componente está importado corretamente
 import { useOrders } from '../../context/OrdersContext';
+import { useRefunds } from '../../context/RefundsContext';
+
 import './RefundPopup.css';
 
 export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
@@ -11,6 +13,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState(''); // Estado para mensagem de sucesso
+  const { reloadRefunds } = useRefunds();
 
   const categories = ['Atraso', 'Não gostou', 'Avaria', 'Outros'];
 
@@ -42,6 +45,11 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
         setOrderNumber('');
         setCategory('');
         setRefundValue('');
+        setTimeout(() => {
+          setSuccessMessage('');
+          handleIsClosePopup(); // Fecha o popup automaticamente
+          reloadRefunds(); //  Aciona a função que recarrega as informações
+        }, 2000);
       } else {
         setSuccessMessage('Erro ao cadastrar reembolso! ❌');
       }

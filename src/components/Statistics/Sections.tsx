@@ -24,7 +24,8 @@ import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { RiMessengerLine } from 'react-icons/ri';
-import { IoIosMail } from 'react-icons/io';
+import { FaPlus } from 'react-icons/fa6';
+
 import {
   CouponProps,
   DataSectionAnalyticsProps,
@@ -38,6 +39,8 @@ import {
   Coupon,
 } from '../../types';
 import { useRefunds } from '../../context/RefundsContext';
+import { TooltipInfo } from '../TooltipInfo';
+import { RefundPopup } from '../Refunds/RefundsPopup';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -1156,7 +1159,14 @@ export function DataSectionAnalytics({
 
 export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
   const { summary, loading, error } = useRefunds();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const handleIsOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+  const handleIsClosePopup = () => {
+    setIsPopupOpen(false);
+  };
   if (loading) {
     return <p>Carregando reembolsos...</p>;
   }
@@ -1166,56 +1176,69 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
   }
 
   return (
-    <ContainerOrders>
-      <ContainerGeral bgcolor={bgcolor}>
-        <h4>Reembolsos</h4>
-
-        <div className="row">
-          <BudgetItem
-            title="Total Reembolsos"
-            tooltip="Total de reembolsos feitos"
-            value={summary.totalRefunds}
-            isLoading={loading}
-          />
-          <BudgetItem
-            title="Valor Total"
-            tooltip="Valor total reembolsado"
-            value={`R$ ${summary.totalValue.toFixed(2)}`}
-            isLoading={loading}
-          />
-        </div>
-        <div className="row">
-          <BudgetItem
-            title="Atraso"
-            tooltip="Reembolsos por atraso"
-            value={summary.categories.Atraso.count}
-            small={`R$ ${summary.categories.Atraso.value.toFixed(2)}`}
-            isLoading={loading}
-          />
-          <BudgetItem
-            title="Não Gostou"
-            tooltip="Reembolsos por insatisfação"
-            value={summary.categories['Não gostou'].count}
-            small={`R$ ${summary.categories['Não gostou'].value.toFixed(2)}`}
-            isLoading={loading}
-          />
-          <BudgetItem
-            title="Avaria"
-            tooltip="Reembolsos por avaria"
-            value={summary.categories.Avaria.count}
-            small={`R$ ${summary.categories.Avaria.value.toFixed(2)}`}
-            isLoading={loading}
-          />
-          <BudgetItem
-            title="Outros"
-            tooltip="Outros motivos de reembolso"
-            value={summary.categories.Outros.count}
-            small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
-            isLoading={loading}
-          />
-        </div>
-      </ContainerGeral>
-    </ContainerOrders>
+    <>
+      <ContainerOrders>
+        <ContainerGeral bgcolor={bgcolor}>
+          <div className="title-box">
+            <h4>Reembolsos</h4>
+            <TooltipInfo
+              className={`btn-plus ${error && 'error'}`}
+              title={'Cadastrar Reembolsos'}
+            >
+              <FaPlus size={24} onClick={handleIsOpenPopup} />
+            </TooltipInfo>
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Total Reembolsos"
+              tooltip="Total de reembolsos feitos"
+              value={summary.totalRefunds}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Valor Total"
+              tooltip="Valor total reembolsado"
+              value={`R$ ${summary.totalValue.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Atraso"
+              tooltip="Reembolsos por atraso"
+              value={summary.categories.Atraso.count}
+              small={`R$ ${summary.categories.Atraso.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Não Gostou"
+              tooltip="Reembolsos por insatisfação"
+              value={summary.categories['Não gostou'].count}
+              small={`R$ ${summary.categories['Não gostou'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Avaria"
+              tooltip="Reembolsos por avaria"
+              value={summary.categories.Avaria.count}
+              small={`R$ ${summary.categories.Avaria.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Outros"
+              tooltip="Outros motivos de reembolso"
+              value={summary.categories.Outros.count}
+              small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+        </ContainerGeral>
+      </ContainerOrders>
+      <RefundPopup
+        isPopupOpen={isPopupOpen}
+        handleIsClosePopup={handleIsClosePopup}
+      />
+    </>
   );
 }
 /*
