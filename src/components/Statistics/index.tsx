@@ -156,7 +156,7 @@ export function Statistics() {
         onClick={handleIsOpenPopup}
         style={{ marginBottom: '12px' }}
       >
-        Analisar atrasos
+        Cadastrar Reembolsos
       </Button>
       {store === 'outlet' ? (
         <DataSectionTPago
