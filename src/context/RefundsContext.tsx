@@ -102,6 +102,7 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
   };
 
   useEffect(() => {
+    if (!store || !date || date.length < 2) return;
     fetchRefunds();
   }, [store, date]);
 
