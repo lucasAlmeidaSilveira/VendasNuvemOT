@@ -254,5 +254,5 @@ export interface TikTokAdsContextType {
   loading: boolean; // Estado de carregamento
   error: string | null; // Mensagem de erro
   fetchTikTokAds: () => void; // Função para buscar dados
-  totalCostAll: number; // Valor de "all" (não pode ser null)
+  totalCostTikTokAll: number; // Valor de "all" (não pode ser null)
 }

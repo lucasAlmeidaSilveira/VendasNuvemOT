@@ -2,6 +2,7 @@ import React, { useEffect, useState, useMemo } from 'react';
 import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
+import { useTikTokAds } from '../../context/TikTokAdsContext';
 import { Chart, ChartLine, ChartStates } from '../Chart';
 import {
   DataSectionAnalytics,
@@ -30,7 +31,8 @@ export function Statistics() {
     useAnalytics();
   const { allOrders, isLoading, date, store } = useOrders();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
-
+  const { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll } =
+    useTikTokAds();
   const [usersByDevice, setUsersByDevice] = useState({});
   const [adSpends, setAdSpends] = useState({
     google: 0,
@@ -89,10 +91,15 @@ export function Statistics() {
   }, [data, dataADSMeta]);
 
   // Cálculo total de gastos e ROAS
-  const totalAdSpend = useMemo(
-    () => adSpends.google + adSpends.meta,
-    [adSpends],
-  );
+  const totalAdSpend = useMemo(() => {
+    if (store === 'outlet') {
+      return adSpends.google + adSpends.meta + (totalCostTikTokAll || 0);
+    }
+    if (store === 'artepropria') {
+      return adSpends.google + adSpends.meta;
+    }
+    return 0; // Fallback para outros casos
+  }, [adSpends]);
   const totalAdSpendEcom = useMemo(
     () => adSpends.googleEcom + adSpends.metaEcom,
     [adSpends],
@@ -130,6 +137,12 @@ export function Statistics() {
     totalAdSpend,
   );
 
+  // Adicione um novo cálculo específico para o TikTok se necessário
+  const roasTikTok = calculateRoas(
+    parseCurrency(totalPaidAmountFormatted), // Ou outra métrica de receita específica
+    totalCostTikTokAll,
+  );
+
   // Cores de fundo para diferentes seções
   const bgColors = {
     trafegoPago: '#525252',
@@ -141,11 +154,8 @@ export function Statistics() {
     reembolso: '#633B48',
   };
 
-
-
   return (
     <Container>
-
       {store === 'outlet' ? (
         <DataSectionTPago
           title="Geral"
@@ -218,7 +228,6 @@ export function Statistics() {
           loading={isLoading}
         />
       </ContainerCharts>
-      
     </Container>
   );
 }

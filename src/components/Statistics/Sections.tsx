@@ -43,6 +43,7 @@ import { TooltipInfo } from '../TooltipInfo';
 import { RefundPopup } from '../Refunds/RefundsPopup';
 import { IoIosMail } from 'react-icons/io';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
+import { FaTiktok } from 'react-icons/fa';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -61,7 +62,7 @@ export function DataSectionTPago({
   roasQuadros,
 }: DataSectionTPagoProps) {
   const { allOrders, date, store } = useOrders();
-  const { adsData, loading, error, fetchTikTokAds, totalCostAll } =
+  const { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll } =
     useTikTokAds();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
@@ -90,7 +91,7 @@ export function DataSectionTPago({
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
   const totalAdSpend = formatCurrency(
-    verbaGoogleSum + verbaMetaSum + totalCostAll,
+    verbaGoogleSum + verbaMetaSum + totalCostTikTokAll,
   );
 
   // Função para converter o objeto em arrays separados por plataforma
@@ -141,17 +142,19 @@ export function DataSectionTPago({
 
   const googleCosts = formatCostsByPlatform(verba, 'google');
   const metaCosts = formatCostsByPlatform(verba, 'meta');
+
   let totalCosts = [{ name: '', value: 0 }];
+  console.log(store);
 
   if (store === 'outlet') {
     totalCosts = sumCostsByCombinedPlatform(verba);
     // Atualiza o valor de "Geral" com o valor de "all" do TikTok ADS
-    if (totalCostAll !== null) {
+    if (totalCostTikTokAll !== null) {
       totalCosts = totalCosts.map((item) => {
         if (item.name === 'Geral') {
           return {
             ...item,
-            value: item.value + totalCostAll, // Soma o valor de "all" ao valor de "Geral"
+            value: item.value + totalCostTikTokAll, // Soma o valor de "all" ao valor de "Geral"
           };
         }
         return item;
@@ -186,10 +189,16 @@ export function DataSectionTPago({
     },
     { name: 'Espelhos', value: roasEspelhos },
   ];
-
+  const tiktokCostAll = [
+    {
+      name: 'Geral',
+      value: totalCostTikTokAll, // Valor de "all"
+    },
+  ];
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
     fetchDataADSMeta();
+    fetchTikTokAds();
   };
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
@@ -219,6 +228,16 @@ export function DataSectionTPago({
             isLoading={isLoadingADSMeta}
             handleAction={fetchDataADSMeta}
             error={errorMeta}
+          />
+          <BudgetItemList
+            icon={FaTiktok}
+            iconColor="var(--geralblack-100)"
+            title="Verba Tiktok"
+            dataCosts={tiktokCostAll}
+            tooltip="Tiktok ADS"
+            value={formatCurrency(totalCostTikTokAll)}
+            isLoading={loading}
+            handleAction={fetchTikTokAds}
           />
           <BudgetItemList
             icon={GrMoney}

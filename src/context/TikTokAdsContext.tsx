@@ -15,7 +15,7 @@ const TikTokAdsContext = createContext<TikTokAdsContextType>({
   loading: false,
   error: null,
   fetchTikTokAds: () => {}, // Função vazia
-  totalCostAll: 0, // Valor padrão para totalCostAll
+  totalCostTikTokAll: 0, // Valor padrão para totalCostTikTokAll
 });
 
 // Hook personalizado para usar o contexto
@@ -33,7 +33,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
   const { store, date } = useOrders();
-  const [totalCostAll, setTotalCostAll] = useState<number>(0); // Estado para o valor de "all"
+  const [totalCostTikTokAll, settotalCostTikTokAll] = useState<number>(0); // Estado para o valor de "all"
 
   const adjustDatePlus = (dateString: string): string => {
     // Converte a data para o formato YYYY-MM-DD (esperado pela API)
@@ -64,7 +64,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
 
       // Extrai o valor de "all" e armazena no estado
       if (data && data.length > 0 && data[0].totalCost) {
-        setTotalCostAll(data[0].totalCost.all);
+        settotalCostTikTokAll(data[0].totalCost.all);
       }
     } catch (error) {
       setError(error.message);
@@ -79,7 +79,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [store, date]);
 
   // Valor do contexto
-  const value = { adsData, loading, error, fetchTikTokAds, totalCostAll };
+  const value = { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll };
   return (
     <TikTokAdsContext.Provider value={value}>
       {children}
