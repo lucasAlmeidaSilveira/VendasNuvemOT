@@ -42,6 +42,7 @@ import { useRefunds } from '../../context/RefundsContext';
 import { TooltipInfo } from '../TooltipInfo';
 import { RefundPopup } from '../Refunds/RefundsPopup';
 import { IoIosMail } from 'react-icons/io';
+import { useTikTokAds } from '../../context/TikTokAdsContext';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -60,6 +61,8 @@ export function DataSectionTPago({
   roasQuadros,
 }: DataSectionTPagoProps) {
   const { allOrders, date, store } = useOrders();
+  const { adsData, loading, error, fetchTikTokAds, totalCostAll } =
+    useTikTokAds();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
   // Filtros para pedidos
@@ -86,7 +89,9 @@ export function DataSectionTPago({
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
-  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum);
+  const totalAdSpend = formatCurrency(
+    verbaGoogleSum + verbaMetaSum + totalCostAll,
+  );
 
   // Função para converter o objeto em arrays separados por plataforma
   const formatCostsByPlatform = (
@@ -137,7 +142,25 @@ export function DataSectionTPago({
   const googleCosts = formatCostsByPlatform(verba, 'google');
   const metaCosts = formatCostsByPlatform(verba, 'meta');
   let totalCosts = [{ name: '', value: 0 }];
-  totalCosts = sumCostsByCombinedPlatform(verba);
+
+  if (store === 'outlet') {
+    totalCosts = sumCostsByCombinedPlatform(verba);
+    // Atualiza o valor de "Geral" com o valor de "all" do TikTok ADS
+    if (totalCostAll !== null) {
+      totalCosts = totalCosts.map((item) => {
+        if (item.name === 'Geral') {
+          return {
+            ...item,
+            value: item.value + totalCostAll, // Soma o valor de "all" ao valor de "Geral"
+          };
+        }
+        return item;
+      });
+    }
+  }
+  if (store === 'artepropria') {
+    totalCosts = sumCostsByCombinedPlatform(verba);
+  }
 
   const totalByCategory =
     store === 'outlet'

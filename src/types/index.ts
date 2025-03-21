@@ -200,7 +200,7 @@ export interface BudgetItemProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
-  dataCosts:;
+  dataCosts: any;
   orders?: Order[];
 }
 
@@ -219,7 +219,6 @@ export interface Cost {
   value: number;
 }
 
-
 // Definição da interface para o contexto de reembolsos
 export interface RefundCategory {
   count: number;
@@ -230,7 +229,7 @@ export interface RefundSummary {
   totalValue: number;
   categories: {
     Atraso: RefundCategory;
-    "Não gostou": RefundCategory;
+    'Não gostou': RefundCategory;
     Avaria: RefundCategory;
     Outros: RefundCategory;
   };
@@ -240,4 +239,20 @@ export interface RefundsContextData {
   summary: RefundSummary;
   loading: boolean;
   error: string | null;
+}
+
+export type TotalCostTikTokAds = {
+  all: number;
+};
+
+export type TotalCostTikTokProps = {
+  totalCost: TotalCostTikTokAds;
+};
+
+export interface TikTokAdsContextType {
+  adsData: TotalCostTikTokProps; // Resposta da API
+  loading: boolean; // Estado de carregamento
+  error: string | null; // Mensagem de erro
+  fetchTikTokAds: () => void; // Função para buscar dados
+  totalCostAll: number; // Valor de "all" (não pode ser null)
 }

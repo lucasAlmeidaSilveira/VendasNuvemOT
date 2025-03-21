@@ -67,51 +67,53 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       size="xs"
       title="Reembolso"
     >
-      <p className="popup-subtitle">Preencha os dados abaixo</p>
-      <br />
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage ? (
         <p className="popup-success">{successMessage}</p>
       ) : (
-        <form className="popup-form" onSubmit={handleSubmit}>
-          <label>Número do pedido:</label>
-          <input
-            type="number"
-            className="popup-input"
-            value={orderNumber}
-            onChange={(e) => setOrderNumber(e.target.value)}
-            required
-          />
+        <>
+          <p className="popup-subtitle">Preencha os dados abaixo</p>
+          <br />
+          <form className="popup-form" onSubmit={handleSubmit}>
+            <label>Número do pedido:</label>
+            <input
+              type="number"
+              className="popup-input"
+              value={orderNumber}
+              onChange={(e) => setOrderNumber(e.target.value)}
+              required
+            />
 
-          <label>Categoria de reembolso:</label>
-          <select
-            className="popup-select"
-            value={category}
-            onChange={(e) => setCategory(e.target.value)}
-            required
-          >
-            <option value="">Selecione uma opção</option>
-            {categories.map((cat) => (
-              <option key={cat} value={cat}>
-                {cat}
-              </option>
-            ))}
-          </select>
+            <label>Categoria de reembolso:</label>
+            <select
+              className="popup-select"
+              value={category}
+              onChange={(e) => setCategory(e.target.value)}
+              required
+            >
+              <option value="">Selecione uma opção</option>
+              {categories.map((cat) => (
+                <option key={cat} value={cat}>
+                  {cat}
+                </option>
+              ))}
+            </select>
 
-          <label>Valor reembolsado:</label>
-          <input
-            type="number"
-            className="popup-input"
-            step="0.01"
-            value={refundValue}
-            onChange={(e) => setRefundValue(e.target.value)}
-            required
-          />
+            <label>Valor reembolsado:</label>
+            <input
+              type="number"
+              className="popup-input"
+              step="0.01"
+              value={refundValue}
+              onChange={(e) => setRefundValue(e.target.value)}
+              required
+            />
 
-          <button type="submit" className="popup-button">
-            REGISTRAR
-          </button>
-        </form>
+            <button type="submit" className="popup-button">
+              REGISTRAR
+            </button>
+          </form>
+        </>
       )}
     </Popup>
   );

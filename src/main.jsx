@@ -8,6 +8,7 @@ import { CouponProvider } from './context/CouponsContext';
 import { AnalyticsProvider } from './context/AnalyticsContext.tsx';
 import { AuthProvider } from './context/AuthContext.jsx';
 import { RefundsProvider } from './context/RefundsContext.tsx';
+import { TikTokAdsProvider } from './context/TikTokAdsContext.tsx';
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 
@@ -17,13 +18,15 @@ root.render(
     <AuthProvider>
       <OrdersProvider>
         <RefundsProvider>
-          <TabProvider>
-            <AnalyticsProvider>
-              <CouponProvider>
-                <App />
-              </CouponProvider>
-            </AnalyticsProvider>
-          </TabProvider>
+          <TikTokAdsProvider>
+            <TabProvider>
+              <AnalyticsProvider>
+                <CouponProvider>
+                  <App />
+                </CouponProvider>
+              </AnalyticsProvider>
+            </TabProvider>
+          </TikTokAdsProvider>
         </RefundsProvider>
       </OrdersProvider>
     </AuthProvider>

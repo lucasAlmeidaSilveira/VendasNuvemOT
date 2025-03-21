@@ -14,8 +14,8 @@ import { ClientDetails } from '../Orders/ClientDetails';
 import { ProductDetails } from '../Orders/ProductDetails';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Flex, Table, Theme } from '@radix-ui/themes';
-import { TableFooter, TablePagination } from "@mui/material";
-import { TablePaginationActions } from "../Pagination";
+import { TableFooter, TablePagination } from '@mui/material';
+import { TablePaginationActions } from '../Pagination';
 
 export function BudgetItemList({
   icon: Icon,
@@ -29,7 +29,7 @@ export function BudgetItemList({
   small,
   handleAction,
   orders,
-  error
+  error,
 }: BudgetItemListProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
@@ -46,22 +46,27 @@ export function BudgetItemList({
   return (
     <>
       <div className={`div ${orders && 'orders'}`} onClick={handleOpenPopup}>
-        <div className='title-box'>
+        <div className="title-box">
           {Icon && <Icon color={iconColor} fontSize={18} />}
-          <p className='text-wrapper-2'>{title}</p>
+          <p className="text-wrapper-2">{title}</p>
           <TooltipInfo title={tooltip}>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
           </TooltipInfo>
           {error && (
-            <span style={{color: "red"}}>Erro no servidor {title.split(' ')[1]}, tentando novamente...</span>
+            <span style={{ color: 'red' }}>
+              Erro no servidor {title.split(' ')[1]}, tentando novamente...
+            </span>
           )}
           {handleAction && (
-            <TooltipInfo className={`btn-reload ${error && 'error'}`} title={'Recarregar dados'}>
+            <TooltipInfo
+              className={`btn-reload ${error && 'error'}`}
+              title={'Recarregar dados'}
+            >
               <IoReload size={16} onClick={handleAction} />
             </TooltipInfo>
           )}
         </div>
-        <div className='text-wrapper-4'>
+        <div className="text-wrapper-4">
           {isLoading ? (
             <Loading />
           ) : (
@@ -75,10 +80,10 @@ export function BudgetItemList({
                   </TooltipInfo>
                 )}
               </div>
-              <div className='column-list'>
+              <div className="column-list">
                 {dataCosts &&
                   dataCosts.map((data, index) => (
-                    <div key={index} className='row-list'>
+                    <div key={index} className="row-list">
                       <span
                         style={
                           data.name === 'Total'
@@ -115,8 +120,8 @@ export function BudgetItemList({
       <Popup
         open={isPopupOpen}
         onClose={handleClosePopup}
-        size='lg'
-        title='Pedidos'
+        size="lg"
+        title="Pedidos"
       >
         <TableOrders orders={orders} />
       </Popup>
@@ -151,15 +156,15 @@ export function BudgetItem({
   return (
     <>
       <div className={`div ${orders && 'orders'}`} onClick={handleOpenPopup}>
-        <div className='title-box'>
+        <div className="title-box">
           {Icon && <Icon color={iconColor} fontSize={18} />}
-          <p className='text-wrapper-2'>{title}</p>
+          <p className="text-wrapper-2">{title}</p>
           <TooltipInfo title={tooltip}>
             <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
           </TooltipInfo>
           {bullet && <span className={bullet} />}
         </div>
-        <div className='text-wrapper-3'>
+        <div className="text-wrapper-3">
           {isLoading ? (
             <Loading />
           ) : (
@@ -178,8 +183,8 @@ export function BudgetItem({
       <Popup
         open={isPopupOpen}
         onClose={handleClosePopup}
-        size='lg'
-        title='Pedidos'
+        size="lg"
+        title="Pedidos"
       >
         <TableOrders orders={orders} />
       </Popup>
@@ -205,13 +210,13 @@ function TableOrders({ orders }: any) {
     setPage(newPage);
   };
 
-  const handleChangeRowsPerPage = event => {
+  const handleChangeRowsPerPage = (event) => {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
 
-  const handleToggleExpand = order_id => {
-    setExpandedOrders(prevState => ({
+  const handleToggleExpand = (order_id) => {
+    setExpandedOrders((prevState) => ({
       ...prevState,
       [order_id]: !prevState[order_id],
     }));
@@ -238,111 +243,111 @@ function TableOrders({ orders }: any) {
   return (
     <Theme style={{ minHeight: '10%' }}>
       <ContainerTable>
-          <Table.Root variant='surface' layout={layout}>
-            <EnhancedTableHead
-              order={sort}
-              orderBy={orderBy}
-              onRequestSort={handleRequestSort}
-            />
-            <Table.Body>
-              {orders.length === 0 ? (
-                <Table.Row>
-                  <Table.Cell align='center' colSpan={6}>
-                    Nenhum pedido encontrado
-                  </Table.Cell>
-                </Table.Row>
-              ) : (
-                orders
-                  .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
-                  .map((order: any) => (
-                    <>
-                      <Table.Row key={order.id} align={'center'}>
-                        <Table.Cell p={'4'}>
-                          #{order.order_id ? order.order_id : order.owner_note}
-                        </Table.Cell>
-                        <Table.Cell p={'4'}>
-                          {formatDateShort(order.created_at)}
-                        </Table.Cell>
-                        <Table.Cell
-                          p={'4'}
-                          onClick={() => handleToggleExpand(order.id)}
+        <Table.Root variant="surface" layout={layout}>
+          <EnhancedTableHead
+            order={sort}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+          />
+          <Table.Body>
+            {orders.length === 0 ? (
+              <Table.Row>
+                <Table.Cell align="center" colSpan={6}>
+                  Nenhum pedido encontrado
+                </Table.Cell>
+              </Table.Row>
+            ) : (
+              orders
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((order: any) => (
+                  <>
+                    <Table.Row key={order.id} align={'center'}>
+                      <Table.Cell p={'4'}>
+                        #{order.order_id ? order.order_id : order.owner_note}
+                      </Table.Cell>
+                      <Table.Cell p={'4'}>
+                        {formatDateShort(order.created_at)}
+                      </Table.Cell>
+                      <Table.Cell
+                        p={'4'}
+                        onClick={() => handleToggleExpand(order.id)}
+                      >
+                        <a className="link">
+                          {order.contact_name}{' '}
+                          {expandedOrders[order.id] ? (
+                            <FaChevronUp />
+                          ) : (
+                            <FaChevronDown />
+                          )}
+                        </a>
+                      </Table.Cell>
+                      <Table.Cell p={'4'}>{order.products.length}</Table.Cell>
+                      <Table.Cell p={'4'}>
+                        {formatCurrency(order.total)}
+                      </Table.Cell>
+                      <Table.Cell p={'4'}>
+                        <a
+                          className="link link-gateway"
+                          href={order.gateway_link}
+                          target="_blank"
+                          rel="noopener noreferrer"
                         >
-                          <a className='link'>
-                            {order.contact_name}{' '}
-                            {expandedOrders[order.id] ? (
-                              <FaChevronUp />
-                            ) : (
-                              <FaChevronDown />
-                            )}
-                          </a>
-                        </Table.Cell>
-                        <Table.Cell p={'4'}>{order.products.length}</Table.Cell>
-                        <Table.Cell p={'4'}>
-                          {formatCurrency(order.total)}
-                        </Table.Cell>
-                        <Table.Cell p={'4'}>
-                          <a
-                            className='link link-gateway'
-                            href={order.gateway_link}
-                            target='_blank'
-                            rel='noopener noreferrer'
-                          >
-                            <PaymentStatus
-                              status={order.payment_status}
-                              payment={order.payment_details.method}
-                            />
-                          </a>
+                          <PaymentStatus
+                            status={order.payment_status}
+                            payment={order.payment_details.method}
+                          />
+                        </a>
+                      </Table.Cell>
+                    </Table.Row>
+                    {expandedOrders[order.id] && (
+                      <Table.Row className="row-order">
+                        <Table.Cell colSpan={6}>
+                          <ClientDetails order={order} />
+                          <ProductDetails products={order.products} />
                         </Table.Cell>
                       </Table.Row>
-                      {expandedOrders[order.id] && (
-                        <Table.Row className='row-order'>
-                          <Table.Cell colSpan={6}>
-                            <ClientDetails order={order} />
-                            <ProductDetails products={order.products} />
-                          </Table.Cell>
-                        </Table.Row>
-                      )}
-                    </>
-                  ))
-              )}
-            </Table.Body>
-            <TableFooter>
-          <Table.Row>
-            <TablePagination
-              rowsPerPageOptions={[5, 10, 20, 50]}
-              colSpan={6}
-              count={orders.length}
-              rowsPerPage={rowsPerPage}
-              page={page}
-              onPageChange={handleChangePage}
-              onRowsPerPageChange={handleChangeRowsPerPage}
-              ActionsComponent={TablePaginationActions}
-              labelRowsPerPage='Linhas por página:'
-              labelDisplayedRows={({ from, to, count }) =>
-                `${from}–${to} de ${count}`
-              }
-              sx={{
-                '& .MuiTablePagination-toolbar': {
-                  fontSize: '1.1rem',
-                  fontFamily: 'Poppins, sans-serif',
-                },
-                '& .MuiTablePagination-selectLabel': {
-                  fontSize: '1.1rem',
-                  fontFamily: 'Poppins, sans-serif',
-                },
-                '& .MuiTablePagination-input': {
-                  fontSize: '1.1rem',
-                  fontFamily: 'Poppins, sans-serif',
-                },
-                '& .MuiTablePagination-displayedRows': {
-                  fontSize: '1.1rem',
-                  fontFamily: 'Poppins, sans-serif',
-                },
-              }}
-            />
-          </Table.Row>
-        </TableFooter>
-          </Table.Root>
+                    )}
+                  </>
+                ))
+            )}
+          </Table.Body>
+          <TableFooter>
+            <Table.Row>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 20, 50]}
+                colSpan={6}
+                count={orders.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                labelRowsPerPage="Linhas por página:"
+                labelDisplayedRows={({ from, to, count }) =>
+                  `${from}–${to} de ${count}`
+                }
+                sx={{
+                  '& .MuiTablePagination-toolbar': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-selectLabel': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-input': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-displayedRows': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                }}
+              />
+            </Table.Row>
+          </TableFooter>
+        </Table.Root>
       </ContainerTable>
     </Theme>
   );
