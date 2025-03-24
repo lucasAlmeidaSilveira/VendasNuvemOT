@@ -93,7 +93,7 @@ export function Statistics() {
   // Cálculo total de gastos e ROAS
   const totalAdSpend = useMemo(() => {
     if (store === 'outlet') {
-      return adSpends.google + adSpends.meta + (totalCostTikTokAll || 0);
+      return adSpends.google + adSpends.meta;
     }
     if (store === 'artepropria') {
       return adSpends.google + adSpends.meta;

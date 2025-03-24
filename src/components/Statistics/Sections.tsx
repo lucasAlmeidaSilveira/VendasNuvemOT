@@ -90,9 +90,7 @@ export function DataSectionTPago({
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
-  const totalAdSpend = formatCurrency(
-    verbaGoogleSum + verbaMetaSum + totalCostTikTokAll,
-  );
+  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum);
 
   // Função para converter o objeto em arrays separados por plataforma
   const formatCostsByPlatform = (
@@ -144,8 +142,9 @@ export function DataSectionTPago({
   const metaCosts = formatCostsByPlatform(verba, 'meta');
 
   let totalCosts = [{ name: '', value: 0 }];
-  console.log(store);
-
+  totalCosts = sumCostsByCombinedPlatform(verba);
+  
+  /*
   if (store === 'outlet') {
     totalCosts = sumCostsByCombinedPlatform(verba);
     // Atualiza o valor de "Geral" com o valor de "all" do TikTok ADS
@@ -163,7 +162,7 @@ export function DataSectionTPago({
   }
   if (store === 'artepropria') {
     totalCosts = sumCostsByCombinedPlatform(verba);
-  }
+  }*/
 
   const totalByCategory =
     store === 'outlet'
@@ -229,16 +228,7 @@ export function DataSectionTPago({
             handleAction={fetchDataADSMeta}
             error={errorMeta}
           />
-          <BudgetItemList
-            icon={FaTiktok}
-            iconColor="var(--geralblack-100)"
-            title="Verba Tiktok"
-            dataCosts={tiktokCostAll}
-            tooltip="Tiktok ADS"
-            value={formatCurrency(totalCostTikTokAll)}
-            isLoading={loading}
-            handleAction={fetchTikTokAds}
-          />
+
           <BudgetItemList
             icon={GrMoney}
             iconColor="var(--geralblack-100)"
