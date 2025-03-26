@@ -11,12 +11,14 @@ export function ButtonReload() {
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
   const { reloadRefunds } = useRefunds();
   const { user } = useAuth();
+  const { fetchTikTokAds } = useTikTokAds();
 
   const handleReload = () => {
     if (user) {
       fetchData();
       fetchDataGoogle();
       fetchDataADSMeta();
+      fetchTikTokAds();
       reloadRefunds();
     }
   };
