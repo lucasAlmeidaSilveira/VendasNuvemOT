@@ -5,6 +5,7 @@ import { useOrders } from '../../context/OrdersContext';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useAuth } from '../../context/AuthContext';
 import { useRefunds } from '../../context/RefundsContext';
+import { useTikTokAds } from '../../context/TikTokAdsContext';
 
 export function ButtonReload() {
   const { isLoading, fetchData } = useOrders();
