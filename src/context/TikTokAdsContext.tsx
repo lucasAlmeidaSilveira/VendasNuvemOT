@@ -46,7 +46,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Função para buscar os dados do TikTok ADS
   const fetchTikTokAds = useCallback(async () => {
-    const url = `http://localhost:8000/creative/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    const url = `https://node-vendasnuvemot.onrender.com/creative/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
     if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
 
     setLoading(true);
