@@ -90,7 +90,9 @@ export function DataSectionTPago({
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
-  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum + totalCostTikTokAll);
+  const totalAdSpend = formatCurrency(
+    verbaGoogleSum + verbaMetaSum + totalCostTikTokAll,
+  );
 
   // Função para converter o objeto em arrays separados por plataforma
   const formatCostsByPlatform = (
@@ -797,7 +799,7 @@ export function DataSectionCart({
     'YARAAP',
   ];
   const couponsInsta = ['INSTA10', 'INSTA20', 'VIP10'];
-  const couponsWhats = ['WHATS10', 'WHATS15', 'WHATS20'];
+  const couponsWhats = ['WHATS5', 'WHATS10', 'WHATS15', 'WHATS20'];
   const couponsEmail =
     store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
   const couponsPopup =
