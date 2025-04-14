@@ -211,7 +211,8 @@ export const generateDataCosts = (orders: Order[], couponsList: string[]) => {
   return [
     {
       name: 'Total',
-      value: orders.reduce((acc, order) => acc + parseInt(order.total), 0),
+      value: orders.reduce((acc, order) => acc + parseFloat(order.total), 0),
+      quantity: orders.length,
     },
     ...couponsList.map((couponCode) => ({
       name: couponCode,
@@ -219,7 +220,10 @@ export const generateDataCosts = (orders: Order[], couponsList: string[]) => {
         .filter((order) =>
           order.coupon.some((coupon) => coupon.code === couponCode),
         )
-        .reduce((acc, order) => acc + parseInt(order.total), 0),
+        .reduce((acc, order) => acc + parseFloat(order.total), 0),
+      quantity: orders.filter((order) =>
+        order.coupon.some((coupon) => coupon.code === couponCode),
+      ).length,
     })),
   ];
 };

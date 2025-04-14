@@ -815,6 +815,7 @@ export function DataSectionCart({
       const filteredOrders = ordersToday.filter((order: Order) =>
         filterCondition(order),
       );
+
       return { filteredOrders };
     };
 
@@ -947,6 +948,12 @@ export function DataSectionCart({
     totalCashbackValue > 0
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
+
+  useEffect(() => {
+    console.log('DEBUG:', cartsRecoveryWhats);
+    console.log('DEBUG:', generateDataCosts(cartsRecoveryWhats, couponsWhats));
+  }),
+    [data, store];
 
   return (
     <ContainerOrders>

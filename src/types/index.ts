@@ -205,6 +205,7 @@ export interface BudgetItemProps {
 }
 
 export interface DataCosts {
+  quantity: number | string;
   name: string;
   value: number | string;
 }

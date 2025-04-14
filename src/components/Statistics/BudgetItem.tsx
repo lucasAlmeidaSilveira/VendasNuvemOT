@@ -96,7 +96,7 @@ export function BudgetItemList({
                       >
                         {title === 'ROAS'
                           ? data.value
-                          : formatCurrency(data.value)}
+                          : `${formatCurrency(data.value)} ${data.quantity ? `(${data.quantity})` : ''}`}
                       </span>
                       <span
                         style={
