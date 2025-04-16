@@ -62,8 +62,15 @@ export function DataSectionTPago({
   roasQuadros,
 }: DataSectionTPagoProps) {
   const { allOrders, date, store } = useOrders();
-  const { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll } =
-    useTikTokAds();
+  const {
+    adsData,
+    loading,
+    error,
+    fetchTikTokAds,
+    fetchTikTokCreatives,
+    allFullCreatives,
+    totalCostTikTokAll,
+  } = useTikTokAds();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
   // Filtros para pedidos
@@ -110,7 +117,6 @@ export function DataSectionTPago({
         name: key.replace(platform, ''), // Remove o nome da plataforma
         value, // Formata para BRL
       }));
-
     return filteredCosts;
   };
 
@@ -194,11 +200,19 @@ export function DataSectionTPago({
       value: totalCostTikTokAll, // Valor de "all"
     },
   ];
+
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
     fetchDataADSMeta();
     fetchTikTokAds();
   };
+
+  useEffect(() => {
+    allFullCreatives?.map((creative) => {
+      console.log(creative.spend);
+    });
+  }),
+    [date, store];
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
@@ -234,6 +248,7 @@ export function DataSectionTPago({
             title="Verba Tiktok"
             dataCosts={tiktokCostAll}
             tooltip="Tiktok ADS"
+            creatives={allFullCreatives}
             value={formatCurrency(totalCostTikTokAll)}
             isLoading={loading}
             handleAction={fetchTikTokAds}
@@ -948,12 +963,6 @@ export function DataSectionCart({
     totalCashbackValue > 0
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
-
-  useEffect(() => {
-    console.log('DEBUG:', cartsRecoveryWhats);
-    console.log('DEBUG:', generateDataCosts(cartsRecoveryWhats, couponsWhats));
-  }),
-    [data, store];
 
   return (
     <ContainerOrders>

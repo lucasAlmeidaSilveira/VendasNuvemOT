@@ -109,6 +109,13 @@ export interface Order {
   coupon: Coupon[];
 }
 
+export interface Creatives {
+  id: number | string;
+  cost: number;
+  click: number;
+  impression: number;
+  conversions: number;
+}
 export interface CouponProps {
   code: string;
   id: number;
@@ -188,6 +195,7 @@ export interface BudgetItemListProps {
   handleAction?: () => void;
   orders?: Order[];
   error?: boolean;
+  creatives?: Creatives[];
 }
 
 export interface BudgetItemProps {
@@ -202,6 +210,7 @@ export interface BudgetItemProps {
   tooltip?: string;
   dataCosts: any;
   orders?: Order[];
+  creatives?: Creatives[];
 }
 
 export interface DataCosts {
@@ -254,6 +263,8 @@ export interface TikTokAdsContextType {
   adsData: TotalCostTikTokProps; // Resposta da API
   loading: boolean; // Estado de carregamento
   error: string | null; // Mensagem de erro
-  fetchTikTokAds: () => void; // Função para buscar dados
+  fetchTikTokAds: () => void; // Função para buscar dados ADS
+  fetchTikTokCreatives: ()=> void; // Função para buscar dados dos criativos
   totalCostTikTokAll: number; // Valor de "all" (não pode ser null)
+  allFullCreatives?: Creatives[];
 }

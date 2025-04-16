@@ -6,7 +6,6 @@ export function formatCurrency(value: string | number): string {
   if (typeof value === 'string') {
     value = parseFloat(value);
   }
-
   return value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 }
 

@@ -15,6 +15,8 @@ const TikTokAdsContext = createContext<TikTokAdsContextType>({
   loading: false,
   error: null,
   fetchTikTokAds: () => {}, // Função vazia
+  fetchTikTokCreatives: () => {}, // Função vazia
+  allFullCreatives: [],
   totalCostTikTokAll: 0, // Valor padrão para totalCostTikTokAll
 });
 
@@ -34,6 +36,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
   const [error, setError] = useState<string | null>(null);
   const { store, date } = useOrders();
   const [totalCostTikTokAll, settotalCostTikTokAll] = useState<number>(0); // Estado para o valor de "all"
+  const [allFullCreatives, setAllFullCreatives] = useState([]);
 
   const adjustDatePlus = (dateString: string): string => {
     // Converte a data para o formato YYYY-MM-DD (esperado pela API)
@@ -73,13 +76,50 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
     }
   }, [store, date]);
 
+  const fetchTikTokCreatives = useCallback(async () => {
+    const url = `https://node-vendasnuvemot.onrender.com/creatives/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
+
+    setLoading(true);
+    setError(null);
+
+    try {
+      const response = await fetch(url);
+
+      if (!response.ok) {
+        throw new Error('Erro ao buscar dados do TikTok ADS');
+      }
+
+      const data = await response.json();
+      setAdsData(data);
+
+      // Extrai o valor de "all" e armazena no estado
+      if (data && data.length > 0 && data[0].totalCost) {
+        setAllFullCreatives(data[0].totalCost.dailyData);
+      }
+    } catch (error) {
+      setError(error.message);
+    } finally {
+      setLoading(false);
+    }
+  }, [store, date]);
+
   // Busca os dados quando store ou date mudam
   useEffect(() => {
     fetchTikTokAds();
+    fetchTikTokCreatives();
   }, [store, date]);
 
   // Valor do contexto
-  const value = { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll };
+  const value = {
+    adsData,
+    loading,
+    error,
+    fetchTikTokAds,
+    fetchTikTokCreatives,
+    allFullCreatives,
+    totalCostTikTokAll,
+  };
   return (
     <TikTokAdsContext.Provider value={value}>
       {children}
