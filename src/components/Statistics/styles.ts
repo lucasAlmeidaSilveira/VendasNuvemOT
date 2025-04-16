@@ -89,7 +89,9 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
     &.orders {
       cursor: pointer;
     }
-
+    &.creatives {
+      cursor: pointer;
+    }
     &.orders:hover {
       border: 1px solid var(--geralblack-100);
       background-color: var(--geralblack-20);

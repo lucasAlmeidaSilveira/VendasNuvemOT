@@ -207,12 +207,6 @@ export function DataSectionTPago({
     fetchTikTokAds();
   };
 
-  useEffect(() => {
-    allFullCreatives?.map((creative) => {
-      console.log(creative.spend);
-    });
-  }),
-    [date, store];
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 

@@ -56,7 +56,7 @@ export function BudgetItemList({
   return (
     <>
       <div
-        className={`div ${orders && 'orders'}`}
+        className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
         onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
       >
         <div className="title-box">
@@ -186,7 +186,7 @@ export function BudgetItem({
   return (
     <>
       <div
-        className={`div ${orders && 'orders'}`}
+        className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
         onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
       >
         <div className="title-box">
