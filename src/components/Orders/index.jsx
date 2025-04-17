@@ -84,6 +84,8 @@ const EnhancedTableHead = (props) => {
   const { order, orderBy, onRequestSort } = props;
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
   };
 
   return (
@@ -141,25 +143,25 @@ export function Orders() {
   const [orderDirection, setOrderDirection] = useState('asc'); // Estado para rastrear a direção da ordenação
   const holidays_br = new Set([
     // Feriados Nacionais
-    '2024-01-01', // Confraternização Universal (Ano Novo)
-    '2024-02-13', // Carnaval
-    '2024-03-29', // Sexta-feira Santa
-    '2024-04-07', // Paixão de Cristo
-    '2024-04-21', // Tiradentes
-    '2024-05-01', // Dia do Trabalho
-    '2024-06-20', // Corpus Christi
-    '2024-09-07', // Independência do Brasil
-    '2024-10-12', // Nossa Senhora Aparecida
-    '2024-11-02', // Finados
-    '2024-11-15', // Proclamação da República
-    '2024-12-25', // Natal
+    '2025-01-01', // Confraternização Universal (Ano Novo)
+    '2025-02-13', // Carnaval
+    '2025-03-29', // Sexta-feira Santa
+    '2025-04-07', // Paixão de Cristo
+    '2025-04-21', // Tiradentes
+    '2025-05-01', // Dia do Trabalho
+    '2025-06-20', // Corpus Christi
+    '2025-09-07', // Independência do Brasil
+    '2025-10-12', // Nossa Senhora Aparecida
+    '2025-11-02', // Finados
+    '2025-11-15', // Proclamação da República
+    '2025-12-25', // Natal
 
     // Feriados Estaduais
-    '2024-07-09', // Revolução Constitucionalista
+    '2025-07-09', // Revolução Constitucionalista
 
     // Feriados Municipais
-    '2024-01-25', // Aniversário da Cidade de São Paulo
-    '2024-11-20', // Consiencia Negra
+    '2025-01-25', // Aniversário da Cidade de São Paulo
+    '2025-11-20', // Consiencia Negra
   ]);
 
   const handleOpenPopup = () => {
@@ -242,6 +244,9 @@ export function Orders() {
     const isAsc = orderBy === property && order === 'asc';
     setOrder(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
+    //console.log('DEBUG isAsc: ', isAsc);
   };
 
   useEffect(() => {

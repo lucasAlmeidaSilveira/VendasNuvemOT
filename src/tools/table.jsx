@@ -28,8 +28,8 @@ export const StyledTableCell = styled(TableCell)(({ theme }) => ({
     display: 'flex',
     gap: '8px',
     alignItems: 'center',
-    padding: '16px'
-  }
+    padding: '16px',
+  },
 }));
 
 export const StyledTableRow = styled(TableRow)(({ theme }) => ({
@@ -69,22 +69,32 @@ export const headCells = [
 ];
 
 export const headCellsCreative = [
-  { id: 'id', numeric: false, disablePadding: false, label: 'ID' },
-  { id: 'impression', numeric: true, disablePadding: false, label: 'Impressões' },
+  { id: 'id', numeric: true, disablePadding: false, label: 'ID' },
+  {
+    id: 'impression',
+    numeric: true,
+    disablePadding: false,
+    label: 'Impressões',
+  },
   { id: 'click', numeric: true, disablePadding: false, label: 'Cliques' },
   { id: 'cost', numeric: true, disablePadding: false, label: 'Custo' },
-  { id: 'conversions', numeric: true, disablePadding: false, label: 'Conversões' },
+  {
+    id: 'conversions',
+    numeric: true,
+    disablePadding: false,
+    label: 'Conversões',
+  },
 ];
 
 export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
-  const createSortHandler = property => event => {
+  const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
   };
 
   return (
-    <Table.Header style={{ backgroundColor: 'lightgray'}}>
+    <Table.Header style={{ backgroundColor: 'lightgray' }}>
       <Table.Row>
-        {headCells.map(headCell => (
+        {headCells.map((headCell) => (
           <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -96,7 +106,7 @@ export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component='span' sx={visuallyHidden}>
+                <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}
@@ -108,15 +118,21 @@ export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
   );
 };
 
-export const EnhancedTableHeadCreative = ({ order, orderBy, onRequestSort }) => {
-  const createSortHandler = property => event => {
+export const EnhancedTableHeadCreative = ({
+  order,
+  orderBy,
+  onRequestSort,
+}) => {
+  const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
   };
 
   return (
-    <Table.Header style={{ backgroundColor: 'lightgray'}}>
+    <Table.Header style={{ backgroundColor: 'lightgray' }}>
       <Table.Row>
-        {headCellsCreative.map(headCell => (
+        {headCellsCreative.map((headCell) => (
           <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
@@ -128,7 +144,7 @@ export const EnhancedTableHeadCreative = ({ order, orderBy, onRequestSort }) => 
             >
               {headCell.label}
               {orderBy === headCell.id ? (
-                <Box component='span' sx={visuallyHidden}>
+                <Box component="span" sx={visuallyHidden}>
                   {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
                 </Box>
               ) : null}

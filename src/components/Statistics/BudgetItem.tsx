@@ -237,7 +237,7 @@ export function BudgetItem({
 }
 
 function TableOrders({ orders }: any) {
-  const [sort, setSort] = useState('desc');
+  const [sort, setSort] = useState('asc');
   const [orderBy, setOrderBy] = useState('created_at');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
@@ -248,6 +248,7 @@ function TableOrders({ orders }: any) {
     const isAsc = orderBy === property && sort === 'asc';
     setSort(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
+    console.log(orderBy);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -398,16 +399,35 @@ function TableOrders({ orders }: any) {
 }
 
 function TableTiktokCreatives({ creatives }) {
-  const [sort, setSort] = useState('desc');
-  const [orderBy, setOrderBy] = useState('created_at');
+  const [sort, setSort] = useState('asc');
+  const [orderBy, setOrderBy] = useState('id');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [layout, setLayout] = useState<'auto' | 'fixed'>('auto');
+
+  const sortedCreatives = [...creatives].sort((a, b) => {
+    const isAsc = sort === 'asc';
+    const orderByKey = orderBy;
+  
+    // Lógica para comparação numérica (já que todas as colunas são marcadas como numeric: true)
+    if (typeof a[orderByKey] === 'number') {
+      return isAsc ? a[orderByKey] - b[orderByKey] : b[orderByKey] - a[orderByKey];
+    }
+  
+    // Lógica para strings (caso precise)
+    return isAsc 
+      ? String(a[orderByKey]).localeCompare(String(b[orderByKey])) 
+      : String(b[orderByKey]).localeCompare(String(a[orderByKey]));
+  });
 
   const handleRequestSort = (event, property) => {
     const isAsc = orderBy === property && sort === 'asc';
     setSort(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
+    //console.log('DEBUG isAsc: ', isAsc);
+    //console.log('DEBUG orderBy: ', orderBy);
   };
 
   const handleChangePage = (event, newPage) => {
@@ -447,14 +467,14 @@ function TableTiktokCreatives({ creatives }) {
             onRequestSort={handleRequestSort}
           />
           <Table.Body>
-            {creatives.length === 0 ? (
+            {sortedCreatives.length === 0 ? (
               <Table.Row>
                 <Table.Cell align="center" colSpan={5}>
                   Nenhum Criativo encontrado
                 </Table.Cell>
               </Table.Row>
             ) : (
-              creatives
+              sortedCreatives
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((creative) => (
                   <>
@@ -462,12 +482,12 @@ function TableTiktokCreatives({ creatives }) {
                       <Table.Cell p={'2'}>
                         ID: {creative.id ? creative.id : 'N/A'}
                       </Table.Cell>
-                      <Table.Cell p={'4'}>{creative.impression}</Table.Cell>
-                      <Table.Cell p={'2'}>{creative.click}</Table.Cell>
+                      <Table.Cell p={'7'}>{creative.impression}</Table.Cell>
+                      <Table.Cell p={'5'}>{creative.click}</Table.Cell>
                       <Table.Cell p={'2'}>
                         {formatCurrency(creative.cost)}
                       </Table.Cell>
-                      <Table.Cell p={'2'}>{creative.conversions}</Table.Cell>
+                      <Table.Cell p={'6'}>{creative.conversions}</Table.Cell>
                     </Table.Row>
                   </>
                 ))
