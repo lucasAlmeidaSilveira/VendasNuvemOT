@@ -399,8 +399,8 @@ function TableOrders({ orders }: any) {
 }
 
 function TableTiktokCreatives({ creatives }) {
-  const [sort, setSort] = useState('asc');
-  const [orderBy, setOrderBy] = useState('id');
+  const [sort, setSort] = useState('desc');
+  const [orderBy, setOrderBy] = useState('conversions');
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [layout, setLayout] = useState<'auto' | 'fixed'>('auto');
@@ -408,15 +408,17 @@ function TableTiktokCreatives({ creatives }) {
   const sortedCreatives = [...creatives].sort((a, b) => {
     const isAsc = sort === 'asc';
     const orderByKey = orderBy;
-  
+
     // Lógica para comparação numérica (já que todas as colunas são marcadas como numeric: true)
     if (typeof a[orderByKey] === 'number') {
-      return isAsc ? a[orderByKey] - b[orderByKey] : b[orderByKey] - a[orderByKey];
+      return isAsc
+        ? a[orderByKey] - b[orderByKey]
+        : b[orderByKey] - a[orderByKey];
     }
-  
+
     // Lógica para strings (caso precise)
-    return isAsc 
-      ? String(a[orderByKey]).localeCompare(String(b[orderByKey])) 
+    return isAsc
+      ? String(a[orderByKey]).localeCompare(String(b[orderByKey]))
       : String(b[orderByKey]).localeCompare(String(a[orderByKey]));
   });
 
