@@ -18,7 +18,9 @@ export const CouponProvider = ({ children }) => {
     setCoupons([]);
 
     try {
-      const response = await fetch(`http://localhost:8000/coupons/${store}`);
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/coupons/${store}`,
+      );
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
       }

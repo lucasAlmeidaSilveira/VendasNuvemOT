@@ -29,13 +29,16 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
     };
 
     try {
-      const response = await fetch(`http://localhost:8000/refunds/${store}`, {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/refunds/${store}`,
+        {
+          method: 'POST',
+          headers: {
+            'Content-Type': 'application/json',
+          },
+          body: JSON.stringify(newRefund),
         },
-        body: JSON.stringify(newRefund),
-      });
+      );
 
       if (response.ok) {
         setSuccessMessage('Reembolso cadastrado com sucesso! ✅');

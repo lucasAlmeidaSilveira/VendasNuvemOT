@@ -49,7 +49,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Função para buscar os dados do TikTok ADS
   const fetchTikTokAds = useCallback(async () => {
-    const url = `http://localhost:8000/ads/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    const url = `https://node-vendasnuvemot.onrender.com/ads/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
     if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
 
     setLoading(true);
@@ -77,7 +77,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [store, date]);
 
   const fetchTikTokCreatives = useCallback(async () => {
-    const url = `http://localhost:8000/creatives/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    const url = `https://node-vendasnuvemot.onrender.com/creatives/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
     if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
 
     setLoading(true);
