@@ -10,7 +10,7 @@ export const CouponProvider = ({ children }) => {
   const [coupons, setCoupons] = useState([]);
   const [error, setError] = useState(null);
   const { store, date } = useOrders();
-  
+
   const { activeTab } = useTab();
 
   // Função para buscar dados da API
@@ -18,9 +18,7 @@ export const CouponProvider = ({ children }) => {
     setCoupons([]);
 
     try {
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/coupons/${store}`,
-      );
+      const response = await fetch(`http://localhost:8000/coupons/${store}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
       }

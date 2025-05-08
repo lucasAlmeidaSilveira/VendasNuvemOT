@@ -51,7 +51,7 @@ export const OrdersProvider = ({ children }) => {
   const fetchOrdersData = async (startDateISO, endDateISO) => {
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`,
+        `http://localhost:8000/db/orders/${store}/${startDateISO}/${endDateISO}`,
       );
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');
@@ -69,9 +69,7 @@ export const OrdersProvider = ({ children }) => {
 
   const fetchAllOrdersData = async () => {
     try {
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/db/orders/${store}`,
-      );
+      const response = await fetch(`http://localhost:8000/db/orders/${store}`);
       if (!response.ok) {
         throw new Error('Erro ao buscar todos os pedidos');
       }

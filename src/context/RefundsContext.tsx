@@ -45,7 +45,7 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
 
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}/${createdAtMin}/${createdAtMax}`,
+        `http://localhost:8000/refunds/${store}/${createdAtMin}/${createdAtMax}`,
       );
       if (!response.ok) throw new Error('Erro ao buscar reembolsos');
 
