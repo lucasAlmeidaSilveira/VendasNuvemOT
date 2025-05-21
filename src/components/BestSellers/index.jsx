@@ -58,6 +58,7 @@ export function BestSellers() {
               let variantCount = {};
               if (existingProduct) {
                 existingProduct.sales += 1;
+                existingProduct.totalSales += price;
                 if (variations) {
                   variantCount = existingProduct.variantCount;
                   variantCount[variations] =
@@ -72,6 +73,7 @@ export function BestSellers() {
                   image: product.image.src,
                   sales: 1,
                   total: price,
+                  totalSales: price,
                   variantCount: variations ? { [variations]: 1 } : {},
                 });
               }
@@ -178,7 +180,7 @@ export function BestSellers() {
       totalValue: result1.totalValue + result2.totalValue,
     });
 
-    const quadros = processProducts('Decorativo');
+    const quadros = processProducts('Quadro');
     const espelhos = processProducts('Espelho');
 
     //  Constante artesanais usando a função **mergeResults** para
@@ -288,6 +290,7 @@ export function BestSellers() {
                         sales={product.sales}
                         urlImage={product.image}
                         variations={product.variations}
+                        totalSales={product.totalSales}
                       />
                     ))
                 )}
