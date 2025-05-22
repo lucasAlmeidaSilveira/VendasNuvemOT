@@ -77,14 +77,12 @@ export function Products() {
             const variations = Array.isArray(product.variant_values)
               ? product.variant_values.join(', ')
               : '';
+
             if (variations) {
               if (!salesMap[product.product_id].variantCount[variations]) {
                 salesMap[product.product_id].variantCount[variations] = 0;
               }
-              salesMap[product.product_id].variantCount[variations] += 1;
-            }
-
-            if (variations) {
+              
               if (!variationMap[variations]) {
                 variationMap[variations] = {
                   name: variations,
@@ -92,6 +90,7 @@ export function Products() {
                   id: variations,
                 };
               }
+              salesMap[product.product_id].variantCount[variations] += 1;
               variationMap[variations].sales += 1;
             }
           });
@@ -268,6 +267,7 @@ export function Products() {
                         }
                         urlImage={product.image}
                         variations={product.variations}
+                        totalSales={product.revenue}
                       />
                     ))
                 )}
