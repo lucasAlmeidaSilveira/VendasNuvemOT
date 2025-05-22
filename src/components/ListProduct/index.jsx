@@ -11,8 +11,6 @@ export function ListProduct({ idProduct, position, name, skuNumber, variations, 
     }
   }, [landingUrl])
 
-  const skuNumberFormatted = skuNumber.replace('|', '')
-  
   return (
     <Container>
       <div className="frame">
@@ -20,7 +18,7 @@ export function ListProduct({ idProduct, position, name, skuNumber, variations, 
         {urlImage ? (
           <a href={urlImage} target="_blank" className="info-product">
             <p className="text-position">#{position}</p>
-            <p className="name-product">{skuNumber ? skuNumberFormatted + ' | ' : ''} {name}</p>
+            <p className="name-product">{skuNumber ? skuNumber + ' | ' : ''} {name}</p>
             {variations && <p className="text-variant">{variations}</p>}
             <div className="sales-container">
               <p className="text-sales">Total: {formatCurrency(totalSales)}</p>
