@@ -16,6 +16,9 @@ export const OrdersProvider = ({ children }) => {
   const { user } = useAuth();
   const [customers, setCustomers] = useState([]);
   const [allOrders, setAllOrders] = useState([]);
+
+  const [allNewOrders, setAllNewOrders] = useState([]);
+
   const [allFullOrders, setAllFullOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(true);
@@ -38,6 +41,26 @@ export const OrdersProvider = ({ children }) => {
   }, []);
 
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
+
+  //alteração da data original para receber a data do dia anterior
+  const newCurrentDateStart = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() - 1); // Subtrai 1 dia
+    date.setHours(0, 0, 0, 0);
+    return date;
+  }, []);
+
+  const newCurrentDateEnd = useMemo(() => {
+    const date = new Date();
+    date.setDate(date.getDate() - 1); // Subtrai 1 dia
+    date.setHours(23, 59, 59, 999);
+    return date;
+  }, []);
+
+  const [newDate, setNewDate] = useState([
+    newCurrentDateStart,
+    newCurrentDateEnd,
+  ]);
 
   const resetData = () => {
     setAllOrders([]);
@@ -102,9 +125,18 @@ export const OrdersProvider = ({ children }) => {
     const startDateISO = adjustDate(date[0]);
     const endDateISO = adjustDate(date[1]);
 
+    //valor de datas alterados -1 
+    const startNewDateISO = adjustDate(newDate[0]);
+    const endNewDateISO = adjustDate(newDate[1]);
+
     try {
       setIsLoading(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
+      const ordersNewData = await fetchOrdersData(
+        startNewDateISO,
+        endNewDateISO,
+      );
+      setAllNewOrders(ordersNewData);
       setAllOrders(ordersData);
       setError({});
       setIsLoading(false);
@@ -167,6 +199,7 @@ export const OrdersProvider = ({ children }) => {
   }, []);
 
   const value = {
+    allNewOrders,
     allOrders,
     allFullOrders,
     setAllOrders,

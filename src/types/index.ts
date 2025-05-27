@@ -240,6 +240,10 @@ export interface RefundSummary {
   categories: {
     Atraso: RefundCategory;
     'Não gostou': RefundCategory;
+    'Envio/Logistica': RefundCategory;
+    'Produção/Defeito - Quadros': RefundCategory;
+    'Produção/Defeito - Espelhos': RefundCategory;
+    'OP Errada': RefundCategory;
     Avaria: RefundCategory;
     Outros: RefundCategory;
   };
@@ -264,7 +268,7 @@ export interface TikTokAdsContextType {
   loading: boolean; // Estado de carregamento
   error: string | null; // Mensagem de erro
   fetchTikTokAds: () => void; // Função para buscar dados ADS
-  fetchTikTokCreatives: ()=> void; // Função para buscar dados dos criativos
+  fetchTikTokCreatives: () => void; // Função para buscar dados dos criativos
   totalCostTikTokAll: number; // Valor de "all" (não pode ser null)
   allFullCreatives?: Creatives[];
 }

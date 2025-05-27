@@ -94,3 +94,40 @@
   text-align: center;
   margin-bottom: 10px;
 }
+
+/*Button para selecionar o tipo de extorno*/
+.selected-type {
+  display: flex;
+  margin-bottom: 1rem;
+}
+.selected-type button {
+  font-size: 14px;
+  font-weight: 600;
+  line-height: 160%;
+  font-family: 'Open Sans', sans-serif;
+  flex: 1;
+  padding: 10px;
+  border: 1px solid #ccc;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 8px;
+  background: white;
+}
+.selected-type button.active {
+  background: #0056b3;
+  color: #fff;
+}
+.type-button_1 {
+  border-radius: 10px 0 0 10px;
+}
+.type-button_2 {
+  border-radius: 0 10px 10px 0;
+}
+
+.popup-button:focus,
+.selected-type button:focus,
+.selected-type button:focus-visible {
+  outline: none;
+}

@@ -10,12 +10,22 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
   const [orderNumber, setOrderNumber] = useState('');
   const [category, setCategory] = useState('');
   const [refundValue, setRefundValue] = useState('');
+  const [refundType, setRefundType] = useState('');
   const [loading, setLoading] = useState(false);
   const [error, setError] = useState('');
   const [successMessage, setSuccessMessage] = useState(''); // Estado para mensagem de sucesso
   const { reloadRefunds } = useRefunds();
 
-  const categories = ['Atraso', 'Não gostou', 'Avaria', 'Outros'];
+  const categories = [
+    'Atraso',
+    'Não gostou',
+    'Avaria',
+    'Envio/Logistica',
+    'Produção/Defeito - Quadros',
+    'Produção/Defeito - Espelhos',
+    'OP Errada',
+    'Outros',
+  ];
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -26,6 +36,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       order_id: Number(orderNumber),
       category,
       total: parseFloat(refundValue).toFixed(2),
+      type: refundType,
     };
 
     try {
@@ -45,6 +56,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
         setOrderNumber('');
         setCategory('');
         setRefundValue('');
+        setRefundType('');
         setTimeout(() => {
           setSuccessMessage('');
           handleIsClosePopup(); // Fecha o popup automaticamente
@@ -65,7 +77,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       open={isPopupOpen}
       onClose={handleIsClosePopup}
       size="xs"
-      title="Reembolso"
+      title="Reembolsos/Reenvio"
     >
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage ? (
@@ -109,6 +121,22 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
               required
             />
 
+            <div className="selected-type">
+              <button
+                type="button"
+                className={`type-button_1 ${refundType === 'Reembolso' ? 'active' : ''}`}
+                onClick={() => setRefundType('Reembolso')}
+              >
+                {refundType === 'Reembolso'} Reembolso
+              </button>
+              <button
+                type="button"
+                className={`type-button_2 ${refundType === 'Reenvio' ? 'active' : ''}`}
+                onClick={() => setRefundType('Reenvio')}
+              >
+                {refundType === 'Reenvio'} Reenvio
+              </button>
+            </div>
             <button type="submit" className="popup-button">
               REGISTRAR
             </button>

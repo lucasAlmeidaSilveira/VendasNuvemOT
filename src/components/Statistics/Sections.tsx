@@ -61,7 +61,7 @@ export function DataSectionTPago({
   roasEspelhos,
   roasQuadros,
 }: DataSectionTPagoProps) {
-  const { allOrders, date, store } = useOrders();
+  const { allOrders, date, store, allNewOrders } = useOrders();
   const {
     adsData,
     loading,
@@ -207,6 +207,10 @@ export function DataSectionTPago({
     fetchTikTokAds();
   };
 
+  useEffect(() => {
+    console.log('Debug allNewOrders:', allNewOrders);
+    console.log('Debug allOrders:', allOrders);
+  }, [store, date]);
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
@@ -1281,6 +1285,36 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               tooltip="Outros motivos de reembolso"
               value={summary.categories.Outros.count}
               small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Envio/Logistica"
+              tooltip="Reembolsos devido problemas no Envio"
+              value={summary.categories['Envio/Logistica'].count}
+              small={`R$ ${summary.categories['Envio/Logistica'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Produção/Defeito - Quadros"
+              tooltip="Reembolsos por Quadros defeituosos"
+              value={summary.categories['Produção/Defeito - Quadros'].count}
+              small={`R$ ${summary.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Produção/Defeito - Espelhos"
+              tooltip="Reembolsos por Espelhos defeituosos"
+              value={summary.categories['Produção/Defeito - Espelhos'].count}
+              small={`R$ ${summary.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="OP Errada"
+              tooltip="Quando a Ordem de Pedido foi gerada erroneamente"
+              value={summary.categories['OP Errada'].count}
+              small={`R$ ${summary.categories['OP Errada'].value.toFixed(2)}`}
               isLoading={loading}
             />
           </div>

@@ -14,6 +14,10 @@ const defaultRefundsContext: RefundsContextData = {
       'Não gostou': { count: 0, value: 0 },
       Avaria: { count: 0, value: 0 },
       Outros: { count: 0, value: 0 },
+      'Envio/Logistica': { count: 0, value: 0 },
+      'Produção/Defeito - Quadros': { count: 0, value: 0 },
+      'Produção/Defeito - Espelhos': { count: 0, value: 0 },
+      'OP Errada': { count: 0, value: 0 },
     },
   },
   loading: true,
@@ -61,6 +65,10 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
           'Não gostou': { count: 0, value: 0 },
           Avaria: { count: 0, value: 0 },
           Outros: { count: 0, value: 0 },
+          'Envio/Logistica': { count: 0, value: 0 },
+          'Produção/Defeito - Quadros': { count: 0, value: 0 },
+          'Produção/Defeito - Espelhos': { count: 0, value: 0 },
+          'OP Errada': { count: 0, value: 0 },
         },
       };
 
@@ -78,9 +86,15 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
             acc.totalRefunds += 1;
             acc.totalValue += amount;
 
-            const category = ['Atraso', 'Não gostou', 'Avaria'].includes(
-              refund.category,
-            )
+            const category = [
+              'Atraso',
+              'Não gostou',
+              'Avaria',
+              'Envio/Logistica',
+              'Produção/Defeito - Quadros',
+              'Produção/Defeito - Espelhos',
+              'OP Errada',
+            ].includes(refund.category)
               ? refund.category
               : 'Outros';
 
