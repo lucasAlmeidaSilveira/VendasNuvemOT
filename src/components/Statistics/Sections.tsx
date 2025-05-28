@@ -207,10 +207,12 @@ export function DataSectionTPago({
     fetchTikTokAds();
   };
 
+  /*
   useEffect(() => {
     console.log('Debug allNewOrders:', allNewOrders);
     console.log('Debug allOrders:', allOrders);
   }, [store, date]);
+  */
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
@@ -1236,7 +1238,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
       <ContainerOrders>
         <ContainerGeral bgcolor={bgcolor}>
           <div className="title-box">
-            <h4>Reembolsos</h4>
+            <h4>Reembolsos / Reenvios</h4>
             <TooltipInfo
               className={`btn-plus ${error && 'error'}`}
               title={'Cadastrar Reembolsos'}
@@ -1248,13 +1250,27 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Total Reembolsos"
               tooltip="Total de reembolsos feitos"
-              value={summary.totalRefunds}
+              value={summary.type.Reembolso.count}
               isLoading={loading}
             />
             <BudgetItem
               title="Valor Total"
               tooltip="Valor total reembolsado"
-              value={`R$ ${summary.totalValue.toFixed(2)}`}
+              value={`R$ ${summary.type.Reembolso.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Total Reenvios"
+              tooltip="Total de reenvios feitos"
+              value={summary.type.Reenvio.count}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Valor Total"
+              tooltip="Valor total reenvios"
+              value={`R$ ${summary.type.Reenvio.value.toFixed(2)}`}
               isLoading={loading}
             />
           </div>

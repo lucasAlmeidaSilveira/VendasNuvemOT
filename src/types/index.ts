@@ -247,6 +247,10 @@ export interface RefundSummary {
     Avaria: RefundCategory;
     Outros: RefundCategory;
   };
+  type: {
+    Reembolso: RefundCategory;
+    Reenvio: RefundCategory;
+  };
 }
 export interface RefundsContextData {
   refunds: any[]; // Pode ser melhor tipado se soubermos a estrutura exata de `refunds`

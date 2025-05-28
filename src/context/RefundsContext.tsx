@@ -19,6 +19,10 @@ const defaultRefundsContext: RefundsContextData = {
       'Produção/Defeito - Espelhos': { count: 0, value: 0 },
       'OP Errada': { count: 0, value: 0 },
     },
+    type: {
+      Reembolso: { count: 0, value: 0 },
+      Reenvio: { count: 0, value: 0 },
+    },
   },
   loading: true,
   error: null,
@@ -70,13 +74,17 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
           'Produção/Defeito - Espelhos': { count: 0, value: 0 },
           'OP Errada': { count: 0, value: 0 },
         },
+        type: {
+          Reembolso: { count: 0, value: 0 },
+          Reenvio: { count: 0, value: 0 },
+        },
       };
 
       if (data.length > 0) {
         updatedSummary = data.reduce(
           (
             acc: RefundSummary,
-            refund: { category: string; total: string | null },
+            refund: { category: string; total: string | null; type: string },
           ) => {
             if (refund.total === null || isNaN(parseFloat(refund.total))) {
               return acc; // Ignora valores nulos ou inválidos
@@ -85,6 +93,12 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
             const amount = parseFloat(refund.total);
             acc.totalRefunds += 1;
             acc.totalValue += amount;
+
+            // Processa o tipo
+            if (refund.type === 'Reembolso' || refund.type === 'Reenvio') {
+              acc.type[refund.type].count += 1;
+              acc.type[refund.type].value += amount;
+            }
 
             const category = [
               'Atraso',
