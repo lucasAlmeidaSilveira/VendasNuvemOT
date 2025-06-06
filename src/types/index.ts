@@ -208,13 +208,12 @@ export interface BudgetItemProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
-  dataCosts: any;
   orders?: Order[];
   creatives?: Creatives[];
 }
 
 export interface DataCosts {
-  quantity: number | string;
+  quantity?: number | string;
   name: string;
   value: number | string;
 }

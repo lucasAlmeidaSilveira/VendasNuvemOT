@@ -807,11 +807,21 @@ export function DataSectionCart({
   ];
 
   const couponsSellers = [
-    'CIBELEAP',
-    'CLAUDIOAP',
-    'DIEGOAP',
-    'IAGOAP',
-    'YARAAP',
+    'CIBELE5',
+    'CLAUDIO5',
+    'DIEGO5',
+    'IAGO5',
+    'YARA5',
+    'CIBELE10',
+    'CLAUDIO10',
+    'DIEGO10',
+    'IAGO10',
+    'YARA10',
+    'CIBELE15',
+    'CLAUDIO15',
+    'DIEGO15',
+    'IAGO15',
+    'YARA15',
   ];
   const couponsInsta = ['INSTA10', 'INSTA20', 'VIP10', 'LIVE20'];
   const couponsWhats = ['WHATS5', 'WHATS10', 'WHATS15', 'WHATS20'];

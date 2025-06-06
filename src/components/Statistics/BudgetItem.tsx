@@ -36,6 +36,7 @@ export function BudgetItemList({
   creatives,
 }: BudgetItemListProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
 
   const handleOpenPopup = () => {
     if (orders) {
@@ -52,6 +53,13 @@ export function BudgetItemList({
   const handleClosePopup = () => {
     setIsPopupOpen(false);
   };
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
+  const displayedDataCosts = dataCosts ? (isExpanded ? dataCosts : dataCosts.slice(0, 5)) : [];
 
   return (
     <>
@@ -93,38 +101,63 @@ export function BudgetItemList({
                   </TooltipInfo>
                 )}
               </div>
-              <div className="column-list">
-                {dataCosts &&
-                  dataCosts.map((data, index) => (
-                    <div key={index} className="row-list">
-                      <span
-                        style={
-                          data.name === 'Total'
-                            ? {
-                                fontWeight: 'bold',
-                                color: 'var(--geralblack-80)',
-                              }
-                            : { fontWeight: 'inherit' }
-                        }
-                      >
-                        {title === 'ROAS'
-                          ? data.value
-                          : `${formatCurrency(data.value)} ${data.quantity ? `(${data.quantity})` : ''}`}
-                      </span>
-                      <span
-                        style={
-                          data.name === 'Total'
-                            ? {
-                                fontWeight: 'bold',
-                                color: 'var(--geralblack-80)',
-                              }
-                            : { fontWeight: 'normal' }
-                        }
-                      >
-                        {data.name}
-                      </span>
-                    </div>
-                  ))}
+              <div className="column-list" style={{ alignItems: 'end' }}>
+                {displayedDataCosts.map((data, index) => (
+                  <div key={index} className="row-list">
+                    <span
+                      style={
+                        data.name === 'Total'
+                          ? {
+                              fontWeight: 'bold',
+                              color: 'var(--geralblack-80)',
+                            }
+                          : { fontWeight: 'inherit' }
+                      }
+                    >
+                      {title === 'ROAS'
+                        ? data.value
+                        : `${formatCurrency(data.value)} ${data.quantity ? `(${data.quantity})` : ''}`}
+                    </span>
+                    <span
+                      style={
+                        data.name === 'Total'
+                          ? {
+                              fontWeight: 'bold',
+                              color: 'var(--geralblack-80)',
+                            }
+                          : { fontWeight: 'normal' }
+                      }
+                    >
+                      {data.name}
+                    </span>
+                  </div>
+                ))}
+                {dataCosts && dataCosts.length > 5 && (
+                  <button 
+                    onClick={toggleExpand}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--geralblack-80)',
+                      cursor: 'pointer',
+                      marginTop: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {isExpanded ? (
+                      <>
+                        Mostrar menos <FaChevronUp size={12} />
+                      </>
+                    ) : (
+                      <>
+                        Mostrar mais <FaChevronDown size={12} />
+                      </>
+                    )}
+                  </button>
+                )}
               </div>
             </>
           )}
