@@ -275,3 +275,8 @@ export interface TikTokAdsContextType {
   totalCostTikTokAll: number; // Valor de "all" (não pode ser null)
   allFullCreatives?: Creatives[];
 }
+export interface DatePickerProps {
+  label?: string;
+  value: string;
+  onChange: (date: string) => void;
+}

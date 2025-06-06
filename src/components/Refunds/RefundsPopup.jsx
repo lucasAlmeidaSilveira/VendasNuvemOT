@@ -2,12 +2,14 @@ import React, { useState } from 'react';
 import { Popup } from '../Popup'; // Certifique-se de que esse componente está importado corretamente
 import { useOrders } from '../../context/OrdersContext';
 import { useRefunds } from '../../context/RefundsContext';
+import { DatePicker } from '../DatePicker';
 
 import './RefundPopup.css';
 
 export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
   const { store } = useOrders(); // Obtém a loja do contexto
   const [orderNumber, setOrderNumber] = useState('');
+  const [dateChoose, setDateChoose] = useState('');
   const [category, setCategory] = useState('');
   const [refundValue, setRefundValue] = useState('');
   const [refundType, setRefundType] = useState('');
@@ -35,6 +37,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
     const newRefund = {
       order_id: Number(orderNumber),
       category,
+      created_at: dateChoose,
       total: parseFloat(refundValue).toFixed(2),
       type: refundType,
     };
@@ -53,12 +56,13 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
 
       if (response.ok) {
         setSuccessMessage('Reembolso cadastrado com sucesso! ✅');
-        console.log('DEBUG type: ', refundType);
-        console.log('DEBUG response:', newRefund);
+        //console.log('DEBUG type: ', refundType);
+        //console.log('DEBUG response:', newRefund);
         setOrderNumber('');
         setCategory('');
         setRefundValue('');
         setRefundType('');
+        setDateChoose('');
         setTimeout(() => {
           setSuccessMessage('');
           handleIsClosePopup(); // Fecha o popup automaticamente
@@ -66,16 +70,24 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
         }, 2000);
       } else {
         setSuccessMessage('Erro ao cadastrar reembolso! ❌');
-        console.log('DEBUG erro:', error);
-        console.log('DEBUG type:', refundType);
-        console.log('DEBUG response:', newRefund);
+        setTimeout(() => {
+          setSuccessMessage('');
+          handleIsClosePopup(); // Fecha o popup automaticamente
+          reloadRefunds(); //  Aciona a função que recarrega as informações
+        }, 2000);
+        //console.log('DEBUG erro:', error);
+        //console.log('DEBUG type:', refundType);
+        //console.log('DEBUG response:', newRefund);
       }
     } catch (error) {
       setSuccessMessage('Erro na conexão com o servidor. ❌');
-      console.log('DEBUG type: ', refundType);
-      console.log('DEBUG response:', newRefund);
-
-      console.log();
+      setTimeout(() => {
+        setSuccessMessage('');
+        handleIsClosePopup(); // Fecha o popup automaticamente
+        reloadRefunds(); //  Aciona a função que recarrega as informações
+      }, 2000);
+      //console.log('DEBUG type: ', refundType);
+      //console.log('DEBUG response:', newRefund);
     } finally {
       setLoading(false);
     }
@@ -104,7 +116,11 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
               onChange={(e) => setOrderNumber(e.target.value)}
               required
             />
-
+            <DatePicker
+              label="Escolha a data:"
+              value={dateChoose}
+              onChange={setDateChoose}
+            />
             <label>Categoria de reembolso:</label>
             <select
               className="popup-select"
