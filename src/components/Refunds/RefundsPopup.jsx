@@ -26,7 +26,6 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
     'Produção/Defeito - Quadros',
     'Produção/Defeito - Espelhos',
     'OP Errada',
-    'Outros',
   ];
 
   const handleSubmit = async (e) => {

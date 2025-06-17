@@ -1,5 +1,10 @@
 import React, { createContext, useState, useEffect, useContext } from 'react';
-import { auth, provider, signInWithPopup, signOut } from '../api/auth/firebaseConfig.js';
+import {
+  auth,
+  provider,
+  signInWithPopup,
+  signOut,
+} from '../api/auth/firebaseConfig.js';
 import { getFirestore, doc, getDoc } from 'firebase/firestore'; // Importar Firestore
 
 export const AuthContext = createContext();
@@ -67,13 +72,13 @@ export const AuthProvider = ({ children }) => {
     user,
     isLoading,
     handleLogin,
-    handleLogout
+    handleLogout,
   };
 
   return (
     <AuthContext.Provider value={value}>
-      {!isLoading && children} {/* Carrega os children somente quando o loading estiver completo */}
+      {!isLoading && children}{' '}
+      {/* Carrega os children somente quando o loading estiver completo */}
     </AuthContext.Provider>
   );
 };
-
