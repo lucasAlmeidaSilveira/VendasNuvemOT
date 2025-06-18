@@ -1306,13 +1306,15 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               small={`R$ ${summary.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
             />
-            <BudgetItem
-              title="Outros"
-              tooltip="Outros motivos de reembolso"
-              value={summary.categories.Outros.count}
-              small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
-              isLoading={loading}
-            />
+            <div style={{ display: 'none' }}>
+              <BudgetItem
+                title="Outros"
+                tooltip="Outros motivos de reembolso"
+                value={summary.categories.Outros.count}
+                small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
+                isLoading={loading}
+              />
+            </div>
           </div>
           <div className="row">
             <BudgetItem
