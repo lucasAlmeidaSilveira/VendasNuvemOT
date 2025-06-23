@@ -1,7 +1,11 @@
 import React, { useState, useEffect, useMemo } from 'react';
-import { ContainerDelivery } from './styles';
+import {
+  ContainerDelivery,
+  FilterContainer,
+  StatusFilterContainer,
+} from './styles';
 import { DeliveryStatus } from './DeliveryStatus';
-
+import { useOrders } from '../../context/OrdersContext';
 import TablePagination from '@mui/material/TablePagination';
 import Box from '@mui/material/Box';
 import TableFooter from '@mui/material/TableFooter';
@@ -10,6 +14,8 @@ import { visuallyHidden } from '@mui/utils';
 import { formatCurrency, formatDateShort } from '../../tools/tools';
 import { TablePaginationActions } from '../Pagination';
 import { Table, Theme, Flex } from '@radix-ui/themes';
+import { InputSearch } from '../InputSearch';
+import { Loading } from '../Loading';
 
 // Funções de ordenação
 const descendingComparator = (a, b, orderBy) => {
@@ -102,11 +108,17 @@ const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
 };
 
 export function Deliveries() {
+  const { isLoading, store, date } = useOrders();
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(5);
   const [order, setOrder] = useState('asc');
   const [orderBy, setOrderBy] = useState('id');
   const [layout, setLayout] = useState('auto');
+  const [totalOK, setTotalOK] = useState(0);
+  const [totalLate, setTotalLate] = useState(0);
+  const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
+  const [filteredOrders, setFilteredOrders] = useState([]);
+  const [searchQuery, setSearchQuery] = useState('');
 
   // Dados de teste
   const testMap = [
@@ -118,6 +130,7 @@ export function Deliveries() {
       rastreio: '00007525473',
       total: 99.0,
       status: 'OK',
+      store: 'artepropria',
     },
     {
       id: 111,
@@ -127,6 +140,7 @@ export function Deliveries() {
       rastreio: '00054254238',
       total: 150.5,
       status: 'OK',
+      store: 'artepropria',
     },
     {
       id: 456,
@@ -136,6 +150,7 @@ export function Deliveries() {
       rastreio: '00452454238',
       total: 200.0,
       status: 'OK',
+      store: 'outlet',
     },
     {
       id: 856,
@@ -145,6 +160,7 @@ export function Deliveries() {
       rastreio: '00004545631',
       total: 119.0,
       status: 'NOK',
+      store: 'artepropria',
     },
     {
       id: 151,
@@ -154,6 +170,7 @@ export function Deliveries() {
       rastreio: '00055785261',
       total: 120.5,
       status: 'OK',
+      store: 'outlet',
     },
     {
       id: 744,
@@ -163,13 +180,14 @@ export function Deliveries() {
       rastreio: '00077775557',
       total: 500.0,
       status: 'NOK',
+      store: 'outlet',
     },
   ];
 
   // Aplicar ordenação
   const sortedData = useMemo(() => {
-    return stableSort(testMap, getComparator(order, orderBy));
-  }, [testMap, order, orderBy]);
+    return stableSort(filteredOrders, getComparator(order, orderBy));
+  }, [filteredOrders, order, orderBy]);
 
   // Paginação
   const paginatedData = useMemo(() => {
@@ -198,6 +216,55 @@ export function Deliveries() {
     setRowsPerPage(parseInt(event.target.value, 10));
     setPage(0);
   };
+  const handleStatusBlockClick = (status) => {
+    setShippingStatusFilter(status);
+  };
+
+  useEffect(() => {
+    const filteredOrdersCalc = stableSort(
+      testMap
+        .filter((order) => {
+          //const paymentStatusMatch =
+          // statusFilter === 'all' || order.payment_status === statusFilter;
+          let shippingStatusMatch = shippingStatusFilter === 'all';
+
+          if (!shippingStatusMatch) {
+            switch (shippingStatusFilter) {
+              case 'OK':
+                shippingStatusMatch = order.status === 'OK';
+                break;
+              case 'NOK':
+                shippingStatusMatch = order.status === 'NOK';
+                break;
+              default:
+                shippingStatusMatch = false;
+            }
+          }
+
+          return shippingStatusMatch;
+        })
+        .filter((order) => {
+          const searchLower = searchQuery.toLowerCase();
+          return (
+            order.id.toString().toLowerCase().includes(searchLower) ||
+            order.order_id?.toString().toLowerCase().includes(searchLower) ||
+            order.name_client?.toString().toLowerCase().includes(searchLower) ||
+            order.rastreio.toLowerCase().includes(searchLower) ||
+            order.status.toLowerCase().includes(searchLower)
+          );
+        }),
+      getComparator(order, orderBy),
+    );
+
+    setFilteredOrders(filteredOrdersCalc); // Atualiza o estado com os pedidos filtrados
+  }, [store, shippingStatusFilter, searchQuery]);
+
+  useEffect(() => {
+    const unpackedCount = testMap.filter((order) => order.status === 'OK');
+    const lateCount = testMap.filter((order) => order.status === 'NOK');
+    setTotalOK(unpackedCount);
+    setTotalLate(lateCount);
+  }, [store, date]);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -211,6 +278,36 @@ export function Deliveries() {
 
   return (
     <Theme>
+      <StatusFilterContainer>
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'OK' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('OK')}
+        >
+          <span>No Prazo</span>
+          <span>{isLoading ? <Loading /> : totalOK.length}</span>
+        </div>
+
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'NOK' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('NOK')}
+        >
+          <span>Em atraso</span>
+          <span>{isLoading ? <Loading /> : totalLate.length}</span>
+        </div>
+      </StatusFilterContainer>
+      <FilterContainer>
+        <InputSearch
+          label="Buscar pedido:"
+          value={searchQuery}
+          onChange={(e) => setSearchQuery(e.target.value)}
+          placeholder="Busque por nº do pedido, nome do cliente, nº de rastreio ou ID"
+          totalList={filteredOrders.length}
+        />
+      </FilterContainer>
       <ContainerDelivery>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHead

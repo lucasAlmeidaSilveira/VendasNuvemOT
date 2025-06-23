@@ -308,7 +308,6 @@ export function Orders() {
         }),
       getComparator(order, orderBy),
     );
-    //console.log('DEBUG Orders:', filteredOrdersCalc);
 
     setFilteredOrders(filteredOrdersCalc); // Atualiza o estado com os pedidos filtrados
   }, [

@@ -1226,7 +1226,7 @@ export function DataSectionAnalytics({
 }
 
 export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
-  const { summary, loading, error } = useRefunds();
+  const { reembolsos, summaryReembolsos, loading, error } = useRefunds();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleIsOpenPopup = () => {
@@ -1248,7 +1248,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
       <ContainerOrders>
         <ContainerGeral bgcolor={bgcolor}>
           <div className="title-box">
-            <h4>Reembolsos / Reenvios</h4>
+            <h4>Reembolsos</h4>
             <TooltipInfo
               className={`btn-plus ${error && 'error'}`}
               title={'Cadastrar Reembolsos'}
@@ -1260,27 +1260,13 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Total Reembolsos"
               tooltip="Total de reembolsos feitos"
-              value={summary.type.Reembolso.count}
+              value={summaryReembolsos.type.Reembolso.count}
               isLoading={loading}
             />
             <BudgetItem
               title="Valor Total"
               tooltip="Valor total reembolsado"
-              value={`R$ ${summary.type.Reembolso.value.toFixed(2)}`}
-              isLoading={loading}
-            />
-          </div>
-          <div className="row">
-            <BudgetItem
-              title="Total Reenvios"
-              tooltip="Total de reenvios feitos"
-              value={summary.type.Reenvio.count}
-              isLoading={loading}
-            />
-            <BudgetItem
-              title="Valor Total"
-              tooltip="Valor total reenvios"
-              value={`R$ ${summary.type.Reenvio.value.toFixed(2)}`}
+              value={`R$ ${summaryReembolsos.type.Reembolso.value.toFixed(2)}`}
               isLoading={loading}
             />
           </div>
@@ -1288,30 +1274,30 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Atraso"
               tooltip="Reembolsos por atraso"
-              value={summary.categories.Atraso.count}
-              small={`R$ ${summary.categories.Atraso.value.toFixed(2)}`}
+              value={summaryReembolsos.categories.Atraso.count}
+              small={`R$ ${summaryReembolsos.categories.Atraso.value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="Não Gostou"
               tooltip="Reembolsos por insatisfação"
-              value={summary.categories['Não gostou'].count}
-              small={`R$ ${summary.categories['Não gostou'].value.toFixed(2)}`}
+              value={summaryReembolsos.categories['Não gostou'].count}
+              small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="Avaria"
               tooltip="Reembolsos por avaria"
-              value={summary.categories.Avaria.count}
-              small={`R$ ${summary.categories.Avaria.value.toFixed(2)}`}
+              value={summaryReembolsos.categories.Avaria.count}
+              small={`R$ ${summaryReembolsos.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
             />
             <div style={{ display: 'none' }}>
               <BudgetItem
                 title="Outros"
                 tooltip="Outros motivos de reembolso"
-                value={summary.categories.Outros.count}
-                small={`R$ ${summary.categories.Outros.value.toFixed(2)}`}
+                value={summaryReembolsos.categories.Outros.count}
+                small={`R$ ${summaryReembolsos.categories.Outros.value.toFixed(2)}`}
                 isLoading={loading}
               />
             </div>
@@ -1320,29 +1306,152 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Envio/Logistica"
               tooltip="Reembolsos devido problemas no Envio"
-              value={summary.categories['Envio/Logistica'].count}
-              small={`R$ ${summary.categories['Envio/Logistica'].value.toFixed(2)}`}
+              value={summaryReembolsos.categories['Envio/Logistica'].count}
+              small={`R$ ${summaryReembolsos.categories['Envio/Logistica'].value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="Produção/Defeito - Quadros"
               tooltip="Reembolsos por Quadros defeituosos"
-              value={summary.categories['Produção/Defeito - Quadros'].count}
-              small={`R$ ${summary.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
+              value={summaryReembolsos.categories['Produção/Defeito - Quadros'].count}
+              small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="Produção/Defeito - Espelhos"
               tooltip="Reembolsos por Espelhos defeituosos"
-              value={summary.categories['Produção/Defeito - Espelhos'].count}
-              small={`R$ ${summary.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
+              value={summaryReembolsos.categories['Produção/Defeito - Espelhos'].count}
+              small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="OP Errada"
               tooltip="Quando a Ordem de Pedido foi gerada erroneamente"
-              value={summary.categories['OP Errada'].count}
-              small={`R$ ${summary.categories['OP Errada'].value.toFixed(2)}`}
+              value={summaryReembolsos.categories['OP Errada'].count}
+              small={`R$ ${summaryReembolsos.categories['OP Errada'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+        </ContainerGeral>
+      </ContainerOrders>
+      <RefundPopup
+        isPopupOpen={isPopupOpen}
+        handleIsClosePopup={handleIsClosePopup}
+      />
+    </>
+  );
+}
+export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
+  const { reenvios, summaryReenvios, loading, error } = useRefunds();
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+
+  const handleIsOpenPopup = () => {
+    setIsPopupOpen(true);
+  };
+  const handleIsClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+  if (loading) {
+    return <p>Carregando reenvios...</p>;
+  }
+
+  if (error) {
+    return <p>Erro ao carregar reenvios: {error}</p>;
+  }
+
+  return (
+    <>
+      <ContainerOrders>
+        <ContainerGeral bgcolor={bgcolor}>
+          <div className="title-box">
+            <h4>Reenvios</h4>
+            <TooltipInfo
+              className={`btn-plus ${error && 'error'}`}
+              title={'Cadastrar Reenvio'}
+            >
+              <FaPlus size={24} onClick={handleIsOpenPopup} />
+            </TooltipInfo>
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Total Reenvios"
+              tooltip="Total de reenvios feitos"
+              value={summaryReenvios.type.Reenvio.count}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Valor Total"
+              tooltip="Valor total reenvios"
+              value={`R$ ${summaryReenvios.type.Reenvio.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Atraso"
+              tooltip="Reenvio por atraso da Transportadora"
+              value={summaryReenvios.categories.Atraso.count}
+              small={`R$ ${summaryReenvios.categories.Atraso.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Não Gostou"
+              tooltip="Reenvio por insatisfação"
+              value={summaryReenvios.categories['Não gostou'].count}
+              small={`R$ ${summaryReenvios.categories['Não gostou'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Avaria"
+              tooltip="Reenvio por avaria"
+              value={summaryReenvios.categories.Avaria.count}
+              small={`R$ ${summaryReenvios.categories.Avaria.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Envio/Logistica"
+              tooltip="Reenvio devido problemas no Envio"
+              value={summaryReenvios.categories['Envio/Logistica'].count}
+              small={`R$ ${summaryReenvios.categories['Envio/Logistica'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Troca"
+              tooltip="Reenvio devido a Troca do produto"
+              value={summaryReenvios.categories.Troca.count}
+              small={`R$ ${summaryReenvios.categories.Troca.value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Produção/Defeito - Quadros"
+              tooltip="Reenvio por Quadros defeituosos"
+              value={summaryReenvios.categories['Produção/Defeito - Quadros'].count}
+              small={`R$ ${summaryReenvios.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+          </div>
+          <div className="row">
+            <BudgetItem
+              title="Produção/Defeito - Espelhos"
+              tooltip="Reenvio por Espelhos defeituosos"
+              value={summaryReenvios.categories['Produção/Defeito - Espelhos'].count}
+              small={`R$ ${summaryReenvios.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="OP Errada"
+              tooltip="Quando a Ordem de Pedido foi gerada erroneamente"
+              value={summaryReenvios.categories['OP Errada'].count}
+              small={`R$ ${summaryReenvios.categories['OP Errada'].value.toFixed(2)}`}
+              isLoading={loading}
+            />
+            <BudgetItem
+              title="Extravio"
+              tooltip="Reenvio devido a Extravio do pedido"
+              value={summaryReenvios.categories.Extravio.count}
+              small={`R$ ${summaryReenvios.categories.Extravio.value.toFixed(2)}`}
               isLoading={loading}
             />
           </div>

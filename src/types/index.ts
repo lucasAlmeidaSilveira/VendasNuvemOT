@@ -245,17 +245,34 @@ export interface RefundSummary {
     'OP Errada': RefundCategory;
     Avaria: RefundCategory;
     Outros: RefundCategory;
+    Extravio: RefundCategory;
+    Troca: RefundCategory;
   };
   type: {
     Reembolso: RefundCategory;
     Reenvio: RefundCategory;
   };
 }
+
+export interface RefundItem {
+  id: number;
+  order_id: number;
+  category: string;
+  total: string;
+  created_at: string;
+  deleted: boolean;
+  type: 'Reembolso' | 'Reenvio';
+}
+
 export interface RefundsContextData {
-  refunds: any[]; // Pode ser melhor tipado se soubermos a estrutura exata de `refunds`
-  summary: RefundSummary;
+  reembolsos: RefundItem[];
+  reenvios: RefundItem[];
+  summaryReembolsos: RefundSummary;
+  summaryReenvios: RefundSummary;
   loading: boolean;
   error: string | null;
+  //currentType: string | null;
+  fetchRefunds: () => void;
 }
 
 export type TotalCostTikTokAds = {

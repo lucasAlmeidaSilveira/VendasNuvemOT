@@ -69,6 +69,7 @@ export function Footer() {
         }}
       />
       <TabItem icon={<ConfirmationNumberIcon />} label="CUPONS" />
+      
     </Tabs>
   );
 }
