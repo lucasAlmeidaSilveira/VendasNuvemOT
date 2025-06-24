@@ -1235,9 +1235,10 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
   const handleIsClosePopup = () => {
     setIsPopupOpen(false);
   };
+  /*
   if (loading) {
     return <p>Carregando reembolsos...</p>;
-  }
+  }*/
 
   if (error) {
     return <p>Erro ao carregar reembolsos: {error}</p>;
@@ -1313,14 +1314,19 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Produção/Defeito - Quadros"
               tooltip="Reembolsos por Quadros defeituosos"
-              value={summaryReembolsos.categories['Produção/Defeito - Quadros'].count}
+              value={
+                summaryReembolsos.categories['Produção/Defeito - Quadros'].count
+              }
               small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
               isLoading={loading}
             />
             <BudgetItem
               title="Produção/Defeito - Espelhos"
               tooltip="Reembolsos por Espelhos defeituosos"
-              value={summaryReembolsos.categories['Produção/Defeito - Espelhos'].count}
+              value={
+                summaryReembolsos.categories['Produção/Defeito - Espelhos']
+                  .count
+              }
               small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
               isLoading={loading}
             />
@@ -1351,9 +1357,10 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
   const handleIsClosePopup = () => {
     setIsPopupOpen(false);
   };
+  /*
   if (loading) {
     return <p>Carregando reenvios...</p>;
-  }
+  }*/
 
   if (error) {
     return <p>Erro ao carregar reenvios: {error}</p>;
@@ -1427,7 +1434,9 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Produção/Defeito - Quadros"
               tooltip="Reenvio por Quadros defeituosos"
-              value={summaryReenvios.categories['Produção/Defeito - Quadros'].count}
+              value={
+                summaryReenvios.categories['Produção/Defeito - Quadros'].count
+              }
               small={`R$ ${summaryReenvios.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
               isLoading={loading}
             />
@@ -1436,7 +1445,9 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
             <BudgetItem
               title="Produção/Defeito - Espelhos"
               tooltip="Reenvio por Espelhos defeituosos"
-              value={summaryReenvios.categories['Produção/Defeito - Espelhos'].count}
+              value={
+                summaryReenvios.categories['Produção/Defeito - Espelhos'].count
+              }
               small={`R$ ${summaryReenvios.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
               isLoading={loading}
             />
