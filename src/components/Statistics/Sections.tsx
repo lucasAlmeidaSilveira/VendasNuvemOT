@@ -25,7 +25,6 @@ import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { RiMessengerLine } from 'react-icons/ri';
 import { FaPlus } from 'react-icons/fa6';
-
 import {
   CouponProps,
   DataSectionAnalyticsProps,
@@ -1475,58 +1474,3 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
     </>
   );
 }
-/*
-export const PlanilhaAnalytics: React.FC<PlanilhaAnalyticsProps> = ({
-  bgcolor,
-  ordersToday,
-  isLoadingPlanilha,
-}) => {
-  const [totalRevenue, setTotalRevenue] = useState(0);
-
-  // Processa as métricas ao carregar os pedidos
-  useEffect(() => {
-    calculateMetrics(ordersToday);
-  }, [ordersToday]);
-
-  // Função para calcular as métricas
-  const calculateMetrics = (orders: PlanilhaAnalyticsProps['ordersToday']) => {
-    let revenue = 0;
-    orders.forEach((order) => {
-      // Considera apenas pedidos com "billing_name" === "Cliente Loja Física"
-      if (order.billing_name !== 'Cliente Loja Física') {
-        return;
-      } else if (
-        order.billing_name === 'Cliente Loja Física' &&
-        order.contact_name !== 'Chatbot: Ranieri'
-      ) {
-        // Receita total (total): Soma os valores numéricos em "total"
-        revenue += parseFloat(order.total) || 0;
-      } else {
-        return;
-      }
-    });
-    setTotalRevenue(revenue);
-  };
-
-  return (
-    <ContainerOrders>
-      <ContainerGeral bgcolor={bgcolor}>
-        <h4>Métricas de Pedidos</h4>
-
-        <div className="row">
-          <BudgetItem
-            title="Receita Total:"
-            tooltip=""
-            value={totalRevenue.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-              minimumFractionDigits: 2,
-              maximumFractionDigits: 2,
-            })}
-            isLoading={isLoadingPlanilha}
-          />
-        </div>
-      </ContainerGeral>
-    </ContainerOrders>
-  );
-};*/
