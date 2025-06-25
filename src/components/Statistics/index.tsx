@@ -10,6 +10,7 @@ import {
   DataSectionCosts,
   DataSectionPay,
   DataSectionReembolso,
+  DataSectionReenvio,
   DataSectionTPago,
   DataSectionTPagoAP,
 } from './Sections';
@@ -191,10 +192,8 @@ export function Statistics() {
         bgcolor={bgColors.analytics}
         totalAdSpend={totalAdSpend}
       />
-      <DataSectionReembolso
-        bgcolor={bgColors.reembolso}
-        totalAdSpend={totalAdSpend}
-      />
+      <DataSectionReembolso bgcolor={bgColors.reembolso} />
+      <DataSectionReenvio bgcolor={bgColors.reembolso} />
       <DataSectionCart
         bgcolor={bgColors.conversaoVendas}
         totalAdSpend={totalAdSpend}

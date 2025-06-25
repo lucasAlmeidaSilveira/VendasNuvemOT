@@ -281,7 +281,6 @@ function TableOrders({ orders }: any) {
     const isAsc = orderBy === property && sort === 'asc';
     setSort(isAsc ? 'desc' : 'asc');
     setOrderBy(property);
-    console.log(orderBy);
   };
 
   const handleChangePage = (event, newPage) => {

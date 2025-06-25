@@ -1,34 +1,42 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
-import { useOrders } from './OrdersContext'; // Importa o contexto de pedidos
-import { RefundsContextData, RefundSummary } from '../types';
+import { useOrders } from './OrdersContext';
+import { RefundsContextData, RefundSummary, RefundItem } from '../types';
 import { adjustDate } from '../tools/tools';
 
-// Valor padrão para inicializar o contexto
-const defaultRefundsContext: RefundsContextData = {
-  refunds: [],
-  summary: {
-    totalRefunds: 0,
-    totalValue: 0,
-    categories: {
-      Atraso: { count: 0, value: 0 },
-      'Não gostou': { count: 0, value: 0 },
-      Avaria: { count: 0, value: 0 },
-      Outros: { count: 0, value: 0 },
-      'Envio/Logistica': { count: 0, value: 0 },
-      'Produção/Defeito - Quadros': { count: 0, value: 0 },
-      'Produção/Defeito - Espelhos': { count: 0, value: 0 },
-      'OP Errada': { count: 0, value: 0 },
-    },
-    type: {
-      Reembolso: { count: 0, value: 0 },
-      Reenvio: { count: 0, value: 0 },
-    },
+// Função para criar um summary vazio
+const createEmptySummary = (): RefundSummary => ({
+  totalRefunds: 0,
+  totalValue: 0,
+  categories: {
+    Atraso: { count: 0, value: 0 },
+    'Não gostou': { count: 0, value: 0 },
+    Avaria: { count: 0, value: 0 },
+    Outros: { count: 0, value: 0 },
+    'Envio/Logistica': { count: 0, value: 0 },
+    'Produção/Defeito - Quadros': { count: 0, value: 0 },
+    'Produção/Defeito - Espelhos': { count: 0, value: 0 },
+    'OP Errada': { count: 0, value: 0 },
+    Extravio: { count: 0, value: 0 },
+    Troca: { count: 0, value: 0 },
+    'Compra errada':{ count: 0, value: 0 },
   },
+  type: {
+    Reembolso: { count: 0, value: 0 },
+    Reenvio: { count: 0, value: 0 },
+  },
+});
+
+// Valor padrão do contexto
+const defaultRefundsContext: RefundsContextData = {
+  reembolsos: [],
+  reenvios: [],
+  summaryReembolsos: createEmptySummary(),
+  summaryReenvios: createEmptySummary(),
   loading: true,
   error: null,
+  fetchRefunds: () => {},
 };
 
-// Criando o contexto com a interface
 const RefundsContext = createContext<RefundsContextData>(defaultRefundsContext);
 
 export const useRefunds = () => useContext(RefundsContext);
@@ -37,109 +45,99 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { store, date } = useOrders();
-  const [refunds, setRefunds] = useState<any[]>([]);
+  const [reembolsos, setReembolsos] = useState<RefundItem[]>([]);
+  const [reenvios, setReenvios] = useState<RefundItem[]>([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
-  const [summary, setSummary] = useState<RefundSummary>(
-    defaultRefundsContext.summary,
-  );
+  const [summaryReembolsos, setSummaryReembolsos] =
+    useState<RefundSummary>(createEmptySummary());
+  const [summaryReenvios, setSummaryReenvios] =
+    useState<RefundSummary>(createEmptySummary());
 
   const createdAtMin = adjustDate(date[0]);
   const createdAtMax = adjustDate(date[1]);
+
+  // Função para calcular o summary para um conjunto de dados
+  const calculateSummary = (data: RefundItem[]): RefundSummary => {
+    const summary = createEmptySummary();
+
+    if (data.length > 0) {
+      data.forEach((refund) => {
+        if (refund.total === null || isNaN(parseFloat(refund.total))) return;
+
+        const amount = parseFloat(refund.total);
+        summary.totalRefunds += 1;
+        summary.totalValue += amount;
+
+        // Atualiza o tipo
+        if (refund.type === 'Reembolso' || refund.type === 'Reenvio') {
+          summary.type[refund.type].count += 1;
+          summary.type[refund.type].value += amount;
+        }
+
+        // Atualiza a categoria
+        const validCategories = Object.keys(summary.categories);
+        const category = validCategories.includes(refund.category)
+          ? refund.category
+          : 'Outros';
+
+        summary.categories[category].count += 1;
+        summary.categories[category].value += amount;
+      });
+    }
+
+    return summary;
+  };
 
   const fetchRefunds = async () => {
     setLoading(true);
     setError(null);
 
     try {
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}/${createdAtMin}/${createdAtMax}`,
+      // Busca reembolsos
+      const responseReembolsos = await fetch(
+        `https://node-vendasnuvemot.onrender.com/refunds/${store}/Reembolso/${createdAtMin}/${createdAtMax}`,
       );
-      if (!response.ok) throw new Error('Erro ao buscar reembolsos');
 
-      const data = await response.json();
-      setRefunds(data);
+      if (!responseReembolsos.ok) throw new Error('Erro ao buscar reembolsos');
+      const dataReembolsos: RefundItem[] = await responseReembolsos.json();
+      setReembolsos(dataReembolsos);
+      setSummaryReembolsos(calculateSummary(dataReembolsos));
 
-      // 🔹 Reinicializa o summary antes de processar os novos dados
-      let updatedSummary: RefundSummary = {
-        totalRefunds: 0,
-        totalValue: 0,
-        categories: {
-          Atraso: { count: 0, value: 0 },
-          'Não gostou': { count: 0, value: 0 },
-          Avaria: { count: 0, value: 0 },
-          Outros: { count: 0, value: 0 },
-          'Envio/Logistica': { count: 0, value: 0 },
-          'Produção/Defeito - Quadros': { count: 0, value: 0 },
-          'Produção/Defeito - Espelhos': { count: 0, value: 0 },
-          'OP Errada': { count: 0, value: 0 },
-        },
-        type: {
-          Reembolso: { count: 0, value: 0 },
-          Reenvio: { count: 0, value: 0 },
-        },
-      };
+      // Busca reenvios
+      const responseReenvios = await fetch(
+        `https://node-vendasnuvemot.onrender.com/refunds/${store}/Reenvio/${createdAtMin}/${createdAtMax}`,
+      );
 
-      if (data.length > 0) {
-        updatedSummary = data.reduce(
-          (
-            acc: RefundSummary,
-            refund: { category: string; total: string | null; type: string },
-          ) => {
-            if (refund.total === null || isNaN(parseFloat(refund.total))) {
-              return acc; // Ignora valores nulos ou inválidos
-            }
-
-            const amount = parseFloat(refund.total);
-            acc.totalRefunds += 1;
-            acc.totalValue += amount;
-
-            // Processa o tipo
-            if (refund.type === 'Reembolso' || refund.type === 'Reenvio') {
-              acc.type[refund.type].count += 1;
-              acc.type[refund.type].value += amount;
-            }
-
-            const category = [
-              'Atraso',
-              'Não gostou',
-              'Avaria',
-              'Envio/Logistica',
-              'Produção/Defeito - Quadros',
-              'Produção/Defeito - Espelhos',
-              'OP Errada',
-            ].includes(refund.category)
-              ? refund.category
-              : 'Outros';
-
-            acc.categories[category].count += 1;
-            acc.categories[category].value += amount;
-
-            return acc;
-          },
-          updatedSummary, // Usa o estado zerado como base
-        );
-      }
-
-      setSummary(updatedSummary);
+      if (!responseReenvios.ok) throw new Error('Erro ao buscar reenvios');
+      const dataReenvios: RefundItem[] = await responseReenvios.json();
+      setReenvios(dataReenvios);
+      setSummaryReenvios(calculateSummary(dataReenvios));
     } catch (err: any) {
       setError(err.message);
     } finally {
       setLoading(false);
     }
   };
-
   useEffect(() => {
     if (!store || !date || date.length < 2) return;
     fetchRefunds();
   }, [store, date]);
 
-  // Função para ser chamada manualmente após cadastro de um reembolso
   const reloadRefunds = () => {
     fetchRefunds();
   };
 
-  const value = { refunds, summary, loading, error, reloadRefunds };
+  const value = {
+    reembolsos,
+    reenvios,
+    summaryReembolsos,
+    summaryReenvios,
+    loading,
+    error,
+    fetchRefunds,
+    reloadRefunds,
+  };
 
   return (
     <RefundsContext.Provider value={value}>{children}</RefundsContext.Provider>

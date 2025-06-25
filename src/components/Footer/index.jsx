@@ -5,6 +5,7 @@ import AttachMoneyIcon from '@mui/icons-material/AttachMoney';
 import ConfirmationNumberIcon from '@mui/icons-material/ConfirmationNumber';
 import ArticleIcon from '@mui/icons-material/Article';
 import EqualizerIcon from '@mui/icons-material/Equalizer';
+import LocalShippingIcon from '@mui/icons-material/LocalShipping';
 import { useTab } from '../../context/TabContext';
 import { styled } from '@mui/material/styles';
 import { FaBoxOpen } from 'react-icons/fa';
@@ -31,7 +32,7 @@ const TabItem = styled(Tab)(({ theme }) => ({
   },
   '&:focus': {
     outline: 'none',
-  }
+  },
 }));
 
 export function Footer() {
@@ -52,22 +53,23 @@ export function Footer() {
       }}
       value={activeTab}
       onChange={handleTabChange}
-      aria-label='Menu Relatório'
+      aria-label="Menu Relatório"
     >
-      <TabItem icon={<AttachMoneyIcon fontSize='large' />} label='VENDAS' />
-      <TabItem icon={<ArticleIcon />} label='PEDIDOS' />
-      <TabItem icon={<EqualizerIcon />} label='MÉTRICAS' />
-      <TabItem 
-        icon={<FaBoxOpen />} 
-        label='PRODUTOS'
+      <TabItem icon={<AttachMoneyIcon fontSize="large" />} label="VENDAS" />
+      <TabItem icon={<ArticleIcon />} label="PEDIDOS" />
+      <TabItem icon={<EqualizerIcon />} label="MÉTRICAS" />
+      <TabItem
+        icon={<FaBoxOpen />}
+        label="PRODUTOS"
         sx={{
           display: {
             xs: 'none', // esconde no mobile
-            md: 'flex'  // exibe no desktop
-          }
+            md: 'flex', // exibe no desktop
+          },
         }}
       />
-      <TabItem icon={<ConfirmationNumberIcon />} label='CUPONS' />
+      <TabItem icon={<ConfirmationNumberIcon />} label="CUPONS" />
+      <TabItem icon={<LocalShippingIcon />} label="ENTREGAS" />
     </Tabs>
   );
 }

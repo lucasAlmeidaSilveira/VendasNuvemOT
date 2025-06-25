@@ -4,6 +4,8 @@ import { Coupons } from '../components/Coupons';
 import { Statistics } from '../components/Statistics';
 import { Orders } from '../components/Orders';
 import { Products } from '../components/Products';
+import { Deliveries } from '../components/Deliveries';
+
 
 export function RoutesTabs({ activeTab }) {
   switch (activeTab) {
@@ -17,6 +19,8 @@ export function RoutesTabs({ activeTab }) {
       return <Products />;
     case 4:
       return <Coupons />;
+    case 5:
+      return <Deliveries/>  
     // Você pode adicionar mais casos aqui para outras abas
     default:
       return <Dashboard />; // ou alguma página padrão
