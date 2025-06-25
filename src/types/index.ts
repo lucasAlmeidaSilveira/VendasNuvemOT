@@ -247,6 +247,7 @@ export interface RefundSummary {
     Outros: RefundCategory;
     Extravio: RefundCategory;
     Troca: RefundCategory;
+    'Compra errada': RefundCategory;
   };
   type: {
     Reembolso: RefundCategory;

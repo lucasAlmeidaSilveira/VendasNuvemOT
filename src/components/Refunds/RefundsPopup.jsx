@@ -28,6 +28,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
     'OP Errada',
     'Extravio',
     'Troca',
+    'Compra errada'
   ];
 
   const handleSubmit = async (e) => {

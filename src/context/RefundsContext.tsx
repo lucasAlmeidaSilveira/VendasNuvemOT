@@ -18,6 +18,7 @@ const createEmptySummary = (): RefundSummary => ({
     'OP Errada': { count: 0, value: 0 },
     Extravio: { count: 0, value: 0 },
     Troca: { count: 0, value: 0 },
+    'Compra errada':{ count: 0, value: 0 },
   },
   type: {
     Reembolso: { count: 0, value: 0 },
