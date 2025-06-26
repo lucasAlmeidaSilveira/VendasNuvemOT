@@ -2,7 +2,7 @@ import React, { useEffect, useMemo, useState } from 'react';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useCoupons } from '../../context/CouponsContext';
 import { useOrders } from '../../context/OrdersContext';
-import { BudgetItem, BudgetItemList } from './BudgetItem';
+import { BudgetItem, BudgetItemList, BudgetItemListNumber } from './BudgetItem';
 import {
   adjustDate,
   calculateAverageTicket,
@@ -43,6 +43,7 @@ import { RefundPopup } from '../Refunds/RefundsPopup';
 import { IoIosMail } from 'react-icons/io';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
 import { FaTiktok } from 'react-icons/fa';
+import { RefundPopupReenvio } from '../Refunds/RefundPopupReenvio';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -1228,6 +1229,28 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
   const { reembolsos, summaryReembolsos, loading, error } = useRefunds();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
+  const totalCountByType = [
+    {
+      name: 'Total',
+      value: summaryReembolsos.type_refunds.Total.count,
+    },
+    {
+      name: 'Parcial',
+      value: summaryReembolsos.type_refunds.Parcial.count,
+    },
+  ];
+
+  const totalByType = [
+    {
+      name: 'Total',
+      value: summaryReembolsos.type_refunds.Total.value,
+    },
+    {
+      name: 'Parcial',
+      value: summaryReembolsos.type_refunds.Parcial.value,
+    },
+  ];
+
   const handleIsOpenPopup = () => {
     setIsPopupOpen(true);
   };
@@ -1257,17 +1280,19 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
             </TooltipInfo>
           </div>
           <div className="row">
-            <BudgetItem
+            <BudgetItemListNumber
               title="Total Reembolsos"
-              tooltip="Total de reembolsos feitos"
+              tooltip="Total de reenvios feitos"
               value={summaryReembolsos.type.Reembolso.count}
               isLoading={loading}
+              dataCosts={totalCountByType}
             />
-            <BudgetItem
+            <BudgetItemList
               title="Valor Total"
               tooltip="Valor total reembolsado"
               value={`R$ ${summaryReembolsos.type.Reembolso.value.toFixed(2)}`}
               isLoading={loading}
+              dataCosts={totalByType}
             />
           </div>
           <div className="row">
@@ -1481,7 +1506,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
           </div>
         </ContainerGeral>
       </ContainerOrders>
-      <RefundPopup
+      <RefundPopupReenvio
         isPopupOpen={isPopupOpen}
         handleIsClosePopup={handleIsClosePopup}
       />

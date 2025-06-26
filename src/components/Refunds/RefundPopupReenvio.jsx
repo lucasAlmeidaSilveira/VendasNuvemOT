@@ -6,7 +6,7 @@ import { DatePicker } from '../DatePicker';
 
 import './RefundPopup.css';
 
-export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
+export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
   const { store } = useOrders(); // Obtém a loja do contexto
   const [orderNumber, setOrderNumber] = useState('');
   const [dateChoose, setDateChoose] = useState('');
@@ -41,8 +41,8 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       category,
       created_at: dateChoose,
       total: parseFloat(refundValue).toFixed(2),
-      type: 'Reembolso',
-      type_refund: refundType,
+      type: 'Reenvio',
+      type_refund: 'Parcial',
     };
 
     try {
@@ -58,7 +58,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       );
 
       if (response.ok) {
-        setSuccessMessage('Reembolso cadastrado com sucesso! ✅');
+        setSuccessMessage('Reenvio cadastrado com sucesso! ✅');
         console.log('DEBUG type: ', refundType);
         console.log('DEBUG response:', newRefund);
         setOrderNumber('');
@@ -72,7 +72,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
           reloadRefunds(); //  Aciona a função que recarrega as informações
         }, 2000);
       } else {
-        setSuccessMessage('Erro ao cadastrar reembolso! ❌');
+        setSuccessMessage('Erro ao cadastrar Reenvio! ❌');
         setTimeout(() => {
           setSuccessMessage('');
           handleIsClosePopup(); // Fecha o popup automaticamente
@@ -101,7 +101,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       open={isPopupOpen}
       onClose={handleIsClosePopup}
       size="xs"
-      title="Reembolsos"
+      title="Reenvios"
     >
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage ? (
@@ -124,7 +124,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
               value={dateChoose}
               onChange={setDateChoose}
             />
-            <label>Categoria de reembolso:</label>
+            <label>Categoria do Reenvio:</label>
             <select
               className="popup-select"
               value={category}
@@ -139,7 +139,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
               ))}
             </select>
 
-            <label>Valor reembolsado:</label>
+            <label>Valor:</label>
             <input
               type="number"
               className="popup-input"
@@ -148,23 +148,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
               onChange={(e) => setRefundValue(e.target.value)}
               required
             />
-            <label>Tipo de reembolso:</label>
-            <div className="selected-type">
-              <button
-                type="button"
-                className={`type-button_1 ${refundType === 'Total' ? 'active' : ''}`}
-                onClick={() => setRefundType('Total')}
-              >
-                {refundType === 'Total'} Total
-              </button>
-              <button
-                type="button"
-                className={`type-button_2 ${refundType === 'Parcial' ? 'active' : ''}`}
-                onClick={() => setRefundType('Parcial')}
-              >
-                {refundType === 'Parcial'} Parcial
-              </button>
-            </div>
+
             <button type="submit" className="popup-button">
               REGISTRAR
             </button>

@@ -59,7 +59,11 @@ export function BudgetItemList({
     setIsExpanded(!isExpanded);
   };
 
-  const displayedDataCosts = dataCosts ? (isExpanded ? dataCosts : dataCosts.slice(0, 5)) : [];
+  const displayedDataCosts = dataCosts
+    ? isExpanded
+      ? dataCosts
+      : dataCosts.slice(0, 5)
+    : [];
 
   return (
     <>
@@ -133,7 +137,176 @@ export function BudgetItemList({
                   </div>
                 ))}
                 {dataCosts && dataCosts.length > 5 && (
-                  <button 
+                  <button
+                    onClick={toggleExpand}
+                    style={{
+                      background: 'none',
+                      border: 'none',
+                      color: 'var(--geralblack-80)',
+                      cursor: 'pointer',
+                      marginTop: '4px',
+                      display: 'flex',
+                      alignItems: 'center',
+                      gap: '4px',
+                      fontSize: '12px',
+                    }}
+                  >
+                    {isExpanded ? (
+                      <>
+                        Mostrar menos <FaChevronUp size={12} />
+                      </>
+                    ) : (
+                      <>
+                        Mostrar mais <FaChevronDown size={12} />
+                      </>
+                    )}
+                  </button>
+                )}
+              </div>
+            </>
+          )}
+        </div>
+      </div>
+      {title === 'Verba Tiktok' ? (
+        <Popup
+          open={isPopupOpen}
+          onClose={handleClosePopup}
+          size="lg"
+          title="Creativos"
+        >
+          <TableTiktokCreatives creatives={creatives} />
+        </Popup>
+      ) : (
+        <Popup
+          open={isPopupOpen}
+          onClose={handleClosePopup}
+          size="lg"
+          title="Pedidos"
+        >
+          <TableOrders orders={orders} />
+        </Popup>
+      )}
+    </>
+  );
+}
+export function BudgetItemListNumber({
+  icon: Icon,
+  iconColor = 'var(--geralblack-100)',
+  dataCosts,
+  title,
+  tooltip,
+  info,
+  value,
+  isLoading,
+  small,
+  handleAction,
+  orders,
+  error,
+  creatives,
+}: BudgetItemListProps) {
+  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isExpanded, setIsExpanded] = useState(false);
+
+  const handleOpenPopup = () => {
+    if (orders) {
+      setIsPopupOpen(true);
+    }
+  };
+
+  const handleOpenPopupCreatives = () => {
+    if (creatives) {
+      setIsPopupOpen(true);
+    }
+  };
+
+  const handleClosePopup = () => {
+    setIsPopupOpen(false);
+  };
+
+  const toggleExpand = (e: React.MouseEvent) => {
+    e.stopPropagation();
+    setIsExpanded(!isExpanded);
+  };
+
+  const displayedDataCosts = dataCosts
+    ? isExpanded
+      ? dataCosts
+      : dataCosts.slice(0, 5)
+    : [];
+
+  return (
+    <>
+      <div
+        className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
+        onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
+      >
+        <div className="title-box">
+          {Icon && <Icon color={iconColor} fontSize={18} />}
+          <p className="text-wrapper-2">{title}</p>
+          <TooltipInfo title={tooltip}>
+            <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
+          </TooltipInfo>
+          {error && (
+            <span style={{ color: 'red' }}>
+              Erro no servidor {title.split(' ')[1]}, tentando novamente...
+            </span>
+          )}
+          {handleAction && (
+            <TooltipInfo
+              className={`btn-reload ${error && 'error'}`}
+              title={'Recarregar dados'}
+            >
+              <IoReload size={16} onClick={handleAction} />
+            </TooltipInfo>
+          )}
+        </div>
+        <div className="text-wrapper-4">
+          {isLoading ? (
+            <Loading />
+          ) : (
+            <>
+              <div>
+                {value}
+                {small && <Small>({small})</Small>}
+                {info && (
+                  <TooltipInfo title={info}>
+                    <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
+                  </TooltipInfo>
+                )}
+              </div>
+              <div className="column-list" style={{ alignItems: 'end' }}>
+                {displayedDataCosts.map((data, index) => (
+                  <div key={index} className="row-list">
+                    <span
+                      style={
+                        data.name === 'Total'
+                          ? {
+                              fontWeight: 'bold',
+                              color: 'var(--geralblack-80)',
+                            }
+                          : { fontWeight: 'inherit' }
+                      }
+                    >
+                      {title === 'ROAS'
+                        ? data.value
+                        : `${data.value} ${data.quantity ? `(${data.quantity})` : ''}`}
+                    </span>
+                    <span
+                      style={
+                        data.name === 'Total'
+                          ? {
+                              fontWeight: 'bold',
+                              color: 'var(--geralblack-80)',
+                            }
+                          : { fontWeight: 'normal' }
+                      }
+                    >
+                      {data.name}
+                    </span>
+                  </div>
+                ))}
+                {dataCosts && dataCosts.length > 5 && (
+                  <button
                     onClick={toggleExpand}
                     style={{
                       background: 'none',

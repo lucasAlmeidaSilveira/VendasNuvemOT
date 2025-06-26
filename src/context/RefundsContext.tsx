@@ -18,11 +18,15 @@ const createEmptySummary = (): RefundSummary => ({
     'OP Errada': { count: 0, value: 0 },
     Extravio: { count: 0, value: 0 },
     Troca: { count: 0, value: 0 },
-    'Compra errada':{ count: 0, value: 0 },
+    'Compra errada': { count: 0, value: 0 },
   },
   type: {
     Reembolso: { count: 0, value: 0 },
     Reenvio: { count: 0, value: 0 },
+  },
+  type_refunds: {
+    Total: { count: 0, value: 0 },
+    Parcial: { count: 0, value: 0 },
   },
 });
 
@@ -83,6 +87,15 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
 
         summary.categories[category].count += 1;
         summary.categories[category].value += amount;
+
+        // Atualiza a categoria
+        const validRefundType = Object.keys(summary.type_refunds);
+        const refundType = validRefundType.includes(refund.type_refund)
+          ? refund.type_refund
+          : 'Outros';
+
+        summary.type_refunds[refundType].count += 1;
+        summary.type_refunds[refundType].value += amount;
       });
     }
 

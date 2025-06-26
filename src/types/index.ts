@@ -253,6 +253,10 @@ export interface RefundSummary {
     Reembolso: RefundCategory;
     Reenvio: RefundCategory;
   };
+  type_refunds: {
+    Total: RefundCategory;
+    Parcial: RefundCategory;
+  };
 }
 
 export interface RefundItem {
@@ -263,6 +267,7 @@ export interface RefundItem {
   created_at: string;
   deleted: boolean;
   type: 'Reembolso' | 'Reenvio';
+  type_refund: 'Total' | 'Parcial';
 }
 
 export interface RefundsContextData {
@@ -271,7 +276,7 @@ export interface RefundsContextData {
   summaryReembolsos: RefundSummary;
   summaryReenvios: RefundSummary;
   loading: boolean;
-  error: string | null;
+  error: string ;
   //currentType: string | null;
   fetchRefunds: () => void;
 }
