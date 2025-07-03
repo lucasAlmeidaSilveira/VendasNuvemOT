@@ -42,7 +42,7 @@ export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
       created_at: dateChoose,
       total: parseFloat(refundValue).toFixed(2),
       type: 'Reenvio',
-      type_refund: 'Parcial',
+      type_refund: 'Reenvio',
     };
 
     try {

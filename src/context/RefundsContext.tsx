@@ -27,6 +27,7 @@ const createEmptySummary = (): RefundSummary => ({
   type_refunds: {
     Total: { count: 0, value: 0 },
     Parcial: { count: 0, value: 0 },
+    Reenvio: { count: 0, value: 0 },
   },
 });
 
