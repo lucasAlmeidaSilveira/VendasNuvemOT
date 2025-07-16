@@ -1135,7 +1135,7 @@ export function DataSectionAnalytics({
   totalAdSpend,
 }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { allOrders, isLoading: isLoadingOrders, date, store } = useOrders();
+  const { allOrders, isLoading: isLoadingOrders, date, customers } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
@@ -1174,6 +1174,13 @@ export function DataSectionAnalytics({
       ? ((ordersToday.length / numericVisits) * 100).toFixed(2) + '%'
       : '0.00%';
   }, [ordersToday.length, visits]);
+
+  const customersRate = useMemo(() => {
+    const numericVisits = parseInt(visits.replace(/\D/g, ''));
+    return numericVisits > 0
+      ? ((customers.length / numericVisits) * 100).toFixed(2) + '%'
+      : '0.00%';
+  }, [customers.length, visits]);
 
   return (
     <ContainerOrders>
@@ -1217,6 +1224,20 @@ export function DataSectionAnalytics({
             title="Custo p/ Aquisição (CPA)"
             tooltip="Verba Total / Vendas"
             value={priceAcquisition}
+            isLoading={isLoadingOrders}
+          />
+        </div>
+        <div className="row">
+          <BudgetItem
+            title="Inscrições Popup"
+            tooltip="Clientes que se inscreveram no Popup"
+            value={customers.length}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItem
+            title="Taxa de engajamento"
+            tooltip="Inscrições x Sessões"
+            value={customersRate}
             isLoading={isLoadingOrders}
           />
         </div>

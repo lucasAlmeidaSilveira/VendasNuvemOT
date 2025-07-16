@@ -90,6 +90,25 @@ export const OrdersProvider = ({ children }) => {
     }
   };
 
+  const fetchCustomersData = async (startDateISO, endDateISO) => {
+    try {
+      const response = await fetch(
+        `https://node-vendasnuvemot.onrender.com/customers/${store}/${startDateISO}/${endDateISO}`,
+      );
+      if (!response.ok) {
+        throw new Error('Erro ao buscar clientes');
+      }
+      const data = await response.json();
+      return data;
+    } catch (err) {
+      setError({
+        message: err.message,
+        type: 'server_offline',
+      });
+      throw err;
+    }
+  };
+
   const fetchAllOrdersData = async () => {
     try {
       const response = await fetch(
@@ -136,8 +155,13 @@ export const OrdersProvider = ({ children }) => {
         startNewDateISO,
         endNewDateISO,
       );
+      const customersData = await fetchCustomersData(
+        startDateISO,
+        endDateISO,
+      );
       setAllNewOrders(ordersNewData);
       setAllOrders(ordersData);
+      setCustomers(customersData);
       setError({});
       setIsLoading(false);
     } catch (err) {
