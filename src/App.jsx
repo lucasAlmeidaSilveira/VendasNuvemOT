@@ -8,8 +8,9 @@ import { AuthPopup } from './components/AuthPopup';
 import { BackToTop } from './components/BackToTop';
 import { Toolbar } from '@mui/material';
 import { AlertStatusInternet } from './components/AlertStatusInternet';
+import { Analytics } from '@vercel/analytics/react';
 
-function App() {
+export default function App() {
   const { activeTab } = useTab();
 
   return (
@@ -24,8 +25,7 @@ function App() {
       <RoutesTabs activeTab={activeTab} />
       <BackToTop />
       <AlertStatusInternet />
+      <Analytics />
     </>
   );
 }
-
-export default App;
