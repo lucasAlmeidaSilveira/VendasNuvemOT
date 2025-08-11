@@ -72,16 +72,28 @@ export const OrdersProvider = ({ children }) => {
   };
 
   const fetchOrdersData = async (startDateISO, endDateISO) => {
+    const url = `https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`;
     try {
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`,
-      );
+      const response = await fetch(url);
       if (!response.ok) {
+        //console.log('DEBUG orders NOK:', store);
+        //console.log('DEBUG url:', url);
+        //console.log('DEBUG startDateISO:', startDateISO);
+        //console.log('DEBUG endDateISO:', endDateISO);
+
         throw new Error('Erro ao buscar pedidos');
       }
       const data = await response.json();
+      //console.log('DEBUG orders OK:', store);
+      //console.log('DEBUG url:', url);
+      //console.log('DEBUG startDateISO:', startDateISO);
+      //console.log('DEBUG endDateISO:', endDateISO);
       return data;
     } catch (err) {
+      //console.log('DEBUG orders ERROR:', store);
+      //console.log('DEBUG url:', url);
+      //console.log('DEBUG startDateISO:', startDateISO);
+      //console.log('DEBUG endDateISO:', endDateISO);
       setError({
         message: err.message,
         type: 'server_offline',
@@ -91,16 +103,17 @@ export const OrdersProvider = ({ children }) => {
   };
 
   const fetchCustomersData = async (startDateISO, endDateISO) => {
+    const url = `https://node-vendasnuvemot.onrender.com/customers/${store}/${startDateISO}/${endDateISO}`;
     try {
-      const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/customers/${store}/${startDateISO}/${endDateISO}`,
-      );
+      const response = await fetch(url);
       if (!response.ok) {
         throw new Error('Erro ao buscar clientes');
       }
       const data = await response.json();
+
       return data;
     } catch (err) {
+
       setError({
         message: err.message,
         type: 'server_offline',
@@ -144,7 +157,7 @@ export const OrdersProvider = ({ children }) => {
     const startDateISO = adjustDate(date[0]);
     const endDateISO = adjustDate(date[1]);
 
-    //valor de datas alterados -1 
+    //valor de datas alterados -1
     const startNewDateISO = adjustDate(newDate[0]);
     const endNewDateISO = adjustDate(newDate[1]);
 
@@ -155,10 +168,7 @@ export const OrdersProvider = ({ children }) => {
         startNewDateISO,
         endNewDateISO,
       );
-      const customersData = await fetchCustomersData(
-        startDateISO,
-        endDateISO,
-      );
+      const customersData = await fetchCustomersData(startDateISO, endDateISO);
       setAllNewOrders(ordersNewData);
       setAllOrders(ordersData);
       setCustomers(customersData);

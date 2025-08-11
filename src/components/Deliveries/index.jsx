@@ -6,12 +6,13 @@ import {
 } from './styles';
 import { DeliveryStatus } from './DeliveryStatus';
 import { useOrders } from '../../context/OrdersContext';
+import { useMandae } from '../../context/MandaeContext';
 import TablePagination from '@mui/material/TablePagination';
 import Box from '@mui/material/Box';
 import TableFooter from '@mui/material/TableFooter';
 import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
-import { formatCurrency, formatDateShort } from '../../tools/tools';
+import { formatCurrency, formatDateShort, formatDate } from '../../tools/tools';
 import { TablePaginationActions } from '../Pagination';
 import { Table, Theme, Flex } from '@radix-ui/themes';
 import { InputSearch } from '../InputSearch';
@@ -116,73 +117,11 @@ export function Deliveries() {
   const [layout, setLayout] = useState('auto');
   const [totalOK, setTotalOK] = useState(0);
   const [totalLate, setTotalLate] = useState(0);
+  const [statusFilter, setStatusFilter] = useState('all');
   const [shippingStatusFilter, setShippingStatusFilter] = useState('all');
   const [filteredOrders, setFilteredOrders] = useState([]);
   const [searchQuery, setSearchQuery] = useState('');
-
-  // Dados de teste
-  const testMap = [
-    {
-      id: 123,
-      order_id: '345',
-      name_client: 'Teste',
-      lastDate: '2025-06-17T11:36:57.000Z',
-      rastreio: '00007525473',
-      total: 99.0,
-      status: 'OK',
-      store: 'artepropria',
-    },
-    {
-      id: 111,
-      order_id: '346',
-      name_client: 'Teste 2',
-      lastDate: '2025-06-17T12:36:57.000Z',
-      rastreio: '00054254238',
-      total: 150.5,
-      status: 'OK',
-      store: 'artepropria',
-    },
-    {
-      id: 456,
-      order_id: '456',
-      name_client: 'Teste 3',
-      lastDate: '2025-06-16T10:30:00.000Z',
-      rastreio: '00452454238',
-      total: 200.0,
-      status: 'OK',
-      store: 'outlet',
-    },
-    {
-      id: 856,
-      order_id: '856',
-      name_client: 'Teste 4',
-      lastDate: '2025-06-14T11:36:57.000Z',
-      rastreio: '00004545631',
-      total: 119.0,
-      status: 'NOK',
-      store: 'artepropria',
-    },
-    {
-      id: 151,
-      order_id: '666',
-      name_client: 'Teste 5',
-      lastDate: '2025-06-17T12:36:57.000Z',
-      rastreio: '00055785261',
-      total: 120.5,
-      status: 'OK',
-      store: 'outlet',
-    },
-    {
-      id: 744,
-      order_id: '777',
-      name_client: 'Teste 6',
-      lastDate: '2025-06-15T10:30:00.000Z',
-      rastreio: '00077775557',
-      total: 500.0,
-      status: 'NOK',
-      store: 'outlet',
-    },
-  ];
+  const { deliveries, loading, error, fetchDeliveries } = useMandae();
 
   // Aplicar ordenação
   const sortedData = useMemo(() => {
@@ -220,12 +159,24 @@ export function Deliveries() {
     setShippingStatusFilter(status);
   };
 
+  // Buscar entregas quando store ou date mudarem
+  useEffect(() => {
+    if (store && date) {
+      // Supondo que date tem startDate e endDate
+      fetchDeliveries({
+        store,
+        startDate: formatDate(date[0]),
+        endDate: formatDate(date[1]),
+      });
+    }
+    console.log(paginatedData);
+  }, [store, date]);
+
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
-      testMap
+      deliveries
         .filter((order) => {
-          //const paymentStatusMatch =
-          // statusFilter === 'all' || order.payment_status === statusFilter;
+          // Caso padrão: mostrar todos os pedidos
           let shippingStatusMatch = shippingStatusFilter === 'all';
 
           if (!shippingStatusMatch) {
@@ -235,6 +186,9 @@ export function Deliveries() {
                 break;
               case 'NOK':
                 shippingStatusMatch = order.status === 'NOK';
+                break;
+              case '-':
+                shippingStatusMatch = order.status === '-';
                 break;
               default:
                 shippingStatusMatch = false;
@@ -257,14 +211,7 @@ export function Deliveries() {
     );
 
     setFilteredOrders(filteredOrdersCalc); // Atualiza o estado com os pedidos filtrados
-  }, [store, shippingStatusFilter, searchQuery]);
-
-  useEffect(() => {
-    const unpackedCount = testMap.filter((order) => order.status === 'OK');
-    const lateCount = testMap.filter((order) => order.status === 'NOK');
-    setTotalOK(unpackedCount);
-    setTotalLate(lateCount);
-  }, [store, date]);
+  }, [store, shippingStatusFilter, searchQuery, order, orderBy, deliveries]);
 
   useEffect(() => {
     const updateLayout = () => {
@@ -286,7 +233,13 @@ export function Deliveries() {
           onClick={() => handleStatusBlockClick('OK')}
         >
           <span>No Prazo</span>
-          <span>{isLoading ? <Loading /> : totalOK.length}</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === 'OK').length
+            )}
+          </span>
         </div>
 
         <div
@@ -296,7 +249,26 @@ export function Deliveries() {
           onClick={() => handleStatusBlockClick('NOK')}
         >
           <span>Em atraso</span>
-          <span>{isLoading ? <Loading /> : totalLate.length}</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === 'NOK').length
+            )}
+          </span>
+        </div>
+        <div
+          className={`status-filter ${shippingStatusFilter === '-' ? 'active' : ''}`}
+          onClick={() => handleStatusBlockClick('-')}
+        >
+          <span>Não Enviado</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === '-').length
+            )}
+          </span>
         </div>
       </StatusFilterContainer>
       <FilterContainer>
@@ -317,9 +289,15 @@ export function Deliveries() {
           />
 
           <Table.Body>
-            {testMap.length === 0 ? (
+            {isLoading ? (
               <Table.Row>
-                <Table.Cell justify={'center'} colSpan={8}>
+                <Table.Cell justify={'center'} colSpan={4}>
+                  <Loading />
+                </Table.Cell>
+              </Table.Row>
+            ) : filteredOrders.length === 0 ? (
+              <Table.Row>
+                <Table.Cell justify={'center'} colSpan={6}>
                   Nenhum pedido encontrado
                 </Table.Cell>
               </Table.Row>
@@ -334,14 +312,18 @@ export function Deliveries() {
                   <Table.Cell>{order.name_client}</Table.Cell>
                   <Table.Cell>{formatDateShort(order.lastDate)}</Table.Cell>
                   <Table.Cell>
-                    <a
-                      className="link link-gateway"
-                      href={order.rastreio}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      {order.rastreio}
-                    </a>
+                    {order.rastreio === 'None' ? (
+                      'Não Possui Rastreio'
+                    ) : (
+                      <a
+                        className="link link-gateway"
+                        href={order.linkRastreio}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        {order.rastreio}
+                      </a>
+                    )}
                   </Table.Cell>
                   <Table.Cell>{formatCurrency(order.total)}</Table.Cell>
                   <Table.Cell>
@@ -349,7 +331,11 @@ export function Deliveries() {
                       <DeliveryStatus
                         statusOrder={order.status}
                         shipping={
-                          order.status === 'OK' ? 'No Prazo' : 'Em Atraso'
+                          order.status === 'OK'
+                            ? 'No Prazo'
+                            : order.status === 'NOK'
+                              ? 'Em Atraso'
+                              : 'Não Enviado'
                         }
                       />
                     </Flex>
@@ -363,7 +349,7 @@ export function Deliveries() {
               <TablePagination
                 rowsPerPageOptions={[5, 10, 20, 50]}
                 colSpan={7}
-                count={testMap.length}
+                count={filteredOrders.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

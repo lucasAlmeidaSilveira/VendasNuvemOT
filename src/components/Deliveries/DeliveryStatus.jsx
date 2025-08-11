@@ -8,7 +8,7 @@ import {
   TbReload,
   TbXboxX,
 } from 'react-icons/tb';
-import { FaCheckCircle, FaStore } from 'react-icons/fa';
+import { FaCheckCircle, FaStore, FaBox  } from 'react-icons/fa';
 import { MdAssignmentLate } from 'react-icons/md';
 import { Badge } from '@radix-ui/themes';
 
@@ -22,6 +22,7 @@ function calculateShippingStatus(
 ) {
   const backgroundColorMap = {
     'Preparando envio': 'cyan', // Azul claro
+    '-': 'cyan', // Azul claro
     NOK: 'yellow', // Amarelo
     OK: 'green', // Verde claro
     'Atualizando status...': 'gray',
@@ -60,6 +61,8 @@ const getIcon = (currentStatus) => {
       return <FaCheckCircle />;
     case 'NOK':
       return <MdAssignmentLate />;
+    case '-':
+      return <FaBox />;
     case 'Cancelado':
       return <TbXboxX />;
     default:

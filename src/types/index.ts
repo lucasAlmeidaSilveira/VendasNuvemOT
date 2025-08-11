@@ -304,3 +304,39 @@ export interface DatePickerProps {
   value: string;
   onChange: (date: string) => void;
 }
+
+// Interface para os dados de entrega da Mandae
+export interface Delivery {
+  id: string;
+  order_id: string;
+  store: string;
+  name_client: string;
+  lastDate: string; // Formato ISO 8601
+  rastreio: string;
+  linkRastreio: string;
+  total: string;
+  status: string;
+  statusEntrega: string;
+}
+
+// Tipos para os parâmetros de busca da Mandae
+export interface FetchParams {
+  store: string;
+  startDate: string; // Formato YYYY-MM-DD
+  endDate: string;   // Formato YYYY-MM-DD
+}
+
+// Estado do contexto da Mandae
+export interface MandaeContextType {
+  deliveries: Delivery[];
+  loading: boolean;
+  error: string | null;
+  fetchDeliveries: (params: FetchParams) => Promise<void>;
+  clearDeliveries: () => void;
+}
+
+// Props do Provider
+export interface MandaeProviderProps {
+  children: ReactNode;
+  apiBaseUrl?: string; // Opcional para personalização
+}
