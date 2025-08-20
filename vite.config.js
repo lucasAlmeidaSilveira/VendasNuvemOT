@@ -40,7 +40,7 @@ export default defineConfig({
         name: 'VendasNuvem - Dashboard',
         short_name: 'VendasNuvem',
         description: 'Dashboard de vendas e gestão de e-commerce',
-        theme_color: '#1874CD',
+        theme_color: '#1F1F1F',
         background_color: '#FCFAFB',
         display: 'standalone',
         orientation: 'portrait-primary',
