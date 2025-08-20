@@ -9,6 +9,7 @@ export default defineConfig({
       registerType: 'autoUpdate',
       workbox: {
         globPatterns: ['**/*.{js,css,html,ico,png,jpg,svg,woff2}'],
+        maximumFileSizeToCacheInBytes: 5 * 1024 * 1024, // 5MB
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -17,10 +18,7 @@ export default defineConfig({
               cacheName: 'google-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 ano
-              },
-              cacheKeyWillBeUsed: async ({ request }) => {
-                return `${request.url}?${Date.now()}`;
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
             },
           },
@@ -31,44 +29,13 @@ export default defineConfig({
               cacheName: 'gstatic-fonts-cache',
               expiration: {
                 maxEntries: 10,
-                maxAgeSeconds: 60 * 60 * 24 * 365, // 1 ano
-              },
-            },
-          },
-          {
-            urlPattern: /^https:\/\/api\.*/i,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'api-cache',
-              expiration: {
-                maxEntries: 100,
-                maxAgeSeconds: 60 * 60 * 24, // 1 dia
-              },
-              networkTimeoutSeconds: 10,
-            },
-          },
-          {
-            urlPattern: /^https:\/\/firebase\.*/i,
-            handler: 'NetworkFirst',
-            options: {
-              cacheName: 'firebase-cache',
-              expiration: {
-                maxEntries: 50,
-                maxAgeSeconds: 60 * 60 * 24, // 1 dia
+                maxAgeSeconds: 60 * 60 * 24 * 365,
               },
             },
           },
         ],
-        skipWaiting: true,
-        clientsClaim: true,
-        cleanupOutdatedCaches: true,
       },
-      includeAssets: [
-        'favicon.png',
-        'apple-touch-icon.png',
-        'masked-icon.svg',
-        'icons/*.jpg',
-      ],
+      includeAssets: ['favicon.png', 'icons/*.jpg'],
       manifest: {
         name: 'VendasNuvem - Dashboard',
         short_name: 'VendasNuvem',
@@ -81,7 +48,6 @@ export default defineConfig({
         start_url: '/',
         lang: 'pt-BR',
         categories: ['business', 'productivity'],
-        prefer_related_applications: false,
         icons: [
           {
             src: '/icons/logo.jpg',
@@ -95,5 +61,17 @@ export default defineConfig({
   ],
   optimizeDeps: {
     include: ['@ffmpeg/ffmpeg'],
+  },
+  build: {
+    rollupOptions: {
+      output: {
+        manualChunks: {
+          vendor: ['react', 'react-dom'],
+          mui: ['@mui/material', '@mui/icons-material'],
+          charts: ['@mui/x-charts', 'recharts'],
+        },
+      },
+    },
+    chunkSizeWarningLimit: 5000,
   },
 });
