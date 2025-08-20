@@ -1,0 +1,35 @@
+{
+  "name": "VendasNuvem - Dashboard",
+  "short_name": "VendasNuvem",
+  "description": "Dashboard de vendas e gestão de e-commerce",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#FCFAFB",
+  "theme_color": "#1874CD",
+  "orientation": "portrait-primary",
+  "scope": "/",
+  "lang": "pt-BR",
+  "categories": ["business", "productivity"],
+  "icons": [
+    {
+      "src": "/icons/logo.jpg",
+      "sizes": "300x300",
+      "type": "image/jpg",
+      "purpose": "maskable any"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Dashboard",
+      "short_name": "Dashboard",
+      "description": "Acessar o dashboard principal",
+      "url": "/",
+      "icons": [
+        {
+          "src": "/icons/logo.jpg",
+          "sizes": "300x300"
+        }
+      ]
+    }
+  ]
+}
