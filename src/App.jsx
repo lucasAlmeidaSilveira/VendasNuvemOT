@@ -10,17 +10,18 @@ import { Toolbar } from '@mui/material';
 import { AlertStatusInternet } from './components/AlertStatusInternet';
 import { Analytics } from '@vercel/analytics/react';
 
-
 export default function App() {
   const { activeTab } = useTab();
 
   return (
     <>
       <AuthPopup />
-      <Toolbar style={{ minHeight: '0px' }} id='back-to-top-anchor' />
+      <Toolbar style={{ minHeight: '0px' }} id="back-to-top-anchor" />
       <Header />
       <Footer />
-      <div className={activeTab === 3 || 5 ? 'hidden' : ''}>
+      <div
+        className={activeTab === 3 ? 'hidden' : activeTab === 5 ? 'hidden' : ''}
+      >
         <FilterDate />
       </div>
       <RoutesTabs activeTab={activeTab} />
