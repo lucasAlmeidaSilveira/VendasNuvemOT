@@ -34,14 +34,16 @@ export const MandaeProvider: React.FC<MandaeProviderProps> = ({
   const [error, setError] = useState<string | null>(null);
 
   const fetchDeliveries = async ({
-    store
+    store,
+    startDate,
+    endDate,
   }: FetchParams) => {
     setLoading(true);
     setError(null);
 
     try {
       // Construir URL com parâmetros
-      const url = `${apiBaseUrl}/mandae/${store}`;
+      const url = `${apiBaseUrl}/mandae/${store}/${startDate}/${endDate}`;
 
       const response = await fetch(url);
 

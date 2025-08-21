@@ -320,10 +320,13 @@ export interface Delivery {
 }
 
 // Tipos para os parâmetros de busca da Mandae
-export interface FetchParams {
+/*export interface FetchParams {
   store: string;
   startDate: string; // Formato YYYY-MM-DD
   endDate: string;   // Formato YYYY-MM-DD
+}*/
+export interface FetchParams {
+  store: string;
 }
 
 // Estado do contexto da Mandae

@@ -161,10 +161,12 @@ export function Deliveries() {
 
   // Buscar entregas quando store ou date mudarem
   useEffect(() => {
-    if (store) {
+    if (store && date) {
       // Supondo que date tem startDate e endDate
       fetchDeliveries({
         store,
+        startDate: formatDate(date[0]),
+        endDate: formatDate(date[1]),
       });
     }
     console.log(paginatedData);
@@ -173,7 +175,28 @@ export function Deliveries() {
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
       deliveries
-        .filter((order) => order.status === 'NOK')
+        .filter((order) => {
+          // Caso padrão: mostrar todos os pedidos
+          let shippingStatusMatch = shippingStatusFilter === 'all';
+
+          if (!shippingStatusMatch) {
+            switch (shippingStatusFilter) {
+              case 'OK':
+                shippingStatusMatch = order.status === 'OK';
+                break;
+              case 'NOK':
+                shippingStatusMatch = order.status === 'NOK';
+                break;
+              case '-':
+                shippingStatusMatch = order.status === '-';
+                break;
+              default:
+                shippingStatusMatch = false;
+            }
+          }
+
+          return shippingStatusMatch;
+        })
         .filter((order) => {
           const searchLower = searchQuery.toLowerCase();
           return (
@@ -202,6 +225,52 @@ export function Deliveries() {
 
   return (
     <Theme>
+      <StatusFilterContainer>
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'OK' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('OK')}
+        >
+          <span>No Prazo</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === 'OK').length
+            )}
+          </span>
+        </div>
+
+        <div
+          className={`status-filter ${
+            shippingStatusFilter === 'NOK' ? 'active' : ''
+          }`}
+          onClick={() => handleStatusBlockClick('NOK')}
+        >
+          <span>Em atraso</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === 'NOK').length
+            )}
+          </span>
+        </div>
+        <div
+          className={`status-filter ${shippingStatusFilter === '-' ? 'active' : ''}`}
+          onClick={() => handleStatusBlockClick('-')}
+        >
+          <span>Não Enviado</span>
+          <span>
+            {isLoading ? (
+              <Loading />
+            ) : (
+              deliveries.filter((order) => order.status === '-').length
+            )}
+          </span>
+        </div>
+      </StatusFilterContainer>
       <FilterContainer>
         <InputSearch
           label="Buscar pedido:"

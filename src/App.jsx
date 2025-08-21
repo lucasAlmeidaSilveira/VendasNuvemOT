@@ -19,7 +19,7 @@ export default function App() {
       <Toolbar style={{ minHeight: '0px' }} id="back-to-top-anchor" />
       <Header />
       <Footer />
-      <div className={activeTab === 3 ? 'hidden' : ''}>
+      <div className={activeTab === 3 || 5 ? 'hidden' : ''}>
         <FilterDate />
       </div>
       <RoutesTabs activeTab={activeTab} />

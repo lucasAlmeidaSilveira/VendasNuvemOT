@@ -6,13 +6,15 @@ import { useAnalytics } from '../../context/AnalyticsContext';
 import { useAuth } from '../../context/AuthContext';
 import { useRefunds } from '../../context/RefundsContext';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
+import { useMandae } from '../../context/MandaeContext';
 
 export function ButtonReload() {
-  const { isLoading, fetchData } = useOrders();
+  const { isLoading, fetchData, store } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta } = useAnalytics();
   const { reloadRefunds } = useRefunds();
   const { user } = useAuth();
   const { fetchTikTokAds } = useTikTokAds();
+  const { deliveries, loading, error, fetchDeliveries } = useMandae();
 
   const handleReload = () => {
     if (user) {
@@ -21,6 +23,7 @@ export function ButtonReload() {
       fetchDataADSMeta();
       fetchTikTokAds();
       reloadRefunds();
+      fetchDeliveries({ store });
     }
   };
 
