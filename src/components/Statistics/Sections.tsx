@@ -1135,7 +1135,7 @@ export function DataSectionAnalytics({
   totalAdSpend,
 }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { allOrders, isLoading: isLoadingOrders, date, customers } = useOrders();
+  const { allOrders, isLoading: isLoadingOrders, date, customers, isLoadingCustomers } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
@@ -1238,7 +1238,7 @@ export function DataSectionAnalytics({
             title="Taxa de engajamento"
             tooltip="Inscrições x Sessões"
             value={customersRate}
-            isLoading={isLoadingOrders}
+            isLoading={isLoadingCustomers}
           />
         </div>
       </ContainerGeral>

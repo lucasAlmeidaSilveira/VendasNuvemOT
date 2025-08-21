@@ -21,6 +21,7 @@ export const OrdersProvider = ({ children }) => {
 
   const [allFullOrders, setAllFullOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
+  const [isLoadingCustomers, setIsLoadingCustomers] = useState(true);
   const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(true);
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
   const [store, setStore] = useState('artepropria');
@@ -163,17 +164,19 @@ export const OrdersProvider = ({ children }) => {
 
     try {
       setIsLoading(true);
+      setIsLoadingCustomers(true);
       const ordersData = await fetchOrdersData(startDateISO, endDateISO);
       const ordersNewData = await fetchOrdersData(
         startNewDateISO,
         endNewDateISO,
       );
-      const customersData = await fetchCustomersData(startDateISO, endDateISO);
       setAllNewOrders(ordersNewData);
       setAllOrders(ordersData);
-      setCustomers(customersData);
       setError({});
       setIsLoading(false);
+      const customersData = await fetchCustomersData(startDateISO, endDateISO);
+      setCustomers(customersData);
+      setIsLoadingCustomers(false);
     } catch (err) {
       setError(err.message);
     } finally {
@@ -246,6 +249,7 @@ export const OrdersProvider = ({ children }) => {
     setStore,
     isLoading,
     isLoadingAllOrders,
+    isLoadingCustomers,
     setIsLoading,
     fetchData,
     automaticUpdate,
