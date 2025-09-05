@@ -19,7 +19,7 @@ import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
 import { FaHandshakeSimple, FaMeta, FaPeopleGroup } from 'react-icons/fa6';
-import { MdOutlineAttachMoney } from 'react-icons/md';
+import { MdOutlineAttachMoney, MdOutlineSell } from 'react-icons/md';
 import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
@@ -778,6 +778,10 @@ export function DataSectionCart({
   const [cartsRecoveryWhats, setCartsRecoveryWhats] = useState<Order[]>([]);
   const [cartsRecoveryEmail, setCartsRecoveryEmail] = useState<Order[]>([]);
   const [cartsRecoveryPopup, setCartsRecoveryPopup] = useState<Order[]>([]);
+  const [cartsRecoveryGanhei15, setCartsRecoveryGanhei15] = useState<Order[]>(
+    [],
+  );
+
   const [visits, setVisits] = useState(DEFAULT_VALUE);
   const [carts, setCarts] = useState(DEFAULT_VALUE);
   const [costCarts, setCostCart] = useState(DEFAULT_VALUE);
@@ -829,6 +833,7 @@ export function DataSectionCart({
     store === 'outlet' ? ['OUTLET10', 'GANHEI10'] : ['GANHEI10'];
   const couponsPopup =
     store === 'outlet' ? ['GANHEI5', 'FRETEGRATIS'] : ['GANHEI10', 'GANHEI5'];
+  const couponsGanhei15 = store === 'outlet' ? ['GANHEI15'] : ['GANHEI15'];
 
   const couponsCashback = coupons.filter((coupon: CouponProps) =>
     coupon.code.startsWith('MTZ'),
@@ -876,6 +881,10 @@ export function DataSectionCart({
       order.coupon &&
       order.coupon.some((coupon) => couponsPopup.includes(coupon.code));
 
+    const ganhei15Condition = (order: Order) =>
+      order.coupon &&
+      order.coupon.some((coupon) => couponsGanhei15.includes(coupon.code));
+
     // Cria um objeto que armazena os pedidos e seus totais
     const ordersFiltered = {
       cashBack: filterAndCalculateTotal(cashbackCondition),
@@ -886,6 +895,7 @@ export function DataSectionCart({
       cartsInstaDirect: filterAndCalculateTotal(instaDirectCondition),
       cartsEmail: filterAndCalculateTotal(emailCondition),
       cartsPopup: filterAndCalculateTotal(popupCondition),
+      cartsGanhei15: filterAndCalculateTotal(ganhei15Condition),
     };
 
     // Atualiza os estados dos pedidos filtrados e dos totais
@@ -897,6 +907,7 @@ export function DataSectionCart({
     setCartsRecoveryInstaDirect(ordersFiltered.cartsInstaDirect.filteredOrders);
     setCartsRecoveryEmail(ordersFiltered.cartsEmail.filteredOrders);
     setCartsRecoveryPopup(ordersFiltered.cartsPopup.filteredOrders);
+    setCartsRecoveryGanhei15(ordersFiltered.cartsGanhei15.filteredOrders);
   }, [date, allOrders]);
 
   useEffect(() => {
@@ -955,6 +966,11 @@ export function DataSectionCart({
   const rateCouponInstaDirect = useMemo(
     () => calculatePopupRate(ordersToday, cartsRecoveryInstaDirect),
     [ordersToday, cartsRecoveryInstaDirect],
+  );
+
+  const rateCouponGanhei15 = useMemo(
+    () => calculatePopupRate(ordersToday, cartsRecoveryGanhei15),
+    [ordersToday, cartsRecoveryGanhei15],
   );
 
   const totalCashbackSales = ordersWithCashback.length;
@@ -1023,7 +1039,7 @@ export function DataSectionCart({
           />
           {store === 'outlet' && (
             <>
-              <BudgetItemList
+              {/*<BudgetItemList
                 icon={RiMessengerLine}
                 iconColor={'#fd5949'}
                 small={rateCouponInstaDirect}
@@ -1041,7 +1057,7 @@ export function DataSectionCart({
                   },
                 ]}
                 orders={cartsRecoveryInstaDirect}
-              />
+              /> */}
               <BudgetItemList
                 icon={FaHandshakeSimple}
                 title="Cupom Parceria"
@@ -1089,6 +1105,20 @@ export function DataSectionCart({
             ]}
             orders={cartsRecoveryPopup}
           />
+          {store === 'outlet' && (
+            <>
+              <BudgetItemList
+                icon={MdOutlineSell}
+                title="Cupom Remarketing"
+                small={rateCouponGanhei15}
+                tooltip={`Cupons: ${couponsGanhei15.join(', ')}`}
+                value={cartsRecoveryGanhei15.length}
+                isLoading={isLoading}
+                dataCosts={generateDataCosts(cartsRecoveryGanhei15, couponsGanhei15)}
+                orders={cartsRecoveryGanhei15}
+              />
+            </>
+          )}
           {store === 'artepropria' && (
             <BudgetItemList
               icon={FaPeopleGroup}
@@ -1135,7 +1165,13 @@ export function DataSectionAnalytics({
   totalAdSpend,
 }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const { allOrders, isLoading: isLoadingOrders, date, customers, isLoadingCustomers } = useOrders();
+  const {
+    allOrders,
+    isLoading: isLoadingOrders,
+    date,
+    customers,
+    isLoadingCustomers,
+  } = useOrders();
   const { ordersToday } = filterOrders(allOrders, date);
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
