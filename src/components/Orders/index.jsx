@@ -584,7 +584,12 @@ export function Orders() {
                           )}
                         </a>
                       </Table.Cell>
-                      <Table.Cell>{order.products.length}</Table.Cell>
+                      <Table.Cell>
+                        {order.storefront === 'Loja Fisica' ||
+                        order.storefront === 'Loja'
+                          ? order.products[0].quantity
+                          : order.products.length}
+                      </Table.Cell>
                       <Table.Cell>{formatCurrency(order.total)}</Table.Cell>
                       <Table.Cell>
                         <a

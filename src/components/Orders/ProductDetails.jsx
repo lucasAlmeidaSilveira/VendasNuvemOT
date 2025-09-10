@@ -4,7 +4,7 @@ import { formatCurrency } from '../../tools/tools.ts';
 import { ContainerDetails, ProductImage } from './styles';
 import { Table, Theme } from '@radix-ui/themes';
 
-const formatProductName = name => {
+const formatProductName = (name) => {
   const regex = /\((.*?)\)/;
   const match = name.match(regex);
   if (match) {
@@ -24,15 +24,20 @@ const formatProductName = name => {
 export function ProductDetails({ products }) {
   return (
     <Theme hasBackground={false} style={{ minHeight: '10%' }}>
-    <ContainerDetails>
-      <h3>Pedido</h3>
-        <Table.Root variant='surface' layout={'auto'}>
+      <ContainerDetails>
+        <h3>Pedido</h3>
+        <Table.Root variant="surface" layout={'auto'}>
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>Imagem</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Nome</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>SKU</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Quantidade</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>
+                {products[0].name === 'Produto Loja Fisica' ||
+                products[0].sku === 'produto-loja'
+                  ? 'Quantidade de Clientes'
+                  : 'Quantidade'}
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Total</Table.ColumnHeaderCell>
             </Table.Row>
           </Table.Header>
@@ -42,21 +47,22 @@ export function ProductDetails({ products }) {
                 <Table.Cell>
                   <ProductImage src={product.image?.src} alt={product.name} />
                 </Table.Cell>
-                <Table.Cell>
-                  {formatProductName(product.name)}
-                </Table.Cell>
+                <Table.Cell>{formatProductName(product.name)}</Table.Cell>
                 <Table.Cell style={{ whiteSpace: 'nowrap' }}>
                   {product.sku}
                 </Table.Cell>
                 <Table.Cell>{product.quantity}</Table.Cell>
                 <Table.Cell>
-                  {formatCurrency(product.price * product.quantity)}
+                  {product.name === 'Produto Loja Fisica' ||
+                  product.sku === 'produto-loja'
+                    ? formatCurrency(product.price)
+                    : formatCurrency(product.price * product.quantity)}
                 </Table.Cell>
               </Table.Row>
             ))}
           </Table.Body>
         </Table.Root>
-    </ContainerDetails>
+      </ContainerDetails>
     </Theme>
   );
 }
