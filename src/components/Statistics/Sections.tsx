@@ -14,7 +14,7 @@ import {
   parseCurrency,
 } from '../../tools/tools';
 import { filterOrders } from '../../tools/filterOrders';
-import { ContainerOrders, ContainerGeral } from './styles';
+import { ContainerOrders, ContainerGeral, ContainerCharts } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
@@ -44,6 +44,7 @@ import { IoIosMail } from 'react-icons/io';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
 import { FaTiktok } from 'react-icons/fa';
 import { RefundPopupReenvio } from '../Refunds/RefundPopupReenvio';
+import { ChartLine } from '../Chart';
 
 const DEFAULT_VALUE = '0';
 const DEFAULT_PERCENTAGE = '0%';
@@ -916,7 +917,7 @@ export function DataSectionCart({
       setVisits(totalVisits.toLocaleString('pt-BR'));
       setCarts(carts.toLocaleString('pt-BR'));
     }
-  }, [data]);
+  }, [data, ordersToday]);
 
   useEffect(() => {
     const numericCarts = parseInt(carts.replace(/\D/g, ''));
@@ -989,6 +990,16 @@ export function DataSectionCart({
     totalCashbackValue > 0
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
+  const ganhei15Today = ordersToday.filter(
+    (item: Order) =>
+      item.coupon && item.coupon.some((coupon) => coupon.code === 'GANHEI15'),
+  );
+  // useEffect para testes
+  useEffect(() => {
+    console.log('Debug data', ordersToday);
+    console.log('Debug data cupom', cartsRecoveryGanhei15);
+    console.log('Debug data filter', ganhei15Today);
+  }, [data, ordersToday]);
 
   return (
     <ContainerOrders>
@@ -1114,7 +1125,10 @@ export function DataSectionCart({
                 tooltip={`Cupons: ${couponsGanhei15.join(', ')}`}
                 value={cartsRecoveryGanhei15.length}
                 isLoading={isLoading}
-                dataCosts={generateDataCosts(cartsRecoveryGanhei15, couponsGanhei15)}
+                dataCosts={generateDataCosts(
+                  cartsRecoveryGanhei15,
+                  couponsGanhei15,
+                )}
                 orders={cartsRecoveryGanhei15}
               />
             </>
@@ -1156,6 +1170,16 @@ export function DataSectionCart({
           />
         </div>
       </ContainerGeral>
+      {/*
+      store === 'outlet' && (
+        <ContainerCharts>
+          <ChartLine
+            title="Cupons GANHEI15 por período"
+            orders={ganhei15Today}
+            loading={isLoading}
+          />
+        </ContainerCharts>
+      )*/}
     </ContainerOrders>
   );
 }

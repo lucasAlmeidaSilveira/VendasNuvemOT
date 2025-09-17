@@ -3,7 +3,7 @@ import { filterOrders } from '../../tools/filterOrders';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
-import { Chart, ChartLine, ChartStates } from '../Chart';
+import { Chart, ChartLine, ChartStates, ChartLojas } from '../Chart';
 import {
   DataSectionAnalytics,
   DataSectionCart,
@@ -226,6 +226,15 @@ export function Statistics() {
           orders={ordersToday}
           loading={isLoading}
         />
+      </ContainerCharts>
+      <ContainerCharts>
+        {store === 'artepropria' && (
+          <ChartLojas
+            title="Vendas por Loja"
+            orders={ordersToday}
+            loading={isLoading}
+          />
+        )}
       </ContainerCharts>
     </Container>
   );
