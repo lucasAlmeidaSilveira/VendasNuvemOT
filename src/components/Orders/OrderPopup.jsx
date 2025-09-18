@@ -50,6 +50,7 @@ export function OrderPopup({ open, onClose }) {
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('');
   const [note, setNote] = useState('');
+  const [clientsPerDay, setClientsPerDay] = useState();
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
@@ -58,6 +59,7 @@ export function OrderPopup({ open, onClose }) {
     setCreatedAt(new Date());
     setTotal('0');
     setNote('');
+    setClientsPerDay('');
   };
 
   const handleDateChange = (e) => {
@@ -67,6 +69,9 @@ export function OrderPopup({ open, onClose }) {
       date.setHours(date.getHours() + 3);
       setCreatedAt(date);
     }
+  };
+    const handleclientsPerDay = (e) => {
+    setClientsPerDay(e.target.value);
   };
 
   const handleNote = (e) => {
@@ -115,7 +120,7 @@ export function OrderPopup({ open, onClose }) {
             name_without_variants: 'Produto Loja',
             price: parseFloat(cleanedTotal),
             sku: 'produto-loja',
-            quantity: 1,
+            quantity: clientsPerDay,
           },
         ],
         shipping_address: {
@@ -225,6 +230,14 @@ export function OrderPopup({ open, onClose }) {
               value={total}
               onChange={(e) => setTotal(formatCurrency(e.target.value))}
               required
+            />
+            <TextFieldInput
+              variant="filled"
+              type="number"
+              label="Quantidade de Clientes"
+              size="small"
+              value={clientsPerDay}
+              onChange={handleclientsPerDay}
             />
             <TextFieldInput
               variant="filled"

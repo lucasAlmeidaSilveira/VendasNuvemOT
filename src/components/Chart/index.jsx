@@ -374,12 +374,16 @@ export function ChartLojas({ orders, title, loading }) {
       }
 
       if (!Vendas[loja]) {
-        Vendas[loja] = { vendas: 0, totalVendas: 0 }; // Inicializa com vendas e totalVendas
+        Vendas[loja] = {
+          vendas: 0,
+          totalVendas: 0,
+        }; // Inicializa com vendas e totalVendas
       }
 
-      const quantidadePedido = order.products?.reduce((total, product) => {
-        return total + (parseInt(product.quantity) || 0);
-      }, 0) || 0;
+      const quantidadePedido =
+        order.products?.reduce((total, product) => {
+          return total + (parseInt(product.quantity) || 0);
+        }, 0) || 0;
 
       Vendas[loja].vendas += quantidadePedido; // Contando as vendas por loja
       Vendas[loja].totalVendas += parseFloat(order.total) || 0; // Acumulando o valor total das vendas
@@ -423,12 +427,12 @@ export function ChartLojas({ orders, title, loading }) {
         <Loading />
       ) : (
         <ResponsiveContainer width="100%" height={320}>
-          <BarChart data={lojas} layout="vertical">
+          <BarChart data={lojas} layout="horizontal">
             <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
-            <YAxis type="category" dataKey="nome" />
-            <Tooltip content={<CustomTooltipLojas />} />
-            <Bar dataKey="value" name="Quantidade de Vendas">
+            <YAxis type="number" />
+            <XAxis type="category" dataKey="nome" />
+            <Tooltip content={<CustomTooltipVendasLojas />} />
+            <Bar dataKey="value" name="Valor de Vendas (R$)">
               {lojas.map((entry, index) => (
                 <Cell
                   key={`cell-${index}`}
@@ -442,9 +446,107 @@ export function ChartLojas({ orders, title, loading }) {
     </ContainerChartStates>
   );
 }
-const CustomTooltipLojas = ({ active, payload, label }) => {
+
+export function ChartClienteLojas({ orders, title, loading }) {
+  const [vendasPorLoja, setVendasPorLoja] = useState({});
+  const [numberOptions, setNumberOptions] = useState(5);
+
+  useEffect(() => {
+    const Vendas = {};
+    orders.forEach((order) => {
+      let loja = order.billing_business_name;
+      // Se a loja não for uma das permitidas, ignora o pedido
+      const lojasPermitidas = [
+        'ANALIA',
+        'GABRIEL',
+        'TURIASSU',
+        'MOEMA',
+        'CHATBOT',
+      ];
+
+      if (loja === null && order.billing_name === 'Cliente Loja Física') {
+        loja = 'CHATBOT';
+      }
+
+      if (!lojasPermitidas.includes(loja)) {
+        return; // Ignora este pedido
+      }
+
+      if (!Vendas[loja]) {
+        Vendas[loja] = {
+          vendas: 0,
+          totalVendas: 0,
+        }; // Inicializa com vendas e totalVendas
+      }
+
+      const quantidadePedido =
+        order.products?.reduce((total, product) => {
+          return total + (parseInt(product.quantity) || 0);
+        }, 0) || 0;
+
+      Vendas[loja].vendas += quantidadePedido; // Contando as vendas por loja
+      Vendas[loja].totalVendas += parseFloat(order.total) || 0; // Acumulando o valor total das vendas
+    });
+    setVendasPorLoja(Vendas);
+  }, [orders]);
+
+  let lojas = Object.keys(vendasPorLoja).map((loja) => ({
+    nome: loja,
+    vendas: vendasPorLoja[loja].vendas,
+    value: vendasPorLoja[loja].totalVendas,
+    regiao: getRegiao(loja),
+  }));
+
+  lojas = lojas.sort((a, b) => b.vendas - a.vendas).slice(0, numberOptions); // Ordenar os lojas pela quantidade de vendas e pegar os 5 primeiros
+
+  const getOpacity = (index) => 1 - index * 0.2; // Reduz a opacidade gradualmente
+
+  const handleCategoryChange = (event) => {
+    setNumberOptions(parseInt(event.target.value));
+  };
+
+  const options = [
+    { value: 5, label: '5 lojas' },
+    { value: 10, label: '10 lojas' },
+    { value: 15, label: '15 lojas' },
+    { value: 20, label: '20 lojas' },
+  ];
+
+  return (
+    <ContainerChartStates>
+      <div className="header">
+        <h2>{title}</h2>
+        <CategorySelect
+          options={options}
+          selectedCategory={numberOptions}
+          handleCategoryChange={handleCategoryChange}
+        />
+      </div>
+      {loading ? (
+        <Loading />
+      ) : (
+        <ResponsiveContainer width="100%" height={320}>
+          <BarChart data={lojas} layout="horizontal">
+            <CartesianGrid strokeDasharray="3 3" />
+            <YAxis type="number" />
+            <XAxis type="category" dataKey="nome" />
+            <Tooltip content={<CustomTooltipClientesLojas />} />
+            <Bar dataKey="vendas" name="Número de Clientes">
+              {lojas.map((entry, index) => (
+                <Cell
+                  key={`cell-${index}`}
+                  fill={`rgba(2, 178, 175, ${getOpacity(index)})`}
+                />
+              ))}
+            </Bar>
+          </BarChart>
+        </ResponsiveContainer>
+      )}
+    </ContainerChartStates>
+  );
+}
+const CustomTooltipVendasLojas = ({ active, payload, label }) => {
   if (active && payload && payload.length) {
-    const sales = payload[0].payload.vendas;
     const totalSales =
       payload[0]?.payload?.value === undefined
         ? '0,00'
@@ -461,12 +563,33 @@ const CustomTooltipLojas = ({ active, payload, label }) => {
         }}
       >
         <p style={{ fontSize: 12 }}>
-          <span style={{ color: baseColor }}>● </span> {sales} cliente
-          {sales > 1 && 's'}
-        </p>
-        <p style={{ fontSize: 12 }}>
           <span style={{ color: '#82ca9d' }}>● </span>
           {formatCurrency(totalSales)}
+        </p>
+      </div>
+    );
+  }
+
+  return null;
+};
+
+const CustomTooltipClientesLojas = ({ active, payload, label }) => {
+  if (active && payload && payload.length) {
+    const sales = payload[0].payload.vendas;
+
+    return (
+      <div
+        style={{
+          background: 'white',
+          border: '1px solid #ccc',
+          padding: '10px',
+          borderRadius: '5px',
+          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+        }}
+      >
+        <p style={{ fontSize: 12 }}>
+          <span style={{ color: baseColor }}>● </span> {sales} cliente
+          {sales > 1 && 's'}
         </p>
       </div>
     );
