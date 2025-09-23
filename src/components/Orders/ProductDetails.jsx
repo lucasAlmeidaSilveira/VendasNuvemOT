@@ -21,7 +21,9 @@ const formatProductName = (name) => {
   return name;
 };
 
-export function ProductDetails({ products }) {
+export function ProductDetails({ products, subtotal }) {
+  console.log(subtotal);
+
   return (
     <Theme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
@@ -39,6 +41,14 @@ export function ProductDetails({ products }) {
                   : 'Quantidade'}
               </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Total</Table.ColumnHeaderCell>
+              {products[0].name === 'Produto Loja Fisica' ||
+              products[0].sku === 'produto-loja' ? (
+                <Table.ColumnHeaderCell>
+                  Total(CLIENTES NOVOS)
+                </Table.ColumnHeaderCell>
+              ) : (
+                ''
+              )}
             </Table.Row>
           </Table.Header>
           <Table.Body>
@@ -58,6 +68,12 @@ export function ProductDetails({ products }) {
                     ? formatCurrency(product.price)
                     : formatCurrency(product.price * product.quantity)}
                 </Table.Cell>
+                {products[0].name === 'Produto Loja Fisica' ||
+                products[0].sku === 'produto-loja' ? (
+                  <Table.Cell>{formatCurrency(subtotal)}</Table.Cell>
+                ) : (
+                  ''
+                )}
               </Table.Row>
             ))}
           </Table.Body>

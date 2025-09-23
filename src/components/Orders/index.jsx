@@ -637,7 +637,10 @@ export function Orders() {
                       <Table.Row className="row-order">
                         <Table.Cell colSpan={7}>
                           <ClientDetails order={order} />
-                          <ProductDetails products={order.products} />
+                          <ProductDetails
+                            products={order.products}
+                            subtotal={order.shipping_cost_customer}
+                          />
                         </Table.Cell>
                       </Table.Row>
                     )}
