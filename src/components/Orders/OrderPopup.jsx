@@ -48,9 +48,9 @@ export function OrderPopup({ open, onClose }) {
   const { user } = useAuth();
   const { fetchData } = useOrders();
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [total, setTotal] = useState('');
+  const [total, setTotal] = useState('0');
   const [note, setNote] = useState('');
-  const [clientsPerDay, setClientsPerDay] = useState();
+  const [clientsPerDay, setClientsPerDay] = useState('0');
   const [loading, setLoading] = useState(false);
   const [success, setSuccess] = useState(false);
   const [openConfirm, setOpenConfirm] = useState(false);
