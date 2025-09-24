@@ -59,7 +59,7 @@ export function OrderPopup({ open, onClose }) {
     setCreatedAt(new Date());
     setTotal('0');
     setNote('');
-    setClientsPerDay('');
+    setClientsPerDay('0');
   };
 
   const handleDateChange = (e) => {
@@ -70,7 +70,7 @@ export function OrderPopup({ open, onClose }) {
       setCreatedAt(date);
     }
   };
-    const handleclientsPerDay = (e) => {
+  const handleclientsPerDay = (e) => {
     setClientsPerDay(e.target.value);
   };
 
@@ -221,6 +221,7 @@ export function OrderPopup({ open, onClose }) {
               size="small"
               value={createdAt.toISOString().split('T')[0]} // Converte a data para o formato 'yyyy-mm-dd'
               onChange={handleDateChange}
+              required
             />
             <TextFieldInput
               variant="filled"
@@ -238,6 +239,7 @@ export function OrderPopup({ open, onClose }) {
               size="small"
               value={clientsPerDay}
               onChange={handleclientsPerDay}
+              required
             />
             <TextFieldInput
               variant="filled"

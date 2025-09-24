@@ -639,7 +639,7 @@ export function Orders() {
                           <ClientDetails order={order} />
                           <ProductDetails
                             products={order.products}
-                            subtotal={order.shipping_cost_customer}
+                            subtotal={order.shipping_cost_owner}
                           />
                         </Table.Cell>
                       </Table.Row>
