@@ -11,7 +11,6 @@ import { Loading } from '../Loading';
 import { useOrders } from '../../context/OrdersContext';
 import { BestSellers } from '../BestSellers';
 import { filterOrders } from '../../tools/filterOrders';
-import { or } from 'firebase/firestore';
 
 export function Dashboard() {
   const { allOrders, isLoading, date } = useOrders();

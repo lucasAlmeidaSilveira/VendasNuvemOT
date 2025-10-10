@@ -9,13 +9,21 @@ import {
 } from './styles';
 import { FiSearch } from 'react-icons/fi';
 
+interface InputSearchProps {
+  label: string;
+  value: string;
+  onChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
+  placeholder: string;
+  totalList?: number;
+}
+
 export function InputSearch({
   label,
   value,
   onChange,
   placeholder,
   totalList,
-}) {
+}: InputSearchProps) {
   return (
     <Container>
       <InputContainer>

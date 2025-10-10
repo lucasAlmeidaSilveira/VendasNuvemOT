@@ -7,10 +7,12 @@ import { TooltipInfo } from '../TooltipInfo';
 import { NameUser, Container, Avatar, MenuItem, MenuText } from './styles';
 import { Popup } from '../Popup';
 import { Converters } from '../Converters';
+import { QRCodeGenerator } from '../QRCodeGenerator';
 
 export function User() {
   const { user, handleLogout } = useAuth(); // Pegue o usuário e a função de logout do contexto
-  const [isPopupOpen, setIsPopupOpen] = useState(false);
+  const [isPopupOpenConverters, setIsPopupOpenConverters] = useState(false);
+  const [isPopupOpenQRCodeGenerator, setIsPopupOpenQRCodeGenerator] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
@@ -23,13 +25,28 @@ export function User() {
     setAnchorEl(null);
   };
   
-  const handleOpenPopup = () => {
-    setIsPopupOpen(true);
+  const handleOpenPopupConverters = () => {
+    setIsPopupOpenConverters(true);
+    setIsPopupOpenQRCodeGenerator(false);
     setAnchorEl(false);
   };
 
-  const handleClosePopup = () => {
-    setIsPopupOpen(false);
+  const handleOpenPopupQRCodeGenerator = () => {
+    setIsPopupOpenConverters(false);
+    setIsPopupOpenQRCodeGenerator(true);
+    setAnchorEl(false);
+  };
+
+  const handleClosePopupConverters = () => {
+    setIsPopupOpenConverters(false);
+    setIsPopupOpenQRCodeGenerator(false);
+    setAnchorEl(false);
+  };
+
+  const handleClosePopupQRCodeGenerator = () => {
+    setIsPopupOpenConverters(false);
+    setIsPopupOpenQRCodeGenerator(false);
+    setAnchorEl(false);
   };
 
   return (
@@ -58,8 +75,11 @@ export function User() {
         <MenuItem>
           <MenuText>{user?.email || 'email@example.com'}</MenuText>
         </MenuItem>
-        <MenuItem onClick={handleOpenPopup}>
+        <MenuItem onClick={handleOpenPopupConverters}>
           <MenuText>Conversor de Mídia</MenuText>
+        </MenuItem>
+        <MenuItem onClick={handleOpenPopupQRCodeGenerator}>
+          <MenuText>Gerador de QRcode</MenuText>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
@@ -69,14 +89,23 @@ export function User() {
       </Menu>
 
       <Popup
-        open={isPopupOpen}
-        onClose={handleClosePopup}
+        open={isPopupOpenConverters}
+        onClose={handleClosePopupConverters}
         title='Conversor de mídia'
         size='sm'
       >
         <Converters />
         <br />
         {/* <ConvertVideo /> */}
+      </Popup>
+
+      <Popup
+        open={isPopupOpenQRCodeGenerator}
+        onClose={handleClosePopupQRCodeGenerator}
+        title='Gerador de QRcode'
+        size='sm'
+      >
+        <QRCodeGenerator />
       </Popup>
     </Container>
   );
