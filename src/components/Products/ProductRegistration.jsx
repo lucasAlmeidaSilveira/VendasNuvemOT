@@ -118,7 +118,7 @@ export function ProductRegistration() {
   const [skuNumber, setSkuNumber] = useState('');
   const [format, setFormat] = useState('');
   const [framesNumber, setFramesNumber] = useState('');
-  const [visible, setVisible] = useState(false);
+  const [visible, setVisible] = useState(true);
   const [unit, setUnit] = useState(false);
   const [categories, setCategories] = useState([]);
   const [loading, setLoading] = useState(false);
@@ -308,7 +308,7 @@ export function ProductRegistration() {
   }
 
   const renderImageFields = () => {
-    const count = framesNumber === '1' ? 1 : framesNumber === '2' ? 3 : framesNumber === '3' ? 4 : 0;
+    const count = framesNumber === '1' ? 1 : framesNumber === '2' ? 2 : framesNumber === '3' ? 3 : 0;
   
     return imageUrls.slice(2, 2 + count).map((url, index) => (
       <TextFieldInput
