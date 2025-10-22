@@ -19,9 +19,21 @@ export function Dashboard() {
     ordersTodayPaid,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
+    totalPaidAmount,
+    totalNovosClientes,
+    totalOrders,
   } = filterOrders(allOrders, date);
 
-  // função para mapear pedidos 
+  //valor total de orders pagas somando o valor de vendas de clientes novos
+  const totalOrdersPaidAll = (
+    totalPaidAmount + totalNovosClientes
+  ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+    //valor total de orders totais, somando o valor de vendas de clientes novos
+  const totalOrdersAll = (
+    totalOrders + totalNovosClientes
+  ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  // função para mapear pedidos
   /*
   useEffect(() => {
     const calculateTotal = (orders) =>
@@ -58,7 +70,7 @@ export function Dashboard() {
               )}
             </div>
             <div className="text-wrapper-3">
-              {isLoading ? <Loading /> : totalPaidAmountFormatted}
+              {isLoading ? <Loading /> : totalOrdersPaidAll}
             </div>
           </div>
         </ContainerPago>
@@ -69,7 +81,7 @@ export function Dashboard() {
               {isLoading ? <Loading /> : `${ordersToday.length} Vendas`}
             </div>
             <div className="text-wrapper-3">
-              {isLoading ? <Loading /> : totalOrdersFormatted}
+              {isLoading ? <Loading /> : totalOrdersAll}
             </div>
           </div>
         </ContainerGeral>

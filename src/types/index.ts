@@ -23,6 +23,7 @@ export interface DataSectionTPagoAPProps {
   roasEcom: number | string;
   roasLoja: number | string;
   roasChatbot: number | string;
+  roasClientes: number | string;
   roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
@@ -277,7 +278,7 @@ export interface RefundsContextData {
   summaryReembolsos: RefundSummary;
   summaryReenvios: RefundSummary;
   loading: boolean;
-  error: null ;
+  error: null;
   //currentType: string | null;
   fetchRefunds: () => void;
 }

@@ -273,7 +273,10 @@ export function DataSectionTPago({
             info="Frete incluído"
             dataCosts={totalByCategory}
             tooltip="Nuvemshop"
-            value={totalOrdersFormatted}
+            value={totalOrdersFormatted.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
             isLoading={isLoadingOrders}
           />
           <BudgetItemList
@@ -303,6 +306,7 @@ export function DataSectionTPagoAP({
   roasEcom,
   roasLoja,
   roasChatbot,
+  roasClientes,
   roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
@@ -317,7 +321,9 @@ export function DataSectionTPagoAP({
     totalQuadrosFormatted,
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot,
+    totalPaidAmount,
     totalRevenue,
+    totalNovosClientes,
   } = filterOrders(allOrders, date);
   const verbaGoogleSum =
     verba.googleEcom +
@@ -388,13 +394,18 @@ export function DataSectionTPagoAP({
   let totalCosts = [{ name: '', value: 0 }];
   totalCosts = sumCostsByCombinedPlatform(verba);
 
+  //valor total de orders somando o valor de vendas de clientes novos
+  const totalOrdersAll = (totalPaidAmount + totalNovosClientes).toLocaleString(
+    'pt-BR',
+    { style: 'currency', currency: 'BRL' },
+  );
+
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
     fetchDataADSMeta();
   };
 
   // Filtros para pedidos
-
   const totalByCategory = [
     {
       name: 'Ecom',
@@ -402,6 +413,7 @@ export function DataSectionTPagoAP({
     },
     { name: 'Chatbot', value: totalPaidAmountChatbot },
     { name: 'Loja Física', value: totalRevenue },
+    { name: 'Novos Clientes', value: totalNovosClientes },
   ];
 
   const totalByCategoryAP = [
@@ -411,6 +423,7 @@ export function DataSectionTPagoAP({
     },
     { name: 'Chatbot', value: roasChatbot },
     { name: 'Loja Física', value: roasLoja },
+    { name: 'Novos Clientes', value: roasClientes },
   ];
 
   return (
@@ -458,7 +471,7 @@ export function DataSectionTPagoAP({
             info="Frete incluído"
             dataCosts={totalByCategory}
             tooltip="Nuvemshop"
-            value={totalOrdersFormatted}
+            value={totalOrdersAll}
             isLoading={isLoadingOrders}
           />
           <BudgetItemList
@@ -672,7 +685,7 @@ export function DataSectionCosts({
 
       setProductCost(formatCurrency(totalProductCost));
 
-      const totalOrderValue = parseCurrency(totalOrdersFormatted);
+      const totalOrderValue = totalOrdersFormatted; //retirado o formatCurrency
       const grossProfitValue = totalOrderValue - totalProductCost;
 
       setGrossProfit(formatCurrency(grossProfitValue));

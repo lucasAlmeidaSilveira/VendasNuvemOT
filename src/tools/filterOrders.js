@@ -4,6 +4,13 @@ import { isOrderOnDate } from './isOrderFromToday';
 const calculateTotal = (orders) =>
   orders.reduce((total, order) => total + parseFloat(order.total), 0);
 
+// Função genérica para calcular totais referente aos clientes novos
+const calculateTotalClients = (orders) =>
+  orders.reduce(
+    (total, order) => total + parseFloat(order.shipping_cost_owner),
+    0,
+  );
+
 // Função genérica para calcular totais baseado nos produtos
 const calculateTotalByProductType = (orders, productType) =>
   orders.reduce((total, order) => {
@@ -53,6 +60,7 @@ export function filterOrders(orders, date) {
       style: 'currency',
       currency: 'BRL',
     }),
+    totalOrders: calculateTotal(ordersToday), //valor total sem a formatação
     totalPaidAmountChatbotFormatted: calculateTotal(
       ordersToday.filter(
         (order) =>
@@ -68,9 +76,12 @@ export function filterOrders(orders, date) {
     totalPaidAllAmountEcomFormatted: calculateTotal(
       ordersToday.filter((order) => order.storefront !== 'Loja'),
     ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    totalPaidAmount: calculateTotal(
+      ordersToday.filter((order) => order.payment_status === 'paid'), //valor não formatado
+    ),
     totalPaidAmountFormatted: calculateTotal(
       ordersToday.filter((order) => order.payment_status === 'paid'),
-    ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
+    ),
     totalPaidAllAmountFormatted: calculateTotal(ordersAllToday).toLocaleString(
       'pt-BR',
       { style: 'currency', currency: 'BRL' },
@@ -96,6 +107,15 @@ export function filterOrders(orders, date) {
       ordersToday.filter(
         (order) =>
           order.payment_status === 'paid' && order.storefront === 'Loja Fisica',
+      ),
+    ),
+    //calcula vendas da Loja Fisica de novos Clientes
+    totalNovosClientes: calculateTotalClients(
+      ordersToday.filter(
+        (order) =>
+          order.payment_status === 'paid' &&
+          order.storefront === 'Loja Fisica' &&
+          order.shipping_cost_owner !== 0,
       ),
     ),
     totalQuadros: calculateTotalByProductType(ordersTodayPaid, 'Quadro'),

@@ -67,6 +67,7 @@ export function Statistics() {
     totalPaidAllAmountEcom,
     totalQuadros,
     totalEspelhos,
+    totalNovosClientes,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
@@ -124,12 +125,14 @@ export function Statistics() {
     [adSpends],
   );
 
-  const roas = calculateRoas(
-    parseCurrency(totalPaidAmountFormatted),
-    totalAdSpend,
-  );
+  const totalAllClients = totalNovosClientes + totalPaidAmountFormatted;
+  const totalMaxAllClients =
+    parseCurrency(totalPaidAllAmountFormatted) + totalNovosClientes;
+
+  const roas = calculateRoas(totalAllClients, totalAdSpend);
   const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
   const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
+  const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
 
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
 
@@ -139,10 +142,7 @@ export function Statistics() {
     parseCurrency(totalPaidAmountChatbotFormatted),
     totalAdSpendChatbot,
   );
-  const roasMax = calculateRoas(
-    parseCurrency(totalPaidAllAmountFormatted),
-    totalAdSpend,
-  );
+  const roasMax = calculateRoas(totalMaxAllClients, totalAdSpend);
 
   // Adicione um novo cálculo específico para o TikTok se necessário
   const roasTikTok = calculateRoas(
@@ -187,6 +187,7 @@ export function Statistics() {
           roasEcom={roasEcom}
           roasLoja={roasLoja}
           roasChatbot={roasChatbot}
+          roasClientes={roasClientes}
           roasMax={`Max.: ${roasMax}`}
           isLoadingADSGoogle={isLoadingADSGoogle}
           isLoadingOrders={isLoading}
