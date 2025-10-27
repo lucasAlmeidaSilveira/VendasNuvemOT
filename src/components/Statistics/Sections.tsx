@@ -1320,7 +1320,8 @@ export function DataSectionAnalytics({
 }
 
 export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
-  const { reembolsos, summaryReembolsos, loading, error } = useRefunds();
+  const { reembolsos, summaryReembolsos, loading, error, fetchRefunds } =
+    useRefunds();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const totalCountByType = [
@@ -1351,6 +1352,36 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
   const handleIsClosePopup = () => {
     setIsPopupOpen(false);
   };
+  const atrasosCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Atraso',
+  );
+  const naoGostouCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Não gostou',
+  );
+  const logisticaCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Envio/Logistica',
+  );
+  const defeitoQuadrosCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Produção/Defeito - Quadros',
+  );
+  const defeitoEspelhosCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Produção/Defeito - Espelhos',
+  );
+  const opErradaCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'OP Errada',
+  );
+  const avariaCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Avaria',
+  );
+  const extravioCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Extravio',
+  );
+  const trocaCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Troca',
+  );
+  const compraErradaCountRefunds = reembolsos.filter(
+    (refund) => refund.category === 'Compra errada',
+  );
   /*
   if (loading) {
     return <p>Carregando reembolsos...</p>;
@@ -1380,6 +1411,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.type.Reembolso.count}
               isLoading={loading}
               dataCosts={totalCountByType}
+              refunds={reembolsos}
             />
             <BudgetItemList
               title="Valor Total"
@@ -1387,6 +1419,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={`R$ ${summaryReembolsos.type.Reembolso.value.toFixed(2)}`}
               isLoading={loading}
               dataCosts={totalByType}
+              refunds={reembolsos}
             />
           </div>
           <div className="row">
@@ -1396,6 +1429,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories.Atraso.count}
               small={`R$ ${summaryReembolsos.categories.Atraso.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={atrasosCountRefunds}
             />
             <BudgetItem
               title="Não Gostou"
@@ -1403,6 +1437,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories['Não gostou'].count}
               small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={naoGostouCountRefunds}
             />
             <BudgetItem
               title="Avaria"
@@ -1410,6 +1445,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories.Avaria.count}
               small={`R$ ${summaryReembolsos.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={avariaCountRefunds}
             />
           </div>
           <div className="row">
@@ -1419,6 +1455,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories['Envio/Logistica'].count}
               small={`R$ ${summaryReembolsos.categories['Envio/Logistica'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={logisticaCountRefunds}
             />
             <BudgetItem
               title="Troca"
@@ -1426,6 +1463,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories.Troca.count}
               small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={trocaCountRefunds}
             />
             <BudgetItem
               title="Produção/Defeito - Quadros"
@@ -1435,6 +1473,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               }
               small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={defeitoQuadrosCountRefunds}
             />
           </div>
           <div className="row">
@@ -1447,6 +1486,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               }
               small={`R$ ${summaryReembolsos.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={defeitoEspelhosCountRefunds}
             />
             <BudgetItem
               title="OP Errada"
@@ -1454,6 +1494,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories['OP Errada'].count}
               small={`R$ ${summaryReembolsos.categories['OP Errada'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={opErradaCountRefunds}
             />
             <BudgetItem
               title="Extravio"
@@ -1461,6 +1502,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories.Extravio.count}
               small={`R$ ${summaryReembolsos.categories.Extravio.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={extravioCountRefunds}
             />
             <BudgetItem
               title="Compra Errada"
@@ -1468,6 +1510,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               value={summaryReembolsos.categories['Compra errada'].count}
               small={`R$ ${summaryReembolsos.categories['Compra errada'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={compraErradaCountRefunds}
             />
           </div>
         </ContainerGeral>
@@ -1494,6 +1537,37 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
     return <p>Carregando reenvios...</p>;
   }*/
 
+  const atrasosCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Atraso',
+  );
+  const naoGostouCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Não gostou',
+  );
+  const logisticaCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Envio/Logistica',
+  );
+  const defeitoQuadrosCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Produção/Defeito - Quadros',
+  );
+  const defeitoEspelhosCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Produção/Defeito - Espelhos',
+  );
+  const opErradaCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'OP Errada',
+  );
+  const avariaCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Avaria',
+  );
+  const extravioCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Extravio',
+  );
+  const trocaCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Troca',
+  );
+  const compraErradaCountRefunds = reenvios.filter(
+    (refund) => refund.category === 'Compra errada',
+  );
+
   if (error) {
     return <p>Erro ao carregar reenvios: {error}</p>;
   }
@@ -1512,17 +1586,19 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
             </TooltipInfo>
           </div>
           <div className="row">
-            <BudgetItem
+            <BudgetItemListNumber
               title="Total Reenvios"
               tooltip="Total de reenvios feitos"
               value={summaryReenvios.type.Reenvio.count}
               isLoading={loading}
+              refunds={reenvios}
             />
-            <BudgetItem
+            <BudgetItemList
               title="Valor Total"
               tooltip="Valor total reenvios"
               value={`R$ ${summaryReenvios.type.Reenvio.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={reenvios}
             />
           </div>
           <div className="row">
@@ -1532,6 +1608,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories.Atraso.count}
               small={`R$ ${summaryReenvios.categories.Atraso.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={atrasosCountRefunds}
             />
             <BudgetItem
               title="Não Gostou"
@@ -1539,6 +1616,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories['Não gostou'].count}
               small={`R$ ${summaryReenvios.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={naoGostouCountRefunds}
             />
             <BudgetItem
               title="Avaria"
@@ -1546,6 +1624,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories.Avaria.count}
               small={`R$ ${summaryReenvios.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={avariaCountRefunds}
             />
           </div>
           <div className="row">
@@ -1555,6 +1634,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories['Envio/Logistica'].count}
               small={`R$ ${summaryReenvios.categories['Envio/Logistica'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={logisticaCountRefunds}
             />
             <BudgetItem
               title="Troca"
@@ -1562,6 +1642,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories.Troca.count}
               small={`R$ ${summaryReenvios.categories.Troca.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={trocaCountRefunds}
             />
             <BudgetItem
               title="Produção/Defeito - Quadros"
@@ -1571,6 +1652,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               }
               small={`R$ ${summaryReenvios.categories['Produção/Defeito - Quadros'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={defeitoQuadrosCountRefunds}
             />
           </div>
           <div className="row">
@@ -1582,6 +1664,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               }
               small={`R$ ${summaryReenvios.categories['Produção/Defeito - Espelhos'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={defeitoEspelhosCountRefunds}
             />
             <BudgetItem
               title="OP Errada"
@@ -1589,6 +1672,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories['OP Errada'].count}
               small={`R$ ${summaryReenvios.categories['OP Errada'].value.toFixed(2)}`}
               isLoading={loading}
+              refunds={opErradaCountRefunds}
             />
             <BudgetItem
               title="Extravio"
@@ -1596,6 +1680,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               value={summaryReenvios.categories.Extravio.count}
               small={`R$ ${summaryReenvios.categories.Extravio.value.toFixed(2)}`}
               isLoading={loading}
+              refunds={extravioCountRefunds}
             />
           </div>
         </ContainerGeral>

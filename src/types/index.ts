@@ -117,6 +117,15 @@ export interface Creatives {
   impression: number;
   conversions: number;
 }
+
+export interface Refunds {
+  id: number | string;
+  order_id: number | string;
+  category: string;
+  type_refund: string;
+  created_at: string;
+  total: number | string;
+}
 export interface CouponProps {
   code: string;
   id: number;
@@ -197,6 +206,7 @@ export interface BudgetItemListProps {
   orders?: Order[];
   error?: boolean;
   creatives?: Creatives[];
+  refunds?: Refunds[];
 }
 
 export interface BudgetItemProps {
@@ -211,6 +221,7 @@ export interface BudgetItemProps {
   tooltip?: string;
   orders?: Order[];
   creatives?: Creatives[];
+  refunds?: Refunds[];
 }
 
 export interface DataCosts {

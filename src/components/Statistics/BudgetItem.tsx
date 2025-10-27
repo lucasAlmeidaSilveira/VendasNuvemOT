@@ -11,6 +11,7 @@ import { Popup } from '../Popup';
 import {
   EnhancedTableHead,
   EnhancedTableHeadCreative,
+  EnhancedTableHeadRefunds,
 } from '../../tools/table';
 import { PaymentStatus } from '../Orders/PaymentStatus';
 import { ClientDetails } from '../Orders/ClientDetails';
@@ -34,6 +35,7 @@ export function BudgetItemList({
   orders,
   error,
   creatives,
+  refunds,
 }: BudgetItemListProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -46,6 +48,12 @@ export function BudgetItemList({
 
   const handleOpenPopupCreatives = () => {
     if (creatives) {
+      setIsPopupOpen(true);
+    }
+  };
+
+  const handleOpenPopupRefunds = () => {
+    if (refunds) {
       setIsPopupOpen(true);
     }
   };
@@ -68,8 +76,14 @@ export function BudgetItemList({
   return (
     <>
       <div
-        className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
-        onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
+        className={`div ${orders && 'orders'} ${creatives && 'creatives'} ${refunds && 'refunds'}`}
+        onClick={
+          creatives && title === 'Verba Tiktok'
+            ? handleOpenPopupCreatives
+            : refunds
+              ? handleOpenPopupRefunds
+              : handleOpenPopup
+        }
       >
         <div className="title-box">
           {Icon && <Icon color={iconColor} fontSize={18} />}
@@ -176,6 +190,15 @@ export function BudgetItemList({
         >
           <TableTiktokCreatives creatives={creatives} />
         </Popup>
+      ) : title === 'Valor Total' ? (
+        <Popup
+          open={isPopupOpen}
+          onClose={handleClosePopup}
+          size="lg"
+          title={title}
+        >
+          <TableRefunds refunds={refunds} />
+        </Popup>
       ) : (
         <Popup
           open={isPopupOpen}
@@ -203,6 +226,7 @@ export function BudgetItemListNumber({
   orders,
   error,
   creatives,
+  refunds,
 }: BudgetItemListProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [isExpanded, setIsExpanded] = useState(false);
@@ -215,6 +239,12 @@ export function BudgetItemListNumber({
 
   const handleOpenPopupCreatives = () => {
     if (creatives) {
+      setIsPopupOpen(true);
+    }
+  };
+
+  const handleOpenPopupRefunds = () => {
+    if (refunds) {
       setIsPopupOpen(true);
     }
   };
@@ -238,7 +268,13 @@ export function BudgetItemListNumber({
     <>
       <div
         className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
-        onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
+        onClick={
+          creatives && title === 'Verba Tiktok'
+            ? handleOpenPopupCreatives
+            : refunds
+              ? handleOpenPopupRefunds
+              : handleOpenPopup
+        }
       >
         <div className="title-box">
           {Icon && <Icon color={iconColor} fontSize={18} />}
@@ -345,6 +381,15 @@ export function BudgetItemListNumber({
         >
           <TableTiktokCreatives creatives={creatives} />
         </Popup>
+      ) : title === 'Total Reembolsos' || title === 'Total Reenvios' ? (
+        <Popup
+          open={isPopupOpen}
+          onClose={handleClosePopup}
+          size="lg"
+          title={title}
+        >
+          <TableRefunds refunds={refunds} />
+        </Popup>
       ) : (
         <Popup
           open={isPopupOpen}
@@ -371,11 +416,17 @@ export function BudgetItem({
   small,
   info,
   creatives,
+  refunds,
 }: BudgetItemProps) {
   const [isPopupOpen, setIsPopupOpen] = useState(false);
 
   const handleOpenPopup = () => {
     if (orders) {
+      setIsPopupOpen(true);
+    }
+  };
+  const handleOpenPopupRefunds = () => {
+    if (refunds) {
       setIsPopupOpen(true);
     }
   };
@@ -393,7 +444,24 @@ export function BudgetItem({
     <>
       <div
         className={`div ${orders && 'orders'} ${creatives && 'creatives'}`}
-        onClick={creatives ? handleOpenPopupCreatives : handleOpenPopup}
+        onClick={
+          creatives && title === 'Verba Tiktok'
+            ? handleOpenPopupCreatives
+            : refunds &&
+                (title === 'Atraso' ||
+                  'Não gostou' ||
+                  'Envio/Logistica' ||
+                  'Produção/Defeito - Quadros' ||
+                  'Produção/Defeito - Espelhos' ||
+                  'OP Errada' ||
+                  'Avaria' ||
+                  'Outros' ||
+                  'Extravio' ||
+                  'Troca' ||
+                  'Compra errada')
+              ? handleOpenPopupRefunds
+              : handleOpenPopup
+        }
       >
         <div className="title-box">
           {Icon && <Icon color={iconColor} fontSize={18} />}
@@ -427,6 +495,25 @@ export function BudgetItem({
           title="Creativos"
         >
           <TableTiktokCreatives creatives={creatives} />
+        </Popup>
+      ) : title === 'Atraso' ||
+        title === 'Não Gostou' ||
+        title === 'Envio/Logistica' ||
+        title === 'Produção/Defeito - Quadros' ||
+        title === 'Produção/Defeito - Espelhos' ||
+        title === 'OP Errada' ||
+        title === 'Avaria' ||
+        title === 'Outros' ||
+        title === 'Extravio' ||
+        title === 'Troca' ||
+        title === 'Compra Errada' ? (
+        <Popup
+          open={isPopupOpen}
+          onClose={handleClosePopup}
+          size="lg"
+          title={title}
+        >
+          <TableRefunds refunds={refunds} />
         </Popup>
       ) : (
         <Popup
@@ -706,6 +793,147 @@ function TableTiktokCreatives({ creatives }) {
                 rowsPerPageOptions={[5, 10, 20, 50]}
                 colSpan={5}
                 count={creatives.length}
+                rowsPerPage={rowsPerPage}
+                page={page}
+                onPageChange={handleChangePage}
+                onRowsPerPageChange={handleChangeRowsPerPage}
+                ActionsComponent={TablePaginationActions}
+                labelRowsPerPage="Linhas por página:"
+                labelDisplayedRows={({ from, to, count }) =>
+                  `${from}–${to} de ${count}`
+                }
+                sx={{
+                  '& .MuiTablePagination-toolbar': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-selectLabel': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-input': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                  '& .MuiTablePagination-displayedRows': {
+                    fontSize: '1.1rem',
+                    fontFamily: 'Poppins, sans-serif',
+                  },
+                }}
+              />
+            </Table.Row>
+          </TableFooter>
+        </Table.Root>
+      </ContainerTable>
+    </Theme>
+  );
+}
+
+function TableRefunds({ refunds }) {
+  const [sort, setSort] = useState('desc');
+  const [orderBy, setOrderBy] = useState('order_id');
+  const [page, setPage] = useState(0);
+  const [rowsPerPage, setRowsPerPage] = useState(5);
+  const [layout, setLayout] = useState<'auto' | 'fixed'>('auto');
+
+  const sortedCreatives = [...refunds].sort((a, b) => {
+    const isAsc = sort === 'asc';
+    const orderByKey = orderBy;
+
+    // Lógica para comparação numérica (já que todas as colunas são marcadas como numeric: true)
+    if (typeof a[orderByKey] === 'number') {
+      return isAsc
+        ? a[orderByKey] - b[orderByKey]
+        : b[orderByKey] - a[orderByKey];
+    }
+
+    // Lógica para strings (caso precise)
+    return isAsc
+      ? String(a[orderByKey]).localeCompare(String(b[orderByKey]))
+      : String(b[orderByKey]).localeCompare(String(a[orderByKey]));
+  });
+
+  const handleRequestSort = (event, property) => {
+    const isAsc = orderBy === property && sort === 'asc';
+    setSort(isAsc ? 'desc' : 'asc');
+    setOrderBy(property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
+    //console.log('DEBUG isAsc: ', isAsc);
+    //console.log('DEBUG orderBy: ', orderBy);
+  };
+
+  const handleChangePage = (event, newPage) => {
+    setPage(newPage);
+  };
+
+  const handleChangeRowsPerPage = (event) => {
+    setRowsPerPage(parseInt(event.target.value, 10));
+    setPage(0);
+  };
+
+  useEffect(() => {
+    // Função para checar o tamanho da tela
+    const updateLayout = () => {
+      if (window.innerWidth >= 768) {
+        setLayout('fixed');
+      } else {
+        setLayout('auto');
+      }
+    };
+
+    // Chama a função ao carregar a página e ao redimensionar a janela
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    // Limpa o event listener ao desmontar o componente
+    return () => window.removeEventListener('resize', updateLayout);
+  }, []);
+
+  return (
+    <Theme style={{ minHeight: '10%' }}>
+      <ContainerTable>
+        <Table.Root variant="surface" layout={layout}>
+          <EnhancedTableHeadRefunds
+            order={sort}
+            orderBy={orderBy}
+            onRequestSort={handleRequestSort}
+          />
+          <Table.Body>
+            {sortedCreatives.length === 0 ? (
+              <Table.Row>
+                <Table.Cell align="center" colSpan={5}>
+                  Nenhum Reembolso / Reenvio encontrado
+                </Table.Cell>
+              </Table.Row>
+            ) : (
+              sortedCreatives
+                .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
+                .map((refund) => (
+                  <>
+                    <Table.Row key={refund.id} align={'center'}>
+                      <Table.Cell p={'2'}>
+                        #{refund.order_id ? refund.order_id : 'N/A'}
+                      </Table.Cell>
+                      <Table.Cell p={'7'}>
+                        {formatDateShort(refund.created_at)}
+                      </Table.Cell>
+                      <Table.Cell p={'5'}>{refund.category}</Table.Cell>
+                      <Table.Cell p={'6'}>{refund.type_refund}</Table.Cell>
+                      <Table.Cell p={'2'}>
+                        {formatCurrency(refund.total)}
+                      </Table.Cell>
+                    </Table.Row>
+                  </>
+                ))
+            )}
+          </Table.Body>
+          <TableFooter>
+            <Table.Row>
+              <TablePagination
+                rowsPerPageOptions={[5, 10, 20, 50]}
+                colSpan={5}
+                count={refunds.length}
                 rowsPerPage={rowsPerPage}
                 page={page}
                 onPageChange={handleChangePage}

@@ -86,6 +86,14 @@ export const headCellsCreative = [
   },
 ];
 
+export const headCellsRefunds = [
+  { id: 'order_id', numeric: false, disablePadding: false, label: 'Pedido' },
+  { id: 'created_at', numeric: false, disablePadding: false, label: 'Data' },
+  { id: 'category', numeric: false, disablePadding: false, label: 'Categoria' },
+  { id: 'type_refund', numeric: false, disablePadding: false, label: 'Tipo' },
+  { id: 'total', numeric: true, disablePadding: false, label: 'Valor' },
+];
+
 export const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
   const createSortHandler = (property) => (event) => {
     onRequestSort(event, property);
@@ -133,6 +141,40 @@ export const EnhancedTableHeadCreative = ({
     <Table.Header style={{ backgroundColor: 'lightgray' }}>
       <Table.Row>
         {headCellsCreative.map((headCell) => (
+          <Table.ColumnHeaderCell
+            key={headCell.id}
+            sortDirection={orderBy === headCell.id ? order : false}
+          >
+            <TableSortLabel
+              active={orderBy === headCell.id}
+              direction={orderBy === headCell.id ? order : 'asc'}
+              onClick={createSortHandler(headCell.id)}
+            >
+              {headCell.label}
+              {orderBy === headCell.id ? (
+                <Box component="span" sx={visuallyHidden}>
+                  {order === 'desc' ? 'sorted descending' : 'sorted ascending'}
+                </Box>
+              ) : null}
+            </TableSortLabel>
+          </Table.ColumnHeaderCell>
+        ))}
+      </Table.Row>
+    </Table.Header>
+  );
+};
+
+export const EnhancedTableHeadRefunds = ({ order, orderBy, onRequestSort }) => {
+  const createSortHandler = (property) => (event) => {
+    onRequestSort(event, property);
+    //console.log('DEBUG event: ', event);
+    //console.log('DEBUG property: ', property);
+  };
+
+  return (
+    <Table.Header style={{ backgroundColor: 'lightgray' }}>
+      <Table.Row>
+        {headCellsRefunds.map((headCell) => (
           <Table.ColumnHeaderCell
             key={headCell.id}
             sortDirection={orderBy === headCell.id ? order : false}
