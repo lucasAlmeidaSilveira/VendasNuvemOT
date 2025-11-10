@@ -156,7 +156,7 @@ export function DataSectionTPago({
     totalCosts = sumCostsByCombinedPlatform(verba);
     // Atualiza o valor de "Geral" com o valor de "all" do TikTok ADS
     if (totalCostTikTokAll !== null) {
-      totalCosts = totalCosts.map((item) => {
+      totalCosts = totalCosts.map(item => {
         if (item.name === 'Geral') {
           return {
             ...item,
@@ -221,12 +221,12 @@ export function DataSectionTPago({
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Tráfego Pago | {title}</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItemList
             icon={FcGoogle}
-            title="Verba Google"
+            title='Verba Google'
             dataCosts={googleCosts}
-            tooltip="Google ADS"
+            tooltip='Google ADS'
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
             handleAction={fetchDataGoogle}
@@ -234,10 +234,10 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={FaMeta}
-            iconColor="#008bff"
-            title="Verba Meta"
+            iconColor='#008bff'
+            title='Verba Meta'
             dataCosts={metaCosts}
-            tooltip="Meta ADS"
+            tooltip='Meta ADS'
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
             handleAction={fetchDataADSMeta}
@@ -245,10 +245,10 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={FaTiktok}
-            iconColor="var(--geralblack-100)"
-            title="Verba Tiktok"
+            iconColor='var(--geralblack-100)'
+            title='Verba Tiktok'
             dataCosts={tiktokCostAll}
-            tooltip="Tiktok ADS"
+            tooltip='Tiktok ADS'
             creatives={allFullCreatives}
             value={formatCurrency(totalCostTikTokAll)}
             isLoading={loading}
@@ -256,23 +256,23 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor="var(--geralblack-100)"
-            title="Verba Total"
+            iconColor='var(--geralblack-100)'
+            title='Verba Total'
             dataCosts={totalCosts}
-            tooltip="Google ADS x Meta ADS"
+            tooltip='Google ADS x Meta ADS'
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
             handleAction={handleUpdateDataADS}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItemList
             icon={MdOutlineAttachMoney}
-            iconColor="var(--uipositive-100)"
-            title="Faturamento"
-            info="Frete incluído"
+            iconColor='var(--uipositive-100)'
+            title='Faturamento'
+            info='Frete incluído'
             dataCosts={totalByCategory}
-            tooltip="Nuvemshop"
+            tooltip='Nuvemshop'
             value={totalOrdersFormatted.toLocaleString('pt-BR', {
               style: 'currency',
               currency: 'BRL',
@@ -281,9 +281,9 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor="var(--geralblack-100)"
-            title="ROAS"
-            tooltip="Faturamento x Verba Total"
+            iconColor='var(--geralblack-100)'
+            title='ROAS'
+            tooltip='Faturamento x Verba Total'
             dataCosts={totalByCategoryOT}
             value={roas}
             small={title !== 'Chatbot' ? roasMax : undefined}
@@ -307,6 +307,7 @@ export function DataSectionTPagoAP({
   roasLoja,
   roasChatbot,
   roasClientes,
+  roasClientesChatbot,
   roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
@@ -324,6 +325,7 @@ export function DataSectionTPagoAP({
     totalPaidAmount,
     totalRevenue,
     totalNovosClientes,
+    totalNovosClientesChatbot,
   } = filterOrders(allOrders, date);
   const verbaGoogleSum =
     verba.googleEcom +
@@ -395,10 +397,11 @@ export function DataSectionTPagoAP({
   totalCosts = sumCostsByCombinedPlatform(verba);
 
   //valor total de orders somando o valor de vendas de clientes novos
-  const totalOrdersAll = (totalPaidAmount + totalNovosClientes).toLocaleString(
-    'pt-BR',
-    { style: 'currency', currency: 'BRL' },
-  );
+  const totalOrdersAll = (
+    totalPaidAmount +
+    totalNovosClientes +
+    totalNovosClientesChatbot
+  ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
@@ -414,6 +417,7 @@ export function DataSectionTPagoAP({
     { name: 'Chatbot', value: totalPaidAmountChatbot },
     { name: 'Loja Física', value: totalRevenue },
     { name: 'Novos Clientes', value: totalNovosClientes },
+    { name: 'Novos Clientes Chatbot', value: totalNovosClientesChatbot },
   ];
 
   const totalByCategoryAP = [
@@ -424,18 +428,19 @@ export function DataSectionTPagoAP({
     { name: 'Chatbot', value: roasChatbot },
     { name: 'Loja Física', value: roasLoja },
     { name: 'Novos Clientes', value: roasClientes },
+    { name: 'Novos Clientes Chatbot', value: roasClientesChatbot },
   ];
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Tráfego Pago | {title}</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItemList
             icon={FcGoogle}
-            title="Verba Google"
+            title='Verba Google'
             dataCosts={googleCosts}
-            tooltip="Google ADS"
+            tooltip='Google ADS'
             value={verbaGoogle}
             isLoading={isLoadingADSGoogle}
             handleAction={fetchDataGoogle}
@@ -443,10 +448,10 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={FaMeta}
-            iconColor="#008bff"
-            title="Verba Meta"
+            iconColor='#008bff'
+            title='Verba Meta'
             dataCosts={metaCosts}
-            tooltip="Meta ADS"
+            tooltip='Meta ADS'
             value={verbaMeta}
             isLoading={isLoadingADSMeta}
             handleAction={fetchDataADSMeta}
@@ -454,31 +459,31 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor="var(--geralblack-100)"
-            title="Verba Total"
+            iconColor='var(--geralblack-100)'
+            title='Verba Total'
             dataCosts={totalCosts}
-            tooltip="Google ADS x Meta ADS"
+            tooltip='Google ADS x Meta ADS'
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
             handleAction={handleUpdateDataADS}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItemList
             icon={MdOutlineAttachMoney}
-            iconColor="var(--uipositive-100)"
-            title="Faturamento"
-            info="Frete incluído"
+            iconColor='var(--uipositive-100)'
+            title='Faturamento'
+            info='Frete incluído'
             dataCosts={totalByCategory}
-            tooltip="Nuvemshop"
+            tooltip='Nuvemshop'
             value={totalOrdersAll}
             isLoading={isLoadingOrders}
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor="var(--geralblack-100)"
-            title="ROAS"
-            tooltip="Faturamento x Verba Total"
+            iconColor='var(--geralblack-100)'
+            title='ROAS'
+            tooltip='Faturamento x Verba Total'
             value={roas}
             dataCosts={totalByCategoryAP}
             small={title !== 'Chatbot' ? roasMax : undefined}
@@ -521,7 +526,7 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
 
   const filterTransactions = (method: string, status: null | string = null) =>
     ordersAllToday.filter(
-      (order) =>
+      order =>
         order.payment_details.method === method &&
         (status ? order.payment_status === status : true),
     );
@@ -566,34 +571,34 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Dados de Pagamento</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Pago"
-            tooltip="Nuvemshop"
+            title='Pago'
+            tooltip='Nuvemshop'
             value={ordersTodayPaid.length}
             isLoading={isLoadingOrders}
             orders={ordersTodayPaid}
           />
           <BudgetItem
-            title="Clicado em comprar"
-            tooltip="Nuvemshop"
+            title='Clicado em comprar'
+            tooltip='Nuvemshop'
             value={ordersAllToday.length}
             isLoading={isLoadingOrders}
             orders={ordersAllToday}
           />
           <BudgetItem
-            title="Taxa de aprovação Geral"
-            tooltip="Vendas x Clicado em comprar"
+            title='Taxa de aprovação Geral'
+            tooltip='Vendas x Clicado em comprar'
             value={passRate}
             isLoading={isLoadingOrders}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
             icon={FaCreditCard}
             iconColor={colorCard}
-            title="Transações no Cartão"
-            tooltip="Nuvemshop"
+            title='Transações no Cartão'
+            tooltip='Nuvemshop'
             value={creditCardTransactions.length}
             isLoading={isLoadingOrders}
             small={creditCardPercentage}
@@ -602,8 +607,8 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
           <BudgetItem
             icon={FaPix}
             iconColor={colorPix}
-            title="Transações no Pix"
-            tooltip="Nuvemshop"
+            title='Transações no Pix'
+            tooltip='Nuvemshop'
             value={pixTransactions.length}
             isLoading={isLoadingOrders}
             small={pixPercentage}
@@ -612,36 +617,36 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
           <BudgetItem
             icon={FaFileInvoiceDollar}
             iconColor={colorBoleto}
-            title="Transações no Boleto"
-            tooltip="Nuvemshop"
+            title='Transações no Boleto'
+            tooltip='Nuvemshop'
             value={boletoTransactions.length}
             isLoading={isLoadingOrders}
             small={boletoPercentage}
             orders={boletoTransactions}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
             icon={FaCreditCard}
             iconColor={colorCard}
-            title="Taxa de Aprovação no Cartão"
-            tooltip="Nuvemshop"
+            title='Taxa de Aprovação no Cartão'
+            tooltip='Nuvemshop'
             value={creditCardApprovalRate}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
             icon={FaPix}
             iconColor={colorPix}
-            title="Taxa de Aprovação no Pix"
-            tooltip="Nuvemshop"
+            title='Taxa de Aprovação no Pix'
+            tooltip='Nuvemshop'
             value={pixApprovalRate}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
             icon={FaFileInvoiceDollar}
             iconColor={colorBoleto}
-            title="Taxa de Aprovação no Boleto"
-            tooltip="Nuvemshop"
+            title='Taxa de Aprovação no Boleto'
+            tooltip='Nuvemshop'
             value={boletoApprovalRate}
             isLoading={isLoadingOrders}
           />
@@ -719,50 +724,50 @@ export function DataSectionCosts({
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Custos</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Lucro Bruto"
-            tooltip="Faturamento - Custo de Produto"
+            title='Lucro Bruto'
+            tooltip='Faturamento - Custo de Produto'
             value={grossProfit}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Custo de Produto"
-            tooltip="Nuvemshop"
+            title='Custo de Produto'
+            tooltip='Nuvemshop'
             value={productCost}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Custo ADS"
-            tooltip="Google ADS + Meta ADS"
+            title='Custo ADS'
+            tooltip='Google ADS + Meta ADS'
             value={totalAdSpend}
             isLoading={isLoadingADSGoogle}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Margem Bruta (%)"
-            tooltip="Lucro Bruto / Faturamento"
+            title='Margem Bruta (%)'
+            tooltip='Lucro Bruto / Faturamento'
             value={grossMargin}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Custo de Produto (%)"
-            tooltip="Custo de Produto / Faturamento"
+            title='Custo de Produto (%)'
+            tooltip='Custo de Produto / Faturamento'
             value={productCostPercent}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Margem de Contribuição (%)"
-            tooltip="Lucro Bruto - Custo ADS / Lucro Bruto"
+            title='Margem de Contribuição (%)'
+            tooltip='Lucro Bruto - Custo ADS / Lucro Bruto'
             value={contributionMargin}
             isLoading={isLoadingOrders}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Lucro líquido"
-            tooltip="Faturamento - Custo de Produto - Custo ADS"
+            title='Lucro líquido'
+            tooltip='Faturamento - Custo de Produto - Custo ADS'
             value={totalProfit}
             isLoading={isLoadingOrders}
           />
@@ -855,7 +860,7 @@ export function DataSectionCart({
 
   useEffect(() => {
     // Função genérica para filtrar e calcular o total dos pedidos
-    const filterAndCalculateTotal = (filterCondition) => {
+    const filterAndCalculateTotal = filterCondition => {
       const filteredOrders = ordersToday.filter((order: Order) =>
         filterCondition(order),
       );
@@ -865,39 +870,38 @@ export function DataSectionCart({
 
     const cashbackCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => coupon.code.startsWith('MTZ'));
+      order.coupon.some(coupon => coupon.code.startsWith('MTZ'));
 
     const partnersCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsPartners.includes(coupon.code));
+      order.coupon.some(coupon => couponsPartners.includes(coupon.code));
 
     const sellersCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsSellers.includes(coupon.code));
+      order.coupon.some(coupon => couponsSellers.includes(coupon.code));
 
     const whatsCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsWhats.includes(coupon.code));
+      order.coupon.some(coupon => couponsWhats.includes(coupon.code));
 
     const instaCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsInsta.includes(coupon.code));
+      order.coupon.some(coupon => couponsInsta.includes(coupon.code));
 
     const instaDirectCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some((coupon) => coupon.code.endsWith('-10'));
+      order.coupon && order.coupon.some(coupon => coupon.code.endsWith('-10'));
 
     const emailCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsEmail.includes(coupon.code));
+      order.coupon.some(coupon => couponsEmail.includes(coupon.code));
 
     const popupCondition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsPopup.includes(coupon.code));
+      order.coupon.some(coupon => couponsPopup.includes(coupon.code));
 
     const ganhei15Condition = (order: Order) =>
       order.coupon &&
-      order.coupon.some((coupon) => couponsGanhei15.includes(coupon.code));
+      order.coupon.some(coupon => couponsGanhei15.includes(coupon.code));
 
     // Cria um objeto que armazena os pedidos e seus totais
     const ordersFiltered = {
@@ -993,7 +997,7 @@ export function DataSectionCart({
   }, 0);
 
   const totalCashbackValue = ordersWithCashback.reduce((sum, order) => {
-    const coupon = order.coupon.find((c) => c.code.startsWith('MTZ'));
+    const coupon = order.coupon.find(c => c.code.startsWith('MTZ'));
     return sum + (coupon ? parseFloat(coupon.value) : 0);
   }, 0);
 
@@ -1005,44 +1009,46 @@ export function DataSectionCart({
       : '0.00';
   const ganhei15Today = ordersToday.filter(
     (item: Order) =>
-      item.coupon && item.coupon.some((coupon) => coupon.code === 'GANHEI15'),
+      item.coupon && item.coupon.some(coupon => coupon.code === 'GANHEI15'),
   );
   // useEffect para testes
+  /*
   useEffect(() => {
     console.log('Debug data', ordersToday);
     console.log('Debug data cupom', cartsRecoveryGanhei15);
     console.log('Debug data filter', ganhei15Today);
   }, [data, ordersToday]);
+  */
 
   return (
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Carrinho e Cupom</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Carrinhos criados"
-            tooltip="Google Analytics"
+            title='Carrinhos criados'
+            tooltip='Google Analytics'
             value={carts}
             isLoading={isLoadingADSGoogle}
           />
           <BudgetItem
-            title="Taxa de carrinho"
-            tooltip="Carrinhos x Sessões"
+            title='Taxa de carrinho'
+            tooltip='Carrinhos x Sessões'
             value={cartRate}
             isLoading={isLoadingADSGoogle}
           />
           <BudgetItem
-            title="Custo de carrinho"
-            tooltip="Vendas x Carrinhos"
+            title='Custo de carrinho'
+            tooltip='Vendas x Carrinhos'
             value={costCarts}
             isLoading={isLoadingADSGoogle}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItemList
             icon={FaWhatsapp}
             iconColor={'var(--uipositive-100)'}
-            title="Cupom Whatsapp"
+            title='Cupom Whatsapp'
             small={rateCouponWhats}
             tooltip={`Cupons: ${couponsWhats.join(', ')}`}
             value={cartsRecoveryWhats.length}
@@ -1051,7 +1057,7 @@ export function DataSectionCart({
             orders={cartsRecoveryWhats}
           />
           <BudgetItemList
-            title="Cupom Instagram"
+            title='Cupom Instagram'
             icon={FaInstagram}
             iconColor={'#d6249f'}
             small={rateCouponInsta}
@@ -1084,9 +1090,9 @@ export function DataSectionCart({
               /> */}
               <BudgetItemList
                 icon={FaHandshakeSimple}
-                title="Cupom Parceria"
+                title='Cupom Parceria'
                 small={rateCouponPartners}
-                tooltip="Pedidos com cupom de parceria"
+                tooltip='Pedidos com cupom de parceria'
                 value={cartsRecoveryPartners.length}
                 isLoading={isLoading}
                 dataCosts={[
@@ -1102,7 +1108,7 @@ export function DataSectionCart({
               />
               <BudgetItemList
                 icon={IoIosMail}
-                title="Cupom Email"
+                title='Cupom Email'
                 small={rateCouponEmail}
                 tooltip={`Cupons: ${couponsEmail.join(', ')}`}
                 value={cartsRecoveryEmail.length}
@@ -1113,9 +1119,9 @@ export function DataSectionCart({
             </>
           )}
           <BudgetItemList
-            title="Cupom Popup"
+            title='Cupom Popup'
             small={rateCouponPopup}
-            tooltip="Pedidos realizados com cupom do Popup"
+            tooltip='Pedidos realizados com cupom do Popup'
             value={cartsRecoveryPopup.length}
             isLoading={isLoading}
             dataCosts={[
@@ -1133,7 +1139,7 @@ export function DataSectionCart({
             <>
               <BudgetItemList
                 icon={MdOutlineSell}
-                title="Cupom Remarketing"
+                title='Cupom Remarketing'
                 small={rateCouponGanhei15}
                 tooltip={`Cupons: ${couponsGanhei15.join(', ')}`}
                 value={cartsRecoveryGanhei15.length}
@@ -1149,9 +1155,9 @@ export function DataSectionCart({
           {store === 'artepropria' && (
             <BudgetItemList
               icon={FaPeopleGroup}
-              title="Cupom Vendedores"
+              title='Cupom Vendedores'
               small={rateCouponSellers}
-              tooltip="Pedidos realizados com cupom de vendedor"
+              tooltip='Pedidos realizados com cupom de vendedor'
               value={ordersSellers.length}
               isLoading={isLoading}
               dataCosts={generateDataCosts(ordersSellers, couponsSellers)}
@@ -1159,25 +1165,25 @@ export function DataSectionCart({
             />
           )}
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Cupom Cashback"
-            tooltip="Vendas com Cashback"
+            title='Cupom Cashback'
+            tooltip='Vendas com Cashback'
             value={totalCashbackSales}
             small={couponsCashback.length}
             isLoading={isLoading}
             orders={ordersWithCashback}
           />
           <BudgetItem
-            title="Faturamento Cashback"
-            tooltip="Vendas com Cashback (R$)"
+            title='Faturamento Cashback'
+            tooltip='Vendas com Cashback (R$)'
             value={formatCurrency(totalCashbackRevenue)}
             small={`ROI: ${roiCashback}`}
             isLoading={isLoading}
           />
           <BudgetItem
-            title="Custo Cashback"
-            tooltip="Custo com cashback"
+            title='Custo Cashback'
+            tooltip='Custo com cashback'
             value={costCashback}
             isLoading={isLoading}
           />
@@ -1259,57 +1265,57 @@ export function DataSectionAnalytics({
     <ContainerOrders>
       <ContainerGeral bgcolor={bgcolor}>
         <h4>Analytics</h4>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Sessões"
-            tooltip="Google Analytics"
+            title='Sessões'
+            tooltip='Google Analytics'
             value={visits}
             isLoading={isLoadingAnalytics}
           />
           <BudgetItem
-            title="Vendas"
-            tooltip="Nuvemshop (Geral)"
+            title='Vendas'
+            tooltip='Nuvemshop (Geral)'
             value={ordersToday.length}
             isLoading={isLoadingOrders}
             orders={ordersToday}
           />
           <BudgetItem
-            title="Taxa de conversão"
-            tooltip="Sessões x Vendas"
+            title='Taxa de conversão'
+            tooltip='Sessões x Vendas'
             value={conversionRate}
             isLoading={isLoadingOrders}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Ticket Médio"
-            tooltip="Nuvemshop"
+            title='Ticket Médio'
+            tooltip='Nuvemshop'
             value={averageTicket}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Custo p/ Sessão (CPS)"
-            tooltip="Verba Total / Sessões"
+            title='Custo p/ Sessão (CPS)'
+            tooltip='Verba Total / Sessões'
             value={priceSession}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Custo p/ Aquisição (CPA)"
-            tooltip="Verba Total / Vendas"
+            title='Custo p/ Aquisição (CPA)'
+            tooltip='Verba Total / Vendas'
             value={priceAcquisition}
             isLoading={isLoadingOrders}
           />
         </div>
-        <div className="row">
+        <div className='row'>
           <BudgetItem
-            title="Inscrições Popup"
-            tooltip="Clientes que se inscreveram no Popup"
+            title='Inscrições Popup'
+            tooltip='Clientes que se inscreveram no Popup'
             value={customers.length}
             isLoading={isLoadingOrders}
           />
           <BudgetItem
-            title="Taxa de engajamento"
-            tooltip="Inscrições x Sessões"
+            title='Taxa de engajamento'
+            tooltip='Inscrições x Sessões'
             value={customersRate}
             isLoading={isLoadingCustomers}
           />
@@ -1353,34 +1359,34 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
     setIsPopupOpen(false);
   };
   const atrasosCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Atraso',
+    refund => refund.category === 'Atraso',
   );
   const naoGostouCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Não gostou',
+    refund => refund.category === 'Não gostou',
   );
   const logisticaCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Envio/Logistica',
+    refund => refund.category === 'Envio/Logistica',
   );
   const defeitoQuadrosCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Produção/Defeito - Quadros',
+    refund => refund.category === 'Produção/Defeito - Quadros',
   );
   const defeitoEspelhosCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Produção/Defeito - Espelhos',
+    refund => refund.category === 'Produção/Defeito - Espelhos',
   );
   const opErradaCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'OP Errada',
+    refund => refund.category === 'OP Errada',
   );
   const avariaCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Avaria',
+    refund => refund.category === 'Avaria',
   );
   const extravioCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Extravio',
+    refund => refund.category === 'Extravio',
   );
   const trocaCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Troca',
+    refund => refund.category === 'Troca',
   );
   const compraErradaCountRefunds = reembolsos.filter(
-    (refund) => refund.category === 'Compra errada',
+    refund => refund.category === 'Compra errada',
   );
   /*
   if (loading) {
@@ -1395,7 +1401,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
     <>
       <ContainerOrders>
         <ContainerGeral bgcolor={bgcolor}>
-          <div className="title-box">
+          <div className='title-box'>
             <h4>Reembolsos</h4>
             <TooltipInfo
               className={`btn-plus ${error && 'error'}`}
@@ -1404,70 +1410,70 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               <FaPlus size={24} onClick={handleIsOpenPopup} />
             </TooltipInfo>
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItemListNumber
-              title="Total Reembolsos"
-              tooltip="Total de reenvios feitos"
+              title='Total Reembolsos'
+              tooltip='Total de reenvios feitos'
               value={summaryReembolsos.type.Reembolso.count}
               isLoading={loading}
               dataCosts={totalCountByType}
               refunds={reembolsos}
             />
             <BudgetItemList
-              title="Valor Total"
-              tooltip="Valor total reembolsado"
+              title='Valor Total'
+              tooltip='Valor total reembolsado'
               value={`R$ ${summaryReembolsos.type.Reembolso.value.toFixed(2)}`}
               isLoading={loading}
               dataCosts={totalByType}
               refunds={reembolsos}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Atraso"
-              tooltip="Reembolsos por atraso."
+              title='Atraso'
+              tooltip='Reembolsos por atraso.'
               value={summaryReembolsos.categories.Atraso.count}
               small={`R$ ${summaryReembolsos.categories.Atraso.value.toFixed(2)}`}
               isLoading={loading}
               refunds={atrasosCountRefunds}
             />
             <BudgetItem
-              title="Não Gostou"
-              tooltip="Reembolsos por insatisfação."
+              title='Não Gostou'
+              tooltip='Reembolsos por insatisfação.'
               value={summaryReembolsos.categories['Não gostou'].count}
               small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={naoGostouCountRefunds}
             />
             <BudgetItem
-              title="Avaria"
-              tooltip="Reembolsos por avaria."
+              title='Avaria'
+              tooltip='Reembolsos por avaria.'
               value={summaryReembolsos.categories.Avaria.count}
               small={`R$ ${summaryReembolsos.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
               refunds={avariaCountRefunds}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Envio/Logistica"
-              tooltip="Reembolsos devido problemas no Envio."
+              title='Envio/Logistica'
+              tooltip='Reembolsos devido problemas no Envio.'
               value={summaryReembolsos.categories['Envio/Logistica'].count}
               small={`R$ ${summaryReembolsos.categories['Envio/Logistica'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={logisticaCountRefunds}
             />
             <BudgetItem
-              title="Troca"
-              tooltip="Reembolsos por Troca do produto."
+              title='Troca'
+              tooltip='Reembolsos por Troca do produto.'
               value={summaryReembolsos.categories.Troca.count}
               small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={trocaCountRefunds}
             />
             <BudgetItem
-              title="Produção/Defeito - Quadros"
-              tooltip="Reembolsos por Quadros defeituosos."
+              title='Produção/Defeito - Quadros'
+              tooltip='Reembolsos por Quadros defeituosos.'
               value={
                 summaryReembolsos.categories['Produção/Defeito - Quadros'].count
               }
@@ -1476,10 +1482,10 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               refunds={defeitoQuadrosCountRefunds}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Produção/Defeito - Espelhos"
-              tooltip="Reembolsos por Espelhos defeituosos."
+              title='Produção/Defeito - Espelhos'
+              tooltip='Reembolsos por Espelhos defeituosos.'
               value={
                 summaryReembolsos.categories['Produção/Defeito - Espelhos']
                   .count
@@ -1489,24 +1495,24 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               refunds={defeitoEspelhosCountRefunds}
             />
             <BudgetItem
-              title="OP Errada"
-              tooltip="Quando a Ordem de Pedido foi gerada erroneamente."
+              title='OP Errada'
+              tooltip='Quando a Ordem de Pedido foi gerada erroneamente.'
               value={summaryReembolsos.categories['OP Errada'].count}
               small={`R$ ${summaryReembolsos.categories['OP Errada'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={opErradaCountRefunds}
             />
             <BudgetItem
-              title="Extravio"
-              tooltip="Reembolso devido a Extravio do pedido durante percurso."
+              title='Extravio'
+              tooltip='Reembolso devido a Extravio do pedido durante percurso.'
               value={summaryReembolsos.categories.Extravio.count}
               small={`R$ ${summaryReembolsos.categories.Extravio.value.toFixed(2)}`}
               isLoading={loading}
               refunds={extravioCountRefunds}
             />
             <BudgetItem
-              title="Compra Errada"
-              tooltip="Quando o cliente efetua a compra do produto erroneamente."
+              title='Compra Errada'
+              tooltip='Quando o cliente efetua a compra do produto erroneamente.'
               value={summaryReembolsos.categories['Compra errada'].count}
               small={`R$ ${summaryReembolsos.categories['Compra errada'].value.toFixed(2)}`}
               isLoading={loading}
@@ -1538,34 +1544,34 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
   }*/
 
   const atrasosCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Atraso',
+    refund => refund.category === 'Atraso',
   );
   const naoGostouCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Não gostou',
+    refund => refund.category === 'Não gostou',
   );
   const logisticaCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Envio/Logistica',
+    refund => refund.category === 'Envio/Logistica',
   );
   const defeitoQuadrosCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Produção/Defeito - Quadros',
+    refund => refund.category === 'Produção/Defeito - Quadros',
   );
   const defeitoEspelhosCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Produção/Defeito - Espelhos',
+    refund => refund.category === 'Produção/Defeito - Espelhos',
   );
   const opErradaCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'OP Errada',
+    refund => refund.category === 'OP Errada',
   );
   const avariaCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Avaria',
+    refund => refund.category === 'Avaria',
   );
   const extravioCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Extravio',
+    refund => refund.category === 'Extravio',
   );
   const trocaCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Troca',
+    refund => refund.category === 'Troca',
   );
   const compraErradaCountRefunds = reenvios.filter(
-    (refund) => refund.category === 'Compra errada',
+    refund => refund.category === 'Compra errada',
   );
 
   if (error) {
@@ -1576,7 +1582,7 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
     <>
       <ContainerOrders>
         <ContainerGeral bgcolor={bgcolor}>
-          <div className="title-box">
+          <div className='title-box'>
             <h4>Reenvios</h4>
             <TooltipInfo
               className={`btn-plus ${error && 'error'}`}
@@ -1585,68 +1591,68 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               <FaPlus size={24} onClick={handleIsOpenPopup} />
             </TooltipInfo>
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItemListNumber
-              title="Total Reenvios"
-              tooltip="Total de reenvios feitos"
+              title='Total Reenvios'
+              tooltip='Total de reenvios feitos'
               value={summaryReenvios.type.Reenvio.count}
               isLoading={loading}
               refunds={reenvios}
             />
             <BudgetItemList
-              title="Valor Total"
-              tooltip="Valor total reenvios"
+              title='Valor Total'
+              tooltip='Valor total reenvios'
               value={`R$ ${summaryReenvios.type.Reenvio.value.toFixed(2)}`}
               isLoading={loading}
               refunds={reenvios}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Atraso"
-              tooltip="Reenvio por atraso da Transportadora."
+              title='Atraso'
+              tooltip='Reenvio por atraso da Transportadora.'
               value={summaryReenvios.categories.Atraso.count}
               small={`R$ ${summaryReenvios.categories.Atraso.value.toFixed(2)}`}
               isLoading={loading}
               refunds={atrasosCountRefunds}
             />
             <BudgetItem
-              title="Não Gostou"
-              tooltip="Reenvio por insatisfação."
+              title='Não Gostou'
+              tooltip='Reenvio por insatisfação.'
               value={summaryReenvios.categories['Não gostou'].count}
               small={`R$ ${summaryReenvios.categories['Não gostou'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={naoGostouCountRefunds}
             />
             <BudgetItem
-              title="Avaria"
-              tooltip="Reenvio por avaria."
+              title='Avaria'
+              tooltip='Reenvio por avaria.'
               value={summaryReenvios.categories.Avaria.count}
               small={`R$ ${summaryReenvios.categories.Avaria.value.toFixed(2)}`}
               isLoading={loading}
               refunds={avariaCountRefunds}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Envio/Logistica"
-              tooltip="Reenvio devido problemas no Envio."
+              title='Envio/Logistica'
+              tooltip='Reenvio devido problemas no Envio.'
               value={summaryReenvios.categories['Envio/Logistica'].count}
               small={`R$ ${summaryReenvios.categories['Envio/Logistica'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={logisticaCountRefunds}
             />
             <BudgetItem
-              title="Troca"
-              tooltip="Reenvio devido a Troca do produto."
+              title='Troca'
+              tooltip='Reenvio devido a Troca do produto.'
               value={summaryReenvios.categories.Troca.count}
               small={`R$ ${summaryReenvios.categories.Troca.value.toFixed(2)}`}
               isLoading={loading}
               refunds={trocaCountRefunds}
             />
             <BudgetItem
-              title="Produção/Defeito - Quadros"
-              tooltip="Reenvio por Quadros defeituosos."
+              title='Produção/Defeito - Quadros'
+              tooltip='Reenvio por Quadros defeituosos.'
               value={
                 summaryReenvios.categories['Produção/Defeito - Quadros'].count
               }
@@ -1655,10 +1661,10 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               refunds={defeitoQuadrosCountRefunds}
             />
           </div>
-          <div className="row">
+          <div className='row'>
             <BudgetItem
-              title="Produção/Defeito - Espelhos"
-              tooltip="Reenvio por Espelhos defeituosos."
+              title='Produção/Defeito - Espelhos'
+              tooltip='Reenvio por Espelhos defeituosos.'
               value={
                 summaryReenvios.categories['Produção/Defeito - Espelhos'].count
               }
@@ -1667,16 +1673,16 @@ export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
               refunds={defeitoEspelhosCountRefunds}
             />
             <BudgetItem
-              title="OP Errada"
-              tooltip="Quando a Ordem de Pedido foi gerada erroneamente."
+              title='OP Errada'
+              tooltip='Quando a Ordem de Pedido foi gerada erroneamente.'
               value={summaryReenvios.categories['OP Errada'].count}
               small={`R$ ${summaryReenvios.categories['OP Errada'].value.toFixed(2)}`}
               isLoading={loading}
               refunds={opErradaCountRefunds}
             />
             <BudgetItem
-              title="Extravio"
-              tooltip="Reenvio devido a Extravio do pedido durante percurso."
+              title='Extravio'
+              tooltip='Reenvio devido a Extravio do pedido durante percurso.'
               value={summaryReenvios.categories.Extravio.count}
               small={`R$ ${summaryReenvios.categories.Extravio.value.toFixed(2)}`}
               isLoading={loading}

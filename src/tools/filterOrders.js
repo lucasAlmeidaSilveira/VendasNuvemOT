@@ -1,11 +1,11 @@
 import { isOrderOnDate } from './isOrderFromToday';
 
 // Função genérica para calcular totais
-const calculateTotal = (orders) =>
+const calculateTotal = orders =>
   orders.reduce((total, order) => total + parseFloat(order.total), 0);
 
 // Função genérica para calcular totais referente aos clientes novos
-const calculateTotalClients = (orders) =>
+const calculateTotalClients = orders =>
   orders.reduce(
     (total, order) => total + parseFloat(order.shipping_cost_owner),
     0,
@@ -14,7 +14,7 @@ const calculateTotalClients = (orders) =>
 // Função genérica para calcular totais baseado nos produtos
 const calculateTotalByProductType = (orders, productType) =>
   orders.reduce((total, order) => {
-    const filteredProducts = order.products.filter((product) =>
+    const filteredProducts = order.products.filter(product =>
       product.name.toLowerCase().includes(productType.toLowerCase()),
     );
 
@@ -28,27 +28,26 @@ const calculateTotalByProductType = (orders, productType) =>
   }, 0);
 
 export function filterOrders(orders, date) {
-  const filterOrdersByConditions = (extraConditions) =>
+  const filterOrdersByConditions = extraConditions =>
     orders.filter(
-      (order) =>
+      order =>
         isOrderOnDate(order.created_at, date) &&
         order.payment_details?.method !== 'other' &&
         extraConditions(order),
     );
 
   const ordersToday = filterOrdersByConditions(
-    (order) =>
-      order.status !== 'cancelled' && order.payment_status !== 'voided',
+    order => order.status !== 'cancelled' && order.payment_status !== 'voided',
   );
   const ordersTodayPaid = filterOrdersByConditions(
-    (order) =>
+    order =>
       order.payment_status === 'paid' &&
       order.status !== 'cancelled' &&
       order.payment_status !== 'voided',
   );
   const ordersAllToday = filterOrdersByConditions(() => true);
   const ordersAllTodayWithPartner = orders.filter(
-    (order) =>
+    order =>
       isOrderOnDate(order.created_at, date) && order.status !== 'cancelled',
   );
   // Cálculo do faturamento por tipo de produto
@@ -63,24 +62,22 @@ export function filterOrders(orders, date) {
     totalOrders: calculateTotal(ordersToday), //valor total sem a formatação
     totalPaidAmountChatbotFormatted: calculateTotal(
       ordersToday.filter(
-        (order) =>
-          order.payment_status === 'paid' && order.storefront === 'Loja',
+        order => order.payment_status === 'paid' && order.storefront === 'Loja',
       ),
     ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAmountEcomFormatted: calculateTotal(
       ordersToday.filter(
-        (order) =>
-          order.payment_status === 'paid' && order.storefront !== 'Loja',
+        order => order.payment_status === 'paid' && order.storefront !== 'Loja',
       ),
     ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAllAmountEcomFormatted: calculateTotal(
-      ordersToday.filter((order) => order.storefront !== 'Loja'),
+      ordersToday.filter(order => order.storefront !== 'Loja'),
     ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' }),
     totalPaidAmount: calculateTotal(
-      ordersToday.filter((order) => order.payment_status === 'paid'), //valor não formatado
+      ordersToday.filter(order => order.payment_status === 'paid'), //valor não formatado
     ),
     totalPaidAmountFormatted: calculateTotal(
-      ordersToday.filter((order) => order.payment_status === 'paid'),
+      ordersToday.filter(order => order.payment_status === 'paid'),
     ),
     totalPaidAllAmountFormatted: calculateTotal(ordersAllToday).toLocaleString(
       'pt-BR',
@@ -90,13 +87,12 @@ export function filterOrders(orders, date) {
     totalEspelhosFormatted: totalEspelhos,
     totalPaidAmountChatbot: calculateTotal(
       ordersToday.filter(
-        (order) =>
-          order.payment_status === 'paid' && order.storefront === 'Loja',
+        order => order.payment_status === 'paid' && order.storefront === 'Loja',
       ),
     ),
     totalPaidAllAmountEcom: calculateTotal(
       ordersToday.filter(
-        (order) =>
+        order =>
           order.payment_status === 'paid' &&
           order.storefront !== 'Loja' &&
           order.storefront !== 'Loja Fisica',
@@ -105,16 +101,27 @@ export function filterOrders(orders, date) {
     //calcula vendas da Loja Fisica
     totalRevenue: calculateTotal(
       ordersToday.filter(
-        (order) =>
+        order =>
           order.payment_status === 'paid' && order.storefront === 'Loja Fisica',
       ),
     ),
     //calcula vendas da Loja Fisica de novos Clientes
     totalNovosClientes: calculateTotalClients(
       ordersToday.filter(
-        (order) =>
+        order =>
           order.payment_status === 'paid' &&
           order.storefront === 'Loja Fisica' &&
+          order.owner_note !== 'Chatbot' &&
+          order.shipping_cost_owner !== 0,
+      ),
+    ),
+    //calcula vendas da Loja Fisica de novos Clientes
+    totalNovosClientesChatbot: calculateTotalClients(
+      ordersToday.filter(
+        order =>
+          order.payment_status === 'paid' &&
+          order.storefront === 'Loja Fisica' &&
+          order.owner_note === 'Chatbot' &&
           order.shipping_cost_owner !== 0,
       ),
     ),

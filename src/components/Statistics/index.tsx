@@ -68,12 +68,13 @@ export function Statistics() {
     totalQuadros,
     totalEspelhos,
     totalNovosClientes,
+    totalNovosClientesChatbot,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
     if (data) {
       setUsersByDevice(data.usersByDevice);
-      setAdSpends((prev) => ({
+      setAdSpends(prev => ({
         ...prev,
         google: data.totalCost.all,
         googleEcom: data.totalCost.ecom,
@@ -85,7 +86,7 @@ export function Statistics() {
     }
     if (dataADSMeta?.length > 0) {
       const firstEntry = dataADSMeta[0];
-      setAdSpends((prev) => ({
+      setAdSpends(prev => ({
         ...prev,
         meta: firstEntry.totalCost.all,
         metaEcom: firstEntry.totalCost.ecom,
@@ -125,7 +126,7 @@ export function Statistics() {
     [adSpends],
   );
 
-  const totalAllClients = totalNovosClientes + totalPaidAmountFormatted;
+  const totalAllClients = totalNovosClientes + totalPaidAmountFormatted + totalNovosClientesChatbot;
   const totalMaxAllClients =
     parseCurrency(totalPaidAllAmountFormatted) + totalNovosClientes;
 
@@ -133,6 +134,10 @@ export function Statistics() {
   const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
   const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
   const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
+  const roasClientesChatbot = calculateRoas(
+    totalNovosClientesChatbot,
+    totalAdSpendLoja,
+  );
 
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
 
@@ -165,7 +170,7 @@ export function Statistics() {
     <Container>
       {store === 'outlet' ? (
         <DataSectionTPago
-          title="Geral"
+          title='Geral'
           bgcolor={bgColors.trafegoPago}
           verba={adSpends}
           totalOrdersFormatted={totalPaidAmountFormatted}
@@ -179,7 +184,7 @@ export function Statistics() {
         />
       ) : (
         <DataSectionTPagoAP
-          title="Geral"
+          title='Geral'
           bgcolor={bgColors.trafegoPago}
           verba={adSpends}
           totalOrdersFormatted={totalPaidAmountFormatted}
@@ -188,6 +193,7 @@ export function Statistics() {
           roasLoja={roasLoja}
           roasChatbot={roasChatbot}
           roasClientes={roasClientes}
+          roasClientesChatbot={roasClientesChatbot}
           roasMax={`Max.: ${roasMax}`}
           isLoadingADSGoogle={isLoadingADSGoogle}
           isLoadingOrders={isLoading}
@@ -216,12 +222,12 @@ export function Statistics() {
 
       <ContainerCharts>
         <Chart
-          title="Sessões por dispositivo"
+          title='Sessões por dispositivo'
           usersByDevice={usersByDevice}
           loading={isLoadingADSGoogle}
         />
         <ChartStates
-          title="Vendas por estado"
+          title='Vendas por estado'
           orders={ordersToday}
           loading={isLoading}
         />
@@ -229,7 +235,7 @@ export function Statistics() {
 
       <ContainerCharts>
         <ChartLine
-          title="Vendas por período"
+          title='Vendas por período'
           orders={ordersToday}
           loading={isLoading}
         />
@@ -238,12 +244,12 @@ export function Statistics() {
         {store === 'artepropria' && (
           <>
             <ChartLojas
-              title="Vendas por Loja"
+              title='Vendas por Loja'
               orders={ordersToday}
               loading={isLoading}
             />
             <ChartClienteLojas
-              title="Número de Clientes por Loja"
+              title='Número de Clientes por Loja'
               orders={ordersToday}
               loading={isLoading}
             />
