@@ -416,7 +416,7 @@ export function DataSectionTPagoAP({
     },
     { name: 'Chatbot', value: totalPaidAmountChatbot },
     { name: 'Loja Física', value: totalRevenue },
-    { name: 'Novos Clientes', value: totalNovosClientes },
+    { name: 'Novos Clientes Loja Fisica', value: totalNovosClientes },
     { name: 'Novos Clientes Chatbot', value: totalNovosClientesChatbot },
   ];
 
@@ -427,7 +427,7 @@ export function DataSectionTPagoAP({
     },
     { name: 'Chatbot', value: roasChatbot },
     { name: 'Loja Física', value: roasLoja },
-    { name: 'Novos Clientes', value: roasClientes },
+    { name: 'Novos Clientes Loja Fisica', value: roasClientes },
     { name: 'Novos Clientes Chatbot', value: roasClientesChatbot },
   ];
 

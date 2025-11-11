@@ -6,10 +6,7 @@ const calculateTotal = orders =>
 
 // Função genérica para calcular totais referente aos clientes novos
 const calculateTotalClients = orders =>
-  orders.reduce(
-    (total, order) => total + parseFloat(order.shipping_cost_owner),
-    0,
-  );
+  orders.reduce((total, order) => total + parseFloat(order.shipping_cost_owner), 0);
 
 // Função genérica para calcular totais baseado nos produtos
 const calculateTotalByProductType = (orders, productType) =>
@@ -87,7 +84,9 @@ export function filterOrders(orders, date) {
     totalEspelhosFormatted: totalEspelhos,
     totalPaidAmountChatbot: calculateTotal(
       ordersToday.filter(
-        order => order.payment_status === 'paid' && order.storefront === 'Loja',
+        order =>
+          order.payment_status === 'paid' &&
+          order.storefront === 'Loja',
       ),
     ),
     totalPaidAllAmountEcom: calculateTotal(
@@ -118,11 +117,7 @@ export function filterOrders(orders, date) {
     //calcula vendas da Loja Fisica de novos Clientes
     totalNovosClientesChatbot: calculateTotalClients(
       ordersToday.filter(
-        order =>
-          order.payment_status === 'paid' &&
-          order.storefront === 'Loja Fisica' &&
-          order.owner_note === 'Chatbot' &&
-          order.shipping_cost_owner !== 0,
+        order => order.payment_status === 'paid' && order.storefront === 'Loja',
       ),
     ),
     totalQuadros: calculateTotalByProductType(ordersTodayPaid, 'Quadro'),

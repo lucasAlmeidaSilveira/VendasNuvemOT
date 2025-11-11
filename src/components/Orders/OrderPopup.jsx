@@ -61,6 +61,7 @@ export function OrderPopup({ open, onClose }) {
     setCreatedAt(new Date());
     setTotal('0');
     setNote('');
+    setTotalNovosClientes('0');
     setClientsPerDay('0');
   };
 
@@ -98,6 +99,7 @@ export function OrderPopup({ open, onClose }) {
 
   const handleAddOrder = async () => {
     const cleanedTotal = total.replace(/[^0-9,-]+/g, '').replace(',', '.');
+    const cleanedTotalNovosClientes = totalNovosClientes.replace(/[^0-9,-]+/g, '').replace(',', '.');
 
     const newOrder = {
       data: {
@@ -135,7 +137,7 @@ export function OrderPopup({ open, onClose }) {
           name: user.displayName,
         },
         shipping_cost_customer: '0.00',
-        shipping_cost_owner: totalNovosClientes,
+        shipping_cost_owner: cleanedTotalNovosClientes,
         shipping_max_days: 0,
         shipping_min_days: 0,
         shipping_suboption: {},

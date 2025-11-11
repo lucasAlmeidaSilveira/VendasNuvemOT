@@ -24,6 +24,7 @@ export interface DataSectionTPagoAPProps {
   roasLoja: number | string;
   roasChatbot: number | string;
   roasClientes: number | string;
+  roasClientesChatbot: number | string;
   roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;

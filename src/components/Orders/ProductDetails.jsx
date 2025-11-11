@@ -22,8 +22,6 @@ const formatProductName = (name) => {
 };
 
 export function ProductDetails({ products, subtotal }) {
-  console.log(subtotal);
-
   return (
     <Theme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
