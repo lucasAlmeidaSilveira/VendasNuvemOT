@@ -5,6 +5,7 @@ import { useRefunds } from '../../context/RefundsContext';
 import { DatePicker } from '../DatePicker';
 
 import './RefundPopup.css';
+import { env } from '../../utils/env';
 
 export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
   const { store } = useOrders(); // Obtém a loja do contexto
@@ -47,7 +48,7 @@ export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
 
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}`,
+        `${env.apiUrl}refunds/${store}`,
         {
           method: 'POST',
           headers: {

@@ -1,6 +1,7 @@
 import React, { createContext, useState, useContext, useEffect } from 'react';
 import { useOrders } from './OrdersContext';
 import { useTab } from './TabContext';
+import { env } from '../utils/env';
 
 export const CouponContext = createContext();
 
@@ -19,7 +20,7 @@ export const CouponProvider = ({ children }) => {
 
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/coupons/${store}`,
+        `${env.apiUrl}coupons/${store}`,
       );
       if (!response.ok) {
         throw new Error('Erro ao buscar pedidos');

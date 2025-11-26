@@ -7,6 +7,7 @@ import React, {
 } from 'react';
 import { adjustDate } from '../tools/tools.ts';
 import { useAuth } from './AuthContext';
+import { env } from '../utils/env';
 
 export const OrdersContext = createContext();
 
@@ -73,7 +74,7 @@ export const OrdersProvider = ({ children }) => {
   };
 
   const fetchOrdersData = async (startDateISO, endDateISO) => {
-    const url = `https://node-vendasnuvemot.onrender.com/db/orders/${store}/${startDateISO}/${endDateISO}`;
+    const url = `${env.apiUrl}db/orders/${store}/${startDateISO}/${endDateISO}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -104,7 +105,7 @@ export const OrdersProvider = ({ children }) => {
   };
 
   const fetchCustomersData = async (startDateISO, endDateISO) => {
-    const url = `https://node-vendasnuvemot.onrender.com/customers/${store}/${startDateISO}/${endDateISO}`;
+    const url = `${env.apiUrl}customers/${store}/${startDateISO}/${endDateISO}`;
     try {
       const response = await fetch(url);
       if (!response.ok) {
@@ -126,7 +127,7 @@ export const OrdersProvider = ({ children }) => {
   const fetchAllOrdersData = async () => {
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/db/orders/${store}`,
+        `${env.apiUrl}db/orders/${store}`,
       );
       if (!response.ok) {
         throw new Error('Erro ao buscar todos os pedidos');

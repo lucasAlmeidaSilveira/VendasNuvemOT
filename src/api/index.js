@@ -1,7 +1,9 @@
+import { env } from '../utils/env';
+
 export async function getProduct(store, id) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/product/${store}/${id}`,
+      `${env.apiUrl}product/${store}/${id}`,
     );
     if (!response.ok) {
       throw new Error('Erro ao buscar pedidos');
@@ -17,7 +19,7 @@ export async function getProduct(store, id) {
 export async function fetchCategories(store) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/categories/${store}`,
+      `${env.apiUrl}categories/${store}`,
     );
     if (!response.ok) {
       throw new Error('Erro ao buscar categorias');
@@ -33,7 +35,7 @@ export async function fetchCategories(store) {
 export async function createProduct(store, body) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/product/${store}`,
+      `${env.apiUrl}product/${store}`,
       {
         method: 'POST',
         headers: {
@@ -58,7 +60,7 @@ export async function createOrder(newOrder) {
   try {
     // Chama a rota do backend para adicionar o pedido
     const response = await fetch(
-      'https://node-vendasnuvemot.onrender.com/order/artepropria',
+      `${env.apiUrl}order/artepropria`,
       {
         method: 'POST',
         headers: {
@@ -81,7 +83,7 @@ export async function createOrder(newOrder) {
 export async function deleteOrder(ownerNote, store) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/order/${store}/${ownerNote}`,
+      `${env.apiUrl}order/${store}/${ownerNote}`,
       {
         method: 'DELETE',
         headers: { 'Content-Type': 'application/json' },
@@ -100,7 +102,7 @@ export async function deleteOrder(ownerNote, store) {
 export async function getOrderTiny(id, cpf) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/tiny/order/${id}/${cpf}`,
+      `${env.apiUrl}tiny/order/${id}/${cpf}`,
       {
         method: 'GET',
         headers: {
@@ -121,7 +123,7 @@ export async function getOrderTiny(id, cpf) {
 export async function getLinkNoteTiny(id, cpf) {
   try {
     const response = await fetch(
-      `https://node-vendasnuvemot.onrender.com/tiny/note/${id}/${cpf}`,
+      `${env.apiUrl}tiny/note/${id}/${cpf}`,
       {
         method: 'GET',
         headers: {

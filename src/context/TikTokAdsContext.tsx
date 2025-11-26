@@ -8,6 +8,7 @@ import React, {
 import { TikTokAdsContextType, TotalCostTikTokProps } from '../types';
 import { adjustDate } from '../tools/tools';
 import { useOrders } from './OrdersContext';
+import { env } from "../utils/env";
 
 // Cria o contexto
 const TikTokAdsContext = createContext<TikTokAdsContextType>({
@@ -49,7 +50,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
 
   // Função para buscar os dados do TikTok ADS
   const fetchTikTokAds = useCallback(async () => {
-    const url = `https://node-vendasnuvemot.onrender.com/ads/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    const url = `${env.apiUrl}ads/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
     if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
 
     setLoading(true);
@@ -77,7 +78,7 @@ export const TikTokAdsProvider: React.FC<{ children: React.ReactNode }> = ({
   }, [store, date]);
 
   const fetchTikTokCreatives = useCallback(async () => {
-    const url = `https://node-vendasnuvemot.onrender.com/creatives/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
+    const url = `${env.apiUrl}creatives/tiktok/${store}/${createdAtMin}/${createdAtMax}`;
     if (!store || !date || date.length < 2) return; // Verifica se store e date são válidos
 
     setLoading(true);

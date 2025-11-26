@@ -47,7 +47,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
 
     try {
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}`,
+        `${env.apiUrl}refunds/${store}`,
         {
           method: 'POST',
           headers: {

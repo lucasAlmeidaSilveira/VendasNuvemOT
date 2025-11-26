@@ -4,16 +4,16 @@ import { getAuth, GoogleAuthProvider, signInWithPopup, signOut } from "firebase/
 // TODO: Add SDKs for Firebase products that you want to use
 // https://firebase.google.com/docs/web/setup#available-libraries
 
-
+import { env } from '../../utils/env';
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-  apiKey: "AIzaSyAKISeYeeSCe4vWzjxb9guIJaO4DFhB2-s",
-  authDomain: "dashboard-vendas-44df4.firebaseapp.com",
-  projectId: "dashboard-vendas-44df4",
-  storageBucket: "dashboard-vendas-44df4.appspot.com",
-  messagingSenderId: "244116719488",
-  appId: "1:244116719488:web:ba5f4236fa32b2d0452365"
+  apiKey: env.apiKey,
+  authDomain: env.authDomain,
+  projectId: env.projectId,
+  storageBucket: env.storageBucket,
+  messagingSenderId: env.messagingSenderId,
+  appId: env.appId,
 };
 
 // Initialize Firebase

@@ -15,6 +15,7 @@ import {
   DataAnalyticsProps,
   DataProps,
 } from '../types';
+import { env } from "../utils/env";
 
 export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 
@@ -54,7 +55,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     try {
       setIsLoadingADSGoogle(true);
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/analytics/${store}/${startDate}/${endDate}`,
+        `${env.apiUrl}analytics/${store}/${startDate}/${endDate}`,
       );
       if (!response.ok) {
         throw new Error('Erro ao buscar dados');
@@ -75,7 +76,7 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     try {
       setIsLoadingADSMeta(true);
       const response = await fetch(
-        `https://node-vendasnuvemot.onrender.com/ads/meta/${store}/${startDate}/${endDate}`,
+        `${env.apiUrl}ads/meta/${store}/${startDate}/${endDate}`,
       );
       if (!response.ok) {
         throw new Error('Failed to fetch data');

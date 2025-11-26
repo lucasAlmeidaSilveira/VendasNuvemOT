@@ -2,6 +2,7 @@ import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useOrders } from './OrdersContext';
 import { RefundsContextData, RefundSummary, RefundItem } from '../types';
 import { adjustDate } from '../tools/tools';
+import { env } from "../utils/env";
 
 // Função para criar um summary vazio
 const createEmptySummary = (): RefundSummary => ({
@@ -110,7 +111,7 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
     try {
       // Busca reembolsos
       const responseReembolsos = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}/Reembolso/${createdAtMin}/${createdAtMax}`,
+        `${env.apiUrl}refunds/${store}/Reembolso/${createdAtMin}/${createdAtMax}`,
       );
 
       if (!responseReembolsos.ok) throw new Error('Erro ao buscar reembolsos');
@@ -120,7 +121,7 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
 
       // Busca reenvios
       const responseReenvios = await fetch(
-        `https://node-vendasnuvemot.onrender.com/refunds/${store}/Reenvio/${createdAtMin}/${createdAtMax}`,
+        `${env.apiUrl}refunds/${store}/Reenvio/${createdAtMin}/${createdAtMax}`,
       );
 
       if (!responseReenvios.ok) throw new Error('Erro ao buscar reenvios');
