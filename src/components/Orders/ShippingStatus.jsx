@@ -131,7 +131,7 @@ export function ShippingStatus({
   return (
     <a
       href={urlTracking || undefined}
-      target={urlTracking ? '_blank' : undefined}
+      target={urlTracking ? '_blank' : undefined} rel="noreferrer"
     >
       {shipping === 'Entrega Loja' ? (
         <Badge variant='solid' radius='full' size={'2'} color={'purple'}>

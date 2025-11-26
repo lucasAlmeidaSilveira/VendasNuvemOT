@@ -126,7 +126,8 @@ export function Statistics() {
     [adSpends],
   );
 
-  const totalAllClients = totalNovosClientes + totalPaidAmountFormatted + totalNovosClientesChatbot;
+  const totalAllClients =
+    totalNovosClientes + totalPaidAmountFormatted + totalNovosClientesChatbot;
   const totalMaxAllClients =
     parseCurrency(totalPaidAllAmountFormatted) + totalNovosClientes;
 

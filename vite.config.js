@@ -1,10 +1,16 @@
 import { defineConfig } from 'vite';
 import react from '@vitejs/plugin-react';
 import { VitePWA } from 'vite-plugin-pwa';
+import eslint from 'vite-plugin-eslint';
 
 export default defineConfig({
   plugins: [
     react(),
+    eslint({
+      failOnError: false,
+      failOnWarning: false,
+      fix: true, // Auto-fix durante o desenvolvimento
+    }),
     VitePWA({
       registerType: 'autoUpdate',
       workbox: {

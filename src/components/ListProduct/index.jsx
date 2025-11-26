@@ -16,7 +16,7 @@ export function ListProduct({ idProduct, position, name, skuNumber, variations, 
       <div className="frame">
         {urlImage && <img className="image-product" src={urlImage} alt={name} />}
         {urlImage ? (
-          <a href={urlImage} target="_blank" className="info-product">
+          <a href={urlImage} target="_blank" className="info-product" rel="noreferrer">
             <p className="text-position">#{position}</p>
             <p className="name-product">{skuNumber ? skuNumber + ' | ' : ''} {name}</p>
             {variations && <p className="text-variant">{variations}</p>}

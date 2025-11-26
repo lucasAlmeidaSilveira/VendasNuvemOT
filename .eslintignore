@@ -1,0 +1,10 @@
+node_modules
+dist
+build
+.vite
+*.config.js
+*.config.cjs
+public
+pnpm-lock.yaml
+yarn.lock
+

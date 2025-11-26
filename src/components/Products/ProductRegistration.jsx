@@ -404,7 +404,7 @@ export function ProductRegistration() {
         </ContainerButtonRow>
         <ContainerButton>
           <Label>Imagens de Ambiente:</Label>
-          <a href='https://postimages.org/' target='_blank'>
+          <a href='https://postimages.org/' target='_blank' rel="noreferrer">
             <span>Clique aqui para gerar as URLs</span>
           </a>
           {!unit && (

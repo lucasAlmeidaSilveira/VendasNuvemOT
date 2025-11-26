@@ -1,0 +1,21 @@
+{
+  // Auto-fix do ESLint ao salvar
+  "editor.codeActionsOnSave": {
+    "source.fixAll.eslint": "explicit"
+  },
+  // Formatar ao salvar usando Prettier (se configurado)
+  "editor.formatOnSave": true,
+  // Usar ESLint como formatador padrão
+  "editor.defaultFormatter": "dbaeumer.vscode-eslint",
+  // Habilitar ESLint para JavaScript e TypeScript
+  "eslint.validate": [
+    "javascript",
+    "javascriptreact",
+    "typescript",
+    "typescriptreact"
+  ],
+  // Auto-fix do ESLint sempre que possível
+  "eslint.format.enable": true,
+  // Mostrar problemas do ESLint como avisos no editor
+  "eslint.lintTask.enable": true
+}
