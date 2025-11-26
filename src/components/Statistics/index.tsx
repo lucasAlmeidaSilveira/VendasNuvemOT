@@ -69,7 +69,7 @@ export function Statistics() {
     totalQuadros,
     totalEspelhos,
     totalNovosClientes,
-    totalNovosClientesChatbot,
+    totalRecorrentesClientesChatbot,
   } = filterOrders(allOrders, date);
 
   useEffect(() => {
@@ -133,18 +133,22 @@ export function Statistics() {
   const totalAdSpend = useMemo(() => {
     if (store === 'outlet') {
       return (
-        totalAdSpendQuadros +
-        totalAdSpendEspelhos +
-        totalAdSpendGeral +
+        adSpends.googleQuadros +
+        adSpends.metaQuadros +
+        adSpends.googleEspelhos +
+        adSpends.metaEspelhos +
+        adSpends.metaGeral +
+        adSpends.googleGeral +
         (totalCostTikTokAll || 0)
       );
     } else if (store === 'artepropria') {
       // Verba de adds composta por ecom, loja, chat e insta
       return (
-        totalAdSpendEcom +
-        totalAdSpendChatbot +
-        totalAdSpendLoja +
-        totalAdSpendInstagram
+        adSpends.googleEcom +
+        adSpends.metaEcom +
+        adSpends.metaChatbot +
+        adSpends.googleLoja +
+        adSpends.metaInstagram
       );
       //return adSpends.google + adSpends.meta;
     }
@@ -156,7 +160,7 @@ export function Statistics() {
   const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
   const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
   const roasClientesChatbot = calculateRoas(
-    totalNovosClientesChatbot,
+    totalRecorrentesClientesChatbot,
     totalAdSpendChatbot,
   );
 

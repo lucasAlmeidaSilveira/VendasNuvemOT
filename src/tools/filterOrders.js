@@ -114,8 +114,8 @@ export function filterOrders(orders, date) {
           order.shipping_cost_owner !== 0,
       ),
     ),
-    //calcula vendas da Loja Fisica de novos Clientes
-    totalNovosClientesChatbot: calculateTotalClients(
+    //calcula vendas de novos Clientes no chatbot
+    totalRecorrentesClientesChatbot: calculateTotalClients(
       ordersToday.filter(
         order => order.payment_status === 'paid' && order.storefront === 'Loja',
       ),

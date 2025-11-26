@@ -21,14 +21,14 @@ export function Dashboard() {
     totalPaidAmountFormatted,
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot,
-    totalNovosClientesChatbot,
+    totalRecorrentesClientesChatbot,
     totalRevenue,
     totalPaidAmount,
     totalNovosClientes,
     totalOrders,
   } = filterOrders(allOrders, date);
 
-  const totalChatbot = totalPaidAmountChatbot + totalNovosClientesChatbot;
+  const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
   const totalLojaFisica =
     totalRevenue +
     totalNovosClientes 
@@ -41,7 +41,7 @@ export function Dashboard() {
   ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   //valor total de orders totais, somando o valor de vendas de clientes novos
-  const totalOrdersAll = (totalOrders + totalNovosClientes + totalNovosClientesChatbot).toLocaleString(
+  const totalOrdersAll = (totalOrders + totalNovosClientes + totalRecorrentesClientesChatbot).toLocaleString(
     'pt-BR',
     { style: 'currency', currency: 'BRL' },
   );

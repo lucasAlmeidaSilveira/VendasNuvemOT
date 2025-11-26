@@ -333,7 +333,7 @@ export function DataSectionTPagoAP({
     totalPaidAmount,
     totalRevenue,
     totalNovosClientes,
-    totalNovosClientesChatbot,
+    totalRecorrentesClientesChatbot,
   } = filterOrders(allOrders, date);
   const verbaGoogleSum =
     verba.googleEcom +
@@ -404,16 +404,16 @@ export function DataSectionTPagoAP({
   let totalCosts = [{ name: '', value: 0 }];
   totalCosts = sumCostsByCombinedPlatform(verba);
 
-  const totalChatbot = totalPaidAmountChatbot + totalNovosClientesChatbot;
+  const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
 
   const totalLojaFisica =
     totalRevenue +
     totalNovosClientes -
-    (totalPaidAmountChatbot + totalNovosClientesChatbot);
+    (totalPaidAmountChatbot + totalRecorrentesClientesChatbot);
 
-  const totalRevenueUpdated = totalRevenue - totalPaidAmountChatbot;
+  const totalRevenueUpdated = totalRevenue - totalRecorrentesClientesChatbot;
   const totalRevenueUpdatedNovosClientes =
-    totalNovosClientes - totalNovosClientesChatbot;
+    totalNovosClientes - totalPaidAmountChatbot;
 
   //valor total de orders somando o valor de vendas de clientes novos
   const totalOrdersAll = (
@@ -437,7 +437,7 @@ export function DataSectionTPagoAP({
     { name: 'Loja Física', value: totalLojaFisica },
     /*
     { name: 'Novos Clientes Loja Fisica', value: totalNovosClientes },
-    { name: 'Novos Clientes Chatbot', value: totalNovosClientesChatbot },*/
+    { name: 'Novos Clientes Chatbot', value: totalRecorrentesClientesChatbot },*/
   ];
 
   const totalByCategoryAP = [
@@ -455,11 +455,11 @@ export function DataSectionTPagoAP({
   const totalByCategoryChatbot = [
     {
       name: 'Clientes Novos',
-      value: totalNovosClientesChatbot < 0 ? 0 : totalNovosClientesChatbot,
+      value: totalPaidAmountChatbot < 0 ? 0 : totalPaidAmountChatbot,
     },
     {
       name: 'Clientes Recorrentes',
-      value: totalPaidAmountChatbot < 0 ? 0 : totalPaidAmountChatbot,
+      value: totalRecorrentesClientesChatbot < 0 ? 0 : totalRecorrentesClientesChatbot,
     },
   ];
 
