@@ -19,20 +19,32 @@ export function Dashboard() {
     ordersTodayPaid,
     totalOrdersFormatted,
     totalPaidAmountFormatted,
+    totalPaidAllAmountEcom,
+    totalPaidAmountChatbot,
+    totalNovosClientesChatbot,
+    totalRevenue,
     totalPaidAmount,
     totalNovosClientes,
     totalOrders,
   } = filterOrders(allOrders, date);
 
+  const totalChatbot = totalPaidAmountChatbot + totalNovosClientesChatbot;
+  const totalLojaFisica =
+    totalRevenue +
+    totalNovosClientes 
+
   //valor total de orders pagas somando o valor de vendas de clientes novos
   const totalOrdersPaidAll = (
-    totalPaidAmount + totalNovosClientes
+    totalPaidAllAmountEcom +
+    totalChatbot +
+    totalLojaFisica
   ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
-    //valor total de orders totais, somando o valor de vendas de clientes novos
-  const totalOrdersAll = (
-    totalOrders + totalNovosClientes
-  ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  //valor total de orders totais, somando o valor de vendas de clientes novos
+  const totalOrdersAll = (totalOrders + totalNovosClientes + totalNovosClientesChatbot).toLocaleString(
+    'pt-BR',
+    { style: 'currency', currency: 'BRL' },
+  );
   // função para mapear pedidos
   /*
   useEffect(() => {
@@ -60,27 +72,27 @@ export function Dashboard() {
     <Container>
       <ContainerOrders>
         <ContainerPago>
-          <div className="text-wrapper">Pago</div>
-          <div className="div">
-            <div className="text-wrapper-2">
+          <div className='text-wrapper'>Pago</div>
+          <div className='div'>
+            <div className='text-wrapper-2'>
               {isLoading ? (
-                <Loading bgColor="#FCFAFB" />
+                <Loading bgColor='#FCFAFB' />
               ) : (
                 `${ordersTodayPaid.length} Vendas`
               )}
             </div>
-            <div className="text-wrapper-3">
+            <div className='text-wrapper-3'>
               {isLoading ? <Loading /> : totalOrdersPaidAll}
             </div>
           </div>
         </ContainerPago>
         <ContainerGeral>
-          <div className="text-wrapper">Geral</div>
-          <div className="div">
-            <div className="text-wrapper-2">
+          <div className='text-wrapper'>Geral</div>
+          <div className='div'>
+            <div className='text-wrapper-2'>
               {isLoading ? <Loading /> : `${ordersToday.length} Vendas`}
             </div>
-            <div className="text-wrapper-3">
+            <div className='text-wrapper-3'>
               {isLoading ? <Loading /> : totalOrdersAll}
             </div>
           </div>

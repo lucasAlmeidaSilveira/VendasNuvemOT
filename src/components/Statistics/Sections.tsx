@@ -18,13 +18,21 @@ import { ContainerOrders, ContainerGeral, ContainerCharts } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
 import { FcGoogle } from 'react-icons/fc';
-import { FaHandshakeSimple, FaMeta, FaPeopleGroup } from 'react-icons/fa6';
+import {
+  FaHandshakeSimple,
+  FaMeta,
+  FaPeopleGroup,
+  FaCreditCard,
+  FaPix,
+  FaPlus,
+} from 'react-icons/fa6';
 import { MdOutlineAttachMoney, MdOutlineSell } from 'react-icons/md';
-import { FaCreditCard, FaPix } from 'react-icons/fa6';
 import { FaFileInvoiceDollar } from 'react-icons/fa';
 import { FaWhatsapp, FaInstagram } from 'react-icons/fa';
 import { RiMessengerLine } from 'react-icons/ri';
-import { FaPlus } from 'react-icons/fa6';
+import { RiRobot2Line } from 'react-icons/ri';
+import { SiHomeassistantcommunitystore } from 'react-icons/si';
+
 import {
   CouponProps,
   DataSectionAnalyticsProps,
@@ -396,11 +404,22 @@ export function DataSectionTPagoAP({
   let totalCosts = [{ name: '', value: 0 }];
   totalCosts = sumCostsByCombinedPlatform(verba);
 
+  const totalChatbot = totalPaidAmountChatbot + totalNovosClientesChatbot;
+
+  const totalLojaFisica =
+    totalRevenue +
+    totalNovosClientes -
+    (totalPaidAmountChatbot + totalNovosClientesChatbot);
+
+  const totalRevenueUpdated = totalRevenue - totalPaidAmountChatbot;
+  const totalRevenueUpdatedNovosClientes =
+    totalNovosClientes - totalNovosClientesChatbot;
+
   //valor total de orders somando o valor de vendas de clientes novos
   const totalOrdersAll = (
-    totalPaidAmount +
-    totalNovosClientes +
-    totalNovosClientesChatbot
+    totalPaidAllAmountEcom +
+    totalChatbot +
+    totalLojaFisica
   ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   const handleUpdateDataADS = () => {
@@ -414,10 +433,11 @@ export function DataSectionTPagoAP({
       name: 'Ecom',
       value: totalPaidAllAmountEcom,
     },
-    { name: 'Chatbot', value: totalPaidAmountChatbot },
-    { name: 'Loja Física', value: totalRevenue },
+    { name: 'Chatbot', value: totalChatbot },
+    { name: 'Loja Física', value: totalLojaFisica },
+    /*
     { name: 'Novos Clientes Loja Fisica', value: totalNovosClientes },
-    { name: 'Novos Clientes Chatbot', value: totalNovosClientesChatbot },
+    { name: 'Novos Clientes Chatbot', value: totalNovosClientesChatbot },*/
   ];
 
   const totalByCategoryAP = [
@@ -427,8 +447,34 @@ export function DataSectionTPagoAP({
     },
     { name: 'Chatbot', value: roasChatbot },
     { name: 'Loja Física', value: roasLoja },
+    /*
     { name: 'Novos Clientes Loja Fisica', value: roasClientes },
-    { name: 'Novos Clientes Chatbot', value: roasClientesChatbot },
+    { name: 'Novos Clientes Chatbot', value: roasClientesChatbot },*/
+  ];
+
+  const totalByCategoryChatbot = [
+    {
+      name: 'Clientes Novos',
+      value: totalNovosClientesChatbot < 0 ? 0 : totalNovosClientesChatbot,
+    },
+    {
+      name: 'Clientes Recorrentes',
+      value: totalPaidAmountChatbot < 0 ? 0 : totalPaidAmountChatbot,
+    },
+  ];
+
+  const totalByCategoryLojaFisica = [
+    {
+      name: 'Clientes Novos',
+      value:
+        totalRevenueUpdatedNovosClientes < 0
+          ? 0
+          : totalRevenueUpdatedNovosClientes,
+    },
+    {
+      name: 'Clientes Recorrentes',
+      value: totalRevenueUpdated < 0 ? 0 : totalRevenueUpdated,
+    },
   ];
 
   return (
@@ -466,6 +512,32 @@ export function DataSectionTPagoAP({
             value={totalAdSpend}
             isLoading={isLoadingADSMeta || isLoadingADSGoogle}
             handleAction={handleUpdateDataADS}
+          />
+        </div>
+        <div className='row'>
+          <BudgetItemList
+            icon={RiRobot2Line}
+            iconColor='var(--geralblack-100)'
+            title='Chatbot'
+            tooltip='Faturamento Chatbot'
+            value={totalChatbot.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+            dataCosts={totalByCategoryChatbot}
+            isLoading={isLoadingOrders}
+          />
+          <BudgetItemList
+            icon={SiHomeassistantcommunitystore}
+            iconColor='var(--geralblack-100)'
+            title='Loja Fisica'
+            tooltip='Faturamento Loja Fisica'
+            value={totalLojaFisica.toLocaleString('pt-BR', {
+              style: 'currency',
+              currency: 'BRL',
+            })}
+            dataCosts={totalByCategoryLojaFisica}
+            isLoading={isLoadingOrders}
           />
         </div>
         <div className='row'>
@@ -1528,6 +1600,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
     </>
   );
 }
+
 export function DataSectionReenvio({ bgcolor }: { bgcolor: string }) {
   const { reenvios, summaryReenvios, loading, error } = useRefunds();
   const [isPopupOpen, setIsPopupOpen] = useState(false);

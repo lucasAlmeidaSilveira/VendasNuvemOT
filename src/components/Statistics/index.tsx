@@ -63,6 +63,7 @@ export function Statistics() {
     totalRevenue,
     totalPaidAmountFormatted,
     totalPaidAllAmountFormatted,
+    totalPaidAmountChatbot,
     totalPaidAmountChatbotFormatted,
     totalPaidAllAmountEcom,
     totalQuadros,
@@ -100,15 +101,6 @@ export function Statistics() {
   }, [data, dataADSMeta]);
 
   // Cálculo total de gastos e ROAS
-  const totalAdSpend = useMemo(() => {
-    if (store === 'outlet') {
-      return adSpends.google + adSpends.meta + (totalCostTikTokAll || 0);
-    }
-    if (store === 'artepropria') {
-      return adSpends.google + adSpends.meta;
-    }
-    return 0; // Fallback para outros casos
-  }, [adSpends]);
   const totalAdSpendEcom = useMemo(
     () => adSpends.googleEcom + adSpends.metaEcom,
     [adSpends],
@@ -126,17 +118,46 @@ export function Statistics() {
     [adSpends],
   );
 
-  const totalAllClients = totalNovosClientes + totalPaidAmountFormatted + totalNovosClientesChatbot;
-  const totalMaxAllClients =
-    parseCurrency(totalPaidAllAmountFormatted) + totalNovosClientes;
+  //adquirir verba do insta
+  const totalAdSpendInstagram = useMemo(
+    () => adSpends.metaInstagram,
+    [adSpends],
+  );
 
-  const roas = calculateRoas(totalAllClients, totalAdSpend);
+  //adquirir verba do insta
+  const totalAdSpendGeral = useMemo(
+    () => adSpends.metaGeral + adSpends.googleGeral,
+    [adSpends],
+  );
+
+  const totalAdSpend = useMemo(() => {
+    if (store === 'outlet') {
+      return (
+        totalAdSpendQuadros +
+        totalAdSpendEspelhos +
+        totalAdSpendGeral +
+        (totalCostTikTokAll || 0)
+      );
+    } else if (store === 'artepropria') {
+      // Verba de adds composta por ecom, loja, chat e insta
+      return (
+        totalAdSpendEcom +
+        totalAdSpendChatbot +
+        totalAdSpendLoja +
+        totalAdSpendInstagram
+      );
+      //return adSpends.google + adSpends.meta;
+    }
+    return 0; // Fallback para outros casos
+  }, [adSpends]);
+
+  const roas = calculateRoas(totalPaidAmountFormatted, totalAdSpend);
   const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
   const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
   const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
   const roasClientesChatbot = calculateRoas(
     totalNovosClientesChatbot,
-    totalAdSpendLoja,
+    totalAdSpendChatbot,
   );
 
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
@@ -147,7 +168,10 @@ export function Statistics() {
     parseCurrency(totalPaidAmountChatbotFormatted),
     totalAdSpendChatbot,
   );
-  const roasMax = calculateRoas(totalMaxAllClients, totalAdSpend);
+  const roasMax = calculateRoas(
+    parseCurrency(totalPaidAllAmountFormatted),
+    totalAdSpend,
+  );
 
   // Adicione um novo cálculo específico para o TikTok se necessário
   const roasTikTok = calculateRoas(
