@@ -640,6 +640,7 @@ export function Orders() {
                           <ProductDetails
                             products={order.products}
                             subtotal={order.shipping_cost_owner}
+                            ownerNote={order.owner_note}
                           />
                         </Table.Cell>
                       </Table.Row>

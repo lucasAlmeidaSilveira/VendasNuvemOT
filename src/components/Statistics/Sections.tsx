@@ -434,7 +434,7 @@ export function DataSectionTPagoAP({
       value: totalPaidAllAmountEcom,
     },
     { name: 'Chatbot', value: totalChatbot },
-    { name: 'Loja Física', value: totalLojaFisica },
+    { name: 'Loja Física', value: totalLojaFisica < 0 ? 0 : totalLojaFisica },
     /*
     { name: 'Novos Clientes Loja Fisica', value: totalNovosClientes },
     { name: 'Novos Clientes Chatbot', value: totalRecorrentesClientesChatbot },*/
@@ -459,7 +459,10 @@ export function DataSectionTPagoAP({
     },
     {
       name: 'Clientes Recorrentes',
-      value: totalRecorrentesClientesChatbot < 0 ? 0 : totalRecorrentesClientesChatbot,
+      value:
+        totalRecorrentesClientesChatbot < 0
+          ? 0
+          : totalRecorrentesClientesChatbot,
     },
   ];
 
@@ -532,10 +535,14 @@ export function DataSectionTPagoAP({
             iconColor='var(--geralblack-100)'
             title='Loja Fisica'
             tooltip='Faturamento Loja Fisica'
-            value={totalLojaFisica.toLocaleString('pt-BR', {
-              style: 'currency',
-              currency: 'BRL',
-            })}
+            value={
+              totalLojaFisica < 0
+                ? 0
+                : totalLojaFisica.toLocaleString('pt-BR', {
+                    style: 'currency',
+                    currency: 'BRL',
+                  })
+            }
             dataCosts={totalByCategoryLojaFisica}
             isLoading={isLoadingOrders}
           />

@@ -4,7 +4,7 @@ import { formatCurrency } from '../../tools/tools.ts';
 import { ContainerDetails, ProductImage } from './styles';
 import { Table, Theme } from '@radix-ui/themes';
 
-const formatProductName = (name) => {
+const formatProductName = name => {
   const regex = /\((.*?)\)/;
   const match = name.match(regex);
   if (match) {
@@ -21,12 +21,14 @@ const formatProductName = (name) => {
   return name;
 };
 
-export function ProductDetails({ products, subtotal }) {
+export function ProductDetails({ products, subtotal, ownerNote }) {
+  console.log(ownerNote);
+
   return (
     <Theme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
         <h3>Pedido</h3>
-        <Table.Root variant="surface" layout={'auto'}>
+        <Table.Root variant='surface' layout={'auto'}>
           <Table.Header>
             <Table.Row>
               <Table.ColumnHeaderCell>Imagem</Table.ColumnHeaderCell>
@@ -41,9 +43,15 @@ export function ProductDetails({ products, subtotal }) {
               <Table.ColumnHeaderCell>Total</Table.ColumnHeaderCell>
               {products[0].name === 'Produto Loja Fisica' ||
               products[0].sku === 'produto-loja' ? (
-                <Table.ColumnHeaderCell>
-                  Total(CLIENTES NOVOS)
-                </Table.ColumnHeaderCell>
+                ownerNote.includes('Chatbot') ? (
+                  <Table.ColumnHeaderCell>
+                    Total(Clientes Recorrentes)
+                  </Table.ColumnHeaderCell>
+                ) : (
+                  <Table.ColumnHeaderCell>
+                    Total(CLIENTES NOVOS)
+                  </Table.ColumnHeaderCell>
+                )
               ) : (
                 ''
               )}
