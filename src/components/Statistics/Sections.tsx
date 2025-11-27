@@ -406,14 +406,11 @@ export function DataSectionTPagoAP({
 
   const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
 
+  const totalLojaRecorrentes = totalRevenue - totalNovosClientes
+  const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
   const totalLojaFisica =
-    totalRevenue +
-    totalNovosClientes -
+    totalLojaBruto -
     (totalPaidAmountChatbot + totalRecorrentesClientesChatbot);
-
-  const totalRevenueUpdated = totalRevenue - totalRecorrentesClientesChatbot;
-  const totalRevenueUpdatedNovosClientes =
-    totalNovosClientes - totalPaidAmountChatbot;
 
   //valor total de orders somando o valor de vendas de clientes novos
   const totalOrdersAll = (
@@ -469,14 +466,11 @@ export function DataSectionTPagoAP({
   const totalByCategoryLojaFisica = [
     {
       name: 'Clientes Novos',
-      value:
-        totalRevenueUpdatedNovosClientes < 0
-          ? 0
-          : totalRevenueUpdatedNovosClientes,
+      value: totalNovosClientes < 0 ? 0 : totalNovosClientes,
     },
     {
       name: 'Clientes Recorrentes',
-      value: totalRevenueUpdated < 0 ? 0 : totalRevenueUpdated,
+      value: totalLojaRecorrentes < 0 ? 0 : totalLojaRecorrentes,
     },
   ];
 
@@ -536,9 +530,9 @@ export function DataSectionTPagoAP({
             title='Loja Fisica'
             tooltip='Faturamento Loja Fisica'
             value={
-              totalLojaFisica < 0
+              totalLojaBruto < 0
                 ? 0
-                : totalLojaFisica.toLocaleString('pt-BR', {
+                : totalLojaBruto.toLocaleString('pt-BR', {
                     style: 'currency',
                     currency: 'BRL',
                   })

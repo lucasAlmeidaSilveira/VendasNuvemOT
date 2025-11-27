@@ -155,7 +155,26 @@ export function Statistics() {
     return 0; // Fallback para outros casos
   }, [adSpends]);
 
-  const roas = calculateRoas(totalPaidAmountFormatted, totalAdSpend);
+  const totalLojaRecorrentes = totalRevenue - totalNovosClientes;
+  const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
+  const totalLojaFisica =
+    totalLojaBruto - (totalPaidAmountChatbot + totalRecorrentesClientesChatbot);
+  const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
+
+  const totalOrdersAll =
+    totalPaidAllAmountEcom + totalChatbot + totalLojaFisica;
+  const totalOrdersAllMax =
+    parseCurrency(totalPaidAllAmountFormatted) - totalChatbot;
+
+  useEffect(() => {
+    console.log(
+      'DEBUG totalPaidAllAmountFormatted:',
+      parseCurrency(totalPaidAllAmountFormatted),
+    );
+    console.log('DEBUG totalOrdersAll:', totalOrdersAll);
+  }, [data]);
+
+  const roas = calculateRoas(totalOrdersAll, totalAdSpend);
   const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
   const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
   const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
@@ -166,14 +185,14 @@ export function Statistics() {
 
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
 
-  const roasLoja = calculateRoas(totalRevenue, totalAdSpendLoja);
+  const roasLoja = calculateRoas(totalLojaFisica, totalAdSpendLoja);
 
   const roasChatbot = calculateRoas(
     parseCurrency(totalPaidAmountChatbotFormatted),
     totalAdSpendChatbot,
   );
   const roasMax = calculateRoas(
-    parseCurrency(totalPaidAllAmountFormatted),
+    totalOrdersAllMax,
     totalAdSpend,
   );
 
