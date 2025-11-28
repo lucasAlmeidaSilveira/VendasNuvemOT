@@ -408,15 +408,12 @@ export function DataSectionTPagoAP({
 
   const totalLojaRecorrentes = totalRevenue - totalNovosClientes
   const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
-  const totalLojaFisica =
-    totalLojaBruto -
-    (totalPaidAmountChatbot + totalRecorrentesClientesChatbot);
 
   //valor total de orders somando o valor de vendas de clientes novos
   const totalOrdersAll = (
     totalPaidAllAmountEcom +
     totalChatbot +
-    totalLojaFisica
+    totalLojaBruto
   ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   const handleUpdateDataADS = () => {
@@ -431,7 +428,7 @@ export function DataSectionTPagoAP({
       value: totalPaidAllAmountEcom,
     },
     { name: 'Chatbot', value: totalChatbot },
-    { name: 'Loja Física', value: totalLojaFisica < 0 ? 0 : totalLojaFisica },
+    { name: 'Loja Física', value: totalLojaBruto < 0 ? 0 : totalLojaBruto },
     /*
     { name: 'Novos Clientes Loja Fisica', value: totalNovosClientes },
     { name: 'Novos Clientes Chatbot', value: totalRecorrentesClientesChatbot },*/

@@ -157,22 +157,13 @@ export function Statistics() {
 
   const totalLojaRecorrentes = totalRevenue - totalNovosClientes;
   const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
-  const totalLojaFisica =
-    totalLojaBruto - (totalPaidAmountChatbot + totalRecorrentesClientesChatbot);
   const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
 
   const totalOrdersAll =
-    totalPaidAllAmountEcom + totalChatbot + totalLojaFisica;
+    totalPaidAllAmountEcom + totalChatbot + totalLojaBruto;
   const totalOrdersAllMax =
-    parseCurrency(totalPaidAllAmountFormatted) - totalChatbot;
+    parseCurrency(totalPaidAllAmountFormatted) + totalRecorrentesClientesChatbot;
 
-  useEffect(() => {
-    console.log(
-      'DEBUG totalPaidAllAmountFormatted:',
-      parseCurrency(totalPaidAllAmountFormatted),
-    );
-    console.log('DEBUG totalOrdersAll:', totalOrdersAll);
-  }, [data]);
 
   const roas = calculateRoas(totalOrdersAll, totalAdSpend);
   const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
@@ -185,7 +176,7 @@ export function Statistics() {
 
   const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
 
-  const roasLoja = calculateRoas(totalLojaFisica, totalAdSpendLoja);
+  const roasLoja = calculateRoas(totalLojaBruto, totalAdSpendLoja);
 
   const roasChatbot = calculateRoas(
     parseCurrency(totalPaidAmountChatbotFormatted),
@@ -212,6 +203,13 @@ export function Statistics() {
     planilhaAnalytics: '#7002d0',
     reembolso: '#633B48',
   };
+  
+  useEffect(() => {
+    console.log('DEBUG totalOrdersAllMax:', totalOrdersAllMax);
+    console.log('DEBUG totalOrdersAll:', totalOrdersAll);
+        console.log('DEBUG totalPaidAllAmountFormatted:', totalPaidAllAmountFormatted);
+
+  }, [data]);
 
   return (
     <Container>

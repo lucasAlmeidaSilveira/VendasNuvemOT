@@ -11,6 +11,7 @@ import { Loading } from '../Loading';
 import { useOrders } from '../../context/OrdersContext';
 import { BestSellers } from '../BestSellers';
 import { filterOrders } from '../../tools/filterOrders';
+import { parseCurrency } from "../../tools/tools";
 
 export function Dashboard() {
   const { allOrders, isLoading, date } = useOrders();
@@ -26,22 +27,20 @@ export function Dashboard() {
     totalPaidAmount,
     totalNovosClientes,
     totalOrders,
+    totalPaidAllAmountFormatted,
   } = filterOrders(allOrders, date);
 
   const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
-  const totalLojaFisica =
-    totalRevenue +
-    totalNovosClientes 
 
   //valor total de orders pagas somando o valor de vendas de clientes novos
   const totalOrdersPaidAll = (
     totalPaidAllAmountEcom +
     totalChatbot +
-    totalLojaFisica
+    totalRevenue
   ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
 
   //valor total de orders totais, somando o valor de vendas de clientes novos
-  const totalOrdersAll = (totalOrders + totalNovosClientes + totalRecorrentesClientesChatbot).toLocaleString(
+  const totalOrdersAll = (parseCurrency(totalPaidAllAmountFormatted) + totalRecorrentesClientesChatbot).toLocaleString(
     'pt-BR',
     { style: 'currency', currency: 'BRL' },
   );
