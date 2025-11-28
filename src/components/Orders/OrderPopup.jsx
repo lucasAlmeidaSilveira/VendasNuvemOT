@@ -49,7 +49,7 @@ export function OrderPopup({ open, onClose }) {
   const { fetchData } = useOrders();
   const [createdAt, setCreatedAt] = useState(new Date());
   const [total, setTotal] = useState('0');
-  const [totalNovosClientes, setTotalNovosClientes] = useState('0');
+  const [totalClientesRecorrentes, setTotalClientesRecorrentes] = useState('0');
 
   const [note, setNote] = useState('');
   const [clientsPerDay, setClientsPerDay] = useState('0');
@@ -61,7 +61,7 @@ export function OrderPopup({ open, onClose }) {
     setCreatedAt(new Date());
     setTotal('0');
     setNote('');
-    setTotalNovosClientes('0');
+    setTotalClientesRecorrentes('0');
     setClientsPerDay('0');
   };
 
@@ -99,7 +99,7 @@ export function OrderPopup({ open, onClose }) {
 
   const handleAddOrder = async () => {
     const cleanedTotal = total.replace(/[^0-9,-]+/g, '').replace(',', '.');
-    const cleanedTotalNovosClientes = totalNovosClientes.replace(/[^0-9,-]+/g, '').replace(',', '.');
+    const cleanedTotalClientesRecorrentes = totalClientesRecorrentes.replace(/[^0-9,-]+/g, '').replace(',', '.');
 
     const newOrder = {
       data: {
@@ -137,7 +137,7 @@ export function OrderPopup({ open, onClose }) {
           name: user.displayName,
         },
         shipping_cost_customer: '0.00',
-        shipping_cost_owner: cleanedTotalNovosClientes,
+        shipping_cost_owner: cleanedTotalClientesRecorrentes,
         shipping_max_days: 0,
         shipping_min_days: 0,
         shipping_suboption: {},
@@ -230,7 +230,7 @@ export function OrderPopup({ open, onClose }) {
             <TextFieldInput
               variant='filled'
               type='text'
-              label='Total da Compra'
+              label='Total de Vendas'
               size='small'
               value={total}
               onChange={e => setTotal(formatCurrency(e.target.value))}
@@ -239,11 +239,11 @@ export function OrderPopup({ open, onClose }) {
             <TextFieldInput
               variant='filled'
               type='text'
-              label='Total da Compra - Clientes Novos'
+              label='Total de Vendas - Clientes Recorrentes'
               size='small'
-              value={totalNovosClientes}
+              value={totalClientesRecorrentes}
               onChange={e =>
-                setTotalNovosClientes(formatCurrency(e.target.value))
+                setTotalClientesRecorrentes(formatCurrency(e.target.value))
               }
               required
             />
