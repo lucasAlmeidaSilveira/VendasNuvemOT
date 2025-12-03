@@ -60,8 +60,6 @@ export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
 
       if (response.ok) {
         setSuccessMessage('Reenvio cadastrado com sucesso! ✅');
-        console.log('DEBUG type: ', refundType);
-        console.log('DEBUG response:', newRefund);
         setOrderNumber('');
         setCategory('');
         setRefundValue('');

@@ -203,13 +203,6 @@ export function Statistics() {
     planilhaAnalytics: '#7002d0',
     reembolso: '#633B48',
   };
-  
-  useEffect(() => {
-    console.log('DEBUG totalOrdersAllMax:', totalOrdersAllMax);
-    console.log('DEBUG totalOrdersAll:', totalOrdersAll);
-        console.log('DEBUG totalPaidAllAmountFormatted:', totalPaidAllAmountFormatted);
-
-  }, [data]);
 
   return (
     <Container>

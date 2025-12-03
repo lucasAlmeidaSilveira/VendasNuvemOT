@@ -59,8 +59,6 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
 
       if (response.ok) {
         setSuccessMessage('Reembolso cadastrado com sucesso! ✅');
-        console.log('DEBUG type: ', refundType);
-        console.log('DEBUG response:', newRefund);
         setOrderNumber('');
         setCategory('');
         setRefundValue('');
@@ -79,8 +77,6 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
           reloadRefunds(); //  Aciona a função que recarrega as informações
         }, 2000);
         console.log('DEBUG erro:', error);
-        console.log('DEBUG type:', refundType);
-        console.log('DEBUG response:', newRefund);
       }
     } catch (error) {
       setSuccessMessage('Erro na conexão com o servidor. ❌');
