@@ -3,6 +3,7 @@ import { Popup } from '../Popup'; // Certifique-se de que esse componente está 
 import { useOrders } from '../../context/OrdersContext';
 import { useRefunds } from '../../context/RefundsContext';
 import { DatePicker } from '../DatePicker';
+import { env } from '../../utils/env';
 
 import './RefundPopup.css';
 
@@ -85,6 +86,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
         handleIsClosePopup(); // Fecha o popup automaticamente
         reloadRefunds(); //  Aciona a função que recarrega as informações
       }, 2000);
+      console.log('DEBUG erro:', error);
       //console.log('DEBUG type: ', refundType);
       //console.log('DEBUG response:', newRefund);
     } finally {
