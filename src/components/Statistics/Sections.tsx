@@ -1537,7 +1537,7 @@ export function DataSectionReembolso({ bgcolor }: { bgcolor: string }) {
               title='Troca'
               tooltip='Reembolsos por Troca do produto.'
               value={summaryReembolsos.categories.Troca.count}
-              small={`R$ ${summaryReembolsos.categories['Não gostou'].value.toFixed(2)}`}
+              small={`R$ ${summaryReembolsos.categories.Troca.value.toFixed(2)}`}
               isLoading={loading}
               refunds={trocaCountRefunds}
             />
