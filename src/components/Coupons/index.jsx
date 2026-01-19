@@ -93,6 +93,9 @@ export function Coupons() {
     'DIEGO15',
     'IAGO15',
     'YARA15',
+    'LARISSA5',
+    'LARISSA10',
+    'LARISSA15',
   ];
 
   useEffect(() => {

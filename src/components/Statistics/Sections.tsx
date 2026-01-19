@@ -904,17 +904,17 @@ export function DataSectionCart({
     'CLAUDIO5',
     'DIEGO5',
     'IAGO5',
-    'YARA5',
+    'LARISSA5',
     'CIBELE10',
     'CLAUDIO10',
     'DIEGO10',
     'IAGO10',
-    'YARA10',
+    'LARISSA10',
     'CIBELE15',
     'CLAUDIO15',
     'DIEGO15',
     'IAGO15',
-    'YARA15',
+    'LARISSA15',
   ];
   const couponsInsta = ['INSTA10', 'INSTA20', 'VIP10', 'LIVE20'];
   const couponsWhats = ['WHATS5', 'WHATS10', 'WHATS15', 'WHATS20'];
