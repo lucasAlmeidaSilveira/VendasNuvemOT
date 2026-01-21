@@ -10,6 +10,7 @@ import { AuthProvider } from './context/AuthContext.jsx';
 import { RefundsProvider } from './context/RefundsContext.tsx';
 import { TikTokAdsProvider } from './context/TikTokAdsContext.tsx';
 import { MandaeProvider } from './context/MandaeContext.tsx';
+import { DatabaseProvider } from './context/DbContext.tsx';
 
 import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
@@ -25,7 +26,9 @@ root.render(
               <AnalyticsProvider>
                 <CouponProvider>
                   <MandaeProvider>
-                    <App />
+                    <DatabaseProvider>
+                      <App />
+                    </DatabaseProvider>
                   </MandaeProvider>
                 </CouponProvider>
               </AnalyticsProvider>

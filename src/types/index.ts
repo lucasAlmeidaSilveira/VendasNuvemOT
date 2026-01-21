@@ -356,3 +356,90 @@ export interface MandaeProviderProps {
   children: ReactNode;
   apiBaseUrl?: string; // Opcional para personalização
 }
+
+
+// Tipos para DB
+export interface Ads {
+  id_ads: string;
+  date_ads: string;
+  plataform: string;
+  funding_ecom: number;
+  funding_store: number;
+  funding_general: number;
+  funding_chatbot: number;
+  funding_insta: number;
+  funding_mirror: number;
+  funding_painting: number;
+  active: number;
+}
+
+export interface Client {
+  id: number;
+  name: string;
+  email: string;
+}
+
+export interface Coupon {
+  coupon_id: number;
+  code: string;
+  discount: number;
+}
+
+export interface DailySale {
+  sale_id: number;
+  sale_date: string;
+  amount: number;
+}
+
+export interface OrderShop {
+  order_id: number;
+  product_id: number;
+  quantity: number;
+}
+
+export interface Product {
+  product_id: number;
+  name: string;
+  price: number;
+}
+
+// Tipo união para todos os dados possíveis
+export type DatabaseData = Ads | Client | Coupon | DailySale | OrderShop | Product;
+
+// Enum para as tabelas disponíveis
+export enum DatabaseTable {
+  ADS = 'ads',
+  CLIENTS = 'clients',
+  COUPON = 'coupon',
+  DAILY_SALES = 'daily_sales',
+  ORDERS_SHOP = 'orders_shop',
+  PRODUCT = 'product'
+}
+
+// Estado do contexto
+export interface DatabaseContextState {
+  data: DatabaseData[];
+  loading: boolean;
+  error: string | null;
+  currentTable: DatabaseTable | null;
+}
+
+// Ações disponíveis
+export type DatabaseAction =
+  | { type: 'FETCH_START'; table: DatabaseTable }
+  | { type: 'FETCH_SUCCESS'; table: DatabaseTable; data: DatabaseData[] }
+  | { type: 'FETCH_ERROR'; error: string }
+  | { type: 'CLEAR_DATA' };
+
+// Props do provedor
+export interface DatabaseProviderProps {
+  children: React.ReactNode;
+}
+
+// Tipo do contexto
+export interface DatabaseContextType {
+  state: DatabaseContextState;
+  fetchData: (table: DatabaseTable) => Promise<void>;
+  clearData: () => void;
+  getCurrentData: <T extends DatabaseData>() => T[];
+}
