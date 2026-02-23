@@ -68,7 +68,7 @@ export function StatusPage() {
 
       <Theme>
         {loading ? (
-          <Table.Root variant="surface">
+          <Table.Root variant="surface" layout="auto">
             <Table.Header style={{ backgroundColor: 'lightgray' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell>Plataforma</Table.ColumnHeaderCell>
