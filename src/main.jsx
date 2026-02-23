@@ -1,5 +1,6 @@
 import React from 'react';
 import ReactDOM from 'react-dom/client';
+import { BrowserRouter } from 'react-router-dom';
 import App from './App.jsx';
 import './index.css';
 import { OrdersProvider } from './context/OrdersContext'; // Importe o provedor do contexto de pedidos
@@ -27,7 +28,9 @@ root.render(
                 <CouponProvider>
                   <MandaeProvider>
                     <DatabaseProvider>
-                      <App />
+                      <BrowserRouter>
+                        <App />
+                      </BrowserRouter>
                     </DatabaseProvider>
                   </MandaeProvider>
                 </CouponProvider>

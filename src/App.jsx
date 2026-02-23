@@ -1,4 +1,5 @@
 import './App.css';
+import { Routes, Route } from 'react-router-dom';
 import { Header } from './components/Header';
 import { Footer } from './components/Footer';
 import { useTab } from './context/TabContext';
@@ -9,13 +10,12 @@ import { BackToTop } from './components/BackToTop';
 import { Toolbar } from '@mui/material';
 import { AlertStatusInternet } from './components/AlertStatusInternet';
 import { Analytics } from '@vercel/analytics/react';
+import { StatusPage } from './pages/Status';
 
-export default function App() {
+function HomePage() {
   const { activeTab } = useTab();
-
   return (
     <>
-      <AuthPopup />
       <Toolbar style={{ minHeight: '0px' }} id="back-to-top-anchor" />
       <Header />
       <Footer />
@@ -26,8 +26,20 @@ export default function App() {
       </div>
       <RoutesTabs activeTab={activeTab} />
       <BackToTop />
+    </>
+  );
+}
+
+export default function App() {
+  return (
+    <>
+      <AuthPopup />
       <AlertStatusInternet />
       <Analytics />
+      <Routes>
+        <Route path="/" element={<HomePage />} />
+        <Route path="/status" element={<StatusPage />} />
+      </Routes>
     </>
   );
 }

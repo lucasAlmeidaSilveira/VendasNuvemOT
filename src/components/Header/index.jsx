@@ -4,6 +4,7 @@ import { Logotipo } from '../Logo';
 import { ButtonReload } from '../Reload';
 import { BoxRight, Container } from './styles.ts';
 import { User } from '../User';
+import { Link } from 'react-router-dom';
 
 export function Header() {
   const { store, setStore, resetData, setAutomaticUpdate } = useOrders();
@@ -21,7 +22,9 @@ export function Header() {
   return (
     <Container>
       <div className="div">
-        <Logotipo store={store} />
+        <Link to="/">
+          <Logotipo store={store} />
+        </Link>
         <div className="div-2">
           <div className="text-wrapper">Selecione uma loja</div>
           <select

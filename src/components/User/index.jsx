@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 import Menu from '@mui/material/Menu';
 import Divider from '@mui/material/Divider';
 import Logout from '@mui/icons-material/Logout';
@@ -10,12 +11,18 @@ import { Converters } from '../Converters';
 import { QRCodeGenerator } from '../QRCodeGenerator';
 
 export function User() {
-  const { user, handleLogout } = useAuth(); // Pegue o usuário e a função de logout do contexto
+  const { user, handleLogout } = useAuth();
+  const navigate = useNavigate();
   const [isPopupOpenConverters, setIsPopupOpenConverters] = useState(false);
   const [isPopupOpenQRCodeGenerator, setIsPopupOpenQRCodeGenerator] = useState(false);
 
   const [anchorEl, setAnchorEl] = useState(null);
   const open = Boolean(anchorEl);
+
+  const handleGoToStatus = () => {
+    setAnchorEl(null);
+    navigate('/status');
+  };
 
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
@@ -80,6 +87,9 @@ export function User() {
         </MenuItem>
         <MenuItem onClick={handleOpenPopupQRCodeGenerator}>
           <MenuText>Gerador de QRcode</MenuText>
+        </MenuItem>
+        <MenuItem onClick={handleGoToStatus}>
+          <MenuText>Status das plataformas</MenuText>
         </MenuItem>
         <Divider />
         <MenuItem onClick={handleLogout}>
