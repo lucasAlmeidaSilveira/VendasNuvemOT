@@ -15,7 +15,8 @@ export function StatusPage() {
   const [statusList, setStatusList] = useState([]);
   const [loading, setLoading] = useState(true);
   const [erro, setErro] = useState(null);
-
+  const [layout, setLayout] = useState('auto');
+  
   useEffect(() => {
     const buscarStatus = async () => {
       setLoading(true);
@@ -62,13 +63,31 @@ export function StatusPage() {
     );
   };
 
+  useEffect(() => {
+    // Função para checar o tamanho da tela
+    const updateLayout = () => {
+      if (window.innerWidth >= 768) {
+        setLayout('fixed');
+      } else {
+        setLayout('auto');
+      }
+    };
+
+    // Chama a função ao carregar a página e ao redimensionar a janela
+    updateLayout();
+    window.addEventListener('resize', updateLayout);
+
+    // Limpa o event listener ao desmontar o componente
+    return () => window.removeEventListener('resize', updateLayout);
+  }, []);
+
   return (
     <div>
       <Header />
 
       <Theme>
         {loading ? (
-          <Table.Root variant="surface" layout="auto">
+          <Table.Root variant="surface" layout={layout}>
             <Table.Header style={{ backgroundColor: 'lightgray' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell>Plataforma</Table.ColumnHeaderCell>
@@ -91,7 +110,7 @@ export function StatusPage() {
         ) : erro ? (
           <p style={{ color: 'crimson' }}>{erro}</p>
         ) : (
-          <Table.Root variant="surface">
+          <Table.Root variant="surface" layout={layout}>
             <Table.Header style={{ backgroundColor: 'lightgray' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell>Plataforma</Table.ColumnHeaderCell>
