@@ -110,6 +110,90 @@ const TextFieldInput = styled(TextField)({
   },
 });
 
+// Lista de tags
+const TagsList = styled('div')({
+  display: 'flex',
+  flexWrap: 'wrap',
+  gap: '8px',
+});
+
+// Tag individual (base)
+const TagItem = styled('span')({
+  backgroundColor: '#e0e0e0',
+  padding: '4px 8px',
+  borderRadius: '4px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  gap: '4px',
+  fontSize: '1.4rem', // Ajuste conforme seu tema
+  fontFamily: "'Poppins', sans-serif",
+});
+
+// Botão de remoção dentro da tag
+const RemoveButton = styled('button')({
+  background: 'none',
+  border: 'none',
+  cursor: 'pointer',
+  fontSize: '16px',
+  padding: '0 4px',
+  display: 'inline-flex',
+  alignItems: 'center',
+  color: 'inherit',
+  '&:hover': {
+    color: '#ff0000',
+  },
+});
+
+// Componente de input de tags
+const TagInput = ({ tags, setTags, skuNumber }) => {
+  const [inputValue, setInputValue] = useState('');
+
+  const handleKeyDown = e => {
+    if (e.key === 'Enter' || e.key === ',') {
+      e.preventDefault();
+      addTag();
+    }
+  };
+
+  const addTag = () => {
+    const newTag = inputValue.trim();
+    if (newTag && !tags.includes(newTag)) {
+      setTags([...tags, newTag]);
+      setInputValue('');
+    }
+  };
+
+  const removeTag = tagToRemove => {
+    setTags(tags.filter(tag => tag !== tagToRemove));
+  };
+
+  return (
+    <>
+      <TagsList>
+        {/* Tags adicionadas pelo usuário */}
+        {tags.map((tag, index) => (
+          <TagItem key={index} className='tag'>
+            {tag}
+            <RemoveButton type='button' onClick={() => removeTag(tag)}>
+              ×
+            </RemoveButton>
+          </TagItem>
+        ))}
+      </TagsList>
+
+      <TextFieldInput
+        variant='filled'
+        type='text'
+        label={`Digite uma tag e pressione Enter`}
+        size='small'
+        onChange={e => setInputValue(e.target.value)}
+        onKeyDown={handleKeyDown}
+        value={inputValue}
+      />
+    </>
+  );
+};
+
 export function ProductRegistration() {
   const { store } = useOrders();
   const [nameArt, setNameArt] = useState('');
@@ -124,6 +208,9 @@ export function ProductRegistration() {
   const [loading, setLoading] = useState(false);
   const [open, setOpen] = useState(false);
   const [success, setSuccess] = useState(false);
+
+  const [productTags, setProductTags] = useState([]);
+  const [tagInput, setTagInput] = useState('');
 
   useEffect(() => {
     const fetchData = async () => {
@@ -169,10 +256,10 @@ export function ProductRegistration() {
   const handleFormatChange = event => {
     setFormat(event.target.value);
   };
-  
+
   const handleFramesNumberChange = event => {
-    setFramesNumber(event.target.value)
-  }
+    setFramesNumber(event.target.value);
+  };
 
   const resetInputs = () => {
     setNameArt('');
@@ -181,6 +268,7 @@ export function ProductRegistration() {
     setSkuNumber('');
     setFormat('');
     setFramesNumber('');
+    setProductTags([]);
   };
 
   const handleSubmit = event => {
@@ -190,7 +278,7 @@ export function ProductRegistration() {
 
   const handleConfirm = async () => {
     setLoading(true);
-    
+
     try {
       const productData = handleProductCreation();
       const response = await createProduct(store, productData);
@@ -203,12 +291,10 @@ export function ProductRegistration() {
           setOpen(false);
           setSuccess(false);
         }, 1000);
-      } 
-      
+      }
     } catch (error) {
       setLoading(false);
     }
-
   };
 
   const handleClose = () => {
@@ -218,7 +304,7 @@ export function ProductRegistration() {
   const getVariantKey = () => {
     const key = `${convertFramesNumber(framesNumber)}${
       format.charAt(0).toUpperCase() + format.slice(1).toLowerCase()
-    }`
+    }`;
     return key;
   };
 
@@ -233,25 +319,67 @@ export function ProductRegistration() {
     let updatedNameArt = nameArt; // Armazena o valor atualizado de nameArt
 
     if (!unit) {
-      const prefix = framesNumber === '1' ? 'Quadro Decorativo' : `Kit ${framesNumber} Quadros Decorativos`;
-      const categorie = categoryNames[0] ? categoryNames[0] : ''
+      const prefix =
+        framesNumber === '1'
+          ? 'Quadro Decorativo'
+          : `Kit ${framesNumber} Quadros Decorativos`;
+      const categorie = categoryNames[0] ? categoryNames[0] : '';
       updatedNameArt = `${prefix} ${categorie} ${nameArt}`;
     }
 
+    // Função para preparar as tags no formato correto
+    const prepareTags = (skuNumber, additionalTags) => {
+      // Combina SKU com as tags adicionais
+      const allTags = [skuNumber.toString(), ...additionalTags];
+
+      // Remove duplicatas e tags vazias
+      const uniqueTags = [...new Set(allTags.filter(tag => tag && tag.trim()))];
+
+      // Formata como string separada por vírgula
+      return uniqueTags.join(', ');
+    };
+
     // Imagens padrão para cada loja
     const defaultImagesOutlet = [
-      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canvas_zgquje-7992c817448a11f9f617140659149535-480-0.webp', position: 8 },
-      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/sem_vidro_yodpsx-ae6f6fe0cdfdb3674b17140659278662-480-0.webp', position: 9 },
-      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/com_vidro_fvastx-dd79b1c16e294709d917140659214570-480-0.webp', position: 10 },
-      { src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canaleta_txfhis-a6eb00c1451545947d17140659084033-480-0.webp', position: 11 }
+      {
+        src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canvas_zgquje-7992c817448a11f9f617140659149535-480-0.webp',
+        position: 8,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/sem_vidro_yodpsx-ae6f6fe0cdfdb3674b17140659278662-480-0.webp',
+        position: 9,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/com_vidro_fvastx-dd79b1c16e294709d917140659214570-480-0.webp',
+        position: 10,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/003/889/735/products/canaleta_txfhis-a6eb00c1451545947d17140659084033-480-0.webp',
+        position: 11,
+      },
     ];
 
     const defaultImagesArtepropria = [
-      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_sprxkb-8fa81b8457a896518217073382756360-640-0.webp', position: 8 },
-      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-quadro_com_vidro_qoysbu-0012313385157d6fc017073382822078-640-0.webp', position: 9 },
-      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_com_canaleta_fbasky-1e75aa0bf55dfe19b317073382889011-640-0.webp', position: 10 },
-      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-metacrilato_bmoucm-08401e65cd641c718617073382956305-640-0.webp', position: 11 },
-      { src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-impressc3a3o_lpiyfi-68d8054ea930d2748c17073383028046-640-0.webp', position: 12 }
+      {
+        src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_sprxkb-8fa81b8457a896518217073382756360-640-0.webp',
+        position: 8,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-quadro_com_vidro_qoysbu-0012313385157d6fc017073382822078-640-0.webp',
+        position: 9,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-canvas_com_canaleta_fbasky-1e75aa0bf55dfe19b317073382889011-640-0.webp',
+        position: 10,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-metacrilato_bmoucm-08401e65cd641c718617073382956305-640-0.webp',
+        position: 11,
+      },
+      {
+        src: 'https://acdn.mitiendanube.com/stores/001/146/504/products/acabamentos-impressc3a3o_lpiyfi-68d8054ea930d2748c17073383028046-640-0.webp',
+        position: 12,
+      },
     ];
 
     const body = {
@@ -263,12 +391,17 @@ export function ProductRegistration() {
       ],
       variants: [],
       categories: store === 'outlet' ? [21612799] : [],
-      images: [...imageUrls
-        .filter(url => url)
-        .map((src, index) => ({ src, position: index + 1 })),
-        ...( !unit ? (store === 'outlet' ? defaultImagesOutlet : defaultImagesArtepropria) : [])
+      images: [
+        ...imageUrls
+          .filter(url => url)
+          .map((src, index) => ({ src, position: index + 1 })),
+        ...(!unit
+          ? store === 'outlet'
+            ? defaultImagesOutlet
+            : defaultImagesArtepropria
+          : []),
       ],
-      tags: skuNumber,
+      tags: prepareTags(skuNumber, productTags),
       published: visible,
       free_shipping: false,
       seo_title: updatedNameArt,
@@ -289,7 +422,8 @@ export function ProductRegistration() {
     }
 
     // Montar as variants conforme a store
-    const variantsMapping = store === 'outlet' ? variantsMappingOutlet : variantsMappingArtepropria;
+    const variantsMapping =
+      store === 'outlet' ? variantsMappingOutlet : variantsMappingArtepropria;
     const prefix = store === 'outlet' ? 'OT|' : 'AP|';
     const skuNumbers = skuNumber.replace(/,/g, '_');
     body.variants = deepCopy(variantsMapping[getVariantKey()]) || [];
@@ -308,20 +442,29 @@ export function ProductRegistration() {
   }
 
   const renderImageFields = () => {
-    const count = framesNumber === '1' ? 1 : framesNumber === '2' ? 2 : framesNumber === '3' ? 3 : 0;
-  
-    return imageUrls.slice(2, 2 + count).map((url, index) => (
-      <TextFieldInput
-        variant='filled'
-        key={index + 2}
-        size='small'
-        label={`URL da Imagem ${index + 3}`}
-        type='text'
-        value={url}
-        onChange={e => handleImageUrlChange(index + 2, e.target.value)}
-        {...(!unit && { required: true })}
-      />
-    ));
+    const count =
+      framesNumber === '1'
+        ? 1
+        : framesNumber === '2'
+          ? 2
+          : framesNumber === '3'
+            ? 3
+            : 0;
+
+    return imageUrls
+      .slice(2, 2 + count)
+      .map((url, index) => (
+        <TextFieldInput
+          variant='filled'
+          key={index + 2}
+          size='small'
+          label={`URL da Imagem ${index + 3}`}
+          type='text'
+          value={url}
+          onChange={e => handleImageUrlChange(index + 2, e.target.value)}
+          {...(!unit && { required: true })}
+        />
+      ));
   };
 
   return (
@@ -407,7 +550,7 @@ export function ProductRegistration() {
           <a href='https://postimages.org/' target='_blank'>
             <span>Clique aqui para gerar as URLs</span>
           </a>
-          {!unit && (
+          {!unit &&
             imageUrls.slice(0, 2).map((url, index) => (
               <>
                 <TextFieldInput
@@ -421,14 +564,29 @@ export function ProductRegistration() {
                 />
                 {index === 0 && <span>Imagem principal</span>}
               </>
-            ))
-          )}
+            ))}
         </ContainerButton>
         <ContainerButton>
           <Label>Imagens de Still:</Label>
           {renderImageFields()}
 
-          {framesNumber > 1 && <span>As imagens Still devem conter uma de cada imagem, e outra com todas as artes da composição.</span>}
+          {framesNumber > 1 && (
+            <span>
+              As imagens Still devem conter uma de cada imagem, e outra com
+              todas as artes da composição.
+            </span>
+          )}
+        </ContainerButton>
+
+        <ContainerButton>
+          <>
+            <Label>Tags:</Label>
+            <TagInput
+              tags={productTags}
+              setTags={setProductTags}
+              skuNumber={skuNumber}
+            />
+          </>
         </ContainerButton>
         <ContainerButton>
           <Label>Categorias:</Label>
