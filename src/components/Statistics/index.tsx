@@ -1,5 +1,6 @@
 import React, { useEffect, useState, useMemo } from 'react';
-import { filterOrders } from '../../tools/filterOrders';
+import { useStatisticsOrders } from '../../hooks/useStatisticsOrders';
+import { useAdsSpend } from '../../hooks/useAdsSpend';
 import { useAnalytics } from '../../context/AnalyticsContext';
 import { useOrders } from '../../context/OrdersContext';
 import { useTikTokAds } from '../../context/TikTokAdsContext';
@@ -20,11 +21,6 @@ import {
   DataSectionTPago,
   DataSectionTPagoAP,
 } from './Sections';
-import {
-  calculateRoas,
-  formatCurrency,
-  parseCurrency,
-} from '../../tools/tools';
 import { Container, ContainerCharts } from './styles';
 import { Popup } from '../Popup';
 import { Button } from '../Button';
@@ -34,102 +30,36 @@ import { ContainerButton } from '../Orders/styles';
 import { RefundPopup } from '../Refunds/RefundsPopup';
 
 export function Statistics() {
-  const { data, dataADSMeta, isLoadingADSGoogle, isLoadingADSMeta } =
-    useAnalytics();
-  const { allOrders, isLoading, date, store } = useOrders();
+  // `data` segue do Google Analytics (sessões/conversão). isLoadingADSGoogle
+  // é usado só no gráfico de sessões. A verba de ADS vem da tabela `ads`.
+  const { data, isLoadingADSGoogle } = useAnalytics();
+  const { date, store } = useOrders();
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const { adsData, loading, error, fetchTikTokAds, totalCostTikTokAll } =
     useTikTokAds();
   const [usersByDevice, setUsersByDevice] = useState({});
-  const [adSpends, setAdSpends] = useState({
-    google: 0,
-    googleEcom: 0,
-    googleQuadros: 0,
-    googleEspelhos: 0,
-    googleLoja: 0,
-    googleGeral: 0,
-    meta: 0,
-    metaEcom: 0,
-    metaChatbot: 0,
-    metaQuadros: 0,
-    metaEspelhos: 0,
-    metaInstagram: 0,
-    metaGeral: 0,
-  });
 
-  // Filtros para pedidos
+  // Verba de anúncios (Google + Meta) agora vem da tabela `ads` do novo
+  // backend (mesmo formato do legado, alimenta verba/totalAdSpend das seções).
+  const { adSpends, loading: isLoadingAds } = useAdsSpend(store, date);
+
+  // Métricas de pedidos replicando o filterOrders legado, agora sobre
+  // orders_shop (+ catálogo). Loja Física/Chatbot = 0 (descontinuados).
   const {
     ordersToday,
-    totalRevenue,
     totalPaidAmountFormatted,
-    totalPaidAllAmountFormatted,
-    totalPaidAmountChatbot,
-    totalPaidAmountChatbotFormatted,
-    totalPaidAllAmountEcom,
-    totalQuadros,
-    totalEspelhos,
-    totalNovosClientes,
-    totalRecorrentesClientesChatbot,
-  } = filterOrders(allOrders, date);
+    loading: isLoading,
+  } = useStatisticsOrders(store, date);
 
+  // Sessões por dispositivo continuam vindo do Google Analytics (conversão,
+  // sem equivalente no novo backend). A verba de ADS migrou p/ a tabela `ads`.
   useEffect(() => {
     if (data) {
       setUsersByDevice(data.usersByDevice);
-      setAdSpends(prev => ({
-        ...prev,
-        google: data.totalCost.all,
-        googleEcom: data.totalCost.ecom,
-        googleQuadros: data.totalCost.quadros,
-        googleEspelhos: data.totalCost.espelhos,
-        googleLoja: data.totalCost.loja,
-        googleGeral: data.totalCost.geral,
-      }));
     }
-    if (dataADSMeta?.length > 0) {
-      const firstEntry = dataADSMeta[0];
-      setAdSpends(prev => ({
-        ...prev,
-        meta: firstEntry.totalCost.all,
-        metaEcom: firstEntry.totalCost.ecom,
-        metaChatbot: firstEntry.totalCost.chatbot,
-        metaQuadros: firstEntry.totalCost.quadros,
-        metaEspelhos: firstEntry.totalCost.espelhos,
-        metaInstagram: firstEntry.totalCost.instagram,
-        metaGeral: firstEntry.totalCost.geral,
-      }));
-    }
-  }, [data, dataADSMeta]);
+  }, [data]);
 
-  // Cálculo total de gastos e ROAS
-  const totalAdSpendEcom = useMemo(
-    () => adSpends.googleEcom + adSpends.metaEcom,
-    [adSpends],
-  );
-  const totalAdSpendChatbot = useMemo(() => adSpends.metaChatbot, [adSpends]);
-  const totalAdSpendLoja = useMemo(() => adSpends.googleLoja, [adSpends]);
-
-  const totalAdSpendQuadros = useMemo(
-    () => adSpends.googleQuadros + adSpends.metaQuadros,
-    [adSpends],
-  );
-
-  const totalAdSpendEspelhos = useMemo(
-    () => adSpends.googleEspelhos + adSpends.metaEspelhos,
-    [adSpends],
-  );
-
-  //adquirir verba do insta
-  const totalAdSpendInstagram = useMemo(
-    () => adSpends.metaInstagram,
-    [adSpends],
-  );
-
-  //adquirir verba do insta
-  const totalAdSpendGeral = useMemo(
-    () => adSpends.metaGeral + adSpends.googleGeral,
-    [adSpends],
-  );
-
+  // Verba Total (Google + Meta + TikTok) usada pelas seções Analytics/Cart/Costs.
   const totalAdSpend = useMemo(() => {
     if (store === 'outlet') {
       return (
@@ -155,43 +85,9 @@ export function Statistics() {
     return 0; // Fallback para outros casos
   }, [adSpends]);
 
-  const totalLojaRecorrentes = totalRevenue - totalNovosClientes;
-  const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
-  const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
-
-  const totalOrdersAll =
-    totalPaidAllAmountEcom + totalChatbot + totalLojaBruto;
-  const totalOrdersAllMax =
-    parseCurrency(totalPaidAllAmountFormatted) + totalRecorrentesClientesChatbot;
-
-
-  const roas = calculateRoas(totalOrdersAll, totalAdSpend);
-  const roasQuadros = calculateRoas(totalQuadros, totalAdSpendQuadros);
-  const roasEspelhos = calculateRoas(totalEspelhos, totalAdSpendEspelhos);
-  const roasClientes = calculateRoas(totalNovosClientes, totalAdSpendLoja);
-  const roasClientesChatbot = calculateRoas(
-    totalRecorrentesClientesChatbot,
-    totalAdSpendChatbot,
-  );
-
-  const roasEcom = calculateRoas(totalPaidAllAmountEcom, totalAdSpendEcom);
-
-  const roasLoja = calculateRoas(totalLojaBruto, totalAdSpendLoja);
-
-  const roasChatbot = calculateRoas(
-    parseCurrency(totalPaidAmountChatbotFormatted),
-    totalAdSpendChatbot,
-  );
-  const roasMax = calculateRoas(
-    totalOrdersAllMax,
-    totalAdSpend,
-  );
-
-  // Adicione um novo cálculo específico para o TikTok se necessário
-  const roasTikTok = calculateRoas(
-    parseCurrency(totalPaidAmountFormatted), // Ou outra métrica de receita específica
-    totalCostTikTokAll,
-  );
+  // O ROAS (Geral, Max. e por categoria) é calculado dentro de cada seção
+  // (DataSectionTPago / DataSectionTPagoAP), a partir dos mesmos valores de
+  // Faturamento e Verba Total exibidos nos cards.
 
   // Cores de fundo para diferentes seções
   const bgColors = {
@@ -212,13 +108,9 @@ export function Statistics() {
           bgcolor={bgColors.trafegoPago}
           verba={adSpends}
           totalOrdersFormatted={totalPaidAmountFormatted}
-          roas={roas}
-          roasEspelhos={roasEspelhos}
-          roasQuadros={roasQuadros}
-          roasMax={`Max.: ${roasMax}`}
-          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingADSGoogle={isLoadingAds}
           isLoadingOrders={isLoading}
-          isLoadingADSMeta={isLoadingADSMeta}
+          isLoadingADSMeta={isLoadingAds}
         />
       ) : (
         <DataSectionTPagoAP
@@ -226,16 +118,9 @@ export function Statistics() {
           bgcolor={bgColors.trafegoPago}
           verba={adSpends}
           totalOrdersFormatted={totalPaidAmountFormatted}
-          roas={roas}
-          roasEcom={roasEcom}
-          roasLoja={roasLoja}
-          roasChatbot={roasChatbot}
-          roasClientes={roasClientes}
-          roasClientesChatbot={roasClientesChatbot}
-          roasMax={`Max.: ${roasMax}`}
-          isLoadingADSGoogle={isLoadingADSGoogle}
+          isLoadingADSGoogle={isLoadingAds}
           isLoadingOrders={isLoading}
-          isLoadingADSMeta={isLoadingADSMeta}
+          isLoadingADSMeta={isLoadingAds}
         />
       )}
 
@@ -254,8 +139,8 @@ export function Statistics() {
         bgcolor={bgColors.costs}
         totalAdSpend={totalAdSpend}
         totalOrdersFormatted={totalPaidAmountFormatted}
-        isLoadingADSGoogle={isLoadingADSGoogle}
-        isLoadingADSMeta={isLoadingADSMeta}
+        isLoadingADSGoogle={isLoadingAds}
+        isLoadingADSMeta={isLoadingAds}
       />
 
       <ContainerCharts>

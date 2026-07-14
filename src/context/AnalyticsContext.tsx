@@ -11,15 +11,70 @@ import { useTab } from './TabContext';
 import { useAuth } from './AuthContext';
 import {
   ADSMetaEntry,
+  AdsRow,
   AnalyticsProviderProps,
   DataAnalyticsProps,
   DataProps,
+  DatabaseTable,
 } from '../types';
-import { env } from "../utils/env";
+import { fetchTable } from '../api/db';
 
 export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 
 export const useAnalytics = () => useContext(AnalyticsContext);
+
+const num = (value: unknown): number => {
+  const n = Number(value);
+  return Number.isFinite(n) ? n : 0;
+};
+
+// Linhas Google da tabela `ads` → DataProps (sessões/dispositivos/carrinhos/
+// checkout + verba Google). Soma o período (uma linha por dia).
+const buildGoogleData = (rows: AdsRow[]): DataProps => {
+  const data: DataProps = {
+    totalVisits: 0,
+    usersByDevice: { mobile: 0, desktop: 0, tablet: 0 },
+    totalCost: { all: 0, ecom: 0, quadros: 0, espelhos: 0, loja: 0, chatbot: 0, geral: 0 },
+    carts: 0,
+    beginCheckout: 0,
+  };
+  for (const r of rows) {
+    data.totalVisits += num(r.total_visits);
+    data.carts += num(r.carts);
+    data.beginCheckout += num(r.begin_checkout);
+    const ubd = r.users_by_device || { mobile: 0, desktop: 0, tablet: 0 };
+    data.usersByDevice.mobile += num(ubd.mobile);
+    data.usersByDevice.desktop += num(ubd.desktop);
+    data.usersByDevice.tablet += num(ubd.tablet);
+    data.totalCost.all += num(r.funding_all);
+    data.totalCost.ecom += num(r.funding_ecom);
+    data.totalCost.quadros += num(r.funding_painting);
+    data.totalCost.espelhos += num(r.funding_mirror);
+    data.totalCost.loja += num(r.funding_store);
+    data.totalCost.geral += num(r.funding_general);
+    data.totalCost.chatbot += num(r.funding_chatbot);
+  }
+  return data;
+};
+
+// Linhas Meta da tabela `ads` → ADSMetaEntry[] (verba Meta + impressões).
+const buildMetaData = (rows: AdsRow[]): ADSMetaEntry[] => {
+  const totalCost = {
+    all: 0, ecom: 0, quadros: 0, espelhos: 0, instagram: 0, chatbot: 0, geral: 0,
+  };
+  let impressions = 0;
+  for (const r of rows) {
+    totalCost.all += num(r.funding_all);
+    totalCost.ecom += num(r.funding_ecom);
+    totalCost.quadros += num(r.funding_painting);
+    totalCost.espelhos += num(r.funding_mirror);
+    totalCost.instagram += num(r.funding_insta);
+    totalCost.chatbot += num(r.funding_chatbot);
+    totalCost.geral += num(r.funding_general);
+    impressions += num(r.impressions);
+  }
+  return [{ account_id: 'meta', totalCost, impressions }];
+};
 
 export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   children,
@@ -44,59 +99,52 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   const [dataADSMeta, setDataADSMeta] = useState<ADSMetaEntry[]>([]);
   const [errorGoogle, setErrorGoogle] = useState<boolean>(false);
   const [errorMeta, setErrorMeta] = useState<boolean>(false);
-  const { store, date, allOrders } = useOrders();
+  const { store, date } = useOrders();
   const { user } = useAuth();
   const { activeTab } = useTab();
 
   const startDate = formatDate(date[0]);
   const endDate = formatDate(date[1]);
 
-  const fetchDataGoogle = async (): Promise<void> => {
+  // Busca a verba/analytics da tabela `ads` do novo backend e monta `data`
+  // (linhas Google: sessões/dispositivos/carrinhos/checkout + verba Google) e
+  // `dataADSMeta` (linhas Meta: verba + impressões) numa única chamada.
+  const loadAds = async (): Promise<void> => {
     try {
       setIsLoadingADSGoogle(true);
-      const response = await fetch(
-        `${env.apiUrl}analytics/${store}/${startDate}/${endDate}`,
+      setIsLoadingADSMeta(true);
+      const rows = await fetchTable<AdsRow>(DatabaseTable.ADS, {
+        store,
+        startDate,
+        endDate,
+      });
+      const google = rows.filter(
+        (r) => String(r.plataform).toLowerCase() === 'google',
       );
-      if (!response.ok) {
-        throw new Error('Erro ao buscar dados');
-      }
-      const data = await response.json();
-      setData(data);
+      const meta = rows.filter(
+        (r) => String(r.plataform).toLowerCase() === 'meta',
+      );
+      setData(buildGoogleData(google));
+      setDataADSMeta(buildMetaData(meta));
       setErrorGoogle(false);
+      setErrorMeta(false);
     } catch (err: any) {
-      setIsLoadingADSGoogle(true);
       setErrorGoogle(true);
-      //fetchDataGoogle();
+      setErrorMeta(true);
     } finally {
       setIsLoadingADSGoogle(false);
-    }
-  };
-
-  const fetchDataADSMeta = async (): Promise<void> => {
-    try {
-      setIsLoadingADSMeta(true);
-      const response = await fetch(
-        `${env.apiUrl}ads/meta/${store}/${startDate}/${endDate}`,
-      );
-      if (!response.ok) {
-        throw new Error('Failed to fetch data');
-      }
-      const data = await response.json();
-      setDataADSMeta(data);
-      setErrorMeta(false);
-    } catch (error: any) {
-      setIsLoadingADSMeta(true);
-      setErrorMeta(true);
-      // fetchDataADSMeta();
-    } finally {
       setIsLoadingADSMeta(false);
     }
   };
 
+  // Mantidos para compatibilidade (ButtonReload chama ambos); ambos recarregam
+  // a tabela `ads` (Google + Meta) na nova base.
+  const fetchDataGoogle = loadAds;
+  const fetchDataADSMeta = loadAds;
+
   useEffect(() => {
     if (activeTab === 2) {
-      fetchDataGoogle();
-      fetchDataADSMeta();
+      loadAds();
     }
   }, [store, user, activeTab, date]);
 

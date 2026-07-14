@@ -3,6 +3,7 @@ import React, {
   useReducer,
   useCallback,
   useContext,
+  useState,
 } from 'react';
 
 import {
@@ -12,7 +13,9 @@ import {
   DatabaseProviderProps,
   DatabaseTable,
   DatabaseData,
+  FetchTableOptions,
 } from '../types';
+import { fetchTable } from '../api/db';
 
 // Estado inicial
 const initialState: DatabaseContextState = {
@@ -87,41 +90,35 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
   children,
 }) => {
   const [state, dispatch] = useReducer(databaseReducer, initialState);
-  // Importar a função fetchRequest - ajuste o caminho conforme necessário
-  const fetchRequest = async (table: string): Promise<any[]> => {
-    const url = `http://localhost:8000/dbquery/${table}`;
 
-    // Esta é uma importação dinâmica para evitar problemas de circular dependency
-    const response = await fetch(url);
+  // Sinal de recarga manual (ButtonReload). Consumidores da base nova incluem
+  // `reloadKey` nas deps do efeito de busca; `reloadData()` força o refetch.
+  const [reloadKey, setReloadKey] = useState(0);
+  const reloadData = useCallback(() => setReloadKey((k) => k + 1), []);
 
-    if (!response.ok) {
-      throw new Error(`Erro na requisição: ${response.statusText}`);
-    }
+  // Busca dados de uma tabela do novo backend via /db/query.
+  // Delega ao service layer (api/db.ts), que cuida da rota real, do filtro
+  // de loja e do parse dos campos JSONB.
+  const fetchData = useCallback(
+    async (table: DatabaseTable, options: FetchTableOptions = {}) => {
+      try {
+        dispatch({ type: 'FETCH_START', table });
 
-    const data = await response.json();
-    return data;
-  };
+        const data = (await fetchTable<DatabaseData>(table, options)) ?? [];
 
-  // Função para buscar dados
-  const fetchData = useCallback(async (table: DatabaseTable) => {
-    try {
-      dispatch({ type: 'FETCH_START', table });
-
-      const data = await fetchRequest(table);
-
-      if (data && data.length > 0) {
+        // Lista vazia é um estado válido (ex.: nenhum cupom no período),
+        // não um erro — deixamos a UI exibir "nenhum registro".
         dispatch({ type: 'FETCH_SUCCESS', table, data });
-      } else {
-        dispatch({ type: 'FETCH_ERROR', error: 'Nenhum dado encontrado' });
+      } catch (error: any) {
+        console.error('Erro ao buscar dados:', error);
+        dispatch({
+          type: 'FETCH_ERROR',
+          error: error.message || 'Erro ao buscar dados do banco',
+        });
       }
-    } catch (error: any) {
-      console.error('Erro ao buscar dados:', error);
-      dispatch({
-        type: 'FETCH_ERROR',
-        error: error.message || 'Erro ao buscar dados do banco',
-      });
-    }
-  }, []);
+    },
+    [],
+  );
 
   // Função para limpar dados
   const clearData = useCallback(() => {
@@ -139,6 +136,8 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
     fetchData,
     clearData,
     getCurrentData,
+    reloadKey,
+    reloadData,
   };
 
   return (

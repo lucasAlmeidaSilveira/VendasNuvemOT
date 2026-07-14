@@ -14,7 +14,7 @@ import {
   EnhancedTableHeadRefunds,
 } from '../../tools/table';
 import { PaymentStatus } from '../Orders/PaymentStatus';
-import { ClientDetails } from '../Orders/ClientDetails';
+import { ClientDetailsShop } from '../Orders/OrdersShop/ClientDetailsShop';
 import { ProductDetails } from '../Orders/ProductDetails';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
 import { Flex, Table, Theme } from '@radix-ui/themes';
@@ -639,7 +639,7 @@ function TableOrders({ orders }: any) {
                     {expandedOrders[order.id] && (
                       <Table.Row className="row-order">
                         <Table.Cell colSpan={6}>
-                          <ClientDetails order={order} />
+                          {order.id_cli && <ClientDetailsShop order={order} />}
                           <ProductDetails products={order.products} />
                         </Table.Cell>
                       </Table.Row>

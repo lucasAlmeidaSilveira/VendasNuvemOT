@@ -23,10 +23,15 @@ export function formatDate(date: Date) {
 }
 
 export function formatDateShort(dateString: string) {
+  // Fixa o fuso em America/Sao_Paulo para que o dia exibido case com o dia-calendário
+  // usado no filtro do backend, independente do fuso do navegador.
   const date = new Date(dateString);
-  const day = date.getDate();
+  const day = date.toLocaleString('pt-BR', {
+    timeZone: 'America/Sao_Paulo',
+    day: 'numeric',
+  });
   const month = date
-    .toLocaleString('default', { month: 'short' })
+    .toLocaleString('pt-BR', { timeZone: 'America/Sao_Paulo', month: 'short' })
     .replace('.', '');
   return `${day} ${month}`;
 }
@@ -110,7 +115,7 @@ export function formatDateToUTC(
 }
 
 export function formatPhoneNumber(phoneNumber: string) {
-  const parsedNumber = parsePhoneNumberFromString(phoneNumber);
+  const parsedNumber = parsePhoneNumberFromString(phoneNumber, 'BR');
   if (parsedNumber) {
     return parsedNumber.formatNational();
   }
@@ -120,7 +125,7 @@ export function formatPhoneNumber(phoneNumber: string) {
 export const calculateRoas = (ordersNumber: number, adSpend: number) =>
   adSpend > 0 ? (ordersNumber / adSpend).toFixed(2) : '0.00';
 
-export const calculatePopupRate = (orders: Order[], popups: Order[]) => {
+export const calculatePopupRate = (orders: { length: number }[], popups: { length: number }[]) => {
   const numericOrders = orders.length;
   const numericPopups = popups.length;
 
@@ -206,7 +211,7 @@ export const isLate = (order: Order) => {
   );
 };
 
-export const generateDataCosts = (orders: Order[], couponsList: string[]) => {
+export const generateDataCosts = (orders: Array<{ total: string | number; coupon: Array<{ code: string }> }>, couponsList: string[]) => {
   return [
     {
       name: 'Total',
