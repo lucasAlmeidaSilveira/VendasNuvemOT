@@ -140,16 +140,38 @@ export async function getClient(id: number | string): Promise<ClientRow | null> 
   return data as ClientRow;
 }
 
+// Vendas históricas por produto (all-time), por loja — já AGREGADO no backend
+// reproduzindo a tela legada (agrupa por product_id, +1 por linha, faturamento
+// pelo preço histórico da linha, variações por variant_values, TODOS os status).
+// A fonte por linha é orders_shop.products_detail (enriquecida + backfill).
+export interface ProductSalesRow {
+  id: number | string;
+  sku: string | null;
+  skuNumber: string;
+  name: string;
+  image: string | null;
+  sales: number;
+  revenue: number;
+  variantCount: Record<string, number>;
+  variations: string;
+}
+export interface VariationRow {
+  id: string;
+  name: string;
+  sales: number;
+}
+export interface ProductSalesResult {
+  products: ProductSalesRow[];
+  variations: VariationRow[];
+}
+
 /**
- * Total HISTÓRICO de unidades vendidas por SKU (all-time), por loja.
- * Rota real: GET /db/product-sales/:store. Não usa filtro de data — o backend
- * agrega todos os pedidos PAGOS. O faturamento continua derivado no front
- * (unidades × preço atual do catálogo). Resposta já é array limpo de
- * { sku, units }, sem campos JSONB para desempacotar.
+ * Vendas por produto (all-time), por loja. Rota: GET /db/product-sales/:store.
+ * Sem filtro de data; o backend já devolve { products, variations } agregado.
  */
 export async function fetchProductSales(
   store: StoreName | string | number,
-): Promise<{ sku: string; units: number }[]> {
+): Promise<ProductSalesResult> {
   const response = await fetch(
     `${env.apiUrl}db/product-sales/${encodeURIComponent(String(store))}`,
   );
@@ -159,7 +181,10 @@ export async function fetchProductSales(
     );
   }
   const data = await response.json();
-  return Array.isArray(data) ? data : [];
+  return {
+    products: Array.isArray(data?.products) ? data.products : [],
+    variations: Array.isArray(data?.variations) ? data.variations : [],
+  };
 }
 
 /** Busca um produto pelo SKU (cod_categoria). Aceita caixa baixa ou alta. */

@@ -16,78 +16,17 @@ import { AuthDialog } from './AuthDialog';
 import { formatCurrency } from '../../tools/tools';
 import { Oval } from 'react-loader-spinner';
 import { fetchProductSales } from '../../api/db';
-import { resolveProducts } from '../../hooks/productCache';
-import { PLACEHOLDER, baseCode, skuDimension, cleanName } from '../../tools/skus';
-
-// Agrega vendas históricas (all-time) em produtos e variações. O backend
-// (/db/product-sales) já entrega o total de unidades por SKU dos pedidos pagos;
-// nome/preço/imagem/dimensão vêm do catálogo (productMap). Replica o resultado
-// da tela legada (que agrupava por product_id) agrupando pelo código-base do
-// SKU — variantes do mesmo produto compartilham esse código.
-function aggregateProducts(skuCounts, productMap) {
-  const salesMap = {}; // baseCode -> { id, skuNumber, name, image, sales, revenue, variantCount }
-  const variationMap = {}; // dimensão -> { id, name, sales }
-
-  skuCounts.forEach(({ sku, units }) => {
-    const prod = productMap.get(sku);
-    const classifySource = prod
-      ? `${prod.nome_categoria || ''} ${prod.desc_categoria || ''}`.toLowerCase()
-      : String(sku).toLowerCase();
-    // Pula placeholder de Loja Física, como no legado (nome contém "produto").
-    if (classifySource.includes(PLACEHOLDER)) return;
-
-    const key = baseCode(sku); // agrupa variantes do mesmo produto
-    const price = prod ? Number(prod.preco) || 0 : 0;
-    const image = prod ? prod.img_categoria : undefined;
-    const name = cleanName(
-      prod ? prod.desc_categoria || prod.nome_categoria || sku : sku,
-    );
-    const dimension = skuDimension(sku) || (prod && prod.dim_categoria) || '';
-
-    if (!salesMap[key]) {
-      salesMap[key] = {
-        id: key,
-        skuNumber: key,
-        name,
-        image,
-        sales: 0,
-        revenue: 0,
-        variantCount: {},
-      };
-    }
-    const entry = salesMap[key];
-    entry.sales += units;
-    entry.revenue += price * units; // faturamento = unidades × preço do catálogo
-    if (!entry.image && image) entry.image = image;
-
-    if (dimension) {
-      entry.variantCount[dimension] =
-        (entry.variantCount[dimension] || 0) + units;
-      if (!variationMap[dimension]) {
-        variationMap[dimension] = { id: dimension, name: dimension, sales: 0 };
-      }
-      variationMap[dimension].sales += units;
-    }
-  });
-
-  // Variação (dimensão) mais vendida por produto, como no legado.
-  Object.values(salesMap).forEach((product) => {
-    const top = Object.entries(product.variantCount).sort(
-      (a, b) => b[1] - a[1],
-    )[0];
-    product.variations = top ? top[0] : '';
-  });
-
-  return { salesMap, variationMap };
-}
 
 export function Products() {
   // A loja vem do filtro global (OrdersContext). O período NÃO se aplica aqui:
   // a aba Produtos mostra o total histórico (all-time) de vendas por produto.
   const { store } = useOrders();
 
-  const [skuCounts, setSkuCounts] = useState([]);
-  const [productMap, setProductMap] = useState(() => new Map());
+  // Vendas já vêm AGREGADAS do backend (/db/product-sales), reproduzindo a tela
+  // legada: agrupadas por product_id, faturamento pelo preço histórico da linha,
+  // variações por variant_values, contando todos os status.
+  const [products, setProducts] = useState([]);
+  const [variations, setVariations] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
@@ -98,26 +37,25 @@ export function Products() {
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
-  // Busca o total histórico de unidades por SKU (all-time, por loja) e resolve
-  // os SKUs no catálogo (/db/product/:sku, com cache). Não depende do período.
+  // Busca as vendas por produto já agregadas no backend (all-time, por loja).
+  // Não depende do período.
   useEffect(() => {
     let active = true;
     setLoading(true);
     setError(null);
 
     fetchProductSales(store)
-      .then(async (counts) => {
-        const resolved = await resolveProducts(counts.map((c) => c.sku));
+      .then((data) => {
         if (!active) return;
-        setSkuCounts(counts);
-        setProductMap(resolved);
+        setProducts(data.products);
+        setVariations(data.variations);
         setLoading(false);
       })
       .catch((err) => {
         if (!active) return;
         setError(err.message || 'Erro ao carregar produtos');
-        setSkuCounts([]);
-        setProductMap(new Map());
+        setProducts([]);
+        setVariations([]);
         setLoading(false);
       });
 
@@ -126,30 +64,20 @@ export function Products() {
     };
   }, [store]);
 
-  // Agregação (produtos + variações) derivada das vendas históricas + catálogo.
-  const { productSales, variations } = useMemo(() => {
-    const { salesMap, variationMap } = aggregateProducts(skuCounts, productMap);
-    return {
-      productSales: salesMap,
-      variations: Object.values(variationMap).sort((a, b) => b.sales - a.sales),
-    };
-  }, [skuCounts, productMap]);
-
   // Produtos filtrados por busca (nome/SKU) e ordenados por sortType.
   const filteredProducts = useMemo(() => {
     const sorter = (a, b) =>
       sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
-    const all = Object.values(productSales);
     const query = searchQuery.toLowerCase();
     const filtered = query
-      ? all.filter(
+      ? products.filter(
           (product) =>
             product.name.toLowerCase().includes(query) ||
             product.skuNumber?.toLowerCase().includes(query),
         )
-      : all;
+      : products;
     return [...filtered].sort(sorter);
-  }, [productSales, searchQuery, sortType]);
+  }, [products, searchQuery, sortType]);
 
   // Variações exibidas: sem busca, todas; com busca, só as dos produtos filtrados.
   const filteredVariations = useMemo(() => {

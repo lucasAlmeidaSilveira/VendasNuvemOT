@@ -440,12 +440,15 @@ export interface AdsRow {
 
 export interface CouponRow {
   // OBS: o backend NÃO retorna id_coupon (está comentado no transform).
-  // A chave de agregação é (name, date_coupon).
-  date_coupon: string;
+  // A rota /db/query/coupon recalcula o uso a partir do dump pedidos_<loja> (paridade com
+  // o legado), retornando UMA linha por cupom já agregada no período; por isso date_coupon
+  // pode vir null.
+  date_coupon: string | null;
   name: string;
-  quantity: number; // nº de pedidos que usaram o cupom no dia
+  quantity: number; // nº de pedidos que usaram o cupom no período
   total_money: number; // faturamento dos pedidos que usaram o cupom
-  total_discount: number; // total descontado
+  total_discount: number; // valor do cupom (campo `value`): percentual ou R$ conforme discount_type
+  discount_type?: string | null; // 'percentage' | 'absolute' — habilita o render type-aware
   order_ids: number[]; // jsonb -> array de order_id
   store: string; // nome da loja ('outlet' | 'artepropria') — retornado pela rota com :store
 }

@@ -142,15 +142,20 @@ export function Coupons() {
           name: coupon.name,
           used: 0,
           totalRevenue: 0,
-          discountPercent: 0,
+          discountValue: 0,
+          // Tipo do cupom ('percentage' | 'absolute') para render type-aware, igual ao legado.
+          discountType: coupon.discount_type || 'percentage',
         };
       }
       couponUsageMap[coupon.name].used += Number(coupon.quantity) || 0;
       couponUsageMap[coupon.name].totalRevenue += Number(coupon.total_money) || 0;
-      // total_discount é o percentual FIXO do cupom, repetido em cada linha
-      // diária — NÃO somar entre dias. Mantemos o maior valor visto no período.
-      couponUsageMap[coupon.name].discountPercent = Math.max(
-        couponUsageMap[coupon.name].discountPercent,
+      if (coupon.discount_type) {
+        couponUsageMap[coupon.name].discountType = coupon.discount_type;
+      }
+      // total_discount é o VALOR FIXO do cupom (campo `value`), repetido em cada linha —
+      // NÃO somar. Mantemos o maior valor visto no período.
+      couponUsageMap[coupon.name].discountValue = Math.max(
+        couponUsageMap[coupon.name].discountValue,
         Number(coupon.total_discount) || 0,
       );
     });
@@ -246,7 +251,11 @@ export function Coupons() {
                       {coupon.name}
                     </StyledTableCell>
                     <StyledTableCell>
-                      {`${coupon.discountPercent}%`}
+                      {coupon.discountType === 'percentage'
+                        ? `${parseInt(coupon.discountValue)}%`
+                        : `R$ ${parseFloat(coupon.discountValue)
+                            .toFixed(2)
+                            .replace('.', ',')}`}
                     </StyledTableCell>
                     <StyledTableCell>
                       {formatCurrency(coupon.totalRevenue)}

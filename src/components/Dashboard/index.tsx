@@ -12,7 +12,7 @@ import { useOrders } from '../../context/OrdersContext';
 import { useAuth } from '../../context/AuthContext';
 import { BestSellers } from '../BestSellers';
 import { useDatabaseContext } from '../../context/DbContext';
-import { DatabaseTable, OrderShop } from '../../types';
+import { DatabaseTable, DailySale } from '../../types';
 import { formatCurrency, formatDate } from '../../tools/tools';
 
 const toNumber = (value: unknown): number => {
@@ -30,49 +30,37 @@ export function Dashboard() {
   // Loading efetivo: enquanto o estado compartilhado do DbContext ainda não
   // aponta para a NOSSA tabela (null no 1º paint, ou a tabela da aba anterior)
   // ou está carregando, mostramos spinner em vez de piscar "0 Vendas".
-  const isBusy = loading || currentTable !== DatabaseTable.ORDERS_SHOP;
+  const isBusy = loading || currentTable !== DatabaseTable.DAILY_SALES;
 
-  // KPIs replicando a lógica LEGADA (tools/filterOrders) sobre `orders_shop`,
-  // para imprimir o MESMO resultado do legado. Voltamos à soma client-side
-  // (antes evitada por causa do created_at corrompido — §3) porque o created_at
-  // já foi corrigido no backend, então o filtro por data está correto.
-  // Regras do filterOrders: exclui método 'other' (parcerias); "Geral (qtd)"
-  // exclui cancelado (active=0) e estornado (voided); "Pago" exige paid.
-  // OBS: Loja Física/Chatbot (storefront) eram somados no legado mas são
-  // pedidos manuais descontinuados — não existem no orders_shop (ecommerce).
+  // KPIs vêm PRÉ-AGREGADOS de `daily_sales` (uma linha por dia/loja). O backend já
+  // aplica as regras do legado (tools/filterOrders) ao montar a tabela: exclui método
+  // 'other' (parcerias); "Geral (qtd)" exclui cancelado/estornado; "Pago" exige paid.
+  // Aqui só somamos as linhas-dia do período selecionado.
+  // OBS: Loja Física/Chatbot (storefront) eram somados no legado mas são pedidos
+  // manuais descontinuados — não existem no orders_shop/daily_sales (ecommerce).
   useEffect(() => {
     if (!user) return; // aguarda autenticação; refetch quando `user` muda
     const startDate = formatDate(date[0]);
     const endDate = formatDate(date[1]);
-    fetchData(DatabaseTable.ORDERS_SHOP, { startDate, endDate, store });
+    fetchData(DatabaseTable.DAILY_SALES, { startDate, endDate, store });
   }, [date, store, user, fetchData, reloadKey]);
 
   const kpis = useMemo(() => {
-    if (currentTable !== DatabaseTable.ORDERS_SHOP || !Array.isArray(data)) {
+    if (currentTable !== DatabaseTable.DAILY_SALES || !Array.isArray(data)) {
       return { pagoCount: 0, pagoValue: 0, geralCount: 0, geralValue: 0 };
     }
 
-    const rows = data as OrderShop[];
-    // ordersAllToday: exclui apenas parcerias (base do "Geral (valor)").
-    const ordersAllToday = rows.filter((o) => o.payment_method !== 'other');
-    // ordersToday: também exclui cancelado (active=0) e estornado (voided).
-    const ordersToday = ordersAllToday.filter(
-      (o) => Number(o.active) === 1 && o.payment_status !== 'voided',
+    const rows = data as DailySale[];
+    // Soma das linhas-dia do período: Pago e Geral (qtd/valor) já calculados na origem.
+    return rows.reduce(
+      (acc, r) => ({
+        pagoCount: acc.pagoCount + toNumber(r.total_paid_orders),
+        pagoValue: acc.pagoValue + toNumber(r.total_paid_money),
+        geralCount: acc.geralCount + toNumber(r.total_orders),
+        geralValue: acc.geralValue + toNumber(r.total_money),
+      }),
+      { pagoCount: 0, pagoValue: 0, geralCount: 0, geralValue: 0 },
     );
-    // ordersTodayPaid: somente pagos.
-    const ordersTodayPaid = ordersToday.filter(
-      (o) => o.payment_status === 'paid',
-    );
-
-    return {
-      // Pago = qtd e soma dos pedidos pagos (= totalPaidAllAmountEcom do legado).
-      pagoCount: ordersTodayPaid.length,
-      pagoValue: ordersTodayPaid.reduce((acc, o) => acc + toNumber(o.total), 0),
-      // Geral = qtd de pedidos (excl. cancelado/estornado) e soma de TODOS os
-      // pedidos do período (= ordersToday.length / sum(ordersAllToday) do legado).
-      geralCount: ordersToday.length,
-      geralValue: ordersAllToday.reduce((acc, o) => acc + toNumber(o.total), 0),
-    };
   }, [data, currentTable]);
 
   return (
