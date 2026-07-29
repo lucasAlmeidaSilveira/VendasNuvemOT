@@ -19,6 +19,22 @@ import {
   cleanName,
 } from '../../tools/skus';
 
+// products_detail chega como string JSON (às vezes duplamente codificada) e NÃO é
+// parseada pelo service (db.ts). Desempacota localmente, sem alterar o payload global.
+const parseDetail = (value) => {
+  let v = value;
+  let guard = 0;
+  while (typeof v === 'string' && guard < 3) {
+    try {
+      v = JSON.parse(v);
+    } catch {
+      return [];
+    }
+    guard += 1;
+  }
+  return Array.isArray(v) ? v : [];
+};
+
 export function BestSellers() {
   // Período e loja vêm dos filtros globais (OrdersContext).
   const { date, store } = useOrders();
@@ -80,6 +96,20 @@ export function BestSellers() {
     };
 
     orders.forEach((order) => {
+      // Rótulo rico por SKU vindo de products_detail (variant_values), ex.:
+      // "60x90, Com vidro, Tabaco". products[i] === products_detail[i].sku
+      // (mesma origem, ambos UPPERCASE), então o join por SKU é confiável.
+      const detail = parseDetail(order.products_detail);
+      const richBySku = new Map();
+      detail.forEach((line) => {
+        const label = Array.isArray(line?.variant_values)
+          ? line.variant_values.join(', ')
+          : '';
+        if (line?.sku && label) {
+          richBySku.set(String(line.sku).toUpperCase(), label);
+        }
+      });
+
       const skus = Array.isArray(order.products) ? order.products : [];
       skus.forEach((sku) => {
         const prod = productMap.get(sku);
@@ -96,6 +126,9 @@ export function BestSellers() {
         );
         const key = baseCode(sku); // agrupa variantes do mesmo produto
         const dimension = skuDimension(sku) || (prod && prod.dim_categoria) || '';
+        // Prefere a variação completa de products_detail; cai na dimensão do SKU
+        // (comportamento antigo) para pedidos sem products_detail.
+        const variantLabel = richBySku.get(String(sku).toUpperCase()) || dimension;
 
         Object.entries(CATEGORY_KEYWORDS).forEach(([catKey, keyword]) => {
           if (!classifySource.includes(keyword)) return;
@@ -115,9 +148,9 @@ export function BestSellers() {
           entry.sales += 1;
           entry.totalSales += price;
           if (!entry.image && image) entry.image = image;
-          if (dimension) {
-            entry.variantCount[dimension] =
-              (entry.variantCount[dimension] || 0) + 1;
+          if (variantLabel) {
+            entry.variantCount[variantLabel] =
+              (entry.variantCount[variantLabel] || 0) + 1;
           }
           cat.count += 1;
           cat.value += price;
@@ -125,7 +158,8 @@ export function BestSellers() {
       });
     });
 
-    // Variação mais vendida por produto (dimensão), como no legado.
+    // Variação mais vendida por produto (rótulo completo de products_detail,
+    // com fallback para a dimensão), como no legado.
     Object.values(cats).forEach((cat) =>
       Object.values(cat.map).forEach((product) => {
         const top = Object.entries(product.variantCount).sort(
@@ -140,8 +174,11 @@ export function BestSellers() {
     const totalValue =
       cats.quadros.value + cats.espelhos.value + cats.artesanais.value;
     const pct = (part, total) => (total ? (part / total) * 100 : 0);
+    // Ordena por quantidade (unidades) e, em empate, pelo valor da venda.
     const toSorted = (cat) =>
-      Object.values(cat.map).sort((a, b) => b.sales - a.sales);
+      Object.values(cat.map).sort(
+        (a, b) => b.sales - a.sales || b.totalSales - a.totalSales,
+      );
 
     return {
       products: {
@@ -169,8 +206,9 @@ export function BestSellers() {
     };
   }, [orders, productMap]);
 
-  // Variações (simplificado): orders_shop não tem variant_values por linha, então
-  // ranqueamos por dimensão/tipo do catálogo dentro da categoria selecionada.
+  // Variações: usa orders_shop.products_detail (variant_values por linha) para
+  // reproduzir a riqueza do legado (ex.: "60x90, Com vidro, Tabaco"). Pedidos sem
+  // products_detail caem no fallback por dimensão do SKU/catálogo (comportamento antigo).
   const variations = useMemo(() => {
     const keyword = selectedCategory.toLowerCase().includes('espelho')
       ? 'espelho'
@@ -178,18 +216,36 @@ export function BestSellers() {
     const counts = {};
 
     orders.forEach((order) => {
-      const skus = Array.isArray(order.products) ? order.products : [];
-      skus.forEach((sku) => {
-        const prod = productMap.get(sku);
-        const classifySource = prod
-          ? `${prod.nome_categoria || ''} ${prod.desc_categoria || ''}`.toLowerCase()
-          : '';
-        if (classifySource.includes(PLACEHOLDER)) return;
-        if (!classifySource.includes(keyword)) return;
-        const dimension =
-          skuDimension(sku) || (prod && prod.dim_categoria) || 'Outros';
-        counts[dimension] = (counts[dimension] || 0) + 1;
-      });
+      const detail = parseDetail(order.products_detail);
+      if (detail.length > 0) {
+        detail.forEach((line) => {
+          const cleaned = String(line?.name || '')
+            .replace(/\(.*?\)/g, '')
+            .trim();
+          const lower = cleaned.toLowerCase();
+          if (lower.includes(PLACEHOLDER)) return; // Loja Física
+          if (!lower.includes(keyword)) return; // categoria selecionada
+          const label = Array.isArray(line?.variant_values)
+            ? line.variant_values.join(', ')
+            : '';
+          const name = label || 'Outros';
+          counts[name] = (counts[name] || 0) + 1;
+        });
+      } else {
+        // Fallback: pedidos sem products_detail mantêm a lógica atual (dimensão do SKU).
+        const skus = Array.isArray(order.products) ? order.products : [];
+        skus.forEach((sku) => {
+          const prod = productMap.get(sku);
+          const classifySource = prod
+            ? `${prod.nome_categoria || ''} ${prod.desc_categoria || ''}`.toLowerCase()
+            : '';
+          if (classifySource.includes(PLACEHOLDER)) return;
+          if (!classifySource.includes(keyword)) return;
+          const dimension =
+            skuDimension(sku) || (prod && prod.dim_categoria) || 'Outros';
+          counts[dimension] = (counts[dimension] || 0) + 1;
+        });
+      }
     });
 
     return Object.entries(counts)

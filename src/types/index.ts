@@ -371,6 +371,20 @@ export const STORE_FILTERABLE_TABLES = [
   'coupon',
 ];
 
+// Linha a linha do pedido em orders_shop.products_detail. Enquanto `products` guarda só os
+// SKUs, aqui ficam os campos que a tela legada de Produtos usava.
+export interface ProductDetailShop {
+  product_id: number | null;
+  sku: string;
+  name: string | null;
+  price: number;
+  image: string | null;
+  variant_values: string[];
+  // Só é gravado em pedidos de loja física: guarda a QUANTIDADE DE CLIENTES do dia,
+  // que é o número que a listagem legada imprimia na coluna Produtos.
+  quantity?: number;
+}
+
 export interface OrderShop {
   order_id: number;
   id_cli: number | string;
@@ -381,11 +395,15 @@ export interface OrderShop {
   coupons: string[]; // jsonb -> array de códigos de cupom
   coupon_discount: number;
   products: string[]; // jsonb -> array de SKUs
+  products_detail?: ProductDetailShop[]; // jsonb -> linhas do pedido (aditivo a `products`)
   shipping_option: string | null;
   created_at: string;
   paid_at: string | null;
   updated_at: string;
   active: number;
+  // Origem do pedido: 'Loja'/'Loja Fisica' = manual (loja física / chatbot),
+  // 'store'/'mobile'/'form' = Nuvemshop, null = Tiny.
+  storefront: string | null;
   shipping_status: string | null;
   gateway_link: string | null;
   payment_method: string | null;
@@ -394,6 +412,10 @@ export interface OrderShop {
   fiscal_note: string | null;
   estimated_delivery: string | null;
   shipping_cost: number;
+  // Frete pago pela loja. Em pedidos manuais ('Loja'/'Loja Fisica') o campo é
+  // reaproveitado para o total de vendas de clientes (novos na Loja Física,
+  // recorrentes no Chatbot) — ver useStatisticsOrders.
+  shipping_cost_owner: number | null;
   order_tracking_link: string | null;
 }
 

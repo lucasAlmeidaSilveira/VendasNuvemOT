@@ -56,28 +56,46 @@ export async function createProduct(store, body) {
   }
 }
 
-export async function createOrder(newOrder) {
-  try {
-    // Chama a rota do backend para adicionar o pedido
-    const response = await fetch(
-      `${env.apiUrl}order/artepropria`,
-      {
-        method: 'POST',
-        headers: {
-          'Content-Type': 'application/json',
-        },
-        body: JSON.stringify(newOrder),
-      },
-    );
+// Cadastra um pedido manual (loja física / chatbot). Devolve o corpo já parseado:
+// o backend responde 201 com { orderId, warnings } mesmo quando o dump gravou e uma
+// etapa posterior falhou — é o `warnings` que permite avisar "lançado, mas pendente"
+// em vez de dizer que nada foi cadastrado (e provocar reenvio duplicado).
+export async function createOrder(newOrder, store = 'artepropria') {
+  const response = await fetch(`${env.apiUrl}order/${store}`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify(newOrder),
+  });
 
-    if (!response.ok) {
-      throw new Error('Erro ao cadastrar o pedido');
-    }
+  const body = await response.json().catch(() => null);
 
-    return response;
-  } catch (error) {
+  if (!response.ok) {
+    const error = new Error(body?.error || 'Erro ao cadastrar o pedido');
+    error.status = response.status;
+    error.body = body;
     throw error;
   }
+
+  return { status: response.status, ...(body || {}) };
+}
+
+// Exclui um pedido manual (loja física / chatbot) pelo order_id da listagem nova.
+// Remove das duas bases (pedidos_<loja> + orders_shop) e recalcula daily_sales do dia.
+export async function deleteManualOrder(orderId, store) {
+  const response = await fetch(
+    `${env.apiUrl}order/${store}/id/${encodeURIComponent(orderId)}`,
+    {
+      method: 'DELETE',
+      headers: { 'Content-Type': 'application/json' },
+    },
+  );
+
+  if (!response.ok) {
+    throw new Error('Erro ao excluir pedido');
+  }
+  return response;
 }
 
 export async function deleteOrder(ownerNote, store) {

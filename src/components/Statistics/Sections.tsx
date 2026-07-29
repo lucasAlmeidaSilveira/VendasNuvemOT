@@ -341,8 +341,9 @@ export function DataSectionTPagoAP({
   const { date, store } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
-  // Métricas de pedido agora vêm do orders_shop (base nova) via useStatisticsOrders.
-  // Chatbot/Loja Física (storefront) foram descontinuados → 0.
+  // Métricas de pedido vêm do orders_shop (base nova) via useStatisticsOrders,
+  // que replica o filterOrders legado — inclusive o recorte de Chatbot
+  // (storefront 'Loja') e Loja Física (storefront 'Loja Fisica').
   const {
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot,
@@ -454,6 +455,9 @@ export function DataSectionTPagoAP({
     totalPaidAllAmountEcom,
     verba.googleEcom + verba.metaEcom,
   );
+  // Numerador = totalChatbot (venda + clientes recorrentes), o mesmo valor do card
+  // "Chatbot" ao lado. O legado usava só a venda; aqui vale a regra acima de o ROAS
+  // refletir exatamente o que está impresso nos cards.
   const roasChatbotValue = calculateRoas(totalChatbot, verba.metaChatbot);
   const roasLojaValue = calculateRoas(totalLojaBruto, verba.googleLoja);
 
@@ -567,14 +571,10 @@ export function DataSectionTPagoAP({
             iconColor='var(--geralblack-100)'
             title='Loja Fisica'
             tooltip='Faturamento Loja Fisica'
-            value={
-              totalLojaBruto < 0
-                ? 0
-                : totalLojaBruto.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })
-            }
+            value={(totalLojaBruto < 0 ? 0 : totalLojaBruto).toLocaleString(
+              'pt-BR',
+              { style: 'currency', currency: 'BRL' },
+            )}
             dataCosts={totalByCategoryLojaFisica}
             isLoading={isLoadingOrders}
           />
@@ -991,7 +991,25 @@ export function DataSectionCart({
   );
 
   useEffect(() => {
-    if (!ordersToday.length || !date) return;
+    // Zera todos os cards de cupom. Necessário porque o efeito tem caminhos de saída
+    // antecipada (período sem pedidos / falha na busca): sem isso, os pedidos do período
+    // ANTERIOR continuariam na tela e nos popups.
+    const resetAll = () => {
+      setCartsRecoveryWhats([]);
+      setCartsRecoveryInsta([]);
+      setCartsRecoveryInstaDirect([]);
+      setCartsRecoveryPartners([]);
+      setCartsRecoveryEmail([]);
+      setCartsRecoveryPopup([]);
+      setCartsRecoveryGanhei15([]);
+      setOrdersSellers([]);
+      setOrdersWithCashback([]);
+    };
+
+    if (!ordersToday.length || !date) {
+      resetAll();
+      return;
+    }
 
     const start = formatDate(date[0]);
     const end = formatDate(date[1]);
@@ -1005,31 +1023,41 @@ export function DataSectionCart({
       orderIdMap.set(String(order.order_id), order);
     }
 
+    // Acumula os order_ids das linhas de cupom que passam no predicado.
+    // order_ids é JSONB: pode chegar null/ausente, por isso o guard de array.
+    const collectIds = (
+      couponRows: CouponRow[],
+      match: (name: string) => boolean,
+    ): AdaptedOrder[] => {
+      const ids = new Set<string>();
+      couponRows
+        .filter(c => match((c.name ?? '').trim().toUpperCase()))
+        .forEach(c => {
+          if (Array.isArray(c.order_ids)) {
+            c.order_ids.forEach(id => ids.add(String(id)));
+          }
+        });
+      return [...ids]
+        .map(id => orderIdMap.get(id))
+        .filter((o): o is AdaptedOrder => o !== undefined);
+    };
+
     // Resolve orders a partir dos order_ids da tabela coupon (busca exata por código)
     const resolveOrders = (
       couponRows: CouponRow[],
       codes: string[],
     ): AdaptedOrder[] => {
       const wanted = new Set(codes.map(c => c.trim().toUpperCase()));
-      const ids = new Set<string>();
-      couponRows
-        .filter(c => wanted.has((c.name ?? '').trim().toUpperCase()))
-        .forEach(c => c.order_ids.forEach(id => ids.add(String(id))));
-      return [...ids]
-        .map(id => orderIdMap.get(id))
-        .filter((o): o is AdaptedOrder => o !== undefined);
+      return collectIds(couponRows, name => wanted.has(name));
     };
 
     // Resolve cashback (prefixo MTZ)
-    const resolveMTZ = (couponRows: CouponRow[]): AdaptedOrder[] => {
-      const ids = new Set<string>();
-      couponRows
-        .filter(c => (c.name ?? '').trim().toUpperCase().startsWith('MTZ'))
-        .forEach(c => c.order_ids.forEach(id => ids.add(String(id))));
-      return [...ids]
-        .map(id => orderIdMap.get(id))
-        .filter((o): o is AdaptedOrder => o !== undefined);
-    };
+    const resolveMTZ = (couponRows: CouponRow[]): AdaptedOrder[] =>
+      collectIds(couponRows, name => name.startsWith('MTZ'));
+
+    // Guard de corrida: ao trocar rápido de período/loja, a resposta antiga não
+    // pode sobrescrever a nova (mesmo padrão de BestSellers).
+    let active = true;
 
     fetchTable<CouponRow>(DatabaseTable.COUPON, {
       store,
@@ -1037,6 +1065,7 @@ export function DataSectionCart({
       endDate: end,
     })
       .then(couponRows => {
+        if (!active) return;
         setCartsRecoveryWhats(resolveOrders(couponRows, couponsWhats));
         setCartsRecoveryInsta(resolveOrders(couponRows, couponsInsta));
         setCartsRecoveryInstaDirect([]);
@@ -1048,9 +1077,15 @@ export function DataSectionCart({
         setOrdersWithCashback(resolveMTZ(couponRows));
       })
       .catch(err => {
-        // Contadores permanecem em 0, mas registra a falha para diagnóstico.
+        if (!active) return;
+        // Contadores voltam a 0, mas registra a falha para diagnóstico.
+        resetAll();
         console.warn('[DataSectionCart] falha ao buscar tabela coupon:', err);
       });
+
+    return () => {
+      active = false;
+    };
   }, [ordersToday, store, date]);
 
   useEffect(() => {

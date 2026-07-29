@@ -33,6 +33,7 @@ import {
 const JSONB_FIELDS = [
   'coupons',
   'products',
+  'products_detail',
   'markers_order_tiny', // orders_shop
   'id_orders',
   'id_coupons',
@@ -111,6 +112,45 @@ export async function fetchTable<T = Record<string, unknown>>(
   const data = await response.json();
   if (!Array.isArray(data)) return [];
   return data.map((row) => parseJsonbFields(row as Record<string, unknown>)) as T[];
+}
+
+/**
+ * Resposta da rota legada GET /analytics/:store/:startDate/:endDate.
+ * O backend faz UMA query de range no GA4 (não soma dia a dia), então
+ * `totalVisits`/`usersByDevice`/`carts` refletem o período inteiro numa
+ * única contagem — semântica que reproduzimos aqui para bater com o legado.
+ */
+export interface AnalyticsRangeResult {
+  totalVisits: number;
+  usersByDevice: { mobile: number; desktop: number; tablet: number };
+  carts: number;
+  beginCheckout: number;
+  totalCost?: Record<string, number>;
+  formSubmits?: number;
+}
+
+/**
+ * Sessões/carrinhos/dispositivos do período via query de range única (GA4).
+ * Rota: GET /analytics/:store/:startDate/:endDate (mesmo backend do app).
+ * Diferente de somar as linhas diárias da tabela `ads`, esta rota conta o
+ * range de uma vez — evitando a sobrecontagem de sessões em períodos > 1 dia.
+ */
+export async function fetchAnalyticsRange(
+  store: StoreName | string | number,
+  startDate: string,
+  endDate: string,
+): Promise<AnalyticsRangeResult> {
+  const url = `${env.apiUrl}analytics/${encodeURIComponent(
+    String(store),
+  )}/${startDate}/${endDate}`;
+
+  const response = await fetch(url);
+  if (!response.ok) {
+    throw new Error(
+      `Erro ao buscar analytics de range (${response.status} ${response.statusText})`,
+    );
+  }
+  return (await response.json()) as AnalyticsRangeResult;
 }
 
 /** Busca um cupom específico por id_coupon. */

@@ -67,6 +67,34 @@ function addBusinessDays(date: Date, days: number): Date {
   return result;
 }
 
+// Conta dias ÚTEIS decorridos entre duas datas (0 se `to` <= `from`). Mesmo critério de
+// dia útil do addBusinessDays acima, para o "dias de atraso" bater com o prazo do SLA.
+export function businessDaysBetween(from: Date, to: Date): number {
+  if (Number.isNaN(from.getTime()) || Number.isNaN(to.getTime())) return 0;
+  const cursor = new Date(from);
+  cursor.setHours(0, 0, 0, 0);
+  const end = new Date(to);
+  end.setHours(0, 0, 0, 0);
+  let days = 0;
+  while (cursor < end) {
+    cursor.setDate(cursor.getDate() + 1);
+    const weekday = cursor.getDay();
+    if (weekday !== 0 && weekday !== 6) days += 1;
+  }
+  return days;
+}
+
+/**
+ * Prazo de produção do pedido: paid_at + 4 dias úteis. Null quando o pedido não tem
+ * paid_at (mesma pré-condição do `isLate`).
+ */
+export function productionDeadline(order: OrderShop): Date | null {
+  if (!order.paid_at) return null;
+  const paidAt = new Date(order.paid_at);
+  if (Number.isNaN(paidAt.getTime())) return null;
+  return addBusinessDays(paidAt, 4);
+}
+
 /**
  * Atraso = mesma regra do `isLate` legado (tools.ts), adaptada ao orders_shop:
  * pedido PAGO (método != parcerias) cujo prazo de produção (paid_at + 4 dias
@@ -79,8 +107,8 @@ export function isLate(order: OrderShop): boolean {
   if (!order.paid_at) return false;
   const status = order.shipping_status || '';
   if (SHIPPED_OR_DONE.has(status)) return false;
-  const deadline = addBusinessDays(new Date(order.paid_at), 4);
-  if (Number.isNaN(deadline.getTime())) return false;
+  const deadline = productionDeadline(order);
+  if (!deadline) return false;
   return new Date() > deadline;
 }
 

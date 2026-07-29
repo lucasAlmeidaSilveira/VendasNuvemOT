@@ -24,7 +24,6 @@ export const ButtonStyled = styled.button`
   &.simple {
     background-color: var(--geralblack-20);
     color: var(--geralblack-100);
-    width: 100%;
     opacity: 1;
 
     &:hover {
@@ -35,7 +34,6 @@ export const ButtonStyled = styled.button`
   &.confirm {
     background-color: var(--geralblack-100);
     color: var(--geralwhite);
-    width: 100%;
     opacity: 1;
 
     &:hover {

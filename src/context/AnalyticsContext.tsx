@@ -17,7 +17,7 @@ import {
   DataProps,
   DatabaseTable,
 } from '../types';
-import { fetchTable } from '../api/db';
+import { fetchTable, fetchAnalyticsRange } from '../api/db';
 
 export const AnalyticsContext = createContext({} as DataAnalyticsProps);
 
@@ -106,9 +106,13 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
   const startDate = formatDate(date[0]);
   const endDate = formatDate(date[1]);
 
-  // Busca a verba/analytics da tabela `ads` do novo backend e monta `data`
-  // (linhas Google: sessões/dispositivos/carrinhos/checkout + verba Google) e
-  // `dataADSMeta` (linhas Meta: verba + impressões) numa única chamada.
+  // Busca verba (tabela `ads` do novo backend) e sessões/carrinhos/dispositivos.
+  // A VERBA (totalCost Google + Meta) vem da tabela `ads`. Já os campos de
+  // analytics do Google — totalVisits/usersByDevice/carts/beginCheckout — vêm
+  // da rota de range `/analytics` (UMA query GA4 do período), reproduzindo o
+  // legado. Somar as linhas diárias da tabela `ads` superconta sessões em
+  // períodos > 1 dia (sessões cruzando a meia-noite + aproximação do GA4);
+  // a query de range única evita essa divergência.
   const loadAds = async (): Promise<void> => {
     try {
       setIsLoadingADSGoogle(true);
@@ -124,7 +128,27 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
       const meta = rows.filter(
         (r) => String(r.plataform).toLowerCase() === 'meta',
       );
-      setData(buildGoogleData(google));
+      // Verba Google (totalCost) da tabela `ads`; os campos de analytics abaixo
+      // serão sobrescritos pelo resultado do range quando disponível.
+      const googleAds = buildGoogleData(google);
+      try {
+        const range = await fetchAnalyticsRange(store, startDate, endDate);
+        setData({
+          ...googleAds,
+          totalVisits: num(range.totalVisits),
+          usersByDevice: {
+            mobile: num(range.usersByDevice?.mobile),
+            desktop: num(range.usersByDevice?.desktop),
+            tablet: num(range.usersByDevice?.tablet),
+          },
+          carts: num(range.carts),
+          beginCheckout: num(range.beginCheckout),
+        });
+      } catch {
+        // Fallback: mantém a soma diária da tabela `ads` (analytics + verba)
+        // caso a rota de range falhe, para os cards não ficarem vazios.
+        setData(googleAds);
+      }
       setDataADSMeta(buildMetaData(meta));
       setErrorGoogle(false);
       setErrorMeta(false);

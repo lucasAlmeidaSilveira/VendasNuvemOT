@@ -4,11 +4,16 @@ import { ContainerDetails, ProductImage } from '../styles';
 import { formatCurrency } from '../../../tools/tools';
 import { Loading } from '../../Loading';
 import { resolveProducts } from '../../../hooks/productCache';
-import { ProductRow } from '../../../types';
+import { ProductDetailShop, ProductRow } from '../../../types';
 
 interface ProductDetailsShopProps {
   // Array de SKUs (cod_categoria) vindo de orders_shop.products.
   skus: string[];
+  // Só é passado em pedidos MANUAIS (loja física / chatbot): lá `products` guarda um único
+  // SKU placeholder e a informação útil — a quantidade de clientes do dia e o valor da
+  // venda — vive em orders_shop.products_detail. Nos demais pedidos fica undefined e o
+  // componente segue agrupando os SKUs repetidos, como sempre fez.
+  productsDetail?: ProductDetailShop[];
 }
 
 // Código-base legível do SKU composto (ex.: "OT|285-...-90X60-1" -> "285").
@@ -35,8 +40,24 @@ function groupSkus(skus: string[]): { sku: string; quantity: number }[] {
   return order.map((sku) => ({ sku, quantity: counts.get(sku) ?? 1 }));
 }
 
-export function ProductDetailsShop({ skus }: ProductDetailsShopProps) {
-  const grouped = useMemo(() => groupSkus(skus), [skus]);
+export function ProductDetailsShop({
+  skus,
+  productsDetail,
+}: ProductDetailsShopProps) {
+  // Pedido manual: uma linha por item de products_detail, com a quantidade REAL gravada
+  // (nº de clientes do dia). Sem ele, o comportamento é o de sempre — agrupar SKUs repetidos.
+  const isManual = Array.isArray(productsDetail) && productsDetail.length > 0;
+
+  const grouped = useMemo(
+    () =>
+      isManual
+        ? productsDetail!.map((item) => ({
+            sku: item.sku,
+            quantity: Number(item.quantity) || 0,
+          }))
+        : groupSkus(skus),
+    [isManual, productsDetail, skus],
+  );
   const [productMap, setProductMap] = useState<Map<string, ProductRow | null>>(
     () => new Map(),
   );
@@ -68,7 +89,9 @@ export function ProductDetailsShop({ skus }: ProductDetailsShopProps) {
               <Table.ColumnHeaderCell>Nome</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>SKU</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Dimensão</Table.ColumnHeaderCell>
-              <Table.ColumnHeaderCell>Quantidade</Table.ColumnHeaderCell>
+              <Table.ColumnHeaderCell>
+                {isManual ? 'Quantidade de Clientes' : 'Quantidade'}
+              </Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Preço</Table.ColumnHeaderCell>
               <Table.ColumnHeaderCell>Total</Table.ColumnHeaderCell>
             </Table.Row>
@@ -83,15 +106,24 @@ export function ProductDetailsShop({ skus }: ProductDetailsShopProps) {
             ) : (
               grouped.map(({ sku, quantity }, index) => {
                 const product = productMap.get(sku);
-                const price = product ? Number(product.preco) || 0 : 0;
+                const detail = isManual ? productsDetail![index] : undefined;
+                // Em pedido manual o preço da linha é o valor da venda gravado no pedido.
+                // O `categorias.preco` do placeholder PRODUTO-LOJA não serve: é reescrito a
+                // cada novo pedido manual, então mostraria o valor de outra venda.
+                const price = detail
+                  ? Number(detail.price) || 0
+                  : product
+                    ? Number(product.preco) || 0
+                    : 0;
                 const dimension =
                   skuDimension(sku) || product?.dim_categoria || '—';
+                const image = detail?.image || product?.img_categoria || null;
                 return (
                   <Table.Row key={`${sku}-${index}`}>
                     <Table.Cell>
-                      {product?.img_categoria ? (
+                      {image ? (
                         <ProductImage
-                          src={product.img_categoria}
+                          src={image}
                           alt={product?.nome_categoria || sku}
                         />
                       ) : (
@@ -100,7 +132,8 @@ export function ProductDetailsShop({ skus }: ProductDetailsShopProps) {
                     </Table.Cell>
                     <Table.Cell>
                       {cleanName(
-                        product?.desc_categoria ||
+                        detail?.name ||
+                          product?.desc_categoria ||
                           product?.nome_categoria ||
                           sku,
                       )}
@@ -111,7 +144,11 @@ export function ProductDetailsShop({ skus }: ProductDetailsShopProps) {
                     <Table.Cell>{dimension}</Table.Cell>
                     <Table.Cell>{quantity}</Table.Cell>
                     <Table.Cell>{formatCurrency(price)}</Table.Cell>
-                    <Table.Cell>{formatCurrency(price * quantity)}</Table.Cell>
+                    {/* Loja física: o preço JÁ é o total da venda do dia — multiplicar pela
+                        quantidade de clientes inflaria o valor (mesma regra do legado). */}
+                    <Table.Cell>
+                      {formatCurrency(isManual ? price : price * quantity)}
+                    </Table.Cell>
                   </Table.Row>
                 );
               })

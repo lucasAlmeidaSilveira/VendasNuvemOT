@@ -10,8 +10,13 @@ import { formatDate } from '../tools/tools';
 // Replica a lógica do `tools/filterOrders` (legado) sobre `orders_shop`,
 // para a aba Statistics imprimir o MESMO resultado do legado.
 //
-// orders_shop só tem pedidos de ECOMMERCE — as parcelas de storefront
-// (Loja Física / Chatbot) do filterOrders foram descontinuadas e retornam 0.
+// O recorte por origem do pedido é o mesmo do legado, via `storefront`:
+//   'Loja'        -> Chatbot
+//   'Loja Fisica' -> Loja Física
+//   demais/null   -> Ecom (Nuvemshop e Tiny; o Tiny grava storefront null)
+// Nos pedidos manuais das duas primeiras origens, `shipping_cost_owner` não é
+// frete: carrega o total de vendas de clientes (o `calculateTotalClients` do
+// legado). Ver migrateShippingCostOwner.js no backend.
 //
 // Além dos totais monetários, devolve os ARRAYS de pedido (ordersToday,
 // ordersAllToday, ordersTodayPaid) ADAPTADOS ao shape que as seções leem:
@@ -28,6 +33,14 @@ const num = (value: unknown): number => {
 
 const brl = (value: number): string =>
   value.toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+
+const sumTotal = (orders: OrderShop[]): number =>
+  orders.reduce((acc, o) => acc + num(o.total), 0);
+
+// Só faz sentido em pedidos manuais: ali `shipping_cost_owner` guarda o total de
+// vendas de clientes, não o frete (equivale ao calculateTotalClients do legado).
+const sumOwner = (orders: OrderShop[]): number =>
+  orders.reduce((acc, o) => acc + num(o.shipping_cost_owner), 0);
 
 export interface AdaptedProduct {
   sku: string;
@@ -180,23 +193,32 @@ function compute(
     }
   }
 
-  const totalPaidEcom = paidRaw.reduce((a, o) => a + num(o.total), 0);
+  // Recorte por origem do pedido (mesmos predicados do filterOrders legado).
+  const paidChatbot = paidRaw.filter((o) => o.storefront === 'Loja');
+  const paidLojaFisica = paidRaw.filter((o) => o.storefront === 'Loja Fisica');
+  const paidEcom = paidRaw.filter(
+    (o) => o.storefront !== 'Loja' && o.storefront !== 'Loja Fisica',
+  );
+
+  const totalPaidAmountChatbot = sumTotal(paidChatbot);
   const adapt = (o: OrderShop) => adaptOrder(o, productMap, clientMap);
 
   return {
     ordersToday: todayRaw.map(adapt),
     ordersAllToday: allRaw.map(adapt),
     ordersTodayPaid: paidRaw.map(adapt),
-    // Loja Física / Chatbot (storefront) descontinuados → 0.
-    totalRevenue: 0,
-    totalPaidAmountChatbot: 0,
-    totalPaidAmountChatbotFormatted: brl(0),
-    totalNovosClientes: 0,
-    totalRecorrentesClientesChatbot: 0,
-    // Ecom (= todos os pedidos do orders_shop).
-    totalPaidAmountFormatted: totalPaidEcom,
-    totalPaidAllAmountEcom: totalPaidEcom,
-    totalPaidAllAmountFormatted: brl(allRaw.reduce((a, o) => a + num(o.total), 0)),
+    // Loja Física / Chatbot: totais de venda e a parcela de clientes (sumOwner).
+    totalRevenue: sumTotal(paidLojaFisica),
+    totalPaidAmountChatbot,
+    totalPaidAmountChatbotFormatted: brl(totalPaidAmountChatbot),
+    totalNovosClientes: sumOwner(paidLojaFisica),
+    totalRecorrentesClientesChatbot: sumOwner(paidChatbot),
+    // Ecom = tudo que NÃO é pedido manual.
+    totalPaidAllAmountEcom: sumTotal(paidEcom),
+    // Legado: Σ total de TODOS os pagos, manuais inclusive — NÃO é o Ecom.
+    // Alimenta `totalOrdersFormatted` (DataSectionCosts e o ROAS do outlet).
+    totalPaidAmountFormatted: sumTotal(paidRaw),
+    totalPaidAllAmountFormatted: brl(sumTotal(allRaw)),
     totalQuadros,
     totalEspelhos,
   };
