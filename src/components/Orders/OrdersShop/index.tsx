@@ -155,6 +155,7 @@ export function OrdersShop() {
   const [openConfirmPopup, setOpenConfirmPopup] = useState(false);
   const [loadingDelete, setLoadingDelete] = useState(false);
   const [successDelete, setSuccessDelete] = useState(false);
+  const [deleteError, setDeleteError] = useState<string | null>(null);
   const [isPopupOpen, setIsPopupOpen] = useState(false);
   const [selectedOrderId, setSelectedOrderId] = useState<number | null>(null);
   const [lateSortOrder, setLateSortOrder] = useState<SortOrder>('asc');
@@ -315,13 +316,20 @@ export function OrdersShop() {
 
   const handleOpenConfirmPopup = (orderId: number) => {
     setSelectedOrderId(orderId);
+    setDeleteError(null);
     setOpenConfirmPopup(true);
+  };
+
+  const handleCloseConfirmPopup = () => {
+    setOpenConfirmPopup(false);
+    setDeleteError(null);
   };
 
   const handleDeleteOrder = async () => {
     if (selectedOrderId === null) return;
 
     setLoadingDelete(true);
+    setDeleteError(null);
     try {
       await deleteManualOrder(selectedOrderId, store);
       setSuccessDelete(true);
@@ -339,6 +347,12 @@ export function OrdersShop() {
     } catch (error) {
       setLoadingDelete(false);
       setSuccessDelete(false);
+      // O popup fica aberto com a mensagem: no 207 o pedido JÁ foi excluído e só o
+      // daily_sales ficou para trás — falhar em silêncio aqui é o que fez o Dashboard
+      // divergir sem ninguém perceber.
+      setDeleteError(
+        error instanceof Error ? error.message : 'Erro ao excluir pedido',
+      );
       console.error('Erro ao deletar o pedido:', error);
     }
   };
@@ -645,11 +659,12 @@ export function OrdersShop() {
       <OrderPopup open={openPopup} onClose={handleClosePopup} store={store} />
       <ConfirmationDialog
         open={openConfirmPopup}
-        onClose={() => setOpenConfirmPopup(false)}
+        onClose={handleCloseConfirmPopup}
         onConfirm={handleDeleteOrder}
         loading={loadingDelete}
         success={successDelete}
         action={'Excluir'}
+        error={deleteError}
       />
       <Popup
         open={isPopupOpen}

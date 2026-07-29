@@ -82,7 +82,12 @@ export async function createOrder(newOrder, store = 'artepropria') {
 }
 
 // Exclui um pedido manual (loja física / chatbot) pelo order_id da listagem nova.
-// Remove das duas bases (pedidos_<loja> + orders_shop) e recalcula daily_sales do dia.
+// Remove das duas bases (pedidos_<loja> + orders_shop), limpa os cupons vinculados e
+// recalcula daily_sales do dia.
+//
+// O backend responde 207 quando o pedido foi excluído mas daily_sales NÃO foi recalculado
+// — o Dashboard ficaria com o valor antigo. 207 passa no `response.ok`, então tratamos o
+// caso explicitamente: é falha para quem chama, com a mensagem do backend.
 export async function deleteManualOrder(orderId, store) {
   const response = await fetch(
     `${env.apiUrl}order/${store}/id/${encodeURIComponent(orderId)}`,
@@ -92,10 +97,18 @@ export async function deleteManualOrder(orderId, store) {
     },
   );
 
-  if (!response.ok) {
-    throw new Error('Erro ao excluir pedido');
+  const body = await response.json().catch(() => null);
+
+  if (!response.ok || response.status === 207) {
+    const error = new Error(
+      body?.dailySales?.erro || body?.error || body?.message || 'Erro ao excluir pedido',
+    );
+    error.status = response.status;
+    error.body = body;
+    throw error;
   }
-  return response;
+
+  return { status: response.status, ...(body || {}) };
 }
 
 export async function deleteOrder(ownerNote, store) {
