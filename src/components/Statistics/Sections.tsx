@@ -788,9 +788,9 @@ export function DataSectionCosts({
   const adSpendFormatted = formatCurrency(totalAdSpend);
 
   // Custo de produto vem do custo CONGELADO da venda
-  // (orders_shop.products_detail[].cost), agregado por SKU em
-  // ordersToday.products[].cost pelo useStatisticsOrders — mesma fonte que o
-  // legado somava. NÃO usa custo_categoria do catálogo: aquele é o custo atual e
+  // (orders_shop.products_detail[].cost), já somado por pedido em
+  // ordersToday[].productCost pelo useStatisticsOrders — mesma fonte que o legado
+  // somava. NÃO usa custo_categoria do catálogo: aquele é o custo atual e
   // reprecificava pedidos antigos.
   const { store, date } = useOrders();
   const { ordersToday, loading: isLoadingOrders } = useStatisticsOrders(
@@ -808,15 +808,12 @@ export function DataSectionCosts({
     contributionMargin,
     totalProfit,
   } = useMemo(() => {
-    // Custo por LINHA do pedido, como no legado (sem quantity): `product.cost` já
-    // é a soma das linhas daquele SKU (ver adaptProducts).
+    // Custo por LINHA do pedido, como no legado (sem quantity). `order.productCost`
+    // soma todas as linhas de products_detail sem join por SKU — somar
+    // `order.products[].cost` descartaria linhas cujo SKU divergisse do array
+    // `products` (ver sumFrozenCost em useStatisticsOrders).
     const totalProductCost = ordersToday.reduce(
-      (totalOrderCost, order) =>
-        totalOrderCost +
-        order.products.reduce(
-          (productTotal, product) => productTotal + (Number(product.cost) || 0),
-          0,
-        ),
+      (totalOrderCost, order) => totalOrderCost + (Number(order.productCost) || 0),
       0,
     );
 

@@ -28,7 +28,7 @@ import { formatDate } from '../tools/tools';
 // ordersAllToday, ordersTodayPaid) ADAPTADOS ao shape que as seções leem:
 //  - payment_details.method  (= orders_shop.payment_method)  → DataSectionPay
 //  - products[{name,price,quantity}] (catálogo) +
-//    cost (congelado, de products_detail)                     → DataSectionCosts
+//    productCost (custo congelado do pedido)                  → DataSectionCosts
 //  - coupon[{code,value}] (códigos; value indisponível='0')   → DataSectionCart
 //  - billing_province (= client.uf_cli)                       → gráfico estados
 // =====================================================================
@@ -49,6 +49,23 @@ const sumTotal = (orders: OrderShop[]): number =>
 const sumOwner = (orders: OrderShop[]): number =>
   orders.reduce((acc, o) => acc + num(o.shipping_cost_owner), 0);
 
+// Custo de produto do pedido: soma o custo CONGELADO de CADA LINHA de
+// products_detail, sem join por SKU e sem multiplicar por quantidade — é a
+// tradução literal do legado, que fazia
+// `order.products.reduce((t, p) => t + (p.cost ? parseFloat(p.cost) : 0), 0)`
+// sobre o array de linhas do próprio pedido.
+//
+// NÃO derivar isso de adaptProducts: lá o custo é agrupado por SKU e só sobrevive
+// para os SKUs que também aparecem em `orders_shop.products`. Quando os dois
+// arrays divergem (aconteceu com SKUs `...+410-...` x `...+412-...`), a linha some
+// e o custo é descartado em silêncio. Aqui nada é descartado.
+// Linha sem custo gravado (pedido manual/Loja Física, ou anterior ao backfill)
+// vale 0, igual ao legado.
+const sumFrozenCost = (detail?: ProductDetailShop[]): number =>
+  Array.isArray(detail)
+    ? detail.reduce((acc, line) => acc + num(line?.cost), 0)
+    : 0;
+
 export interface AdaptedProduct {
   sku: string;
   name: string;
@@ -63,6 +80,9 @@ export type AdaptedOrder = Omit<OrderShop, 'products'> & {
   payment_details: { method: string | null };
   coupon: Array<{ code: string; value: string }>;
   products: AdaptedProduct[];
+  // Total autoritativo do custo do pedido (ver sumFrozenCost). É o que
+  // DataSectionCosts soma; `products[].cost` é só o recorte por SKU.
+  productCost: number;
   billing_province: string | null;
 };
 
@@ -129,11 +149,12 @@ function fetchOrdersShop(
 // products_detail daquele SKU. O catálogo (custo_categoria) é sobrescrito a cada
 // webhook e foi achatado pelo migrateProductCost.js, então usá-lo reprecificava
 // pedidos antigos e inflava o card "Custo de Produto" (~+4,7% no outlet em 2026).
-// O legado somava products[].cost linha a linha; como aqui os SKUs repetidos são
-// agrupados, o `cost` do grupo é a SOMA das suas linhas — assim o total continua
-// sendo por linha, sem depender de `quantity`.
-// Linha sem custo gravado (pedido manual/Loja Física, ou anterior ao backfill)
-// vale 0, igual ao legado (`product.cost ? parseFloat(product.cost) : 0`).
+//
+// ATENÇÃO: este `cost` é o custo do SKU dentro do pedido, para exibição por
+// produto — NÃO é o total do pedido. Linhas de products_detail cujo SKU não
+// aparece em `orders_shop.products` não têm grupo para cair e ficam de fora.
+// O total do pedido é `AdaptedOrder.productCost` (sumFrozenCost), que soma todas
+// as linhas sem join nenhum, como o legado.
 function adaptProducts(
   skus: string[],
   productMap: Map<string, ProductRow | null>,
@@ -188,6 +209,7 @@ function adaptOrder(
     // value por cupom não existe no orders_shop → '0' (códigos servem p/ categorizar).
     coupon: coupons.map((code) => ({ code, value: '0' })),
     products: adaptProducts(skus, productMap, o.products_detail),
+    productCost: sumFrozenCost(o.products_detail),
     billing_province: client?.uf_cli ?? null,
   };
 }
