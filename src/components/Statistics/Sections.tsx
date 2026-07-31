@@ -779,66 +779,70 @@ export function DataSectionCosts({
   isLoadingADSGoogle,
   isLoadingADSMeta,
 }: DataSectionCostsProps) {
-  totalAdSpend = formatCurrency(totalAdSpend);
+  // Valor numérico e exibição são separados: parseCurrency só é seguro sobre
+  // string BRL (num number cru ele removeria o ponto decimal).
+  const adSpend =
+    typeof totalAdSpend === 'number'
+      ? totalAdSpend
+      : parseCurrency(totalAdSpend);
+  const adSpendFormatted = formatCurrency(totalAdSpend);
 
-  // Custo de produto agora vem do catálogo (custo_categoria via /db/product),
-  // resolvido em ordersToday.products[].cost pelo useStatisticsOrders.
+  // Custo de produto vem do custo CONGELADO da venda
+  // (orders_shop.products_detail[].cost), agregado por SKU em
+  // ordersToday.products[].cost pelo useStatisticsOrders — mesma fonte que o
+  // legado somava. NÃO usa custo_categoria do catálogo: aquele é o custo atual e
+  // reprecificava pedidos antigos.
   const { store, date } = useOrders();
   const { ordersToday, loading: isLoadingOrders } = useStatisticsOrders(
     store,
     date,
   );
-  const [productCost, setProductCost] = useState('R$ 0,00');
-  const [grossProfit, setGrossProfit] = useState('R$ 0,00');
-  const [grossMargin, setGrossMargin] = useState('0%');
-  const [contributionMargin, setContributionMargin] = useState('0%');
-  const [productCostPercent, setProductCostPercent] = useState('0%');
-  const [totalProfit, setTotalProfit] = useState('R$ 0,00');
 
-  useEffect(() => {
-    if (ordersToday.length > 0) {
-      const totalProductCost = ordersToday.reduce((totalOrderCost, order) => {
-        const orderProductCost = order.products.reduce(
-          (productTotal, product) => {
-            const cost = product.cost ? parseFloat(product.cost) : 0; // Verifica se o custo não é null
-            return productTotal + cost;
-          },
+  // useMemo (e não useEffect+useState): ordersToday é referência estável e a
+  // verba de ADS chega em outro fetch — derivar direto evita ficar com ADS = 0.
+  const {
+    productCost,
+    grossProfit,
+    grossMargin,
+    productCostPercent,
+    contributionMargin,
+    totalProfit,
+  } = useMemo(() => {
+    // Custo por LINHA do pedido, como no legado (sem quantity): `product.cost` já
+    // é a soma das linhas daquele SKU (ver adaptProducts).
+    const totalProductCost = ordersToday.reduce(
+      (totalOrderCost, order) =>
+        totalOrderCost +
+        order.products.reduce(
+          (productTotal, product) => productTotal + (Number(product.cost) || 0),
           0,
-        );
-        return totalOrderCost + orderProductCost;
-      }, 0);
+        ),
+      0,
+    );
 
-      setProductCost(formatCurrency(totalProductCost));
+    const totalOrderValue = totalOrdersFormatted; // já é number (soma dos pagos)
+    const grossProfitValue = totalOrderValue - totalProductCost;
 
-      const totalOrderValue = totalOrdersFormatted; //retirado o formatCurrency
-      const grossProfitValue = totalOrderValue - totalProductCost;
+    // Guarda apenas contra divisão por zero; negativo continua sendo calculado.
+    const grossMarginValue =
+      totalOrderValue > 0 ? (grossProfitValue / totalOrderValue) * 100 : 0;
+    const productCostPercentValue =
+      totalOrderValue > 0 ? (totalProductCost / totalOrderValue) * 100 : 0;
+    const contributionMarginValue =
+      grossProfitValue !== 0
+        ? ((grossProfitValue - adSpend) / grossProfitValue) * 100
+        : 0;
 
-      setGrossProfit(formatCurrency(grossProfitValue));
-
-      // Calcular a Margem Bruta
-      const grossMarginValue =
-        totalOrderValue > 0 ? (grossProfitValue / totalOrderValue) * 100 : 0;
-      setGrossMargin(grossMarginValue.toFixed(2) + '%');
-
-      // Calcular a Margem Contribuição
-      const contributionMarginValue =
-        ((grossProfitValue - parseCurrency(totalAdSpend)) / grossProfitValue) *
-        100;
-      setContributionMargin(
-        formatCurrency(contributionMarginValue.toFixed(2) + '%'),
-      );
-
-      // Calcular a Margem Contribuição
-      const productCostPercentValue =
-        (totalProductCost / totalOrderValue) * 100;
-      setProductCostPercent(productCostPercentValue.toFixed(2) + '%');
-
-      // Calcular o Lucro Líquido
-      const adSpend = parseCurrency(totalAdSpend);
-      const totalProfitValue = totalOrderValue - totalProductCost - adSpend;
-      setTotalProfit(formatCurrency(totalProfitValue));
-    }
-  }, [ordersToday]);
+    return {
+      productCost: formatCurrency(totalProductCost),
+      grossProfit: formatCurrency(grossProfitValue),
+      grossMargin: grossMarginValue.toFixed(2) + '%',
+      productCostPercent: productCostPercentValue.toFixed(2) + '%',
+      // percentual: sem formatCurrency, igual aos dois cards irmãos
+      contributionMargin: contributionMarginValue.toFixed(2) + '%',
+      totalProfit: formatCurrency(grossProfitValue - adSpend),
+    };
+  }, [ordersToday, totalOrdersFormatted, adSpend]);
 
   return (
     <ContainerOrders>
@@ -860,7 +864,7 @@ export function DataSectionCosts({
           <BudgetItem
             title='Custo ADS'
             tooltip='Google ADS + Meta ADS'
-            value={totalAdSpend}
+            value={adSpendFormatted}
             isLoading={isLoadingADSGoogle}
           />
         </div>

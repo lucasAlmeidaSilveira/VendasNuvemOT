@@ -378,6 +378,13 @@ export interface ProductDetailShop {
   sku: string;
   name: string | null;
   price: number;
+  // Custo CONGELADO no momento da venda — o mesmo campo que a base legada guardava
+  // em pedidos_<loja>.products[].cost e que o card "Custo de Produto" somava por
+  // linha. Não confundir com ProductRow.custo_categoria, que é o custo ATUAL do
+  // catálogo (sobrescrito a cada webhook) e reprecifica pedidos antigos.
+  // `undefined` = pedido sem custo gravado (manual/Loja Física ou anterior ao
+  // backfill) e vale 0, exatamente como o legado imprimia.
+  cost?: number;
   image: string | null;
   variant_values: string[];
   // Só é gravado em pedidos de loja física: guarda a QUANTIDADE DE CLIENTES do dia,

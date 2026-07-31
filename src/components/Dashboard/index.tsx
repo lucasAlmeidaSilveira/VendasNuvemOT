@@ -36,8 +36,10 @@ export function Dashboard() {
   // aplica as regras do legado (tools/filterOrders) ao montar a tabela: exclui método
   // 'other' (parcerias); "Geral (qtd)" exclui cancelado/estornado; "Pago" exige paid.
   // Aqui só somamos as linhas-dia do período selecionado.
-  // OBS: Loja Física/Chatbot (storefront) eram somados no legado mas são pedidos
-  // manuais descontinuados — não existem no orders_shop/daily_sales (ecommerce).
+  // OBS: Loja Física/Chatbot (storefront 'Loja Fisica'/'Loja') ENTRAM nesses totais, como no
+  // legado — são pedidos manuais ativos, criados pelo popup e pelo Apps Script das filiais.
+  // O dia de cada linha é o dia-calendário BRT (00:00–23:59 SP), a mesma regra da listagem
+  // de pedidos e da aba Estatísticas.
   useEffect(() => {
     if (!user) return; // aguarda autenticação; refetch quando `user` muda
     const startDate = formatDate(date[0]);

@@ -3,7 +3,13 @@ import { fetchTable } from '../api/db';
 import { resolveProducts } from './productCache';
 import { fetchClientCached } from './clientCache';
 import { useDatabaseContext } from '../context/DbContext';
-import { DatabaseTable, OrderShop, ProductRow, ClientRow } from '../types';
+import {
+  DatabaseTable,
+  OrderShop,
+  ProductRow,
+  ClientRow,
+  ProductDetailShop,
+} from '../types';
 import { formatDate } from '../tools/tools';
 
 // =====================================================================
@@ -21,7 +27,8 @@ import { formatDate } from '../tools/tools';
 // Além dos totais monetários, devolve os ARRAYS de pedido (ordersToday,
 // ordersAllToday, ordersTodayPaid) ADAPTADOS ao shape que as seções leem:
 //  - payment_details.method  (= orders_shop.payment_method)  → DataSectionPay
-//  - products[{name,price,cost,quantity}] (catálogo)          → DataSectionCosts
+//  - products[{name,price,quantity}] (catálogo) +
+//    cost (congelado, de products_detail)                     → DataSectionCosts
 //  - coupon[{code,value}] (códigos; value indisponível='0')   → DataSectionCart
 //  - billing_province (= client.uf_cli)                       → gráfico estados
 // =====================================================================
@@ -116,10 +123,21 @@ function fetchOrdersShop(
   return ordersCache.get(key) as Promise<OrderShop[]>;
 }
 
-// Agrupa SKUs repetidos e resolve no catálogo (nome/preço/custo/quantidade).
+// Agrupa SKUs repetidos e resolve no catálogo (nome/preço/quantidade).
+//
+// `cost` NÃO vem do catálogo: é o custo CONGELADO da venda, somado das linhas de
+// products_detail daquele SKU. O catálogo (custo_categoria) é sobrescrito a cada
+// webhook e foi achatado pelo migrateProductCost.js, então usá-lo reprecificava
+// pedidos antigos e inflava o card "Custo de Produto" (~+4,7% no outlet em 2026).
+// O legado somava products[].cost linha a linha; como aqui os SKUs repetidos são
+// agrupados, o `cost` do grupo é a SOMA das suas linhas — assim o total continua
+// sendo por linha, sem depender de `quantity`.
+// Linha sem custo gravado (pedido manual/Loja Física, ou anterior ao backfill)
+// vale 0, igual ao legado (`product.cost ? parseFloat(product.cost) : 0`).
 function adaptProducts(
   skus: string[],
   productMap: Map<string, ProductRow | null>,
+  detail?: ProductDetailShop[],
 ): AdaptedProduct[] {
   const order: string[] = [];
   const counts = new Map<string, number>();
@@ -127,13 +145,24 @@ function adaptProducts(
     if (!counts.has(sku)) order.push(sku);
     counts.set(sku, (counts.get(sku) ?? 0) + 1);
   }
+
+  // Custo congelado acumulado por SKU (products_detail é 1:1 com as linhas).
+  const frozenCost = new Map<string, number>();
+  if (Array.isArray(detail)) {
+    for (const line of detail) {
+      const sku = line?.sku;
+      if (typeof sku !== 'string') continue;
+      frozenCost.set(sku, (frozenCost.get(sku) ?? 0) + num(line.cost));
+    }
+  }
+
   return order.map((sku) => {
     const p = productMap.get(sku);
     return {
       sku,
       name: p?.desc_categoria || p?.nome_categoria || sku,
       price: p ? num(p.preco) : 0,
-      cost: p ? num(p.custo_categoria) : 0,
+      cost: frozenCost.get(sku) ?? 0,
       quantity: counts.get(sku) ?? 1,
     };
   });
@@ -158,7 +187,7 @@ function adaptOrder(
     payment_details: { method: o.payment_method },
     // value por cupom não existe no orders_shop → '0' (códigos servem p/ categorizar).
     coupon: coupons.map((code) => ({ code, value: '0' })),
-    products: adaptProducts(skus, productMap),
+    products: adaptProducts(skus, productMap, o.products_detail),
     billing_province: client?.uf_cli ?? null,
   };
 }
