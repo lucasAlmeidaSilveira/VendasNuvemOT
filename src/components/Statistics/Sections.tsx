@@ -648,11 +648,14 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     );
 
   useEffect(() => {
-    if (ordersAllToday.length > 0) {
-      const passRateValue =
-        (ordersTodayPaid.length / ordersAllToday.length) * 100;
-      setPassRate(passRateValue.toFixed(1) + '%');
+    // Período sem pedidos precisa zerar a taxa: antes o `if` deixava o valor do
+    // período ANTERIOR na tela, como se fosse do período selecionado.
+    if (ordersAllToday.length === 0) {
+      setPassRate('0%');
+      return;
     }
+    const passRateValue = (ordersTodayPaid.length / ordersAllToday.length) * 100;
+    setPassRate(passRateValue.toFixed(1) + '%');
   }, [ordersAllToday, ordersTodayPaid]);
 
   useEffect(() => {
@@ -1099,9 +1102,16 @@ export function DataSectionCart({
 
   useEffect(() => {
     const numericCarts = parseInt(carts.replace(/\D/g, ''));
-    if ((totalAdSpend && numericCarts) !== 0) {
-      setCostCart(formatCurrency(totalAdSpend / numericCarts));
+    // A guarda anterior era `(totalAdSpend && numericCarts) !== 0`, que avalia o
+    // `&&` PRIMEIRO e só então compara com 0 — não testava os dois operandos.
+    // Com `carts` em '0' o efeito era pulado e o custo do período ANTERIOR ficava
+    // na tela; com `carts` em '-' o parseInt dava NaN, `NaN !== 0` é true e a
+    // tela mostrava "R$ NaN".
+    if (!Number.isFinite(numericCarts) || numericCarts === 0 || !totalAdSpend) {
+      setCostCart(formatCurrency(0));
+      return;
     }
+    setCostCart(formatCurrency(totalAdSpend / numericCarts));
   }, [carts, totalAdSpend]);
 
   const cartRate = useMemo(() => {

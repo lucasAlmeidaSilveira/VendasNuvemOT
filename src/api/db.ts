@@ -85,7 +85,7 @@ export async function fetchTable<T = Record<string, unknown>>(
   table: DatabaseTable | string,
   options: FetchTableOptions = {},
 ): Promise<T[]> {
-  const { startDate, endDate, store } = options;
+  const { startDate, endDate, store, signal } = options;
 
   if (!startDate || !endDate) {
     throw new Error(
@@ -102,7 +102,7 @@ export async function fetchTable<T = Record<string, unknown>>(
     String(store),
   )}/${startDate}/${endDate}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
   if (!response.ok) {
     throw new Error(
       `Erro ao buscar "${table}" (${response.status} ${response.statusText})`,
@@ -139,12 +139,13 @@ export async function fetchAnalyticsRange(
   store: StoreName | string | number,
   startDate: string,
   endDate: string,
+  signal?: AbortSignal,
 ): Promise<AnalyticsRangeResult> {
   const url = `${env.apiUrl}analytics/${encodeURIComponent(
     String(store),
   )}/${startDate}/${endDate}`;
 
-  const response = await fetch(url);
+  const response = await fetch(url, { signal });
   if (!response.ok) {
     throw new Error(
       `Erro ao buscar analytics de range (${response.status} ${response.statusText})`,
@@ -225,6 +226,70 @@ export async function fetchProductSales(
     products: Array.isArray(data?.products) ? data.products : [],
     variations: Array.isArray(data?.variations) ? data.variations : [],
   };
+}
+
+// ---------------------------------------------------------------------------
+// Resolução em LOTE de catálogo e clientes.
+//
+// Antes, cada SKU custava um GET /db/product/:sku e cada pedido um
+// GET /db/clients/:id — até ~900 e ~300 requisições num mês da artepropria.
+// As rotas em lote resolvem tudo de uma vez.
+//
+// São POST porque há cod_categoria com vírgula na base (um separador em
+// querystring quebraria) e a lista estoura o limite prático de URL.
+// O servidor aceita até 200 itens por chamada; usamos 150 de folga.
+// ---------------------------------------------------------------------------
+const BATCH_LIMIT = 150;
+
+function chunk<T>(items: T[], size: number): T[][] {
+  const out: T[][] = [];
+  for (let i = 0; i < items.length; i += size) out.push(items.slice(i, i + size));
+  return out;
+}
+
+async function postBatch<T>(
+  path: string,
+  body: unknown,
+  signal?: AbortSignal,
+): Promise<Record<string, T | null>> {
+  const response = await fetch(`${env.apiUrl}${path}`, {
+    method: 'POST',
+    headers: { 'Content-Type': 'application/json' },
+    body: JSON.stringify(body),
+    signal,
+  });
+  if (!response.ok) {
+    throw new Error(`Erro em ${path} (${response.status} ${response.statusText})`);
+  }
+  return (await response.json()) as Record<string, T | null>;
+}
+
+/** Resolve vários SKUs de uma vez. As chaves do retorno são os SKUs enviados. */
+export async function getProductsBatch(
+  skus: string[],
+  signal?: AbortSignal,
+): Promise<Record<string, ProductRow | null>> {
+  if (skus.length === 0) return {};
+  const parts = await Promise.all(
+    chunk(skus, BATCH_LIMIT).map((c) =>
+      postBatch<ProductRow>('db/products/batch', { skus: c }, signal),
+    ),
+  );
+  return Object.assign({}, ...parts);
+}
+
+/** Resolve vários clientes de uma vez (aceita id_cli serial ou cpf_cnpj_cli). */
+export async function getClientsBatch(
+  ids: (string | number)[],
+  signal?: AbortSignal,
+): Promise<Record<string, ClientRow | null>> {
+  if (ids.length === 0) return {};
+  const parts = await Promise.all(
+    chunk(ids, BATCH_LIMIT).map((c) =>
+      postBatch<ClientRow>('db/clients/batch', { ids: c }, signal),
+    ),
+  );
+  return Object.assign({}, ...parts);
 }
 
 /** Busca um produto pelo SKU (cod_categoria). Aceita caixa baixa ou alta. */

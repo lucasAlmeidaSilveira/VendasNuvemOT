@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useState, useEffect } from 'react';
 import { useOrders } from './OrdersContext';
+import { useTab } from './TabContext';
 import { RefundsContextData, RefundSummary, RefundItem } from '../types';
 import { adjustDate } from '../tools/tools';
 import { env } from "../utils/env";
@@ -51,6 +52,7 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
   children,
 }) => {
   const { store, date } = useOrders();
+  const { activeTab } = useTab();
   const [reembolsos, setReembolsos] = useState<RefundItem[]>([]);
   const [reenvios, setReenvios] = useState<RefundItem[]>([]);
   const [loading, setLoading] = useState(true);
@@ -109,35 +111,44 @@ export const RefundsProvider: React.FC<{ children: React.ReactNode }> = ({
     setError(null);
 
     try {
-      // Busca reembolsos
-      const responseReembolsos = await fetch(
-        `${env.apiUrl}refunds/${store}/Reembolso/${createdAtMin}/${createdAtMax}`,
-      );
+      // Reembolsos e reenvios são endpoints INDEPENDENTES — antes eram buscados
+      // em série, dobrando o tempo. Além disso, se o primeiro falhasse o segundo
+      // nem era tentado e `reenvios` ficava com o período anterior em silêncio.
+      const [responseReembolsos, responseReenvios] = await Promise.all([
+        fetch(`${env.apiUrl}refunds/${store}/Reembolso/${createdAtMin}/${createdAtMax}`),
+        fetch(`${env.apiUrl}refunds/${store}/Reenvio/${createdAtMin}/${createdAtMax}`),
+      ]);
 
       if (!responseReembolsos.ok) throw new Error('Erro ao buscar reembolsos');
-      const dataReembolsos: RefundItem[] = await responseReembolsos.json();
+      if (!responseReenvios.ok) throw new Error('Erro ao buscar reenvios');
+
+      const [dataReembolsos, dataReenvios]: [RefundItem[], RefundItem[]] =
+        await Promise.all([responseReembolsos.json(), responseReenvios.json()]);
+
       setReembolsos(dataReembolsos);
       setSummaryReembolsos(calculateSummary(dataReembolsos));
-
-      // Busca reenvios
-      const responseReenvios = await fetch(
-        `${env.apiUrl}refunds/${store}/Reenvio/${createdAtMin}/${createdAtMax}`,
-      );
-
-      if (!responseReenvios.ok) throw new Error('Erro ao buscar reenvios');
-      const dataReenvios: RefundItem[] = await responseReenvios.json();
       setReenvios(dataReenvios);
       setSummaryReenvios(calculateSummary(dataReenvios));
     } catch (err: any) {
       setError(err.message);
+      // Limpa os dados do período anterior. Antes só o `error` era marcado, e a
+      // seção de Reembolso segue renderizando os números (o early-return que
+      // usava `error` está comentado) — ou seja, exibia valores velhos como bons.
+      setReembolsos([]);
+      setReenvios([]);
+      setSummaryReembolsos(createEmptySummary());
+      setSummaryReenvios(createEmptySummary());
     } finally {
       setLoading(false);
     }
   };
   useEffect(() => {
     if (!store || !date || date.length < 2) return;
+    // Só a aba Estatísticas (2) consome reembolsos/reenvios. Antes estas duas
+    // requisições saíam a cada troca de período em QUALQUER aba.
+    if (activeTab !== 2) return;
     fetchRefunds();
-  }, [store, date]);
+  }, [store, date, activeTab]);
 
   const reloadRefunds = () => {
     fetchRefunds();

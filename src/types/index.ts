@@ -544,6 +544,9 @@ export interface FetchTableOptions {
   startDate?: string; // YYYY-MM-DD
   endDate?: string; // YYYY-MM-DD
   store?: string | number; // nome ('outlet'/'artepropria') ou ID numérico
+  // Cancelamento: ao trocar de período, o efeito aborta a busca anterior para
+  // que uma resposta antiga não chegue depois da nova e sobrescreva a tela.
+  signal?: AbortSignal;
 }
 
 // Estado do contexto

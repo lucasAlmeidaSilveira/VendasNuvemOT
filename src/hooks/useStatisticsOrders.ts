@@ -137,7 +137,15 @@ function fetchOrdersShop(
         store,
         startDate: start,
         endDate: end,
-      }).then((rows) => rows ?? []),
+      })
+        .then((rows) => rows ?? [])
+        // Falha NÃO fica no cache: guardar a promessa rejeitada fazia um erro
+        // transitório se repetir em toda visita àquele período até o reloadKey
+        // mudar. Removida a entrada, a próxima tentativa busca de novo.
+        .catch((err) => {
+          ordersCache.delete(key);
+          throw err;
+        }),
     );
   }
   return ordersCache.get(key) as Promise<OrderShop[]>;
@@ -290,6 +298,10 @@ export function useStatisticsOrders(
     if (!store || !start || !end) return;
     let active = true;
     setLoading(true);
+    // Zera o resultado do período anterior. Sem isto, as seções que leem os
+    // números FORA de um `if (loading)` — cashback, GANHEI15 — continuavam
+    // exibindo os valores do período antigo durante toda a nova busca.
+    setResult(EMPTY);
 
     (async () => {
       const rows = await fetchOrdersShop(store, start, end, reloadKey);
@@ -301,6 +313,10 @@ export function useStatisticsOrders(
       ];
       const ids = [...new Set(rows.map((o) => o.id_cli))];
 
+      // Catálogo e clientes resolvem em LOTE (POST /db/products/batch e
+      // /db/clients/batch). Antes eram uma requisição por SKU e uma por
+      // cliente — esta última sem limite de concorrência, o que disparava
+      // milhares de requisições simultâneas em "Todo o período".
       const [productMap, clientEntries] = await Promise.all([
         resolveProducts(skus),
         Promise.all(

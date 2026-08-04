@@ -21,9 +21,13 @@ root.render(
   <React.StrictMode>
     <AuthProvider>
       <OrdersProvider>
-        <RefundsProvider>
-          <TikTokAdsProvider>
-            <TabProvider>
+        {/* TabProvider subiu para FORA de Refunds/TikTok: esses contextos passaram
+            a só buscar dados na aba que realmente os consome (Estatísticas), e
+            para isso precisam ler `activeTab`. TabProvider não depende de nenhum
+            outro contexto, então mover é seguro. */}
+        <TabProvider>
+          <RefundsProvider>
+            <TikTokAdsProvider>
               <AnalyticsProvider>
                 <CouponProvider>
                   <MandaeProvider>
@@ -35,9 +39,9 @@ root.render(
                   </MandaeProvider>
                 </CouponProvider>
               </AnalyticsProvider>
-            </TabProvider>
-          </TikTokAdsProvider>
-        </RefundsProvider>
+            </TikTokAdsProvider>
+          </RefundsProvider>
+        </TabProvider>
       </OrdersProvider>
     </AuthProvider>
   </React.StrictMode>,

@@ -4,6 +4,8 @@ import React, {
   useCallback,
   useContext,
   useState,
+  useRef,
+  useMemo,
 } from 'react';
 
 import {
@@ -96,20 +98,48 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
   const [reloadKey, setReloadKey] = useState(0);
   const reloadData = useCallback(() => setReloadKey((k) => k + 1), []);
 
-  // Busca dados de uma tabela do novo backend via /db/query.
-  // Delega ao service layer (api/db.ts), que cuida da rota real, do filtro
-  // de loja e do parse dos campos JSONB.
+  // Guarda de sequência + cancelamento.
+  //
+  // Dashboard, Pedidos e Cupons compartilham este ÚNICO estado. Sem guarda,
+  // dois cliques rápidos no filtro de data deixavam duas requisições vivas e,
+  // se a mais ANTIGA chegasse por último, ela virava `state.data` com
+  // `loading: false` e `currentTable` batendo — a tela então exibia o período
+  // errado como se fosse verdade, e só o botão de recarregar corrigia.
+  //
+  // `requestId` é monotônico: só a busca mais recente pode despachar. O
+  // AbortController ainda cancela a requisição anterior na rede, para não
+  // gastar banda com uma resposta que seria descartada de qualquer forma.
+  const requestIdRef = useRef(0);
+  const abortRef = useRef<AbortController | null>(null);
+
   const fetchData = useCallback(
     async (table: DatabaseTable, options: FetchTableOptions = {}) => {
+      abortRef.current?.abort();
+      const controller = new AbortController();
+      abortRef.current = controller;
+
+      const requestId = ++requestIdRef.current;
+      const isStale = () => requestId !== requestIdRef.current;
+
       try {
         dispatch({ type: 'FETCH_START', table });
 
-        const data = (await fetchTable<DatabaseData>(table, options)) ?? [];
+        const data =
+          (await fetchTable<DatabaseData>(table, {
+            ...options,
+            signal: controller.signal,
+          })) ?? [];
+
+        if (isStale()) return; // uma busca mais nova assumiu
 
         // Lista vazia é um estado válido (ex.: nenhum cupom no período),
         // não um erro — deixamos a UI exibir "nenhum registro".
         dispatch({ type: 'FETCH_SUCCESS', table, data });
       } catch (error: any) {
+        // Aborto é fluxo esperado (troca de período), não erro de verdade:
+        // não pode apagar o estado de loading da busca que o substituiu.
+        if (error?.name === 'AbortError' || isStale()) return;
+
         console.error('Erro ao buscar dados:', error);
         dispatch({
           type: 'FETCH_ERROR',
@@ -122,6 +152,10 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
 
   // Função para limpar dados
   const clearData = useCallback(() => {
+    // Invalida qualquer busca em voo: sem isso, uma resposta a caminho
+    // repopularia o estado logo depois da limpeza.
+    abortRef.current?.abort();
+    requestIdRef.current += 1;
     dispatch({ type: 'CLEAR_DATA' });
   }, []);
 
@@ -130,15 +164,19 @@ export const DatabaseProvider: React.FC<DatabaseProviderProps> = ({
     return state.data as T[];
   }, [state.data]);
 
-  // Valor do contexto
-  const contextValue: DatabaseContextType = {
-    state,
-    fetchData,
-    clearData,
-    getCurrentData,
-    reloadKey,
-    reloadData,
-  };
+  // Memoizado: sem isso um literal novo a cada render re-renderiza todos os
+  // consumidores do contexto mesmo quando nada mudou.
+  const contextValue = useMemo<DatabaseContextType>(
+    () => ({
+      state,
+      fetchData,
+      clearData,
+      getCurrentData,
+      reloadKey,
+      reloadData,
+    }),
+    [state, fetchData, clearData, getCurrentData, reloadKey, reloadData],
+  );
 
   return (
     <DatabaseContext.Provider value={contextValue}>

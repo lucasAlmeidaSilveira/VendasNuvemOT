@@ -51,13 +51,25 @@ export function BestSellers() {
   // DbContext single-table) para NÃO conflitar com o daily_sales do Dashboard.
   useEffect(() => {
     let active = true;
+    // Cancela a busca do período anterior: sem isso a resposta antiga podia
+    // chegar depois da nova e repintar a lista com o período errado.
+    const controller = new AbortController();
     setLoading(true);
     setError(null);
+    // Zera os dados do período anterior enquanto o novo carrega, para não
+    // exibir "mais vendidos" de um período que não é o selecionado.
+    setOrders([]);
+    setProductMap(new Map());
 
     const startDate = formatDate(date[0]);
     const endDate = formatDate(date[1]);
 
-    fetchTable(DatabaseTable.ORDERS_SHOP, { startDate, endDate, store })
+    fetchTable(DatabaseTable.ORDERS_SHOP, {
+      startDate,
+      endDate,
+      store,
+      signal: controller.signal,
+    })
       .then(async (rows) => {
         // Pagos, excluindo método "other" (parcerias) — igual ao filterOrders legado.
         const paid = rows.filter(
@@ -74,7 +86,8 @@ export function BestSellers() {
         setLoading(false);
       })
       .catch((err) => {
-        if (!active) return;
+        // Aborto é troca de período, não falha: quem assumiu já está carregando.
+        if (!active || err?.name === 'AbortError') return;
         setError(err.message || 'Erro ao carregar mais vendidos');
         setOrders([]);
         setProductMap(new Map());
@@ -83,6 +96,7 @@ export function BestSellers() {
 
     return () => {
       active = false;
+      controller.abort();
     };
   }, [date, store]);
 

@@ -83,7 +83,11 @@ export function Statistics() {
       //return adSpends.google + adSpends.meta;
     }
     return 0; // Fallback para outros casos
-  }, [adSpends]);
+    // `store` e `totalCostTikTokAll` são lidos aqui e PRECISAM estar nas deps:
+    // sem eles, quando a resposta do TikTok chegava depois da resposta de `ads`
+    // o memo não recalculava e a verba do TikTok sumia de Verba Total, ROAS,
+    // CPS, CPA e Margem de Contribuição até algo mais mexer em `adSpends`.
+  }, [adSpends, store, totalCostTikTokAll]);
 
   // O ROAS (Geral, Max. e por categoria) é calculado dentro de cada seção
   // (DataSectionTPago / DataSectionTPagoAP), a partir dos mesmos valores de

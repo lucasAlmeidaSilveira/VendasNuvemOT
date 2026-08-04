@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
 } from 'react';
 import { adjustDate } from '../tools/tools.ts';
 import { useAuth } from './AuthContext';
@@ -43,10 +44,14 @@ export const OrdersProvider = ({ children }) => {
     setCustomers([]);
   };
 
-  const fetchCustomersData = async (startDateISO, endDateISO) => {
+  // Cancela a busca do período anterior ao iniciar uma nova, para que uma
+  // resposta atrasada não sobrescreva `customers` do período atual.
+  const abortRef = useRef(null);
+
+  const fetchCustomersData = async (startDateISO, endDateISO, signal) => {
     const url = `${env.apiUrl}customers/${store}/${startDateISO}/${endDateISO}`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { signal });
       if (!response.ok) {
         throw new Error('Erro ao buscar clientes');
       }
@@ -54,7 +59,7 @@ export const OrdersProvider = ({ children }) => {
 
       return data;
     } catch (err) {
-
+      if (err?.name === 'AbortError') throw err; // troca de período, não falha
       setError({
         message: err.message,
         type: 'server_offline',
@@ -67,18 +72,31 @@ export const OrdersProvider = ({ children }) => {
     const startDateISO = adjustDate(date[0]);
     const endDateISO = adjustDate(date[1]);
 
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
+
     try {
       setIsLoading(true);
       setIsLoadingCustomers(true);
-      const customersData = await fetchCustomersData(startDateISO, endDateISO);
+      const customersData = await fetchCustomersData(
+        startDateISO,
+        endDateISO,
+        controller.signal,
+      );
       setCustomers(customersData);
       setError({});
     } catch (err) {
+      // Aborto significa que outra busca assumiu: não mexe em loading nem em
+      // erro, senão apagaria o estado de carregamento da busca mais nova.
+      if (err?.name === 'AbortError') return;
       setError(err.message);
     } finally {
-      setIsLoading(false);
-      setIsLoadingCustomers(false);
-      saveDate();
+      if (abortRef.current === controller) {
+        setIsLoading(false);
+        setIsLoadingCustomers(false);
+        saveDate();
+      }
     }
   };
 
@@ -124,24 +142,42 @@ export const OrdersProvider = ({ children }) => {
     };
   }, []);
 
-  const value = {
-    customers,
-    setCustomers,
-    date,
-    setDate,
-    resetData,
-    store,
-    setStore,
-    isLoading,
-    isLoadingCustomers,
-    setIsLoading,
-    fetchData,
-    automaticUpdate,
-    setAutomaticUpdate,
-    currentDateLocalStorage,
-    isOnline,
-    error,
-  };
+  // Memoizado: este contexto é consumido por praticamente toda a árvore
+  // (`date` e `store` alimentam todas as abas). Um literal novo a cada render
+  // forçava re-render de todos os consumidores mesmo sem nada ter mudado.
+  // `fetchData` e `resetData` são recriados a cada render, então entram nas
+  // deps — o ganho vem de não recriar o objeto quando só o pai re-renderiza.
+  const value = useMemo(
+    () => ({
+      customers,
+      setCustomers,
+      date,
+      setDate,
+      resetData,
+      store,
+      setStore,
+      isLoading,
+      isLoadingCustomers,
+      setIsLoading,
+      fetchData,
+      automaticUpdate,
+      setAutomaticUpdate,
+      currentDateLocalStorage,
+      isOnline,
+      error,
+    }),
+    [
+      customers,
+      date,
+      store,
+      isLoading,
+      isLoadingCustomers,
+      automaticUpdate,
+      currentDateLocalStorage,
+      isOnline,
+      error,
+    ],
+  );
 
   return (
     <OrdersContext.Provider value={value}>{children}</OrdersContext.Provider>

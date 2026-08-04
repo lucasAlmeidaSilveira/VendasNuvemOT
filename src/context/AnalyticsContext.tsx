@@ -155,6 +155,10 @@ export const AnalyticsProvider: React.FC<AnalyticsProviderProps> = ({
     } catch (err: any) {
       setErrorGoogle(true);
       setErrorMeta(true);
+      // Limpa os dados do período anterior. Antes só as flags de erro eram
+      // marcadas, e `data` seguia com totalVisits/carts/usersByDevice do período
+      // antigo — que continuam sendo renderizados nos cards.
+      resetData();
     } finally {
       setIsLoadingADSGoogle(false);
       setIsLoadingADSMeta(false);

@@ -159,16 +159,16 @@ export function Deliveries() {
     setShippingStatusFilter(status);
   };
 
-  // Buscar entregas quando store ou date mudarem
+  // A busca depende apenas de `store` — a rota /mandae/:store não recebe data.
+  // Manter `date` nas deps refazia uma requisição idêntica a cada troca de
+  // período, sem alterar nada na tela.
   useEffect(() => {
     if (store) {
-      // Supondo que date tem startDate e endDate
       fetchDeliveries({
         store,
       });
     }
-    console.log(paginatedData);
-  }, [store, date]);
+  }, [store]);
 
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
