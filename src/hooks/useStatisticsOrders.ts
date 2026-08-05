@@ -11,6 +11,7 @@ import {
   ProductDetailShop,
 } from '../types';
 import { formatDate } from '../tools/tools';
+import { normalizeEstado, ESTADO_NAO_INFORMADO } from '../tools/estados';
 
 // =====================================================================
 // Replica a lógica do `tools/filterOrders` (legado) sobre `orders_shop`,
@@ -30,7 +31,7 @@ import { formatDate } from '../tools/tools';
 //  - products[{name,price,quantity}] (catálogo) +
 //    productCost (custo congelado do pedido)                  → DataSectionCosts
 //  - coupon[{code,value}] (códigos; value indisponível='0')   → DataSectionCart
-//  - billing_province (= client.uf_cli)                       → gráfico estados
+//  - billing_province (client.uf_cli normalizado)             → gráfico estados
 // =====================================================================
 
 const num = (value: unknown): number => {
@@ -83,7 +84,8 @@ export type AdaptedOrder = Omit<OrderShop, 'products'> & {
   // Total autoritativo do custo do pedido (ver sumFrozenCost). É o que
   // DataSectionCosts soma; `products[].cost` é só o recorte por SKU.
   productCost: number;
-  billing_province: string | null;
+  // Sempre o nome do estado por extenso (ou 'Não informado'). Ver resolveProvince.
+  billing_province: string;
 };
 
 export interface StatisticsOrdersResult {
@@ -197,6 +199,21 @@ function adaptProducts(
   });
 }
 
+// Estado do pedido para o gráfico de vendas por estado. O valor cru de
+// `clientes.uf_cli` mistura sigla (Tiny), nome por extenso (Nuvemshop) e NULL
+// (pedido manual), então normaliza-se ANTES de agregar — é o que faz "SP" e
+// "São Paulo" caírem na mesma barra em vez de duas.
+// Pedido manual sem UF cai em 'São Paulo' porque era isso que o legado tinha
+// no dump (billing_province fixo do OrderPopup) e as filiais são todas em SP.
+const resolveProvince = (o: OrderShop, client?: ClientRow | null): string => {
+  const estado = normalizeEstado(client?.uf_cli);
+  if (estado) return estado;
+  if (o.storefront === 'Loja' || o.storefront === 'Loja Fisica') {
+    return 'São Paulo';
+  }
+  return ESTADO_NAO_INFORMADO;
+};
+
 function adaptOrder(
   o: OrderShop,
   productMap: Map<string, ProductRow | null>,
@@ -218,7 +235,7 @@ function adaptOrder(
     coupon: coupons.map((code) => ({ code, value: '0' })),
     products: adaptProducts(skus, productMap, o.products_detail),
     productCost: sumFrozenCost(o.products_detail),
-    billing_province: client?.uf_cli ?? null,
+    billing_province: resolveProvince(o, client),
   };
 }
 
