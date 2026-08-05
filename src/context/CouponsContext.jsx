@@ -32,12 +32,14 @@ export const CouponProvider = ({ children }) => {
     }
   };
 
-  // Chamada da API quando 'date' muda
+  // A URL depende apenas de `store` — não há filtro de data nesta rota. Manter
+  // `date` nas deps refazia uma requisição byte-idêntica a cada troca de
+  // período, sem nenhum efeito na tela.
   useEffect(() => {
     if (activeTab === 2 || activeTab === 4) {
       fetchData();
     }
-  }, [store, date, activeTab]);
+  }, [store, activeTab]);
 
   const value = {
     coupons,

@@ -14,7 +14,8 @@ import TableSortLabel from '@mui/material/TableSortLabel';
 import { visuallyHidden } from '@mui/utils';
 import { formatCurrency, formatDateShort, formatDate } from '../../tools/tools';
 import { TablePaginationActions } from '../Pagination';
-import { Table, Theme, Flex } from '@radix-ui/themes';
+import { Table, Flex } from '@radix-ui/themes';
+import { RadixTheme } from '../RadixTheme';
 import { InputSearch } from '../InputSearch';
 import { Loading } from '../Loading';
 
@@ -82,7 +83,7 @@ const EnhancedTableHead = ({ order, orderBy, onRequestSort }) => {
   };
 
   return (
-    <Table.Header style={{ backgroundColor: 'lightgray' }}>
+    <Table.Header style={{ backgroundColor: 'var(--table-head-bg)' }}>
       <Table.Row>
         {headCells.map((headCell) => (
           <Table.ColumnHeaderCell
@@ -159,16 +160,16 @@ export function Deliveries() {
     setShippingStatusFilter(status);
   };
 
-  // Buscar entregas quando store ou date mudarem
+  // A busca depende apenas de `store` — a rota /mandae/:store não recebe data.
+  // Manter `date` nas deps refazia uma requisição idêntica a cada troca de
+  // período, sem alterar nada na tela.
   useEffect(() => {
     if (store) {
-      // Supondo que date tem startDate e endDate
       fetchDeliveries({
         store,
       });
     }
-    console.log(paginatedData);
-  }, [store, date]);
+  }, [store]);
 
   useEffect(() => {
     const filteredOrdersCalc = stableSort(
@@ -201,7 +202,7 @@ export function Deliveries() {
   }, []);
 
   return (
-    <Theme>
+    <RadixTheme>
       <FilterContainer>
         <InputSearch
           label="Buscar pedido:"
@@ -313,6 +314,6 @@ export function Deliveries() {
           </TableFooter>
         </Table.Root>
       </ContainerDelivery>
-    </Theme>
+    </RadixTheme>
   );
 }

@@ -19,20 +19,28 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: 'var(--body-heading-h5-font-size)',
   fontWeight: 'var(--body-heading-h5-font-weight)',
 }));
 
 const StyledDialogContentText = styled(DialogContentText)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: '1.2rem',
   fontWeight: 'var(--body-small-regular-font-weight)',
 }));
 
-export function ConfirmationDialog({ open, onClose, onConfirm, loading, success, action }) {
+const StyledDialogErrorText = styled(DialogContentText)(({ theme }) => ({
+  color: 'var(--redprimary-100, #c62828)',
+  fontFamily: 'Poppins, sans-serif',
+  fontSize: '1rem',
+  fontWeight: 'var(--body-small-regular-font-weight)',
+  marginTop: '0.75rem',
+}));
+
+export function ConfirmationDialog({ open, onClose, onConfirm, loading, success, action, error }) {
   return (
     <StyledDialog
       open={open}
@@ -47,6 +55,11 @@ export function ConfirmationDialog({ open, onClose, onConfirm, loading, success,
         <StyledDialogContentText id='alert-dialog-description'>
           Você tem certeza que deseja {action}?
         </StyledDialogContentText>
+        {error && (
+          <StyledDialogErrorText id='alert-dialog-error'>
+            {error}
+          </StyledDialogErrorText>
+        )}
       </DialogContent>
       <DialogActions>
         <Button typeStyle={'simple'} onClick={onClose} type='button'>

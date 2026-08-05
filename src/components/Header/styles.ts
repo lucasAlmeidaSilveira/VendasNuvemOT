@@ -3,13 +3,17 @@ import styled from "styled-components";
 export const Container = styled.div`
   align-items: center;
   justify-content: space-between;
-  background-color: var(--geralblack-100);
+  background-color: var(--chip-bg);
   border-radius: 16px;
   display: flex;
   gap: 8px;
   padding: 2rem 2rem;
   margin-bottom: 24px;
-  box-shadow: 0px 2px 2px #00000040;
+  /* o anel de --elevation-border vai como box-shadow (e não como border) para
+     não ocupar layout: no tema claro ele é transparente e some sem deslocar
+     nada; no escuro é ele que separa o chip do fundo, já que sombra preta
+     sobre fundo quase preto não rende. */
+  box-shadow: 0px 2px 2px var(--shadow-color), 0 0 0 1px var(--elevation-border);
   position: sticky;
   top: 2rem;
   z-index: 999;
@@ -36,7 +40,7 @@ export const Container = styled.div`
   
   .text-wrapper {
     flex: 1;
-    color: #ffffff;
+    color: var(--chip-text-hi);
     font-family: var(--body-paragraph-regular-font-family);
     font-size: 1.2rem;
     font-style: var(--body-paragraph-regular-font-style);
@@ -49,7 +53,7 @@ export const Container = styled.div`
   }
 
   .text-wrapper-2, .store-select {
-    color: #ffffff;
+    color: var(--chip-text-hi);
     font-family: var(--body-heading-h6-font-family);
     font-size: 1.4rem;
     font-style: var(--body-heading-h6-font-style);
@@ -64,16 +68,26 @@ export const Container = styled.div`
     padding: 0;
     background-color: transparent;
 
-    option{
-      color: var(--geralblack-100);
+    /* o Chromium tira o fundo da lista suspensa do background-color declarado no
+       select — como aqui ele é transparente, a lista é pintada clara mesmo com
+       color-scheme: dark, e o texto claro do tema escuro sumia nela. Fundo opaco
+       explícito no option resolve nos dois temas. */
+    option,
+    optgroup {
+      background-color: var(--surface);
+      color: var(--text-primary);
+    }
+
+    option:checked {
+      background-color: var(--surface-2);
     }
   }
 
   .vector-wrapper {
     align-items: center;
-    background-color: var(--geralwhite);
+    background-color: var(--surface);
     border-radius: 100px;
-    box-shadow: 0px 4px 4px #00000040;
+    box-shadow: 0px 4px 4px var(--shadow-color);
     display: flex;
     flex-direction: column;
     gap: 8px;
@@ -90,7 +104,7 @@ export const Container = styled.div`
     width: 40px;
   }
   span.label--switch-toggle {
-    color: #fcfafb;
+    color: var(--chip-text);
     font-size: 12px;
     font-weight: 400;
     font-family: 'Poppins', sans-serif;

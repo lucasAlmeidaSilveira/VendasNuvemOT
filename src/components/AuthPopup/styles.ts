@@ -7,8 +7,8 @@ export const PopupAuth = styled.div`
   width: 100vw;
   height: 100vh;
   backdrop-filter: blur(10px); /* Intensidade do desfoque */
-  background-color: rgba(0, 0, 0, 0.8);
-  color: white;
+  background-color: var(--overlay);
+  color: var(--chip-text-hi);
   display: flex;
   gap: 0.8rem;
   justify-content: center;
@@ -27,8 +27,8 @@ export const Box = styled.div`
   gap: 2.4rem;
   border-radius: 0.8rem;
   padding: 4rem 3.2rem;
-  background-color: var(--geralblack-100);
-  
+  background-color: var(--chip-bg);
+
   div {
     display: flex;
     flex-direction: column;
@@ -42,7 +42,7 @@ export const Box = styled.div`
   }
   
   h2 {
-    color: var(--geralwhite);
+    color: var(--chip-text);
     font-size: 3.2rem;
     font-weight: 700;
     line-height: 120%;
@@ -50,7 +50,7 @@ export const Box = styled.div`
   }
   
   p {
-    color: var(--geralwhite);
+    color: var(--chip-text);
     font-size: 14px;
     text-align: center;
   }
@@ -62,16 +62,16 @@ export const Box = styled.div`
     border-radius: 100px;
     gap: 1.6rem;
     padding: 10px 20px;
-    background-color: var(--geralwhite);
-    color: var(--geralblack-100);
-    box-shadow: 0px 2px 2px #00000040;
+    background-color: var(--surface);
+    color: var(--text-primary);
+    box-shadow: 0px 2px 2px var(--shadow-color);
     cursor: pointer;
     font-size: 16px;
     transition: background .2s ease;
-    
+
     &:hover {
-      background: var(--geralblack-70);
-      color: var(--geralwhite);
+      background: var(--chip-bg-alt);
+      color: var(--chip-text);
     }
   }
 `;
@@ -92,11 +92,11 @@ export const BoxUser = styled.div`
     width: 4rem;
     height: 4rem;
     image-rendering: optimizeSpeed;
-    border: 2px solid var(--geralwhite);
+    border: 2px solid var(--chip-text);
   }
 
   p {
-    color: var(--geralwhite);
+    color: var(--chip-text);
     font-size: 1.4rem;
   }
 `

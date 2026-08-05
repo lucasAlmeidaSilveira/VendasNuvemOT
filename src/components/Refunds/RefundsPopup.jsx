@@ -100,6 +100,7 @@ export function RefundPopup({ isPopupOpen, handleIsClosePopup }) {
       onClose={handleIsClosePopup}
       size="xs"
       title="Reembolsos"
+      paperClassName="refund-dialog-paper"
     >
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage ? (

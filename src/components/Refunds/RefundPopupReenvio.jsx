@@ -101,6 +101,7 @@ export function RefundPopupReenvio({ isPopupOpen, handleIsClosePopup }) {
       onClose={handleIsClosePopup}
       size="xs"
       title="Reenvios"
+      paperClassName="refund-dialog-paper"
     >
       {error && <p style={{ color: 'red' }}>{error}</p>}
       {successMessage ? (

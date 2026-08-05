@@ -10,7 +10,7 @@ export const Container = styled.div`
   gap: 2rem;
 
   h1 {
-    color: var(--geralblack-100);
+    color: var(--text-primary);
     font-family: var(--body-heading-h5-font-family);
     font-size: var(--body-heading-h5-font-size);
     font-style: var(--body-heading-h5-font-style);
@@ -30,12 +30,12 @@ export const ContainerOrders = styled.div`
   flex-wrap: wrap;
 `;
 
-const bgColorCard = '#c8e6c9';
-const bgColorPix = '#bbdefb';
-const bgColorBoleto = '#ffe0b2';
-const borderColorCard = '#66bb6a';
-const borderColorPix = '#42a5f5';
-const borderColorBoleto = '#ffb74d';
+const bgColorCard = 'var(--pay-card-bg)';
+const bgColorPix = 'var(--pay-pix-bg)';
+const bgColorBoleto = 'var(--pay-boleto-bg)';
+const borderColorCard = 'var(--pay-card-border)';
+const borderColorPix = 'var(--pay-pix-border)';
+const borderColorBoleto = 'var(--pay-boleto-border)';
 
 export const ContainerGeral = styled.div<ContainerGeralProps>`
   align-items: flex-start;
@@ -44,17 +44,17 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   flex: 1;
   flex-wrap: wrap;
   gap: 1.6rem;
-  background-color: ${(props) => props.bgcolor || 'var(var(--geralgray-10)'};
+  background-color: ${(props) => props.bgcolor || 'var(--surface-2)'};
   padding: 2.4rem;
   border-radius: 1.6rem;
 
   h4 {
-    color: var(--geralwhite);
+    color: var(--chip-text);
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
   h5 {
-    color: var(--geralwhite);
+    color: var(--chip-text);
     text-shadow: 0px 2px 4px rgba(0, 0, 0, 0.5);
   }
 
@@ -73,9 +73,9 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
 
   & .div {
     align-items: flex-start;
-    background-color: var(--geralgray-10);
+    background-color: var(--surface-2);
     border-radius: 1.6rem;
-    box-shadow: 0px 4px 4px #00000040;
+    box-shadow: 0px 4px 4px var(--shadow-color);
     display: flex;
     width: 100%;
     min-width: 28rem;
@@ -93,8 +93,8 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
       cursor: pointer;
     }
     &.orders:hover {
-      border: 1px solid var(--geralblack-100);
-      background-color: var(--geralblack-20);
+      border: 1px solid var(--border-strong);
+      background-color: var(--surface-hover);
     }
   }
 
@@ -128,7 +128,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   }
 
   & .text-wrapper-2 {
-    color: var(--geralblack-100);
+    color: var(--text-primary);
     font-family: var(--body-paragraph-regular-font-family);
     font-size: var(--body-paragraph-regular-font-size);
     font-style: var(--body-paragraph-regular-font-style);
@@ -140,7 +140,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   }
 
   & .text-wrapper-3 {
-    color: var(--geralblack-100);
+    color: var(--text-primary);
     font-family: var(--body-heading-h4-font-family);
     font-size: var(--body-heading-h4-font-size);
     font-style: var(--body-heading-h4-font-style);
@@ -154,7 +154,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   }
 
   & .text-wrapper-4 {
-    color: var(--geralblack-100);
+    color: var(--text-primary);
     font-family: var(--body-heading-h4-font-family);
     font-size: var(--body-heading-h4-font-size);
     font-style: var(--body-heading-h4-font-style);
@@ -190,7 +190,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
       width: 100%;
       gap: 0.2rem;
       flex-direction: column;
-      color: var(--geralgray-100);
+      color: var(--text-secondary);
 
       .row-list {
         & > span {
@@ -208,7 +208,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
   & .btn-reload {
     margin-left: auto;
     padding: 4px;
-    background: var(--geralblack-30);
+    background: var(--border-subtle);
     border-radius: 50%;
     border: 1px solid transparent;
 
@@ -221,13 +221,13 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
 
     &:hover {
       opacity: 1;
-      box-shadow: 0px 3px 4px #00000040;
+      box-shadow: 0px 3px 4px var(--shadow-color);
     }
   }
   & .btn-plus {
     margin-left: auto;
     padding: 4px;
-    background: var(--geralblack-30);
+    background: var(--border-subtle);
     border-radius: 50%;
     border: 1px solid transparent;
 
@@ -240,7 +240,7 @@ export const ContainerGeral = styled.div<ContainerGeralProps>`
 
     &:hover {
       opacity: 1;
-      box-shadow: 0px 3px 4px #00000040;
+      box-shadow: 0px 3px 4px var(--shadow-color);
     }
   }
 `;

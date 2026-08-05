@@ -10,14 +10,14 @@ export const ContainerVariation = styled.div`
   transition: background-color 0.2s ease-in-out;
 
   &:nth-child(even) {
-    background: var(--geralgray-10);
+    background: var(--surface-2);
   }
   &:nth-child(odd) {
-    background: var(--geralwhite);
+    background: var(--surface);
   }
 
   p {
-    color: var(--geralblack-100);
+    color: var(--text-primary);
   }
 
   .variation {
@@ -32,14 +32,14 @@ export const ContainerVariation = styled.div`
       justify-content: center;
 
       .name-product {
-        color: var(--geralblack-100);
+        color: var(--text-primary);
         word-wrap: break-word;
         font-weight: 600;
         font-size: 1.2rem;
       }
 
       .text-position {
-        color: var(--geralblack-100);
+        color: var(--text-primary);
         font-size: 1.2rem;
       }
     }

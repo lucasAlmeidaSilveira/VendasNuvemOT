@@ -5,7 +5,6 @@ import { useOrders } from '../../context/OrdersContext';
 import { BudgetItem, BudgetItemList, BudgetItemListNumber } from './BudgetItem';
 import {
   adjustDate,
-  calculateAverageTicket,
   calculatePopupRate,
   calculateRoas,
   formatCurrency,
@@ -13,7 +12,10 @@ import {
   generateRoasData,
   parseCurrency,
 } from '../../tools/tools';
-import { filterOrders } from '../../tools/filterOrders';
+import {
+  useStatisticsOrders,
+  AdaptedOrder,
+} from '../../hooks/useStatisticsOrders';
 import { ContainerOrders, ContainerGeral, ContainerCharts } from './styles';
 import { GrMoney } from 'react-icons/gr';
 import { DiGoogleAnalytics } from 'react-icons/di';
@@ -35,6 +37,8 @@ import { SiHomeassistantcommunitystore } from 'react-icons/si';
 
 import {
   CouponProps,
+  CouponRow,
+  DatabaseTable,
   DataSectionAnalyticsProps,
   DataSectionCartProps,
   DataSectionCostsProps,
@@ -45,6 +49,8 @@ import {
   Order,
   Coupon,
 } from '../../types';
+import { fetchTable } from '../../api/db';
+import { formatDate } from '../../tools/tools';
 import { useRefunds } from '../../context/RefundsContext';
 import { TooltipInfo } from '../TooltipInfo';
 import { RefundPopup } from '../Refunds/RefundsPopup';
@@ -62,15 +68,11 @@ export function DataSectionTPago({
   bgcolor,
   verba,
   totalOrdersFormatted,
-  roas,
-  roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
   isLoadingADSMeta,
-  roasEspelhos,
-  roasQuadros,
 }: DataSectionTPagoProps) {
-  const { allOrders, date, store, allNewOrders } = useOrders();
+  const { date, store } = useOrders();
   const {
     adsData,
     loading,
@@ -82,14 +84,17 @@ export function DataSectionTPago({
   } = useTikTokAds();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
-  // Filtros para pedidos
+  // Métricas de pedido agora vêm do orders_shop (base nova) via useStatisticsOrders,
+  // que replica o filterOrders legado. Chatbot/Loja Física (storefront) = 0.
   const {
-    totalEspelhosFormatted,
-    totalQuadrosFormatted,
+    totalEspelhos: totalEspelhosFormatted,
+    totalQuadros: totalQuadrosFormatted,
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot,
     totalRevenue,
-  } = filterOrders(allOrders, date);
+    totalPaidAllAmountFormatted,
+    totalRecorrentesClientesChatbot,
+  } = useStatisticsOrders(store, date);
   const verbaGoogleSum =
     verba.googleEcom +
     verba.googleEspelhos +
@@ -106,8 +111,34 @@ export function DataSectionTPago({
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
-  const totalAdSpend = formatCurrency(
-    verbaGoogleSum + verbaMetaSum + totalCostTikTokAll,
+
+  // Verba Total (denominador comum do ROAS Geral e do Max.).
+  const totalAdSpendValue = verbaGoogleSum + verbaMetaSum + totalCostTikTokAll;
+  const totalAdSpend = formatCurrency(totalAdSpendValue);
+
+  // ROAS = Faturamento / Verba Total, usando exatamente os mesmos valores
+  // exibidos nos cards "Faturamento" e "Verba Total" desta seção.
+  const roasValue = calculateRoas(
+    Number(totalOrdersFormatted) || 0,
+    totalAdSpendValue,
+  );
+
+  // ROAS Max. = Faturamento máximo (todos os pedidos do período) / Verba Total.
+  const roasMaxValue = `Max.: ${calculateRoas(
+    parseCurrency(totalPaidAllAmountFormatted) +
+      totalRecorrentesClientesChatbot,
+    totalAdSpendValue,
+  )}`;
+
+  // ROAS por categoria = Faturamento da categoria / Verba da categoria
+  // (mesmos valores dos cards "Faturamento" e "Verba Total" detalhados).
+  const roasQuadrosValue = calculateRoas(
+    totalQuadrosFormatted,
+    verba.googleQuadros + verba.metaQuadros,
+  );
+  const roasEspelhosValue = calculateRoas(
+    totalEspelhosFormatted,
+    verba.googleEspelhos + verba.metaEspelhos,
   );
 
   // Função para converter o objeto em arrays separados por plataforma
@@ -199,9 +230,9 @@ export function DataSectionTPago({
   const totalByCategoryOT = [
     {
       name: 'Quadros',
-      value: roasQuadros,
+      value: roasQuadrosValue,
     },
-    { name: 'Espelhos', value: roasEspelhos },
+    { name: 'Espelhos', value: roasEspelhosValue },
   ];
   const tiktokCostAll = [
     {
@@ -215,13 +246,6 @@ export function DataSectionTPago({
     fetchDataADSMeta();
     fetchTikTokAds();
   };
-
-  /*
-  useEffect(() => {
-    console.log('Debug allNewOrders:', allNewOrders);
-    console.log('Debug allOrders:', allOrders);
-  }, [store, date]);
-  */
 
   const dataRoas = generateRoasData(totalByCategory, totalCosts);
 
@@ -253,7 +277,7 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={FaTiktok}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Tiktok'
             dataCosts={tiktokCostAll}
             tooltip='Tiktok ADS'
@@ -264,7 +288,7 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Total'
             dataCosts={totalCosts}
             tooltip='Google ADS x Meta ADS'
@@ -289,12 +313,12 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='ROAS'
             tooltip='Faturamento x Verba Total'
             dataCosts={totalByCategoryOT}
-            value={roas}
-            small={title !== 'Chatbot' ? roasMax : undefined}
+            value={roasValue}
+            small={title !== 'Chatbot' ? roasMaxValue : undefined}
             isLoading={
               isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders
             }
@@ -310,31 +334,24 @@ export function DataSectionTPagoAP({
   bgcolor,
   verba,
   totalOrdersFormatted,
-  roas,
-  roasEcom,
-  roasLoja,
-  roasChatbot,
-  roasClientes,
-  roasClientesChatbot,
-  roasMax,
   isLoadingADSGoogle,
   isLoadingOrders,
   isLoadingADSMeta,
 }: DataSectionTPagoAPProps) {
-  const { allOrders, date, store } = useOrders();
+  const { date, store } = useOrders();
   const { fetchDataGoogle, fetchDataADSMeta, errorMeta, errorGoogle } =
     useAnalytics();
-  // Filtros para pedidos
+  // Métricas de pedido vêm do orders_shop (base nova) via useStatisticsOrders,
+  // que replica o filterOrders legado — inclusive o recorte de Chatbot
+  // (storefront 'Loja') e Loja Física (storefront 'Loja Fisica').
   const {
-    totalEspelhosFormatted,
-    totalQuadrosFormatted,
     totalPaidAllAmountEcom,
     totalPaidAmountChatbot,
-    totalPaidAmount,
     totalRevenue,
     totalNovosClientes,
     totalRecorrentesClientesChatbot,
-  } = filterOrders(allOrders, date);
+    totalPaidAllAmountFormatted,
+  } = useStatisticsOrders(store, date);
   const verbaGoogleSum =
     verba.googleEcom +
     verba.googleEspelhos +
@@ -351,7 +368,10 @@ export function DataSectionTPagoAP({
 
   const verbaGoogle = formatCurrency(verbaGoogleSum);
   const verbaMeta = formatCurrency(verbaMetaSum);
-  const totalAdSpend = formatCurrency(verbaGoogleSum + verbaMetaSum);
+
+  // Verba Total (denominador comum do ROAS Geral e do Max.).
+  const totalAdSpendValue = verbaGoogleSum + verbaMetaSum;
+  const totalAdSpend = formatCurrency(totalAdSpendValue);
 
   // Função para converter o objeto em arrays separados por plataforma
   const formatCostsByPlatform = (
@@ -406,15 +426,40 @@ export function DataSectionTPagoAP({
 
   const totalChatbot = totalPaidAmountChatbot + totalRecorrentesClientesChatbot;
 
-  const totalLojaRecorrentes = totalRevenue - totalNovosClientes
+  const totalLojaRecorrentes = totalRevenue - totalNovosClientes;
   const totalLojaBruto = totalLojaRecorrentes + totalNovosClientes;
 
   //valor total de orders somando o valor de vendas de clientes novos
-  const totalOrdersAll = (
-    totalPaidAllAmountEcom +
-    totalChatbot +
-    totalLojaBruto
-  ).toLocaleString('pt-BR', { style: 'currency', currency: 'BRL' });
+  const totalFaturamento =
+    totalPaidAllAmountEcom + totalChatbot + totalLojaBruto;
+
+  const totalOrdersAll = totalFaturamento.toLocaleString('pt-BR', {
+    style: 'currency',
+    currency: 'BRL',
+  });
+
+  // ROAS = Faturamento / Verba Total, usando exatamente os mesmos valores
+  // exibidos nos cards "Faturamento" e "Verba Total" desta seção.
+  const roasValue = calculateRoas(totalFaturamento, totalAdSpendValue);
+
+  // ROAS Max. = Faturamento máximo (todos os pedidos do período) / Verba Total.
+  const roasMaxValue = `Max.: ${calculateRoas(
+    parseCurrency(totalPaidAllAmountFormatted) +
+      totalRecorrentesClientesChatbot,
+    totalAdSpendValue,
+  )}`;
+
+  // ROAS por categoria = Faturamento da categoria / Verba da categoria
+  // (mesmos valores dos cards "Faturamento" e "Verba Total" detalhados).
+  const roasEcomValue = calculateRoas(
+    totalPaidAllAmountEcom,
+    verba.googleEcom + verba.metaEcom,
+  );
+  // Numerador = totalChatbot (venda + clientes recorrentes), o mesmo valor do card
+  // "Chatbot" ao lado. O legado usava só a venda; aqui vale a regra acima de o ROAS
+  // refletir exatamente o que está impresso nos cards.
+  const roasChatbotValue = calculateRoas(totalChatbot, verba.metaChatbot);
+  const roasLojaValue = calculateRoas(totalLojaBruto, verba.googleLoja);
 
   const handleUpdateDataADS = () => {
     fetchDataGoogle();
@@ -437,10 +482,10 @@ export function DataSectionTPagoAP({
   const totalByCategoryAP = [
     {
       name: 'Ecom',
-      value: roasEcom,
+      value: roasEcomValue,
     },
-    { name: 'Chatbot', value: roasChatbot },
-    { name: 'Loja Física', value: roasLoja },
+    { name: 'Chatbot', value: roasChatbotValue },
+    { name: 'Loja Física', value: roasLojaValue },
     /*
     { name: 'Novos Clientes Loja Fisica', value: roasClientes },
     { name: 'Novos Clientes Chatbot', value: roasClientesChatbot },*/
@@ -499,7 +544,7 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Total'
             dataCosts={totalCosts}
             tooltip='Google ADS x Meta ADS'
@@ -511,7 +556,7 @@ export function DataSectionTPagoAP({
         <div className='row'>
           <BudgetItemList
             icon={RiRobot2Line}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Chatbot'
             tooltip='Faturamento Chatbot'
             value={totalChatbot.toLocaleString('pt-BR', {
@@ -523,17 +568,13 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={SiHomeassistantcommunitystore}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Loja Fisica'
             tooltip='Faturamento Loja Fisica'
-            value={
-              totalLojaBruto < 0
-                ? 0
-                : totalLojaBruto.toLocaleString('pt-BR', {
-                    style: 'currency',
-                    currency: 'BRL',
-                  })
-            }
+            value={(totalLojaBruto < 0 ? 0 : totalLojaBruto).toLocaleString(
+              'pt-BR',
+              { style: 'currency', currency: 'BRL' },
+            )}
             dataCosts={totalByCategoryLojaFisica}
             isLoading={isLoadingOrders}
           />
@@ -551,12 +592,12 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='ROAS'
             tooltip='Faturamento x Verba Total'
-            value={roas}
+            value={roasValue}
             dataCosts={totalByCategoryAP}
-            small={title !== 'Chatbot' ? roasMax : undefined}
+            small={title !== 'Chatbot' ? roasMaxValue : undefined}
             isLoading={
               isLoadingADSMeta || isLoadingADSGoogle || isLoadingOrders
             }
@@ -568,8 +609,13 @@ export function DataSectionTPagoAP({
 }
 
 export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
-  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
-  const { ordersTodayPaid, ordersAllToday } = filterOrders(allOrders, date);
+  // Dados de pagamento agora vêm do orders_shop (payment_method/payment_status).
+  const { store, date } = useOrders();
+  const {
+    ordersTodayPaid,
+    ordersAllToday,
+    loading: isLoadingOrders,
+  } = useStatisticsOrders(store, date);
   const [passRate, setPassRate] = useState(DEFAULT_PERCENTAGE);
   const [creditCardTransactions, setCreditCardTransactions] = useState<Order[]>(
     [],
@@ -587,9 +633,9 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const [boletoApprovalRate, setBoletoApprovalRate] =
     useState(DEFAULT_PERCENTAGE);
 
-  const colorCard = '#66bb6a';
-  const colorPix = '#42a5f5';
-  const colorBoleto = '#ffb74d';
+  const colorCard = 'var(--pay-card-border)';
+  const colorPix = 'var(--pay-pix-border)';
+  const colorBoleto = 'var(--pay-boleto-border)';
 
   const calculatePercentage = (orders: Order[], total: number): string =>
     total > 0 ? ((orders.length / total) * 100).toFixed(1) + '%' : '0%';
@@ -602,12 +648,15 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     );
 
   useEffect(() => {
-    if (ordersAllToday.length > 0) {
-      const passRateValue =
-        (ordersTodayPaid.length / ordersAllToday.length) * 100;
-      setPassRate(passRateValue.toFixed(1) + '%');
+    // Período sem pedidos precisa zerar a taxa: antes o `if` deixava o valor do
+    // período ANTERIOR na tela, como se fosse do período selecionado.
+    if (ordersAllToday.length === 0) {
+      setPassRate('0%');
+      return;
     }
-  }, []);
+    const passRateValue = (ordersTodayPaid.length / ordersAllToday.length) * 100;
+    setPassRate(passRateValue.toFixed(1) + '%');
+  }, [ordersAllToday, ordersTodayPaid]);
 
   useEffect(() => {
     const creditCardFilter = filterTransactions('credit_card');
@@ -635,7 +684,7 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
     setBoletoApprovalRate(
       calculatePercentage(paidBoletoFilter, boletoFilter.length),
     );
-  }, [allOrders]);
+  }, [ordersAllToday]);
 
   return (
     <ContainerOrders>
@@ -670,29 +719,29 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
             title='Transações no Cartão'
             tooltip='Nuvemshop'
             value={creditCardTransactions.length}
+            orders={creditCardTransactions}
             isLoading={isLoadingOrders}
             small={creditCardPercentage}
-            orders={creditCardTransactions}
           />
           <BudgetItem
             icon={FaPix}
             iconColor={colorPix}
             title='Transações no Pix'
             tooltip='Nuvemshop'
+            orders={pixTransactions}
             value={pixTransactions.length}
             isLoading={isLoadingOrders}
             small={pixPercentage}
-            orders={pixTransactions}
           />
           <BudgetItem
             icon={FaFileInvoiceDollar}
             iconColor={colorBoleto}
             title='Transações no Boleto'
             tooltip='Nuvemshop'
+            orders={boletoTransactions}
             value={boletoTransactions.length}
             isLoading={isLoadingOrders}
             small={boletoPercentage}
-            orders={boletoTransactions}
           />
         </div>
         <div className='row'>
@@ -733,62 +782,67 @@ export function DataSectionCosts({
   isLoadingADSGoogle,
   isLoadingADSMeta,
 }: DataSectionCostsProps) {
-  totalAdSpend = formatCurrency(totalAdSpend);
+  // Valor numérico e exibição são separados: parseCurrency só é seguro sobre
+  // string BRL (num number cru ele removeria o ponto decimal).
+  const adSpend =
+    typeof totalAdSpend === 'number'
+      ? totalAdSpend
+      : parseCurrency(totalAdSpend);
+  const adSpendFormatted = formatCurrency(totalAdSpend);
 
-  const { data } = useAnalytics();
-  const { allOrders, isLoading: isLoadingOrders, date } = useOrders();
-  const { ordersToday } = filterOrders(allOrders, date);
-  const [productCost, setProductCost] = useState('R$ 0,00');
-  const [grossProfit, setGrossProfit] = useState('R$ 0,00');
-  const [grossMargin, setGrossMargin] = useState('0%');
-  const [contributionMargin, setContributionMargin] = useState('0%');
-  const [productCostPercent, setProductCostPercent] = useState('0%');
-  const [totalProfit, setTotalProfit] = useState('R$ 0,00');
+  // Custo de produto vem do custo CONGELADO da venda
+  // (orders_shop.products_detail[].cost), já somado por pedido em
+  // ordersToday[].productCost pelo useStatisticsOrders — mesma fonte que o legado
+  // somava. NÃO usa custo_categoria do catálogo: aquele é o custo atual e
+  // reprecificava pedidos antigos.
+  const { store, date } = useOrders();
+  const { ordersToday, loading: isLoadingOrders } = useStatisticsOrders(
+    store,
+    date,
+  );
 
-  useEffect(() => {
-    if (ordersToday.length > 0) {
-      const totalProductCost = ordersToday.reduce((totalOrderCost, order) => {
-        const orderProductCost = order.products.reduce(
-          (productTotal, product) => {
-            const cost = product.cost ? parseFloat(product.cost) : 0; // Verifica se o custo não é null
-            return productTotal + cost;
-          },
-          0,
-        );
-        return totalOrderCost + orderProductCost;
-      }, 0);
+  // useMemo (e não useEffect+useState): ordersToday é referência estável e a
+  // verba de ADS chega em outro fetch — derivar direto evita ficar com ADS = 0.
+  const {
+    productCost,
+    grossProfit,
+    grossMargin,
+    productCostPercent,
+    contributionMargin,
+    totalProfit,
+  } = useMemo(() => {
+    // Custo por LINHA do pedido, como no legado (sem quantity). `order.productCost`
+    // soma todas as linhas de products_detail sem join por SKU — somar
+    // `order.products[].cost` descartaria linhas cujo SKU divergisse do array
+    // `products` (ver sumFrozenCost em useStatisticsOrders).
+    const totalProductCost = ordersToday.reduce(
+      (totalOrderCost, order) => totalOrderCost + (Number(order.productCost) || 0),
+      0,
+    );
 
-      setProductCost(formatCurrency(totalProductCost));
+    const totalOrderValue = totalOrdersFormatted; // já é number (soma dos pagos)
+    const grossProfitValue = totalOrderValue - totalProductCost;
 
-      const totalOrderValue = totalOrdersFormatted; //retirado o formatCurrency
-      const grossProfitValue = totalOrderValue - totalProductCost;
+    // Guarda apenas contra divisão por zero; negativo continua sendo calculado.
+    const grossMarginValue =
+      totalOrderValue > 0 ? (grossProfitValue / totalOrderValue) * 100 : 0;
+    const productCostPercentValue =
+      totalOrderValue > 0 ? (totalProductCost / totalOrderValue) * 100 : 0;
+    const contributionMarginValue =
+      grossProfitValue !== 0
+        ? ((grossProfitValue - adSpend) / grossProfitValue) * 100
+        : 0;
 
-      setGrossProfit(formatCurrency(grossProfitValue));
-
-      // Calcular a Margem Bruta
-      const grossMarginValue =
-        totalOrderValue > 0 ? (grossProfitValue / totalOrderValue) * 100 : 0;
-      setGrossMargin(grossMarginValue.toFixed(2) + '%');
-
-      // Calcular a Margem Contribuição
-      const contributionMarginValue =
-        ((grossProfitValue - parseCurrency(totalAdSpend)) / grossProfitValue) *
-        100;
-      setContributionMargin(
-        formatCurrency(contributionMarginValue.toFixed(2) + '%'),
-      );
-
-      // Calcular a Margem Contribuição
-      const productCostPercentValue =
-        (totalProductCost / totalOrderValue) * 100;
-      setProductCostPercent(productCostPercentValue.toFixed(2) + '%');
-
-      // Calcular o Lucro Líquido
-      const adSpend = parseCurrency(totalAdSpend);
-      const totalProfitValue = totalOrderValue - totalProductCost - adSpend;
-      setTotalProfit(formatCurrency(totalProfitValue));
-    }
-  }, [ordersToday, data]);
+    return {
+      productCost: formatCurrency(totalProductCost),
+      grossProfit: formatCurrency(grossProfitValue),
+      grossMargin: grossMarginValue.toFixed(2) + '%',
+      productCostPercent: productCostPercentValue.toFixed(2) + '%',
+      // percentual: sem formatCurrency, igual aos dois cards irmãos
+      contributionMargin: contributionMarginValue.toFixed(2) + '%',
+      totalProfit: formatCurrency(grossProfitValue - adSpend),
+    };
+  }, [ordersToday, totalOrdersFormatted, adSpend]);
 
   return (
     <ContainerOrders>
@@ -810,7 +864,7 @@ export function DataSectionCosts({
           <BudgetItem
             title='Custo ADS'
             tooltip='Google ADS + Meta ADS'
-            value={totalAdSpend}
+            value={adSpendFormatted}
             isLoading={isLoadingADSGoogle}
           />
         </div>
@@ -851,25 +905,37 @@ export function DataSectionCart({
   bgcolor,
   totalAdSpend,
 }: DataSectionCartProps) {
+  // Visitas/carrinho seguem do Google Analytics; a categorização por cupom usa
+  // a tabela `coupon` do novo backend (order_ids por código e período).
   const { data, isLoadingADSGoogle } = useAnalytics();
-  const { allOrders, date, isLoading, store } = useOrders();
-  const { ordersToday } = filterOrders(allOrders, date);
+  const { date, store } = useOrders();
+  const { ordersToday, loading: isLoading } = useStatisticsOrders(store, date);
   const { coupons } = useCoupons();
-  const [ordersWithCashback, setOrdersWithCashback] = useState<Order[]>([]);
-  const [ordersSellers, setOrdersSellers] = useState<Order[]>([]);
-  const [cartsRecoveryPartners, setCartsRecoveryPartners] = useState<Order[]>(
+  const [ordersWithCashback, setOrdersWithCashback] = useState<AdaptedOrder[]>(
     [],
   );
-  const [cartsRecoveryInsta, setCartsRecoveryInsta] = useState<Order[]>([]);
-  const [cartsRecoveryInstaDirect, setCartsRecoveryInstaDirect] = useState<
-    Order[]
+  const [ordersSellers, setOrdersSellers] = useState<AdaptedOrder[]>([]);
+  const [cartsRecoveryPartners, setCartsRecoveryPartners] = useState<
+    AdaptedOrder[]
   >([]);
-  const [cartsRecoveryWhats, setCartsRecoveryWhats] = useState<Order[]>([]);
-  const [cartsRecoveryEmail, setCartsRecoveryEmail] = useState<Order[]>([]);
-  const [cartsRecoveryPopup, setCartsRecoveryPopup] = useState<Order[]>([]);
-  const [cartsRecoveryGanhei15, setCartsRecoveryGanhei15] = useState<Order[]>(
+  const [cartsRecoveryInsta, setCartsRecoveryInsta] = useState<AdaptedOrder[]>(
     [],
   );
+  const [cartsRecoveryInstaDirect, setCartsRecoveryInstaDirect] = useState<
+    AdaptedOrder[]
+  >([]);
+  const [cartsRecoveryWhats, setCartsRecoveryWhats] = useState<AdaptedOrder[]>(
+    [],
+  );
+  const [cartsRecoveryEmail, setCartsRecoveryEmail] = useState<AdaptedOrder[]>(
+    [],
+  );
+  const [cartsRecoveryPopup, setCartsRecoveryPopup] = useState<AdaptedOrder[]>(
+    [],
+  );
+  const [cartsRecoveryGanhei15, setCartsRecoveryGanhei15] = useState<
+    AdaptedOrder[]
+  >([]);
 
   const [visits, setVisits] = useState(DEFAULT_VALUE);
   const [carts, setCarts] = useState(DEFAULT_VALUE);
@@ -929,74 +995,102 @@ export function DataSectionCart({
   );
 
   useEffect(() => {
-    // Função genérica para filtrar e calcular o total dos pedidos
-    const filterAndCalculateTotal = filterCondition => {
-      const filteredOrders = ordersToday.filter((order: Order) =>
-        filterCondition(order),
-      );
-
-      return { filteredOrders };
+    // Zera todos os cards de cupom. Necessário porque o efeito tem caminhos de saída
+    // antecipada (período sem pedidos / falha na busca): sem isso, os pedidos do período
+    // ANTERIOR continuariam na tela e nos popups.
+    const resetAll = () => {
+      setCartsRecoveryWhats([]);
+      setCartsRecoveryInsta([]);
+      setCartsRecoveryInstaDirect([]);
+      setCartsRecoveryPartners([]);
+      setCartsRecoveryEmail([]);
+      setCartsRecoveryPopup([]);
+      setCartsRecoveryGanhei15([]);
+      setOrdersSellers([]);
+      setOrdersWithCashback([]);
     };
 
-    const cashbackCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => coupon.code.startsWith('MTZ'));
+    if (!ordersToday.length || !date) {
+      resetAll();
+      return;
+    }
 
-    const partnersCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsPartners.includes(coupon.code));
+    const start = formatDate(date[0]);
+    const end = formatDate(date[1]);
 
-    const sellersCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsSellers.includes(coupon.code));
+    // Lookup rápido: order_id → AdaptedOrder (pedidos já carregados).
+    // Chave normalizada para String: orders_shop.order_id (bigint) e os
+    // order_ids da tabela coupon (JSONB) podem chegar como number OU string,
+    // e Map.get usa SameValueZero (get(123) !== get('123')).
+    const orderIdMap = new Map<string, AdaptedOrder>();
+    for (const order of ordersToday) {
+      orderIdMap.set(String(order.order_id), order);
+    }
 
-    const whatsCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsWhats.includes(coupon.code));
-
-    const instaCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsInsta.includes(coupon.code));
-
-    const instaDirectCondition = (order: Order) =>
-      order.coupon && order.coupon.some(coupon => coupon.code.endsWith('-10'));
-
-    const emailCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsEmail.includes(coupon.code));
-
-    const popupCondition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsPopup.includes(coupon.code));
-
-    const ganhei15Condition = (order: Order) =>
-      order.coupon &&
-      order.coupon.some(coupon => couponsGanhei15.includes(coupon.code));
-
-    // Cria um objeto que armazena os pedidos e seus totais
-    const ordersFiltered = {
-      cashBack: filterAndCalculateTotal(cashbackCondition),
-      cartsPartners: filterAndCalculateTotal(partnersCondition),
-      cartsSellers: filterAndCalculateTotal(sellersCondition),
-      cartsWhats: filterAndCalculateTotal(whatsCondition),
-      cartsInsta: filterAndCalculateTotal(instaCondition),
-      cartsInstaDirect: filterAndCalculateTotal(instaDirectCondition),
-      cartsEmail: filterAndCalculateTotal(emailCondition),
-      cartsPopup: filterAndCalculateTotal(popupCondition),
-      cartsGanhei15: filterAndCalculateTotal(ganhei15Condition),
+    // Acumula os order_ids das linhas de cupom que passam no predicado.
+    // order_ids é JSONB: pode chegar null/ausente, por isso o guard de array.
+    const collectIds = (
+      couponRows: CouponRow[],
+      match: (name: string) => boolean,
+    ): AdaptedOrder[] => {
+      const ids = new Set<string>();
+      couponRows
+        .filter(c => match((c.name ?? '').trim().toUpperCase()))
+        .forEach(c => {
+          if (Array.isArray(c.order_ids)) {
+            c.order_ids.forEach(id => ids.add(String(id)));
+          }
+        });
+      return [...ids]
+        .map(id => orderIdMap.get(id))
+        .filter((o): o is AdaptedOrder => o !== undefined);
     };
 
-    // Atualiza os estados dos pedidos filtrados e dos totais
-    setCartsRecoveryPartners(ordersFiltered.cartsPartners.filteredOrders);
-    setOrdersSellers(ordersFiltered.cartsSellers.filteredOrders);
-    setOrdersWithCashback(ordersFiltered.cashBack.filteredOrders);
-    setCartsRecoveryWhats(ordersFiltered.cartsWhats.filteredOrders);
-    setCartsRecoveryInsta(ordersFiltered.cartsInsta.filteredOrders);
-    setCartsRecoveryInstaDirect(ordersFiltered.cartsInstaDirect.filteredOrders);
-    setCartsRecoveryEmail(ordersFiltered.cartsEmail.filteredOrders);
-    setCartsRecoveryPopup(ordersFiltered.cartsPopup.filteredOrders);
-    setCartsRecoveryGanhei15(ordersFiltered.cartsGanhei15.filteredOrders);
-  }, [date, allOrders]);
+    // Resolve orders a partir dos order_ids da tabela coupon (busca exata por código)
+    const resolveOrders = (
+      couponRows: CouponRow[],
+      codes: string[],
+    ): AdaptedOrder[] => {
+      const wanted = new Set(codes.map(c => c.trim().toUpperCase()));
+      return collectIds(couponRows, name => wanted.has(name));
+    };
+
+    // Resolve cashback (prefixo MTZ)
+    const resolveMTZ = (couponRows: CouponRow[]): AdaptedOrder[] =>
+      collectIds(couponRows, name => name.startsWith('MTZ'));
+
+    // Guard de corrida: ao trocar rápido de período/loja, a resposta antiga não
+    // pode sobrescrever a nova (mesmo padrão de BestSellers).
+    let active = true;
+
+    fetchTable<CouponRow>(DatabaseTable.COUPON, {
+      store,
+      startDate: start,
+      endDate: end,
+    })
+      .then(couponRows => {
+        if (!active) return;
+        setCartsRecoveryWhats(resolveOrders(couponRows, couponsWhats));
+        setCartsRecoveryInsta(resolveOrders(couponRows, couponsInsta));
+        setCartsRecoveryInstaDirect([]);
+        setCartsRecoveryPartners(resolveOrders(couponRows, couponsPartners));
+        setCartsRecoveryEmail(resolveOrders(couponRows, couponsEmail));
+        setCartsRecoveryPopup(resolveOrders(couponRows, couponsPopup));
+        setCartsRecoveryGanhei15(resolveOrders(couponRows, couponsGanhei15));
+        setOrdersSellers(resolveOrders(couponRows, couponsSellers));
+        setOrdersWithCashback(resolveMTZ(couponRows));
+      })
+      .catch(err => {
+        if (!active) return;
+        // Contadores voltam a 0, mas registra a falha para diagnóstico.
+        resetAll();
+        console.warn('[DataSectionCart] falha ao buscar tabela coupon:', err);
+      });
+
+    return () => {
+      active = false;
+    };
+  }, [ordersToday, store, date]);
 
   useEffect(() => {
     if (data) {
@@ -1008,9 +1102,16 @@ export function DataSectionCart({
 
   useEffect(() => {
     const numericCarts = parseInt(carts.replace(/\D/g, ''));
-    if ((totalAdSpend && numericCarts) !== 0) {
-      setCostCart(formatCurrency(totalAdSpend / numericCarts));
+    // A guarda anterior era `(totalAdSpend && numericCarts) !== 0`, que avalia o
+    // `&&` PRIMEIRO e só então compara com 0 — não testava os dois operandos.
+    // Com `carts` em '0' o efeito era pulado e o custo do período ANTERIOR ficava
+    // na tela; com `carts` em '-' o parseInt dava NaN, `NaN !== 0` é true e a
+    // tela mostrava "R$ NaN".
+    if (!Number.isFinite(numericCarts) || numericCarts === 0 || !totalAdSpend) {
+      setCostCart(formatCurrency(0));
+      return;
     }
+    setCostCart(formatCurrency(totalAdSpend / numericCarts));
   }, [carts, totalAdSpend]);
 
   const cartRate = useMemo(() => {
@@ -1078,7 +1179,7 @@ export function DataSectionCart({
       ? (totalCashbackRevenue / totalCashbackValue).toFixed(2)
       : '0.00';
   const ganhei15Today = ordersToday.filter(
-    (item: Order) =>
+    item =>
       item.coupon && item.coupon.some(coupon => coupon.code === 'GANHEI15'),
   );
   // useEffect para testes
@@ -1242,7 +1343,6 @@ export function DataSectionCart({
             value={totalCashbackSales}
             small={couponsCashback.length}
             isLoading={isLoading}
-            orders={ordersWithCashback}
           />
           <BudgetItem
             title='Faturamento Cashback'
@@ -1278,14 +1378,14 @@ export function DataSectionAnalytics({
   totalAdSpend,
 }: DataSectionAnalyticsProps) {
   const { data, isLoadingADSGoogle: isLoadingAnalytics } = useAnalytics();
-  const {
-    allOrders,
-    isLoading: isLoadingOrders,
+  // Pedidos vêm do orders_shop (base nova) via useStatisticsOrders.
+  // `customers` (inscrições do Popup) permanece no legado: a base nova não
+  // expõe rota de clientes filtrável por período (só acesso por id).
+  const { date, store, customers, isLoadingCustomers } = useOrders();
+  const { ordersToday, loading: isLoadingOrders } = useStatisticsOrders(
+    store,
     date,
-    customers,
-    isLoadingCustomers,
-  } = useOrders();
-  const { ordersToday } = filterOrders(allOrders, date);
+  );
   const [visits, setVisits] = useState('-');
   const [priceSession, setPriceSession] = useState('R$ -');
   const [priceAcquisition, setPriceAcquisition] = useState('R$ -');
@@ -1313,7 +1413,12 @@ export function DataSectionAnalytics({
   }, [ordersToday.length, totalAdSpend]);
 
   useEffect(() => {
-    const ticket = calculateAverageTicket(ordersToday);
+    // Ticket médio = média do total dos pedidos do período (mesmo cálculo do
+    // calculateAverageTicket legado; Number() cobre o total do orders_shop).
+    const ticket = ordersToday.length
+      ? ordersToday.reduce((sum, o) => sum + Number(o.total), 0) /
+        ordersToday.length
+      : 0;
     setAverageTicket(formatCurrency(ticket));
   }, [date, ordersToday]);
 

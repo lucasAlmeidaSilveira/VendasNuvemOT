@@ -13,7 +13,8 @@ import { getLinkNoteTiny, getOrderTiny } from '../../api';
 import { Oval } from 'react-loader-spinner';
 import { Tag } from '../Tag';
 import { IoReload } from 'react-icons/io5';
-import { Table, Theme } from '@radix-ui/themes';
+import { Table } from '@radix-ui/themes';
+import { RadixTheme } from '../RadixTheme';
 
 export function ClientDetails({ order }) {
   const [isLoadingNote, setIsLoadingNote] = useState(false);
@@ -135,7 +136,7 @@ export function ClientDetails({ order }) {
   }
 
   return (
-    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
+    <RadixTheme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
         <RowTitle>
           <h3>{order.contact_name}</h3>
@@ -161,7 +162,7 @@ export function ClientDetails({ order }) {
 
           {order.note && (
             <TooltipInfo title={order.note}>
-              <AiFillMessage color={'var(--geralblack-80'} />
+              <AiFillMessage color={'var(--text-secondary)'} />
             </TooltipInfo>
           )}
 
@@ -203,7 +204,7 @@ export function ClientDetails({ order }) {
               </Table.Cell>
               <Table.Cell p={'4'}>
                 {order.shipping_address.city}, {order.shipping_address.province}
-                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
+                <p style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
                   {order.shipping_address.address},{' '}
                   {order.shipping_address.number}
                 </p>
@@ -265,7 +266,7 @@ export function ClientDetails({ order }) {
               <Table.Cell p={'4'}>{formatCoupon(order.coupon)}</Table.Cell>
               <Table.Cell p={'4'}>
                 {shippingCost(order.shipping_cost_customer)}
-                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
+                <p style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
                   {order.shipping_option}
                 </p>
               </Table.Cell>
@@ -273,6 +274,6 @@ export function ClientDetails({ order }) {
           </Table.Body>
         </Table.Root>
       </ContainerDetails>
-    </Theme>
+    </RadixTheme>
   );
 }

@@ -4,6 +4,7 @@ import React, {
   useContext,
   useEffect,
   useMemo,
+  useRef,
 } from 'react';
 import { adjustDate } from '../tools/tools.ts';
 import { useAuth } from './AuthContext';
@@ -16,14 +17,9 @@ export const useOrders = () => useContext(OrdersContext);
 export const OrdersProvider = ({ children }) => {
   const { user } = useAuth();
   const [customers, setCustomers] = useState([]);
-  const [allOrders, setAllOrders] = useState([]);
 
-  const [allNewOrders, setAllNewOrders] = useState([]);
-
-  const [allFullOrders, setAllFullOrders] = useState([]);
   const [isLoading, setIsLoading] = useState(true);
   const [isLoadingCustomers, setIsLoadingCustomers] = useState(true);
-  const [isLoadingAllOrders, setIsLoadingAllOrders] = useState(true);
   const [automaticUpdate, setAutomaticUpdate] = useState(false);
   const [store, setStore] = useState('artepropria');
   const [currentDateLocalStorage, setCurrentDateLocalStorage] = useState('');
@@ -44,70 +40,18 @@ export const OrdersProvider = ({ children }) => {
 
   const [date, setDate] = useState([currentDateStart, currentDateEnd]);
 
-  //alteração da data original para receber a data do dia anterior
-  const newCurrentDateStart = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() - 1); // Subtrai 1 dia
-    date.setHours(0, 0, 0, 0);
-    return date;
-  }, []);
-
-  const newCurrentDateEnd = useMemo(() => {
-    const date = new Date();
-    date.setDate(date.getDate() - 1); // Subtrai 1 dia
-    date.setHours(23, 59, 59, 999);
-    return date;
-  }, []);
-
-  const [newDate, setNewDate] = useState([
-    newCurrentDateStart,
-    newCurrentDateEnd,
-  ]);
-
   const resetData = () => {
-    setAllOrders([]);
     setCustomers([]);
   };
 
-  const resetDataAll = () => {
-    setAllFullOrders([]);
-  };
+  // Cancela a busca do período anterior ao iniciar uma nova, para que uma
+  // resposta atrasada não sobrescreva `customers` do período atual.
+  const abortRef = useRef(null);
 
-  const fetchOrdersData = async (startDateISO, endDateISO) => {
-    const url = `${env.apiUrl}db/orders/${store}/${startDateISO}/${endDateISO}`;
-    try {
-      const response = await fetch(url);
-      if (!response.ok) {
-        //console.log('DEBUG orders NOK:', store);
-        //console.log('DEBUG url:', url);
-        //console.log('DEBUG startDateISO:', startDateISO);
-        //console.log('DEBUG endDateISO:', endDateISO);
-
-        throw new Error('Erro ao buscar pedidos');
-      }
-      const data = await response.json();
-      //console.log('DEBUG orders OK:', store);
-      //console.log('DEBUG url:', url);
-      //console.log('DEBUG startDateISO:', startDateISO);
-      //console.log('DEBUG endDateISO:', endDateISO);
-      return data;
-    } catch (err) {
-      //console.log('DEBUG orders ERROR:', store);
-      //console.log('DEBUG url:', url);
-      //console.log('DEBUG startDateISO:', startDateISO);
-      //console.log('DEBUG endDateISO:', endDateISO);
-      setError({
-        message: err.message,
-        type: 'server_offline',
-      });
-      throw err;
-    }
-  };
-
-  const fetchCustomersData = async (startDateISO, endDateISO) => {
+  const fetchCustomersData = async (startDateISO, endDateISO, signal) => {
     const url = `${env.apiUrl}customers/${store}/${startDateISO}/${endDateISO}`;
     try {
-      const response = await fetch(url);
+      const response = await fetch(url, { signal });
       if (!response.ok) {
         throw new Error('Erro ao buscar clientes');
       }
@@ -115,43 +59,12 @@ export const OrdersProvider = ({ children }) => {
 
       return data;
     } catch (err) {
-
+      if (err?.name === 'AbortError') throw err; // troca de período, não falha
       setError({
         message: err.message,
         type: 'server_offline',
       });
       throw err;
-    }
-  };
-
-  const fetchAllOrdersData = async () => {
-    try {
-      const response = await fetch(
-        `${env.apiUrl}db/orders/${store}`,
-      );
-      if (!response.ok) {
-        throw new Error('Erro ao buscar todos os pedidos');
-      }
-      const data = await response.json();
-      return data;
-    } catch (err) {
-      setError({
-        message: err.message,
-        type: 'server_offline',
-      });
-      throw err;
-    }
-  };
-
-  const fetchDataAll = async () => {
-    try {
-      setIsLoadingAllOrders(true);
-      const ordersData = await fetchAllOrdersData();
-      setAllFullOrders(ordersData);
-      setError({});
-      setIsLoadingAllOrders(false);
-    } catch (err) {
-      setError(err.message);
     }
   };
 
@@ -159,29 +72,31 @@ export const OrdersProvider = ({ children }) => {
     const startDateISO = adjustDate(date[0]);
     const endDateISO = adjustDate(date[1]);
 
-    //valor de datas alterados -1
-    const startNewDateISO = adjustDate(newDate[0]);
-    const endNewDateISO = adjustDate(newDate[1]);
+    abortRef.current?.abort();
+    const controller = new AbortController();
+    abortRef.current = controller;
 
     try {
       setIsLoading(true);
       setIsLoadingCustomers(true);
-      const ordersData = await fetchOrdersData(startDateISO, endDateISO);
-      const ordersNewData = await fetchOrdersData(
-        startNewDateISO,
-        endNewDateISO,
+      const customersData = await fetchCustomersData(
+        startDateISO,
+        endDateISO,
+        controller.signal,
       );
-      setAllNewOrders(ordersNewData);
-      setAllOrders(ordersData);
-      setError({});
-      setIsLoading(false);
-      const customersData = await fetchCustomersData(startDateISO, endDateISO);
       setCustomers(customersData);
-      setIsLoadingCustomers(false);
+      setError({});
     } catch (err) {
+      // Aborto significa que outra busca assumiu: não mexe em loading nem em
+      // erro, senão apagaria o estado de carregamento da busca mais nova.
+      if (err?.name === 'AbortError') return;
       setError(err.message);
     } finally {
-      saveDate();
+      if (abortRef.current === controller) {
+        setIsLoading(false);
+        setIsLoadingCustomers(false);
+        saveDate();
+      }
     }
   };
 
@@ -200,15 +115,6 @@ export const OrdersProvider = ({ children }) => {
       fetchData();
     }
   }, [store, date, user]); // Agora escuta mudanças no "user" também
-
-  // Recuperando todo os pedidos para mostrar quantidade de vendas de todos produtos
-  useEffect(() => {
-    if (user) {
-      // Verifica se o usuário está autenticado
-      resetDataAll();
-      fetchDataAll();
-    }
-  }, [store]); // Agora escuta mudanças no "user" também
 
   // Outro useEffect que realiza chamadas periódicas de atualização, mas só se o usuário estiver autenticado
   useEffect(() => {
@@ -236,29 +142,42 @@ export const OrdersProvider = ({ children }) => {
     };
   }, []);
 
-  const value = {
-    allNewOrders,
-    allOrders,
-    allFullOrders,
-    setAllOrders,
-    customers,
-    setCustomers,
-    date,
-    setDate,
-    resetData,
-    store,
-    setStore,
-    isLoading,
-    isLoadingAllOrders,
-    isLoadingCustomers,
-    setIsLoading,
-    fetchData,
-    automaticUpdate,
-    setAutomaticUpdate,
-    currentDateLocalStorage,
-    isOnline,
-    error,
-  };
+  // Memoizado: este contexto é consumido por praticamente toda a árvore
+  // (`date` e `store` alimentam todas as abas). Um literal novo a cada render
+  // forçava re-render de todos os consumidores mesmo sem nada ter mudado.
+  // `fetchData` e `resetData` são recriados a cada render, então entram nas
+  // deps — o ganho vem de não recriar o objeto quando só o pai re-renderiza.
+  const value = useMemo(
+    () => ({
+      customers,
+      setCustomers,
+      date,
+      setDate,
+      resetData,
+      store,
+      setStore,
+      isLoading,
+      isLoadingCustomers,
+      setIsLoading,
+      fetchData,
+      automaticUpdate,
+      setAutomaticUpdate,
+      currentDateLocalStorage,
+      isOnline,
+      error,
+    }),
+    [
+      customers,
+      date,
+      store,
+      isLoading,
+      isLoadingCustomers,
+      automaticUpdate,
+      currentDateLocalStorage,
+      isOnline,
+      error,
+    ],
+  );
 
   return (
     <OrdersContext.Provider value={value}>{children}</OrdersContext.Provider>

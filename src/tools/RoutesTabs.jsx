@@ -2,7 +2,7 @@ import React from 'react';
 import { Dashboard } from '../components/Dashboard';
 import { Coupons } from '../components/Coupons';
 import { Statistics } from '../components/Statistics';
-import { Orders } from '../components/Orders';
+import { OrdersShop } from '../components/Orders/OrdersShop';
 import { Products } from '../components/Products';
 import { Deliveries } from '../components/Deliveries';
 
@@ -12,7 +12,7 @@ export function RoutesTabs({ activeTab }) {
     case 0:
       return <Dashboard />;
     case 1:
-      return <Orders />;
+      return <OrdersShop />;
     case 2:
       return <Statistics />;
     case 3:

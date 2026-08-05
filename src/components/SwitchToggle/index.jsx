@@ -30,7 +30,7 @@ const Toggle = styled((props) => (
   },
   '& .MuiSwitch-track': {
     borderRadius: 26 / 2,
-    backgroundColor: 'var(--geralblack-50)',
+    backgroundColor: 'var(--text-muted)',
     opacity: 1,
     transition: 'background-color 500ms',
   },

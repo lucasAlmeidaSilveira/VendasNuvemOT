@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import { Header } from '../components/Header';
-import { Table, Theme, Flex } from '@radix-ui/themes';
+import { Table, Flex } from '@radix-ui/themes';
+import { RadixTheme } from '../components/RadixTheme';
 import { PiCheckCircleBold, PiXCircleBold } from 'react-icons/pi';
 import { getStatusPlatform } from '../api/statusPlatform';
 import logoTiny from "../assets/images/platforms/logo-tiny.webp"
@@ -85,10 +86,10 @@ export function StatusPage() {
     <div>
       <Header />
 
-      <Theme>
+      <RadixTheme>
         {loading ? (
           <Table.Root variant="surface" layout={layout}>
-            <Table.Header style={{ backgroundColor: 'lightgray' }}>
+            <Table.Header style={{ backgroundColor: 'var(--table-head-bg)' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell>Plataforma</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
@@ -98,10 +99,10 @@ export function StatusPage() {
               {[...Array(3)].map((_, i) => (
                 <Table.Row key={i}>
                   <Table.Cell>
-                    <div style={{ width: 100, height: 16, background: '#e0e0e0', borderRadius: 4 }} />
+                    <div style={{ width: 100, height: 16, background: 'var(--surface-3)', borderRadius: 4 }} />
                   </Table.Cell>
                   <Table.Cell>
-                    <div style={{ width: 80, height: 16, background: '#e0e0e0', borderRadius: 4 }} />
+                    <div style={{ width: 80, height: 16, background: 'var(--surface-3)', borderRadius: 4 }} />
                   </Table.Cell>
                 </Table.Row>
               ))}
@@ -111,7 +112,7 @@ export function StatusPage() {
           <p style={{ color: 'crimson' }}>{erro}</p>
         ) : (
           <Table.Root variant="surface" layout={layout}>
-            <Table.Header style={{ backgroundColor: 'lightgray' }}>
+            <Table.Header style={{ backgroundColor: 'var(--table-head-bg)' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell>Plataforma</Table.ColumnHeaderCell>
                 <Table.ColumnHeaderCell>Status</Table.ColumnHeaderCell>
@@ -132,7 +133,7 @@ export function StatusPage() {
             </Table.Body>
           </Table.Root>
         )}
-      </Theme>
+      </RadixTheme>
     </div>
   );
 }

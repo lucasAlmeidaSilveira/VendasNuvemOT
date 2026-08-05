@@ -11,14 +11,19 @@
   color: #333;
 }
 
+[data-theme='dark'] .date-picker-label {
+  color: var(--text-primary);
+}
+
 .date-picker-input {
   padding: 0.75rem;
-  border: 1px solid #ddd;
-  color: #525252;
+  border: 1px solid var(--border-hairline);
+  background-color: var(--surface);
+  color: var(--text-secondary);
   border-radius: 25px;
   font-size: 14px;
   max-width: 300px;
-  box-shadow: 0px 1px 2px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 2px var(--shadow-color-soft);
 }
 
 .date-picker-input:focus {
@@ -33,4 +38,8 @@
   background-color: #e3f2fd;
   border-radius: 4px;
   display: inline-block;
+}
+
+[data-theme='dark'] .selected-date {
+  background-color: #16304a;
 }

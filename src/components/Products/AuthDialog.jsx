@@ -19,7 +19,7 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: 'var(--body-heading-h6-font-size)',
   fontWeight: 'var(--body-heading-h5-font-weight)',
@@ -33,7 +33,7 @@ const TextFieldInput = styled(TextField)({
   '& .MuiInputBase-root': {
     borderRadius: '8px 8px 0 0',
     border: 'none',
-    backgroundColor: 'var(--geralwhite)',
+    backgroundColor: 'var(--surface)',
     boxShadow: '0px 1px 2px rgba(0, 0, 0, 0.25)',
   },
   '& .css-batk84-MuiInputBase-root-MuiFilledInput-root::before': {

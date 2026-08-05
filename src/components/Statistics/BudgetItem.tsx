@@ -14,16 +14,17 @@ import {
   EnhancedTableHeadRefunds,
 } from '../../tools/table';
 import { PaymentStatus } from '../Orders/PaymentStatus';
-import { ClientDetails } from '../Orders/ClientDetails';
+import { ClientDetailsShop } from '../Orders/OrdersShop/ClientDetailsShop';
 import { ProductDetails } from '../Orders/ProductDetails';
 import { FaChevronDown, FaChevronUp } from 'react-icons/fa';
-import { Flex, Table, Theme } from '@radix-ui/themes';
+import { Flex, Table } from '@radix-ui/themes';
+import { RadixTheme } from '../RadixTheme';
 import { TableFooter, TablePagination } from '@mui/material';
 import { TablePaginationActions } from '../Pagination';
 
 export function BudgetItemList({
   icon: Icon,
-  iconColor = 'var(--geralblack-100)',
+  iconColor = 'var(--text-primary)',
   dataCosts,
   title,
   tooltip,
@@ -89,7 +90,7 @@ export function BudgetItemList({
           {Icon && <Icon color={iconColor} fontSize={18} />}
           <p className="text-wrapper-2">{title}</p>
           <TooltipInfo title={tooltip}>
-            <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
+            <IoMdInformationCircleOutline size={16} color={'var(--text-primary)'} />
           </TooltipInfo>
           {error && (
             <span style={{ color: 'red' }}>
@@ -115,7 +116,7 @@ export function BudgetItemList({
                 {small && <Small>({small})</Small>}
                 {info && (
                   <TooltipInfo title={info}>
-                    <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
+                    <MdOutlineHelpOutline size={16} color={'var(--text-primary)'} />
                   </TooltipInfo>
                 )}
               </div>
@@ -127,7 +128,7 @@ export function BudgetItemList({
                         data.name === 'Total'
                           ? {
                               fontWeight: 'bold',
-                              color: 'var(--geralblack-80)',
+                              color: 'var(--text-secondary)',
                             }
                           : { fontWeight: 'inherit' }
                       }
@@ -141,7 +142,7 @@ export function BudgetItemList({
                         data.name === 'Total'
                           ? {
                               fontWeight: 'bold',
-                              color: 'var(--geralblack-80)',
+                              color: 'var(--text-secondary)',
                             }
                           : { fontWeight: 'normal' }
                       }
@@ -156,7 +157,7 @@ export function BudgetItemList({
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: 'var(--geralblack-80)',
+                      color: 'var(--text-secondary)',
                       cursor: 'pointer',
                       marginTop: '4px',
                       display: 'flex',
@@ -214,7 +215,7 @@ export function BudgetItemList({
 }
 export function BudgetItemListNumber({
   icon: Icon,
-  iconColor = 'var(--geralblack-100)',
+  iconColor = 'var(--text-primary)',
   dataCosts,
   title,
   tooltip,
@@ -280,7 +281,7 @@ export function BudgetItemListNumber({
           {Icon && <Icon color={iconColor} fontSize={18} />}
           <p className="text-wrapper-2">{title}</p>
           <TooltipInfo title={tooltip}>
-            <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
+            <IoMdInformationCircleOutline size={16} color={'var(--text-primary)'} />
           </TooltipInfo>
           {error && (
             <span style={{ color: 'red' }}>
@@ -306,7 +307,7 @@ export function BudgetItemListNumber({
                 {small && <Small>({small})</Small>}
                 {info && (
                   <TooltipInfo title={info}>
-                    <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
+                    <MdOutlineHelpOutline size={16} color={'var(--text-primary)'} />
                   </TooltipInfo>
                 )}
               </div>
@@ -318,7 +319,7 @@ export function BudgetItemListNumber({
                         data.name === 'Total'
                           ? {
                               fontWeight: 'bold',
-                              color: 'var(--geralblack-80)',
+                              color: 'var(--text-secondary)',
                             }
                           : { fontWeight: 'inherit' }
                       }
@@ -332,7 +333,7 @@ export function BudgetItemListNumber({
                         data.name === 'Total'
                           ? {
                               fontWeight: 'bold',
-                              color: 'var(--geralblack-80)',
+                              color: 'var(--text-secondary)',
                             }
                           : { fontWeight: 'normal' }
                       }
@@ -347,7 +348,7 @@ export function BudgetItemListNumber({
                     style={{
                       background: 'none',
                       border: 'none',
-                      color: 'var(--geralblack-80)',
+                      color: 'var(--text-secondary)',
                       cursor: 'pointer',
                       marginTop: '4px',
                       display: 'flex',
@@ -467,7 +468,7 @@ export function BudgetItem({
           {Icon && <Icon color={iconColor} fontSize={18} />}
           <p className="text-wrapper-2">{title}</p>
           <TooltipInfo title={tooltip}>
-            <IoMdInformationCircleOutline size={16} color={'#1F1F1F'} />
+            <IoMdInformationCircleOutline size={16} color={'var(--text-primary)'} />
           </TooltipInfo>
           {bullet && <span className={bullet} />}
         </div>
@@ -480,7 +481,7 @@ export function BudgetItem({
               {small && <Small>({small})</Small>}
               {info && (
                 <TooltipInfo title={info}>
-                  <MdOutlineHelpOutline size={16} color={'#1F1F1F'} />
+                  <MdOutlineHelpOutline size={16} color={'var(--text-primary)'} />
                 </TooltipInfo>
               )}
             </>
@@ -578,7 +579,7 @@ function TableOrders({ orders }: any) {
   }, []);
 
   return (
-    <Theme style={{ minHeight: '10%' }}>
+    <RadixTheme style={{ minHeight: '10%' }}>
       <ContainerTable>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHead
@@ -639,7 +640,7 @@ function TableOrders({ orders }: any) {
                     {expandedOrders[order.id] && (
                       <Table.Row className="row-order">
                         <Table.Cell colSpan={6}>
-                          <ClientDetails order={order} />
+                          {order.id_cli && <ClientDetailsShop order={order} />}
                           <ProductDetails products={order.products} />
                         </Table.Cell>
                       </Table.Row>
@@ -686,7 +687,7 @@ function TableOrders({ orders }: any) {
           </TableFooter>
         </Table.Root>
       </ContainerTable>
-    </Theme>
+    </RadixTheme>
   );
 }
 
@@ -752,7 +753,7 @@ function TableTiktokCreatives({ creatives }) {
   }, []);
 
   return (
-    <Theme style={{ minHeight: '10%' }}>
+    <RadixTheme style={{ minHeight: '10%' }}>
       <ContainerTable>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHeadCreative
@@ -825,7 +826,7 @@ function TableTiktokCreatives({ creatives }) {
           </TableFooter>
         </Table.Root>
       </ContainerTable>
-    </Theme>
+    </RadixTheme>
   );
 }
 
@@ -891,7 +892,7 @@ function TableRefunds({ refunds }) {
   }, []);
 
   return (
-    <Theme style={{ minHeight: '10%' }}>
+    <RadixTheme style={{ minHeight: '10%' }}>
       <ContainerTable>
         <Table.Root variant="surface" layout={layout}>
           <EnhancedTableHeadRefunds
@@ -966,6 +967,6 @@ function TableRefunds({ refunds }) {
           </TableFooter>
         </Table.Root>
       </ContainerTable>
-    </Theme>
+    </RadixTheme>
   );
 }

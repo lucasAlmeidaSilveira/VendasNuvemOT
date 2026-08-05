@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useMemo } from 'react';
 import { useOrders } from '../../context/OrdersContext';
 import { ListProduct } from '../ListProduct';
 import {
@@ -7,7 +7,6 @@ import {
   Container,
   ContainerSelect,
 } from './styles';
-import { Loading } from '../Loading';
 import { InputSearch } from '../InputSearch';
 import { ListVariation } from '../ListVariation';
 import { InputSelect } from '../InputSelect';
@@ -16,152 +15,83 @@ import { Button } from '../Button';
 import { AuthDialog } from './AuthDialog';
 import { formatCurrency } from '../../tools/tools';
 import { Oval } from 'react-loader-spinner';
-import { getProduct } from '../../api';
+import { fetchProductSales } from '../../api/db';
 
 export function Products() {
-  const { allFullOrders, isLoadingAllOrders, store } = useOrders();
+  // A loja vem do filtro global (OrdersContext). O período NÃO se aplica aqui:
+  // a aba Produtos mostra o total histórico (all-time) de vendas por produto.
+  const { store } = useOrders();
+
+  // Vendas já vêm AGREGADAS do backend (/db/product-sales), reproduzindo a tela
+  // legada: agrupadas por product_id, faturamento pelo preço histórico da linha,
+  // variações por variant_values, contando todos os status.
+  const [products, setProducts] = useState([]);
+  const [variations, setVariations] = useState([]);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null);
+
   const [searchQuery, setSearchQuery] = useState('');
-  const [filteredProducts, setFilteredProducts] = useState([]);
-  const [productSales, setProductSales] = useState({});
-  const [variations, setVariations] = useState({});
-  const [filteredVariations, setFilteredVariations] = useState([]);
   const [numberProducts, setNumberProducts] = useState(5);
-  const [sortType, setSortType] = useState('sales'); // Tipo de ordenação
+  const [sortType, setSortType] = useState('sales'); // 'sales' | 'revenue'
   const [showProductRegistration, setShowProductRegistration] = useState(false);
   const [authDialogOpen, setAuthDialogOpen] = useState(false);
   const [authenticated, setAuthenticated] = useState(false);
 
+  // Busca as vendas por produto já agregadas no backend (all-time, por loja).
+  // Não depende do período.
   useEffect(() => {
-    if (!isLoadingAllOrders) {
-      const salesMap = {};
-      const variationMap = {};
+    let active = true;
+    setLoading(true);
+    setError(null);
 
-      allFullOrders.forEach((order) => {
-        if (order.products) {
-          order.products.forEach((product) => {
-            const cleanedName = product.name.replace(/\(.*?\)/g, '').trim();
-
-            // Verificar se o produto é "Produto Loja" e pular se for
-            if (cleanedName.toLowerCase().includes('produto')) {
-              return; // Pula este produto
-            }
-
-            let skuNumber = product.sku ? product.sku.split('-')[0] : 'Slim';
-
-            if (store === 'outlet') {
-              skuNumber = cleanedName.includes('Quadro')
-                ? product.sku.split('-')[0].split('OT')[1].split('|')[1]
-                : skuNumber;
-            } else if (store === 'artepropria') {
-              skuNumber = cleanedName.includes('Quadro')
-                ? product.sku.split('-')[0].split('AP')[1]
-                : product.sku.split('-')[0].split('AP')[1];
-            }
-
-            if (!salesMap[product.product_id]) {
-              salesMap[product.product_id] = {
-                id: product.product_id,
-                skuNumber,
-                name: cleanedName,
-                image: product.image?.src,
-                sales: 0,
-                revenue: 0, // Inicializa faturamento
-                variantCount: {},
-              };
-            }
-            salesMap[product.product_id].sales += 1;
-            salesMap[product.product_id].revenue += parseFloat(
-              product.price || 0,
-            ); // Atualiza o valor do faturamento corretamente
-
-            const variations = Array.isArray(product.variant_values)
-              ? product.variant_values.join(', ')
-              : '';
-
-            if (variations) {
-              if (!salesMap[product.product_id].variantCount[variations]) {
-                salesMap[product.product_id].variantCount[variations] = 0;
-              }
-              
-              if (!variationMap[variations]) {
-                variationMap[variations] = {
-                  name: variations,
-                  sales: 0,
-                  id: variations,
-                };
-              }
-              salesMap[product.product_id].variantCount[variations] += 1;
-              variationMap[variations].sales += 1;
-            }
-          });
-        }
+    fetchProductSales(store)
+      .then((data) => {
+        if (!active) return;
+        setProducts(data.products);
+        setVariations(data.variations);
+        setLoading(false);
+      })
+      .catch((err) => {
+        if (!active) return;
+        setError(err.message || 'Erro ao carregar produtos');
+        setProducts([]);
+        setVariations([]);
+        setLoading(false);
       });
 
-      // Ordena os produtos conforme o tipo de ordenação selecionado
-      const sortedProducts = Object.values(salesMap).sort((a, b) => {
-        return sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
-      });
-      setFilteredProducts(sortedProducts.slice(0, 10));
-      setProductSales(salesMap);
+    return () => {
+      active = false;
+    };
+  }, [store]);
 
-      const sortedVariations = Object.values(variationMap).sort(
-        (a, b) => b.sales - a.sales,
-      );
-      setFilteredVariations(sortedVariations);
-      setVariations(variationMap);
-    }
-  }, [isLoadingAllOrders, allFullOrders, sortType]);
-
-  useEffect(() => {
-    if (searchQuery !== '') {
-      const filtered = Object.values(productSales).filter(
-        (product) =>
-          product.name.toLowerCase().includes(searchQuery.toLowerCase()) ||
-          product.skuNumber?.includes(searchQuery.toLowerCase()),
-      );
-      setFilteredProducts(
-        filtered.sort((a, b) => {
-          return sortType === 'sales'
-            ? b.sales - a.sales
-            : b.revenue - a.revenue;
-        }),
-      );
-
-      const filteredVar = filtered
-        .flatMap((product) =>
-          Object.entries(product.variantCount).map(([variant, sales]) => ({
-            name: variant,
-            sales,
-            id: variant,
-          })),
+  // Produtos filtrados por busca (nome/SKU) e ordenados por sortType.
+  const filteredProducts = useMemo(() => {
+    const sorter = (a, b) =>
+      sortType === 'sales' ? b.sales - a.sales : b.revenue - a.revenue;
+    const query = searchQuery.toLowerCase();
+    const filtered = query
+      ? products.filter(
+          (product) =>
+            product.name.toLowerCase().includes(query) ||
+            product.skuNumber?.toLowerCase().includes(query),
         )
-        .reduce((acc, curr) => {
-          const existing = acc.find((v) => v.name === curr.name);
-          if (existing) {
-            existing.sales += curr.sales;
-          } else {
-            acc.push(curr);
-          }
-          return acc;
-        }, [])
-        .sort((a, b) => b.sales - a.sales);
+      : products;
+    return [...filtered].sort(sorter);
+  }, [products, searchQuery, sortType]);
 
-      setFilteredVariations(filteredVar);
-    } else {
-      setFilteredProducts(
-        Object.values(productSales)
-          .sort((a, b) => {
-            return sortType === 'sales'
-              ? b.sales - a.sales
-              : b.revenue - a.revenue;
-          })
-          .slice(0, numberProducts),
-      );
-      setFilteredVariations(
-        Object.values(variations).sort((a, b) => b.sales - a.sales),
-      );
-    }
-  }, [searchQuery, numberProducts, productSales, variations, sortType]);
+  // Variações exibidas: sem busca, todas; com busca, só as dos produtos filtrados.
+  const filteredVariations = useMemo(() => {
+    if (!searchQuery) return variations;
+    const counts = {};
+    filteredProducts.forEach((product) => {
+      Object.entries(product.variantCount).forEach(([variant, sales]) => {
+        counts[variant] = (counts[variant] || 0) + sales;
+      });
+    });
+    return Object.entries(counts)
+      .map(([name, sales]) => ({ id: name, name, sales }))
+      .sort((a, b) => b.sales - a.sales);
+  }, [searchQuery, filteredProducts, variations]);
 
   useEffect(() => {
     const auth = localStorage.getItem('authenticated');
@@ -229,6 +159,11 @@ export function Products() {
               </select>
             </ContainerSelect>
           </div>
+          {error && (
+            <div style={{ color: 'var(--uidanger-100, #d32f2f)', fontSize: 14 }}>
+              Não foi possível carregar os produtos.
+            </div>
+          )}
           <ContainerBestSellers>
             <ContainerBestSeller>
               <header className="header">
@@ -238,7 +173,7 @@ export function Products() {
                 </h2>
               </header>
               <div className="table">
-                {isLoadingAllOrders ? (
+                {loading ? (
                   <div className="loading">
                     <Oval
                       height={16}
@@ -271,7 +206,7 @@ export function Products() {
                       />
                     ))
                 )}
-                {filteredProducts.length === 0 && !isLoadingAllOrders && (
+                {filteredProducts.length === 0 && !loading && (
                   <div className="loading">Nenhum produto encontrado</div>
                 )}
               </div>
@@ -281,7 +216,7 @@ export function Products() {
                 <h2 className="categorie">Variações</h2>
               </header>
               <div className="table">
-                {isLoadingAllOrders ? (
+                {loading ? (
                   <div className="loading">
                     <Oval
                       height={16}
@@ -305,7 +240,7 @@ export function Products() {
                       />
                     ))
                 )}
-                {filteredVariations.length === 0 && !isLoadingAllOrders && (
+                {filteredVariations.length === 0 && !loading && (
                   <div className="loading">Nenhuma variação encontrada</div>
                 )}
               </div>

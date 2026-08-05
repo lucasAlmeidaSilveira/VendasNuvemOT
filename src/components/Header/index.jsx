@@ -4,6 +4,7 @@ import { Logotipo } from '../Logo';
 import { ButtonReload } from '../Reload';
 import { BoxRight, Container } from './styles.ts';
 import { User } from '../User';
+import { ThemeToggle } from '../ThemeToggle';
 import { Link } from 'react-router-dom';
 
 export function Header() {
@@ -39,6 +40,7 @@ export function Header() {
       </div>
 
       <BoxRight>
+        <ThemeToggle />
         <User />
         <ButtonReload />
       </BoxRight>

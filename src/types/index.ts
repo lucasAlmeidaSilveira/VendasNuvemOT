@@ -5,13 +5,9 @@ export interface DataSectionTPagoProps {
   bgcolor: string;
   verba: Verba;
   totalOrdersFormatted: number;
-  roas: number | string;
-  roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
   isLoadingADSMeta: boolean;
-  roasEspelhos: number | string;
-  roasQuadros: number | string;
 }
 
 export interface DataSectionTPagoAPProps {
@@ -19,13 +15,6 @@ export interface DataSectionTPagoAPProps {
   bgcolor: string;
   verba: Verba;
   totalOrdersFormatted: number;
-  roas: number | string;
-  roasEcom: number | string;
-  roasLoja: number | string;
-  roasChatbot: number | string;
-  roasClientes: number | string;
-  roasClientesChatbot: number | string;
-  roasMax?: number | string;
   isLoadingADSGoogle: boolean;
   isLoadingOrders: boolean;
   isLoadingADSMeta: boolean;
@@ -204,7 +193,7 @@ export interface BudgetItemListProps {
   isLoading: boolean;
   tooltip?: string;
   handleAction?: () => void;
-  orders?: Order[];
+  orders?: any[];
   error?: boolean;
   creatives?: Creatives[];
   refunds?: Refunds[];
@@ -220,7 +209,7 @@ export interface BudgetItemProps {
   value: number | string;
   isLoading: boolean;
   tooltip?: string;
-  orders?: Order[];
+  orders?: any[];
   creatives?: Creatives[];
   refunds?: Refunds[];
 }
@@ -358,11 +347,108 @@ export interface MandaeProviderProps {
 }
 
 
-// Tipos para DB
-export interface Ads {
-  id_ads: string;
+// =====================================================================
+// Tipos do novo backend (rota GET /db/query/:querySelect/:startDate/:endDate)
+// Refletem o shape REAL retornado pelos controllers de segmentação em
+// node-VendasNuvemOT/src/db/dataBaseQueryList.js (dataBaseDb.*.transform).
+// IMPORTANTE: as datas (startDate/endDate) são OBRIGATÓRIAS na rota e o
+// filtro ?store= só é aceito para orders_shop, daily_sales e ads.
+// =====================================================================
+
+// Mapa loja -> ID numérico (usado em orders_shop, daily_sales)
+export const STORE_IDS = {
+  outlet: 3889735,
+  artepropria: 1146504,
+} as const;
+
+export type StoreName = keyof typeof STORE_IDS;
+
+// Tabelas que aceitam o segmento :store na rota /db/query (demais retornam erro)
+export const STORE_FILTERABLE_TABLES = [
+  'orders_shop',
+  'daily_sales',
+  'ads',
+  'coupon',
+];
+
+// Linha a linha do pedido em orders_shop.products_detail. Enquanto `products` guarda só os
+// SKUs, aqui ficam os campos que a tela legada de Produtos usava.
+export interface ProductDetailShop {
+  product_id: number | null;
+  sku: string;
+  name: string | null;
+  price: number;
+  // Custo CONGELADO no momento da venda — o mesmo campo que a base legada guardava
+  // em pedidos_<loja>.products[].cost e que o card "Custo de Produto" somava por
+  // linha. Não confundir com ProductRow.custo_categoria, que é o custo ATUAL do
+  // catálogo (sobrescrito a cada webhook) e reprecifica pedidos antigos.
+  // `undefined` = pedido sem custo gravado (manual/Loja Física ou anterior ao
+  // backfill) e vale 0, exatamente como o legado imprimia.
+  cost?: number;
+  image: string | null;
+  variant_values: string[];
+  // Só é gravado em pedidos de loja física: guarda a QUANTIDADE DE CLIENTES do dia,
+  // que é o número que a listagem legada imprimia na coluna Produtos.
+  quantity?: number;
+}
+
+export interface OrderShop {
+  order_id: number;
+  id_cli: number | string;
+  store: number;
+  total: number;
+  subtotal: number;
+  payment_status: string | null;
+  coupons: string[]; // jsonb -> array de códigos de cupom
+  coupon_discount: number;
+  products: string[]; // jsonb -> array de SKUs
+  products_detail?: ProductDetailShop[]; // jsonb -> linhas do pedido (aditivo a `products`)
+  shipping_option: string | null;
+  created_at: string;
+  paid_at: string | null;
+  updated_at: string;
+  active: number;
+  // Origem do pedido: 'Loja'/'Loja Fisica' = manual (loja física / chatbot),
+  // 'store'/'mobile'/'form' = Nuvemshop, null = Tiny.
+  storefront: string | null;
+  shipping_status: string | null;
+  gateway_link: string | null;
+  payment_method: string | null;
+  url_tracking: string | null;
+  markers_order_tiny: string[]; // jsonb -> array de marcadores
+  fiscal_note: string | null;
+  estimated_delivery: string | null;
+  shipping_cost: number;
+  // Frete pago pela loja. Em pedidos manuais ('Loja'/'Loja Fisica') o campo é
+  // reaproveitado para o total de vendas de clientes (novos na Loja Física,
+  // recorrentes no Chatbot) — ver useStatisticsOrders.
+  shipping_cost_owner: number | null;
+  order_tracking_link: string | null;
+}
+
+export interface DailySale {
+  id_sales: number;
+  date_sales: string;
+  store: number;
+  total_orders: number;
+  total_paid_orders: number;
+  total_money: number;
+  total_paid_money: number;
+  aov: number;
+  id_orders: number[]; // jsonb
+  id_coupons: number[]; // jsonb
+  id_ads: number[]; // jsonb
+  active: number;
+  dt_att_active: string | null;
+  created_at: string;
+  updated_at: string;
+}
+
+export interface AdsRow {
+  id_ads: number;
   date_ads: string;
-  plataform: string;
+  plataform: string; // 'Meta' | 'Google'
+  store: string; // texto: 'outlet' | 'artepropria'
   funding_ecom: number;
   funding_store: number;
   funding_general: number;
@@ -371,49 +457,96 @@ export interface Ads {
   funding_mirror: number;
   funding_painting: number;
   active: number;
+  // Colunas de analytics/conversão (preenchidas nas linhas Google) + verba total
+  // e impressões (Meta). Alimentam o AnalyticsContext a partir da base nova.
+  funding_all?: number;
+  total_visits?: number;
+  users_by_device?: { mobile: number; desktop: number; tablet: number } | null;
+  carts?: number;
+  begin_checkout?: number;
+  impressions?: number | null;
 }
 
-export interface Client {
-  id: number;
+export interface CouponRow {
+  // OBS: o backend NÃO retorna id_coupon (está comentado no transform).
+  // A rota /db/query/coupon recalcula o uso a partir do dump pedidos_<loja> (paridade com
+  // o legado), retornando UMA linha por cupom já agregada no período; por isso date_coupon
+  // pode vir null.
+  date_coupon: string | null;
   name: string;
-  email: string;
+  quantity: number; // nº de pedidos que usaram o cupom no período
+  total_money: number; // faturamento dos pedidos que usaram o cupom
+  total_discount: number; // valor do cupom (campo `value`): percentual ou R$ conforme discount_type
+  discount_type?: string | null; // 'percentage' | 'absolute' — habilita o render type-aware
+  order_ids: number[]; // jsonb -> array de order_id
+  store: string; // nome da loja ('outlet' | 'artepropria') — retornado pela rota com :store
 }
 
-export interface Coupon {
-  coupon_id: number;
-  code: string;
-  discount: number;
+export interface ClientRow {
+  id_cli: number;
+  cpf_cnpj_cli: string;
+  nome_cli: string;
+  email_cli: string;
+  fone_cli: string;
+  tipo_cli: string; // 'F' (física) | 'J' (jurídica)
+  bairro_cli: string;
+  cidade_cli: string;
+  numero_cli: string;
+  uf_cli: string;
+  cep_cli: string;
+  endereco_cli: string;
+  dt_criacao_cli: string;
+  ativo: number;
+  dt_att_ativo: string;
+  origem_cli: string | null;
 }
 
-export interface DailySale {
-  sale_id: number;
-  sale_date: string;
-  amount: number;
+export interface ProductRow {
+  cod_categoria: string; // SKU (PK)
+  nome_categoria: string;
+  desc_categoria: string;
+  grp_categoria: string | null;
+  ativo: number;
+  dim_categoria: string | null;
+  cor_categoria: string | null;
+  tipo_categoria: string | null;
+  dt_att_ativo: string;
+  dt_att_categoria: string;
+  img_categoria: string | null;
+  custo_categoria: number;
+  tempo_prod_categoria: string | null;
+  preco: number;
 }
 
-export interface OrderShop {
-  order_id: number;
-  product_id: number;
-  quantity: number;
-}
+// Tipo união para todos os dados possíveis das tabelas
+export type DatabaseData =
+  | OrderShop
+  | ClientRow
+  | CouponRow
+  | DailySale
+  | AdsRow
+  | ProductRow;
 
-export interface Product {
-  product_id: number;
-  name: string;
-  price: number;
-}
-
-// Tipo união para todos os dados possíveis
-export type DatabaseData = Ads | Client | Coupon | DailySale | OrderShop | Product;
-
-// Enum para as tabelas disponíveis
+// Enum para as tabelas disponíveis (valor = nome real da tabela no SQL)
 export enum DatabaseTable {
   ADS = 'ads',
   CLIENTS = 'clients',
   COUPON = 'coupon',
   DAILY_SALES = 'daily_sales',
   ORDERS_SHOP = 'orders_shop',
-  PRODUCT = 'product'
+  PRODUCT = 'product',
+}
+
+// Opções de filtro para a busca genérica em /db/query
+// Rota real: GET /db/query/:querySelect/:store/:startDate/:endDate
+// (store, startDate e endDate são todos OBRIGATÓRIOS no path).
+export interface FetchTableOptions {
+  startDate?: string; // YYYY-MM-DD
+  endDate?: string; // YYYY-MM-DD
+  store?: string | number; // nome ('outlet'/'artepropria') ou ID numérico
+  // Cancelamento: ao trocar de período, o efeito aborta a busca anterior para
+  // que uma resposta antiga não chegue depois da nova e sobrescreva a tela.
+  signal?: AbortSignal;
 }
 
 // Estado do contexto
@@ -433,13 +566,17 @@ export type DatabaseAction =
 
 // Props do provedor
 export interface DatabaseProviderProps {
-  children: React.ReactNode;
+  children: ReactNode;
 }
 
 // Tipo do contexto
 export interface DatabaseContextType {
   state: DatabaseContextState;
-  fetchData: (table: DatabaseTable) => Promise<void>;
+  fetchData: (table: DatabaseTable, options?: FetchTableOptions) => Promise<void>;
   clearData: () => void;
   getCurrentData: <T extends DatabaseData>() => T[];
+  // Sinal de recarga manual (ButtonReload): quem busca da base nova adiciona
+  // reloadKey às deps do efeito p/ refetchar; reloadData() incrementa o sinal.
+  reloadKey: number;
+  reloadData: () => void;
 }

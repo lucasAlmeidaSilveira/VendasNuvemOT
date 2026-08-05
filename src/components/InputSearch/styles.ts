@@ -22,7 +22,7 @@ export const InputContainer = styled.div`
 export const InputLabel = styled.label`
   font-size: 1.2rem;
   font-weight: 600;
-  color: var(--geralblack-100);
+  color: var(--text-primary);
 `;
 
 export const InputWrapper = styled.div`
@@ -32,20 +32,20 @@ export const InputWrapper = styled.div`
   padding: 0.8rem 1.6rem;
   border-radius: 24px;
   border: none;
-  background-color: var(--geralwhite);
+  background-color: var(--surface);
   font-family: 'Poppins', sans-serif;
   transition: background-color 0.3s ease-in-out;
   border: 1px solid transparent;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 4px var(--shadow-color-soft);
   transition: all 0.1s ease-in;
 
   &:hover {
-    border: 1px solid var(--geralblack-80);
+    border: 1px solid var(--border-strong);
   }
 `;
 
 export const Icon = styled.div`
-  color: var(--geralblack-50);
+  color: var(--text-muted);
   margin-bottom: -.2rem;
 `;
 

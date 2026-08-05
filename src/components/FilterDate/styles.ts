@@ -8,7 +8,7 @@ export const Container = styled.div`
 
   .last-updated{
     font-size: 1.2rem;
-    color: var(--geralblack-100);
+    color: var(--text-primary);
   }
 `;
 
@@ -36,20 +36,20 @@ export const QuickActionButton = styled.span<QuickActionButtonProps>`
   height: fit-content;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: var(--geralwhite);
+  background-color: var(--surface);
   opacity: .9;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+  box-shadow: 0px 1px 4px var(--shadow-color-soft);
   transition: all 0.1s ease-in;
-  
+
   &:hover {
     opacity: 1;
-    box-shadow: 0px 2px 6px rgba(0,0,0,0.25);
+    box-shadow: 0px 2px 6px var(--shadow-color-soft);
   }
 
   ${({ active }) =>
     active &&
     css`
-      background-color: var(--geralblack-100);
-      color: #fcfafb;
+      background-color: var(--chip-bg);
+      color: var(--chip-text);
     `}
 `;

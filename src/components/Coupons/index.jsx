@@ -1,6 +1,9 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useMemo, useState } from 'react';
 import { ContainerCoupon } from './styles';
 import { useOrders } from '../../context/OrdersContext';
+import { useAuth } from '../../context/AuthContext';
+import { useDatabaseContext } from '../../context/DbContext';
+import { DatabaseTable } from '../../types';
 import { styled } from '@mui/material/styles';
 import Table from '@mui/material/Table';
 import TableBody from '@mui/material/TableBody';
@@ -11,9 +14,8 @@ import Paper from '@mui/material/Paper';
 import TableFooter from '@mui/material/TableFooter';
 import TablePagination from '@mui/material/TablePagination';
 import { TablePaginationActions } from '../Pagination';
-import { formatCurrency, formatDateToISO } from '../../tools/tools';
+import { formatCurrency, formatDate } from '../../tools/tools';
 import { Loading } from '../Loading';
-import { filterOrders } from '../../tools/filterOrders';
 import {
   Checkbox,
   FormControlLabel,
@@ -23,8 +25,8 @@ import {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: 'var(--geralblack-30)',
-    color: 'var(--geralblack-100)',
+    backgroundColor: 'var(--table-head-bg)',
+    color: 'var(--table-head-text)',
     fontSize: 14,
     fontWeight: 600,
     fontFamily: 'Poppins',
@@ -44,10 +46,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd):not(.row-order)': {
-    backgroundColor: 'var(--geralblack-10)',
+    backgroundColor: 'var(--table-row-odd)',
   },
   '&.row-order': {
-    backgroundColor: 'var(--geralblack-20)',
+    backgroundColor: 'var(--table-row-order)',
     borderRadius: '8px',
     '& div': {
       borderRadius: '8px',
@@ -59,9 +61,19 @@ const StyledTableRow = styled(TableRow)(({ theme }) => ({
 }));
 
 export function Coupons() {
-  const { allOrders, date, isLoading, store } = useOrders();
-  const { ordersToday } = filterOrders(allOrders, date);
-  const [filteredCoupons, setFilteredCoupons] = useState([]);
+  // `date` e `store` vêm do OrdersContext (filtros globais de período/loja).
+  // A loja agora também escopa a busca: os cupons são consumidos pela rota
+  // /db/query/coupon/:store/:start/:end (store no path). Além disso, ela
+  // controla a exibição do filtro de cupons de vendedores (só 'artepropria').
+  const { date, store } = useOrders();
+  const { user } = useAuth();
+  const { state, fetchData, reloadKey } = useDatabaseContext();
+  const { data, loading, error, currentTable } = state;
+
+  // Loading efetivo: enquanto o estado compartilhado do DbContext ainda não
+  // aponta para coupon (null no 1º paint, ou a tabela da aba anterior) ou está
+  // carregando, mostramos spinner em vez de piscar "Nenhum cupom usado".
+  const isBusy = loading || currentTable !== DatabaseTable.COUPON;
   const [page, setPage] = useState(0);
   const [rowsPerPage, setRowsPerPage] = useState(10);
   const [isSellerFilterActive, setIsSellerFilterActive] = useState(false);
@@ -98,42 +110,58 @@ export function Coupons() {
     'LARISSA15',
   ];
 
+  // Busca os cupons do novo backend sempre que período OU loja mudam.
+  // Rota: /db/query/coupon/:store/:start/:end — a loja faz parte do path e os
+  // cupons já voltam escopados por loja. Como o período pode abranger vários
+  // dias (agregação por (name, date_coupon)), somamos por nome abaixo.
   useEffect(() => {
-    const startDateISO = formatDateToISO(date[0]);
-    const endDateISO = formatDateToISO(date[1]);
+    if (!user) return; // aguarda autenticação; refetch quando `user` muda
+    const startDate = formatDate(date[0]);
+    const endDate = formatDate(date[1]);
+    fetchData(DatabaseTable.COUPON, { startDate, endDate, store });
+    setPage(0);
+  }, [date, store, user, fetchData, reloadKey]);
+
+  // Como o período pode abranger vários dias, agregamos as linhas diárias por
+  // nome do cupom: soma de usos (quantity), de faturamento (total_money) e de
+  // desconto (total_discount).
+  const filteredCoupons = useMemo(() => {
+    if (currentTable !== DatabaseTable.COUPON || !Array.isArray(data)) {
+      return [];
+    }
 
     const couponUsageMap = {};
 
-    ordersToday.forEach((order) => {
-      const orderDate = new Date(order.created_at);
-      if (
-        orderDate >= new Date(startDateISO) &&
-        orderDate <= new Date(endDateISO)
-      ) {
-        order.coupon.forEach((coupon) => {
-          if (isSellerFilterActive && !couponsSellers.includes(coupon.code)) {
-            return; // Pula cupons que não são dos vendedores se o filtro estiver ativo
-          }
-
-          if (!couponUsageMap[coupon.code]) {
-            couponUsageMap[coupon.code] = {
-              ...coupon,
-              used: 0,
-              totalRevenue: 0,
-            };
-          }
-          couponUsageMap[coupon.code].used += 1;
-          couponUsageMap[coupon.code].totalRevenue += parseFloat(order.total);
-        });
+    data.forEach((coupon) => {
+      if (isSellerFilterActive && !couponsSellers.includes(coupon.name)) {
+        return; // Mostra apenas cupons de vendedores quando o filtro está ativo
       }
+
+      if (!couponUsageMap[coupon.name]) {
+        couponUsageMap[coupon.name] = {
+          name: coupon.name,
+          used: 0,
+          totalRevenue: 0,
+          discountValue: 0,
+          // Tipo do cupom ('percentage' | 'absolute') para render type-aware, igual ao legado.
+          discountType: coupon.discount_type || 'percentage',
+        };
+      }
+      couponUsageMap[coupon.name].used += Number(coupon.quantity) || 0;
+      couponUsageMap[coupon.name].totalRevenue += Number(coupon.total_money) || 0;
+      if (coupon.discount_type) {
+        couponUsageMap[coupon.name].discountType = coupon.discount_type;
+      }
+      // total_discount é o VALOR FIXO do cupom (campo `value`), repetido em cada linha —
+      // NÃO somar. Mantemos o maior valor visto no período.
+      couponUsageMap[coupon.name].discountValue = Math.max(
+        couponUsageMap[coupon.name].discountValue,
+        Number(coupon.total_discount) || 0,
+      );
     });
 
-    const sortedCoupons = Object.values(couponUsageMap).sort(
-      (a, b) => b.used - a.used,
-    );
-
-    setFilteredCoupons(sortedCoupons);
-  }, [date, store, allOrders, isSellerFilterActive]);
+    return Object.values(couponUsageMap).sort((a, b) => b.used - a.used);
+  }, [data, currentTable, isSellerFilterActive]);
 
   const handleChangePage = (event, newPage) => {
     setPage(newPage);
@@ -151,6 +179,7 @@ export function Coupons() {
 
   const handleSellerFilterChange = (event) => {
     setIsSellerFilterActive(event.target.checked);
+    setPage(0);
   };
 
   return (
@@ -171,7 +200,7 @@ export function Coupons() {
                 variant="subtitle1"
                 style={{
                   fontFamily: 'Poppins',
-                  color: 'var(--geralblack-100)',
+                  color: 'var(--text-primary)',
                   fontSize: 12,
                 }}
               >
@@ -187,20 +216,26 @@ export function Coupons() {
             <TableRow>
               <StyledTableCell>Código</StyledTableCell>
               <StyledTableCell>Desconto</StyledTableCell>
-              <StyledTableCell>Valor</StyledTableCell>
+              <StyledTableCell>Faturamento</StyledTableCell>
               <StyledTableCell>Usado</StyledTableCell>
             </TableRow>
           </TableHead>
           <TableBody>
-            {isLoading ? (
+            {isBusy ? (
               <TableRow>
                 <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
                   <Loading />
                 </StyledTableCell>
               </TableRow>
+            ) : error ? (
+              <TableRow>
+                <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
+                  Não foi possível carregar os cupons.
+                </StyledTableCell>
+              </TableRow>
             ) : filteredCoupons.length === 0 ? (
               <TableRow>
-                <StyledTableCell style={{ textAlign: 'center' }} colSpan={7}>
+                <StyledTableCell style={{ textAlign: 'center' }} colSpan={4}>
                   Nenhum cupom usado
                 </StyledTableCell>
               </TableRow>
@@ -209,17 +244,19 @@ export function Coupons() {
                 .slice(page * rowsPerPage, page * rowsPerPage + rowsPerPage)
                 .map((coupon) => (
                   <StyledTableRow
-                    key={coupon.id}
+                    key={coupon.name}
                     sx={{ '&:last-child td, &:last-child th': { border: 0 } }}
                   >
                     <StyledTableCell component="th" scope="row">
-                      {coupon.code}
+                      {coupon.name}
                     </StyledTableCell>
-                    {coupon.type === 'percentage' ? (
-                      <StyledTableCell>{`${parseInt(coupon.value)}%`}</StyledTableCell>
-                    ) : (
-                      <StyledTableCell>{`R$ ${parseFloat(coupon.value).toFixed(2).replace('.', ',')}`}</StyledTableCell>
-                    )}
+                    <StyledTableCell>
+                      {coupon.discountType === 'percentage'
+                        ? `${parseInt(coupon.discountValue)}%`
+                        : `R$ ${parseFloat(coupon.discountValue)
+                            .toFixed(2)
+                            .replace('.', ',')}`}
+                    </StyledTableCell>
                     <StyledTableCell>
                       {formatCurrency(coupon.totalRevenue)}
                     </StyledTableCell>
@@ -232,7 +269,7 @@ export function Coupons() {
             <TableRow>
               <TablePagination
                 rowsPerPageOptions={[5, 10, 20, 50]}
-                colSpan={7}
+                colSpan={4}
                 count={filteredCoupons.length}
                 rowsPerPage={rowsPerPage}
                 page={page}

@@ -53,7 +53,7 @@ export const FilterContainer = styled.div`
   }
   .last-updated{
     font-size: 1.2rem;
-    color: var(--geralblack-100);
+    color: var(--text-primary);
   }
 
 `;
@@ -82,21 +82,22 @@ export const FilterButton = styled.button<FilterButtonProps>`
   height: fit-content;
   font-size: 1.2rem;
   cursor: pointer;
-  background-color: #f1f0f2;
+  background-color: var(--surface-2);
+  color: var(--text-primary);
   opacity: 0.9;
-  box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+  box-shadow: 0px 1px 4px var(--shadow-color-soft);
   transition: all 0.1s ease-in;
 
   &:hover {
     opacity: 1;
-    box-shadow: 0px 2px 6px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 2px 6px var(--shadow-color-soft);
   }
 
   ${({ active }) =>
     active &&
     css`
-      background-color: var(--geralblack-100);
-      color: #fcfafb;
+      background-color: var(--chip-bg);
+      color: var(--chip-text);
     `}
 `;
 
@@ -104,7 +105,7 @@ export const ProductDetailsContainer = styled.div`
 display: flex;
 flex-direction: column;
 padding: 1rem;
-border-top: 1px solid #ddd;
+border-top: 1px solid var(--border-hairline);
 `;
 
 export const ProductRow = styled.div`
@@ -155,9 +156,9 @@ export const StatusFilterContainer = styled.div`
   .status-filter {
     align-items: flex-start;
     padding: 2rem 3.2rem;
-    background-color: var(--geralgray-10);
+    background-color: var(--surface-2);
     border-radius: 1.6rem;
-    box-shadow: 0px 4px 4px #00000040;
+    box-shadow: 0px 4px 4px var(--shadow-color), 0 0 0 1px var(--elevation-border);
     display: flex;
     width: 100%;
     flex-direction: column;
@@ -166,19 +167,19 @@ export const StatusFilterContainer = styled.div`
     transition: background 0.3s;
 
     &:hover {
-      background: #e0e0e0;
+      background: var(--surface-3);
     }
 
     &.active {
-      background: var(--geralblack-100);
+      background: var(--chip-bg);
       span {
-        color: var(--geralwhite) !important;
+        color: var(--chip-text) !important;
       }
     }
 
     span {
       &:first-child {
-        color: var(--geralblack-100);
+        color: var(--text-primary);
         font-family: var(--body-paragraph-regular-font-family);
         font-size: var(--body-small-regular-font-size);
         font-style: var(--body-paragraph-regular-font-style);
@@ -190,7 +191,7 @@ export const StatusFilterContainer = styled.div`
       }
 
       &:last-child {
-        color: var(--geralblack-100);
+        color: var(--text-primary);
         font-family: var(--body-heading-h4-font-family);
         font-size: var(--body-heading-h4-font-size);
         font-style: var(--body-heading-h4-font-style);
@@ -224,7 +225,7 @@ export const RowTitle = styled.div`
   .btn-reload {
     cursor: pointer;
     font-size: 18px;
-    color: var(--geralblack-100);
+    color: var(--text-primary);
   }
 `
 

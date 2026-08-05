@@ -7,24 +7,23 @@ export const ButtonStyled = styled.button`
   gap: .8rem;
   padding: 8px 16px;
   font-size: 1.2rem;
-  background-color: var(--geralblack-100);
-  color: var(--geralwhite);
+  background-color: var(--chip-bg);
+  color: var(--chip-text);
   border: none;
   border-radius: 100px;
   cursor: pointer;
-  box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
-  
+  box-shadow: 0px 1px 4px var(--shadow-color-soft);
+
   transition: all .2s ease-in-out;
-  
+
   &:hover {
-    background-color: var(--geralblack-80);
-    box-shadow: 0px 2px 4px rgba(0,0,0,0.25);
+    background-color: var(--chip-bg-hover);
+    box-shadow: 0px 2px 4px var(--shadow-color-soft);
   }
 
   &.simple {
-    background-color: var(--geralblack-20);
-    color: var(--geralblack-100);
-    width: 100%;
+    background-color: var(--surface-hover);
+    color: var(--text-primary);
     opacity: 1;
 
     &:hover {
@@ -33,9 +32,8 @@ export const ButtonStyled = styled.button`
   }
 
   &.confirm {
-    background-color: var(--geralblack-100);
-    color: var(--geralwhite);
-    width: 100%;
+    background-color: var(--chip-bg);
+    color: var(--chip-text);
     opacity: 1;
 
     &:hover {
@@ -45,7 +43,7 @@ export const ButtonStyled = styled.button`
 
   &.delete {
     background-color: var(--uinegative-100);
-    color: var(--geralwhite);
+    color: var(--on-accent);
     opacity: .4;
     padding: .8rem;
 

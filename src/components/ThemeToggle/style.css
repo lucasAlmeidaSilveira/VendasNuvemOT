@@ -1,0 +1,20 @@
+/* Espelha .boxReload: os dois botões ficam lado a lado no Header e precisam
+   ter a mesma área de clique. O ícone é sempre claro porque o Header
+   permanece escuro nos dois temas. */
+.boxTheme {
+  position: relative;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 40px;
+  height: 40px;
+  background-color: transparent;
+  border: none;
+  border-radius: 50%;
+  cursor: pointer;
+  transition: background-color 0.2s ease-in;
+}
+
+.boxTheme:hover {
+  background-color: rgba(255, 255, 255, 0.12);
+}
