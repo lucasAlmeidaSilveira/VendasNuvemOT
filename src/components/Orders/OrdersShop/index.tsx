@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
 import { Badge, Flex, IconButton, Table, Theme } from '@radix-ui/themes';
+import { RadixTheme } from '../../RadixTheme';
 import TablePagination from '@mui/material/TablePagination';
 import TableFooter from '@mui/material/TableFooter';
 import TableSortLabel from '@mui/material/TableSortLabel';
@@ -360,7 +361,7 @@ export function OrdersShop() {
   const sortable = new Set(['order_id', 'created_at', 'total']);
 
   return (
-    <Theme>
+    <RadixTheme>
       <StatusFilterContainer>
         <div
           className={`status-filter ${
@@ -473,7 +474,7 @@ export function OrdersShop() {
 
       <ContainerOrder>
         <Table.Root variant='surface' layout={layout}>
-          <Table.Header style={{ backgroundColor: 'lightgray' }}>
+          <Table.Header style={{ backgroundColor: 'var(--table-head-bg)' }}>
             <Table.Row>
               {headCells.map(headCell => (
                 <Table.ColumnHeaderCell key={headCell.id}>
@@ -674,7 +675,7 @@ export function OrdersShop() {
       >
         <Theme>
           <Table.Root variant='surface' layout={layout}>
-            <Table.Header style={{ backgroundColor: 'lightgray' }}>
+            <Table.Header style={{ backgroundColor: 'var(--table-head-bg)' }}>
               <Table.Row>
                 <Table.ColumnHeaderCell
                   onClick={toggleLateSortOrder}
@@ -725,6 +726,6 @@ export function OrdersShop() {
           </Table.Root>
         </Theme>
       </Popup>
-    </Theme>
+    </RadixTheme>
   );
 }

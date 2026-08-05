@@ -12,13 +12,17 @@ import { RefundsProvider } from './context/RefundsContext.tsx';
 import { TikTokAdsProvider } from './context/TikTokAdsContext.tsx';
 import { MandaeProvider } from './context/MandaeContext.tsx';
 import { DatabaseProvider } from './context/DbContext.tsx';
+import { ThemeProvider } from './context/ThemeContext.jsx';
 
-import { Theme } from '@radix-ui/themes';
 import '@radix-ui/themes/styles.css';
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 root.render(
   <React.StrictMode>
+    {/* ThemeProvider é o mais externo: não depende de nenhum outro contexto e
+        precisa envolver todo mundo (inclui o ThemeProvider do MUI). Note que
+        NÃO existe um <Theme> do Radix na raiz — ver src/components/RadixTheme. */}
+    <ThemeProvider>
     <AuthProvider>
       <OrdersProvider>
         {/* TabProvider subiu para FORA de Refunds/TikTok: esses contextos passaram
@@ -44,5 +48,6 @@ root.render(
         </TabProvider>
       </OrdersProvider>
     </AuthProvider>
+    </ThemeProvider>
   </React.StrictMode>,
 );

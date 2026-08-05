@@ -2,7 +2,8 @@ import React from 'react';
 import { styled } from '@mui/material/styles';
 import { formatCurrency } from '../../tools/tools.ts';
 import { ContainerDetails, ProductImage } from './styles';
-import { Table, Theme } from '@radix-ui/themes';
+import { Table } from '@radix-ui/themes';
+import { RadixTheme } from '../RadixTheme';
 
 const formatProductName = name => {
   const regex = /\((.*?)\)/;
@@ -25,7 +26,7 @@ export function ProductDetails({ products, subtotal, ownerNote }) {
   console.log(ownerNote);
 
   return (
-    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
+    <RadixTheme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
         <h3>Pedido</h3>
         <Table.Root variant='surface' layout={'auto'}>
@@ -85,6 +86,6 @@ export function ProductDetails({ products, subtotal, ownerNote }) {
           </Table.Body>
         </Table.Root>
       </ContainerDetails>
-    </Theme>
+    </RadixTheme>
   );
 }

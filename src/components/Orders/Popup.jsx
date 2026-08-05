@@ -24,7 +24,7 @@ const StyledDialogTitle = styled(DialogTitle)({
 })
 
 const StyledDialogContentText = styled(DialogContentText)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: '1.2rem',
   fontWeight: 'var(--body-small-regular-font-weight)',

@@ -16,7 +16,7 @@ export const BoxInput = styled.div`
   
   &.isDragging {
     label {
-      background-color: var(--geralblack-80); /* Cor do fundo */
+      background-color: var(--chip-bg-hover); /* Cor do fundo */
     }
   }
   
@@ -26,12 +26,12 @@ export const BoxInput = styled.div`
     align-items: center;
     gap: .8rem;
     padding: 40px 24px;
-    background-color: var(--geralblack-100); /* Cor do fundo */
+    background-color: var(--chip-bg); /* Cor do fundo */
     border-radius: 16px; /* Bordas arredondadas */
-    border: 3px dashed var(--geralwhite); /* Borda transparente */
+    border: 3px dashed var(--chip-text); /* Borda transparente */
     cursor: pointer;
 
-    color: var(--geralwhite);
+    color: var(--chip-text);
     font-size: 14px;
     font-weight: 500;
     white-space: normal; /* Permite que o texto quebre */

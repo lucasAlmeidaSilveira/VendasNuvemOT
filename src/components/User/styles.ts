@@ -6,7 +6,7 @@ export const Container = styled.div`
     width: 4rem;
     height: 4rem;
     image-rendering: optimizeSpeed;
-    border: 2px solid var(--geralwhite);
+    border: 2px solid var(--chip-text);
   }
 `;
 
@@ -19,7 +19,7 @@ export const Avatar = styled.img`
   width: 4rem;
   height: 4rem;
   image-rendering: optimizeSpeed;
-  border: 2px solid var(--geralwhite);
+  border: 2px solid var(--chip-text);
 `;
 
 export const MenuItem = styled.div`
@@ -32,11 +32,11 @@ export const MenuItem = styled.div`
   transition: background .2s ease-out;
 
   &:hover {
-    background: var(--geralblack-20);
+    background: var(--surface-hover);
   }
 `
 
 export const MenuText = styled.span`
   font-size: 1rem;
-  color: var(--geralblack-70);
+  color: var(--text-tertiary);
 `

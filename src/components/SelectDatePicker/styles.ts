@@ -11,21 +11,22 @@ export const ContainerDatePickerIcon = styled.div`
     padding: 0.4rem 0.8rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
-    background-color: var(--geralwhite);
+    background-color: var(--surface);
+    color: var(--text-primary);
     border: none;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
   }
 
   .calendar-view {
     border-radius: 1.2rem;
     border: none;
-    background-color: #fcfafb;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    background-color: var(--surface);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
 
     button {
       font-size: 1rem;
       font-family: 'Poppins', sans-serif;
-      color: var(--geralblack-100);
+      color: var(--text-primary);
 
       span {
         font-size: 1.4rem;
@@ -46,21 +47,22 @@ export const ContainerDatePicker = styled.div`
     padding: 0.4rem 0.8rem;
     font-family: 'Poppins', sans-serif;
     font-size: 1.4rem;
-    background-color: var(--geralwhite);
+    background-color: var(--surface);
+    color: var(--text-primary);
     border: none;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
   }
 
   .calendar-view {
     border-radius: 1.2rem;
     border: none;
-    background-color: #fcfafb;
-    box-shadow: 0px 1px 4px rgba(0, 0, 0, 0.25);
+    background-color: var(--surface);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
 
     button {
       font-size: 1rem;
       font-family: 'Poppins', sans-serif;
-      color: var(--geralblack-100);
+      color: var(--text-primary);
 
       span {
         font-size: 1.4rem;

@@ -11,13 +11,15 @@ export const Input = styled.input`
   width: 100%;
   padding: 12px;
   border-radius: 8px;
-  border: 1px solid #ccc;
+  border: 1px solid var(--chart-tooltip-border);
+  background-color: var(--surface);
+  color: var(--text-primary);
   margin-bottom: 1rem;
   font-size: 1rem;
   transition: border-color 0.2s;
 
   &:focus {
-    border-color: #1f1f1f;
+    border-color: var(--border-strong);
     outline: none;
   }
 `;
@@ -30,15 +32,15 @@ export const ImageUploadLabel = styled.label`
   align-items: center;
   justify-content: center;
   gap: 0.5rem;
-  border: 2px dashed #ccc;
+  border: 2px dashed var(--chart-tooltip-border);
   border-radius: 8px;
   cursor: pointer;
   transition: all 0.2s;
-  color: #666;
-  
+  color: var(--chart-axis);
+
   &:hover {
     border-color: var(--uiblue-100);
-    background-color: #f8f9fa;
+    background-color: var(--surface-2);
     color: var(--uiblue-100);
   }
 
@@ -52,7 +54,7 @@ export const ImagePreview = styled.img`
   height: 120px;
   object-fit: cover;
   border-radius: 8px;
-  border: 2px solid #e0e0e0;
+  border: 2px solid var(--surface-3);
 `;
 
 export const RemoveImageButton = styled.button`
@@ -81,9 +83,10 @@ export const RemoveImageButton = styled.button`
 export const QRImage = styled.img`
   width: 260px;
   height: 260px;
-  background: var(--geralwhite);
+  /* o QR precisa de fundo claro para ser lido, nos dois temas */
+  background: #fcfafb;
   border-radius: 8px;
-  box-shadow: 0px 2px 4px #00000030;
+  box-shadow: 0px 2px 4px var(--shadow-color);
 `;
 
 export const DownloadLink = styled.a`

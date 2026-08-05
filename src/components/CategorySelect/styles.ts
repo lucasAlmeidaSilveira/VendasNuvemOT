@@ -12,13 +12,24 @@ export const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.2rem;
     
+    /* este select fica sobre um chip escuro, então a cor clara vale nos dois
+       temas — quem acompanha o tema é a lista suspensa nativa */
     background-color: rgba(255, 255, 255, .2);
-    color: #FCFAFB;
+    color: var(--chip-text);
     border: none;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
-    
-    option {
-      color: var(--geralblack-100);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
+
+    /* o Chromium tira o fundo da lista do background-color declarado no select —
+       translúcido aqui, ele pinta a lista clara mesmo com color-scheme: dark, e o
+       texto claro do tema escuro sumia. Fundo opaco explícito resolve. */
+    option,
+    optgroup {
+      background-color: var(--surface);
+      color: var(--text-primary);
+    }
+
+    option:checked {
+      background-color: var(--surface-2);
     }
   }
 `

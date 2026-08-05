@@ -19,14 +19,14 @@ const StyledDialog = styled(Dialog)(({ theme }) => ({
 }));
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: 'var(--body-heading-h5-font-size)',
   fontWeight: 'var(--body-heading-h5-font-weight)',
 }));
 
 const StyledDialogContentText = styled(DialogContentText)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: '1.2rem',
   fontWeight: 'var(--body-small-regular-font-weight)',

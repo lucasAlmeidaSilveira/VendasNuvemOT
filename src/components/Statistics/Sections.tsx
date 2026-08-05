@@ -277,7 +277,7 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={FaTiktok}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Tiktok'
             dataCosts={tiktokCostAll}
             tooltip='Tiktok ADS'
@@ -288,7 +288,7 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Total'
             dataCosts={totalCosts}
             tooltip='Google ADS x Meta ADS'
@@ -313,7 +313,7 @@ export function DataSectionTPago({
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='ROAS'
             tooltip='Faturamento x Verba Total'
             dataCosts={totalByCategoryOT}
@@ -544,7 +544,7 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={GrMoney}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Verba Total'
             dataCosts={totalCosts}
             tooltip='Google ADS x Meta ADS'
@@ -556,7 +556,7 @@ export function DataSectionTPagoAP({
         <div className='row'>
           <BudgetItemList
             icon={RiRobot2Line}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Chatbot'
             tooltip='Faturamento Chatbot'
             value={totalChatbot.toLocaleString('pt-BR', {
@@ -568,7 +568,7 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={SiHomeassistantcommunitystore}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='Loja Fisica'
             tooltip='Faturamento Loja Fisica'
             value={(totalLojaBruto < 0 ? 0 : totalLojaBruto).toLocaleString(
@@ -592,7 +592,7 @@ export function DataSectionTPagoAP({
           />
           <BudgetItemList
             icon={DiGoogleAnalytics}
-            iconColor='var(--geralblack-100)'
+            iconColor='var(--text-primary)'
             title='ROAS'
             tooltip='Faturamento x Verba Total'
             value={roasValue}
@@ -633,9 +633,9 @@ export function DataSectionPay({ bgcolor }: DataSectionPayProps) {
   const [boletoApprovalRate, setBoletoApprovalRate] =
     useState(DEFAULT_PERCENTAGE);
 
-  const colorCard = '#66bb6a';
-  const colorPix = '#42a5f5';
-  const colorBoleto = '#ffb74d';
+  const colorCard = 'var(--pay-card-border)';
+  const colorPix = 'var(--pay-pix-border)';
+  const colorBoleto = 'var(--pay-boleto-border)';
 
   const calculatePercentage = (orders: Order[], total: number): string =>
     total > 0 ? ((orders.length / total) * 100).toFixed(1) + '%' : '0%';

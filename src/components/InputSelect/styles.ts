@@ -12,8 +12,9 @@ export const Container = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     
-    background-color: var(--geralwhite);
+    background-color: var(--surface);
+    color: var(--text-primary);
     border: none;
-    box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
+    box-shadow: 0px 1px 4px var(--shadow-color-soft);
   }
 `

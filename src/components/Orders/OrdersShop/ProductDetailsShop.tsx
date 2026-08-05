@@ -1,5 +1,6 @@
 import React, { useEffect, useMemo, useState } from 'react';
-import { Table, Theme } from '@radix-ui/themes';
+import { Table } from '@radix-ui/themes';
+import { RadixTheme } from '../../RadixTheme';
 import { ContainerDetails, ProductImage } from '../styles';
 import { formatCurrency } from '../../../tools/tools';
 import { Loading } from '../../Loading';
@@ -79,7 +80,7 @@ export function ProductDetailsShop({
   }, [key]);
 
   return (
-    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
+    <RadixTheme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
         <h3>Pedido</h3>
         <Table.Root variant='surface' layout={'auto'}>
@@ -156,6 +157,6 @@ export function ProductDetailsShop({
           </Table.Body>
         </Table.Root>
       </ContainerDetails>
-    </Theme>
+    </RadixTheme>
   );
 }

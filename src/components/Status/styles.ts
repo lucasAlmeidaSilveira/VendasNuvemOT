@@ -6,12 +6,12 @@ export const ContainerStatusData = styled.div`
   justify-items: center;
   gap: .4rem;
   padding: 4px 8px;
-  background-color: #fffbe0;
+  background-color: var(--status-warn-bg);
   border-radius: 24px;
-  color: #f49820;
+  color: var(--status-warn-fg);
   font-size: 1.2rem;
   font-weight: 600;
-  border: 1px solid #f49820;
+  border: 1px solid var(--status-warn-fg);
 `
 
 export const ContainerStatusInitialData = styled.div`
@@ -20,12 +20,12 @@ export const ContainerStatusInitialData = styled.div`
   justify-items: center;
   gap: .4rem;
   padding: 4px 8px;
-  background-color: #ffe0e0;
+  background-color: var(--status-danger-bg);
   border-radius: 24px;
-  color: #e64e4e;
+  color: var(--status-danger-fg);
   font-size: 1.2rem;
   font-weight: 600;
-  border: 1px solid #e64e4e;
+  border: 1px solid var(--status-danger-fg);
 `
 
 export const ContainerStatusDataSuccess = styled.div`
@@ -34,12 +34,12 @@ export const ContainerStatusDataSuccess = styled.div`
   justify-items: center;
   gap: .4rem;
   padding: 4px 8px;
-  background-color: #e0ffe0;
+  background-color: var(--status-ok-bg);
   border-radius: 24px;
-  color: #38b257;
+  color: var(--status-ok-fg);
   font-size: 1.2rem;
   font-weight: 600;
-  border: 1px solid #38b257;
+  border: 1px solid var(--status-ok-fg);
 `;
 
 export const ContainerStatusDataWait = styled.div`
@@ -48,10 +48,10 @@ export const ContainerStatusDataWait = styled.div`
   justify-items: center;
   gap: .4rem;
   padding: 4px 8px;
-  background-color: #daf1fa;
+  background-color: var(--status-info-bg);
   border-radius: 24px;
-  color: #39abe4;
+  color: var(--status-info-fg);
   font-size: 1.2rem;
   font-weight: 600;
-  border: 1px solid #39abe4;
+  border: 1px solid var(--status-info-fg);
 `;

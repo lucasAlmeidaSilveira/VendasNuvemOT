@@ -30,7 +30,7 @@ export const ContainerBestSeller = styled.div`
   min-width: 30rem;
   width: 100%;
   flex: 1;
-  box-shadow: 0px 4px 4px #00000040;
+  box-shadow: 0px 4px 4px var(--shadow-color), 0 0 0 1px var(--elevation-border);
   border-radius: 1.6rem;
 
   &.variations {
@@ -52,12 +52,12 @@ export const ContainerBestSeller = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--geralblack-100);
+    background: var(--chip-bg);
     border-radius: 1.6rem 1.6rem 0 0;
     flex: 0 0 auto;
     padding: 1.2rem 2rem;
     width: 100%;
-    color: var(--geralwhite);
+    color: var(--chip-text);
 
     .categorie {
       width: fit-content;

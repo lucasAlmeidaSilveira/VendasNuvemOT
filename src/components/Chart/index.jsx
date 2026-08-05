@@ -13,6 +13,7 @@ import {
 import { Loading } from '../Loading';
 import { CategorySelect } from '../CategorySelect';
 import { useOrders } from '../../context/OrdersContext';
+import { useThemeTokens } from '../../context/ThemeContext';
 import {
   ContainerChartLine,
   ContainerChartPie,
@@ -176,6 +177,7 @@ function processOrdersForChart(orders, type) {
 
 export function ChartLine({ orders, title, loading }) {
   const { date, setDate } = useOrders();
+  const t = useThemeTokens();
   const [dataPoints, setDataPoints] = useState([]);
   const [timeType, setTimeType] = useState('hour');
 
@@ -230,9 +232,9 @@ export function ChartLine({ orders, title, loading }) {
       ) : (
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={dataPoints} layout="horizontal">
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="category" dataKey="name" />
-            <YAxis type="number" />
+            <CartesianGrid strokeDasharray="3 3" stroke={t.chartGrid} />
+            <XAxis type="category" dataKey="name" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
+            <YAxis type="number" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
             <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="vendas" fill={baseColor} />
           </BarChart>
@@ -253,11 +255,12 @@ const CustomTooltip = ({ active, payload, label }) => {
     return (
       <div
         style={{
-          background: 'white',
-          border: '1px solid #ccc',
+          background: 'var(--chart-tooltip-bg)',
+          border: '1px solid var(--chart-tooltip-border)',
+          color: 'var(--text-primary)',
           padding: '10px',
           borderRadius: '5px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+          boxShadow: '0 0 10px var(--shadow-color-soft)',
         }}
       >
         <p style={{ fontSize: 12 }}>
@@ -276,6 +279,7 @@ const CustomTooltip = ({ active, payload, label }) => {
 };
 
 export function ChartStates({ orders, title, loading }) {
+  const t = useThemeTokens();
   const [vendasPorEstado, setVendasPorEstado] = useState({});
   const [numberOptions, setNumberOptions] = useState(5);
 
@@ -329,9 +333,9 @@ export function ChartStates({ orders, title, loading }) {
       ) : (
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={estados} layout="vertical">
-            <CartesianGrid strokeDasharray="3 3" />
-            <XAxis type="number" />
-            <YAxis type="category" dataKey="nome" />
+            <CartesianGrid strokeDasharray="3 3" stroke={t.chartGrid} />
+            <XAxis type="number" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
+            <YAxis type="category" dataKey="nome" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
             <Tooltip content={<CustomTooltip />} />
             <Bar dataKey="vendas" name="Quantidade de Vendas">
               {estados.map((entry, index) => (
@@ -349,6 +353,7 @@ export function ChartStates({ orders, title, loading }) {
 }
 
 export function ChartLojas({ orders, title, loading }) {
+  const t = useThemeTokens();
   const [vendasPorLoja, setVendasPorLoja] = useState({});
   const [numberOptions, setNumberOptions] = useState(5);
 
@@ -428,9 +433,9 @@ export function ChartLojas({ orders, title, loading }) {
       ) : (
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={lojas} layout="horizontal">
-            <CartesianGrid strokeDasharray="3 3" />
-            <YAxis type="number" />
-            <XAxis type="category" dataKey="nome" />
+            <CartesianGrid strokeDasharray="3 3" stroke={t.chartGrid} />
+            <YAxis type="number" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
+            <XAxis type="category" dataKey="nome" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
             <Tooltip content={<CustomTooltipVendasLojas />} />
             <Bar dataKey="value" name="Valor de Vendas (R$)">
               {lojas.map((entry, index) => (
@@ -448,6 +453,7 @@ export function ChartLojas({ orders, title, loading }) {
 }
 
 export function ChartClienteLojas({ orders, title, loading }) {
+  const t = useThemeTokens();
   const [vendasPorLoja, setVendasPorLoja] = useState({});
   const [numberOptions, setNumberOptions] = useState(5);
 
@@ -527,9 +533,9 @@ export function ChartClienteLojas({ orders, title, loading }) {
       ) : (
         <ResponsiveContainer width="100%" height={320}>
           <BarChart data={lojas} layout="horizontal">
-            <CartesianGrid strokeDasharray="3 3" />
-            <YAxis type="number" />
-            <XAxis type="category" dataKey="nome" />
+            <CartesianGrid strokeDasharray="3 3" stroke={t.chartGrid} />
+            <YAxis type="number" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
+            <XAxis type="category" dataKey="nome" stroke={t.chartAxis} tick={{ fill: t.chartAxis }} />
             <Tooltip content={<CustomTooltipClientesLojas />} />
             <Bar dataKey="vendas" name="Número de Clientes">
               {lojas.map((entry, index) => (
@@ -555,11 +561,12 @@ const CustomTooltipVendasLojas = ({ active, payload, label }) => {
     return (
       <div
         style={{
-          background: 'white',
-          border: '1px solid #ccc',
+          background: 'var(--chart-tooltip-bg)',
+          border: '1px solid var(--chart-tooltip-border)',
+          color: 'var(--text-primary)',
           padding: '10px',
           borderRadius: '5px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+          boxShadow: '0 0 10px var(--shadow-color-soft)',
         }}
       >
         <p style={{ fontSize: 12 }}>
@@ -580,11 +587,12 @@ const CustomTooltipClientesLojas = ({ active, payload, label }) => {
     return (
       <div
         style={{
-          background: 'white',
-          border: '1px solid #ccc',
+          background: 'var(--chart-tooltip-bg)',
+          border: '1px solid var(--chart-tooltip-border)',
+          color: 'var(--text-primary)',
           padding: '10px',
           borderRadius: '5px',
-          boxShadow: '0 0 10px rgba(0,0,0,0.1)',
+          boxShadow: '0 0 10px var(--shadow-color-soft)',
         }}
       >
         <p style={{ fontSize: 12 }}>

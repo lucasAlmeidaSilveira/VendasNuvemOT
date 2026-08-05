@@ -95,13 +95,13 @@ export function Statistics() {
 
   // Cores de fundo para diferentes seções
   const bgColors = {
-    trafegoPago: '#525252',
-    costs: '#978800',
-    analytics: '#006BC8',
-    conversaoVendas: '#592DEA',
-    payment: '#008006',
-    planilhaAnalytics: '#7002d0',
-    reembolso: '#633B48',
+    trafegoPago: 'var(--section-trafego)',
+    costs: 'var(--section-costs)',
+    analytics: 'var(--section-analytics)',
+    conversaoVendas: 'var(--section-conversao)',
+    payment: 'var(--section-payment)',
+    planilhaAnalytics: 'var(--section-planilha)',
+    reembolso: 'var(--section-reembolso)',
   };
 
   return (

@@ -1,9 +1,13 @@
-.css-twia2z-MuiPaper-root-MuiDialog-paper {
+/* Antes esta regra mirava `.css-twia2z-MuiPaper-root-MuiDialog-paper`, um hash
+   gerado pelo emotion. Como o hash muda junto com o objeto de tema, introduzir
+   o ThemeProvider do MUI a mataria silenciosamente. Agora o Paper recebe uma
+   classe estável via a prop `paperClassName` de <Popup>. */
+.refund-dialog-paper {
   background-color: #d2d2d2 !important;
   border-radius: 10px;
 }
 
-.css-twia2z-MuiPaper-root-MuiDialog-paper h2 {
+.refund-dialog-paper h2 {
   font-family: 'Outfit', sans-serif !important;
   font-size: 28px;
   font-weight: 600;
@@ -130,4 +134,30 @@
 .selected-type button:focus,
 .selected-type button:focus-visible {
   outline: none;
+}
+
+/* Este arquivo é legado e cheio de literais. Em vez de tokenizar cada um
+   (o que mudaria o tema claro), os valores claros ficam intactos acima e o
+   tema escuro é tratado neste bloco. */
+[data-theme='dark'] .refund-dialog-paper {
+  background-color: var(--surface-2) !important;
+}
+
+[data-theme='dark'] .popup-subtitle,
+[data-theme='dark'] .popup-form label {
+  color: var(--text-primary);
+}
+
+[data-theme='dark'] .popup-input,
+[data-theme='dark'] .popup-select,
+[data-theme='dark'] .popup-select option,
+[data-theme='dark'] .selected-type button {
+  background: var(--surface);
+  color: var(--text-primary);
+  border-color: var(--border-subtle);
+}
+
+[data-theme='dark'] .popup-success {
+  background: var(--status-ok-bg);
+  color: var(--status-ok-fg);
 }

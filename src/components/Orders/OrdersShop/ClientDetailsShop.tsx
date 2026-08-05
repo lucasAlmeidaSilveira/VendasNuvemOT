@@ -1,5 +1,6 @@
 import React from 'react';
-import { Badge, Flex, Table, Theme } from '@radix-ui/themes';
+import { Badge, Flex, Table } from '@radix-ui/themes';
+import { RadixTheme } from '../../RadixTheme';
 import { FaWhatsapp } from 'react-icons/fa';
 import { Oval } from 'react-loader-spinner';
 import { ContainerDetails, RowTitle } from '../styles';
@@ -46,7 +47,7 @@ export function ClientDetailsShop({ order }: ClientDetailsShopProps) {
     order.order_tracking_link !== '';
 
   return (
-    <Theme hasBackground={false} style={{ minHeight: '10%' }}>
+    <RadixTheme hasBackground={false} style={{ minHeight: '10%' }}>
       <ContainerDetails>
         <RowTitle>
           <h3>
@@ -108,7 +109,7 @@ export function ClientDetailsShop({ order }: ClientDetailsShopProps) {
                     <p
                       style={{
                         fontSize: '12px',
-                        color: 'var(--geralblack-70)',
+                        color: 'var(--text-tertiary)',
                       }}
                     >
                       {client.endereco_cli}
@@ -204,7 +205,7 @@ export function ClientDetailsShop({ order }: ClientDetailsShopProps) {
               </Table.Cell>
               <Table.Cell p={'4'}>
                 {formatShippingCost(order.shipping_cost)}
-                <p style={{ fontSize: '12px', color: 'var(--geralblack-70)' }}>
+                <p style={{ fontSize: '12px', color: 'var(--text-tertiary)' }}>
                   {order.shipping_option}
                 </p>
               </Table.Cell>
@@ -225,6 +226,6 @@ export function ClientDetailsShop({ order }: ClientDetailsShopProps) {
           </Table.Body>
         </Table.Root>
       </ContainerDetails>
-    </Theme>
+    </RadixTheme>
   );
 }

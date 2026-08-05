@@ -9,18 +9,26 @@ interface PopupProps {
   title?: string;
   children: ReactElement;
   size: 'sm' | 'md' | 'lg' | 'xl' | 'xs';
+  /** Classe aplicada ao Paper do Dialog, para estilo específico de um popup. */
+  paperClassName?: string;
 }
 
 const StyledDialogTitle = styled(DialogTitle)(({ theme }) => ({
-  color: 'var(--geralblack-100)',
+  color: 'var(--text-primary)',
   fontFamily: 'Poppins, sans-serif',
   fontSize: 'var(--body-heading-h5-font-size)',
   fontWeight: 'var(--body-heading-h5-font-weight)',
 }));
 
-export function Popup({ open, onClose, title, children, size }: PopupProps) {
+export function Popup({ open, onClose, title, children, size, paperClassName }: PopupProps) {
   return (
-    <Dialog open={open} onClose={onClose} maxWidth={size} fullWidth>
+    <Dialog
+      open={open}
+      onClose={onClose}
+      maxWidth={size}
+      fullWidth
+      PaperProps={paperClassName ? { className: paperClassName } : undefined}
+    >
       {title && (
         <StyledDialogTitle>
           {title}

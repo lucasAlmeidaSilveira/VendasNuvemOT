@@ -25,8 +25,8 @@ import {
 
 const StyledTableCell = styled(TableCell)(({ theme }) => ({
   [`&.${tableCellClasses.head}`]: {
-    backgroundColor: 'var(--geralblack-30)',
-    color: 'var(--geralblack-100)',
+    backgroundColor: 'var(--table-head-bg)',
+    color: 'var(--table-head-text)',
     fontSize: 14,
     fontWeight: 600,
     fontFamily: 'Poppins',
@@ -46,10 +46,10 @@ const StyledTableCell = styled(TableCell)(({ theme }) => ({
 
 const StyledTableRow = styled(TableRow)(({ theme }) => ({
   '&:nth-of-type(odd):not(.row-order)': {
-    backgroundColor: 'var(--geralblack-10)',
+    backgroundColor: 'var(--table-row-odd)',
   },
   '&.row-order': {
-    backgroundColor: 'var(--geralblack-20)',
+    backgroundColor: 'var(--table-row-order)',
     borderRadius: '8px',
     '& div': {
       borderRadius: '8px',
@@ -200,7 +200,7 @@ export function Coupons() {
                 variant="subtitle1"
                 style={{
                   fontFamily: 'Poppins',
-                  color: 'var(--geralblack-100)',
+                  color: 'var(--text-primary)',
                   fontSize: 12,
                 }}
               >

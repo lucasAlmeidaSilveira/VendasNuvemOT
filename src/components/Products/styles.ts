@@ -24,7 +24,7 @@ export const Container = styled.div`
     gap: 2rem;
 
     h1 {
-      color: var(--geralblack-100);
+      color: var(--text-primary);
       font-size: var(--body-heading-h5-font-size);
       font-weight: var(--body-heading-h5-font-weight);
     }
@@ -68,12 +68,12 @@ export const ContainerBestSeller = styled.div`
     display: flex;
     align-items: center;
     justify-content: space-between;
-    background: var(--geralblack-100);
+    background: var(--chip-bg);
     border-radius: 1.6rem 1.6rem 0 0;
     flex: 0 0 auto;
     padding: 1.6rem 2.4rem;
     width: 100%;
-    color: var(--geralwhite);
+    color: var(--chip-text);
 
     .categorie {
       width: fit-content;
@@ -126,7 +126,7 @@ export const Label = styled.label`
   gap: 0.4rem;
   font-size: 1.4rem;
   font-weight: 600;
-  color: var(--geralblack-100);
+  color: var(--text-primary);
 `;
 
 export const ContainerButton = styled.div`
@@ -164,7 +164,7 @@ export const ContainerSelect = styled.div`
     font-family: 'Poppins', sans-serif;
     font-size: 1.6rem;
     
-    background-color: var(--geralwhite);
+    background-color: var(--surface);
     border: none;
     box-shadow: 0px 1px 4px rgba(0,0,0,0.25);
   }
