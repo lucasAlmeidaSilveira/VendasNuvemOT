@@ -32,10 +32,11 @@ export function Dashboard() {
   // ou está carregando, mostramos spinner em vez de piscar "0 Vendas".
   const isBusy = loading || currentTable !== DatabaseTable.DAILY_SALES;
 
-  // KPIs vêm PRÉ-AGREGADOS de `daily_sales` (uma linha por dia/loja). O backend já
-  // aplica as regras do legado (tools/filterOrders) ao montar a tabela: exclui método
-  // 'other' (parcerias); "Geral (qtd)" exclui cancelado/estornado; "Pago" exige paid.
-  // Aqui só somamos as linhas-dia do período selecionado.
+  // KPIs vêm PRÉ-AGREGADOS de `daily_sales` (uma linha por dia/loja), por
+  // services/dailySalesRecalc.js. "Geral (qtd)" conta TODO pedido do dia — parceria,
+  // cancelado e estornado inclusive — para bater com o "(Total de N pedidos)" da aba
+  // Pedidos. "Geral (valor)" e "Pago" excluem parcerias (permuta, sem receita), e "Pago"
+  // ainda exige paid e não-cancelado. Aqui só somamos as linhas-dia do período selecionado.
   // OBS: Loja Física/Chatbot (storefront 'Loja Fisica'/'Loja') ENTRAM nesses totais, como no
   // legado — são pedidos manuais ativos, criados pelo popup e pelo Apps Script das filiais.
   // O dia de cada linha é o dia-calendário BRT (00:00–23:59 SP), a mesma regra da listagem
