@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import {
   OToneFrameHorizontal,
   OToneFrameVertical,
@@ -20,7 +20,14 @@ import {
   APthreeFrameHorizontal,
 } from '../../db/variants.js'; // Suas variantes
 import { defaultCategories } from '../../db/categories.js'; // Suas categorias padrão
-import { createProduct, fetchCategories } from '../../api/index.js';
+import {
+  createProduct,
+  fetchCategories,
+  checkWebarUploadReady,
+  uploadWebarImage,
+  saveWebarImages,
+} from '../../api/index.js';
+import { createWebarImageProcessor } from '../../utils/webarImageProcessor.js';
 import { useOrders } from '../../context/OrdersContext.jsx';
 import { CustomSelect } from '../CustomSelect';
 import { FaCirclePlus } from 'react-icons/fa6';
@@ -212,6 +219,15 @@ export function ProductRegistration() {
   const [productTags, setProductTags] = useState([]);
   const [tagInput, setTagInput] = useState('');
 
+  // Imagens AR 3D (mesmo backend do painel imgs-ar). Uma linha por tela.
+  const [arUrls, setArUrls] = useState([]);
+  const [arTrim, setArTrim] = useState(false);
+  const [arUploading, setArUploading] = useState(null);
+  const [arError, setArError] = useState(null);
+  const arFileInputRef = useRef(null);
+  const arPendingIndexRef = useRef(null);
+  const arProcessorRef = useRef(null);
+
   useEffect(() => {
     const fetchData = async () => {
       const categories = await fetchCategories(store);
@@ -234,6 +250,14 @@ export function ProductRegistration() {
     setImageUrls([...initialUrls, ...Array(count).fill('')]);
   }, [framesNumber]);
 
+  useEffect(() => {
+    // Uma linha de imagem AR 3D por tela selecionada (limite do backend: 3).
+    const count =
+      framesNumber === '1' ? 1 : framesNumber === '2' ? 2 : framesNumber === '3' ? 3 : 0;
+    setArUrls(Array(count).fill(''));
+    setArError(null);
+  }, [framesNumber]);
+
   const handleCategoryChange = event => {
     const value = event.target.value;
     setCategoryNames(
@@ -253,6 +277,65 @@ export function ProductRegistration() {
     setImageUrls([...imageUrls, '']);
   };
 
+  // Mesma regra do backend do webar (validateImages em img3dwebarServices.js):
+  // precisa ser uma URL http(s) válida.
+  const isValidArUrl = value => {
+    if (!value || !value.trim()) return false;
+    try {
+      const { protocol } = new URL(value.trim());
+      return protocol === 'http:' || protocol === 'https:';
+    } catch {
+      return false;
+    }
+  };
+
+  const handleArUrlChange = (index, value) => {
+    const updated = [...arUrls];
+    updated[index] = value;
+    setArUrls(updated);
+  };
+
+  const pickArFile = index => {
+    // O Cód. Imagem compõe a key do objeto no bucket (<id>/<slot>.jpg): sem ele
+    // não há upload possível, então nem abrimos o seletor.
+    if (!/^\d+$/.test(String(skuNumber ?? ''))) {
+      setArError({
+        index,
+        message: 'Informe o Cód. Imagem antes de enviar um arquivo.',
+      });
+      return;
+    }
+    setArError(null);
+    arPendingIndexRef.current = index;
+    arFileInputRef.current?.click();
+  };
+
+  const handleArFile = async event => {
+    const file = event.target.files?.[0];
+    const index = arPendingIndexRef.current;
+    if (!file || index === null) return;
+
+    setArUploading(index);
+    setArError(null);
+    try {
+      // Valida a chave de escrita e acorda o backend: o free tier do Render
+      // hiberna e a 1ª requisição leva ~30-60s.
+      await checkWebarUploadReady();
+
+      arProcessorRef.current ??= createWebarImageProcessor();
+      const blob = await arProcessorRef.current.process(file, { trim: arTrim });
+      const data = await uploadWebarImage(blob, Number(skuNumber), index + 1);
+      handleArUrlChange(index, data.url);
+    } catch (error) {
+      setArError({ index, message: error.message });
+    } finally {
+      setArUploading(null);
+      arPendingIndexRef.current = null;
+      // Sem isso, reenviar o mesmo arquivo não dispara onChange de novo.
+      event.target.value = '';
+    }
+  };
+
   const handleFormatChange = event => {
     setFormat(event.target.value);
   };
@@ -269,10 +352,24 @@ export function ProductRegistration() {
     setFormat('');
     setFramesNumber('');
     setProductTags([]);
+    setArUrls([]);
+    setArTrim(false);
+    setArError(null);
   };
 
   const handleSubmit = event => {
     event.preventDefault();
+
+    const hasInvalidArUrl = arUrls.some(
+      url => url && url.trim() && !isValidArUrl(url),
+    );
+    if (hasInvalidArUrl) {
+      alert(
+        'Uma ou mais URLs de Imagens AR 3D são inválidas. Use http:// ou https://.',
+      );
+      return;
+    }
+
     setOpen(true);
   };
 
@@ -284,6 +381,30 @@ export function ProductRegistration() {
       const response = await createProduct(store, productData);
 
       if (response.status === 200 || response.status === 201) {
+        // O produto já foi criado; um erro daqui em diante não deve ser desfeito,
+        // só avisado, para não deixar o usuário achar que nada foi salvo.
+        const filledArUrls = arUrls
+          .map(url => url.trim())
+          .filter(Boolean);
+
+        if (store === 'outlet' && filledArUrls.length) {
+          const arProductId = Number(skuNumber);
+          if (!Number.isInteger(arProductId) || arProductId <= 0) {
+            alert(
+              'Produto cadastrado, mas as imagens AR 3D não foram salvas: o Cód. Imagem precisa ser um número inteiro positivo.',
+            );
+          } else {
+            try {
+              await saveWebarImages('outlet', arProductId, filledArUrls);
+            } catch (arSaveError) {
+              console.error(arSaveError);
+              alert(
+                `Produto cadastrado, mas houve um erro ao salvar as imagens AR 3D: ${arSaveError.message}. Cadastre-as novamente pelo painel imgs-ar.`,
+              );
+            }
+          }
+        }
+
         setSuccess(true);
         setTimeout(() => {
           resetInputs();
@@ -467,6 +588,49 @@ export function ProductRegistration() {
       ));
   };
 
+  const renderArImageFields = () => {
+    return arUrls.map((url, index) => {
+      const touched = url.length > 0;
+      const valid = isValidArUrl(url);
+      const uploadErrorMessage = arError?.index === index ? arError.message : null;
+      const isBusy = arUploading !== null;
+
+      return (
+        <div
+          key={index}
+          style={{ display: 'flex', alignItems: 'flex-start', gap: '0.8rem' }}
+        >
+          <div style={{ flex: 1 }}>
+            <TextFieldInput
+              variant='filled'
+              size='small'
+              fullWidth
+              label={`URL da Imagem AR 3D ${index + 1}`}
+              type='text'
+              value={url}
+              disabled={isBusy}
+              onChange={e => handleArUrlChange(index, e.target.value)}
+              error={(touched && !valid) || Boolean(uploadErrorMessage)}
+              helperText={
+                (touched && !valid && 'URL inválida — use http:// ou https://') ||
+                uploadErrorMessage ||
+                ''
+              }
+            />
+          </div>
+          <Button
+            typeStyle='simple'
+            type='button'
+            disabled={isBusy}
+            onClick={() => pickArFile(index)}
+          >
+            {arUploading === index ? 'Enviando…' : '📁 Enviar arquivo'}
+          </Button>
+        </div>
+      );
+    });
+  };
+
   return (
     <ContainerProductRegistration>
       <TitlePage>Cadastro de Quadro</TitlePage>
@@ -577,6 +741,33 @@ export function ProductRegistration() {
             </span>
           )}
         </ContainerButton>
+
+        {store === 'outlet' && framesNumber && (
+          <ContainerButton>
+            <Label>Imagens AR 3D:</Label>
+            {renderArImageFields()}
+            <FormControlLabelCustom
+              control={
+                <Checkbox
+                  checked={arTrim}
+                  onChange={e => setArTrim(e.target.checked)}
+                />
+              }
+              label='Recortar bordas brancas ao enviar'
+            />
+            <span>
+              Envie um arquivo local ou cole a URL de cada imagem que será
+              usada no visualizador AR 3D. Campo opcional.
+            </span>
+            <input
+              type='file'
+              ref={arFileInputRef}
+              accept='image/jpeg,image/png,image/webp'
+              hidden
+              onChange={handleArFile}
+            />
+          </ContainerButton>
+        )}
 
         <ContainerButton>
           <>

@@ -171,3 +171,86 @@ export async function getLinkNoteTiny(id, cpf) {
     // console.log(error);
   }
 }
+
+// --- Imagens AR 3D (mesmo backend do painel imgs-ar) --------------------------
+//
+// O envelope da API é sempre { success, message, data? }. Em erro, jogamos a
+// message pra cima como Error pra quem chamou tratar num catch só.
+async function parseWebarResponse(response) {
+  let body;
+  try {
+    body = await response.json();
+  } catch {
+    body = null;
+  }
+
+  if (!response.ok || !body?.success) {
+    const error = new Error(
+      body?.message || `Erro ${response.status} ao comunicar com a API`,
+    );
+    error.status = response.status;
+    error.body = body;
+    throw error;
+  }
+
+  return body.data;
+}
+
+// Confere a chave de escrita e o storage antes de subir um arquivo, e de quebra
+// acorda o backend (o free tier do Render hiberna e a 1ª requisição leva ~30-60s).
+// Um POST sem corpo não chega a subir nada: o parser de bytes recusa com 415, que
+// aqui significa "credencial e storage ok".
+export async function checkWebarUploadReady() {
+  const response = await fetch(`${env.apiUrl}webar/upload?id=1&slot=1`, {
+    method: 'POST',
+    headers: { 'x-api-key': env.webarWriteKey },
+  });
+  if (response.status === 415) return true;
+
+  const body = await response.json().catch(() => null);
+  throw new Error(body?.message || `Backend indisponível (HTTP ${response.status})`);
+}
+
+// POST /webar/upload?id=..&slot=.. → sobe a arte já processada e devolve
+// { url, key }. O corpo é o Blob do canvas, que já carrega o Content-Type image/jpeg
+// (sem ele o backend responde 415, porque o parser de bytes não reconhece o corpo).
+export async function uploadWebarImage(blob, id, slot, timeoutMs = 60000) {
+  // Sem timeout, um upload pendurado ocuparia o formulário para sempre.
+  const controller = new AbortController();
+  const timer = setTimeout(() => controller.abort(), timeoutMs);
+  try {
+    const response = await fetch(
+      `${env.apiUrl}webar/upload?id=${encodeURIComponent(id)}&slot=${slot}`,
+      {
+        method: 'POST',
+        headers: {
+          'Content-Type': blob.type || 'image/jpeg',
+          'x-api-key': env.webarWriteKey,
+        },
+        body: blob,
+        signal: controller.signal,
+      },
+    );
+    return await parseWebarResponse(response);
+  } catch (error) {
+    if (error.name === 'AbortError') {
+      throw new Error(`Tempo esgotado ao enviar a imagem ${slot} do produto ${id}`);
+    }
+    throw error;
+  } finally {
+    clearTimeout(timer);
+  }
+}
+
+// POST /webar/images → cria ou substitui as imagens AR 3D do produto.
+export async function saveWebarImages(store, id, productImages) {
+  const response = await fetch(`${env.apiUrl}webar/images`, {
+    method: 'POST',
+    headers: {
+      'Content-Type': 'application/json',
+      'x-api-key': env.webarWriteKey,
+    },
+    body: JSON.stringify({ store, id, product_images: productImages }),
+  });
+  return parseWebarResponse(response);
+}
